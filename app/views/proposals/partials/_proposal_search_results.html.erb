@@ -1,0 +1,22 @@
+<% unless @proposal.deposit_paid %>
+  <p> Deposit Must Be Paid Prior To Requesting Creatives </p>
+<% end %>
+<% @proposal.find_creatives.each do |sr| %>
+  <div class='row'>
+    <div class='col-md-3'><%= sr.user.name %></div>
+    <div class='col-md-3'><%= sr.schedule_item.end_date %></div>
+    <div class='col-md-3'><%= link_to "See Portfolio", user_show_path(sr.user), class: 'btn btn-primary' %></div>
+    <div class='col-md-3'>
+      <%= render :partial => 'proposals/partials/search_results/request_buttons', :locals => {:sr => sr}%>
+    </div>
+  </div>
+  <div class='row'>
+    <% sr.user.collection_items.reverse.take(4).each do |ci| %>
+      <div class='col-md-3'>
+        <%= image_tag ci.file, class: 'img-responsive' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+
