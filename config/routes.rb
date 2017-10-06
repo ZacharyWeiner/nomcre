@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   get 'proposal/completed', to: 'proposals#completed', as: 'proposals_completed'
   get 'requests', to: 'proposal_requests#requests', as:'proposal_requests'
 
+  post 'charges/deposit/:proposal_id', to: 'charges#proposal_deposit', as: 'proposal_deposit'
+  post 'charges/balance/:proposal_id', to: 'charges#proposal_balance', as: 'proposal_balance'
+
 
  # Front routes start
   resources :companies
