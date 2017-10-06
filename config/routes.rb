@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
   resources :proposals
   devise_for :users
   resources :pages
