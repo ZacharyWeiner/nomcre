@@ -79,7 +79,7 @@ class CompaniesController < ApplicationController
 
     def authorize
       unless current_user.company == @company
-        redirect_to adminlte_path
+        redirect_to root_path
       end
     end
 end
