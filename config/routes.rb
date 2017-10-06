@@ -20,9 +20,9 @@ Rails.application.routes.draw do
   post 'charges/balance/:proposal_id', to: 'charges#proposal_balance', as: 'proposal_balance'
 
 
- # Front routes start
   resources :companies
   devise_for :users
+  get 'user/:id', to: "users#show", as: 'user_show'
   resources :pages
   resources :chatrooms
   resources :messages

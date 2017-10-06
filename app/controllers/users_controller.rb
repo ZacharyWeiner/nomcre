@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
-  layout 'adminlte'
-
-  def sign_up
+  def show
+    set_user
   end
 
-  def sign_in
+  protected
+  def set_user
+    if params[:id]
+      @user = User.find(params[:id])
+    end
   end
 end
-
