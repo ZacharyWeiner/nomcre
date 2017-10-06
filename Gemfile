@@ -21,6 +21,8 @@ gem 'jquery-rails'
 gem 'dotenv-rails'
 gem 'kaminari'
 gem 'auto_html', '~>1.6.4'
+gem 'carrierwave', '~> 1.0'
+gem 'carrierwave-aws'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
