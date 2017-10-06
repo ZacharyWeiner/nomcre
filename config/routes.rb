@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   resources :schedule_items
-  resources :collection_items
-  resources :collections
+  resources :collections do
+    resources :collection_items
+  end
+  get '/collection_item/download/:id', to: 'collection_items#download', as:'download'
   resources :waitlists
 
 
