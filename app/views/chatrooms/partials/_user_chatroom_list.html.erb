@@ -1,0 +1,5 @@
+<ul class='list-unstyled' style='background: white; color:gray'>
+<% current_user.chatrooms.uniq.each do |room| %>
+  <li style="background:light-gray"> <%= link_to room.topic, chatroom_path(room), style:'color:gray' %> </li>
+<% end %>
+</ul>

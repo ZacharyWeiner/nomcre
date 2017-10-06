@@ -10,11 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20171006143851) do
+ActiveRecord::Schema.define(version: 20171006150406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chatrooms", force: :cascade do |t|
+    t.string "topic"
+    t.bigint "proposal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["proposal_id"], name: "index_chatrooms_on_proposal_id"
+  end
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -31,6 +38,17 @@ ActiveRecord::Schema.define(version: 20171006143851) do
     t.string "location_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "chatroom_id"
+    t.text "content"
+    t.text "file"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chatroom_id"], name: "index_messages_on_chatroom_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "notifications", force: :cascade do |t|
@@ -81,8 +99,6 @@ ActiveRecord::Schema.define(version: 20171006143851) do
     t.index ["user_id"], name: "index_proposals_on_user_id"
   end
 
-<<<<<<< HEAD
-=======
   create_table "tasks", force: :cascade do |t|
     t.bigint "user_id"
     t.text "description"
@@ -97,7 +113,6 @@ ActiveRecord::Schema.define(version: 20171006143851) do
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
->>>>>>> tasks
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -121,15 +136,15 @@ ActiveRecord::Schema.define(version: 20171006143851) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "chatrooms", "proposals"
+  add_foreign_key "messages", "chatrooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "proposals", "companies"
   add_foreign_key "proposals", "locations"
   add_foreign_key "proposals", "users"
-<<<<<<< HEAD
-=======
   add_foreign_key "tasks", "companies"
   add_foreign_key "tasks", "proposals"
   add_foreign_key "tasks", "users"
->>>>>>> tasks
   add_foreign_key "users", "companies"
 end
