@@ -10,10 +10,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171006140242) do
+ActiveRecord::Schema.define(version: 20171006143212) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.string "logo"
+    t.string "phone"
+    t.string "website"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
+    t.bigint "parent_id"
+    t.string "location_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "notifications", force: :cascade do |t|
     t.bigint "user_id"
@@ -33,6 +50,36 @@ ActiveRecord::Schema.define(version: 20171006140242) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "proposals", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.date "deadline"
+    t.integer "price"
+    t.boolean "accepted"
+    t.bigint "company_id"
+    t.string "proposal_type"
+    t.boolean "completed"
+    t.date "completed_on"
+    t.boolean "paid"
+    t.string "charge_id"
+    t.text "bts", default: [], array: true
+    t.text "focus_points", default: [], array: true
+    t.string "add_ons", default: [], array: true
+    t.string "time_of_day"
+    t.string "background"
+    t.bigint "user_id"
+    t.string "deposit_id"
+    t.boolean "deposit_paid"
+    t.date "deposit_paid_on"
+    t.text "model_release"
+    t.bigint "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_proposals_on_company_id"
+    t.index ["location_id"], name: "index_proposals_on_location_id"
+    t.index ["user_id"], name: "index_proposals_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -50,9 +97,15 @@ ActiveRecord::Schema.define(version: 20171006140242) do
     t.integer "role"
     t.string "profile_image"
     t.string "user_type"
+    t.bigint "company_id"
+    t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "notifications", "users"
+  add_foreign_key "proposals", "companies"
+  add_foreign_key "proposals", "locations"
+  add_foreign_key "proposals", "users"
+  add_foreign_key "users", "companies"
 end

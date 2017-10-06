@@ -1,0 +1,109 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @proposal.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @proposal.content %>
+</p>
+
+<p>
+  <strong>Deadline:</strong>
+  <%= @proposal.deadline %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @proposal.price %>
+</p>
+
+<p>
+  <strong>Accepted:</strong>
+  <%= @proposal.accepted %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @proposal.company %>
+</p>
+
+<p>
+  <strong>Proposal type:</strong>
+  <%= @proposal.proposal_type %>
+</p>
+
+<p>
+  <strong>Completed:</strong>
+  <%= @proposal.completed %>
+</p>
+
+<p>
+  <strong>Completed on:</strong>
+  <%= @proposal.completed_on %>
+</p>
+
+<p>
+  <strong>Paid:</strong>
+  <%= @proposal.paid %>
+</p>
+
+<p>
+  <strong>Charge:</strong>
+  <%= @proposal.charge_id %>
+</p>
+
+<p>
+  <strong>Bts:</strong>
+  <%= @proposal.bts %>
+</p>
+
+<p>
+  <strong>Focus points:</strong>
+  <%= @proposal.focus_points %>
+</p>
+
+<p>
+  <strong>Time of day:</strong>
+  <%= @proposal.time_of_day %>
+</p>
+
+<p>
+  <strong>Background:</strong>
+  <%= @proposal.background %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @proposal.user %>
+</p>
+
+<p>
+  <strong>Deposit:</strong>
+  <%= @proposal.deposit_id %>
+</p>
+
+<p>
+  <strong>Deposit paid:</strong>
+  <%= @proposal.deposit_paid %>
+</p>
+
+<p>
+  <strong>Deposit paid on:</strong>
+  <%= @proposal.deposit_paid_on %>
+</p>
+
+<p>
+  <strong>Model release:</strong>
+  <%= @proposal.model_release %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @proposal.location %>
+</p>
+
+<%= link_to 'Edit', edit_proposal_path(@proposal) %> |
+<%= link_to 'Back', proposals_path %>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :proposals
   devise_for :users
   resources :pages
 
