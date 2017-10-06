@@ -1,9 +1,9 @@
 <div class="user-panel">
   <div class="pull-left image">
-    <%= image_tag current_user.profile_image, class: "img-circle" %>
+    <%= image_tag current_user.profile_image, class: "img-circle" unless current_user.profile_image.nil? %>
   </div>
   <div class="pull-left info">
     <p><%= current_user.name %></p>
-    <%= link_to '<i class="fa fa-circle text-success"></i><span>Online</span>'.html_safe, admin_root_path %>
+    <%= link_to '<i class="fa fa-circle text-success"></i><span>Online</span>'.html_safe, root_path %>
   </div>
 </div>
