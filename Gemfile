@@ -23,6 +23,7 @@ gem 'kaminari'
 gem 'auto_html', '~>1.6.4'
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-aws'
+gem 'stripe'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
