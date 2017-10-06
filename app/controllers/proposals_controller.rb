@@ -15,7 +15,7 @@ class ProposalsController < ApplicationController
   # GET /proposals/1
   # GET /proposals/1.json
   def show
-    @notifications = Notification.where(user: current_user).where(notification_obeject_id: params[:id]).where(read: false)
+    @notifications = Notification.where(user: current_user).where(notification_object_id: params[:id]).where(read: false)
     @notifications.each do |note|
       note.read = true
       note.save
