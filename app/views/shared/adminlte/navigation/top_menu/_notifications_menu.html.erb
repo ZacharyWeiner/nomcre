@@ -1,0 +1,29 @@
+<% @notifications = Notification.where(user: current_user).where(read:false).where.not(notification_type: "New Message").where.not(notification_type: "Task") %>
+<li class="dropdown notifications-menu">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+    <i class="fa fa-bell-o"></i>
+    <% unless @notifications.count == 0%>
+      <span class="label label-warning"><%= @notifications.count %></span>
+    <% end %>
+  </a>
+  <ul class="dropdown-menu">
+    <li class="header">You have <%= @notifications.count %> notifications</li>
+    <li>
+      <!-- inner menu: contains the actual data -->
+      <ul class="menu">
+        <% @notifications.each do |notification| %>
+        <li>
+          <% if notification.notification_type == "New Request" %>
+            <%= link_to "New Work Request", proposal_requests_path %>
+          <% elsif notification.notification_type == "Request Accepted" %>
+            <%= link_to "Your Request Has Been Accepted", proposal_path(notification.notification_obeject_id) %>
+          <% elsif notification.notification_type == "Proposal Assigned" %>
+            <%= link_to "You have a new job", proposal_path(notification.notification_obeject_id) %>
+          <% end %>
+        </li>
+        <% end %>
+      </ul>
+    </li>
+    <li class="footer"><%= link_to "View all", notifications_path %></a></li>
+  </ul>
+</li>

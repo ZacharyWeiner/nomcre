@@ -1,0 +1,17 @@
+<aside class="main-sidebar">
+  <section class="sidebar">
+    <%= render 'shared/adminlte/navigation/left_menu/user_panel' %>
+    <%= render 'shared/adminlte/navigation/left_menu/search_form' %>
+    <ul class="sidebar-menu">
+      <% if current_user.user_type == 'company' %>
+        <%= render 'shared/adminlte/navigation/left_menu/company_menu' %>
+      <% elsif current_user.user_type == 'creative' %>
+        <%= render 'shared/adminlte/navigation/left_menu/creative_menu' %>
+      <% end %>
+      <% if current_user.role == 'admin' %>
+        <%= render 'shared/adminlte/navigation/left_menu/admin_menu' %>
+      <% end %>
+    </ul>
+  </section>
+</aside>
+
