@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171006143212) do
+
+ActiveRecord::Schema.define(version: 20171006143851) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -80,6 +81,23 @@ ActiveRecord::Schema.define(version: 20171006143212) do
     t.index ["user_id"], name: "index_proposals_on_user_id"
   end
 
+<<<<<<< HEAD
+=======
+  create_table "tasks", force: :cascade do |t|
+    t.bigint "user_id"
+    t.text "description"
+    t.date "deadline"
+    t.boolean "completed"
+    t.bigint "company_id"
+    t.bigint "proposal_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_tasks_on_company_id"
+    t.index ["proposal_id"], name: "index_tasks_on_proposal_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+  end
+
+>>>>>>> tasks
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -107,5 +125,11 @@ ActiveRecord::Schema.define(version: 20171006143212) do
   add_foreign_key "proposals", "companies"
   add_foreign_key "proposals", "locations"
   add_foreign_key "proposals", "users"
+<<<<<<< HEAD
+=======
+  add_foreign_key "tasks", "companies"
+  add_foreign_key "tasks", "proposals"
+  add_foreign_key "tasks", "users"
+>>>>>>> tasks
   add_foreign_key "users", "companies"
 end
