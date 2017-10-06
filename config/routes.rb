@@ -8,5 +8,5 @@ Rails.application.routes.draw do
   #notifications
   get '/notifications', to: 'notifications#index', as: 'notifications'
 
-  root 'pages#index'
+  root 'application#home'
 end
