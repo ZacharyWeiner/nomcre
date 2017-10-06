@@ -17,6 +17,10 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'redis', '~> 3.0'
 gem 'devise'
+gem 'jquery-rails'
+gem 'dotenv-rails'
+gem 'kaminari'
+gem 'auto_html', '~>1.6.4'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
