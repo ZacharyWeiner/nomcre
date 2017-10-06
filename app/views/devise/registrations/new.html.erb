@@ -20,6 +20,8 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "off" %>
   </div>
+  <%= request.query_parameters[:user_type] %>
+  <% session[:user_type] = request.query_parameters[:user_type] %>
 
   <div class="actions">
     <%= f.submit "Sign up" %>
