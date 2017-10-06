@@ -14,7 +14,7 @@
     <%= stylesheet_link_tag 'application_back', media: 'all' %>
     <%= csrf_meta_tags %>
   </head>
-  <body class="hold-transition login-page">
+  <body class="hold-transition login-page" data-no-turbolink="true">
 
     <div class="login-box">
       <%= render partial: '/shared/adminlte/messages' %>

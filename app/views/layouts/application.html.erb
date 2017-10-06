@@ -14,7 +14,7 @@
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= csrf_meta_tags %>
   </head>
-  <body>
+  <body data-no-turbolink="true">
 
     <div class="site-wrapper">
       <div class="site-wrapper-inner">
@@ -28,7 +28,7 @@
 
   </body>
 
-  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'application_back' %>
 
   <% if content_for?(:added_scripts) %>
     <%= yield :added_scripts %>

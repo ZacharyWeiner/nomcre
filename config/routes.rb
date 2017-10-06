@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  resources :waitlists
   mount ActionCable.server => '/cable'
   resources :proposals
+ # Front routes start
   devise_for :users
+
   resources :pages
   resources :chatrooms
   resources :messages
