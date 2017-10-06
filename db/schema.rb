@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171006175452) do
+ActiveRecord::Schema.define(version: 20171006193426) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,18 @@ ActiveRecord::Schema.define(version: 20171006175452) do
     t.index ["user_id"], name: "index_proposals_on_user_id"
   end
 
+  create_table "schedule_items", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.bigint "user_id"
+    t.text "notes"
+    t.bigint "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_schedule_items_on_location_id"
+    t.index ["user_id"], name: "index_schedule_items_on_user_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.bigint "user_id"
     t.text "description"
@@ -177,6 +189,8 @@ ActiveRecord::Schema.define(version: 20171006175452) do
   add_foreign_key "proposals", "companies"
   add_foreign_key "proposals", "locations"
   add_foreign_key "proposals", "users"
+  add_foreign_key "schedule_items", "locations"
+  add_foreign_key "schedule_items", "users"
   add_foreign_key "tasks", "companies"
   add_foreign_key "tasks", "proposals"
   add_foreign_key "tasks", "users"
