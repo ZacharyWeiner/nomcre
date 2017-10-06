@@ -1,19 +1,89 @@
-<div class='row'>
-  <div class='col-md-2'>
-    <%= render 'chatrooms/partials/user_chatroom_list'%>
-  </div>
-  <div class='col-md-10'>
-    <div class="">
-      <h1><%= @chatroom.topic %></h1>
-      <div class="" style="max-height:300px; overflow-y: auto">
-        <div class="" id="messages" >
-          <%= render partial: 'messages/message', collection: @chatroom.messages.reverse.take(25) %>
-        </div>
-      </div>
-      <div>
-        <%= render partial: 'messages/message_form', locals: {message: @message, chatroom: @chatroom}%>
-      </div>
-    </div>
-  </div>
-</div>
 
+
+
+
+
+  <div class="container clearfix">
+    <%= render 'chatrooms/partials/user_chatroom_list'%>
+
+    <div class="chat">
+      <div class="chat-header clearfix">
+        <% chat_user = @chatroom.messages.where.not(user: current_user).first.user %>
+        <%= image_tag chat_user.profile_image %>
+       <!--  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/chat_avatar_01_green.jpg" alt="avatar" /> -->
+
+        <div class="chat-about">
+          <div class="chat-with"><%= chat_user.email %></div>
+          <div class="chat-num-messages">already <%= @chatroom.messages.count%> messages</div>
+        </div>
+        <i class="fa fa-star"></i>
+      </div> <!-- end chat-header -->
+
+      <div class="chat-history">
+        <ul style="list-style: none;">
+          <% @chatroom.messages.reverse.each do |message| %>
+          <!-- Right Side -->
+            <% if message.user == current_user %>
+              <li class="clearfix">
+                <div class="message-data align-right">
+                  <span class="message-data-time" ><%= message.created_at %></span> &nbsp; &nbsp;
+                  <span class="message-data-name" ><%= message.user.name %></span> <i class="fa fa-circle me"></i>
+
+                </div>
+                <div class="message other-message float-right">
+                  <%= message.content %>
+                </div>
+              </li>
+            <% else %>
+            <!-- End Right Side -->
+              <li>
+                <div class="message-data">
+                  <span class="message-data-name"><i class="fa fa-circle online"></i> <%= message.user.name %></span>
+                  <span class="message-data-time"><%= message.created_at %></span>
+                </div>
+                <div class="message my-message">
+                 <%= message.content%>
+                </div>
+              </li>
+            <% end %>
+          <% end %>
+        </ul>
+      </div> <!-- end chat-history -->
+<!--       <div class="chat-message clearfix">
+        <textarea name="message-to-send" id="message-to-send" placeholder ="Type your message" rows="3"></textarea>
+
+        <i class="fa fa-file-o"></i> &nbsp;&nbsp;&nbsp;
+        <i class="fa fa-file-image-o"></i>
+
+        <button>Send</button>
+
+      </div> <!-- end chat-message -->
+      <%= render 'messages/message_form' %>
+
+    </div> <!-- end chat -->
+
+  </div> <!-- end container -->
+
+<script id="message-template" type="text/x-handlebars-template">
+  <li class="clearfix">
+    <div class="message-data align-right">
+      <span class="message-data-time" >{{time}}, Today</span> &nbsp; &nbsp;
+      <span class="message-data-name" >Olia</span> <i class="fa fa-circle me"></i>
+    </div>
+    <div class="message other-message float-right">
+      {{messageOutput}}
+    </div>
+  </li>
+</script>
+
+<script id="message-response-template" type="text/x-handlebars-template">
+  <li>
+    <div class="message-data">
+      <span class="message-data-name"><i class="fa fa-circle online"></i> Vincent</span>
+      <span class="message-data-time">{{time}}, Today</span>
+    </div>
+    <div class="message my-message">
+      {{response}}
+    </div>
+  </li>
+</script>

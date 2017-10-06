@@ -21,6 +21,7 @@
         <b>Assigned To</b> <a class="pull-right"><%= @proposal.user.email unless @proposal.user.nil? %></a>
       </li>
     </ul>
+    <%= link_to 'Chat', chatroom_path(@proposal.chatroom), class: "btn btn-primary btn-block" %>
   </div>
   <!-- /.box-body -->
 </div>

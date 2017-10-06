@@ -11,7 +11,7 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : Rails.application.secrets[:site_title] %>">
     <title><%= content_for?(:title) ? yield(:title) : Rails.application.secrets[:site_title] %></title>
     <%= javascript_include_tag 'jquery_include', media: 'all' %>
-    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= stylesheet_link_tag 'chat', media: 'all' %>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
 
