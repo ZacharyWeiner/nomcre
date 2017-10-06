@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :proposals
   devise_for :users
   resources :pages
+  resources :chatrooms
+  resources :messages
 
   #notifications
   get '/notifications', to: 'notifications#index', as: 'notifications'
