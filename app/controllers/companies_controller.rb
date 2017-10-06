@@ -32,7 +32,6 @@ class CompaniesController < ApplicationController
         if current_user.user_type == 'company'
           current_user.company = @company
           current_user.save
-          byebug
         end
         format.html { redirect_to @company, notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @company }
