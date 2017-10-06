@@ -18,5 +18,5 @@ Rails.application.routes.draw do
     get '/complete', to: 'tasks#complete', as: 'task_complete'
   end
 
-  root 'pages#index'
+  root 'application#home'
 end
