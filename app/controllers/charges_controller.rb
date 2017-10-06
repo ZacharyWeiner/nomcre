@@ -43,7 +43,6 @@ class ChargesController < ApplicationController
       @proposal.deposit_id = charge['id']
       @proposal.deposit_paid_on = Date.today
       @proposal.save
-      byebug
       respond_to do |format|
         format.html { redirect_to @proposal, notice: 'Proposal Deposit Successfully Paid.' }
         format.json { head :no_content }
@@ -78,7 +77,6 @@ class ChargesController < ApplicationController
       @proposal.paid = true
       @proposal.charge_id = charge['id']
       @proposal.save
-      byebug
       respond_to do |format|
         format.html { redirect_to @proposal, notice: 'Proposal Deposit Successfully Paid.' }
         format.json { head :no_content }
