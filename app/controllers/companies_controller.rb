@@ -1,10 +1,12 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, except: [:new, :create, :show]
+  layout 'adminlte'
 
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.all
+    @companies = Company.order(:created_at).page params[:page]
   end
 
   # GET /companies/1
@@ -25,9 +27,13 @@ class CompaniesController < ApplicationController
   # POST /companies.json
   def create
     @company = Company.new(company_params)
-
     respond_to do |format|
       if @company.save
+        if current_user.user_type == 'company'
+          current_user.company = @company
+          current_user.save
+          byebug
+        end
         format.html { redirect_to @company, notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @company }
       else
@@ -70,5 +76,11 @@ class CompaniesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
       params.require(:company).permit(:name, :logo, :phone, :website)
+    end
+
+    def authorize
+      unless current_user.company == @company
+        redirect_to adminlte_path
+      end
     end
 end
