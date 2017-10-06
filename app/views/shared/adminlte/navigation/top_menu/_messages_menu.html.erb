@@ -12,7 +12,7 @@
       <!-- inner menu: contains the actual data -->
       <ul class="menu">
         <% @notifications.each do |notification| %>
-        <% @chatroom = Chatroom.find(notification.notification_obeject_id) %>
+        <% @chatroom = Chatroom.find(notification.notification_object_id) %>
         <li><!-- start message -->
           <%= link_to chatroom_path(@chatroom) do %>
             <div class="pull-left">

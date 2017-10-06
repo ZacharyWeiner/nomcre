@@ -133,7 +133,7 @@ class ProposalsController < ApplicationController
       task.user_id = @proposal_request.requested
       task.save
     end
-    @proposal.chatroom.messages.create!(user: @proposal.user, content: "#{@proposal.user.name has been added to the chat}")
+    @proposal.chatroom.messages.create!(user: @proposal.user, content: "#{@proposal.user.name} has been added to the chat")
     send_notification(@proposal_request.requested, "Proposal Assigned", @proposal.id)
     send_notification(@proposal_request.requested, "Task", @proposal.id)
     redirect_to @proposal
@@ -149,9 +149,9 @@ class ProposalsController < ApplicationController
 
   private
     def send_notification(user_id, notification_type, request_id)
-      notification = Notification.where(user_id: user_id, notification_type: notification_type, notification_obeject_id: request_id).first
+      notification = Notification.where(user_id: user_id, notification_type: notification_type, notification_object_id: request_id).first
       if notification.nil?
-        notification = Notification.create!(user_id: user_id, notification_type: notification_type, notification_obeject_id: request_id, read: false)
+        notification = Notification.create!(user_id: user_id, notification_type: notification_type, notification_object_id: request_id, read: false)
       end
     end
 

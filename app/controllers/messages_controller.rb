@@ -4,9 +4,9 @@ class MessagesController < ApplicationController
     message.user = current_user
     if message.save
       message.chatroom.users.uniq.each do |user|
-        notification = Notification.where(user: user, notification_type: "New Message", notification_obeject_id: message.chatroom.id).first
+        notification = Notification.where(user: user, notification_type: "New Message", notification_object_id: message.chatroom.id).first
         if notification.nil?
-          notification = Notification.create!(user: user, notification_type: "New Message", notification_obeject_id: message.chatroom.id, read: false)
+          notification = Notification.create!(user: user, notification_type: "New Message", notification_object_id: message.chatroom.id, read: false)
         else
           notification.read = false
           notification.save

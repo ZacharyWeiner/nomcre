@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
-
+  mount ActionCable.server => '/cable'
   resources :schedule_items
   resources :collection_items
   resources :collections
   resources :waitlists
-  mount ActionCable.server => '/cable'
+
 
   resources :proposals do
     get '/edit_details', to: 'proposals#edit_details', as: 'edit_details'

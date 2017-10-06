@@ -16,9 +16,9 @@
           <% if notification.notification_type == "New Request" %>
             <%= link_to "New Work Request", proposal_requests_path %>
           <% elsif notification.notification_type == "Request Accepted" %>
-            <%= link_to "Your Request Has Been Accepted", proposal_path(notification.notification_obeject_id) %>
+            <%= link_to "Your Request Has Been Accepted", proposal_path(notification.notification_object_id) %>
           <% elsif notification.notification_type == "Proposal Assigned" %>
-            <%= link_to "You have a new job", proposal_path(notification.notification_obeject_id) %>
+            <%= link_to "You have a new job", proposal_path(notification.notification_object_id) %>
           <% end %>
         </li>
         <% end %>

@@ -24,20 +24,20 @@ class Proposal < ApplicationRecord
 
   def create_tasks
     if self.proposal_type = "Photo"
-      self.tasks.create!(company: self.company, description: "Photo Task 1", deadline: self.deadline, completed: false)
-      self.tasks.create!(company: self.company, description: "Photo Task 2", deadline: self.deadline, completed: false)
-      self.tasks.create!(company: self.company, description: "Photo Task 3", deadline: self.deadline, completed: false)
-      self.tasks.create!(company: self.company, description: "Photo Task 4", deadline: self.deadline, completed: false)
+      self.tasks.create!(company: self.company, description: "Photo Task 1", deadline: self.deadline, completed: false, user:self.user)
+      self.tasks.create!(company: self.company, description: "Photo Task 2", deadline: self.deadline, completed: false, user:self.user)
+      self.tasks.create!(company: self.company, description: "Photo Task 3", deadline: self.deadline, completed: false, user:self.user)
+      self.tasks.create!(company: self.company, description: "Photo Task 4", deadline: self.deadline, completed: false, user:self.user)
     elsif self.proposal_type == "Video"
-      self.tasks.create!(company: self.company, description: "Video Task 1", deadline: self.deadline, completed: false)
-      self.tasks.create!(company: self.company, description: "Video Task 1", deadline: self.deadline, completed: false)
-      self.tasks.create!(company: self.company, description: "Video Task 1", deadline: self.deadline, completed: false)
-      self.tasks.create!(company: self.company, description: "Video Task 1", deadline: self.deadline, completed: false)
+      self.tasks.create!(company: self.company, description: "Video Task 1", deadline: self.deadline, completed: false, user:self.user)
+      self.tasks.create!(company: self.company, description: "Video Task 1", deadline: self.deadline, completed: false, user:self.user)
+      self.tasks.create!(company: self.company, description: "Video Task 1", deadline: self.deadline, completed: false, user:self.user)
+      self.tasks.create!(company: self.company, description: "Video Task 1", deadline: self.deadline, completed: false, user:self.user)
     elsif self.proposal_type == "Drone"
-      self.tasks.create!(company: self.company, description: "Drone Task 1", deadline: self.deadline, completed: false)
-      self.tasks.create!(company: self.company, description: "Drone Task 1", deadline: self.deadline, completed: false)
-      self.tasks.create!(company: self.company, description: "Drone Task 1", deadline: self.deadline, completed: false)
-      self.tasks.create!(company: self.company, description: "Drone Task 1", deadline: self.deadline, completed: false)
+      self.tasks.create!(company: self.company, description: "Drone Task 1", deadline: self.deadline, completed: false, user:self.user)
+      self.tasks.create!(company: self.company, description: "Drone Task 1", deadline: self.deadline, completed: false, user:self.user)
+      self.tasks.create!(company: self.company, description: "Drone Task 1", deadline: self.deadline, completed: false, user:self.user)
+      self.tasks.create!(company: self.company, description: "Drone Task 1", deadline: self.deadline, completed: false, user:self.user)
     end
   end
 end
