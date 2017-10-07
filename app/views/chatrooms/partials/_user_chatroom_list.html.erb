@@ -1,21 +1,16 @@
 
 
 <div class="people-list" id="people-list">
-  <!-- <div class="search">
-    <input type="text" placeholder="search" />
-    <i class="fa fa-search"></i>
-  </div> -->
   <ul class="list" style="list-style: none;">
     <% current_user.chatrooms.uniq.each do |room| %>
-    <li class="clearfix">
-      <%= image_tag room.messages.last.user.profile_image unless room.messages.last.nil? %>
-      <div class="about">
-        <div class="name"><%=  room.messages.last.user.name unless room.messages.last.nil? %></div>
-        <div class="status">
-          <!-- <i class="fa fa-circle online"></i> online -->
+      <li class="clearfix">
+        <%= image_tag room.messages.last.user.profile_image unless room.messages.last.nil? %>
+        <div class="about">
+          <div class="name"><%=  room.messages.last.user.name unless room.messages.last.nil? %></div>
+          <div class="status">
+          </div>
         </div>
-      </div>
-    </li>
+      </li>
     <% end %>
   </ul>
 </div>
