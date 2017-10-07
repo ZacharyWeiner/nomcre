@@ -14,9 +14,9 @@
     <%= stylesheet_link_tag 'chat', media: 'all' %>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
-
+    <%= javascript_include_tag 'chatroom' %>
   </head>
-  <body>
+  <body data-turbolinks="false">
 
     <div class="site-wrapper">
       <div class="site-wrapper-inner">
@@ -26,14 +26,7 @@
         </div>
       </div>
     </div>
-
   </body>
-
-  <%= javascript_include_tag 'application' %>
-
-  <% if content_for?(:added_scripts) %>
-    <%= yield :added_scripts %>
-  <% end %>
 </html>
 
 
