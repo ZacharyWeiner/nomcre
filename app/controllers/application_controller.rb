@@ -47,7 +47,7 @@ class ApplicationController < ActionController::Base
       if devise_controller?
         'layouts/devise'
       else
-        'layouts/application'
+        'layouts/photog'
       end
     end
 end

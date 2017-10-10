@@ -12,6 +12,8 @@ Rails.application.config.assets.precompile += %w( application_back.css )
 Rails.application.config.assets.precompile += %w( jquery_include.js )
 Rails.application.config.assets.precompile += %w( chat.css )
 Rails.application.config.assets.precompile += %w( chatroom.js )
+Rails.application.config.assets.precompile += %w( photog.js )
+Rails.application.config.assets.precompile += %w( photog.css )
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
