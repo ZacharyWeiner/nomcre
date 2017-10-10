@@ -49,7 +49,6 @@ ready = function() {
             }
         }
     });
-    alert('Fuck me');
 };
 
 $(document).on('turbolinks:load', ready);/*
