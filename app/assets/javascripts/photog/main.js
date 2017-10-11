@@ -59,6 +59,5 @@ ready = function() {
     });
 };
 
-$(document).on('turbolinks:load', ready);/*
-	Foxstar Theme Scripts
-*/
+$(document).on('turbolinks:load', ready);
+
