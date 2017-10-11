@@ -9,6 +9,8 @@
 //= require photog/vendor/venobox.min
 //= require photog/vendor/jquery.counterup.min
 //= require photog/vendor/owl.carousel.min
+//= require photog/vendor/jquery.easing.1.3
+//= require photog/vendor/smooth-scroll.min
 
 
 
