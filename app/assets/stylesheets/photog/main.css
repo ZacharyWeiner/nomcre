@@ -431,7 +431,7 @@ ul.nav > li.active > a{
     overflow: hidden;
 }
 .portfolio_box img{
-    opacity: 0.3;
+    opacity: 0.6;
 }
 
 .portfolio_box a:hover img{
