@@ -7,7 +7,7 @@
       <div class='row'>
         <% collection.collection_items.take(4).each do |item| %>
           <div class='col-md-3' >
-            <%= image_tag item.file, class: 'img-responsive' %>
+            <%= image_tag(item.file_url(:small).to_s) %>
           </div>
         <% end %>
       </div>

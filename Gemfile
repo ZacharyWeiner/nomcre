@@ -22,6 +22,7 @@ gem 'dotenv-rails'
 gem 'kaminari'
 gem 'auto_html', '~>1.6.4'
 gem 'stripe'
+
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment
@@ -29,6 +30,7 @@ gem 'stripe'
 
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-aws'
+gem 'mini_magick'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
