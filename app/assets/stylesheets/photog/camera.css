@@ -323,7 +323,7 @@
 	right: 0;
 }
 .camera_next > span {
-	background: url(../img/camera/camera_skins.png) no-repeat -40px 0;
+	background: url(../img/camera/camera_skins.png) no-repeat 0px 0;
 	display: block;
 	height: 40px;
 	width: 40px;
