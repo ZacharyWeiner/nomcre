@@ -3,40 +3,70 @@
         <div class="col-sm-6 xs-padding">
             <div class="contact_info">
                 <i class="fa fa-phone"></i>
-                <h3>Have Any Doubts?</h3>
-                <h2 class="wow bounceIn" data-wow-delay="0ms" data-wow-duration="1000ms">Call Me Now</h2>
+                <h3>Dont Hesitate To Call</h3>
+                <h2 class="wow bounceIn" data-wow-delay="0ms" data-wow-duration="1000ms">Ask Us Anything</h2>
                 <p>This Number is Toll Free <br>443 221 2234</p>
             </div>
         </div>
         <div class="col-sm-6 xs-padding">
           <div class="contact_wrap">
            <div class="section_heading">
-             <h2>Contact With Us</h2>
-             <p>Lorem Ipsum is simply dummy text of the printing and industry.</p>
+             <h2>Contact Us</h2>
+             <p>Somewhere in the world we are listening. </p>
          </div>
-         <form action="contact.php" method="post" id="ajax_form" class="form-horizontal contact_form">
+         <% contact = Contact.new%>
+         <%= form_with(model: contact, local: true, class: "form-horizontal contact_form") do |form| %>
+          <% if contact.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+              <ul>
+              <% contact.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
             <div class="form-group">
                 <div class="col-sm-6">
-                    <input type="text" id="name" name="name" class="form-control" placeholder="Name" required>
+                    <%= form.text_field :name, id: :contact_name, class: 'form-control', placeholder: "Name" %>
                 </div>
                 <div class="col-sm-6">
-                    <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+                    <%= form.text_field :email, id: :contact_email, class: 'form-control', placeholder: 'Email' %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-xs-12">
-                    <textarea id="message" name="message" cols="30" rows="5" class="form-control msg" placeholder="Message" required></textarea>
+                    <%= form.text_area :message, id: :contact_message, cols: 30, class: "form-control msg", placeholder: "Message..." %>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-xs-12 align-left">
-                    <button id="submit" class="fs_btn" type="submit">Send Message</button>
+                    <%= form.submit "Send Message", class: 'fs_btn' %>
+
                 </div>
             </div>
             <div id="form-messages" class="alert" role="alert"></div>
-        </form>
+        <% end %>
     </div>
 </div>
 </div>
+<% flash.each do |name, msg| %>
+  <% if msg.is_a?(String) %>
+    <div class=" alert-dismissible" style='padding-top: 80px;'>
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <h4>
+        <i class="icon fa fa-<%= name.to_s == 'notice' ? 'check' : 'ban' %>"></i>
+        <%= name.to_s == 'notice' ? 'Success!' : 'Alert!' %>
+      </h4>
+      <%= content_tag :div, raw(msg.split(",").join("<br>").html_safe), :id => "flash_#{name}" %>
+    </div>
+    <% flash[name] = nil %>
+  <% end %>
+<% end %>
 </section><!-- /.contact_section -->
+
+
+
 
