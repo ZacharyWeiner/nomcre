@@ -11,6 +11,7 @@
 //= require photog/vendor/owl.carousel.min
 //= require photog/vendor/jquery.easing.1.3
 //= require photog/vendor/smooth-scroll.min
+//= require photog/vendor/modernizr-2.8.3-respond-1.4.2.min
 
 
 
