@@ -74,7 +74,7 @@ class CompaniesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def company_params
-      params.require(:company).permit(:name, :logo, :phone, :website)
+      params.require(:company).permit(:name, :logo, :phone, :website, :instagram)
     end
 
     def authorize

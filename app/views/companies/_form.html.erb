@@ -14,24 +14,27 @@
 
   <div class="form-group has-feedback">
     <%= f.text_field :name, class: 'form-control', placeholder: 'Company Name' %>
-    <span class='glyphicon glyphicon-user form-control-feedback'></span>
+    <span class='fa fa-user form-control-feedback'></span>
   </div>
 
   <div class="form-group has-feedback">
     <%= f.file_field :logo, class: 'form-control' %>
-    <span class='glyphicon glyphicon-picture form-control-feedback'></span>
+    <span class='fa fa-picture-o form-control-feedback'></span>
   </div>
 
   <div class="form-group has-feedback">
     <%= f.text_field :phone, class: 'form-control', placeholder: 'Company Phone Number' %>
-    <span class='glyphicon glyphicon-phone form-control-feedback'></span>
+    <span class='fa fa-phone form-control-feedback'></span>
   </div>
 
   <div class="form-group has-feedback">
     <%= f.text_field :website, class: 'form-control', placeholder: 'Website - www.example.com' %>
-    <span class='glyphicon glyphicon-globe form-control-feedback'></span>
+    <span class='fa fa-globe form-control-feedback'></span>
   </div>
-
+  <div class="form-group has-feedback">
+    <%= f.text_field :instagram, class: 'form-control', placeholder: '@YourInstagramAccount' %>
+    <span class='fa fa-instagram form-control-feedback'></span>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
