@@ -6,7 +6,7 @@
       <li class="clearfix">
         <%= image_tag room.messages.last.user.profile_image unless room.messages.last.nil? %>
         <div class="about">
-          <div class="name"><%=  room.messages.last.user.name unless room.messages.last.nil? %></div>
+          <div class="name"><%= link_to room.proposal.title, chatroom_path(room), style: 'color:white; text-decoration: none;' %></div>
           <div class="status">
           </div>
         </div>

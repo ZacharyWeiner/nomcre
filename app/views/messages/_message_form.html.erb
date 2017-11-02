@@ -5,7 +5,10 @@
     <%= f.file_field :file, id: :message_file %>
   <!-- </label> -->
   <%= f.hidden_field :chatroom_id, value: chatroom.id %>
-  <%= f.submit "send", data: {send: "message"} %>
+
+  <%= button_tag( data: {send: "message"}, :class => "button_green") do %>
+    Send <i class="fa fa-paper-plane-o"></i>
+  <% end %>
 <% end %>
 </div>
 

@@ -16,7 +16,7 @@
       </div> <!-- end chat-header -->
 
       <div class="chat-history" >
-        <ul style="list-style: none; ">
+        <ul style="list-style: none;">
           <% @chatroom.messages.reverse.each do |message| %>
           <!-- Right Side -->
             <% if message.user == current_user %>
