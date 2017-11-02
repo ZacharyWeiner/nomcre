@@ -11,24 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :start_date %>
-    <%= f.date_select :start_date %>
+    <%= f.date_select :start_date, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :end_date %>
-    <%= f.date_select :end_date %>
+    <%= f.date_select :end_date, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :location %>
-    <%= f.collection_select(:location_id, Location.all.order(:name), :id, :name) %>
+    <%= f.collection_select(:location_id, Location.all.order(:name), :id, :name, {class: 'form-control'}) %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :notes %>
-    <%= f.text_area :notes %>
+    <%= f.text_area :notes, class: 'form-control' %>
   </div>
 
   <div class="actions">
