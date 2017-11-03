@@ -22,6 +22,12 @@
       </li>
     </ul>
     <%= link_to 'Chat', chatroom_path(@proposal.chatroom), class: "btn btn-primary btn-block" %>
+    <% if @proposal.proposal_requests.where(requested: current_user).where(accepted: nil).count > 0 %>
+      <%= link_to "Accept", proposal_accept_request_path(@proposal), class: 'btn btn-success btn-block'%>
+    <% elsif @proposal.proposal_requests.where(requested: current_user).where(accepted: true) %>
+      <%= link_to "Accepted", proposal_accept_request_path(@proposal), class: 'btn btn-success btn-block disabled'%>
+    <% end %>
+
   </div>
   <!-- /.box-body -->
 </div>

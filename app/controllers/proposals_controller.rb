@@ -38,6 +38,7 @@ class ProposalsController < ApplicationController
   # POST /proposals.json
   def create
     @proposal = Proposal.new(proposal_params)
+    @proposal.bts = ["Photo","Video","SetUp"]
     respond_to do |format|
       if @proposal.save
         set_price(@proposal)
@@ -134,6 +135,7 @@ class ProposalsController < ApplicationController
       task.save
     end
     @proposal.chatroom.messages.create!(user: @proposal.user, content: "#{@proposal.user.name} has been added to the chat")
+    send_notification(@proposal_request.requested, "New Message", @proposal.chatroom.id)
     send_notification(@proposal_request.requested, "Proposal Assigned", @proposal.id)
     send_notification(@proposal_request.requested, "Task", @proposal.id)
     redirect_to @proposal
@@ -176,6 +178,6 @@ class ProposalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def proposal_params
-      params.require(:proposal).permit(:title, :content, :deadline, :price, :accepted, :company_id, :proposal_type, :completed, :completed_on, :paid, :charge_id, :bts, :focus_points, :time_of_day, :location_id, :background, :model_release)
+      params.require(:proposal).permit(:title, :content, :deadline, :price, :accepted, :company_id, :proposal_type, :completed, :completed_on, :paid, :charge_id, :bts, :focus_points, :time_of_day, :location_id, :background, :model_release, :shoot_type, :raw, :background_note, :instagram_1, :instagram_2, :instagram_3, :instagram_4)
     end
 end

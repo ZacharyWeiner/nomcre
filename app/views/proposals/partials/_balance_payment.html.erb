@@ -63,7 +63,7 @@
               <td><%= @proposal.deadline %></td>
               <td><%= @proposal.proposal_type %></td>
               <td><%= @proposal.location.name %></td>
-              <td>$<%= @proposal.price * 0.99 %> USD</td>
+              <td>$<%= @proposal.price * 0.90 %> USD</td>
             </tr>
             </tbody>
           </table>
@@ -96,7 +96,7 @@
             <table class="table">
               <tbody><tr>
                 <th style="width:50%">Subtotal:</th>
-                <td>$<%= @proposal.price * 0.99 %> USD</td>
+                <td>$<%= @proposal.price * 0.90 %> USD</td>
               </tr>
             </tbody></table>
           </div>
@@ -121,7 +121,7 @@
                   </div>
                   <% end %>
                 </article>
-                <% @stripe_price = ((@proposal.price - (@proposal.price * 0.01)) * 100)%>
+                <% @stripe_price = ((@proposal.price - (@proposal.price * 0.10)) * 100)%>
                 <form action="/charge" method="POST">
                   <%= hidden_field_tag 'proposal_id', @proposal.id %>
                   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button pull-right"

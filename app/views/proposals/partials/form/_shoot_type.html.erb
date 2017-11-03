@@ -1,0 +1,13 @@
+<div class='box box-info'>
+<div class="box-header with-border">
+  <h4 class="box-title">Shoot Type</h4>
+</div>
+<div class="form-group" style="margin:12px; padding-bottom: 12px;">
+  <%= radio_button_tag 'proposal[shoot_type]', 'Product', checked = (@proposal.shoot_type =="Product") %>
+  <%= f.label :product %>
+  <%= radio_button_tag 'proposal[shoot_type]', 'Lifestyle', checked = (@proposal.shoot_type =="Lifestyle") %>
+  <%= f.label :lifestyle %>
+  <%= radio_button_tag 'proposal[shoot_type]', 'Mixed', checked = (@proposal.shoot_type =="Mixed") %>
+  <%= f.label :mixed %>
+</div>
+</div>

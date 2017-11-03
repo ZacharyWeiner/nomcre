@@ -1,10 +1,13 @@
 <%= form_for(@proposal) do |f| %>
-  <div class="field">
+  <div class="form-group has-feedback">
     <%= f.label :model_release %>
-    <%= f.file_field :model_release %>
+    <%= f.file_field :model_release, class: 'form-control' %>
+    <span class='fa fa-picture-o form-control-feedback'></span>
   </div>
   <%= f.submit %>
 <% end %>
+
+
 
 
 <% unless @proposal.model_release.nil? %>

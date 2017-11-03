@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :messages
   has_many :chatrooms, through: :messages
   has_many :notifications
+  has_many :schedule_items
   mount_uploader :profile_image, FileUploader
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

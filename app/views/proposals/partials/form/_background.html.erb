@@ -1,0 +1,40 @@
+
+<div class='box box-info'>
+  <div class="box-header with-border">
+    <h4 class="box-title">Background</h4>
+  </div>
+  <div class='row' style="margin:12px;">
+      <div class='col-md-4'>
+        <%= radio_button_tag 'proposal[background]', 'Beach', checked = (@proposal.background =="Beach") %>
+        <%= f.label :beach %>
+      </div>
+      <div class='col-md-4'>
+        <%= radio_button_tag 'proposal[background]', 'Mountains', checked = (@proposal.background =="Mountains") %>
+        <%= f.label :mountains %>
+      </div>
+      <div class='col-md-4'>
+        <%= radio_button_tag 'proposal[background]', 'City Scape', checked = (@proposal.background =="City Scape") %>
+        <%= f.label :city_scape %>
+      </div>
+      <div class='col-md-4'>
+        <%= radio_button_tag 'proposal[background]', 'Nature/Park', checked = (@proposal.background =="Nature/Park") %>
+        <%= f.label :nature_or_park %>
+      </div>
+
+        <div class='col-md-4'>
+          <%= radio_button_tag 'proposal[background]', 'Historical Building', checked = (@proposal.background =="Historical Building") %>
+          <%= f.label :historical_building %>
+        </div>
+        <div class='col-md-4'>
+          <%= radio_button_tag 'proposal[background]', 'Building Interior', checked = (@proposal.background =="Building Interior") %>
+          <%= f.label :building_interior %>
+        </div>
+        <div class='col-md-4'>
+          <%= radio_button_tag 'proposal[background]', 'Action/Activity', checked = (@proposal.background =="Action/Activity") %>
+          <%= f.label :action_or_activity %>
+        </div>
+  </div>
+  <div class='row' style="margin:12px; padding-bottom: 12px;">
+    <%= f.text_field :background_note, class: 'form-control', placeholder: 'Background details...' %>
+  </div>
+</div>

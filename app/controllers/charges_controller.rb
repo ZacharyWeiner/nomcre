@@ -60,7 +60,7 @@ class ChargesController < ApplicationController
 
   def proposal_balance
     @proposal = Proposal.find(params[:proposal_id])
-    @amount = ((@proposal.price - (@proposal.price * 0.01)) * 100).to_int
+    @amount = ((@proposal.price - (@proposal.price * 0.10)) * 100).to_int
     customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
       :source  => params[:stripeToken]

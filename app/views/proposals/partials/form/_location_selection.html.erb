@@ -1,0 +1,8 @@
+<div class="box box-info" >
+  <div class="box-header with-border">
+    <h4 class="box-title">Location</h4>
+  </div>
+  <div style="margin:12px; padding-bottom: 12px;">
+    <%= f.collection_select(:location_id, Location.all.order(:name), :id, :name) %>
+  </div>
+</div>

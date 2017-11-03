@@ -2,16 +2,39 @@
 <!-- /.box-header -->
 <div class="box-body">
   <div class='row'>
-    <dl style="padding:12px">
-      <dt>
-        Production Type
-      </dt>
-      <dd>
-        <%= @proposal.proposal_type%>
-      </dd>
-    </dl>
+    <div class='col-md-6'>
+      <dl>
+        <dt>
+          Production Type
+        </dt>
+        <dd>
+          <%= @proposal.proposal_type %>
+        </dd>
+      </dl>
+      <dl>
+        <dt>
+          Background
+        </dt>
+        <dd>
+          <%= @proposal.background %> <br>
+          <div class='light'>
+            <%= @proposal.background_note unless @proposal.background_note.nil?%>
+          </div>
+        </dd>
+      </dl>
+    </div>
+    <div class='col-md-6'>
+      <dl>
+        <dt>Shoot Type</dt>
+        <dd><%= @proposal.shoot_type%> Shots</dd>
+      </dl>
+      <dl>
+        <dt>Time Of Day</dt>
+        <dd><%= @proposal.time_of_day %></dd>
+      </dl>
+    </div>
   </div>
-  <hr/>
+  <hr>
   <dl>
     <dt>Creative Brief</dt>
     <dd><%= @proposal.content%></dd>
