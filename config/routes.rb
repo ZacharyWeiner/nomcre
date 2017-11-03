@@ -41,6 +41,6 @@ Rails.application.routes.draw do
   #dashboards
   get '/dashboard/company', to: 'dashboards#company_dashboard', as: 'company_dashboard'
   get 'dashboard/creative', to: 'dashboards#creative_dashboard', as: 'creative_dashboard'
-
+  get 'khaki/index', to:'khaki#index'
   root 'application#home'
 end
