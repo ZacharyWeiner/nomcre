@@ -14,6 +14,9 @@
 //= require sticky-kit/dist/sticky-kit.min
 //= require jarallax/dist/jarallax.min
 //= require jarallax/dist/jarallax-video.min
+//= require imagesloaded/imagesloaded.pkgd.min
+//= require flickity/dist/flickity.pkgd.min
+//= require isotope/dist/isotope.pkgd.min
 
 
 document.addEventListener("turbolinks:load", function() {
