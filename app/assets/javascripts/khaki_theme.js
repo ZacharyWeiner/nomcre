@@ -1,5 +1,6 @@
 //= require jquery/dist/jquery
 //= require jquery_ujs
+//= require tether/dist/js/tether.min
 //= require bootstrap/dist/js/bootstrap.min
 //= require typed.js/js/typed.js
 //= require jquery-form/dist/jquery.form.min
@@ -10,7 +11,6 @@
 //= require khaki/jquery.themepunch.enablelog
 //= require khaki/jquery.themepunch.revolution.min
 //= require khaki/jquery.themepunch.tools.min
-//= require tether/dist/js/tether.min
 //= require sticky-kit/dist/sticky-kit.min
 //= require jarallax/dist/jarallax.min
 //= require jarallax/dist/jarallax-video.min
