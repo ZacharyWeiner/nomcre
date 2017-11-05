@@ -20,6 +20,9 @@
 //= require photoswipe/dist/photoswipe.min
 //= require photoswipe/dist/photoswipe-ui-default.min
 //= require moment/min/moment.min
+//= require moment-timezone/builds/moment-timezone-with-data
+//= require hammer.js/hammer.min
+//= require social-likes/dist/social-likes.min
 
 
 document.addEventListener("turbolinks:load", function() {
