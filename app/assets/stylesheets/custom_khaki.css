@@ -1,6 +1,145 @@
 
  /*
+ *= require 'masonry/basic'
+  *= require 'masonry/centered'
+  *= require 'masonry/fluid'
+  *= require 'masonry/gutters'
+  *= require 'masonry/infinitescroll'
+  *= require 'masonry/right-to-left'
+  *= require 'masonry/transitions'
  *= require_tree ./custom_khaki
  *= require_self
 
  */
+
+ body {
+    color: #3b3b3b;
+    background-color: #1c1c1c;
+}
+
+#masonry-container {
+  background: #FFF;
+  padding: 5px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  clear: both;
+  -webkit-border-radius: 5px;
+     -moz-border-radius: 5px;
+          border-radius: 5px;
+}
+
+.clearfix:before, .clearfix:after { content: ""; display: table; }
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
+.col1 { width: 80px; }
+.col2 { width: 180px; }
+.col3 { width: 280px; }
+.col4 { width: 380px; }
+.col5 { width: 480px; }
+
+.col1 img { max-width: 80px; }
+.col2 img { max-width: 180px; }
+.col3 img { max-width: 280px; }
+.col4 img { max-width: 380px; }
+.col5 img { max-width: 480px; }
+
+
+* { box-sizing: border-box; }
+
+/* force scrollbar */
+html { overflow-y: scroll; }
+
+body { font-family: sans-serif; }
+
+/* ---- grid ---- */
+
+.grid {
+  background: #000;
+}
+
+/* clear fix */
+.grid:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+/* ---- .grid-item ---- */
+
+.grid-sizer,
+.grid-item {
+  width: 33.333%;
+}
+
+.grid-item {
+  float: left;
+}
+
+.grid-item img {
+  display: block;
+  max-width: 100%;
+}
+
+
+.grid-item{
+  overflow: hidden;
+  background: #000000;
+}
+
+.grid-item * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.45s ease-in-out;
+  transition: all 0.45s ease-in-out;
+}
+
+.grid-item img {
+
+  position: relative;
+  opacity: 1;
+
+}
+
+.grid-item:hover img{
+  -webkit-transform: scale(1.15);
+  transform: scale(1.15);
+  opacity: 0.35;
+}
+
+.description_layer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  visibility: hidden;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-item:hover .description_layer {
+  visibility: visible;
+  opacity: 1;
+}
+
+.description_2 {
+  transition: .2s;
+  transform: translateY(0.4em);
+  color: white;
+}
+
+.description {
+  transition: .2s;
+  transform: translateY(1em);
+  color: white;
+}
+
+.grid-item:hover .description_layer {
+  transform: translateY(0);
+}
+
+
+

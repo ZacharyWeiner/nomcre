@@ -1,14 +1,139 @@
-<div class="inner cover">
-  <h1 class="cover-heading">Welcome to my online home.</h1>
+<div class="nk-contacts-top">
+  <div class="container">
+    <div class="nk-contacts-left">
+      <div class="nk-navbar">
+        <ul class="nk-nav">
+          <li>
+            <a href="tel:+37001231078" class="link-effect-3 ready"><span><span class="link-effect-shade">
+              <span class="nk-contact-icon"><i class="ion-ios-telephone"></i></span> + 3 (700) 123-1078</span>
+              <span class="nk-contact-icon"><i class="ion-ios-telephone"></i></span> + 3 (700) 123-1078</span></a>
+            </li>
+            <li>
+              <a href="mailto:info@khaki.com" class="link-effect-3 ready"><span><span class="link-effect-shade">
+                <span class="nk-contact-icon"><i class="ion-ios-email"></i></span> info@khaki.com</span>
+                <span class="nk-contact-icon"><i class="ion-ios-email"></i></span> info@khaki.com</span></a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="nk-contacts-right">
+          <div class="nk-navbar">
+            <ul class="nk-nav">
+              <li>
+                <a href="https://twitter.com/nkdevv" target="_blank" class="nk-contact-icon link-effect-3 ready"><span><span class="link-effect-shade">
+                  <span class="ion-social-twitter"></span>
+                </span>
+                <span class="ion-social-twitter"></span>
+              </span></a>
+            </li>
+            <li>
+              <a href="https://dribbble.com/_nK" target="_blank" class="nk-contact-icon link-effect-3 ready"><span><span class="link-effect-shade">
+                <span class="ion-social-dribbble-outline"></span>
+              </span>
+              <span class="ion-social-dribbble-outline"></span>
+            </span></a>
+          </li>
+          <li>
+            <a href="#" class="nk-contact-icon link-effect-3 ready"><span><span class="link-effect-shade">
+              <span class="ion-social-instagram-outline"></span>
+            </span>
+            <span class="ion-social-instagram-outline"></span>
+          </span></a>
+        </li>
+        <li>
+          <a href="#" class="nk-contact-icon link-effect-3 ready"><span><span class="link-effect-shade">
+            <span class="ion-social-pinterest"></span>
+          </span>
+          <span class="ion-social-pinterest"></span>
+        </span></a>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+</div>
 
-  <p class="lead">
+<div class="inner cover" style='height:100px' >
+  <div style='padding-top: 33px'>
+  <p class="lead  text-center" >
     <span class='typed'></span>
   </p>
-
-  <p class="lead">
-
-  </p>
 </div>
+</div>
+
+<!-- <div id="masonry-container" class="transitions-enabled infinite-scroll clearfix">
+
+  <div class="box col3">
+    ...
+  </div>
+
+  <div class="box col1">
+    <p>Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. </p>
+  </div>
+
+  <div class="box col2">
+    <p>
+      <a href="http://www.flickr.com/photos/nemoorange/3319714470/" title="Whitlow's on Wilson by nemoorange, on Flickr"><img src="http://farm4.static.flickr.com/3008/3319714470_c05a5cb5a8_m.jpg" alt="Whitlow's on Wilson" /></a>
+    </p>
+  </div>
+  ...
+</div>
+ -->
+
+
+ <div class="grid">
+  <!-- width of .grid-sizer used for columnWidth -->
+  <div class="grid-sizer"></div>
+  <% CollectionItem.all.each do |ci| %>
+  <div class="grid-item">
+    <%= image_tag ci.file.url(:medium) %>
+    <div class='description_layer'>
+      <div class='description text-center'>
+        <h3>Some Text </h3>
+        <br>
+        <h4> Some More Text</h4>
+      </div>
+    </div>
+  </div>
+  <% end %>
+
+</div>
+
+
+<figure class="snip1132">
+  <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample22.jpg" alt="sample22" />
+  <figcaption>
+    <div class="heading">
+      <h3>Hanson <span> Deck</span></h3>
+    </div>
+    <div class="caption">
+      <p>I'm killing time while I wait</p>
+    </div>
+  </figcaption>
+  <a href="#"></a>
+</figure>
+<figure class="snip1132"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample21.jpg" alt="sample21" />
+  <figcaption>
+    <div class="heading">
+      <h3>Chauffina <span> Carr</span></h3>
+    </div>
+    <div class="caption">
+      <p>Reality ruins my life</p>
+    </div>
+  </figcaption>
+  <a href="#"></a>
+</figure>
+<figure class="snip1132"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/sample18.jpg" alt="sample18" />
+  <figcaption>
+    <div class="heading">
+      <h3>Richard <span> Tea</span></h3>
+    </div>
+    <div class="caption">
+      <p>Selective about the reality</p>
+    </div>
+  </figcaption>
+  <a href="#"></a>
+</figure>
 
 <script>
   $(function(){
@@ -32,7 +157,7 @@
       showCursor: false,
       // character for cursor
       cursorChar: "|",
-      // attribute to type (null == text)
+      // attribute to type (null == text
       attr: null,
       // either html or text
       contentType: 'html',
@@ -45,5 +170,34 @@
       // callback for reset
       resetCallback: function() {}
     });
+  });
+
+  // $('#masonry-container').masonry({
+  //   itemSelector: '.box',
+  //   // set columnWidth a fraction of the container width
+  //   columnWidth: function( containerWidth ) {
+  //     return containerWidth / 5;
+  //   }
+  // });
+  $(function(){
+    // init Masonry
+    var $grid = $('.grid').masonry({
+      itemSelector: '.grid-item',
+      percentPosition: true,
+      columnWidth: '.grid-sizer'
+    });
+    // layout Masonry after each image loads
+    $grid.imagesLoaded().progress( function() {
+      $grid.masonry();
+    });
+  });
+
+  $(function(){
+        /* Demo purposes only */
+    $(".hover").mouseleave(
+      function () {
+        $(this).removeClass("hover");
+      }
+    );
   });
 </script>
