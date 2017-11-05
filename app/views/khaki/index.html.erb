@@ -1,31 +1,3 @@
-
-<!--
-START: Share Place
-
-Additional Classes:
-    .nk-share-place-light
--->
-<div class="nk-share-place">
-    <div>
-        <div class="container">
-            <div class="nk-share-icons" data-url="https://google.com/">
-                <div class="plusone nk-share-icon fa fa-google-plus" title="Share page on Google+"></div>
-                <div class="facebook nk-share-icon fa fa-facebook" title="Share page on Facebook"></div>
-                <div class="twitter nk-share-icon fa fa-twitter" title="Share page on Twitter"></div>
-                <div class="pinterest nk-share-icon fa fa-pinterest" title="Share page on Pinterest"></div>
-                <!-- <div class="vkontakte nk-share-icon fa fa-vk" title="Share page on VK"></div> -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END: Share Place -->
-
-
-
-
-
-
-
 <!--
 Additional Classes:
     .nk-header-opaque
@@ -45,15 +17,7 @@ Additional Classes:
         <div class="nk-contacts-left">
             <div class="nk-navbar">
                 <ul class="nk-nav">
-                    <li class="nk-drop-item">
-                        <a href="#">EN</a>
-                        <ul class="dropdown">
-                            <li><a href="#">DE</a></li>
-                            <li><a href="#">IT</a></li>
-                            <li><a href="#">RU</a></li>
-                            <li><a href="#">JA</a></li>
-                        </ul>
-                    </li>
+
                     <li>
                         <a href="tel:+37001231078">
                             <span class="nk-contact-icon"><i class="ion-ios-telephone"></i></span> + 3 (700) 123-1078</a>
@@ -1516,7 +1480,7 @@ Additional Classes:
 -->
 <div class="nk-header-title nk-header-title-xl nk-header-title-parallax nk-header-title-parallax-opacity">
     <div class="bg-image op-2">
-        <div style="background-image: url('assets/images/image-9.jpg');"></div>
+        <div style="background-image: url('<%= CollectionItem.first.file %>');"></div>
     </div>
     <div class="nk-header-table">
         <div class="nk-header-table-cell">

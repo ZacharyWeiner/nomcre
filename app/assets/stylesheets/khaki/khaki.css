@@ -43,7 +43,7 @@
  -------------------------------------------------------------------*/
 /*------------------------------------------------------------------
   [Table of contents]
-  
+
   1. Base
   2. Typography
   3. Bootstrap
@@ -4687,11 +4687,11 @@ img.rounded {
 }
 
 .nk-header-title.nk-header-title-lg .nk-header-table {
-    min-height: 650px;
+    min-height: 550px;
 }
 
 .nk-header-title.nk-header-title-xl .nk-header-table {
-    min-height: 750px;
+    min-height: 550px;
 }
 
 .nk-header-title.nk-header-title-full .nk-header-table {

@@ -8,6 +8,8 @@
   License: You must have a valid license purchased only from ThemeForest (the above link) in order to legally use the theme for your project.
   Copyright 2017.
 -------------------------------------------------------------------*/
+document.addEventListener("turbolinks:load", function() {
+
 ;(function() {
 'use strict';
 /*------------------------------------------------------------------
@@ -151,3 +153,5 @@ if (typeof Khaki !== 'undefined') {
     Khaki.init();
 }
 }());
+
+})

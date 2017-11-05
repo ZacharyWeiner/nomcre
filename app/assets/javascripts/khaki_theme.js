@@ -1,6 +1,11 @@
 //= require jquery/dist/jquery
 //= require jquery_ujs
-//= require turbolinks
+
+//= require bootstrap/dist/js/bootstrap.min
+//= require typed.js/js/typed.js
+//= require jquery-form/dist/jquery.form.min
+//= require jquery-validation/dist/jquery.validate.min
+//= require jquery.countdown/dist/jquery.countdown.min
 //= require gsap/src/minified/TweenMax.min
 //= require gsap/src/minified/plugins/ScrollToPlugin.min
 //= require khaki/demo
@@ -11,7 +16,6 @@
 //= require khaki/jquery.themepunch.revolution.min
 //= require khaki/jquery.themepunch.tools.min
 //= require tether/dist/js/tether.min
-//= require bootstrap/dist/js/bootstrap.min
 //= require sticky-kit/dist/sticky-kit.min
 //= require jarallax/dist/jarallax.min
 //= require jarallax/dist/jarallax-video.min
@@ -20,10 +24,6 @@
 //= require isotope/dist/isotope.pkgd.min
 //= require photoswipe/dist/photoswipe.min
 //= require photoswipe/dist/photoswipe-ui-default.min
-//= require typed.js/js/typed.js
-//= require jquery-form/dist/jquery.form.min
-//= require jquery-validation/dist/jquery.validate.min
-//= require jquery.countdown/dist/jquery.countdown.min
 //= require moment/min/moment.min
 //= require moment-timezone/builds/moment-timezone-with-data
 //= require hammer.js/hammer.min
@@ -33,4 +33,8 @@
 //= require datetimepicker/build/jquery.datetimepicker.full.min
 //= require keymaster/keymaster
 //= require prism/prism
+//= require turbolinks
 
+document.addEventListener("turbolinks:load", function() {
+
+})

@@ -6,13 +6,11 @@
  */
 (function (factory) {
     if (typeof define === 'function' && define.amd) {
-        alert("jquery defined");
+
         define(['jquery'], factory);
     } else if (typeof exports !== 'undefined') {
-        alert("jquery undefined module export ");
         module.exports = factory(require('jquery'));
     } else {
-        alert("jquery undefined factory ");
         factory(jQuery);
     }
 }(($) => {
