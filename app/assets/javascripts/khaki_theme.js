@@ -29,6 +29,7 @@
 //= require keymaster/keymaster
 //= require prism/prism
 //= require khaki/demo
+//= require khaki/khaki-init
 
 
 document.addEventListener("turbolinks:load", function() {
