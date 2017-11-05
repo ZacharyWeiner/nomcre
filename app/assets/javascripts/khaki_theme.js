@@ -17,6 +17,9 @@
 //= require imagesloaded/imagesloaded.pkgd.min
 //= require flickity/dist/flickity.pkgd.min
 //= require isotope/dist/isotope.pkgd.min
+//= require photoswipe/dist/photoswipe.min
+//= require photoswipe/dist/photoswipe-ui-default.min
+//= require moment/min/moment.min
 
 
 document.addEventListener("turbolinks:load", function() {
