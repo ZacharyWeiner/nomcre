@@ -11,6 +11,9 @@
 //= require khaki/jquery.themepunch.revolution.min
 //= require khaki/jquery.themepunch.tools.min
 //= require tether/dist/js/tether.min
+//= require sticky-kit/dist/sticky-kit.min
+//= require jarallax/dist/jarallax.min
+//= require jarallax/dist/jarallax-video.min
 
 
 document.addEventListener("turbolinks:load", function() {
