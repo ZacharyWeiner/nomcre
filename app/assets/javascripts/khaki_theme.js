@@ -23,6 +23,12 @@
 //= require moment-timezone/builds/moment-timezone-with-data
 //= require hammer.js/hammer.min
 //= require social-likes/dist/social-likes.min
+//= require nanoscroller/bin/javascripts/jquery.nanoscroller.min
+//= require SoundManager2/script/soundmanager2-nodebug-jsmin
+//= require datetimepicker/build/jquery.datetimepicker.full.min
+//= require keymaster/keymaster
+//= require prism/prism
+//= require khaki/demo
 
 
 document.addEventListener("turbolinks:load", function() {
