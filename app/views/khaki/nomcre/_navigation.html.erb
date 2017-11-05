@@ -1,0 +1,126 @@
+
+    <!--
+    START: Navbar
+
+    Additional Classes:
+        .nk-navbar-sticky
+        .nk-navbar-transparent
+        .nk-navbar-autohide
+        .nk-navbar-light
+    -->
+    <nav class="nk-navbar nk-navbar-top nk-navbar-sticky nk-navbar-transparent nk-navbar-autohide">
+        <div class="container">
+            <div class="nk-nav-table">
+
+                <a href="index.html" class="nk-nav-logo">
+                    <img src="assets/images/logo.svg" alt="" width="70">
+                </a>
+
+                <ul class="nk-nav nk-nav-right hidden-md-down" data-nav-mobile="#nk-nav-mobile">
+
+                    <li class="active nk-drop-item">
+                        <%= link_to "Process", "#" %>
+                    </li>
+                    <li class=" nk-drop-item">
+                         <%= link_to "Creative", "#" %>
+                    </li>
+                </ul>
+                <ul class="nk-nav nk-nav-right nk-nav-icons">
+
+                    <li class="single-icon hidden-lg-up">
+                        <a href="#" class="no-link-effect" data-nav-toggle="#nk-nav-mobile">
+                            <span class="nk-icon-burger">
+                                <span class="nk-t-1"></span>
+                                <span class="nk-t-2"></span>
+                                <span class="nk-t-3"></span>
+                            </span>
+                        </a>
+                    </li>
+                    <li class="single-icon nk-drop-item">
+                        <a href="#" class="no-link-effect">
+                            Login <span class="fa fa-sign-in"></span>
+                        </a>
+                        <div class="dropdown">
+                            <div class="nk-sign-form">
+                                <div class="nk-sign-form-container">
+                                    <!-- START: Login Form -->
+                                    <!-- <form class="nk-sign-form-login active" action="#"> -->
+                                    <%= form_for(:user, :url => session_path(:user), class: 'nk-sign-form-login active') do |f| %>
+                                        <h4>Log In</h4>
+                                        <%= f.email_field :email, autofocus: true, class: 'form-control', placeholder: 'your email...' %>
+                                        <div class="nk-gap"></div>
+                                        <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: "password" %>
+                                        <div class="nk-gap"></div>
+
+                                        <!-- <div class="form-check pull-left">
+                                            <label class="form-check-label">
+                                                <input type="checkbox" class="form-check-input"> Remember Me
+                                            </label>
+                                        </div> -->
+                                        <%= f.submit "Log in", class: "nk-btn nk-btn-color-white text-dark-1 pull-right" %>
+
+                                        <div class="clearfix"></div>
+                                        <div class="nk-gap"></div>
+                                        <div class="text-right">
+                                            <!-- <a class="nk-sign-form-register-toggle" href="#">Register</a> |
+                                            <a class="nk-sign-form-lost-toggle" href="#">Lost Password?</a> -->
+                                        </div>
+                                    <% end %>
+                                    <!-- </form> -->
+                                    <!-- END: Login Form -->
+
+
+
+                                    <!-- START: Lost Password Form -->
+                                    <!-- <form class="nk-sign-form-lost" action="#">
+                                        <h4>Lost Password</h4>
+
+                                        <input class="form-control" type="text" placeholder="Username or Email">
+                                        <div class="nk-gap"></div>
+
+                                        <button class="nk-btn nk-btn-color-white text-dark-1 pull-right">Get New Password</button>
+
+                                        <div class="clearfix"></div>
+                                        <div class="nk-gap"></div>
+                                        <a class="nk-sign-form-login-toggle pull-right" href="#">Back to Log In</a>
+                                    </form> -->
+                                    <!-- END: Lost Password Form -->
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+
+
+                    <!-- <li class="single-icon">
+                        <a href="#" class="nk-share-toggle no-link-effect">
+                            <span class="ion-android-share-alt"></span>
+                        </a>
+                    </li> -->
+
+
+                    <li class="single-icon">
+                        <a href="#" class="nk-search-toggle no-link-effect">
+                            <span class="nk-icon-search"></span>
+                        </a>
+                    </li>
+
+
+
+                    <li class="single-icon">
+                        <a href="#" class="no-link-effect" data-nav-toggle="#nk-side">
+                            <span class="nk-icon-burger">
+                                <span class="nk-t-1"></span>
+                                <span class="nk-t-2"></span>
+                                <span class="nk-t-3"></span>
+                            </span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- END: Navbar -->

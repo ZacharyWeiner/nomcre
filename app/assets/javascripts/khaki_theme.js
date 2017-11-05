@@ -28,6 +28,8 @@
 //= require datetimepicker/build/jquery.datetimepicker.full.min
 //= require keymaster/keymaster
 //= require prism/prism
+//= require parallax
+//= require jquery.parallax
 //= require khaki/demo
 //= require khaki/khaki-init
 //= require khaki/khaki

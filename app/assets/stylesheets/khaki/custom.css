@@ -1,1 +1,27 @@
 /* PLACE YOU CUSTOM STYLES IN THIS FILE */
+.thin{
+  font-weight: 200px;
+}
+
+.raleway{
+  font:raleway;
+}
+
+.raleway-bold{
+  font-family: raleway;
+  font-weight: 800;
+}
+.raleway-thin{
+  font-family: raleway;
+  font-weight: 200i;
+}
+.raleway-thinnest{
+  font-family: raleway;
+  font-weight: 100;
+}
+
+
+
+.nk-header-title{
+  max-height: 500px;
+}
