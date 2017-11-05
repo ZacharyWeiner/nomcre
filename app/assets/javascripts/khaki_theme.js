@@ -30,6 +30,7 @@
 //= require prism/prism
 //= require khaki/demo
 //= require khaki/khaki-init
+//= require khaki/khaki
 
 
 document.addEventListener("turbolinks:load", function() {
