@@ -1,6 +1,8 @@
 //= require jquery/dist/jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require gsap/src/minified/TweenMax.min
+//= require gsap/src/minified/plugins/ScrollToPlugin.min
 //= require khaki/demo
 //= require khaki/khaki-init
 //= require khaki/khaki
@@ -8,8 +10,6 @@
 //= require khaki/jquery.themepunch.enablelog
 //= require khaki/jquery.themepunch.revolution.min
 //= require khaki/jquery.themepunch.tools.min
-//= require gsap/src/minified/TweenMax.min
-//= require gsap/src/minified/plugins/ScrollToPlugin.min
 //= require tether/dist/js/tether.min
 //= require bootstrap/dist/js/bootstrap.min
 //= require sticky-kit/dist/sticky-kit.min

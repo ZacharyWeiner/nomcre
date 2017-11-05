@@ -494,4 +494,5 @@
 		resetCallback: function() {}
 	};
 
+
 }(window, document, window.jQuery);
