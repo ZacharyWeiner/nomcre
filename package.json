@@ -1,5 +1,7 @@
 {
   "name": "nomcre",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "bower": "1.8.0"
+  }
 }
