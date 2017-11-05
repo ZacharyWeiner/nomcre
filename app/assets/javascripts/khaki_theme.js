@@ -31,6 +31,7 @@
 //= require khaki/demo
 //= require khaki/khaki-init
 //= require khaki/khaki
+//= require khaki/nk-share
 
 
 document.addEventListener("turbolinks:load", function() {
