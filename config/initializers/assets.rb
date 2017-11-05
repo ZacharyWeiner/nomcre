@@ -14,6 +14,8 @@ Rails.application.config.assets.precompile += %w( chat.css )
 Rails.application.config.assets.precompile += %w( chatroom.js )
 Rails.application.config.assets.precompile += %w( photog.js )
 Rails.application.config.assets.precompile += %w( photog.css )
+Rails.application.config.assets.precompile += %w( custom_khaki.css )
+Rails.application.config.assets.precompile += %w( custom_khaki.js )
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets

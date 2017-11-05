@@ -22,6 +22,7 @@ gem 'dotenv-rails'
 gem 'kaminari'
 gem 'auto_html', '~>1.6.4'
 gem 'stripe'
+gem "typedjs-rails", "~> 1.0.4"
 
 # gem 'bcrypt', '~> 3.1.7'
 
