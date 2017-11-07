@@ -1,5 +1,6 @@
 //= require jquery/dist/jquery
 //= require jquery_ujs
+//= require turbolinks
 //= require tether/dist/js/tether.min
 //= require bootstrap/dist/js/bootstrap.min
 //= require typed.js/js/typed.js
@@ -28,10 +29,8 @@
 //= require datetimepicker/build/jquery.datetimepicker.full.min
 //= require keymaster/keymaster
 //= require prism/prism
-//= require parallax
-//= require jquery.parallax
 //= require khaki/demo
 //= require khaki/khaki-init
 //= require khaki/khaki
-//= require turbolinks
+
 
