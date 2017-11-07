@@ -35,6 +35,3 @@
 //= require khaki/khaki
 //= require turbolinks
 
-document.addEventListener("turbolinks:load", function() {
-
-})

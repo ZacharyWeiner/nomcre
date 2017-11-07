@@ -10,7 +10,9 @@
 
       </div>
       <div class='col-md-4 align-right'>
-        <button class="nk-btn nk-btn-x2 nk-btn-effect-5-left nk-btn-rounded nk-btn-color-dark-2"> Take Flight</button>
+        <%= link_to new_user_registration_path do  %>
+          <%= image_tag "https://s3-us-west-2.amazonaws.com/nomcre/assets/CTAbutton.png", class: 'img-fluid', style: 'max-height:100px; max-width:200px;margin-top:-6px' %>
+        <% end %>
       </div>
     </div>
   </div>

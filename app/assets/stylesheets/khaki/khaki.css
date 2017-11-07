@@ -8253,7 +8253,8 @@ img.rounded {
 
 .nk-dropcap,
 .nk-dropcap-2,
-.nk-dropcap-3 {
+.nk-dropcap-3,
+.nk-dropcap-4 {
     display: inline-block;
     float: left;
     text-align: center;
