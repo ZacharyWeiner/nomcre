@@ -1,6 +1,6 @@
 //= require jquery/dist/jquery
 //= require jquery_ujs
-//= require turbolinks
+
 //= require tether/dist/js/tether.min
 //= require bootstrap/dist/js/bootstrap.min
 //= require typed.js/js/typed.js

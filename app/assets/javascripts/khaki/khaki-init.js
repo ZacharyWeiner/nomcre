@@ -8,7 +8,7 @@
   License: You must have a valid license purchased only from ThemeForest (the above link) in order to legally use the theme for your project.
   Copyright 2017.
 -------------------------------------------------------------------*/
-document.addEventListener("turbolinks:load", function() {
+$( document ).ready(function() {
 
 ;(function() {
 'use strict';
