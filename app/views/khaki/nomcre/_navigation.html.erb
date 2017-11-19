@@ -27,13 +27,25 @@
                 </a>
 
                 <ul class="nk-nav nk-nav-right hidden-md-down" data-nav-mobile="#nk-nav-mobile">
-                    <li class="active ">
-                        <%= link_to "Home", nomcre_home_path%>
+                    <% if current_page?(controller: 'khaki', action: 'nomcre_home') %>
+                        <li class="active ">
+                    <% else %>
+                        <li class=" ">
+                    <% end %>
+                        <%= link_to "Home", root_path%>
                     </li>
-                    <li class="">
+                   <% if current_page?(controller: 'khaki', action: 'nomcre_process') %>
+                        <li class="active ">
+                    <% else %>
+                        <li class=" ">
+                    <% end %>
                         <%= link_to "Process", nomcre_process_path %>
                     </li>
-                    <li class="">
+                    <% if current_page?(controller: 'khaki', action: 'creative_landing') %>
+                        <li class="active ">
+                    <% else %>
+                        <li class="">
+                    <% end %>
                          <%= link_to "Creative", creative_landing_path %>
                     </li>
                 </ul>
