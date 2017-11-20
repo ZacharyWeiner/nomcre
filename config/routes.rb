@@ -41,12 +41,12 @@ Rails.application.routes.draw do
   #dashboards
   get '/dashboard/company', to: 'dashboards#company_dashboard', as: 'company_dashboard'
   get 'dashboard/creative', to: 'dashboards#creative_dashboard', as: 'creative_dashboard'
-  #get 'khaki/nomcre_home', to:'khaki#nomcre_home', as:'nomcre_home'
+  get 'home', to:'khaki#nomcre_home', as:'nomcre_home'
   get 'process', to:'khaki#nomcre_process', as: 'nomcre_process'
   get 'creative', to:'khaki#creative_landing', as: 'creative_landing'
   get 'khaki/index', to:'khaki#index'
 
-  root 'khaki#nomcre_home'
-  #root 'application#home'
+  #root 'khaki#nomcre_home'
+  root 'application#home'
 
 end
