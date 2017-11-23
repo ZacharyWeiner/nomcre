@@ -11,4 +11,13 @@ class KhakiController < ApplicationController
 
   def creative_landing
   end
+  def creative_showcase
+  end
+
+  def contact
+    @contact = Contact.new
+  end
+
+  def about
+  end
 end

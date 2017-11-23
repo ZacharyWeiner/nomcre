@@ -1,0 +1,141 @@
+<%= render 'khaki/nomcre/contact/header_title'%>
+<div class="nk-main">
+
+
+  <!-- START: Contacts -->
+  <div class="nk-box">
+    <div class="nk-gap hidden-md-down"></div>
+    <div class="row no-gutters">
+      <div class="col-lg-4">
+        <div class="nk-box-3 nk-box-line">
+          <div class="nk-gap-2 hidden-md-down"></div>
+          <div class="nk-ibox-1">
+            <div class="nk-ibox-icon nk-ibox-icon-circle">
+              <span class="fa fa-phone"></span>
+            </div>
+            <div class="nk-ibox-cont">
+              <h3 class="nk-ibox-title pt-5 mb-0">Phone</h3>
+              <div>+1 312 493-5523-</div>
+            </div>
+          </div>
+          <div class="nk-gap-2 hidden-md-down"></div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="nk-box-3 nk-box-line">
+          <div class="nk-gap-2 hidden-md-down"></div>
+          <div class="nk-ibox-1">
+            <div class="nk-ibox-icon nk-ibox-icon-circle">
+              <span class="fa fa-envelope"></span>
+            </div>
+            <div class="nk-ibox-cont">
+              <h3 class="nk-ibox-title pt-5 mb-0">Email</h3>
+              <div>takeflight@nomcre.com</div>
+            </div>
+          </div>
+          <div class="nk-gap-2 hidden-md-down"></div>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="nk-box-3 nk-box-line">
+          <div class="nk-gap-2 hidden-md-down"></div>
+          <div class="nk-ibox-1">
+            <div class="nk-ibox-icon nk-ibox-icon-circle">
+              <span class="fa fa-home"></span>
+            </div>
+            <div class="nk-ibox-cont">
+              <h3 class="nk-ibox-title pt-5 mb-0">Address</h3>
+              <div>Sorry We're Nomads</div>
+            </div>
+          </div>
+          <div class="nk-gap-2 hidden-md-down"></div>
+        </div>
+      </div>
+    </div>
+    <div class="nk-gap hidden-md-down"></div>
+  </div>
+  <!-- END: Contacts -->
+
+  <!-- START: Partners -->
+  <div class="nk-box">
+    <div class="bg-image bg-image-parallax op-2" style="background-image: url('https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/horizontal/nomcre-horizontal4.JPG');"></div>
+    <div class="nk-gap-4"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="nk-box-2">
+            <div class="nk-gap-1 hidden-md-down"></div>
+            <h2 class="nk-title">Social Networks</h2>
+            <div class="nk-gap"></div>
+            Find Us On Your Favorite Social Media Platform
+            <div class="nk-widget-social nk-widget-social-inverted text-left">
+              <a href="#"><i class="fa fa-instagram"></i></a>
+              <a href="#"><i class="fa fa-facebook"></i></a>
+              <a href="#"><i class="fa fa-behance"></i></a>
+              <a href="#"><i class="fa fa-vimeo"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="nk-box-2 bg-white">
+            <div class="nk-gap-1"></div>
+            <h2 class="nk-title">Drop Us a Line</h2>
+            <div class="nk-gap"></div>
+
+            <%= form_for @contact, class: 'nk-form nk-form-ajax nk-form-style-1' do |form| %>
+              <% if @contact.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+                  <ul>
+                  <% @contact.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+
+              <%= form.text_field :email, id: :contact_email, class: 'form-control required', placeholder: 'Email' %>
+              <div class="nk-gap"></div>
+              <%= form.text_field :name, id: :contact_name, class: "form-control required", placeholder: "Name *" %>
+              <div class="nk-gap"></div>
+              <%= form.text_area :message, id: :contact_message, class: 'form-control required', placeholder: "Message *", rows: 4%>
+              <div class="nk-gap"></div>
+              <div class="nk-form-response-success"></div>
+              <div class="nk-form-response-error"></div>
+
+
+                <%= form.submit "Send",  class: 'nk-btn nk-btn-effect-2-right nk-btn-color-dark-1' do %>
+                  <i class="ion-paper-airplane"></i>
+                <% end %>
+
+            <% end %>
+            <div class="nk-gap-1"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="nk-gap-4"></div>
+  </div>
+  <!-- END: Partners -->
+
+
+
+
+  <!-- START: Footer -->
+  <footer class="nk-footer bd-dark-1">
+    <div class="container">
+      <div class="nk-gap-2"></div>
+      <div class="nk-footer-logo">
+        <a href="#">
+          <img src="https://s3-us-west-2.amazonaws.com/nomcre/logos/UpperLeftHPlogo+2.png" alt="" width="70">
+        </a>
+      </div>
+      <div class="nk-gap-2"></div>
+    </div>
+  </footer>
+  <!-- END: Footer -->
+
+
+</div>
