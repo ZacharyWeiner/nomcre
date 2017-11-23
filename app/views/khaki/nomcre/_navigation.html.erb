@@ -41,12 +41,12 @@
                     <% end %>
                         <%= link_to "The NomCre Way", nomcre_process_path %>
                     </li>
-                    <% if current_page?(controller: 'khaki', action: 'creative_landing') %>
+                    <% if current_page?(controller: 'khaki', action: 'creative_showcase') %>
                         <li class="active ">
                     <% else %>
                         <li class="">
                     <% end %>
-                         <%= link_to "Creative", creative_landing_path %>
+                         <%= link_to "Showcase", creative_showcase_path %>
                     </li>
                 </ul>
                 <ul class="nk-nav nk-nav-right nk-nav-icons">

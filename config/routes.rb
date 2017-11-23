@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   get 'showcase', to:'khaki#creative_showcase', as: 'creative_showcase'
   get 'contact', to:'khaki#contact', as: 'nomcre_contact'
   get 'about', to:'khaki#about', as: 'nomcre_about'
+  get 'featured', to:'khaki#featured_creatives', as: 'featured_creatives'
   get 'khaki/index', to:'khaki#index'
 
   #root 'khaki#nomcre_home'

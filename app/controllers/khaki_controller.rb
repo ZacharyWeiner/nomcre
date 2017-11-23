@@ -20,4 +20,7 @@ class KhakiController < ApplicationController
 
   def about
   end
+
+  def featured_creatives
+  end
 end
