@@ -13,9 +13,9 @@ Additional Classes:
         <div class="nano-content">
             <div class="nk-nav-table">
                 <div class="nk-nav-row">
-                    <a href="index.html" class="nk-nav-logo">
-                        <img src="assets/images/logo.svg" alt="" width="70">
-                    </a>
+                    <%= link_to root_path, class: 'nk-nav-logo' do  %>
+                      <%= image_tag "https://s3-us-west-2.amazonaws.com/nomcre/logos/UpperLeftHPlogo+2.png", style:'width:70px;'%>
+                    <% end %>
                 </div>
                 <div class="nk-nav-row nk-nav-row-full nk-nav-row-top">
                     <div class="nk-navbar-mobile-content">
