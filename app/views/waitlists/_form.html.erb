@@ -1,57 +1,64 @@
-<%= form_with(model: waitlist, local: true) do |form| %>
-  <% if waitlist.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(waitlist.errors.count, "error") %> prohibited this waitlist from being saved:</h2>
+<style>
+  .form-control{margin-top: 12px}
+</style>
+<div class="nk-box-2 bg-gray-4">
+   <h2 class="nk-title">Join The Waitlist</h2>
+  <h3 class="nk-sub-title">Think you have wait it takes? </h3>
+  <div class="nk-gap"></div>
+  <%= form_with(model: waitlist, local: true, class: 'nk-form nk-form-style-1') do |form| %>
+    <% if waitlist.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(waitlist.errors.count, "error") %> prohibited this waitlist from being saved:</h2>
 
-      <ul>
-      <% waitlist.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% waitlist.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class='row'>
+      <div class='col-md-6'>
+        <%= form.text_field :name, id: :waitlist_name, class: 'form-control required', placeholder: 'Name' %>
+      </div>
+      <div class='col-md-6'>
+        <%= form.text_field :email, id: :waitlist_email, class: "form-control required",  placeholder:"Email *" %>
+      </div>
     </div>
+    <div class="nk-gap"></div>
+     <div class='row'>
+      <div class='col-md-6'>
+        <%= form.text_field :phone, id: :waitlist_phone, class: 'form-control required', placeholder: 'Your Phone #' %>
+      </div>
+      <div class='col-md-6'>
+        <%= form.text_field :website, id: :waitlist_website, class: "form-control required",  placeholder:"Your Website link" %>
+      </div>
+    </div>
+    <div class="nk-gap"></div>
+    <div class='row'>
+      <div class='col-md-6'>
+        <%= form.text_field :instagram, id: :waitlist_instagram, class: 'form-control required', placeholder: 'Your Instagram link' %>
+      </div>
+      <div class='col-md-6'>
+        <%= form.text_field :facebook, id: :waitlist_facebook, class: "form-control required",  placeholder:"Your Facebook link" %>
+      </div>
+    </div>
+    <div class="nk-gap"></div>
+    <div class='row'>
+      <div class='col-md-6'>
+        <%= form.text_field :px500, id: :waitlist_px500, class: 'form-control required', placeholder: 'Your 500px link' %>
+      </div>
+      <div class='col-md-6'>
+        <%= form.text_field :smugmug, id: :waitlist_smugmug, class: "form-control required",  placeholder:"Your Smugmug link" %>
+      </div>
+    </div>
+    <div class="nk-gap"></div>
+    <div class="nk-form-response-success"></div>
+    <div class="nk-form-response-error"></div>
+
+  <%= form.submit "Send", class: 'nk-btn nk-btn-effect-2-right nk-btn-color-dark-1' %>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :waitlist_name %>
-  </div>
+</div>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, id: :waitlist_email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :instagram %>
-    <%= form.text_field :instagram, id: :waitlist_instagram %>
-  </div>
-
-  <div class="field">
-    <%= form.label :px500 %>
-    <%= form.text_field :px500, id: :waitlist_px500 %>
-  </div>
-
-  <div class="field">
-    <%= form.label :facebook %>
-    <%= form.text_field :facebook, id: :waitlist_facebook %>
-  </div>
-
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone, id: :waitlist_phone %>
-  </div>
-
-  <div class="field">
-    <%= form.label :website %>
-    <%= form.text_field :website, id: :waitlist_website %>
-  </div>
-
-  <div class="field">
-    <%= form.label :smugmug %>
-    <%= form.text_field :smugmug, id: :waitlist_smugmug %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>

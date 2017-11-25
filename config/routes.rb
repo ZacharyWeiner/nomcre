@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   resources :companies
   devise_for :users
   get 'user/:id', to: "users#show", as: 'user_show'
+  get 'user_type', to: 'users#user_type', as: 'user_type'
+  get 'set_user_type', to:'users#set_user_type', as:'set_user_type'
   resources :pages
   resources :chatrooms
   resources :messages

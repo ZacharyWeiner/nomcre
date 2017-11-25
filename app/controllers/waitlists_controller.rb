@@ -1,6 +1,6 @@
 class WaitlistsController < ApplicationController
   before_action :set_waitlist, only: [:show, :edit, :update, :destroy]
-
+  layout 'khaki'
   # GET /waitlists
   # GET /waitlists.json
   def index
