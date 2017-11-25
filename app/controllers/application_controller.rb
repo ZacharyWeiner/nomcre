@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
           end
         elsif current_user.user_type = 'creative'
         #if the user_type is creative
-          return redirect_to creative_dashbaord_path
+          return redirect_to creative_dashboard_path
           #redirect to creative dashbaord
         end
       elsif current_user.user_type.nil?
