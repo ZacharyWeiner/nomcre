@@ -24,6 +24,7 @@ gem 'auto_html', '~>1.6.4'
 gem 'stripe'
 gem "typedjs-rails", "~> 1.0.4"
 gem 'parallax-rails'
+gem 'twilio-ruby', '~> 5.5.0'
 
 # gem 'bcrypt', '~> 3.1.7'
 
