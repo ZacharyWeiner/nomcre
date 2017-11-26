@@ -1,4 +1,4 @@
-<% head_url = @collection.collection_items.first.file.url %>
+<% head_url = @collection.collection_items.first.file.url unless @collection.collection_items.count ==0  %>
 <% content_for :head do %>
 <meta property="og:url" content="<%= request.original_url %>" />
 <meta property="og:type" content="profile" />
@@ -31,7 +31,7 @@
   <% @collection.collection_items.each do |item| %>
     <div class="nk-isotope-item">
       <div class="nk-image-box-1">
-        <%= link_to item.file.url, class: 'nk-gallery-item nk-no-effect'  do %>
+        <%= link_to item.file.url, class: 'nk-gallery-item nk-no-effect', :'data-size' => "#{item.width}x#{item.height}"  do %>
           <%= image_tag item.file %>
         <% end %>
       </div>
