@@ -1,2 +1,9 @@
+<% content_for :head do %>
+<meta property="og:url" content="<%= request.original_url %>" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="NomCre - Showcase" />
+<meta property="og:description" content="Nomcre - The Best Photos / Pictures From Our Creatives" />
+<meta property="og:image" content="https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/horizontal/nomcre-horizontal-19.jpg" />
+<% end %>
 <%= render 'khaki/nomcre/showcase/header_title' %>
 <%= render 'khaki/nomcre/showcase/showcase_gallery_masonry_3'%>

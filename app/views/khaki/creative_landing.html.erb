@@ -1,3 +1,10 @@
+<% content_for :head do %>
+<meta property="og:url" content="<%= request.original_url %>" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Nomcre For Photographers & Videographers" />
+<meta property="og:description" content="Nomcre Kicks Ass For Visual Creatives " />
+<meta property="og:image" content="https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/horizontal/nomcre-horizontal13.jpg" />
+<% end %>
 <div class="nk-main">
 <%= render 'khaki/nomcre/creative/header_title'%>
 <%= render 'khaki/nomcre/creative/top_call_to_action'%>
@@ -8,5 +15,4 @@
 <%= render 'khaki/nomcre/creative/typed_js'%>
 <%= render 'khaki/nomcre/creative/places_carousel' %>
 <% render 'khaki/nomcre/creative/call_to_action_bottom' %>
-
 </div>

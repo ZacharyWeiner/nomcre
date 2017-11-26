@@ -1,3 +1,10 @@
+<% content_for :head do %>
+<meta property="og:url" content="<%= request.original_url %>" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="NomCre - <%= @collection.user.name %>" />
+<meta property="og:description" content="Nomcre - Our Best Visual Creators. The Best Photographers and Videographers." />
+<meta property="og:image" content="<%= collections.first.collection_items.first.file_url %>" />
+<% end %>
 <% @collections.each do |collection| %>
   <div class='row'>
     <div class='row text-center'>

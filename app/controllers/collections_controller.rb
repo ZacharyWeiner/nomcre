@@ -1,6 +1,6 @@
 class CollectionsController < ApplicationController
   before_action :set_collection, only: [:show, :edit, :update, :destroy]
-  layout 'adminlte'
+  layout :set_layout
   # GET /collections
   # GET /collections.json
   def index
@@ -70,5 +70,13 @@ class CollectionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def collection_params
       params.require(:collection).permit(:user_id, :title)
+    end
+
+    def set_layout
+      if action_name == "show"
+        return 'khaki'
+      else
+        return 'adminlte'
+      end
     end
 end

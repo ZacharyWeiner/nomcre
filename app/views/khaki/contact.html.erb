@@ -1,3 +1,10 @@
+<% content_for :head do %>
+<meta property="og:url" content="<%= request.original_url %>" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="NomCre - On Demand Visual Creative Content" />
+<meta property="og:description" content="Nomcre - Custom Creative Content for your brand, simplified." />
+<meta property="og:image" content="https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/horizontal/nomcre-horizontal-19.jpg" />
+<% end %>
 <%= render 'khaki/nomcre/contact/header_title'%>
 <div class="nk-main">
 

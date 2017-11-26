@@ -1,15 +1,51 @@
+<% head_url = @collection.collection_items.first.file.url %>
+<% content_for :head do %>
+<meta property="og:url" content="<%= request.original_url %>" />
+<meta property="og:type" content="profile" />
+<meta property="og:title" content="<%= @collection.title %>" />
+<meta property="og:description" content="A Collection By <%= @collection.user.name %>" />
+<meta property="og:image" content="<%= head_url%>" />
+<% end %>
 <p>
   <strong>Title:</strong>
   <%= @collection.title %>
 </p>
-<div class='row'>
-  <% @collection.collection_items.each do |item| %>
-    <div class='col-md-3'>
-      <%= link_to collection_collection_item_path(@collection, item) do %>
-        <%= image_tag item.file, style: 'max-height:300px;max-width:200px' %>
-      <% end %>
+
+<div class="nk-header-title nk-header-title-sm nk-header-title-parallax nk-header-title-parallax-opacity">
+  <div class="bg-image op-5">
+    <div style="background-image: url('<%= head_url %>');"></div>
+  </div>
+  <div class="nk-header-table">
+    <div class="nk-header-table-cell">
+      <div class="container">
+        <h1 class=""><%= @collection.title %></h1>
+      </div>
     </div>
-  <% end %>
+  </div>
+  <div class="nk-header-text-bottom">
+    <%= @collection.user.name%>
+  </div>
 </div>
+
+<div class="nk-isotope nk-isotope-3-cols nk-popup-gallery bg-dark-1">
+  <% @collection.collection_items.each do |item| %>
+    <div class="nk-isotope-item">
+      <div class="nk-image-box-1">
+        <%= link_to item.file.url, class: 'nk-gallery-item nk-no-effect'  do %>
+          <%= image_tag item.file %>
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+</div>
+<% unless current_user.nil? || current_user != @collection.user %>
 <%= link_to 'Edit', edit_collection_path(@collection) %> |
 <%= link_to 'Back', collections_path %>
+<% end %>
+
+
+
+
+
+
+
