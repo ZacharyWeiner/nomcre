@@ -39,6 +39,18 @@ class ProposalsController < ApplicationController
   def create
     @proposal = Proposal.new(proposal_params)
     @proposal.bts = ["Photo","Video","SetUp"]
+     unless params[:proposal][:instagram_1].nil?
+        @proposal.instagram_1 = params[:proposal][:instagram_1].gsub!("@", "")
+      end
+      unless params[:proposal][:instagram_2].nil?
+         @proposal.instagram_2 = params[:proposal][:instagram_2].gsub!("@", "")
+      end
+      unless params[:proposal][:instagram_3].nil?
+         @proposal.instagram_3 = params[:proposal][:instagram_3].gsub!("@", "")
+      end
+      unless params[:proposal][:instagram_4].nil?
+         @proposal.instagram_4 = params[:proposal][:instagram_4].gsub!("@", "")
+      end
     respond_to do |format|
       if @proposal.save
         set_price(@proposal)
@@ -72,6 +84,19 @@ class ProposalsController < ApplicationController
           @proposal.focus_points << fp
         end
       end
+      unless params[:proposal][:instagram_1].nil?
+        proposal_params[:instagram_1] = params[:proposal][:instagram_1].gsub!("@", "")
+      end
+      unless params[:proposal][:instagram_2].nil?
+        proposal_params[:instagram_2] = params[:proposal][:instagram_2].gsub!("@", "")
+      end
+      unless params[:proposal][:instagram_3].nil?
+        proposal_params[:instagram_3] = params[:proposal][:instagram_3].gsub!("@", "")
+      end
+      unless params[:proposal][:instagram_4].nil?
+        proposal_params[:instagram_4] = params[:proposal][:instagram_4].gsub!("@", "")
+      end
+
       if @proposal.update(proposal_params)
         format.html { redirect_to @proposal, notice: 'Proposal was successfully updated.' }
         format.json { render :show, status: :ok, location: @proposal }
@@ -90,6 +115,11 @@ class ProposalsController < ApplicationController
       format.html { redirect_to proposals_url, notice: 'Proposal was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def accepted_requests
+    set_proposal
+    @accepted = @proposal.proposal_requests.where(accepted: true)
   end
 
   def copy

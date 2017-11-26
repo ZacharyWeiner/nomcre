@@ -1,9 +1,9 @@
 <h4> Instagram Inspiration Accounts </h4>
-<%= link_to @proposal.instagram_1, "http://www.instagram.com/#{@proposal.instagram_1.gsub!('@','')}", target:"_blank" %>
+<%= link_to @proposal.instagram_1, "http://www.instagram.com/#{@proposal.instagram_1}", target:"_blank" unless @proposal.instagram_1.nil?%>
 <br>
-<%= link_to @proposal.instagram_2, "http://www.instagram.com/#{@proposal.instagram_2.gsub!('@','')}", target:"_blank" %>
+<%= link_to @proposal.instagram_2, "http://www.instagram.com/#{@proposal.instagram_2}", target:"_blank" unless @proposal.instagram_2.nil?%>
 <br>
-<%= link_to @proposal.instagram_3, "http://www.instagram.com/#{@proposal.instagram_3.gsub!('@','')}", target:"_blank" %>
+<%= link_to @proposal.instagram_3, "http://www.instagram.com/#{@proposal.instagram_3}", target:"_blank" unless @proposal.instagram_3.nil?%>
 <br>
-<%= link_to @proposal.instagram_4, "http://www.instagram.com/#{@proposal.instagram_4.gsub!('@','')}", target:"_blank" %>
+<%= link_to @proposal.instagram_4, "http://www.instagram.com/#{@proposal.instagram_4}", target:"_blank" unless @proposal.instagram_4.nil?%>
 <br>

@@ -1,0 +1,19 @@
+<% @accepted.each do |request| %>
+  <% user = User.find(request.requested) %>
+  <div class='row'>
+    <div class='col-md-3'><%= user.name %></div>
+    <div class='col-md-3'></div>
+    <div class='col-md-3'><%= link_to "See Portfolio", user_show_path(user), class: 'btn btn-primary' %></div>
+    <div class='col-md-3'>
+      <% sr = ProposalSearchResult.new(user_id: user.id, rank: 2, schedule_item_id: user.schedule_items.first) %>
+      <%= render :partial => 'proposals/partials/search_results/request_buttons', :locals => {:sr => sr}%>
+    </div>
+  </div>
+  <div class='row'>
+    <% user.collection_items.reverse.take(4).each do |ci| %>
+      <div class='col-md-3'>
+        <%= image_tag ci.file, class: 'img-responsive' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
