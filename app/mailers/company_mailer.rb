@@ -1,6 +1,5 @@
 class CompanyMailer < ApplicationMailer
   def welcome_email(user)
-    byebug
     @user = user
     @company = user.company
     @url  = 'http://nomcre.com/companies/' + "#{user.company.id}"
