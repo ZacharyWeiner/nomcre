@@ -149,6 +149,12 @@ class ProposalsController < ApplicationController
     end
   end
 
+  def send_email
+    set_proposal
+    ProposalMailer.deposit_received(@proposal).deliver_now
+    redirect_to @proposal
+  end
+
   private
     def send_notification(user_id, notification_type, request_id)
       notification = Notification.where(user_id: user_id, notification_type: notification_type, notification_object_id: request_id).first

@@ -44,6 +44,7 @@ class ChargesController < ApplicationController
       @proposal.deposit_paid_on = Date.today
       @proposal.save
       respond_to do |format|
+        ProposalMailer.deposit_received(@proposal).deliver_now
         format.html { redirect_to @proposal, notice: 'Proposal Deposit Successfully Paid.' }
         format.json { head :no_content }
       end

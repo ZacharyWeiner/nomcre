@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get 'create_request/:user_id', to: 'proposals#create_request', as: 'create_request'
     get 'accept_request', to: 'proposals#accept_request'
     get 'approve_request', to: 'proposals#approve_request'
+    get 'send_email', to: 'proposals#send_email'
   end
   get 'proposal/completed', to: 'proposals#completed', as: 'proposals_completed'
   get 'requests', to: 'proposal_requests#requests', as:'proposal_requests'
