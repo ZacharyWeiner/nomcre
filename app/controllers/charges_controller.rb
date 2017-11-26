@@ -79,6 +79,7 @@ class ChargesController < ApplicationController
       @proposal.charge_id = charge['id']
       @proposal.save
       respond_to do |format|
+        ProposalMailer.balance_received(@proposal).deliver_now
         format.html { redirect_to @proposal, notice: 'Proposal Deposit Successfully Paid.' }
         format.json { head :no_content }
       end

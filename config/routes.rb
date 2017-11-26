@@ -8,6 +8,10 @@ Rails.application.routes.draw do
   get '/collection_item/download/:id', to: 'collection_items#download', as:'download'
   resources :waitlists
 
+  get 'waitlist/joined_waitlist', to: 'waitlists#send_joined_waitlist_email'
+  get 'waitlist/creative_accepted', to: 'waitlists#send_user_accepted_email'
+
+
 
   resources :proposals do
     get '/edit_details', to: 'proposals#edit_details', as: 'edit_details'
@@ -16,15 +20,21 @@ Rails.application.routes.draw do
     get 'accept_request', to: 'proposals#accept_request'
     get 'approve_request', to: 'proposals#approve_request'
     get 'send_email', to: 'proposals#send_email'
+    get 'send_assigned_email', to: 'proposals#send_creative_assigned_email'
   end
   get 'proposal/completed', to: 'proposals#completed', as: 'proposals_completed'
   get 'requests', to: 'proposal_requests#requests', as:'proposal_requests'
+  get 'proposal_requests/:id/send_request_accepted_email', to: 'proposal_requests#send_request_accepted_email'
+  get 'proposal_requests/:id/send_request_created_email', to: 'proposal_requests#send_request_created_email'
+
 
   post 'charges/deposit/:proposal_id', to: 'charges#proposal_deposit', as: 'proposal_deposit'
   post 'charges/balance/:proposal_id', to: 'charges#proposal_balance', as: 'proposal_balance'
 
 
-  resources :companies
+  resources :companies do
+    get 'send_welcome_email', to:'companies#send_welcome_email'
+  end
   devise_for :users
   get 'user/:id', to: "users#show", as: 'user_show'
   get 'user_type', to: 'users#user_type', as: 'user_type'

@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
-  before_action :authorize, except: [:new, :create, :show]
+  before_action :authorize, except: [:new, :create, :show, :send_welcome_email]
   layout 'adminlte'
 
   # GET /companies
@@ -33,6 +33,7 @@ class CompaniesController < ApplicationController
           current_user.company = @company
           current_user.save
         end
+        CompanyMailer.welcome_email(current_user).deliver_later
         format.html { redirect_to @company, notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @company }
       else
@@ -66,10 +67,22 @@ class CompaniesController < ApplicationController
     end
   end
 
+  def send_welcome_email
+    byebug
+    set_company
+    byebug
+    CompanyMailer.welcome_email(@company.users.first).deliver_now
+    redirect_to @company
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_company
-      @company = Company.find(params[:id])
+      if params[:company_id]
+         @company = Company.find(params[:company_id])
+      else
+        @company = Company.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -109,6 +109,7 @@ class ProposalsController < ApplicationController
       @proposal_request = ProposalRequest.create(requested_by: current_user.id, requested: @requested.id, proposal_id: @proposal.id )
     end
     send_notification(@requested.id, "New Request", @proposal_request.id)
+    ProposalMailer.request_created(@proposal_request).deliver_now
     redirect_to @proposal
   end
 
@@ -118,6 +119,7 @@ class ProposalsController < ApplicationController
     @proposal_request.accepted = true
     @proposal_request.save
     send_notification(@proposal_request.requested_by, "Request Accepted", @proposal.id)
+    ProposalMailer.request_accepted(@proposal_request).deliver_now!
     redirect_to proposal_requests_path
   end
 
@@ -138,6 +140,7 @@ class ProposalsController < ApplicationController
     send_notification(@proposal_request.requested, "New Message", @proposal.chatroom.id)
     send_notification(@proposal_request.requested, "Proposal Assigned", @proposal.id)
     send_notification(@proposal_request.requested, "Task", @proposal.id)
+    ProposalMailer.proposal_assigned(@proposal_request).deliver_now!
     redirect_to @proposal
   end
 
@@ -155,6 +158,11 @@ class ProposalsController < ApplicationController
     redirect_to @proposal
   end
 
+  def send_creative_assigned_email
+    set_proposal
+    ProposalMailer.proposal_assigned(@proposal).deliver_now
+    redirect_to @proposal
+  end
   private
     def send_notification(user_id, notification_type, request_id)
       notification = Notification.where(user_id: user_id, notification_type: notification_type, notification_object_id: request_id).first

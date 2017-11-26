@@ -28,6 +28,7 @@ class WaitlistsController < ApplicationController
 
     respond_to do |format|
       if @waitlist.save
+        WaitlistMailer.joined_waitlist(@waitlist.email).deliver_now!
         format.html { redirect_to @waitlist, notice: 'Waitlist was successfully created.' }
         format.json { render :show, status: :created, location: @waitlist }
       else
@@ -59,6 +60,17 @@ class WaitlistsController < ApplicationController
       format.html { redirect_to waitlists_url, notice: 'Waitlist was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def send_joined_waitlist_email
+    WaitlistMailer.joined_waitlist("zack@nomcre.com").deliver_now!
+    redirect_to root_path
+  end
+
+  def send_user_accepted_email
+    byebug
+    CreativeMailer.creative_accepted("zack@nomcre.com").deliver_now!
+    redirect_to root_path
   end
 
   private

@@ -11,5 +11,17 @@ class ProposalRequestsController < ApplicationController
       note.save
     end
   end
+
+  def send_request_accepted_email
+    @proposal_request = ProposalRequest.find(params[:id])
+    ProposalMailer.request_accepted(@proposal_request).deliver_now
+    redirect_to @proposal_request.proposal
+  end
+
+  def send_request_created_email
+    @proposal_request = ProposalRequest.find(params[:id])
+    ProposalMailer.request_created(@proposal_request).deliver_now
+    redirect_to @proposal_request.proposal
+  end
 end
 
