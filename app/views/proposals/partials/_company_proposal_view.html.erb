@@ -15,7 +15,7 @@
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
           <li class="active"><a href="#basic_info" data-toggle="tab">Basic Info</a></li>
-          <li><a href="#details" data-toggle="tab">Details</a></li>
+          <!-- <li><a href="#details" data-toggle="tab">Details</a></li> -->
           <li><a href="#tasks" data-toggle="tab">Tasks</a></li>
           <li><a href="#creatives" data-toggle="tab">Suggested Creatives</a></li>
           <li><a href="#disclosures" data-toggle="tab">Disclosures</a></li>
@@ -24,10 +24,16 @@
         <div class="tab-content">
           <div class="active tab-pane" id="basic_info">
             <%= render 'proposals/partials/proposal_basic_info'%>
-          </div>
-          <div class="tab-pane" id="details">
             <%= render 'proposals/partials/proposal_details'%>
+            <div class='row'>
+              <div class='col-md-2 col-md-offset-10'>
+                <%= link_to "Edit", edit_proposal_path(@proposal), class: 'btn btn-primary' unless  (@proposal.company.users.include?(current_user) == false || @proposal.paid == true) %>
+              </div>
+            </div>
           </div>
+          <!-- <div class="tab-pane" id="details">
+
+          </div> -->
           <div class="tab-pane" id="tasks">
             <%= render 'proposals/partials/proposal_tasks_list'%>
           </div>

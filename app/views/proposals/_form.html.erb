@@ -33,6 +33,17 @@
 
   <%= render :partial => 'proposals/partials/form/file_type', :locals => {:f => f} %>
   <%= render :partial => 'proposals/partials/form/background', :locals => {:f => f} %>
+  <%= render :partial => 'proposals/partials/form/bts', :locals => {:f => f} %>
+  <%= render :partial => 'proposals/partials/form/focus_points', :locals => {:f => f} %>
+  <%= render :partial => 'proposals/partials/form/time_of_day', :locals => {:f => f} %>
+  <div class='row'>
+    <div class='col-md-6'>
+      <%= render :partial => 'proposals/partials/form/instagram_fields', :locals => {:f => f} %>
+    </div>
+    <div class='col-md-6'>
+      <%= render :partial => 'proposals/partials/form/image_board_fields', :locals => {:f => f} %>
+    </div>
+  </div>
 
   <%= f.hidden_field :company_id, :value => current_user.company.id %>
   <div class="row">
