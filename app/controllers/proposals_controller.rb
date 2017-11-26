@@ -92,6 +92,36 @@ class ProposalsController < ApplicationController
     end
   end
 
+  def copy
+    set_proposal
+    @new_proposal = Proposal.new
+    @new_proposal.title = "Copy_of "+@proposal.title
+    @new_proposal.company = @proposal.company
+    @new_proposal.proposal_type = @proposal.proposal_type
+    @new_proposal.deadline = @proposal.deadline
+    @new_proposal.bts = @proposal.bts
+    @new_proposal.add_ons = @proposal.add_ons
+    @new_proposal.time_of_day = @proposal.time_of_day
+    @new_proposal.background = @proposal.background
+    @new_proposal.location_id = @proposal.location_id
+    @new_proposal.shoot_type = @proposal.shoot_type
+    @new_proposal.raw = @proposal.raw
+    @new_proposal.background_note = @proposal.background_note
+    @new_proposal.instagram_1 = @proposal.instagram_1
+    @new_proposal.instagram_2 = @proposal.instagram_2
+    @new_proposal.instagram_3 = @proposal.instagram_3
+    @new_proposal.instagram_4 = @proposal.instagram_4
+    @new_proposal.image_board_1 = @proposal.image_board_1
+    @new_proposal.image_board_2 = @proposal.image_board_2
+    @new_proposal.image_board_3 = @proposal.image_board_3
+    @new_proposal.image_board_4 = @proposal.image_board_4
+    @new_proposal.save!
+    set_price(@proposal)
+    @chatroom = Chatroom.create!(topic: @new_proposal.title, proposal: @new_proposal)
+    @chatroom.messages.create!(user: current_user, content: "#{@new_proposal.company.name}' - '#{@proposal.title} Chat Was Created")
+    redirect_to @new_proposal
+  end
+
   def payment
   end
 
@@ -192,6 +222,33 @@ class ProposalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def proposal_params
-      params.require(:proposal).permit(:title, :content, :deadline, :price, :accepted, :company_id, :proposal_type, :completed, :completed_on, :paid, :charge_id, :bts, :focus_points, :time_of_day, :location_id, :background, :model_release, :shoot_type, :raw, :background_note, :instagram_1, :instagram_2, :instagram_3, :instagram_4)
+      params.require(:proposal).permit(:title,
+                                      :content,
+                                      :deadline,
+                                      :price,
+                                      :accepted,
+                                      :company_id,
+                                      :proposal_type,
+                                      :completed,
+                                      :completed_on,
+                                      :paid,
+                                      :charge_id,
+                                      :bts,
+                                      :focus_points,
+                                      :time_of_day,
+                                      :location_id,
+                                      :background,
+                                      :model_release,
+                                      :shoot_type,
+                                      :raw,
+                                      :background_note,
+                                      :instagram_1,
+                                      :instagram_2,
+                                      :instagram_3,
+                                      :instagram_4,
+                                      :image_board_1,
+                                      :image_board_2,
+                                      :image_board_3,
+                                      :image_board_4)
     end
 end

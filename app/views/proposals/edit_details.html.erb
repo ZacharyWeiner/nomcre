@@ -11,12 +11,18 @@
     </div>
   <% end %>
 
-    <%= f.submit "Save", class: 'btn btn-success pull-right', style:'margin-bottom:12px;' %>
-    <br><br>
-    <%= render :partial => 'proposals/partials/form/bts', :locals => {:f => f} %>
-    <%= render :partial => 'proposals/partials/form/focus_points', :locals => {:f => f} %>
-    <%= render :partial => 'proposals/partials/form/time_of_day', :locals => {:f => f} %>
-    <%= render :partial => 'proposals/partials/form/instagram_fields', :locals => {:f => f} %>
-
+  <%= f.submit "Save", class: 'btn btn-success pull-right', style:'margin-bottom:12px;' %>
+  <br><br>
+  <%= render :partial => 'proposals/partials/form/bts', :locals => {:f => f} %>
+  <%= render :partial => 'proposals/partials/form/focus_points', :locals => {:f => f} %>
+  <%= render :partial => 'proposals/partials/form/time_of_day', :locals => {:f => f} %>
+  <div class='row'>
+    <div class='col-md-6'>
+      <%= render :partial => 'proposals/partials/form/instagram_fields', :locals => {:f => f} %>
+    </div>
+    <div class='col-md-6'>
+      <%= render :partial => 'proposals/partials/form/image_board_fields', :locals => {:f => f} %>
+    </div>
+  </div>
 <% end %>
 

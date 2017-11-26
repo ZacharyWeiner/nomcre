@@ -21,7 +21,9 @@ Rails.application.routes.draw do
     get 'approve_request', to: 'proposals#approve_request'
     get 'send_email', to: 'proposals#send_email'
     get 'send_assigned_email', to: 'proposals#send_creative_assigned_email'
+    get 'copy', to: 'proposals#copy', as: 'copy'
   end
+
   get 'proposal/completed', to: 'proposals#completed', as: 'proposals_completed'
   get 'requests', to: 'proposal_requests#requests', as:'proposal_requests'
   get 'proposal_requests/:id/send_request_accepted_email', to: 'proposal_requests#send_request_accepted_email'
