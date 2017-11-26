@@ -50,6 +50,8 @@ Rails.application.routes.draw do
   get 'contact', to:'khaki#contact', as: 'nomcre_contact'
   get 'about', to:'khaki#about', as: 'nomcre_about'
   get 'featured', to:'khaki#featured_creatives', as: 'featured_creatives'
+  get 'creative_tutorial', to:'khaki#proposal_tutorial_creative', as: 'proposal_tutorial_creative'
+  get 'company_tutorial', to:'khaki#proposal_tutorial_company', as: 'proposal_tutorial_company'
   get 'khaki/index', to:'khaki#index'
 
   #root 'khaki#nomcre_home'

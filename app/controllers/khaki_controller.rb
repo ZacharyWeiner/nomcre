@@ -23,4 +23,10 @@ class KhakiController < ApplicationController
 
   def featured_creatives
   end
+
+  def proposal_tutorial_creative
+  end
+
+  def proposal_tutorial_company
+  end
 end
