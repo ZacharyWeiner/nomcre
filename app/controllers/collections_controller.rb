@@ -4,7 +4,11 @@ class CollectionsController < ApplicationController
   # GET /collections
   # GET /collections.json
   def index
-    @collections = Collection.where(user: current_user)
+    if current_user
+      @collections = Collection.where(user: current_user)
+    else
+      @collections = Collection.all
+    end
   end
 
   # GET /collections/1
@@ -73,7 +77,7 @@ class CollectionsController < ApplicationController
     end
 
     def set_layout
-      if action_name == "show"
+      if action_name == "show" || action_name == 'index'
         return 'khaki'
       else
         return 'adminlte'

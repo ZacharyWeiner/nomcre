@@ -1,14 +1,30 @@
 <% content_for :head do %>
 <meta property="og:url" content="<%= request.original_url %>" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="NomCre - <%= @collection.user.name %>" />
+<meta property="og:title" content="NomCre - Collections" />
 <meta property="og:description" content="Nomcre - Our Best Visual Creators. The Best Photographers and Videographers." />
-<meta property="og:image" content="<%= collections.first.collection_items.first.file_url %>" />
+<meta property="og:image" content="<%= Collection.take(1).first.collection_items.first.file_url(:small).to_s %>" />
 <% end %>
+ <div class="nk-header-title nk-header-title-sm nk-header-title-parallax nk-header-title-parallax-opacity">
+    <div class="bg-image">
+        <div style="background-image: url('<%= Collection.take(1).first.collection_items.first.file_url %>');"></div>
+    </div>
+    <div class="nk-header-table">
+        <div class="nk-header-table-cell">
+            <div class="container">
+                <h1 class="nk-title">Collections</h1>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class='nk-main'>
 <% @collections.each do |collection| %>
   <div class='row'>
-    <div class='row text-center'>
+    <div class='container'>
+      <%= link_to collection do %>
       <h3><%= collection.title %></h3>
+      <% end %>
     </div>
     <div class='col-md-10'>
       <div class='row'>
@@ -20,12 +36,16 @@
       </div>
     </div>
     <div class='col-md-2' style='vertical-align:center'>
+      <% if current_user &&  current_user == collection.user %>
       <%= link_to 'Add To Collection', new_collection_collection_item_path(collection), class: 'btn btn-warning btn-block' %>
       <%= link_to 'View', collection, class: 'btn btn-primary btn-block' %>
       <%= link_to 'Destroy', collection, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block' %>
+      <% end %>
     </div>
   </div>
 <% end %>
 <br>
-
+<% if current_user && current_user.user_type = 'creative'%>
 <%= link_to 'New Collection', new_collection_path %>
+<% end %>
+</div>
