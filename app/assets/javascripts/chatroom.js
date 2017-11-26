@@ -11,3 +11,4 @@
 // about supported directives.
 //
 //= require_tree ./channels
+//= require bootstrap/dist/js/bootstrap.min
