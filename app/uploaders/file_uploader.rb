@@ -29,6 +29,15 @@ class FileUploader < CarrierWave::Uploader::Base
   #   # do something
   # end
 
+  # process :store_dimensions
+
+
+  # def store_dimensions
+  #   if file && model
+  #     model.width, model.height = ::MiniMagick::Image.open(file.file)[:dimensions]
+  #   end
+  # end
+
   # Create different versions of your uploaded files:
    version :medium do
      process resize_to_fit: [500, 500]
