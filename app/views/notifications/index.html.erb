@@ -19,9 +19,9 @@
             <% if note.notification_type == "New Request" %>
               <%= link_to "View", proposal_requests_path, class: 'btn btn-primary'%>
             <% elsif note.notification_type == "Request Accepted" %>
-              <%= link_to "View", proposal_path(notification_object_id), class: 'btn btn-primary'%>
+              <%= link_to "View", proposal_path(note.notification_object_id), class: 'btn btn-primary'%>
             <% elsif note.notification_type == "Proposal Assigned" %>
-              <%= link_to "View", proposal_path(notification_object_id), class: 'btn btn-primary'%>
+              <%= link_to "View", proposal_path(ntoe.notification_object_id), class: 'btn btn-primary'%>
             <% elsif note.notification_type == "New Message" %>
               <%= link_to "View", chatroom_path(Chatroom.find(note.notification_object_id)), class: 'btn btn-primary'%>
             <% end %>
