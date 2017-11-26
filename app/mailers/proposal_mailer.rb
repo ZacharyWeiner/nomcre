@@ -5,4 +5,7 @@ class ProposalMailer < ApplicationMailer
     @url  = 'http://nomcre.com/proposals/' + "#{proposal.id}"
     mail(to: @user.email, subject: 'Your Deposit Has Been Recieved!')
   end
+
+  def balance_recieved(proposal)
+  end
 end
