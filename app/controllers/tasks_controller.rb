@@ -70,6 +70,11 @@ class TasksController < ApplicationController
     @task.completed = true
     respond_to do |format|
       if @task.save
+        tasks = @task.proposal.tasks.where.not(completed: true)
+        byebug
+        if tasks.count == 0
+          task.proposal.mark_as_complete
+        end
         format.html { redirect_to proposal_path(@task.proposal), notice: 'Task was successfully completed.' }
       end
     end

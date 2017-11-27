@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171126221032) do
+ActiveRecord::Schema.define(version: 20171126223210) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -171,6 +171,8 @@ ActiveRecord::Schema.define(version: 20171126221032) do
     t.bigint "proposal_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "can_accept"
+    t.string "task_type"
     t.index ["company_id"], name: "index_tasks_on_company_id"
     t.index ["proposal_id"], name: "index_tasks_on_proposal_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"

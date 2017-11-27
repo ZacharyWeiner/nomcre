@@ -18,7 +18,9 @@
       </dd>
     </dl>
   </div>
-  <!-- /.box-body -->
+  <% if @task.user == current_user %>
+  <%= link_to "Mark Completed", task_task_complete_path(@task), class: 'btn btn-primary' %>
+<% end %>
 </div>
 
 
