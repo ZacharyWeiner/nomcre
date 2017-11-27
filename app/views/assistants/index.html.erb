@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Assistants</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Paypal email</th>
+      <th>Phone</th>
+      <th>Rate</th>
+      <th>Assistant type</th>
+      <th>Location</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @assistants.each do |assistant| %>
+      <tr>
+        <td><%= assistant.name %></td>
+        <td><%= assistant.paypal_email %></td>
+        <td><%= assistant.phone %></td>
+        <td><%= assistant.rate %></td>
+        <td><%= assistant.assistant_type %></td>
+        <td><%= assistant.location %></td>
+        <td><%= link_to 'Show', assistant %></td>
+        <td><%= link_to 'Edit', edit_assistant_path(assistant) %></td>
+        <td><%= link_to 'Destroy', assistant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Assistant', new_assistant_path %>

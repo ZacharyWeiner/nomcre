@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :assistants
   resources :contacts
   mount ActionCable.server => '/cable'
   resources :schedule_items

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  paypal_email: MyString
+  phone: MyString
+  rate: 1
+  assistant_type: MyString
+  location: one
+
+two:
+  name: MyString
+  paypal_email: MyString
+  phone: MyString
+  rate: 1
+  assistant_type: MyString
+  location: two

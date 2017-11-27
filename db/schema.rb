@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127031630) do
+ActiveRecord::Schema.define(version: 20171127061602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assistants", force: :cascade do |t|
+    t.string "name"
+    t.string "paypal_email"
+    t.string "phone"
+    t.integer "rate"
+    t.string "assistant_type"
+    t.bigint "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_assistants_on_location_id"
+  end
 
   create_table "chatrooms", force: :cascade do |t|
     t.string "topic"
@@ -215,6 +227,7 @@ ActiveRecord::Schema.define(version: 20171127031630) do
     t.text "question_1"
   end
 
+  add_foreign_key "assistants", "locations"
   add_foreign_key "chatrooms", "proposals"
   add_foreign_key "collection_items", "collections"
   add_foreign_key "collection_items", "users"
