@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127031630) do
+ActiveRecord::Schema.define(version: 20171127195220) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "assistants", force: :cascade do |t|
+    t.string "name"
+    t.string "paypal_email"
+    t.string "phone"
+    t.integer "rate"
+    t.string "assistant_type"
+    t.bigint "location_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_assistants_on_location_id"
+  end
 
   create_table "chatrooms", force: :cascade do |t|
     t.string "topic"
@@ -178,6 +190,19 @@ ActiveRecord::Schema.define(version: 20171127031630) do
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
+  create_table "user_profiles", force: :cascade do |t|
+    t.string "display_name"
+    t.text "description"
+    t.text "shot_preference", default: [], array: true
+    t.text "content_type", default: [], array: true
+    t.string "profile_photo"
+    t.string "header_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_user_profiles_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -215,6 +240,7 @@ ActiveRecord::Schema.define(version: 20171127031630) do
     t.text "question_1"
   end
 
+  add_foreign_key "assistants", "locations"
   add_foreign_key "chatrooms", "proposals"
   add_foreign_key "collection_items", "collections"
   add_foreign_key "collection_items", "users"
@@ -231,5 +257,6 @@ ActiveRecord::Schema.define(version: 20171127031630) do
   add_foreign_key "tasks", "companies"
   add_foreign_key "tasks", "proposals"
   add_foreign_key "tasks", "users"
+  add_foreign_key "user_profiles", "users"
   add_foreign_key "users", "companies"
 end

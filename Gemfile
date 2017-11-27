@@ -25,7 +25,7 @@ gem 'stripe'
 gem "typedjs-rails", "~> 1.0.4"
 gem 'parallax-rails'
 gem 'sendgrid-ruby'
-
+gem 'bootstrap-toggle-rails'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use Capistrano for deployment

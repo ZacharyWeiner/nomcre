@@ -5,6 +5,7 @@
 //= require back/plugins/datatables/jquery.dataTables.min
 //= require back/plugins/datatables/dataTables.bootstrap.min
 //= require back/app
+//= require bootstrap-toggle
 
 $(document).ready(function() {
   var table = $('.dataTable').DataTable();

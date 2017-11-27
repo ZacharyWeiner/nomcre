@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
   def home
     #check to see if the user is logged in
     if current_user
+      #if the user does not have a profile - create one
+      if current_user.user_profile.nil?
+        current_user.create_user_profile!(display_name: current_user.name)
+      end
     #if logged in check if they have a user type
       if current_user.user_type.nil? == false
       #if they have a user type
