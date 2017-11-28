@@ -22,6 +22,7 @@
           <th>Deposit Paid</th>
           <th>Accepted</th>
           <th>Proposal type</th>
+          <th>Status</th>
           <th>Paid</th>
           <th colspan="2"></th>
         </tr>
@@ -44,6 +45,11 @@
               <% end %>
             </td>
             <td><%= proposal.proposal_type %></td>
+            <td>
+               <div class="progress">
+                  <div class="progress-bar" style="width: 70%"></div>
+                </div>
+            </td>
             <td><%= proposal.paid %></td>
             <td><%= link_to 'Show', proposal, class: 'btn btn-primary' %></td>
             <td><%= link_to 'Delete', proposal, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' unless proposal.company.users.include?(current_user) == false %></td>
@@ -55,6 +61,148 @@
   <!-- /.box-body -->
 </div>
 
+
+<div class='row'>
+  <% @proposals.each do |proposal| %>
+  <div class="col-md-3 col-sm-6 col-xs-12">
+    <% if proposal.accepted %>
+    <div class="info-box bg-aqua">
+        <span class="info-box-icon"><i class="fa fa-thumbs-up"></i></span>
+    <% elsif proposal.complete %>
+    <div class="info-box bg-green">
+        <span class="info-box-icon"><i class="fa fa-thumbs-up"></i></span>
+    <% else %>
+      <div class="info-box bg-graya">
+        <span class="info-box-icon"><i class="fa fa-question"></i></span>
+      <% end %>
+
+      <div class="info-box-content">
+        <h3><%= proposal.title %></h3>
+         <% if proposal.deposit_paid %>
+            <span class='info-box-number'>Paid</span>
+          <% else %>
+            <span class='info-box-number'>Deposit Required</span>
+          <% end %>
+
+        <div class="progress">
+          <div class="progress-bar" style="width: 70%"></div>
+        </div>
+            <span class="progress-description">
+              <%= proposal.deadline %>
+            </span>
+      </div>
+      <!-- /.info-box-content -->
+    </div>
+    <!-- /.info-box -->
+  </div>
+  <% end %>
+</div>
+
+
+
+
+
+<div class="row">
+        <div class="col-md-12">
+          <!-- The time line -->
+          <ul class="timeline">
+            <% @proposals.each do |proposal| %>
+            <!-- timeline time label -->
+            <!-- /.timeline-label -->
+            <!-- timeline item -->
+            <li >
+              <i class="fa fa-envelope bg-blue"></i>
+
+              <div class="timeline-item bg-gray-gradient">
+                <span class="time">
+                  <i class="fa fa-clock-o"></i> <%= proposal.deadline %>
+                </span>
+
+                <h3 class="timeline-header"><%= link_to proposal.title %></h3>
+
+                <div class="timeline-body">
+
+
+                    <div class='row'>
+                      <div class="col-md-3">
+                       <!-- <div class="progress">
+                        <div class="progress-bar" style="width: 70%"></div>
+                        </div> -->
+                        <%= image_tag proposal.user.user_profile.safe_profile_image_url, class: "img-circle", style: 'max-height:200px' %><br/>
+                        <p class='text-center'><%= proposal.user.user_profile.display_name  %><p>
+                      </div>
+                      <div class='col-md-9'>
+                        <%= proposal.content.first(300)%>...
+                        <br>
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="box-body">
+                               <dl>
+                                <dt>
+                                  Production Type
+                                </dt>
+                                <dd>
+                                  <%= proposal.proposal_type %>
+                                </dd>
+                              </dl>
+                              <dl>
+                                <dt>
+                                  Background
+                                </dt>
+                                <dd>
+                                  <%= proposal.background %> <br>
+                                  <div class='light'>
+                                    <%= proposal.background_note unless proposal.background_note.nil?%>
+                                  </div>
+                                </dd>
+                              </dl>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <dl>
+                              <dt>Shoot Type</dt>
+                              <dd><%= proposal.shoot_type%> Shots</dd>
+                            </dl>
+                            <dl>
+                              <dt>Time Of Day</dt>
+                              <dd><%= proposal.time_of_day %></dd>
+                            </dl>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+                <div class="timeline-footer">
+                  <div class="progress">
+                    <div class="progress-bar" style="width: 70%"></div>
+                  </div>
+                   <div class='row'>
+                    <div class='col-md-4'>
+                      <%= link_to proposal do %>
+                        <i class='fa fa-eye'></i>
+                      <% end %>
+                      <%= link_to proposal do %>
+                        <i class='fa fa-edit'></i>
+                      <% end %>
+                      <%= link_to proposal do %>
+                        <i class='fa fa-trash-o'></i>
+                      <% end %>
+                    </div>
+                    <div class='col-md-4'>
+
+                    </div>
+                    <div class='col-md-4'>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+        <!-- /.col -->
+</div>
 
 
 
