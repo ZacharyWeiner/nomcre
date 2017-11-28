@@ -1,0 +1,78 @@
+<div class='row'>
+  <div class="col-md-3">
+    <%= render :partial =>  'shared/adminlte/user/profile_images_widget', locals:  {user: proposal.user} %>
+    <b> Progress: </b>
+    <div class="progress">
+      <div class="progress-bar progress-bar-success progress-bar-striped" style="width: 70%"></div>
+    </div>
+    <ul class="list-group list-group-unbordered">
+
+      <li class="list-group-item">
+        <i class='fa fa-map-marker'></i>
+        <span><b> Location</b> <p class='pull-right'><%= proposal.location.name unless proposal.location.nil?%></p></span>
+      </li>
+      <% if proposal.user %>
+        <li class="list-group-item">
+          <%= link_to proposal.chatroom, class: 'btn btn-primary btn-block' do %>
+          <i class='fa fa-comments-o'></i> Chat
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class='col-md-9'>
+    <p><%= proposal.content.first(300)%>...</p>
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="info-box">
+          <span class="info-box-icon bg-aqua"><i class="fa fa-photo"></i></span>
+          <div class="info-box-content">
+            <h4 class="">Shoot Type</h4>
+             <h5><%= proposal.shoot_type%> Shots </h5>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="info-box">
+          <span class="info-box-icon bg-aqua"><i class="fa fa-clock-o"></i></span>
+          <div class="info-box-content">
+            <h4 class="">Time Of Day</h4>
+            <h5><%= proposal.time_of_day %></h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="info-box">
+          <span class="info-box-icon bg-aqua"><i class="fa fa-university"></i></span>
+          <div class="info-box-content">
+            <h4 class="">Background</h4>
+             <h5><%= proposal.background %> </h5>
+            <div class='light'>
+              <%= proposal.background_note unless proposal.background_note.nil?%>
+            </div>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="info-box">
+          <span class="info-box-icon bg-aqua"><i class="fa fa-crosshairs"></i></span>
+          <div class="info-box-content">
+            <h4 class="">Focus Points</h4>
+            <div class='light'>
+              <% proposal.focus_points.each do |fp| %>
+                <span class="label label-success"><%= fp %></span>
+              <% end %>
+            </div>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+      </div>
+    </div>
+    <div class='col-md-12'>
+
+    </div>
+  </div>
+</div>

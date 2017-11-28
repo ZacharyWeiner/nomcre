@@ -1,20 +1,26 @@
-<ul class="list-unstyled">
+<ul class="list-group list-group-unbordered">
 <% @proposal.tasks.each do |task| %>
-  <li>
-    <div class='row'>
-      <div class='col-md-4'><%= task.description%></div>
-      <div class='col-md-4'><%= task.deadline%></div>
-      <div class='col-md-3'>
+  <li class="list-group-item">
+    <div class='row' style="margin:8px;">
+      <div class='col-md-5'><%= task.description%></div>
+      <div class='col-md-5'><%= task.deadline%></div>
+      <div class='col-md-1'>
         <% if  task.user == current_user || task.company == current_user.company %>
           <% if task.completed? %>
-            <%= link_to "Complete", task_task_complete_path(task), class: 'btn btn-warning disabled btn-block'  %>
+            <%= link_to  task_task_complete_path(task), class: 'success' do  %>
+              <i class='fa fa-check' style='color:lime'></i>
+            <% end %>
           <% else %>
-            <%= link_to "Mark Complete", task_task_complete_path(task), class: 'btn btn-primary btn-block'  %>
+            <%= link_to task_task_complete_path(task), class: 'success' do %>
+              <i class='fa fa-thumbs-o-up'></i>
+            <% end %>
           <% end %>
         <% end %>
       </div>
       <div class='col-md-1'>
-        <%= link_to "View", task %>
+         <%= link_to task do  %>
+          <i class='fa fa-eye'></i>
+        <% end %>
       </div>
     </div>
   </li>

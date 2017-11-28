@@ -71,7 +71,6 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
         tasks = @task.proposal.tasks.where.not(completed: true)
-        byebug
         if tasks.count == 0
           task.proposal.mark_as_complete
         end

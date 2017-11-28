@@ -1,45 +1,112 @@
-<div class="box box-solid">
-<!-- /.box-header -->
-<div class="box-body">
-  <div class='row'>
-    <div class='col-md-6'>
-      <dl>
-        <dt>
-          Production Type
-        </dt>
-        <dd>
-          <%= @proposal.proposal_type %>
-        </dd>
-      </dl>
-      <dl>
-        <dt>
-          Background
-        </dt>
-        <dd>
-          <%= @proposal.background %> <br>
-          <div class='light'>
-            <%= @proposal.background_note unless @proposal.background_note.nil?%>
-          </div>
-        </dd>
-      </dl>
+<div class='continer'>
+<div class='row'>
+  <div class="col-md-7">
+    <b>Creative Brief</b>
+    <p><%= @proposal.content%></p>
+    <br>
+    <div class="box box-aqua box-solid collapsed-box">
+      <div class="box-header with-border">
+        <h3 class="box-title">Inspiration</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+          </button>
+        </div>
+        <!-- /.box-tools -->
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body" style="margin:8px;">
+        <div class='row'>
+          <%= render 'proposals/partials/instagram_inspiration' %>
+        </div>
+        <div class="row">
+          <%= render 'proposals/partials/image_boards' %>
+        </div>
+      </div>
+      <!-- /.box-body -->
     </div>
-    <div class='col-md-6'>
-      <dl>
-        <dt>Shoot Type</dt>
-        <dd><%= @proposal.shoot_type%> Shots</dd>
-      </dl>
-      <dl>
-        <dt>Time Of Day</dt>
-        <dd><%= @proposal.time_of_day %></dd>
-      </dl>
+    <div class="box box-aqua box-solid collapsed-box">
+      <div class="box-header with-border">
+        <h3 class="box-title">Tasks</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+          </button>
+        </div>
+        <!-- /.box-tools -->
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body" style="margin:8px;">
+        <div class='row'>
+          <%= render 'proposals/partials/proposal_tasks_list' %>
+        </div>
+      </div>
+      <!-- /.box-body -->
     </div>
   </div>
-  <hr>
-  <dl>
-    <dt>Creative Brief</dt>
-    <dd><%= @proposal.content%></dd>
-  </dl>
+  <div class="col-md-5">
+    <div class="info-box">
+      <% if @proposal.proposal_type == 'video' %>
+        <span class="info-box-icon bg-aqua"><i class="fa fa-video-camera"></i></span>
+      <% elsif @proposal.proposal_type == 'photo' %>
+        <span class="info-box-icon bg-aqua"><i class="fa fa-photo"></i></span>
+      <% end %>
+      <div class="info-box-content">
+        <span class="info-box-number">Production</span>
+        <span class="info-box-text"><%= @proposal.proposal_type %></span>
+      </div>
+    </div>
+    <div class="info-box">
+      <span class="info-box-icon bg-aqua"><i class="fa fa-university"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-number">Background</span>
+        <span class="info-box-text"><%= @proposal.background %></span>
+      </div>
+    </div>
+    <div class="info-box">
+      <span class="info-box-icon bg-aqua"><i class="fa fa-image"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-number">Shot Type</span>
+        <span class="info-box-text"><%= @proposal.shoot_type%></span>
+      </div>
+    </div>
+    <div class="info-box">
+      <span class="info-box-icon bg-aqua"><i class="fa fa-sun-o"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-number">Time Of Day</span>
+        <span class="info-box-text"><%= @proposal.time_of_day %></span>
+      </div>
+    </div>
+    <div class="info-box">
+      <span class="info-box-icon bg-aqua"><i class="fa fa-crosshairs"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-number">Focus Points</span>
+        <span class="info-box-text">
+          <% @proposal.focus_points.each do |fp| %>
+            <span class="label label-success"><%= fp %></span><br>
+          <% end %>
+        </span>
+      </div>
+    </div>
+    <div class="info-box">
+      <span class="info-box-icon bg-aqua"><i class="fa fa-plus"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-number">BTS</span>
+        <span class="info-box-text">
+          <% @proposal.bts.each do |bts| %>
+            <span class="label label-success"><%= bts %></span><br/>
+          <% end %>
+        </span>
+      </div>
+    </div>
+  </div>
 </div>
-<!-- /.box-body -->
 
+<div class='row'>
+  <div class="col-md-7">
+
+  </div>
+  <div class="col-md-5">
+  </div>
+</div>
 </div>

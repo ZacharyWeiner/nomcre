@@ -1,26 +1,40 @@
 <div class="box box-solid">
   <div class="box-header with-border">
-    <i class="fa fa-text-width"></i>
-
     <h3 class="box-title"><%= @task.proposal.title %></h3>
+    <p class='pull-right'>
+      Deadline: <%= @task.deadline %><br/>
+      <% if @task.completed %>
+        <span class='label label-success pull-right'>Complete</span>
+      <% else  %>
+        <span class='label label-warning pull-right'>Pending</span>
+      <% end %>
+    </p>
   </div>
   <!-- /.box-header -->
   <div class="box-body">
-    <dl class="dl-horizontal">
-      <dt>Description: </dt>
-      <dd><%= @task.description %></dd>
-      <dt>Assigned To:</dt>
-      <dd><%= @task.user.name %></dd>
-      <dt>Deadline:</dt>
-      <dd><%= @task.deadline %></dd>
-      <dt>Complete: </dt>
-      <dd><%= @task.completed %>
-      </dd>
-    </dl>
+    <div class="row">
+      <div class="col-md-3">
+        <%= render :partial => 'shared/adminlte/user/profile_images_widget', locals:{user: @task.user} %>
+         <% if @task.user == current_user %>
+           <% if @task.completed %>
+            <%= link_to task_task_complete_path(@task), class: 'btn btn-success btn-block ' do %>
+              <i class='fa fa-thumbs-o-up'></i> Completed
+            <% end %>
+          <% else %>
+            <%= link_to task_task_complete_path(@task), class: 'btn btn-success btn-block ' do %>
+              <i class='fa fa-check'></i> Mark Complete
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-md-9">
+        <dl class="dl-horizontal">
+          <dt>Description: </dt>
+          <dd><%= @task.description %></dd>
+        </dl>
+      </div>
+    </div>
   </div>
-  <% if @task.user == current_user %>
-  <%= link_to "Mark Completed", task_task_complete_path(@task), class: 'btn btn-primary' %>
-<% end %>
 </div>
 
 

@@ -1553,6 +1553,9 @@ a:focus {
 .box.box-primary {
   border-top-color: #3c8dbc;
 }
+.box.box-aqua {
+  border-top-color: #00c0ef;
+}
 .box.box-info {
   border-top-color: #00c0ef;
 }
@@ -1614,10 +1617,23 @@ a:focus {
 .box.box-solid.box-primary {
   border: 1px solid #3c8dbc;
 }
+.box.box-solid.box-aqua {
+  border: 1px solid #00c0ef;
+}
+
 .box.box-solid.box-primary > .box-header {
   color: #ffffff;
   background: #3c8dbc;
   background-color: #3c8dbc;
+}
+.box.box-solid.box-aqua > .box-header {
+  color: #ffffff;
+  background: #00c0ef;
+  background-color: #00c0ef;
+}
+.box.box-solid.box-primary > .box-header a,
+.box.box-solid.box-primary > .box-header .btn {
+  color: #ffffff;
 }
 .box.box-solid.box-primary > .box-header a,
 .box.box-solid.box-primary > .box-header .btn {
