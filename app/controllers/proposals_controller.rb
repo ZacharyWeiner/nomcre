@@ -69,19 +69,20 @@ class ProposalsController < ApplicationController
   # PATCH/PUT /proposals/1.json
   def update
     respond_to do |format|
+      byebug
       if @proposal.accepted == true
         format.html { redirect_to @proposal, notice: 'The Proposal Can Not Be Changed After It Has Been Assigned' }
         return redirect_to @proposal
       end
-      unless params[:proposal][:bts].nil? || params[:proposal][:bts].count == 0
+      unless proposal_params[:bts].nil? || proposal_params[:bts].count == 0
         @proposal.bts.clear
-        params[:proposal][:bts].each do |bt|
+        proposal_params[:bts].each do |bt|
           @proposal.bts << bt
         end
       end
-      unless params[:proposal][:focus_points].nil? || params[:proposal][:focus_points].count == 0
+      unless proposal_params[:focus_points].nil? || proposal_params[:focus_points].count == 0
         @proposal.focus_points.clear
-        params[:proposal][:focus_points].each do |fp|
+        proposal_params[:focus_points].each do |fp|
           @proposal.focus_points << fp
         end
       end
@@ -98,7 +99,7 @@ class ProposalsController < ApplicationController
         proposal_params[:instagram_4] = params[:proposal][:instagram_4].gsub!("@", "")
       end
 
-      if @proposal.update(proposal_params)
+      if @proposal.update!(proposal_params)
         format.html { redirect_to @proposal, notice: 'Proposal was successfully updated.' }
         format.json { render :show, status: :ok, location: @proposal }
       else
@@ -264,7 +265,6 @@ class ProposalsController < ApplicationController
                                       :completed_on,
                                       :paid,
                                       :charge_id,
-                                      :bts,
                                       :focus_points,
                                       :time_of_day,
                                       :location_id,
@@ -280,6 +280,8 @@ class ProposalsController < ApplicationController
                                       :image_board_1,
                                       :image_board_2,
                                       :image_board_3,
-                                      :image_board_4)
+                                      :image_board_4,
+                                      bts: [],
+                                      assistants_attributes: [:id, :name, :paypal_email, :phone, :rate, :assistant_type, :location_id, :_destroy])
     end
 end

@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
-
-  resources :assistants
-
-  resources :user_profiles
-
-  resources :contacts
   mount ActionCable.server => '/cable'
+  resources :assistants
+  resources :user_profiles
+  resources :contacts
   resources :schedule_items
   resources :collections do
     resources :collection_items

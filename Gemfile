@@ -34,6 +34,8 @@ gem 'bootstrap-toggle-rails'
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-aws'
 gem 'mini_magick'
+gem "cocoon"
+gem 'jquery-ui-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20171127195220) do
-
+ActiveRecord::Schema.define(version: 20171128175956) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,7 +24,9 @@ ActiveRecord::Schema.define(version: 20171127195220) do
     t.bigint "location_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "proposal_id"
     t.index ["location_id"], name: "index_assistants_on_location_id"
+    t.index ["proposal_id"], name: "index_assistants_on_proposal_id"
   end
 
   create_table "chatrooms", force: :cascade do |t|
@@ -243,6 +243,7 @@ ActiveRecord::Schema.define(version: 20171127195220) do
   end
 
   add_foreign_key "assistants", "locations"
+  add_foreign_key "assistants", "proposals"
   add_foreign_key "chatrooms", "proposals"
   add_foreign_key "collection_items", "collections"
   add_foreign_key "collection_items", "users"
