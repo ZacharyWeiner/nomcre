@@ -1553,6 +1553,9 @@ a:focus {
 .box.box-primary {
   border-top-color: #3c8dbc;
 }
+.box.box-aqua {
+  border-top-color: #00c0ef;
+}
 .box.box-info {
   border-top-color: #00c0ef;
 }
@@ -1614,10 +1617,23 @@ a:focus {
 .box.box-solid.box-primary {
   border: 1px solid #3c8dbc;
 }
+.box.box-solid.box-aqua {
+  border: 1px solid #00c0ef;
+}
+
 .box.box-solid.box-primary > .box-header {
   color: #ffffff;
   background: #3c8dbc;
   background-color: #3c8dbc;
+}
+.box.box-solid.box-aqua > .box-header {
+  color: #ffffff;
+  background: #00c0ef;
+  background-color: #00c0ef;
+}
+.box.box-solid.box-primary > .box-header a,
+.box.box-solid.box-primary > .box-header .btn {
+  color: #ffffff;
 }
 .box.box-solid.box-primary > .box-header a,
 .box.box-solid.box-primary > .box-header .btn {
@@ -4928,5 +4944,67 @@ table.text-center th {
   .table-responsive > .table tr th,
   .table-responsive > .table tr td {
     white-space: normal !important;
+  }
+}
+
+.toggle-switch {
+  input{
+    display:none;
+  }
+  .block{
+    width:200px;
+    position:relative;
+    clear:both;
+    margin:0 0 25px;
+    float: left;
+  }
+  span{
+    text-transform:uppercase;
+    font-family:'Roboto Condensed', sans-serif;
+    font-weight:bold;
+    letter-spacing:1px;
+    font-size:15px;
+    float:right;
+    width:85px;
+    margin:16px 0 0;
+  }
+  .wrap{
+    width:200px;
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    padding:30px 30px 5px;
+  }
+  label{
+    width:100px;
+    height:50px;
+    box-sizing:border-box;
+    border:3px solid;
+    float:left;
+    border-radius:100px;
+    position:relative;
+    cursor:pointer;
+    transition:.3s ease;
+  }
+  input[type=checkbox]:checked + label{
+    background:#55e868;
+  }
+  input[type=checkbox]:checked + label:before{
+    left:50px;
+  }
+  label:before{
+    transition:.3s ease;
+    content:'';
+    width:40px;
+    height:40px;
+    position:absolute;
+    background:white;
+    left:2px;
+    top:2px;
+    box-sizing:border-box;
+    border:3px solid;
+    color:black;
+    border-radius:100px;
   }
 }

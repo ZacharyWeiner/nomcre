@@ -1,0 +1,113 @@
+<%= form_with(model: @user_profile, local: true) do |form| %>
+  <% if @user_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_profile.errors.count, "error") %> prohibited this user_profile from being saved:</h2>
+
+      <ul>
+      <% @user_profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :display_name %>
+    <%= form.text_field :display_name, id: :user_profile_display_name, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :user_profile_description, class: 'form-control' %>
+  </div>
+
+
+  <br>
+  <hr>
+
+
+  <div class="row">
+    <div class="col-md-6">
+      <div class="field">
+        <div class="container">
+          <h4>My Skills Include:<h4>
+        </div>
+
+        <%= check_box_tag 'user_profile[content_type][]', 'Photography', checked = @user_profile.content_type.include?("Photography"), :'data-toggle' => "toggle" %>
+        <%= form.label :photography %>
+          <br><br>
+        <%= check_box_tag 'user_profile[content_type][]', 'Videography', checked = @user_profile.content_type.include?("Videography"), :'data-toggle' => "toggle" %>
+        <%= form.label :videography %>
+        <br><br>
+        <%= check_box_tag 'user_profile[content_type][]', 'Aerial', checked = @user_profile.content_type.include?("Aerial"), :'data-toggle' => "toggle" %>
+        <%= form.label :areial %>
+        <br><br>
+        <%= check_box_tag 'user_profile[content_type][]', '360 - Video', checked = @user_profile.content_type.include?("360 - Video"), :'data-toggle' => "toggle" %>
+        <%= form.label :video_360 %>
+        <br><br>
+        <%= check_box_tag 'user_profile[content_type][]', '360 - Photo', checked = @user_profile.content_type.include?("360 - Photo"), :'data-toggle' => "toggle" %>
+        <%= form.label :photo_360 %>
+      </div>
+    </div>
+    <div class='col-md-6'>
+      <div class="field">
+        <div class="container">
+          <h4>I Like To Shoot:</h4>
+        </div>
+
+        <%= check_box_tag 'user_profile[shot_preference][]', 'Editorial', checked = @user_profile.shot_preference.include?("Editorial"), :'data-toggle' => "toggle" %>
+        <%= form.label :editorial %>
+        <br><br>
+
+        <%= check_box_tag 'user_profile[shot_preference][]', 'Lifestyle', checked = @user_profile.shot_preference.include?("Lifestyle") , :'data-toggle' => "toggle"%>
+        <%= form.label :lifestyle %>
+        <br><br>
+        <%= check_box_tag 'user_profile[shot_preference][]', 'Story', checked = @user_profile.shot_preference.include?("Story"), :'data-toggle' => "toggle" %>
+        <%= form.label :story %>
+        <br><br>
+        <%= check_box_tag 'user_profile[shot_preference][]', 'Lookbook', checked = @user_profile.shot_preference.include?("Lookbook"), :'data-toggle' => "toggle" %>
+        <%= form.label :lookbook %>
+        <br><br>
+        <%= check_box_tag 'user_profile[shot_preference][]', 'Action', checked = @user_profile.shot_preference.include?("Action"), :'data-toggle' => "toggle" %>
+        <%= form.label :action %>
+      </div>
+    </div>
+
+  </div>
+
+
+  <br>
+  <hr>
+  <div class="field">
+    <div class='row'>
+      <div class='col-md-6'>
+        <%= form.label :profile_photo %>
+        <%= form.file_field :profile_photo, id: :user_profile_profile_photo, class: 'form-control' %>
+      </div>
+      <div class='col-md-6'>
+        <% if @user_profile.profile_photo %>
+          <%= image_tag @user_profile.profile_photo, style: 'max-height:250px; max-width:250px;'%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="field">
+    <div class='row'>
+      <div class='col-md-6'>
+        <%= form.label :header_image %>
+        <%= form.file_field :header_image, id: :user_profile_header_image, class: 'form-control' %>
+      </div>
+      <div class='col-md-6'>
+        <% if @user_profile.header_image %>
+          <%= image_tag @user_profile.header_image, style: 'max-height:250px; max-width:250px;'%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit "Update", class: 'btn btn-primary' %>
+  </div>
+<% end %>

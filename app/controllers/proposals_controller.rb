@@ -71,6 +71,7 @@ class ProposalsController < ApplicationController
     respond_to do |format|
       if @proposal.accepted == true
         format.html { redirect_to @proposal, notice: 'The Proposal Can Not Be Changed After It Has Been Assigned' }
+        return redirect_to @proposal
       end
       unless params[:proposal][:bts].nil? || params[:proposal][:bts].count == 0
         @proposal.bts.clear

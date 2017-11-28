@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171127061602) do
+
+ActiveRecord::Schema.define(version: 20171127195220) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -190,6 +192,19 @@ ActiveRecord::Schema.define(version: 20171127061602) do
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
+  create_table "user_profiles", force: :cascade do |t|
+    t.string "display_name"
+    t.text "description"
+    t.text "shot_preference", default: [], array: true
+    t.text "content_type", default: [], array: true
+    t.string "profile_photo"
+    t.string "header_image"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_user_profiles_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -244,5 +259,6 @@ ActiveRecord::Schema.define(version: 20171127061602) do
   add_foreign_key "tasks", "companies"
   add_foreign_key "tasks", "proposals"
   add_foreign_key "tasks", "users"
+  add_foreign_key "user_profiles", "users"
   add_foreign_key "users", "companies"
 end
