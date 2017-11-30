@@ -19,12 +19,15 @@ class KhakiController < ApplicationController
   end
 
   def about
+
   end
 
   def featured_creatives
   end
 
   def proposal_tutorial_creative
+    @lat = request.location.latitude
+    @long = request.location.longitude
   end
 
   def proposal_tutorial_company
