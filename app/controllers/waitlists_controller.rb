@@ -1,6 +1,8 @@
 class WaitlistsController < ApplicationController
   before_action :set_waitlist, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :show, :update, :destroy]
   layout 'khaki'
+
   # GET /waitlists
   # GET /waitlists.json
   def index
@@ -29,7 +31,7 @@ class WaitlistsController < ApplicationController
     respond_to do |format|
       if @waitlist.save
         WaitlistMailer.joined_waitlist(@waitlist.email).deliver_now!
-        format.html { redirect_to @waitlist, notice: 'Waitlist was successfully created.' }
+        format.html { redirect_to thank_you_path, notice: 'Thank You for joining the movement!' }
         format.json { render :show, status: :created, location: @waitlist }
       else
         format.html { render :new }
@@ -60,6 +62,9 @@ class WaitlistsController < ApplicationController
       format.html { redirect_to waitlists_url, notice: 'Waitlist was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def thank_youe
   end
 
   def send_joined_waitlist_email

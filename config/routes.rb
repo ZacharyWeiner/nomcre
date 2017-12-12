@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   get '/collection_item/download/:id', to: 'collection_items#download', as:'download'
   resources :waitlists
+  get 'waitlist/thank-you', to: 'waitlists#thank_you', as: 'thank_you'
 
   get 'waitlist/joined_waitlist', to: 'waitlists#send_joined_waitlist_email'
   get 'waitlist/creative_accepted', to: 'waitlists#send_user_accepted_email'
