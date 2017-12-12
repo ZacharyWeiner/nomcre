@@ -235,9 +235,9 @@ class ProposalsController < ApplicationController
 
     def set_price(proposal)
       if proposal.proposal_type == 'photo'
-        proposal.price =  4000
+        proposal.price =  6999
       elsif proposal.proposal_type == 'video'
-        proposal.price =  4000
+        proposal.price =  9999
       elsif proposal.proposal_type == 'drone'
         proposal.price =  1000
       end
