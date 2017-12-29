@@ -1,5 +1,6 @@
 class ProposalsController < ApplicationController
   before_action :set_proposal, only: [:show, :edit, :edit_details, :payment, :update, :destroy]
+  before_action :authenticate_user!
   layout 'adminlte'
 
   # GET /proposals

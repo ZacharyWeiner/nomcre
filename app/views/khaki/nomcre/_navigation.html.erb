@@ -15,7 +15,7 @@
         <div class="container">
             <div class="nk-nav-table">
 
-                <a href="index.html" class="nk-nav-logo">
+                <%= link_to root_path, class: "nk-nav-logo" do %>
                     <div class='row'>
                         <div class='col-md-6'>
                             <img src="https://s3-us-west-2.amazonaws.com/nomcre/logos/UpperLeftHPlogo+2.png" alt="" width="40" style='padding-top: 6px'>
@@ -24,7 +24,7 @@
                             <h4>NOM<span class='raleway-thinnest'>ADIC</span> CRE<span class='raleway-thinnest'>ATIVE</span> </h4>
                         </div>
                     </div>
-                </a>
+                <% end %>
 
                 <ul class="nk-nav nk-nav-right hidden-md-down" data-nav-mobile="#nk-nav-mobile">
                     <% if current_page?(controller: 'application', action: 'home') %>
@@ -39,7 +39,7 @@
                     <% else %>
                         <li class=" ">
                     <% end %>
-                        <%= link_to "The NomCre Way", nomcre_process_path %>
+                        <%= link_to "The NOMCRE Way", nomcre_process_path %>
                     </li>
                     <% if current_page?(controller: 'khaki', action: 'creative_showcase') %>
                         <li class="active ">
