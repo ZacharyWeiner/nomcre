@@ -10,6 +10,7 @@ class UserProfilesController < ApplicationController
   # GET /user_profiles/1
   # GET /user_profiles/1.json
   def show
+
   end
 
   # GET /user_profiles/new
