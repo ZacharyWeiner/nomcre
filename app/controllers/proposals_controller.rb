@@ -70,7 +70,7 @@ class ProposalsController < ApplicationController
   # PATCH/PUT /proposals/1.json
   def update
     respond_to do |format|
-      byebug
+
       if @proposal.accepted == true
         format.html { redirect_to @proposal, notice: 'The Proposal Can Not Be Changed After It Has Been Assigned' }
         return redirect_to @proposal

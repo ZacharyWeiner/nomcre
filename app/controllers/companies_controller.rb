@@ -68,9 +68,9 @@ class CompaniesController < ApplicationController
   end
 
   def send_welcome_email
-    byebug
+
     set_company
-    byebug
+
     CompanyMailer.welcome_email(@company.users.first).deliver_now
     redirect_to @company
   end

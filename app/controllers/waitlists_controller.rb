@@ -73,7 +73,6 @@ class WaitlistsController < ApplicationController
   end
 
   def send_user_accepted_email
-    byebug
     CreativeMailer.creative_accepted("zack@nomcre.com").deliver_now!
     redirect_to root_path
   end
