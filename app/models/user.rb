@@ -25,4 +25,20 @@ class User < ApplicationRecord
   def get_proposal_request(proposal_id)
     ProposalRequest.where(requested: self.id, proposal_id: proposal_id).first
   end
+
+  def update_intro_complete
+    if user_type == "company"
+      check_company_intro_complete
+    elsif user_type =='creative'
+      check_creative_intro_complete
+    end
+  end
+
+
+  private
+  def check_company_intro_complete
+  end
+
+  def check_creative_intro_complete
+  end
 end

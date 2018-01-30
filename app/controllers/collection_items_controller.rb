@@ -5,7 +5,11 @@ class CollectionItemsController < ApplicationController
   # GET /collection_items
   # GET /collection_items.json
   def index
-    @collection_items = CollectionItem.all
+    if params[:collection_id]
+      @collection_items = Collection.find(params[:collection_id]).collection_items
+    else
+      @collection_items = CollectionItem.all
+    end
   end
 
   # GET /collection_items/1

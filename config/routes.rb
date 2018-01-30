@@ -60,6 +60,7 @@ Rails.application.routes.draw do
   #dashboards
   get '/dashboard/company', to: 'dashboards#company_dashboard', as: 'company_dashboard'
   get 'dashboard/creative', to: 'dashboards#creative_dashboard', as: 'creative_dashboard'
+  get 'dashboard/accounting', to: 'dashboards#accounting_dashboard', as: 'accounting_dashboard'
   get 'home', to:'khaki#nomcre_home', as:'nomcre_home'
   get 'process', to:'khaki#nomcre_process', as: 'nomcre_process'
   get 'creative', to:'khaki#creative_landing', as: 'creative_landing'
