@@ -2,5 +2,21 @@
 
 <%= render 'form', collection: @collection %>
 
+<div class='row'>
+<% @collection.collection_items.each do |ci| %>
+  <div class='col-md-4'>
+    <div class='row'>
+      <%= image_tag ci.file_url(:small).to_s, class: 'img-fluid', style: 'height: 300px; width:300px;'%>
+      <br>
+      <%= link_to collection_collection_item_path(@collection, ci)  do %>
+        <i class='fa fa-eye'></i> View
+      <% end %>
+      <%= link_to collection_collection_item_path(@collection, ci), method: :delete  do %>
+        <i class='fa fa-trash'></i> Delete
+      <% end %>
+    </div>
+  </div>
+<% end %>
+</div>
 <%= link_to 'Show', @collection %> |
 <%= link_to 'Back', collections_path %>

@@ -6,10 +6,8 @@
 <meta property="og:description" content="A Collection By <%= @collection.user.name %>" />
 <meta property="og:image" content="<%= head_url%>" />
 <% end %>
-<p>
-  <strong>Title:</strong>
-  <%= @collection.title %>
-</p>
+
+
 
 <div class="nk-header-title nk-header-title-sm nk-header-title-parallax nk-header-title-parallax-opacity">
   <div class="bg-image op-5">
@@ -23,9 +21,22 @@
     </div>
   </div>
   <div class="nk-header-text-bottom">
-    <%= @collection.user.name%>
+    <%= @collection.user.user_profile.display_name%>
   </div>
 </div>
+<div class='row'>
+  <div class="col-md-3">
+    <%= link_to "<i class='fa fa-arrow-left'></i>Back".html_safe, collections_path %>
+  </div>
+  <div class='col-md-6'></div>
+  <div class='col-md-3' style='text-align: right'>
+    <% if current_user.nil? == false && current_user == @collection.user %>
+      <%= link_to "<i class='fa fa-edit'></i> Edit".html_safe, edit_collection_path(@collection) %> |
+      <%= link_to "<i class='fa fa-plus'></i> Add Images".html_safe, new_collection_collection_item_path(@collection) %>
+      <% end %>
+  </div>
+</div>
+<br>
 
 <div class="nk-isotope nk-isotope-3-cols nk-popup-gallery bg-dark-1">
   <% @collection.collection_items.each do |item| %>
@@ -38,12 +49,7 @@
     </div>
     <% end %>
 </div>
-<% if current_user.nil? == false && current_user == @collection.user %>
-<%= link_to 'Back', collections_path %> |
-<%= link_to 'Edit', edit_collection_path(@collection) %> |
-<%= link_to "Add Images", new_collection_collection_item_path(@collection) %>
 
-<% end %>
 
 
 

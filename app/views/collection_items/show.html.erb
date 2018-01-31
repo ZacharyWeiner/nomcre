@@ -5,7 +5,11 @@
 </p>
 
 <%= image_tag @collection_item.file, class: "img-responsive" %>
-<%= link_to "Download", download_path(@collection_item)%>
+<%= link_to "<i class='fa fa-arrow-down'></i> Download".html_safe, download_path(@collection_item)%>
+<span style='padding: 12px;'></span>
+<%= link_to collection_collection_item_path(@collection_item.collection, @collection_item), method: :delete, data: { confirm: 'Are you sure?' } do %>
+  <i class='fa fa-trash'></i> Delete
+<% end %>
 
 
 

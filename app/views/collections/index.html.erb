@@ -19,8 +19,18 @@
 
 </div>
 <div class='nk-main'>
-<% @collections.each do |collection| %>
   <div class='row'>
+    <div class='col-md-10'></div>
+    <div class='col-md-2'>
+      <% if current_user && current_user.user_type = 'creative'%>
+        <%= link_to  new_collection_path, class: 'btn btn-primary', style: 'padding:12px; margin-top:12px; margin-bottom:12px;' do %>
+          <i class='fa fa-plus'></i> Add A Collection
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% @collections.each do |collection| %>
+  <div class='row nk-pricing-menu'>
     <div class='container'>
       <%= link_to collection do %>
       <h3><%= collection.title %></h3>
@@ -30,22 +40,31 @@
       <div class='row'>
         <% collection.collection_items.take(4).each do |item| %>
           <div class='col-md-3' >
-            <%= image_tag(item.file_url(:small).to_s) %>
+            <%= image_tag(item.file_url(:small).to_s, class: 'img-responsive') %>
           </div>
         <% end %>
       </div>
     </div>
     <div class='col-md-2' style='vertical-align:center'>
-      <% if current_user &&  current_user == collection.user %>
-      <%= link_to 'Add To Collection', new_collection_collection_item_path(collection), class: 'btn btn-warning btn-block' %>
-      <%= link_to 'View', collection, class: 'btn btn-primary btn-block' %>
-      <%= link_to 'Destroy', collection, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-block' %>
-      <% end %>
+      <div  style='padding-top: 25%'>
+        <% if current_user &&  current_user == collection.user %>
+          <%= link_to new_collection_collection_item_path(collection)  do %>
+            <i class='fa fa-plus fa-2x'></i> Add Images
+          <% end %>
+          <br>
+
+          <%= link_to collection do  %>
+            <i class='fa fa-eye fa-2x'></i> View Collection
+          <% end %>
+
+          <br>
+          <%= link_to "<i class='fa fa-trash fa-2x'> </i> Delete".html_safe, collections_path, method: :delete, data: { confirm: 'Are you sure?' }   %>
+        <% end %>
+      </div>
     </div>
-  </div>
+  </div> <!-- Pricing menu -->
+  <br>
 <% end %>
 <br>
-<% if current_user && current_user.user_type = 'creative'%>
-<%= link_to 'New Collection', new_collection_path %>
-<% end %>
+
 </div>
