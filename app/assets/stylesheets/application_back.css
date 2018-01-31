@@ -4,6 +4,7 @@
  *= require back/bootstrap/bootstrap.min
  *= require back/bootstrap-tagsinput/bootstrap-tagsinput
  *= require back/datatables/dataTables.bootstrap.css
+ *= require back/jvectormap/jquery-jvectormap-1.2.2
  *= require back/AdminLTE
  *= require back/skins/skin-black
  *= require bootstrap-toggle

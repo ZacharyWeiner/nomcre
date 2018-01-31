@@ -1,15 +1,25 @@
 <style type="text/css">
-  i {padding: 12px;}
-
   .details{padding-left: 42px;}
 </style>
-Heres what Im thinking -
 
-This page has been removed from the menu. We can use as it as an instruction page to tell creators how to set up their account, protfolio, and itinerary with links to each until all 3 are 100% complete and/or have at least 1 entry (for itinerary)
-
-
+<%if current_user.intro_complete != true%>
 <%= render 'dashboards/partials/creative/creative_profile_check' %>
 <br>
 <%= render 'dashboards/partials/creative/creative_itinerary_check' %>
 <br>
 <%= render 'dashboards/partials/creative/creative_collections_check' %>
+<% else %>
+<%= render 'dashboards/partials/creative/creative_dashboard_numeric_widgets' %>
+<div class='row'>
+  <div class='col-md-6'>
+    <%= render 'dashboards/partials/creative/creative_open_proposals_widget' %>
+    <%= render 'dashboards/partials/creative/creative_proposal_requests_widget' %>
+  </div>
+  <div class='col-md-6'>
+    <%= render 'dashboards/partials/creative/creative_dashboard_task_list' %>
+  </div>
+</div>
+<%end%>
+
+
+

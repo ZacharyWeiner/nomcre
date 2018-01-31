@@ -40,5 +40,17 @@ class User < ApplicationRecord
   end
 
   def check_creative_intro_complete
+    if self.intro_complete
+      return true
+    end
+    profile_complete = (self.user_profile.display_name.nil? == false) && (self.user_profile.display_name != "")
+    schedule_complete = self.schedule_items.count > 0
+    collections_complete = self.collections.first.collection_items.count > 0
+
+    if profile_complete && schedule_complete && collections_complete
+      self.intro_complete = true
+      self.save
+    end
+    redirect_to creative_dashboard_path
   end
 end

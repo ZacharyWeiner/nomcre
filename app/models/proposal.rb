@@ -26,7 +26,7 @@ class Proposal < ApplicationRecord
   end
 
   def mark_as_complete
-    self.complete = true;
+    self.completed = true;
     self.save
   end
 

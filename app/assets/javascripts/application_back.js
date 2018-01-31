@@ -5,6 +5,9 @@
 //= require back/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min
 //= require back/plugins/datatables/jquery.dataTables.min
 //= require back/plugins/datatables/dataTables.bootstrap.min
+//= require back/plugins/jvectormap/jquery-jvectormap-1.2.2.min
+//= require back/plugins/jvectormap/jquery-jvectormap-usa-en
+//= require back/plugins/jvectormap/jquery-jvectormap-world-mill-en
 //= require back/app
 //= require bootstrap-toggle
 

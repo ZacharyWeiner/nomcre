@@ -3,10 +3,12 @@ class DashboardsController < ApplicationController
   def company_dashboard
   end
 
-  def creative_dashbaord
+  def creative_dashboard
+    current_user.update_intro_complete
+    @complete = current_user.intro_complete
   end
 
-  def accounting_dashbaord
+  def accounting_dashboard
   end
 end
 
