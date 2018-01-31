@@ -55,7 +55,7 @@ class User < ApplicationRecord
     end
     profile_complete = (self.user_profile.display_name.nil? == false) && (self.user_profile.display_name != "") && (self.user_profile.profile_photo.file.nil? == false)
     schedule_complete = self.schedule_items.count > 0
-    collections_complete = self.collections.first.collection_items.count > 0
+    collections_complete = (self.collections.count > 0) && (self.collections.first.collection_items.count > 0)
 
     if profile_complete && schedule_complete && collections_complete
       self.intro_complete = true
