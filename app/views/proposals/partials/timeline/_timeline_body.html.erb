@@ -3,9 +3,13 @@
     <%= render :partial =>  'shared/adminlte/user/profile_images_widget', locals:  {user: proposal.user} %>
     <b> Progress: </b>
     <div class="progress">
-      <% task_count = proposal.tasks.count.to_f %>
-      <% completed_tasks = proposal.tasks.where(completed: true).count %>
-      <% percent_complete = ((completed_tasks / task_count) * 100).to_i%>
+      <% if proposal.tasks.count == 0 %>
+        <% percent_complete =0 %>
+      <% else %>
+        <% task_count = proposal.tasks.count.to_f %>
+        <% completed_tasks = proposal.tasks.where(completed: true).count %>
+        <% percent_complete = ((completed_tasks / task_count) * 100).to_i%>
+      <% end %>
       <div class="progress-bar progress-bar-success progress-bar-striped" style="width: <%= percent_complete %>%"></div>
     </div>
     <ul class="list-group list-group-unbordered">

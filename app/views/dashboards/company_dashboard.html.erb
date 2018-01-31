@@ -1,5 +1,16 @@
-Heres what Im thinking -
-
-This page has been removed from the menu. We can use it as an introduction page to what they are supposed to do, a description of how to create a brief and a link to create one.
-
-
+<%if current_user.intro_complete != true%>
+<%= render 'dashboards/partials/company/company_profile_check' %>
+<%= render 'dashboards/partials/creative/creative_profile_check' %>
+<%= render 'dashboards/partials/company/company_proposal_check' %>
+<% else %>
+  <%= render 'dashboards/partials/company/company_dashboard_numeric_widgets' %>
+  <div class='row'>
+  <div class='col-md-6'>
+    <%= render 'dashboards/partials/company/company_open_proposals_widget' %>
+    <%= render 'dashboards/partials/company/company_proposal_requests_widget' %>
+  </div>
+  <div class='col-md-6'>
+    <%= render 'dashboards/partials/company/company_dashboard_task_list' %>
+  </div>
+</div>
+<% end %>

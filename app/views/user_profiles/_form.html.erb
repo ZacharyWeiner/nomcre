@@ -22,62 +22,63 @@
   </div>
 
 
-  <br>
-  <hr>
 
 
-  <div class="row">
-    <div class="col-md-6">
-      <div class="field">
-        <div class="container">
-          <h4>My Skills Include:<h4>
-        </div>
+  <% if current_user.company.nil? == true %>
+    <br>
+    <hr>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="field">
+          <div class="container">
+            <h4>My Skills Include:<h4>
+          </div>
 
-        <%= check_box_tag 'user_profile[content_type][]', 'Photography', checked = @user_profile.content_type.include?("Photography"), :'data-toggle' => "toggle" %>
-        <%= form.label :photography %>
+          <%= check_box_tag 'user_profile[content_type][]', 'Photography', checked = @user_profile.content_type.include?("Photography"), :'data-toggle' => "toggle" %>
+          <%= form.label :photography %>
+            <br><br>
+          <%= check_box_tag 'user_profile[content_type][]', 'Videography', checked = @user_profile.content_type.include?("Videography"), :'data-toggle' => "toggle" %>
+          <%= form.label :videography %>
           <br><br>
-        <%= check_box_tag 'user_profile[content_type][]', 'Videography', checked = @user_profile.content_type.include?("Videography"), :'data-toggle' => "toggle" %>
-        <%= form.label :videography %>
-        <br><br>
-        <%= check_box_tag 'user_profile[content_type][]', 'Aerial', checked = @user_profile.content_type.include?("Aerial"), :'data-toggle' => "toggle" %>
-        <%= form.label :areial %>
-        <br><br>
-        <%= check_box_tag 'user_profile[content_type][]', '360 - Video', checked = @user_profile.content_type.include?("360 - Video"), :'data-toggle' => "toggle" %>
-        <%= form.label :video_360 %>
-        <br><br>
-        <%= check_box_tag 'user_profile[content_type][]', '360 - Photo', checked = @user_profile.content_type.include?("360 - Photo"), :'data-toggle' => "toggle" %>
-        <%= form.label :photo_360 %>
-      </div>
-    </div>
-    <div class='col-md-6'>
-      <div class="field">
-        <div class="container">
-          <h4>I Like To Shoot:</h4>
+          <%= check_box_tag 'user_profile[content_type][]', 'Aerial', checked = @user_profile.content_type.include?("Aerial"), :'data-toggle' => "toggle" %>
+          <%= form.label :areial %>
+          <br><br>
+          <%= check_box_tag 'user_profile[content_type][]', '360 - Video', checked = @user_profile.content_type.include?("360 - Video"), :'data-toggle' => "toggle" %>
+          <%= form.label :video_360 %>
+          <br><br>
+          <%= check_box_tag 'user_profile[content_type][]', '360 - Photo', checked = @user_profile.content_type.include?("360 - Photo"), :'data-toggle' => "toggle" %>
+          <%= form.label :photo_360 %>
         </div>
+      </div>
+      <div class='col-md-6'>
+        <div class="field">
+          <div class="container">
+            <h4>I Like To Shoot:</h4>
+          </div>
 
-        <%= check_box_tag 'user_profile[shot_preference][]', 'Editorial', checked = @user_profile.shot_preference.include?("Editorial"), :'data-toggle' => "toggle" %>
-        <%= form.label :editorial %>
-        <br><br>
+          <%= check_box_tag 'user_profile[shot_preference][]', 'Editorial', checked = @user_profile.shot_preference.include?("Editorial"), :'data-toggle' => "toggle" %>
+          <%= form.label :editorial %>
+          <br><br>
 
-        <%= check_box_tag 'user_profile[shot_preference][]', 'Lifestyle', checked = @user_profile.shot_preference.include?("Lifestyle") , :'data-toggle' => "toggle"%>
-        <%= form.label :lifestyle %>
-        <br><br>
-        <%= check_box_tag 'user_profile[shot_preference][]', 'Story', checked = @user_profile.shot_preference.include?("Story"), :'data-toggle' => "toggle" %>
-        <%= form.label :story %>
-        <br><br>
-        <%= check_box_tag 'user_profile[shot_preference][]', 'Lookbook', checked = @user_profile.shot_preference.include?("Lookbook"), :'data-toggle' => "toggle" %>
-        <%= form.label :lookbook %>
-        <br><br>
-        <%= check_box_tag 'user_profile[shot_preference][]', 'Action', checked = @user_profile.shot_preference.include?("Action"), :'data-toggle' => "toggle" %>
-        <%= form.label :action %>
+          <%= check_box_tag 'user_profile[shot_preference][]', 'Lifestyle', checked = @user_profile.shot_preference.include?("Lifestyle") , :'data-toggle' => "toggle"%>
+          <%= form.label :lifestyle %>
+          <br><br>
+          <%= check_box_tag 'user_profile[shot_preference][]', 'Story', checked = @user_profile.shot_preference.include?("Story"), :'data-toggle' => "toggle" %>
+          <%= form.label :story %>
+          <br><br>
+          <%= check_box_tag 'user_profile[shot_preference][]', 'Lookbook', checked = @user_profile.shot_preference.include?("Lookbook"), :'data-toggle' => "toggle" %>
+          <%= form.label :lookbook %>
+          <br><br>
+          <%= check_box_tag 'user_profile[shot_preference][]', 'Action', checked = @user_profile.shot_preference.include?("Action"), :'data-toggle' => "toggle" %>
+          <%= form.label :action %>
+        </div>
       </div>
     </div>
+    <br>
+    <hr>
+  <% end %>
 
-  </div>
 
-
-  <br>
-  <hr>
   <div class="field">
     <div class='row'>
       <div class='col-md-6'>
@@ -105,7 +106,7 @@
       </div>
     </div>
   </div>
-
+  <br>
 
   <div class="actions">
     <%= form.submit "Update", class: 'btn btn-primary' %>

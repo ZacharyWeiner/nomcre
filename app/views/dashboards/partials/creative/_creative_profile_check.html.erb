@@ -2,37 +2,41 @@
 <% if current_user.user_profile.display_name.nil? || current_user.user_profile.description.nil? || current_user.user_profile.profile_photo.nil?  || current_user.user_profile.header_image.nil? %>
   <div class="alert alert-danger ">
     <h4><i class="icon fa fa-ban"></i> Complete Your Profile</h4>
+    <hr>
     <div class='row'>
       <div class='col-md-6'>
-        <i class='fa fa-user'><h3>Display Name:</h3><br></i><%= current_user.user_profile.display_name %>
+        <h3><i class='fa fa-user'> </i> Display Name:</h3> <%= current_user.user_profile.display_name %>
       </div>
       <div class='col-md-6'>
         <% if current_user.user_profile.header_image.nil? || current_user.user_profile.header_image.file.nil? %>
-         <i class='fa fa-image'></i>Add A Header Image
+        <h4> <i class='fa fa-image'></i>Add A Header Image</h4>
         <% else %>
           <%= image_tag current_user.user_profile.header_image, class: 'img-responsive img-circle', style: 'max-height:100px;' %>
         <% end %>
       </div>
     </div>
+    <br>
     <div class='row'>
       <div class='col-md-6'>
-        <i class='fa fa-file'></i>
         <% if current_user.user_profile.description.nil? || current_user.user_profile.description = ""%>
-         Please Complete The About You Section
+         <h4> <i class='fa fa-file'></i>Please Complete The About You Section</h4>
         <% else %>
-          <%= current_user.user_profile.description %>
+          <i class='fa fa-file'></i><%= current_user.user_profile.description %>
         <% end %>
       </div>
       <div class='col-md-6'>
         <% if current_user.user_profile.profile_photo.nil? || current_user.user_profile.profile_photo.file.nil? %>
-         <i class='fa fa-image'></i>Add A Profile Image
+        <h4> <i class='fa fa-image'></i>Add A Profile Image </h4>
         <% else %>
           <%= image_tag current_user.user_profile.profile_photo, class: 'img-responsive img-circle', style: 'max-height:100px;' %>
         <% end %>
       </div>
     </div>
+    <br>
     <div class='row'>
-      <%= link_to "Update", edit_user_profile_path(current_user.user_profile), class: 'btn btn-success pull-right', style: 'margin-right: 12px;' %>
+      <div class='col-md-6'>
+        <%= link_to "Update", edit_user_profile_path(current_user.user_profile), class: 'btn btn-success', style: 'margin-right: 12px;' %>
+      </div>
     </div>
   </div>
 

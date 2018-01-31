@@ -1,22 +1,22 @@
 <div class="box box-primary">
   <div class="box-header with-border">
-    <h3 class="box-title">Open Proposals</h3>
+    <h3 class="box-title">Open Requests</h3>
   </div>
   <!-- /.box-header -->
   <div class="box-body">
     <ul class="products-list product-list-in-box">
-      <% Proposal.where(user: current_user).where(completed: nil).each do |p|%>
+      <% ProposalRequest.where(requested_by: current_user).where(accepted: nil).order(:created_at).each do |p|%>
       <li class="item">
         <div class="product-img">
-         <%= image_tag p.company.logo %>
+         <%= image_tag p.proposal.company.logo %>
        </div>
        <div class="product-info">
-        <%= link_to p, class: 'product-title' do %>
-        <%= p.title %>
+        <%= link_to proposal_requests_path, class: 'product-title' do %>
+        <%= User.find(p.requested_by).user_profile.display_name %>
         <span class="label label-success pull-right">
-          <% if p.proposal_type = "Photo" %>
+          <% if p.proposal.proposal_type = "Photo" %>
           $1000
-          <% elsif p.proposal_type == "Video" %>
+          <% elsif p.proposal.proposal_type == "Video" %>
           $2000
           <% else %>
           $1000
@@ -24,10 +24,10 @@
         </span>
         <% end %>
         <span class="product-description">
-          <%= p.shoot_type %>
+          <%= p.proposal.shoot_type %>
         </span>
         <span class="product-description">
-          <%= p.content[0...100]%>
+          <%= p.proposal.content[0...100]%>
         </span>
       </div>
     </li>
@@ -41,3 +41,4 @@
 </div>
 <!-- /.box-footer -->
 </div>
+

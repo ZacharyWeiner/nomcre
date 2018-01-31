@@ -5,7 +5,7 @@
   <!-- /.box-header -->
   <div class="box-body">
     <ul class="products-list product-list-in-box">
-      <% Proposal.where(user: current_user).where(completed: nil).each do |p|%>
+      <% Proposal.where(company: current_user.company).where(completed: nil).each do |p|%>
       <li class="item">
         <div class="product-img">
          <%= image_tag p.company.logo %>

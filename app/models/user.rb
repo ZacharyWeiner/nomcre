@@ -37,13 +37,23 @@ class User < ApplicationRecord
 
   private
   def check_company_intro_complete
+    if self.intro_complete
+      return true
+    end
+    profile_complete = (self.user_profile.display_name.nil? == false) && (self.user_profile.display_name != "") && (self.user_profile.profile_photo.file.nil? == false)
+    company_complete = (self.company.name.nil? == false) && (self.company.logo.file.nil? == false) && (self.company.website.nil? == false)
+    proposal_complete = self.company.proposals.count > 0
+    if profile_complete && company_complete && proposal_complete
+      self.intro_complete = true
+      self.save
+    end
   end
 
   def check_creative_intro_complete
     if self.intro_complete
       return true
     end
-    profile_complete = (self.user_profile.display_name.nil? == false) && (self.user_profile.display_name != "")
+    profile_complete = (self.user_profile.display_name.nil? == false) && (self.user_profile.display_name != "") && (self.user_profile.profile_photo.file.nil? == false)
     schedule_complete = self.schedule_items.count > 0
     collections_complete = self.collections.first.collection_items.count > 0
 
@@ -51,6 +61,5 @@ class User < ApplicationRecord
       self.intro_complete = true
       self.save
     end
-    redirect_to creative_dashboard_path
   end
 end

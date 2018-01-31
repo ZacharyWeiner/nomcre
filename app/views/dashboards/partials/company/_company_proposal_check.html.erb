@@ -1,0 +1,54 @@
+<% if current_user.company.proposals.nil? || current_user.company.proposals.count == 0 %>
+  <% @proposal = Proposal.new %>
+  <div class="alert alert-danger ">
+    <h4><i class="icon fa fa-ban"></i> Create Your First Proposal</h4>
+    <hr>
+    <%= form_for(@proposal) do |f| %>
+      <% unless current_user.company.nil? %>
+      <%= f.hidden_field :company_id, :value => current_user.company.id %>
+      <% end %>
+      <%= render :partial => 'proposals/partials/form/title', :locals => {:f => f} %>
+      <%= render :partial => 'proposals/partials/form/deadline', :locals => {:f => f} %>
+      <%= render :partial => 'proposals/partials/form/creative_brief', :locals => {:f => f} %>
+      <%= render :partial => 'proposals/partials/form/location_selection', :locals => {:f => f} %>
+
+      <div class='row'>
+        <div class='col-md-6'>
+          <%= render :partial => 'proposals/partials/form/content_type', :locals => {:f => f} %>
+        </div>
+        <div class='col-md-6'>
+          <%= render :partial => 'proposals/partials/form/shoot_type', :locals => {:f => f} %>
+        </div>
+      </div>
+      <%= f.submit "Save", class: 'btn btn-success' %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="alert alert-success ">
+    <h4><i class="icon fa fa-check"></i> Your First Proposal</h4>
+    <hr>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-md-6'>
+          <h4> Title: <%= current_user.company.proposals.first.title %> </h4>
+        </div>
+        <div class='col-md-6'>
+           <h4><i class='fa fa-calendar'></i> Deadline: <%= current_user.company.proposals.first.deadline %> </h4>
+        </div>
+      </div>
+      <br>
+      <div class='row'>
+        <div class='col-md-6'> <h4> Description: </h4> </div>
+        <div class='col-md-6'> <h4><i class='fa fa-crosshairs'></i> Shot Type: </h4> </div>
+      </div>
+      <div class='row'>
+        <div class='col-md-6'>
+          <%= current_user.company.proposals.first.content %>
+        </div>
+         <div class='col-md-6'>
+          <%= current_user.company.proposals.first.shoot_type %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
