@@ -2,6 +2,7 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, uniqueness: true
   belongs_to :company, optional: true
+  has_many :proposals
   accepts_nested_attributes_for :company
   has_many :collections
   has_many :collection_items
