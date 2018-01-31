@@ -18,7 +18,8 @@
 
   <%= f.hidden_field :collection_id, :value => params[:collection_id]%>
   <%= f.hidden_field :user_id, :value => current_user.id %>
+  <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save Image", class: 'btn btn-primary' %>
   </div>
 <% end %>

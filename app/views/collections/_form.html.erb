@@ -15,8 +15,8 @@
     <%= f.text_field :title %>
   </div>
   <%= f.hidden_field :user_id, :value => current_user.id %>
-
+  <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Add Collection", class: 'btn btn-primary' %>
   </div>
 <% end %>
