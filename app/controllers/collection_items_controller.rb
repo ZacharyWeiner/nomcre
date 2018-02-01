@@ -15,6 +15,7 @@ class CollectionItemsController < ApplicationController
   # GET /collection_items/1
   # GET /collection_items/1.json
   def show
+    render :layout => 'khaki'
   end
 
   # GET /collection_items/new
@@ -30,7 +31,6 @@ class CollectionItemsController < ApplicationController
   # POST /collection_items.json
   def create
     @collection_item = CollectionItem.new(collection_item_params)
-
     respond_to do |format|
       if @collection_item.save
         format.html { redirect_to @collection, notice: 'Collection item was successfully created.' }
@@ -87,6 +87,6 @@ class CollectionItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def collection_item_params
-      params.require(:collection_item).permit(:user_id, :collection_id, :file)
+      params.require(:collection_item).permit(:user_id, :collection_id, :file, :video, :item_type)
     end
 end

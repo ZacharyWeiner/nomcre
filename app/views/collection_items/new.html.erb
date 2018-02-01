@@ -1,6 +1,14 @@
-<h1>Add An Image To:  <%= @collection.title %></h1>
+<h1>Add To:  <%= @collection.title %></h1>
 
-<%= render 'form', collection_item: @collection_item %>
+<div class='row'>
+  <div class='col-md-6'>
+    <%= render 'form', collection_item: @collection_item %>
+  </div>
+  <div class='col-md-6'>
+    <%= render 'video_form', collection_item: @collection_item %>
+  </div>
+</div>
+
 <br>
 <hr>
 <h3> Images In Collection </h3>
@@ -10,7 +18,11 @@
 <% Collection.find(params[:collection_id]).collection_items.each do |ci| %>
   <div class='col-md-4' style='padding-bottom: 12px;'>
     <div class='row'>
-      <%= image_tag ci.file_url(:small).to_s, class: 'img-fluid', style: 'height: 300px; width:300px;  object-fit: contain'%>
+      <% if ci.item_type == 'video' %>
+      <%= video_tag ci.video, controls: true, style: 'height: 300px; width:300px;  object-fit: contain',  oncontextmenu:"return false;"%>
+      <% else %>
+      <%= image_tag ci.file_url(:small).to_s, class: 'img-fluid', style: 'height: 300px; width:300px;  object-fit: contain',  oncontextmenu:"return false;"%>
+      <%end%>
       <br>
       <%= link_to collection_collection_item_path(@collection, ci)  do %>
         <i class='fa fa-eye'></i> View

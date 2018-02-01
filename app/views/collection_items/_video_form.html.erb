@@ -1,4 +1,4 @@
-<style>
+<!-- <style>
   .image-upload > input
 {
    display: none;
@@ -6,7 +6,7 @@
 .image-upload > label{
   cursor:pointer;
 }
-</style>
+</style> -->
 <%= form_for([@collection, collection_item]) do |f| %>
   <% if collection_item.errors.any? %>
     <div id="error_explanation">
@@ -19,18 +19,20 @@
       </ul>
     </div>
   <% end %>
-
+<!--
      <div class="image-upload text-center">
          <label for="file-input">
-           <span class='btn btn-success'><i class='fa fa-image'></i> Click To Select Image</span>
+           <span class='btn btn-success'><i class='fa fa-video-camera'></i> Click To Select Video</span>
          </label>
 
-         <%= f.file_field :file, id:"file-input" %>
-      </div>
-      <%= f.submit "Save Item", class: 'btn btn-primary  btn-block' %>
+
+      </div> -->
+      Video: <%= f.file_field :video %>
+
+      <%= f.submit "Save Video", class: 'btn btn-primary  btn-block' %>
 
   <%= f.hidden_field :collection_id, :value => params[:collection_id]%>
-  <%= f.hidden_field :item_type, :value =>'image'%>
+  <%= f.hidden_field :item_type, :value =>'video'%>
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <br>
 <% end %>

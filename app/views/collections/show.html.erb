@@ -38,21 +38,68 @@
 </div>
 <br>
 
-<div class="nk-isotope nk-isotope-3-cols nk-popup-gallery bg-dark-1">
-  <% @collection.collection_items.each do |item| %>
-    <% width = "#{item.width}".to_i%>
-    <% height = "#{item.height}".to_i%>
-    <%=  p width %>
-    <%= p height %>
-    <div class="nk-isotope-item">
-      <div class="nk-image-box-1">
-        <%= link_to item.file.url, class: 'nk-gallery-item nk-no-effect', :'data-size' => "#{width}x#{height}"  do %>
-          <%= image_tag item.file %>
-        <% end %>
-      </div>
+<% videos =  @collection.collection_items.where(item_type: 'video') %>
+<% images =  @collection.collection_items.where.not(item_type: 'video') %>
+<% if videos.count > 0  && images.count > 0 %>
+<div class='row' style="color:white">
+  <div class='col-md-8 '>
+    <h1> Photos </h1>
+    <div class="nk-isotope nk-isotope-3-cols nk-popup-gallery bg-dark-1">
+      <% images.each do |item| %>
+        <% width = "#{item.width}".to_i%>
+        <% height = "#{item.height}".to_i%>
+        <%=  p width %>
+        <%= p height %>
+        <div class="nk-isotope-item">
+          <div class="nk-image-box-1">
+            <%= link_to item.file.url, class: 'nk-gallery-item nk-no-effect', :'data-size' => "#{width}x#{height}"  do %>
+              <%= image_tag item.file %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
+  </div>
+  <div class='col-md-4 '>
+    <h1> Video </h1>
+    <% videos.each do |video |%>
+      <div class='row'>
+      <%= link_to collection_collection_item_path(@collection, video) do %>
+        <%= video_tag video.video, controls: true,   class: 'embed-responsive' %>
+      <% end %>
+      </div>
     <% end %>
+  </div>
 </div>
+<%elsif videos.count > 0 && images.count ==0  %>
+  <div class='row'>
+    <div class='col-md-4'>
+      <% videos.each do |video |%>
+        <div class='row'>
+        <%= link_to collection_collection_item_path(@collection, video) do %>
+          <%= video_tag video.video, controls: true,   class: 'embed-responsive' %>
+        <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class="nk-isotope nk-isotope-3-cols nk-popup-gallery bg-dark-1">
+    <% images.each do |item| %>
+      <% width = "#{item.width}".to_i%>
+      <% height = "#{item.height}".to_i%>
+      <%=  p width %>
+      <%= p height %>
+      <div class="nk-isotope-item">
+        <div class="nk-image-box-1">
+          <%= link_to item.file.url, class: 'nk-gallery-item nk-no-effect', :'data-size' => "#{width}x#{height}"  do %>
+            <%= image_tag item.file %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 
 
 
