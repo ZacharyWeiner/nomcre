@@ -1,21 +1,29 @@
 <div class='nested-fields'>
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+  <div class='row'>
+    <div class='col-md-3'>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+    <div class='col-md-3'>
+      <%= f.label :paypal_email %>
+      <%= f.text_field :paypal_email %>
+    </div>
+    <div class='col-md-3'>
+      <%= f.label :phone %>
+      <%= f.text_field :phone %>
+    </div>
+    <div class='col-md-3'>
+      <%= f.label :rate %>
+      <%= f.number_field :rate %>
+    </div>
 
-  <%= f.label :paypal_email %>
-  <%= f.text_field :paypal_email %>
-
-  <%= f.label :phone %>
-  <%= f.text_field :phone %>
-
-  <%= f.label :rate %>
-  <%= f.text_field :rate %>
-
-  <%= f.label :assistant_type %>
-  <%= f.text_field :assistant_type %>
-
-  <%= f.check_box :_destroy %>
+    <div class='col-md-3'>
+      <%= f.label :assistant_type %>
+      <%= f.select :assistant_type, options_for_select([['General', 'General'], ['HMU', 'HMU'], ['Model','Model']])  %>
+    </div>
+  </div>
 </div>
+<br>
 
 
 

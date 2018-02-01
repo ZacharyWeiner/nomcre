@@ -40,9 +40,13 @@
 
 <div class="nk-isotope nk-isotope-3-cols nk-popup-gallery bg-dark-1">
   <% @collection.collection_items.each do |item| %>
+    <% width = "#{item.width}".to_i%>
+    <% height = "#{item.height}".to_i%>
+    <%=  p width %>
+    <%= p height %>
     <div class="nk-isotope-item">
       <div class="nk-image-box-1">
-        <%= link_to item.file.url, class: 'nk-gallery-item nk-no-effect', :'data-size' => "#{item.width}x#{item.height}"  do %>
+        <%= link_to item.file.url, class: 'nk-gallery-item nk-no-effect', :'data-size' => "#{width}x#{height}"  do %>
           <%= image_tag item.file %>
         <% end %>
       </div>
