@@ -9,7 +9,7 @@ class ProposalsController < ApplicationController
     if current_user.user_type == 'creative'
       @proposals = Proposal.where(user: current_user).where(completed: nil).order(:created_at).page params[:page]
     else
-      @proposals = Proposal.where(company: current_user.company).order(:created_at).page params[:page]
+      @proposals = Proposal.where(company: current_user.company).where(completed: nil).order(:created_at).page params[:page]
     end
   end
 
