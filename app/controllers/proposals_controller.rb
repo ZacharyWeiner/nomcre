@@ -39,7 +39,18 @@ class ProposalsController < ApplicationController
   # POST /proposals.json
   def create
     @proposal = Proposal.new(proposal_params)
-    @proposal.bts = ["Photo","Video","SetUp"]
+    unless proposal_params[:bts].nil? || proposal_params[:bts].count == 0
+      @proposal.bts.clear
+      proposal_params[:bts].each do |bt|
+        @proposal.bts << bt
+      end
+    end
+    unless proposal_params[:focus_points].nil? || proposal_params[:focus_points].count == 0
+      @proposal.focus_points.clear
+      proposal_params[:focus_points].each do |fp|
+        @proposal.focus_points << fp
+      end
+    end
      unless params[:proposal][:instagram_1].nil?
         @proposal.instagram_1 = params[:proposal][:instagram_1].gsub!("@", "")
       end
@@ -113,6 +124,13 @@ class ProposalsController < ApplicationController
   # DELETE /proposals/1
   # DELETE /proposals/1.json
   def destroy
+    if @proposal.accepted || @proposal.deposit_paid
+      respond_to do |format|
+        format.html { redirect_to proposals_url, alert: 'Cannot Delete A Proposal That Has Been Paid For Or Assigned' }
+        format.json { head :no_content }
+      end
+      return
+    end
     @proposal.destroy
     respond_to do |format|
       format.html { redirect_to proposals_url, notice: 'Proposal was successfully destroyed.' }
@@ -129,11 +147,13 @@ class ProposalsController < ApplicationController
     set_proposal
     @new_proposal = Proposal.new
     @new_proposal.title = "Copy_of "+@proposal.title
+    @new_proposal.content = @proposal.content
     @new_proposal.company = @proposal.company
     @new_proposal.proposal_type = @proposal.proposal_type
     @new_proposal.deadline = @proposal.deadline
     @new_proposal.bts = @proposal.bts
     @new_proposal.add_ons = @proposal.add_ons
+    @new_proposal.focus_points = @proposal.focus_points
     @new_proposal.time_of_day = @proposal.time_of_day
     @new_proposal.background = @proposal.background
     @new_proposal.location_id = @proposal.location_id
@@ -283,6 +303,7 @@ class ProposalsController < ApplicationController
                                       :image_board_3,
                                       :image_board_4,
                                       bts: [],
+                                      focus_points: [],
                                       assistants_attributes: [:id, :name, :paypal_email, :phone, :rate, :assistant_type, :location_id, :_destroy])
     end
 end

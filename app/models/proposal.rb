@@ -2,9 +2,9 @@ class Proposal < ApplicationRecord
   belongs_to :company
   belongs_to :user, optional: true
   belongs_to :location
-  has_many :tasks
+  has_many :tasks, dependent: :destroy
   has_many :proposal_requests
-  has_one :chatroom
+  has_one :chatroom, dependent: :destroy
   paginates_per 20
   mount_uploader :model_release, FileUploader
   has_many :assistants, dependent: :destroy

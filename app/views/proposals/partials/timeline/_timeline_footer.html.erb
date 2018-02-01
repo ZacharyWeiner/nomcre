@@ -3,10 +3,10 @@
     <%= link_to proposal do %>
     <i class='fa fa-eye'> </i>
     <% end %>
-    <%= link_to proposal do %>
+    <%= link_to edit_proposal_path(proposal) do %>
     <i class='fa fa-edit'> </i>
     <% end %>
-    <%= link_to proposal do %>
+    <%= link_to proposal_path(proposal), method: :delete do %>
     <i class='fa fa-trash-o'> </i>
     <% end %>
   </div>

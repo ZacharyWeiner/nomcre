@@ -27,7 +27,7 @@
           <%= p.shoot_type %>
         </span>
         <span class="product-description">
-          <%= p.content[0...100]%>
+          <%= p.content[0...100] unless p.content.nil? %>
         </span>
       </div>
     </li>
