@@ -41,6 +41,7 @@
 <% videos =  @collection.collection_items.where(item_type: 'video') %>
 <% images =  @collection.collection_items.where.not(item_type: 'video') %>
 <% if videos.count > 0  && images.count > 0 %>
+<div style='margin: 24px;'>
 <div class='row' style="color:white">
   <div class='col-md-8 '>
     <h1> Photos </h1>
@@ -65,7 +66,7 @@
     <% videos.each do |video |%>
       <div class='row'>
       <%= link_to collection_collection_item_path(@collection, video) do %>
-        <%= video_tag video.video, controls: true,   class: 'embed-responsive' %>
+        <%= video_tag video.video, controls: true , controlsList:"nodownload", class: 'embed-responsive' %>
       <% end %>
       </div>
     <% end %>
@@ -77,7 +78,7 @@
       <% videos.each do |video |%>
         <div class='row'>
         <%= link_to collection_collection_item_path(@collection, video) do %>
-          <%= video_tag video.video, controls: true,   class: 'embed-responsive' %>
+          <%= video_tag video.video, controls: true, controlsList:"nodownload",   class: 'embed-responsive' %>
         <% end %>
         </div>
       <% end %>
@@ -100,7 +101,7 @@
     <% end %>
   </div>
 <% end %>
-
+</div>
 
 
 

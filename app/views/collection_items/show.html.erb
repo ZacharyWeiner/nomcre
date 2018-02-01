@@ -10,7 +10,7 @@
 </div>
 <%= link_to '<Back', collection_path(@collection_item.collection) %>
 <% if @collection_item.item_type == 'video'%>
-<%= video_tag @collection_item.video, controls: true, class: 'embed-responsive', oncontextmenu:"return false;" %>
+<%= video_tag @collection_item.video, controls: true, controlsList:"nodownload", class: 'embed-responsive', oncontextmenu:"return false;" %>
 <% else  %>
 <%= image_tag @collection_item.file, class: "img-responsive" %>
 <% end %>
