@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   end
   devise_for :users
   get 'user/:id', to: "users#show", as: 'user_show'
+  get 'users/:id/collections', to: "collections#index", as: 'user_collection'
   get 'user_type', to: 'users#user_type', as: 'user_type'
   get 'set_user_type', to:'users#set_user_type', as:'set_user_type'
   resources :pages

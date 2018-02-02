@@ -27,9 +27,17 @@
 
 
       </div> -->
-      Video: <%= f.file_field :video %>
-
-      <%= f.submit "Save Video", class: 'btn btn-primary  btn-block' %>
+      <div class='row'>
+        <div class='col-md-4'></div>
+        <div class='text-center col-md-4'>
+          <i class='fa fa-video-camera fa-4x'></i>
+          <br><br>
+          <%= f.file_field :video %>
+        </div>
+        <div class='col-md-4'></div>
+      </div>
+      <br>
+      <%= f.submit "Upload Video", class: 'btn btn-primary  btn-block' %>
 
   <%= f.hidden_field :collection_id, :value => params[:collection_id]%>
   <%= f.hidden_field :item_type, :value =>'video'%>

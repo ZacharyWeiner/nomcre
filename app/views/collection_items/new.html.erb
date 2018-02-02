@@ -1,38 +1,110 @@
-<h1>Add To:  <%= @collection.title %></h1>
+
+<style type="text/css">
+.spinner > div {
+  background-color: #333;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+    }  20% {
+      transform: scaleY(1.0);
+      -webkit-transform: scaleY(1.0);
+    }
+  }
+</style>
+
+
+
 
 <div class='row'>
-  <div class='col-md-6'>
-    <%= render 'form', collection_item: @collection_item %>
-  </div>
-  <div class='col-md-6'>
-    <%= render 'video_form', collection_item: @collection_item %>
-  </div>
-</div>
-
-<br>
-<hr>
-<h3> Images In Collection </h3>
-<br>
-<div class='container'>
-<div class='row'>
-<% Collection.find(params[:collection_id]).collection_items.each do |ci| %>
-  <div class='col-md-4' style='padding-bottom: 12px;'>
+<div class='col-md-1'></div>
+<div class='col-md-10'>
+<div class="box ">
+  <div class="box-header ui-sortable-handle" style="cursor: move;">
+    <i class="fa fa-gallery"></i>
+    <h3 class="box-title"> <%= @collection.title %></h3>
+     <br><br>
     <div class='row'>
-      <% if ci.item_type == 'video' %>
-      <%= video_tag ci.video, controls: true, style: 'height: 300px; width:300px;  object-fit: contain',  oncontextmenu:"return false;"%>
-      <% else %>
-      <%= image_tag ci.file_url(:small).to_s, class: 'img-fluid', style: 'height: 300px; width:300px;  object-fit: contain',  oncontextmenu:"return false;"%>
-      <%end%>
-      <br>
-      <%= link_to collection_collection_item_path(@collection, ci)  do %>
-        <i class='fa fa-eye'></i> View
-      <% end %>
-      <%= link_to collection_collection_item_path(@collection, ci), method: :delete  do %>
-        <i class='fa fa-trash'></i> Delete
-      <% end %>
+      <div class='col-md-6 col-sm-6 col-xs-6'>
+        <%= render 'form', collection_item: @collection_item %>
+      </div>
+      <div class='col-md-6 col-sm-6 col-xs-6'>
+        <%= render 'video_form', collection_item: @collection_item %>
+      </div>
     </div>
   </div>
-<% end %>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+    <ul class="todo-list ui-sortable">
+      <% Collection.find(params[:collection_id]).collection_items.reverse.each do |ci| %>
+      <li>
+        <!-- drag handle -->
+        <span class="handle ui-sortable-handle">
+          <i class="fa fa-ellipsis-v"></i>
+          <i class="fa fa-ellipsis-v"></i>
+        </span>
+        <!-- checkbox -->
+        <% if ci.item_type == 'video' %>
+        <%= video_tag ci.video, controls: true, style: 'height: 200px; width:200px;  object-fit: contain',  oncontextmenu:"return false;"%>
+        <% else %>
+        <%= image_tag ci.file_url(:small).to_s, class: 'img-fluid', style: 'height: 200px; width:200px;  object-fit: contain',  oncontextmenu:"return false;"%>
+        <%end%>
+        <!-- todo text -->
+        <span class="text"><%= ci.item_type %></span>
+        <!-- Emphasis label -->
+        <small class="label label-danger"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(ci.created_at)%></small>
+        <!-- General tools such as edit or delete-->
+        <div class="tools">
+          <i class='fa fa-arrow-up' style='color:green'></i>
+          <i class='fa fa-arrow-down'></i>
+         <%= link_to collection_collection_item_path(@collection, ci)  do %>
+        <i class='fa fa-eye'></i>
+        <% end %>
+        <%= link_to collection_collection_item_path(@collection, ci), method: :delete  do %>
+        <i class='fa fa-trash'></i>
+        <% end %>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <!-- /.box-body -->
 </div>
 </div>
+<div class='col-md-1'></div>
+</div>
+
 

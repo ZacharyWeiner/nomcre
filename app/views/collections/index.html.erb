@@ -3,68 +3,72 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="NomCre - Collections" />
 <meta property="og:description" content="Nomcre - Our Best Visual Creators. The Best Photographers and Videographers." />
-<meta property="og:image" content="<%= Collection.take(1).first.collection_items.first.file_url(:small).to_s %>" />
+<meta property="og:image" content="<%= @collections.first.collection_items.first.file_url(:small).to_s %>" />
 <% end %>
- <div class="nk-header-title nk-header-title-sm nk-header-title-parallax nk-header-title-parallax-opacity">
-    <div class="bg-image">
-        <div style="background-image: url('<%= Collection.take(1).first.collection_items.first.file_url %>');"></div>
+<div class="nk-header-title nk-header-title-sm nk-header-title-parallax nk-header-title-parallax-opacity">
+  <div class="bg-image">
+    <div style="background-image: url('<%= @collections.first.user.user_profile.safe_header_image_url %>');"></div>
+  </div>
+  <div class="nk-header-table">
+    <div class="nk-header-table-cell">
+      <div class="container">
+        <h1 class="nk-title">Collections</h1>
+      </div>
     </div>
-    <div class="nk-header-table">
-        <div class="nk-header-table-cell">
-            <div class="container">
-                <h1 class="nk-title">Collections</h1>
-            </div>
-        </div>
-    </div>
+  </div>
 
 </div>
 <div class='nk-main'>
-  <div class='row'>
-    <div class='col-md-10'></div>
-    <div class='col-md-2'>
-      <% if current_user && current_user.user_type = 'creative'%>
-        <%= link_to  new_collection_path, class: 'btn btn-primary', style: 'padding:12px; margin-top:12px; margin-bottom:12px;' do %>
-          <i class='fa fa-plus'></i> Add A Collection
-        <% end %>
-      <% end %>
-    </div>
-  </div>
-<% @collections.each do |collection| %>
-  <div class='row nk-pricing-menu'>
-    <div class='container'>
-      <%= link_to collection do %>
-      <h3><%= collection.title %></h3>
-      <% end %>
-    </div>
-    <div class='col-md-10'>
-      <div class='row'>
-        <% collection.collection_items.take(4).each do |item| %>
-          <div class='col-md-3' >
-            <%= image_tag(item.file_url(:small).to_s, class: 'img-responsive') %>
-          </div>
-        <% end %>
-      </div>
-    </div>
-    <div class='col-md-2' style='vertical-align:center'>
-      <div  style='padding-top: 25%'>
-        <% if current_user &&  current_user == collection.user %>
-          <%= link_to new_collection_collection_item_path(collection)  do %>
-            <i class='fa fa-plus fa-2x'></i> Add Images
-          <% end %>
-          <br>
-
-          <%= link_to collection do  %>
-            <i class='fa fa-eye fa-2x'></i> View Collection
-          <% end %>
-
-          <br>
-          <%= link_to "<i class='fa fa-trash fa-2x'> </i> Delete".html_safe, collection_path(collection), method: :delete, data: { confirm: 'Are you sure?' }   %>
-        <% end %>
-      </div>
-    </div>
-  </div> <!-- Pricing menu -->
   <br>
-<% end %>
-<br>
+  <div class='container' >
+  <div class='pull-right'>
+    <%= link_to new_collection_path, class: 'btn btn-secondary'  do %>
+      <i class='fa fa-plus'></i> Add Collection
+    <%end %>
+  </div>
+  </div>
+  <br><br>
+<div class="container">
+ <% @collections.each do |collection| %>
+ <div class='nk-pricing-menu'>
+  <h3><%= collection.title %></h3>
 
+  <div class="nk-carousel-2  nk-carousel-all-visible" data-autoplay="5000">
+    <div class="nk-carousel-inner">
+      <% collection.collection_items.take(4).each do |item| %>
+        <div>
+          <div>
+
+              <% if item.item_type == 'image'%>
+                <%= image_tag(item.file_url(:medium), class: 'nk-img-fit', style: 'max-height:300px') %>
+              <%else%>
+                <%= video_tag item.video, controls: false, class: 'nk-img-fit',  oncontextmenu:"return false;"%>
+              <%end%>
+
+          </div>
+        </div>
+      <%end%>
+    </div>
+   </div>
+   <div class='pull-right'>
+    <%if collection.user == current_user %>
+       <%= link_to new_collection_collection_item_path(collection), style: 'padding-left:6px;padding-right:6px;' do %>
+        <i class='fa fa-plus '></i> Add Images
+      <% end %>
+      <%= link_to collection, style: 'padding-left:6px;padding-right:6px;' do  %>
+        <i class='fa fa-eye '></i> View Collection
+      <% end %>
+      <%= link_to "<i class='fa fa-trash'> </i> Delete".html_safe, collection_path(collection), method: :delete, data: { confirm: 'Are you sure?' }, style: 'padding-left:6px;padding-right:6px;'   %>
+      <% else %>
+        <%= link_to collection, style: 'padding-left:6px;padding-right:6px;' do %>
+          <i class='fa fa-eye '></i> View Collection
+        <% end %>
+      <% end %>
+   </div>
+
+
+ </div>
+  <%end%>
 </div>
+</div>
+

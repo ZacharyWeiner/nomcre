@@ -1,22 +1,56 @@
-<h1>Editing Collection</h1>
-
-<%= render 'form', collection: @collection %>
-
 <div class='row'>
-<% @collection.collection_items.each do |ci| %>
-  <div class='col-md-4'>
-    <div class='row'>
-      <%= image_tag ci.file_url(:small).to_s, class: 'img-fluid', style: 'height: 300px; width:300px;'%>
-      <br>
-      <%= link_to collection_collection_item_path(@collection, ci)  do %>
-        <i class='fa fa-eye'></i> View
-      <% end %>
-      <%= link_to collection_collection_item_path(@collection, ci), method: :delete  do %>
-        <i class='fa fa-trash'></i> Delete
-      <% end %>
-    </div>
+<div class='col-md-1'></div>
+<div class='col-md-10'>
+<div class="box ">
+  <div class="box-header ui-sortable-handle" style="cursor: move;">
+    <i class="fa fa-gallery"></i>
+    <h3 class="box-title"> <%= render 'form', collection: @collection %></h3>
+     <br><br>
+     <%= link_to new_collection_collection_item_path(@collection), class: 'pull-right' do %>
+      <i class='fa fa-plus'></i> Add Images
+     <%end%>
   </div>
-<% end %>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+    <ul class="todo-list ui-sortable">
+      <% Collection.find(params[:id]).collection_items.reverse.each do |ci| %>
+      <li>
+        <!-- drag handle -->
+        <span class="handle ui-sortable-handle">
+          <i class="fa fa-ellipsis-v"></i>
+          <i class="fa fa-ellipsis-v"></i>
+        </span>
+        <!-- checkbox -->
+        <% if ci.item_type == 'video' %>
+        <%= video_tag ci.video, controls: true, style: 'height: 200px; width:200px;  object-fit: contain',  oncontextmenu:"return false;"%>
+        <% else %>
+        <%= image_tag ci.file_url(:small).to_s, class: 'img-fluid', style: 'height: 200px; width:200px;  object-fit: contain',  oncontextmenu:"return false;"%>
+        <%end%>
+        <!-- todo text -->
+        <span class="text"><%= ci.item_type %></span>
+        <!-- Emphasis label -->
+        <small class="label label-danger"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(ci.created_at)%></small>
+        <!-- General tools such as edit or delete-->
+        <div class="tools">
+          <i class='fa fa-arrow-up' style='color:green'></i>
+          <i class='fa fa-arrow-down'></i>
+         <%= link_to collection_collection_item_path(@collection, ci)  do %>
+        <i class='fa fa-eye'></i>
+        <% end %>
+        <%= link_to collection_collection_item_path(@collection, ci), method: :delete  do %>
+        <i class='fa fa-trash'></i>
+        <% end %>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+  <!-- /.box-body -->
 </div>
+</div>
+<div class='col-md-1'></div>
+</div>
+
 <%= link_to 'Show', @collection %> |
 <%= link_to 'Back', collections_path %>

@@ -3,7 +3,12 @@ class CollectionsController < ApplicationController
   layout :set_layout
   # GET /collections
   # GET /collections.json
+  layout 'khaki'
   def index
+      if params[:user_id]
+      @collections = current_user.collections
+      return
+    end
     if current_user
       @collections = Collection.where(user: current_user)
     else
@@ -14,6 +19,7 @@ class CollectionsController < ApplicationController
   # GET /collections/1
   # GET /collections/1.json
   def show
+
   end
 
   # GET /collections/new

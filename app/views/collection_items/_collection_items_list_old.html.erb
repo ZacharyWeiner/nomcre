@@ -1,0 +1,29 @@
+<br>
+<hr>
+<h3> Images In Collection </h3>
+<br>
+<div class='container'>
+  <div class='row'>
+    <% Collection.find(params[:collection_id]).collection_items.each do |ci| %>
+    <div class='col-md-4' style='padding-bottom: 12px;'>
+      <div class='row'>
+        <% if ci.item_type == 'video' %>
+        <%= video_tag ci.video, controls: true, style: 'height: 300px; width:300px;  object-fit: contain',  oncontextmenu:"return false;"%>
+        <% else %>
+        <%= image_tag ci.file_url(:small).to_s, class: 'img-fluid', style: 'height: 300px; width:300px;  object-fit: contain',  oncontextmenu:"return false;"%>
+        <%end%>
+        <br>
+        <%= link_to collection_collection_item_path(@collection, ci)  do %>
+        <i class='fa fa-eye'></i> View
+        <% end %>
+        <%= link_to collection_collection_item_path(@collection, ci), method: :delete  do %>
+        <i class='fa fa-trash'></i> Delete
+        <% end %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+
+<br><br>
