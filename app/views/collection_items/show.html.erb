@@ -18,6 +18,7 @@
     <i class='fa fa-trash'></i> Delete
   <% end %>
 <%end%>
+<br>
 <% if @collection_item.item_type == 'video'%>
 <%= video_tag @collection_item.video, controls: true, controlsList:"nodownload", class: 'embed-responsive', oncontextmenu:"return false;" %>
 <% else  %>

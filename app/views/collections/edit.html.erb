@@ -1,20 +1,98 @@
+
+<style type="text/css">
+.spinner > div {
+  background-color: #333;
+  height: 100%;
+  width: 6px;
+  display: inline-block;
+
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+    }  20% {
+      transform: scaleY(1.0);
+      -webkit-transform: scaleY(1.0);
+    }
+  }
+</style>
+
+<div class='row'>
+  <div class='col-md-1'></div>
+  <div class='col-md-10'>
+    <div class="box ">
+      <div class="box-header ui-sortable-handle" style="cursor: move;">
+        <i class="fa fa-gallery"></i>
+        <h3 class="box-title"> <%= render 'form', collection: @collection %></h3>
+        <%= link_to 'Show', @collection %> |
+        <%= link_to 'Back', collections_path %>
+      </div>
+    </div>
+  </div>
+  <div class='col-md-1'></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
 <div class='row'>
 <div class='col-md-1'></div>
 <div class='col-md-10'>
 <div class="box ">
   <div class="box-header ui-sortable-handle" style="cursor: move;">
     <i class="fa fa-gallery"></i>
-    <h3 class="box-title"> <%= render 'form', collection: @collection %></h3>
+    <h3 class="box-title"> <%= @collection.title %></h3>
      <br><br>
-     <%= link_to new_collection_collection_item_path(@collection), class: 'pull-right' do %>
-      <i class='fa fa-plus'></i> Add Images
-     <%end%>
+    <div class='row'>
+      <% collection_item = CollectionItem.new %>
+      <div class='col-md-6 col-sm-6 col-xs-6'>
+        <%= render 'collection_items/form', collection_item: collection_item %>
+      </div>
+      <div class='col-md-6 col-sm-6 col-xs-6'>
+        <%= render 'collection_items/video_form', collection_item: collection_item %>
+      </div>
+    </div>
   </div>
   <!-- /.box-header -->
   <div class="box-body">
     <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
     <ul class="todo-list ui-sortable">
-      <% Collection.find(params[:id]).collection_items.reverse.each do |ci| %>
+      <% @collection.collection_items.reverse.each do |ci| %>
       <li>
         <!-- drag handle -->
         <span class="handle ui-sortable-handle">
@@ -52,5 +130,4 @@
 <div class='col-md-1'></div>
 </div>
 
-<%= link_to 'Show', @collection %> |
-<%= link_to 'Back', collections_path %>
+

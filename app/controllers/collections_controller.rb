@@ -33,7 +33,7 @@ class CollectionsController < ApplicationController
 
   # GET /collections/1/edit
   def edit
-    render :layout => 'application'
+    render :layout => 'adminlte'
   end
 
   # POST /collections

@@ -39,7 +39,11 @@
       <br>
       <%= f.submit "Upload Video", class: 'btn btn-primary  btn-block' %>
 
+  <% if params[:collection_id]%>
   <%= f.hidden_field :collection_id, :value => params[:collection_id]%>
+  <% else %>
+  <%= f.hidden_field :collection_id, :value => params[:id]%>
+  <% end %>
   <%= f.hidden_field :item_type, :value =>'video'%>
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <br>
