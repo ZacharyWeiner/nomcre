@@ -41,7 +41,9 @@ Rails.application.routes.draw do
 
   resources :companies do
     get 'send_welcome_email', to:'companies#send_welcome_email'
+
   end
+  get 'invoices', to:'companies#invoices', as: 'invoices'
   devise_for :users
   get 'user/:id', to: "users#show", as: 'user_show'
   get 'users/:id/collections', to: "collections#index", as: 'user_collection'
@@ -73,6 +75,7 @@ Rails.application.routes.draw do
   get 'creative_tutorial', to:'khaki#proposal_tutorial_creative', as: 'proposal_tutorial_creative'
   get 'company_tutorial', to:'khaki#proposal_tutorial_company', as: 'proposal_tutorial_company'
   get 'khaki/index', to:'khaki#index'
+
 
   #root 'khaki#nomcre_home'
   root 'application#home'

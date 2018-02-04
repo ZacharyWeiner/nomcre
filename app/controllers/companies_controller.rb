@@ -1,6 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
-  before_action :authorize, except: [:new, :create, :show, :send_welcome_email]
+  before_action :authorize, except: [:new, :create, :show, :send_welcome_email, :invoices]
   layout 'adminlte'
 
   # GET /companies
@@ -65,6 +65,10 @@ class CompaniesController < ApplicationController
       format.html { redirect_to companies_url, notice: 'Company was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def invoices
+    @company = current_user.company
   end
 
   def send_welcome_email

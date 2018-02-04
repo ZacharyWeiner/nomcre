@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180201072352) do
+ActiveRecord::Schema.define(version: 20180204053353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -161,6 +161,7 @@ ActiveRecord::Schema.define(version: 20180201072352) do
     t.string "image_board_2"
     t.string "image_board_3"
     t.string "image_board_4"
+    t.date "balance_paid_on"
     t.index ["company_id"], name: "index_proposals_on_company_id"
     t.index ["location_id"], name: "index_proposals_on_location_id"
     t.index ["user_id"], name: "index_proposals_on_user_id"
