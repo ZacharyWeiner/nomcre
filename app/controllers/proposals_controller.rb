@@ -95,9 +95,15 @@ class ProposalsController < ApplicationController
       unless proposal_params[:focus_points].nil? || proposal_params[:focus_points].count == 0
         @proposal.focus_points.clear
         proposal_params[:focus_points].each do |fp|
-          @proposal.focus_points << fp
+          if fp == "0"
+            byebug
+          else
+            byebug
+            @proposal.focus_points << fp
+          end
         end
       end
+      byebug
       unless params[:proposal][:instagram_1].nil?
         proposal_params[:instagram_1] = params[:proposal][:instagram_1].gsub!("@", "")
       end
@@ -176,6 +182,10 @@ class ProposalsController < ApplicationController
   end
 
   def payment
+  end
+
+  def invoice
+    set_proposal
   end
 
   def requests

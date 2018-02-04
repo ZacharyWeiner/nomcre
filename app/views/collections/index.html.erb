@@ -3,7 +3,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="NomCre - Collections" />
 <meta property="og:description" content="Nomcre - Our Best Visual Creators. The Best Photographers and Videographers." />
-<meta property="og:image" content="<%= @collections.first.collection_items.first.file_url(:small).to_s %>" />
+<meta property="og:image" content="<%= @collections.first.collection_items.where(item_type: 'image').first.file_url(:small).to_s %>" />
 <% end %>
 <div class="nk-header-title nk-header-title-sm nk-header-title-parallax nk-header-title-parallax-opacity">
   <div class="bg-image">
@@ -22,9 +22,11 @@
   <br>
   <div class='container' >
   <div class='pull-right'>
-    <%= link_to new_collection_path, class: 'btn btn-secondary'  do %>
-      <i class='fa fa-plus'></i> Add Collection
-    <%end %>
+    <% if current_user.user_type == 'creative' %>
+      <%= link_to new_collection_path, class: 'btn btn-secondary'  do %>
+        <i class='fa fa-plus'></i> Add Collection
+      <%end %>
+    <% end %>
   </div>
   </div>
   <br><br>

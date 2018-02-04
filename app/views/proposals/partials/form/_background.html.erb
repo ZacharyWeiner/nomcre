@@ -1,36 +1,42 @@
 
-<div class='box box-info'>
+<div class='box'>
   <div class="box-header with-border">
     <h4 class="box-title">Background</h4>
   </div>
   <div class='row' style="margin:12px;">
-      <div class='col-md-4'>
-        <%= radio_button_tag 'proposal[background]', 'Beach', checked = (@proposal.background =="Beach") %>
+      <div class='col-md-6 col-sm-6 col-xs-6'>
+        <%= f.radio_button :background, "Beach", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
         <%= f.label :beach %>
       </div>
-      <div class='col-md-4'>
-        <%= radio_button_tag 'proposal[background]', 'Mountains', checked = (@proposal.background =="Mountains") %>
+      <div class='col-md-6 col-sm-6 col-xs-6 '>
+        <%= f.radio_button :background, "Mountains", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+
         <%= f.label :mountains %>
       </div>
-      <div class='col-md-4'>
-        <%= radio_button_tag 'proposal[background]', 'City Scape', checked = (@proposal.background =="City Scape") %>
+      <div class='col-md-6 col-sm-6 col-xs-6 '>
+        <%= f.radio_button :background, "City Scape" , class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+
         <%= f.label :city_scape %>
       </div>
-      <div class='col-md-4'>
-        <%= radio_button_tag 'proposal[background]', 'Nature/Park', checked = (@proposal.background =="Nature/Park") %>
+      <div class='col-md-6 col-sm-6 col-xs-6 '>
+        <%= f.radio_button :background, "Nature/Park" , class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+
         <%= f.label :nature_or_park %>
       </div>
 
-        <div class='col-md-4'>
-          <%= radio_button_tag 'proposal[background]', 'Historical Building', checked = (@proposal.background =="Historical Building") %>
+        <div class='col-md-6 col-sm-6 col-xs-6 '>
+          <%= f.radio_button :background, "Historical Building" , class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+
           <%= f.label :historical_building %>
         </div>
-        <div class='col-md-4'>
-          <%= radio_button_tag 'proposal[background]', 'Building Interior', checked = (@proposal.background =="Building Interior") %>
+        <div class='col-md-6 col-sm-6 col-xs-6 '>
+          <%= f.radio_button :background, "Building Interior" , class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+
           <%= f.label :building_interior %>
         </div>
-        <div class='col-md-4'>
-          <%= radio_button_tag 'proposal[background]', 'Action/Activity', checked = (@proposal.background =="Action/Activity") %>
+        <div class='col-md-6 col-sm-6 col-xs-6 '>
+          <%= f.radio_button :background, "Action/Activity" , class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+
           <%= f.label :action_or_activity %>
         </div>
   </div>

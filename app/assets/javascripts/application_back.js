@@ -8,11 +8,32 @@
 //= require back/plugins/jvectormap/jquery-jvectormap-1.2.2.min
 //= require back/plugins/jvectormap/jquery-jvectormap-usa-en
 //= require back/plugins/jvectormap/jquery-jvectormap-world-mill-en
+//= require 'icheck'
 //= require back/app
 //= require bootstrap-toggle
 
 $(document).ready(function() {
   var table = $('.dataTable').DataTable();
+
+  function icheck(){
+  if($(".icheck-me").length > 0){
+    $(".icheck-me").each(function(){
+      var $el = $(this);
+      var skin = ($el.attr('data-skin') !== undefined) ? "_" + $el.attr('data-skin') : "",
+      color = ($el.attr('data-color') !== undefined) ? "-" + $el.attr('data-color') : "";
+      var opt = {
+        checkboxClass: 'icheckbox' + skin + color,
+        radioClass: 'iradio' + skin + color,
+      }
+      $el.iCheck(opt);
+    });
+  }
+}
+
+$(function(){
+  icheck();
+})
+
 
   // Get sidebar state from localStorage and add the proper class to body
   $('body').addClass(localStorage.getItem('sidebar-state'));

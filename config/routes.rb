@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     get 'send_assigned_email', to: 'proposals#send_creative_assigned_email'
     get 'copy', to: 'proposals#copy', as: 'copy'
     get 'accepted', to: 'proposals#accepted_requests', as: "accepted_requests"
+    get 'invoice', to: 'proposals#invoice', as: 'invoice'
   end
 
   get 'proposal/completed', to: 'proposals#completed', as: 'proposals_completed'

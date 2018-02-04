@@ -10,7 +10,11 @@ class CollectionsController < ApplicationController
       return
     end
     if current_user
-      @collections = Collection.where(user: current_user)
+      if current_user.user_type == 'creative'
+        @collections = Collection.where(user: current_user)
+      else
+        @collections = Collection.all
+      end
     else
       @collections = Collection.all
     end
@@ -29,6 +33,7 @@ class CollectionsController < ApplicationController
 
   # GET /collections/1/edit
   def edit
+    render :layout => 'application'
   end
 
   # POST /collections

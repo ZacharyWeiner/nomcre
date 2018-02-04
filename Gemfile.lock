@@ -108,6 +108,10 @@ GEM
       activesupport (>= 4.2.0)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
+    icheck-rails (1.0.2.2)
+      jquery-rails
+      rails (>= 3.1.0)
+      sass-rails
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -275,6 +279,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   geocoder
+  icheck-rails
   jbuilder (~> 2.5)
   jquery-rails
   jquery-ui-rails

@@ -50,8 +50,8 @@
         <% height = "#{item.height}".to_i%>
         <div class="nk-isotope-item">
           <div class="nk-image-box-1">
-            <%= link_to item.file.url, class: 'nk-gallery-item nk-no-effect', :'data-size' => "#{width}x#{height}"  do %>
-              <%= image_tag item.file %>
+            <%= link_to collection_collection_item_path(@collection, item), class: 'nk-no-effect', :'data-size' => "#{width}x#{height}"  do %>
+              <%= image_tag item.file,  oncontextmenu:"return false" %>
             <% end %>
           </div>
         </div>
@@ -63,7 +63,7 @@
     <% videos.each do |video |%>
       <div class='row'>
       <%= link_to collection_collection_item_path(@collection, video) do %>
-        <%= video_tag video.video, controls: true , controlsList:"nodownload", class: 'embed-responsive' %>
+        <%= video_tag video.video, controls: true , controlsList:"nodownload", class: 'embed-responsive',   oncontextmenu:"return false" %>
       <% end %>
       </div>
     <% end %>
@@ -75,7 +75,7 @@
       <% videos.each do |video |%>
         <div class='row'>
         <%= link_to collection_collection_item_path(@collection, video) do %>
-          <%= video_tag video.video, controls: true, controlsList:"nodownload",   class: 'embed-responsive' %>
+          <%= video_tag video.video, controls: true, controlsList:"nodownload",   class: 'embed-responsive',  oncontextmenu:"return false" %>
         <% end %>
         </div>
       <% end %>
@@ -92,7 +92,7 @@
         <div class="nk-isotope-item">
           <div class="nk-image-box-1">
             <%= link_to item.file.url, class: 'nk-gallery-item nk-no-effect', :'data-size' => "#{width}x#{height}"  do %>
-              <%= image_tag item.file %>
+              <%= image_tag item.file,  oncontextmenu:"return false" %>
             <% end %>
           </div>
         </div>

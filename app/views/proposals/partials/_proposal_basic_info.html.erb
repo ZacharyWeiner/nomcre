@@ -83,7 +83,9 @@
         <span class="info-box-number">Focus Points</span>
         <span class="info-box-text">
           <% @proposal.focus_points.each do |fp| %>
-            <span class="label label-success"><%= fp %></span><br>
+            <% unless fp == "0"%>
+              <span class="label label-success"><%= fp %></span><br>
+            <% end %>
           <% end %>
         </span>
       </div>
@@ -94,7 +96,9 @@
         <span class="info-box-number">BTS</span>
         <span class="info-box-text">
           <% @proposal.bts.each do |bts| %>
-            <span class="label label-success"><%= bts %></span><br/>
+            <% unless bts == "0"%>
+              <span class="label label-success"><%= bts %></span><br/>
+            <% end %>
           <% end %>
         </span>
       </div>

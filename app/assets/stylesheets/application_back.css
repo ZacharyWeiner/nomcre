@@ -8,5 +8,7 @@
  *= require back/AdminLTE
  *= require back/skins/skin-black
  *= require bootstrap-toggle
+ *= require icheck/square/_all
  *= require_self
  */
+
