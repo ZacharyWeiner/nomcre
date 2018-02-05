@@ -3,11 +3,17 @@
 <meta property="og:type" content="website" />
 <meta property="og:title" content="NomCre - Collections" />
 <meta property="og:description" content="Nomcre - Our Best Visual Creators. The Best Photographers and Videographers." />
+<% if @collections.count > 0 %>
 <meta property="og:image" content="<%= @collections.first.collection_items.where(item_type: 'image').first.file_url(:small).to_s %>" />
+<% end %>
 <% end %>
 <div class="nk-header-title nk-header-title-sm nk-header-title-parallax nk-header-title-parallax-opacity">
   <div class="bg-image">
+    <% if @collections.count > 0 %>
     <div style="background-image: url('<%= @collections.first.user.user_profile.safe_header_image_url %>');"></div>
+    <% else %>
+    <div style="background-image: url('<%= Collection.take(1).first.user.user_profile.safe_header_image_url %>');"></div>
+    <% end %>
   </div>
   <div class="nk-header-table">
     <div class="nk-header-table-cell">

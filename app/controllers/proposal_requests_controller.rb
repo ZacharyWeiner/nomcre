@@ -14,16 +14,29 @@ class ProposalRequestsController < ApplicationController
     end
   end
 
+  def decline
+    set_proposal_request
+    @proposal_request.accepted = false
+    @proposal_request.save
+    redirect_to proposal_requests_path
+  end
+
   def send_request_accepted_email
-    @proposal_request = ProposalRequest.find(params[:id])
+    set_proposal_request
     ProposalMailer.request_accepted(@proposal_request).deliver_now
     redirect_to @proposal_request.proposal
   end
 
   def send_request_created_email
-    @proposal_request = ProposalRequest.find(params[:id])
+    set_proposal_request
     ProposalMailer.request_created(@proposal_request).deliver_now
     redirect_to @proposal_request.proposal
+  end
+
+
+  private
+  def set_proposal_request
+    @proposal_request = ProposalRequest.find(params[:id])
   end
 end
 

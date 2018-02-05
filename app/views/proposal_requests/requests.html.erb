@@ -1,3 +1,9 @@
+<% if @requests.count == 0 %>
+<div class="alert alert-warning alert-dismissible">
+  <h4><i class="icon fa fa-warning"></i> Wo0ps!</h4>
+  You Haven't Been Reuested Yet!
+</div>
+<% else %>
 <ul class="timeline">
   <% @requests.each do |pr| %>
     <!-- timeline time label -->
@@ -135,6 +141,7 @@
                 <%= link_to "<i class='fa fa-dollar'></i> Accepted".html_safe, proposal_accept_request_path(pr.proposal), class: 'btn btn-success disabled'%>
               <% else %>
                 <%= link_to "<i class='fa fa-dollar'></i> Accept".html_safe, proposal_accept_request_path(pr.proposal), class: 'btn btn-success '%>
+                <%= link_to "<i class='fa fa-trash'></i> Decline".html_safe, decline_proposal_request_path(pr), class: 'btn btn-danger pull-right' %>
               <% end %>
             </div>
         </div>
@@ -142,3 +149,4 @@
     <!-- END timeline item -->
   <% end %>
 </ul>
+<%end %>

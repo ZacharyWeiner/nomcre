@@ -1,5 +1,12 @@
-<%= link_to 'Add Travel Plan', new_schedule_item_path, class: 'btn btn-primary pull-right' %>
+<%= link_to "<i class='fa fa-calendar'></i> Add Travel Plan".html_safe, new_schedule_item_path, class: 'btn btn-primary pull-right' %>
 <br/>
+<br/>
+<% if @schedule_items.count == 0 %>
+  <div class="alert alert-warning alert-dismissible">
+    <h4><i class="icon fa fa-warning"></i> Wo0ps!</h4>
+    You Havent Added Any Travel Plans Yet!
+    </div>
+<% else %>
 <ul class="timeline">
   <% @schedule_items.each do |schedule_item| %>
     <!-- timeline time label -->
@@ -34,3 +41,4 @@
     <!-- END timeline item -->
   <% end %>
 </ul>
+<% end %>
