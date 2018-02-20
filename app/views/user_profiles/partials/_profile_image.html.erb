@@ -2,7 +2,7 @@
 <div class="box box-widget widget-user">
   <!-- Add the bg color to the header using any of the bg-* classes -->
   <div class="widget-user-header bg-black" style="background: url('<%= @user_profile.safe_header_image_url%>') center center;background-size:cover">
-    <h3 class="widget-user-username"><%= @user_profile.display_name %></h3>
+    <h3 class="widget-user-username"><strong><%= @user_profile.display_name %></strong></h3>
     <h5 class="widget-user-desc"></h5>
   </div>
   <div class="widget-user-image">
