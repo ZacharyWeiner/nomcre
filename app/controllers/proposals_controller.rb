@@ -96,14 +96,14 @@ class ProposalsController < ApplicationController
         @proposal.focus_points.clear
         proposal_params[:focus_points].each do |fp|
           if fp == "0"
-            byebug
+
           else
-            byebug
+
             @proposal.focus_points << fp
           end
         end
       end
-      byebug
+
       unless params[:proposal][:instagram_1].nil?
         proposal_params[:instagram_1] = params[:proposal][:instagram_1].gsub!("@", "")
       end
