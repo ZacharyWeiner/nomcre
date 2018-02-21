@@ -70,7 +70,9 @@
             <h4 class="">Focus Points</h4>
             <div class='light'>
               <% proposal.focus_points.each do |fp| %>
-                <span class="label label-success"><%= fp %></span>
+                <% unless fp == "0" %>
+                  <span class="label label-success"><%= fp %></span>
+                <% end %>
               <% end %>
             </div>
           </div>

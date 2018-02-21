@@ -1,6 +1,7 @@
 <% unless @proposal.deposit_paid %>
   <p> Deposit Must Be Paid Prior To Requesting Creatives </p>
 <% end %>
+<% @creatives = @proposal.find_creatives %>
 <% @proposal.find_creatives.each do |sr| %>
   <div class='row'>
     <div class='col-md-3'><%= sr.user.name %></div>
@@ -19,4 +20,26 @@
   </div>
 <% end %>
 
-
+<% if @creatives.count == 0 %>
+ <% @creatives = User.where(user_type: 'creative').take(10) %>
+ <ul class="todo-list ui-sortable">
+   <% @creatives.each do |cr| %>
+    <li>
+       <div class="user-block">
+        <%= image_tag cr.user_profile.profile_photo, class: 'img-circle img-bordered-sm' %>
+        <span class="username">
+          <%= link_to cr.user_profile.display_name, user_collection_path(cr), style: 'margin-top:12px' %>
+          <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
+        </span>
+      </div>
+      <div class='row'>
+        <% cr.collection_items.where(item_type: "image").reverse.take(4).each do |ci| %>
+          <div class='col-md-3'>
+            <%= image_tag ci.file, class: 'img-responsive' %>
+          </div>
+        <% end %>
+      </div>
+    </li>
+  <% end %>
+  </ul>
+<% end %>

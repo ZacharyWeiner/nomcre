@@ -20,30 +20,36 @@
       <div id="assistants">
         <%= f.fields_for :assistants do |assistant| %>
           <div class='nested-fields info-box'>
-            <div class='row'>
-              <div class='col-md-4'>
-                <%= assistant.label :name %>
-                <%= assistant.text_field :name, class: 'form-control' %>
+              <div class="input-group">
+                <span class="input-group-addon">@</span>
+                <%= assistant.text_field :name, class: "form-control ", placeholder: "Full Name" %>
               </div>
-              <div class='col-md-4'>
-                <%= assistant.label :paypal_email %>
-                <%= assistant.text_field :paypal_email, class: 'form-control' %>
-              </div>
-              <div class='col-md-4'>
-                <%= assistant.label :phone %>
-                <%= assistant.text_field :phone, class: 'form-control' %>
 
+
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                <%= assistant.text_field :paypal_email, class: "form-control ", placeholder: "PayPal Email" %>
               </div>
-              <div class='col-md-4'>
-                <%= assistant.label :rate %>
-                <%= assistant.text_field :rate, class: 'form-control' %>
+
+              <div class="input-group">
+                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                <%= assistant.text_field :phone, class: "form-control ", placeholder: "Assistant Phone Number" %>
               </div>
-              <div class='col-md-4'>
-                <%= assistant.label :assistant_type %>
-                <%= assistant.text_field :assistant_type, class: 'form-control' %>
+
+              <div class='row'>
+                <div class='col-md-6'>
+                  <div class="input-group">
+                    <span class="input-group-addon"> <%= assistant.label :daily_rate %></span>
+                    <%= assistant.number_field :rate, class: "form-control" %>
+                  </div>
+                </div>
+                <div class="col-md-6" >
+                  <div class="input-group">
+                    <span class="input-group-addon"> <%= assistant.label :assistant_type %></span>
+                    <%= assistant.select :assistant_type, options_for_select([['General', 'General'], ['HMU', 'HMU'], ['Model','Model']]), {}, {class: 'form-control '}  %>
+                  </div>
+                </div>
               </div>
-            <% assistant.check_box :_destroy %>
-            </div>
           </div>
           <br>
         <% end %>
