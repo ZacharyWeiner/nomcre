@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Proposal:</strong>
+  <%= @shot_list_item.proposal %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @shot_list_item.description %>
+</p>
+
+<p>
+  <strong>Background:</strong>
+  <%= @shot_list_item.background %>
+</p>
+
+<p>
+  <strong>Upload:</strong>
+  <%= @shot_list_item.upload %>
+  <% if @shot_list_item.upload %>
+          <%= image_tag @shot_list_item.upload, style: 'max-height:250px; max-width:250px;'%>
+        <% end %>
+</p>
+
+<p>
+  <strong>Item type:</strong>
+  <%= @shot_list_item.item_type %>
+</p>
+
+
+<p>
+  <strong>Task:</strong>
+  <%= @shot_list_item.task %>
+</p>
+
+<%= link_to 'Edit', edit_shot_list_item_path(@shot_list_item) %> |
+<%= link_to 'Back', proposal_shot_list_items_path(@shot_list_item.proposal) %>

@@ -15,6 +15,7 @@
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
           <li class="active"><a href="#basic_info" data-toggle="tab">Basic Info</a></li>
+          <li class=""><a href="#shot_list" data-toggle="tab">Shot List</a></li>
           <% if current_user == @proposal.user %>
           <li><a href="#assistants" data-toggle="tab">Assistants</a></li>
           <% unless @proposal.tasks.count == 0 %>
@@ -26,6 +27,9 @@
         <div class="tab-content">
           <div class="active tab-pane" id="basic_info">
             <%= render 'proposals/partials/proposal_basic_info'%>
+          </div>
+          <div class="tab-pane" id="shot_list">
+            <%= render :partial => 'shot_list_items/shot_list', :locals => {:shot_list_items => @proposal.shot_list_items} %>
           </div>
           <% if current_user == @proposal.user %>
           <div class="tab-pane" id="assistants">

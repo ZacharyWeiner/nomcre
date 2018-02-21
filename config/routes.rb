@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :shot_list_items
   mount ActionCable.server => '/cable'
   resources :assistants
   resources :user_profiles
@@ -27,6 +28,7 @@ Rails.application.routes.draw do
     get 'copy', to: 'proposals#copy', as: 'copy'
     get 'accepted', to: 'proposals#accepted_requests', as: "accepted_requests"
     get 'invoice', to: 'proposals#invoice', as: 'invoice'
+    resources :shot_list_items
   end
 
   get 'proposal/completed', to: 'proposals#completed', as: 'proposals_completed'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180221080014) do
+ActiveRecord::Schema.define(version: 20180221183525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -179,6 +179,19 @@ ActiveRecord::Schema.define(version: 20180221080014) do
     t.index ["user_id"], name: "index_schedule_items_on_user_id"
   end
 
+  create_table "shot_list_items", force: :cascade do |t|
+    t.bigint "proposal_id"
+    t.string "description"
+    t.string "background"
+    t.string "upload"
+    t.string "item_type"
+    t.bigint "task_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["proposal_id"], name: "index_shot_list_items_on_proposal_id"
+    t.index ["task_id"], name: "index_shot_list_items_on_task_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.bigint "user_id"
     t.text "description"
@@ -263,6 +276,8 @@ ActiveRecord::Schema.define(version: 20180221080014) do
   add_foreign_key "proposals", "users"
   add_foreign_key "schedule_items", "locations"
   add_foreign_key "schedule_items", "users"
+  add_foreign_key "shot_list_items", "proposals"
+  add_foreign_key "shot_list_items", "tasks"
   add_foreign_key "tasks", "companies"
   add_foreign_key "tasks", "proposals"
   add_foreign_key "tasks", "users"

@@ -1,0 +1,33 @@
+<%= form_with(model: shot_list_item, local: true) do |form| %>
+  <% if shot_list_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(shot_list_item.errors.count, "error") %> prohibited this shot_list_item from being saved:</h2>
+
+      <ul>
+      <% shot_list_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :shot_list_item_description, class: 'form-control', rows: 2, placeholder: 'Tell us what you want the shot to look like...' %>
+  </div>
+ <% if current_user.user_type == "creative" %>
+  <div class="field">
+    <%= form.label :upload %>
+     <%= form.file_field :upload, id: :shot_list_item_upload, class: 'form-control' %>
+  </div>
+  <% end %>
+  <% if params[:proposal_id] %>
+    <%= form.hidden_field :proposal_id, :value => params[:proposal_id] %>
+    <%= form.hidden_field :item_type, :value => Proposal.find(params[:proposal_id]).shoot_type %>
+  <% end %>
+  <br>
+  <div class="actions">
+    <%= form.submit "Update List", class: 'btn btn-default pull-right' %>
+  </div>
+<% end %>

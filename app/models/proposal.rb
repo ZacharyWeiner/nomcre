@@ -8,6 +8,7 @@ class Proposal < ApplicationRecord
   paginates_per 20
   mount_uploader :model_release, FileUploader
   has_many :assistants, dependent: :destroy
+  has_many :shot_list_items, dependent: :destroy
 
   accepts_nested_attributes_for :assistants, allow_destroy: true, reject_if: ->(attrs) { attrs['name'].blank? || attrs['paypal_email'].blank? }
   validates :proposal_type, presence: true
