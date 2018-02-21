@@ -38,6 +38,18 @@ class ProposalsController < ApplicationController
   # POST /proposals
   # POST /proposals.json
   def create
+    unless params[:proposal][:instagram_1].nil?
+        proposal_params[:instagram_1] = params[:proposal][:instagram_1].gsub!("@", "")
+      end
+      unless params[:proposal][:instagram_2].nil?
+        proposal_params[:instagram_2] = params[:proposal][:instagram_2].gsub!("@", "")
+      end
+      unless params[:proposal][:instagram_3].nil?
+        proposal_params[:instagram_3] = params[:proposal][:instagram_3].gsub!("@", "")
+      end
+      unless params[:proposal][:instagram_4].nil?
+        proposal_params[:instagram_4] = params[:proposal][:instagram_4].gsub!("@", "")
+      end
     @proposal = Proposal.new(proposal_params)
     unless proposal_params[:bts].nil? || proposal_params[:bts].count == 0
       @proposal.bts.clear
@@ -51,18 +63,7 @@ class ProposalsController < ApplicationController
         @proposal.focus_points << fp
       end
     end
-     unless params[:proposal][:instagram_1].nil?
-        @proposal.instagram_1 = params[:proposal][:instagram_1].gsub!("@", "")
-      end
-      unless params[:proposal][:instagram_2].nil?
-         @proposal.instagram_2 = params[:proposal][:instagram_2].gsub!("@", "")
-      end
-      unless params[:proposal][:instagram_3].nil?
-         @proposal.instagram_3 = params[:proposal][:instagram_3].gsub!("@", "")
-      end
-      unless params[:proposal][:instagram_4].nil?
-         @proposal.instagram_4 = params[:proposal][:instagram_4].gsub!("@", "")
-      end
+
     respond_to do |format|
       if @proposal.save
         set_price(@proposal)

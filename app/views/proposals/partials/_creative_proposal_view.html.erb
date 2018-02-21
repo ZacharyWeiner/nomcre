@@ -17,7 +17,9 @@
           <li class="active"><a href="#basic_info" data-toggle="tab">Basic Info</a></li>
           <% if current_user == @proposal.user %>
           <li><a href="#assistants" data-toggle="tab">Assistants</a></li>
+          <% unless @proposal.tasks.count == 0 %>
           <li><a href="#tasks" data-toggle="tab">Tasks</a></li>
+          <% end %>
           <li><a href="#disclosures" data-toggle="tab">Disclosures</a></li>
           <% end %>
         </ul>
@@ -30,9 +32,11 @@
             <% render :partial => 'proposals/partials/assistant_list', :locals => {:proposal => @proposal}%>
             <%= render :partial => 'proposals/partials/assistants_form', :locals => {:proposal => @proposal}%>
           </div>
+          <% unless @proposal.tasks.count == 0 %>
           <div class="tab-pane" id="tasks">
             <%= render 'proposals/partials/proposal_tasks_list'%>
           </div>
+          <% end %>
           <div class="tab-pane" id="disclosures">
             <%= render 'proposals/partials/proposal_disclosures' %>
           </div>

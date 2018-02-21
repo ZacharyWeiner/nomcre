@@ -4,7 +4,7 @@
     <b>Creative Brief</b>
     <p><%= @proposal.content%></p>
     <br>
-    <div class="box box-aqua box-solid collapsed-box">
+    <div class="box box-aqua box-solid">
       <div class="box-header with-border">
         <h3 class="box-title">Inspiration</h3>
 
@@ -20,11 +20,14 @@
           <%= render 'proposals/partials/instagram_inspiration' %>
         </div>
         <div class="row">
+          <% unless (@proposal.image_board_1.nil? || @proposal.image_board_1 == "") && (@proposal.image_board_2.nil? || @proposal.image_board_2 == "") && (@proposal.image_board_3.nil? || @proposal.image_board_3 == "") && (@proposal.image_board_4.nil? || @proposal.image_board_4 == "") %>
           <%= render 'proposals/partials/image_boards' %>
+          <%end %>
         </div>
       </div>
       <!-- /.box-body -->
     </div>
+    <% unless @proposal.tasks.count == 0 %>
     <div class="box box-aqua box-solid collapsed-box">
       <div class="box-header with-border">
         <h3 class="box-title">Tasks</h3>
@@ -43,6 +46,7 @@
       </div>
       <!-- /.box-body -->
     </div>
+    <% end %>
   </div>
   <div class="col-md-5">
     <div class="info-box">

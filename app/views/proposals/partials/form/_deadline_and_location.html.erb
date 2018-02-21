@@ -1,14 +1,14 @@
 
-<div class="box box">
+<div class="box box container">
 
     <div class='row'>
-      <div class='col-md-12 col-sm-6 col-xs-7 text-center'>
+      <div class='col-md-12 col-sm-6 col-xs-7'>
         <h3 class="box-title">Deadline</h3>
         <div style="margin:12px; padding-bottom: 12px;">
           <%= f.date_select :deadline, class: 'form-control' %>
         </div>
       </div>
-      <div class='col-md-12 col-sm-6 col-xs-5 text-center'>
+      <div class='col-md-12 col-sm-6 col-xs-5'>
         <h3 class="box-title">Location</h3>
         <div style="margin:12px; padding-bottom: 12px;">
           <%= f.collection_select(:location_id, Location.all.order(:name), :id, :name) %>

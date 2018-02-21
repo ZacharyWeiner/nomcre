@@ -32,12 +32,16 @@ class CollectionItemsController < ApplicationController
   def create
     @collection_item = CollectionItem.new(collection_item_params)
     respond_to do |format|
-      if @collection_item.save
-        format.html { redirect_to @collection, notice: 'Collection item was successfully created.' }
-        format.json { render :show, status: :created, location: @collection_item }
-      else
+      if @collection_item.file.file.nil?
         format.html { render :new }
-        format.json { render json: @collection_item.errors, status: :unprocessable_entity }
+      else
+        if @collection_item.save
+          format.html { redirect_to @collection, notice: 'Collection item was successfully created.' }
+          format.json { render :show, status: :created, location: @collection_item }
+        else
+          format.html { render :new }
+          format.json { render json: @collection_item.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

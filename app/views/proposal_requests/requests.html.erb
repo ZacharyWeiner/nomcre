@@ -119,7 +119,9 @@
                           <h4 class="">Focus Points</h4>
                           <div class='light'>
                             <% pr.proposal.focus_points.each do |fp| %>
+                              <% unless fp == "0" %>
                               <span class="label label-success"><%= fp %></span>
+                              <% end %>
                             <% end %>
                           </div>
                         </div>
