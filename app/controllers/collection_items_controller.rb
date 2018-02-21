@@ -32,7 +32,8 @@ class CollectionItemsController < ApplicationController
   def create
     @collection_item = CollectionItem.new(collection_item_params)
     respond_to do |format|
-      if @collection_item.file.file.nil?
+      if @collection_item.file.file.nil? && @collection_item.video.file.nil?
+        byebug
         format.html { render :new }
       else
         if @collection_item.save

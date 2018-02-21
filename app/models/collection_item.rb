@@ -4,5 +4,4 @@ class CollectionItem < ApplicationRecord
   mount_uploader :file, FileUploader
   mount_uploader :video, VideoUploader
   validates :file, file_size: { less_than_or_equal_to: 25.megabytes }
-  validates :video, file_size: { less_than_or_equal_to: 25.megabytes }
 end
