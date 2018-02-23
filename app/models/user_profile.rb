@@ -20,6 +20,9 @@ class UserProfile < ApplicationRecord
     end
   end
 
+  def activities
+    UserActivity.where(user_id: self.user.id)
+  end
 
 
   def self.default_profile_image

@@ -237,6 +237,7 @@ class ProposalsController < ApplicationController
     send_notification(@proposal_request.requested, "Proposal Assigned", @proposal.id)
     send_notification(@proposal_request.requested, "Task", @proposal.id)
     ProposalMailer.proposal_assigned(@proposal_request).deliver_now!
+    UserActivity.create!(activity_type: UserActivityType.proposal_accepted, user_id: @proposal.user.id, object_id: @proposal.id)
     redirect_to @proposal
   end
 

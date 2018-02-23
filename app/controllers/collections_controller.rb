@@ -43,6 +43,7 @@ class CollectionsController < ApplicationController
 
     respond_to do |format|
       if @collection.save
+        UserActivity.create!(activity_type: UserActivityType.collection_added, user_id: current_user.id, object_id: @collection.id)
         format.html { redirect_to new_collection_collection_item_path(@collection), notice: 'Collection was successfully created.' }
         format.json { render :show, status: :created, location: @collection }
       else

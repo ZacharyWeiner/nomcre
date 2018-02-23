@@ -33,10 +33,10 @@ class CollectionItemsController < ApplicationController
     @collection_item = CollectionItem.new(collection_item_params)
     respond_to do |format|
       if @collection_item.file.file.nil? && @collection_item.video.file.nil?
-        byebug
         format.html { render :new }
       else
         if @collection_item.save
+          set_user_activity
           format.html { redirect_to @collection, notice: 'Collection item was successfully created.' }
           format.json { render :show, status: :created, location: @collection_item }
         else
@@ -93,5 +93,18 @@ class CollectionItemsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def collection_item_params
       params.require(:collection_item).permit(:user_id, :collection_id, :file, :video, :item_type)
+    end
+
+    def set_user_activity
+      if @collection.nil?
+        set_collection
+      end
+      if @collection.created_at < Date.today - 1.day
+        if @collection_item.item_type == "image"
+          UserActivity.create!(activity_type: UserActivityType.collection_photo_added, user_id: current_user.id, object_id: @collection_item.id)
+        else
+          UserActivity.create!(activity_type: UserActivityType.collection_video_added, user_id: current_user.id, object_id: @collection_item.id)
+        end
+      end
     end
 end

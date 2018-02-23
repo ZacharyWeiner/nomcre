@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :user_activities
   resources :shot_list_items
   mount ActionCable.server => '/cable'
   resources :assistants
