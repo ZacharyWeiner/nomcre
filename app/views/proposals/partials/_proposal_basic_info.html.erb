@@ -4,7 +4,7 @@
     <b>Creative Brief</b>
     <p><%= @proposal.content%></p>
     <br>
-    <div class="box box-aqua box-solid">
+<!--     <div class="box">
       <div class="box-header with-border">
         <h3 class="box-title">Inspiration</h3>
 
@@ -12,21 +12,21 @@
           <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
           </button>
         </div>
-        <!-- /.box-tools -->
+
       </div>
-      <!-- /.box-header -->
-      <div class="box-body" style="margin:8px;">
+
+       <div class="box-body" style="margin:8px;">
         <div class='row'>
-          <%= render 'proposals/partials/instagram_inspiration' %>
+          <% render 'proposals/partials/instagram_inspiration' %>
         </div>
         <div class="row">
           <% unless (@proposal.image_board_1.nil? || @proposal.image_board_1 == "") && (@proposal.image_board_2.nil? || @proposal.image_board_2 == "") && (@proposal.image_board_3.nil? || @proposal.image_board_3 == "") && (@proposal.image_board_4.nil? || @proposal.image_board_4 == "") %>
-          <%= render 'proposals/partials/image_boards' %>
+          <% render 'proposals/partials/image_boards' %>
           <%end %>
         </div>
       </div>
-      <!-- /.box-body -->
-    </div>
+
+    </div> -->
     <% unless @proposal.tasks.count == 0 %>
     <div class="box box-aqua box-solid collapsed-box">
       <div class="box-header with-border">
@@ -67,13 +67,13 @@
         <span class="info-box-text"><%= @proposal.background %></span>
       </div>
     </div>
-    <div class="info-box">
+<!--     <div class="info-box">
       <span class="info-box-icon bg-aqua"><i class="fa fa-image"></i></span>
       <div class="info-box-content">
         <span class="info-box-number">Shot Type</span>
-        <span class="info-box-text"><%= @proposal.shoot_type%></span>
+        <span class="info-box-text"><% @proposal.shoot_type%></span>
       </div>
-    </div>
+    </div> -->
     <div class="info-box">
       <span class="info-box-icon bg-aqua"><i class="fa fa-sun-o"></i></span>
       <div class="info-box-content">
@@ -81,18 +81,28 @@
         <span class="info-box-text"><%= @proposal.time_of_day %></span>
       </div>
     </div>
-    <div class="info-box">
+    <!-- <div class="info-box">
       <span class="info-box-icon bg-aqua"><i class="fa fa-crosshairs"></i></span>
       <div class="info-box-content">
         <span class="info-box-number">Focus Points</span>
         <span class="info-box-text">
           <% @proposal.focus_points.each do |fp| %>
             <% unless fp == "0"%>
-              <span class="label label-success"><%= fp %></span><br>
+              <span class="label label-success"><% fp %></span><br>
             <% end %>
           <% end %>
         </span>
       </div>
+    </div> -->
+
+
+    <div class="info-box">
+    <%= render 'proposals/partials/instagram_inspiration' %>
+    </div>
+    <div class="info-box">
+        <% unless (@proposal.image_board_1.nil? || @proposal.image_board_1 == "") && (@proposal.image_board_2.nil? || @proposal.image_board_2 == "") && (@proposal.image_board_3.nil? || @proposal.image_board_3 == "") && (@proposal.image_board_4.nil? || @proposal.image_board_4 == "") %>
+          <%= render 'proposals/partials/image_boards' %>
+          <%end %>
     </div>
     <div class="info-box">
       <span class="info-box-icon bg-aqua"><i class="fa fa-plus"></i></span>
@@ -101,7 +111,7 @@
         <span class="info-box-text">
           <% @proposal.bts.each do |bts| %>
             <% unless bts == "0"%>
-              <span class="label label-success"><%= bts %></span><br/>
+              <span class="label label-success"><%= bts %></span>
             <% end %>
           <% end %>
         </span>

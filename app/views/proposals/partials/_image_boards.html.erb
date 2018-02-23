@@ -1,36 +1,34 @@
 
-<div class="info-box">
   <span class="info-box-icon bg-aqua"><i class="fa fa-globe"></i></span>
   <div class="info-box-content">
     <span class="info-box-number"> Inspiration Boards</span>
     <span class="info-box-text">
      <% unless @proposal.image_board_1.nil? || @proposal.image_board_1 == ""%>
-      <%= link_to  @proposal.image_board_1, target:"_blank", class: 'btn btn-primary btn-block' do %>
+      <%= link_to  @proposal.image_board_1, target:"_blank", class: 'btn btn-primary ' do %>
           <i class='fa fa-globe'></i> Image Board 1
         <% end %>
       <% end %>
       <br>
       <% unless @proposal.image_board_2.nil? || @proposal.image_board_2 == ""%>
-        <%= link_to  @proposal.image_board_2, target:"_blank", class: 'btn btn-primary btn-block' do %>
+        <%= link_to  @proposal.image_board_2, target:"_blank", class: 'btn btn-primary ' do %>
           <i class='fa fa-globe'></i> Image Board 2
         <% end %>
       <% end %>
       <br>
       <% unless @proposal.image_board_3.nil? || @proposal.image_board_3 == ""%>
-        <%= link_to  @proposal.image_board_3, target:"_blank", class: 'btn btn-primary btn-block' do %>
+        <%= link_to  @proposal.image_board_3, target:"_blank", class: 'btn btn-primary ' do %>
           <i class='fa fa-globe'></i> Image Board 3
         <% end %>
       <% end %>
       <br>
       <% unless @proposal.image_board_4.nil? || @proposal.image_board_4 == ""%>
-        <%= link_to  @proposal.image_board_4, target:"_blank", class: 'btn btn-primary  btn-block' do %>
+        <%= link_to  @proposal.image_board_4, target:"_blank", class: 'btn btn-primary  ' do %>
           <i class='fa fa-globe'></i> Image Board 4
         <% end %>
       <% end %>
-      <br>
     </span>
   </div>
-</div>
+
 
 
 

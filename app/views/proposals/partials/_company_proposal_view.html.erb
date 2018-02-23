@@ -12,6 +12,7 @@
     </div>
     <!-- /.col -->
     <div class="col-md-9">
+      <%= render :partial => 'proposals/partials/proposal_show_top_widget', :locals => {:proposal => @proposal} %>
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
           <li class="active"><a href="#basic_info" data-toggle="tab">Basic Info</a></li>
@@ -29,7 +30,7 @@
             <%= render 'proposals/partials/proposal_basic_info'%>
             <div class='row'>
               <div class='col-md-2 col-md-offset-10'>
-                <%= link_to "Edit", edit_proposal_path(@proposal), class: 'btn btn-primary' unless  (@proposal.company.users.include?(current_user) == false || @proposal.paid == true) %>
+                <% link_to "Edit", edit_proposal_path(@proposal), class: 'btn btn-primary pull-left' unless  (@proposal.company.users.include?(current_user) == false || @proposal.paid == true) %>
               </div>
             </div>
           </div>

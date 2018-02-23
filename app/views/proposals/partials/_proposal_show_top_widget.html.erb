@@ -1,0 +1,60 @@
+      <div class="row">
+        <div class="col-lg-4 col-xs-4">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>Deadline</h3>
+
+              <p><%= proposal.deadline %></p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-calendar"></i>
+            </div>
+            <% unless  (proposal.company.users.include?(current_user) == false || proposal.paid == true) %>
+              <%= link_to edit_proposal_path(@proposal), class: 'small-box-footer'  do %>
+                 Edit <i class="fa fa-arrow-circle-right"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-4">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3><%= proposal.shot_list_items.count%> of 25</h3>
+
+              <p>Available Shots</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-list"></i>
+            </div>
+            <% unless  (proposal.company.users.include?(current_user) == false || proposal.paid == true) %>
+              <%= link_to new_proposal_shot_list_item_path(@proposal), class: 'small-box-footer' do %>
+                <i class="fa fa-plus"></i> Add To Shot List
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <!-- ./col -->
+        <!-- ./col -->
+        <div class="col-lg-4 col-xs-4">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>Style</h3>
+
+              <p><%= proposal.shoot_type %></p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-certificate"></i>
+            </div>
+            <% unless  (proposal.company.users.include?(current_user) == false || proposal.paid == true) %>
+              <%= link_to edit_proposal_path(proposal), class: 'small-box-footer'  do %>
+                 Edit <i class="fa fa-arrow-circle-right"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>

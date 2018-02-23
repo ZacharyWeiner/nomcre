@@ -1,14 +1,17 @@
+<% if params[:proposal_id] %>
+  <% proposal = Proposal.find(params[:proposal_id]) %>
+<% end %>
 <%= form_with(model: shot_list_item, local: true) do |form| %>
   <% if shot_list_item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(shot_list_item.errors.count, "error") %> prohibited this shot_list_item from being saved:</h2>
+  <div id="error_explanation">
+    <h2><%= pluralize(shot_list_item.errors.count, "error") %> prohibited this shot_list_item from being saved:</h2>
 
-      <ul>
+    <ul>
       <% shot_list_item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
+    </ul>
+  </div>
   <% end %>
 
 
@@ -16,18 +19,82 @@
     <%= form.label :description %>
     <%= form.text_area :description, id: :shot_list_item_description, class: 'form-control', rows: 2, placeholder: 'Tell us what you want the shot to look like...' %>
   </div>
- <% if current_user.user_type == "creative" %>
-  <div class="field">
-    <%= form.label :upload %>
-     <%= form.file_field :upload, id: :shot_list_item_upload, class: 'form-control' %>
-  </div>
-  <% end %>
-  <% if params[:proposal_id] %>
-    <%= form.hidden_field :proposal_id, :value => params[:proposal_id] %>
-    <%= form.hidden_field :item_type, :value => Proposal.find(params[:proposal_id]).shoot_type %>
-  <% end %>
   <br>
-  <div class="actions">
-    <%= form.submit "Update List", class: 'btn btn-default pull-right' %>
+<% if current_user.user_type == "creative" %>
+<div class="field">
+ <%= form.label :upload %>
+ <%= form.file_field :upload, id: :shot_list_item_upload, class: 'form-control' %>
+</div>
+<% else %>
+<div class='row'>
+  <div class='col-md-6'>
+    <div class='box'>
+      <div class="box-header with-border">
+        <h4 class="box-title">Focus Point</h4>
+      </div>
+      <div class='row' style="margin:12px;">
+        <div class='col-md-4 col-sm-4 col-xs-4'>
+          <%= form.radio_button :focus_point, "Left", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+          <%= form.label :left %>
+        </div>
+        <div class='col-md-4 col-sm-4 col-xs-4 '>
+          <%= form.radio_button :focus_point, "Center", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+          <%= form.label :Center %>
+        </div>
+        <div class='col-md-4 col-sm-4 col-xs-4 '>
+          <%= form.radio_button :focus_point, "right" , class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+          <%= form.label :right  %>
+        </div>
+      </div>
+    </div>
   </div>
+  <div class="col-md-6">
+    <% if proposal.shoot_type = 'Mixed'%>
+      <div class='box'>
+        <div class="box-header with-border">
+          <h4 class="box-title">Shot Type</h4>
+        </div>
+        <div class='row' style="margin:12px;">
+          <div class='col-md-4 col-sm-4 col-xs-4'>
+            <%= form.radio_button :item_type, "Lifestyle", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+            <%= form.label :lifestyle %>
+          </div>
+          <div class='col-md-4 col-sm-4 col-xs-4 '>
+            <%= form.radio_button :item_type, "Product", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+            <%= form.label :product %>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div class='box'>
+        <div class="box-header with-border">
+          <h4 class="box-title">Shot Type</h4>
+        </div>
+        <h3> <%= proposal.shoot_type %></h3>
+        <%= form.hidden_field :item_type, :value => proposal.shoot_type %>
+      </div>
+    <% end %>
+  </div>
+</div>
 <% end %>
+
+<% if params[:proposal_id] %>
+  <%= form.hidden_field :proposal_id, :value => proposal.id %>
+  <%= form.hidden_field :background, :value => proposal.background %>
+
+<% end %>
+<br>
+<div class="actions">
+  <%= form.submit "Update List", class: 'btn btn-default pull-right' %>
+</div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
