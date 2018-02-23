@@ -1,0 +1,73 @@
+<div class='text-center'>
+  <h2 class="box-title ">Tell Us About Your Project</h2>
+</div>
+<div class="box box-solid">
+  <div class="panel box ">
+    <div class="box-header with-border text-center">
+
+    </div>
+    <div class="box-body">
+      <%= form_for proposal, class: 'form-horizontal' do |form| %>
+      <div class='row'>
+        <div class='col-md-3'></div>
+        <div class='col-md-6'>
+          <div class="box box-solid">
+            <h3 class='text-center'> What Should I Be Called? </h3>
+            <%= form.text_field :title, class: 'form-control', placeholder: "Give your project a cool name ... " %>
+          </div>
+        </div>
+        <div class='col-md-3'></div>
+      </div>
+      <br> <br>
+
+        <div class="row">
+          <h3 class='text-center'>Is It A Photo Or Video Project? </h3>
+          <div class="col-md-6">
+            <div class='row'>
+                <div class='col-md-4'></div>
+                  <div class='text-center col-md-8'>
+                    <div class='rounded'>
+                    <i class='fa fa-image fa-4x'></i>
+                    <br><br>
+
+                    <%= form.radio_button(:proposal_type, "photo", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}) %>
+                    <%= form.label(:proposal_type_photo, "Photo") %>
+                  </div>
+                </div>
+
+              </div>
+
+
+          </div>
+          <div class="col-md-6">
+             <div class='row'>
+
+                <div class='text-center col-md-8'>
+
+                    <i class='fa fa-video-camera fa-4x'></i>
+                    <br><br>
+                    <%= form.radio_button(:proposal_type, "video", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}) %>
+                    <%= form.label(:proposal_type_video, "Video") %>
+                  </div>
+
+                <div class='col-md-4'></div>
+
+              </div>
+          </div>
+        </div>
+
+      <br><br>
+      <div class='row'>
+        <div class='col-md-3'></div>
+        <div class='col-md-6'>
+          <%= form.hidden_field :redirect, value => 'edit_wizard' %>
+          <%= form.submit "Get Started", class: 'btn btn-success btn-block' %>
+        </div>
+        <div class='col-md-3'></div>
+      </div>
+
+      <%end %>
+    </div>
+  </div>
+</div>
+
