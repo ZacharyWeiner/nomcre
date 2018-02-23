@@ -28,7 +28,7 @@
 
     </div> -->
     <% unless @proposal.tasks.count == 0 %>
-    <div class="box box-aqua box-solid collapsed-box">
+<!--     <div class="box box-aqua box-solid collapsed-box">
       <div class="box-header with-border">
         <h3 class="box-title">Tasks</h3>
 
@@ -36,16 +36,16 @@
           <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
           </button>
         </div>
-        <!-- /.box-tools -->
+
       </div>
-      <!-- /.box-header -->
+
       <div class="box-body" style="margin:8px;">
         <div class='row'>
-          <%= render 'proposals/partials/proposal_tasks_list' %>
+          <% render 'proposals/partials/proposal_tasks_list' %>
         </div>
       </div>
-      <!-- /.box-body -->
-    </div>
+
+    </div> -->
     <% end %>
   </div>
   <div class="col-md-5">

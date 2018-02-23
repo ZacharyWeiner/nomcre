@@ -23,9 +23,11 @@
         <div class='row'>
           <div class='col-md-6'>
             <%= render :partial => 'proposals/partials/form/instagram_fields', :locals => {:f => f} %>
+            <%= render :partial => 'proposals/partials/form/file_type', :locals => {:f => f} %>
           </div>
           <div class='col-md-6'>
             <%= render :partial => 'proposals/partials/form/image_board_fields', :locals => {:f => f} %>
+            <%= render :partial => 'proposals/partials/form/bts', :locals => {:f => f} %>
           </div>
         </div>
     </div>
@@ -34,8 +36,8 @@
       <%= render :partial => 'proposals/partials/form/deadline_and_location', :locals => {:f => f} %>
       <%= render :partial => 'proposals/partials/form/background', :locals => {:f => f} %>
       <%= render :partial => 'proposals/partials/form/time_of_day', :locals => {:f => f} %>
-      <%= render :partial => 'proposals/partials/form/file_type', :locals => {:f => f} %>
-      <%= render :partial => 'proposals/partials/form/bts', :locals => {:f => f} %>
+
+
     </div>
   </div>
 
