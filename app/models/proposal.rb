@@ -31,6 +31,39 @@ class Proposal < ApplicationRecord
     self.save
   end
 
+  def is_info_complete
+    is_complete = true;
+    if self.title.nil? || self.title == ""
+      is_complete = false
+    end
+
+    if self.location.nil?
+      is_complete = false
+    end
+
+    if self.deadline.nil?
+      is_complete = false
+    end
+
+    if self.content.nil? || self.content == ""
+      is_complete = false
+    end
+
+    if self.shoot_type.nil? || self.shoot_type == ""
+      is_complete = false;
+    end
+
+    if self.proposal_type.nil? || self.proposal_type == ""
+      is_complete = false
+    end
+
+    if self.background.nil? || self.background == ""
+      is_complete = false
+    end
+
+    return is_complete
+  end
+
   def create_tasks
     if self.proposal_type = "Photo"
       # PreProduction Company

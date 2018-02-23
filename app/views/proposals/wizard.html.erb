@@ -1,0 +1,7 @@
+<% if @proposal.title.nil? %>
+  <%= render :partial => 'proposals/partials/wizard/title_and_type', :locals => {:proposal => @proposal } %>
+<% elsif @proposal.content.nil? || @proposal.content == "" %>
+  <%= render :partial => 'proposals/partials/wizard/brief', :locals => {:proposal => @proposal  } %>
+<% else %>
+  <%= render :partial => 'proposals/partials/wizard/style_and_background', :locals => {:proposal => @proposal  } %>
+<% end %>

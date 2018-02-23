@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     get 'copy', to: 'proposals#copy', as: 'copy'
     get 'accepted', to: 'proposals#accepted_requests', as: "accepted_requests"
     get 'invoice', to: 'proposals#invoice', as: 'invoice'
+    get 'wizard', to: 'proposals#wizard', as: 'wizard'
     resources :shot_list_items
   end
 

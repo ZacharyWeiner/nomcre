@@ -1,5 +1,5 @@
 class ProposalsController < ApplicationController
-  before_action :set_proposal, only: [:show, :edit, :edit_details, :payment, :update, :destroy]
+  before_action :set_proposal, only: [:show, :edit, :edit_details, :payment, :update, :destroy, :wizard]
   before_action :authenticate_user!
   layout 'adminlte'
 
@@ -35,6 +35,9 @@ class ProposalsController < ApplicationController
   def edit_details
   end
 
+  def wizard
+  end
+
   # POST /proposals
   # POST /proposals.json
   def create
@@ -65,12 +68,17 @@ class ProposalsController < ApplicationController
     end
 
     respond_to do |format|
-      if @proposal.save
+      if @proposal.save!
         set_price(@proposal)
         @chatroom = Chatroom.create!(topic: @proposal.title, proposal: @proposal)
         @chatroom.messages.create!(user: current_user, content: "#{@proposal.company.name}' - '#{@proposal.title} Chat Was Created")
-        format.html { redirect_to @proposal, notice: 'Proposal was successfully created.' }
-        format.json { render :show, status: :created, location: @proposal }
+
+        if params[:proposal][:redirect] && params[:proposal][:redirect] == 'wizard'
+          format.html { redirect_to proposal_wizard_path(@proposal), notice: 'Proposal was successfully created.' }
+        else
+          format.html { redirect_to @proposal, notice: 'Proposal was successfully created.' }
+          format.json { render :show, status: :created, location: @proposal }
+        end
       else
         format.html { render :new }
         format.json { render json: @proposal.errors, status: :unprocessable_entity }
@@ -82,6 +90,12 @@ class ProposalsController < ApplicationController
   # PATCH/PUT /proposals/1.json
   def update
     respond_to do |format|
+      byebug
+      if params[:proposal][:source] && (params[:proposal][:content].nil? || params[:proposal][:content] == "")
+        byebug
+        return redirect_to proposal_wizard_path(@proposal)
+
+      end
 
       if @proposal.accepted == true && current_user.user_type == 'company'
         format.html { redirect_to @proposal, notice: 'The Proposal Can Not Be Changed After It Has Been Assigned' }
@@ -120,8 +134,12 @@ class ProposalsController < ApplicationController
 
       if @proposal.update!(proposal_params)
         set_price(@proposal)
-        format.html { redirect_to @proposal, notice: 'Proposal was successfully updated.' }
-        format.json { render :show, status: :ok, location: @proposal }
+        if @proposal.is_info_complete
+          format.html { redirect_to @proposal, notice: 'Proposal was successfully updated.' }
+          format.json { render :show, status: :ok, location: @proposal }
+        else
+          format.html { redirect_to proposal_wizard_path(@proposal) }
+        end
       else
         format.html { render :edit }
         format.json { render json: @proposal.errors, status: :unprocessable_entity }
