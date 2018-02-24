@@ -18,12 +18,15 @@
     <script src="https://use.fontawesome.com/1494e0c4f8.js"></script>
   </head>
   <body data-turbolinks="false">
-
     <div class="site-wrapper">
       <div class="site-wrapper-inner">
         <div class="cover-container">
           <%= yield %>
-          <%= render partial: 'shared/footer' %>
+          <div style='text-align: center'>
+            <div class="inner">
+              <p>Made with ♥ by <a href="https://nomcre.com">@nomcre</a>.</p>
+            </div>
+        </div>
         </div>
       </div>
     </div>

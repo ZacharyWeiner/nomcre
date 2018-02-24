@@ -10,30 +10,47 @@
       <span class="description"><%= activity.activity_type %>- <%= activity.created_at %> </span>
     </div>
     <%if activity.activity_type == UserActivityType.collection_added %>
-       <%= Collection.find(activity.object_id).title %><br>
+       <% collection = Collection.find(activity.object_id) %>
+       <%= link_to collection  do %>
+        <h4> <%= collection.title %> </h4>
+       <% end %>
+       <div class='row'>
+        <% collection.collection_items.each do |ci| %>
+          <div class='col-md-3'>
+            <% if ci.item_type == "image" %>
+              <%= image_tag ci.file.url(:small), class: 'img-responsive' %>
+            <% else %>
+            <% end %>
+          </div>
+        <% end %>
+       </div>
     <% elsif  activity.activity_type == UserActivityType.collection_photo_added %>
        <%= image_tag CollectionItem.find(activity.object_id).file %> <br>
     <% elsif  activity.activity_type == UserActivityType.collection_video_added %>
-      <%= video_tag CollectionItem.find(activity.object_id).video, class: 'img-responsive', style: 'max-height: 400px;' %> <br>
+      <div class='text-center'>
+        <%= video_tag CollectionItem.find(activity.object_id).video, controls: true, autobuffer: true, oncontextmenu:"return false;",  controlsList:"nodownload", class: 'img-responsive', style: 'max-height: 400px;' %> <br>
+      </div>
     <% elsif  activity.activity_type == UserActivityType.proposal_accepted %>
       from: <%= Proposal.find(activity.object_id).company.name %> <br>
     <% elsif  activity.activity_type == UserActivityType.proposal_created %>
       <%= Proposal.find(activity.object_id).company.name %> <br>
     <% elsif  activity.activity_type == UserActivityType.travel_plan_created %>
-      <%= ScheduleItem.find(activity.object_id).location.name %> <br>
+        <%si = ScheduleItem.find(activity.object_id) %>
+        <div class="info-box">
+          <span class="info-box-icon bg-aqua"><i class="fa fa-map-marker"></i></span>
+          <div class="info-box-content">
+            <span class="info-box-number">Is Traveling To:</span>
+            <span class="info-box-number"><%= si.location.name %></span>
+            <br>
+            <span class="info-box-text">On: <small><%= si.start_date %></small></span>
+          </div>
+        </div>
     <% else %>
     <% end %>
-      <!-- /.user-block -->
-<!--   <ul class="list-inline">
-    <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
-    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
-    </li>
-    <li class="pull-right">
-      <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
-        (5)</a></li>
-  </ul>
-
-  <input class="form-control input-sm" type="text" placeholder="Type a comment"> -->
 </div>
   <% end %>
 </div>
+
+
+
+

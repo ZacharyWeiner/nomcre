@@ -48,8 +48,8 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>1</h3>
-              <p>Pending Payments</p>
+              <h3><%= Task.where(company_id: current_user.company.id).where(completed: false).where('deadline < ?', Date.today).count %></h3>
+              <p>Overdue Tasks</p>
             </div>
             <div class="icon">
               <i class="fa fa-dollar"></i>

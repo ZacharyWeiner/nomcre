@@ -23,7 +23,11 @@
     </div>
   </div>
   <div class="nk-header-text-bottom">
-    <%= @collection.user.user_profile.display_name%>
+
+      <%= link_to @collection.user.user_profile, class: 'btn btn-secondary' do %>
+       <i class='fa fa-eye'></i> <span style='padding-right: 6px;'><%= @collection.user.user_profile.display_name %></span>
+      <% end %>
+
   </div>
 </div>
 <div style='padding-right:24px;padding-left:24px;padding-top:12px;'>

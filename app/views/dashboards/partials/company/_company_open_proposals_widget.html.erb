@@ -14,13 +14,7 @@
         <%= link_to p, class: 'product-title' do %>
         <%= p.title %>
         <span class="label label-success pull-right">
-          <% if p.proposal_type = "Photo" %>
-          $1000
-          <% elsif p.proposal_type == "Video" %>
-          $2000
-          <% else %>
-          $1000
-          <% end %>
+         <%= number_to_currency(p.price) %> USD
         </span>
         <% end %>
         <span class="product-description">

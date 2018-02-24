@@ -2,6 +2,13 @@
 
 <div class="people-list" id="people-list">
   <ul class="list" style="list-style: none;">
+    <li>
+            <div class='col-md-2'>
+            <%= link_to proposals_path, class: 'btn btn-primary', style:"color: white" do %>
+              <i class='fa fa-arrow-left'></i> Back
+            <% end %>
+            <hr>
+          </li>
     <% current_user.chatrooms.uniq.each do |room| %>
       <li class="clearfix">
         <%= image_tag room.messages.last.user.profile_image unless room.messages.last.nil? %>

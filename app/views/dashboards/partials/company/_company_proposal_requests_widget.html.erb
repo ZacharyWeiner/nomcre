@@ -14,13 +14,7 @@
         <%= link_to proposal_requests_path, class: 'product-title' do %>
         <%= User.find(p.requested_by).user_profile.display_name %>
         <span class="label label-success pull-right">
-          <% if p.proposal.proposal_type = "Photo" %>
-          $1000
-          <% elsif p.proposal.proposal_type == "Video" %>
-          $2000
-          <% else %>
-          $1000
-          <% end %>
+          <%= number_to_currency(p.proposal.price) %> USD
         </span>
         <% end %>
         <span class="product-description">
