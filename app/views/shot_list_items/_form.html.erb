@@ -49,7 +49,7 @@
     </div>
   </div>
   <div class="col-md-6">
-    <% if proposal.shoot_type = 'Mixed'%>
+    <% if proposal.shoot_type == 'Mixed'%>
       <div class='box'>
         <div class="box-header with-border">
           <h4 class="box-title">Shot Type</h4>
@@ -66,13 +66,8 @@
         </div>
       </div>
     <% else %>
-      <div class='box'>
-        <div class="box-header with-border">
-          <h4 class="box-title">Shot Type</h4>
-        </div>
-        <h3> <%= proposal.shoot_type %></h3>
-        <%= form.hidden_field :item_type, :value => proposal.shoot_type %>
-      </div>
+    <%= form.hidden_field :item_type, :value => proposal.shoot_type %>
+
     <% end %>
   </div>
 </div>
@@ -85,7 +80,7 @@
 <% end %>
 <br>
 <div class="actions">
-  <%= form.submit "Update List", class: 'btn btn-default pull-right' %>
+  <%= form.submit "Update List", class: 'btn btn-success pull-right' %>
 </div>
 <% end %>
 

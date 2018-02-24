@@ -90,11 +90,8 @@ class ProposalsController < ApplicationController
   # PATCH/PUT /proposals/1.json
   def update
     respond_to do |format|
-      byebug
-      if params[:proposal][:source] && (params[:proposal][:content].nil? || params[:proposal][:content] == "")
-        byebug
+      if (params[:proposal][:source] && params[:proposal][:source] == 'brief') && (params[:proposal][:content].nil? || params[:proposal][:content] == "")
         return redirect_to proposal_wizard_path(@proposal)
-
       end
 
       if @proposal.accepted == true && current_user.user_type == 'company'
@@ -120,7 +117,7 @@ class ProposalsController < ApplicationController
       end
 
       unless params[:proposal][:instagram_1].nil?
-        proposal_params[:instagram_1] = params[:proposal][:instagram_1].gsub!("@", "")
+        proposal_params[:instagram_1] = params[:proposal][:instagram_1].gsub("@", "")
       end
       unless params[:proposal][:instagram_2].nil?
         proposal_params[:instagram_2] = params[:proposal][:instagram_2].gsub!("@", "")
@@ -133,6 +130,7 @@ class ProposalsController < ApplicationController
       end
 
       if @proposal.update!(proposal_params)
+
         set_price(@proposal)
         if @proposal.is_info_complete
           format.html { redirect_to @proposal, notice: 'Proposal was successfully updated.' }

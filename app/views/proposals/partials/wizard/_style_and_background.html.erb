@@ -1,2 +1,94 @@
+<%= form_for proposal, class: 'form-horizontal' do |f| %>
+<h2 class='text-center'> What Is The Style Of Shoot You're Looking For? </h2>
+<div class='row'>
+    <div class='col-md-2'></div>
+  <div class='col-md-8'>
+    <div class='box'>
+      <div class="form-group text-center" style="margin:12px; padding-bottom: 12px;">
+        <%= f.radio_button(:shoot_type, 'Product', class: "icheck-me", :data => {:skin => 'square', :color => 'green'}) %>
+        <%= f.label :product %>
+        <%= f.radio_button(:shoot_type, 'Lifestyle', class: "icheck-me", :data => {:skin => 'square', :color => 'green'}) %>
+        <%= f.label :lifestyle %>
+        <%= f.radio_button(:shoot_type, 'Action', class: "icheck-me", :data => {:skin => 'square', :color => 'green'}) %>
+        <%= f.label :action %>
+        <%= f.radio_button(:shoot_type, 'Mixed', class: "icheck-me", :data => {:skin => 'square', :color => 'green'}) %>
+        <%= f.label :mixed %>
+      </div>
+    </div>
+    <br> <br>
+    <h2 class='text-center'> What Should The Backdrop For The Shoot Be? </h2>
+    <div class='box'>
 
-Style and Background
+      <div class='row' style="margin:12px;">
+        <div class='col-md-6 col-sm-6 col-xs-6'>
+          <%= f.radio_button :background, "Beach", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+          <%= f.label :beach %>
+        </div>
+        <div class='col-md-6 col-sm-6 col-xs-6 '>
+          <%= f.radio_button :background, "Mountains", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+
+          <%= f.label :mountains %>
+        </div>
+        <div class='col-md-6 col-sm-6 col-xs-6 '>
+          <%= f.radio_button :background, "City Scape" , class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+
+          <%= f.label :city_scape %>
+        </div>
+        <div class='col-md-6 col-sm-6 col-xs-6 '>
+          <%= f.radio_button :background, "Nature/Park" , class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+
+          <%= f.label :nature_or_park %>
+        </div>
+
+        <div class='col-md-6 col-sm-6 col-xs-6 '>
+          <%= f.radio_button :background, "Historic Building" , class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+
+          <%= f.label :historic_building %>
+        </div>
+        <div class='col-md-6 col-sm-6 col-xs-6 '>
+          <%= f.radio_button :background, "Building Interior" , class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+
+          <%= f.label :building_interior %>
+        </div>
+        <div class='col-md-6 col-sm-6 col-xs-6 '>
+          <%= f.radio_button :background, "Action/Activity" , class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+
+          <%= f.label :action_or_activity %>
+        </div>
+      </div>
+      <div class='row' style="margin:12px; padding-bottom: 12px;">
+        <%= f.text_field :background_note, class: 'form-control', placeholder: 'Background details...' %>
+      </div>
+    </div>
+    <br>
+    <h2 class='text-center'> What Time Of Day Should We Shoot? </h2>
+    <div class="= box">
+      <div class="box-body text-center">
+        <%= f.radio_button(:time_of_day, "Sunrise", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}) %>
+        <%= f.label :sunrise %>
+
+        <%= f.radio_button(:time_of_day, "Sunset", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}) %>
+        <%= f.label :sunset %>
+
+        <%= f.radio_button(:time_of_day, "Daylight", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}) %>
+        <%= f.label :daylight %>
+
+        <%= f.radio_button(:time_of_day, "Dusk", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}) %>
+        <%= f.label :dusk %>
+
+        <%= f.radio_button(:time_of_day, "Night", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}) %>
+        <%= f.label :night %>
+
+        <%= f.radio_button(:time_of_day, "Any", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}) %>
+        <%= f.label :any %>
+      </div>
+    </div>
+    <%= f.hidden_field :redirect, :value => 'wizard' %>
+    <%= f.submit "Next Step", class: 'btn btn-success pull-right' %>
+  </div>
+  <div class='col-md-2'>
+
+  </div>
+</div>
+
+<% end %>
