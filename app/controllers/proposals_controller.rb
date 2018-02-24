@@ -54,7 +54,11 @@ class ProposalsController < ApplicationController
         proposal_params[:instagram_4] = params[:proposal][:instagram_4].gsub!("@", "")
       end
     @proposal = Proposal.new(proposal_params)
-    unless proposal_params[:bts].nil? || proposal_params[:bts].count == 0
+    if proposal_params[:bts].nil? || proposal_params[:bts].count == 0
+      @proposal.bts << "Photo"
+      @proposal.bts << "Video"
+      @proposal.bts << "Set up"
+    else
       @proposal.bts.clear
       proposal_params[:bts].each do |bt|
         @proposal.bts << bt

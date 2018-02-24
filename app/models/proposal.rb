@@ -61,6 +61,10 @@ class Proposal < ApplicationRecord
       is_complete = false
     end
 
+    if self.shot_list_items.count == 0
+      is_complete = false
+    end
+
     return is_complete
   end
 
