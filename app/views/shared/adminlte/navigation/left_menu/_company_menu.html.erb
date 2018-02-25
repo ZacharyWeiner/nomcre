@@ -6,5 +6,5 @@
 <li> <%= link_to '<i class="fa fa-check-square-o"></i><span>Completed Work</span>'.html_safe, proposals_completed_path %> </li>
 <li> <%= link_to '<i class="fa fa-usd"></i><span>Invoices</span>'.html_safe, invoices_path %> </li>
 <li> <%= link_to '<i class="fa fa-comments"></i><span>Communication</span>'.html_safe, chatroom_path(current_user.chatrooms.first) unless current_user.chatrooms.first.nil? %> </li>
-<li> <%= link_to '<i class="fa fa-phone"></i><span>Contact Us</span>'.html_safe, "#" %> </li>
+<li> <%= link_to '<i class="fa fa-phone"></i><span>Contact Us</span>'.html_safe, nomcre_contact_path %> </li>
 

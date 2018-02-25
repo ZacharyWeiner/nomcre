@@ -85,6 +85,6 @@ class WaitlistsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def waitlist_params
-      params.require(:waitlist).permit(:name, :email, :instagram, :px500, :facebook, :phone, :website, :smugmug, :question_1)
+      params.require(:waitlist).permit(:name, :email, :instagram, :px500, :facebook, :phone, :website, :smugmug, :question_1, :question_2, :question_3, :question_4, :question_5, :question_6)
     end
 end
