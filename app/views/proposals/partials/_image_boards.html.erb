@@ -1,7 +1,5 @@
 
-  <span class="info-box-icon bg-aqua"><i class="fa fa-globe"></i></span>
-  <div class="info-box-content">
-    <span class="info-box-number"> Inspiration Boards</span>
+
     <span class="info-box-text">
      <% unless @proposal.image_board_1.nil? || @proposal.image_board_1 == ""%>
       <%= link_to  @proposal.image_board_1, target:"_blank", class: 'btn btn-primary ' do %>
@@ -27,7 +25,6 @@
         <% end %>
       <% end %>
     </span>
-  </div>
 
 
 

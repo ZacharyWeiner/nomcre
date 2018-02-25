@@ -1,5 +1,6 @@
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require cocoon
 //= require back/plugins/bootstrap/bootstrap.min
 //= require back/plugins/bootstrap-tagsinput/bootstrap-tagsinput.min
@@ -13,6 +14,9 @@
 //= require bootstrap-toggle
 
 $(document).ready(function() {
+  $('.datepicker').datepicker({
+    dateFormat: 'dd-mm-yy'
+ });
   var table = $('.dataTable').DataTable();
 
   function icheck(){

@@ -100,9 +100,13 @@
     <%= render 'proposals/partials/instagram_inspiration' %>
     </div>
     <div class="info-box">
+      <span class="info-box-icon bg-aqua"><i class="fa fa-globe"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-number"> Inspiration Boards</span>
         <% unless (@proposal.image_board_1.nil? || @proposal.image_board_1 == "") && (@proposal.image_board_2.nil? || @proposal.image_board_2 == "") && (@proposal.image_board_3.nil? || @proposal.image_board_3 == "") && (@proposal.image_board_4.nil? || @proposal.image_board_4 == "") %>
           <%= render 'proposals/partials/image_boards' %>
-          <%end %>
+        <%end %>
+      </div>
     </div>
     <div class="info-box">
       <span class="info-box-icon bg-aqua"><i class="fa fa-plus"></i></span>

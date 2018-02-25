@@ -1,0 +1,15 @@
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>Style</h3>
+
+              <p><%= proposal.shoot_type %></p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-certificate"></i>
+            </div>
+            <% unless  (proposal.company.users.include?(current_user) == false || proposal.paid == true) %>
+              <%= link_to edit_proposal_path(proposal), class: 'small-box-footer'  do %>
+                 Edit <i class="fa fa-arrow-circle-right"></i>
+              <% end %>
+            <% end %>
+          </div>

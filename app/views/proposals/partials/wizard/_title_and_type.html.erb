@@ -57,21 +57,17 @@
       <br><br>
       <div class='row'>
         <div class='col-md-3'></div>
-        <div class='col-md-6'>
+        <div class='col-md-3'>
           <div class="box box-solid">
             <div class="box-header with-border">
               <h4 class="box-title">What Is Your Deadline?</h4>
             </div>
             <div class='form-group text-center' style="margin:12px; padding-bottom: 12px;">
-              <%= form.date_select :deadline, class: 'form-control' %>
+              <%= form.text_field :deadline,  class: 'form-control datepicker' %>
             </div>
           </div>
         </div>
-      </div>
-      <br><br>
-      <div class='row'>
-        <div class='col-md-3'></div>
-        <div class='col-md-6'>
+        <div class='col-md-3'>
           <div class="box box-solid">
             <div class="box-header with-border">
               <h4 class="box-title">Location</h4>
@@ -80,6 +76,12 @@
               <%= form.collection_select(:location_id, Location.all.order(:name), :id, :name, {}, {class: 'form-control'}) %>
             </div>
           </div>
+        </div>
+        <div class='col-md-3'></div>
+      </div>
+      <br><br>
+      <div class='row'>
+
         </div>
       </div>
 
@@ -92,6 +94,7 @@
         </div>
         <div class='col-md-3'></div>
       </div>
+      <br>
 
       <%end %>
     </div>
