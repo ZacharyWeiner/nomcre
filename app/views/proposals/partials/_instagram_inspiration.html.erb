@@ -1,16 +1,16 @@
 <div class="">
-  <span class="info-box-icon bg-aqua"><i class="fa fa-instagram"></i></span>
+  <span class="info-box-icon bg-gray-light"><i class="fa fa-instagram"></i></span>
   <div class="info-box-content">
     <span class="info-box-number">Instagram Inspiration</span>
     <span class="info-box-text">
      <% unless @proposal.instagram_1.nil? || @proposal.instagram_1 == ""%>
-      <%= link_to "http://www.instagram.com/#{@proposal.instagram_1}", target:"_blank", class: 'btn btn-primary '  do %>
+      <%= link_to "http://www.instagram.com/#{@proposal.instagram_1}", target:"_blank", class: 'btn btn-aqua '  do %>
         <i class='fa fa-instagram'></i> <%= @proposal.instagram_1 %>
       <% end %>
     <% end %>
 
     <% unless @proposal.instagram_2.nil? || @proposal.instagram_2 == "" %>
-      <%= link_to "http://www.instagram.com/#{@proposal.instagram_2}", target:"_blank", class: 'btn btn-primary '  do %>
+      <%= link_to "http://www.instagram.com/#{@proposal.instagram_2}", target:"_blank", class: 'btn btn-success '  do %>
         <i class='fa fa-instagram'></i> <%= @proposal.instagram_2 %>
       <% end %>
     <% end %>

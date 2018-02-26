@@ -16,9 +16,14 @@
 
 
   <div class="field">
-    <%= form.label :description %>
+    <div class='box box-aqua'>
+      <div class="box-header with-border">
+        <h4 class="box-title"><%= form.label :description %></h4>
+      </div>
+
     <%= form.text_area :description, id: :shot_list_item_description, class: 'form-control', rows: 2, placeholder: 'Tell us what you want the shot to look like...' %>
   </div>
+</div>
   <br>
 <% if current_user.user_type == "creative" %>
 <div class="field">
@@ -28,7 +33,7 @@
 <% else %>
 <div class='row'>
   <div class='col-md-6'>
-    <div class='box'>
+    <div class='box box-success'>
       <div class="box-header with-border">
         <h4 class="box-title">Focus Point</h4>
       </div>
@@ -50,7 +55,7 @@
   </div>
   <div class="col-md-6">
     <% if proposal.shoot_type == 'Mixed'%>
-      <div class='box'>
+      <div class='box box-purple'>
         <div class="box-header with-border">
           <h4 class="box-title">Shot Type</h4>
         </div>

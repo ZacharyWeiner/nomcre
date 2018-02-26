@@ -51,9 +51,9 @@
   <div class="col-md-5">
     <div class="info-box">
       <% if @proposal.proposal_type == 'video' %>
-        <span class="info-box-icon bg-aqua"><i class="fa fa-video-camera"></i></span>
+        <span class="info-box-icon bg-gray-light"><i class="fa fa-video-camera"></i></span>
       <% elsif @proposal.proposal_type == 'photo' %>
-        <span class="info-box-icon bg-aqua"><i class="fa fa-photo"></i></span>
+        <span class="info-box-icon bg-gray-light"><i class="fa fa-photo"></i></span>
       <% end %>
       <div class="info-box-content">
         <span class="info-box-number">Production</span>
@@ -61,28 +61,28 @@
       </div>
     </div>
     <div class="info-box">
-      <span class="info-box-icon bg-aqua"><i class="fa fa-university"></i></span>
+      <span class="info-box-icon bg-gray-light"><i class="fa fa-university"></i></span>
       <div class="info-box-content">
         <span class="info-box-number">Background</span>
         <span class="info-box-text"><%= @proposal.background %></span>
       </div>
     </div>
 <!--     <div class="info-box">
-      <span class="info-box-icon bg-aqua"><i class="fa fa-image"></i></span>
+      <span class="info-box-icon bg-gray-light"><i class="fa fa-image"></i></span>
       <div class="info-box-content">
         <span class="info-box-number">Shot Type</span>
         <span class="info-box-text"><% @proposal.shoot_type%></span>
       </div>
     </div> -->
     <div class="info-box">
-      <span class="info-box-icon bg-aqua"><i class="fa fa-sun-o"></i></span>
+      <span class="info-box-icon bg-gray-light"><i class="fa fa-sun-o"></i></span>
       <div class="info-box-content">
         <span class="info-box-number">Time Of Day</span>
         <span class="info-box-text"><%= @proposal.time_of_day %></span>
       </div>
     </div>
     <!-- <div class="info-box">
-      <span class="info-box-icon bg-aqua"><i class="fa fa-crosshairs"></i></span>
+      <span class="info-box-icon bg-gray-light"><i class="fa fa-crosshairs"></i></span>
       <div class="info-box-content">
         <span class="info-box-number">Focus Points</span>
         <span class="info-box-text">
@@ -100,7 +100,7 @@
     <%= render 'proposals/partials/instagram_inspiration' %>
     </div>
     <div class="info-box">
-      <span class="info-box-icon bg-aqua"><i class="fa fa-globe"></i></span>
+      <span class="info-box-icon bg-gray-light"><i class="fa fa-globe"></i></span>
       <div class="info-box-content">
         <span class="info-box-number"> Inspiration Boards</span>
         <% unless (@proposal.image_board_1.nil? || @proposal.image_board_1 == "") && (@proposal.image_board_2.nil? || @proposal.image_board_2 == "") && (@proposal.image_board_3.nil? || @proposal.image_board_3 == "") && (@proposal.image_board_4.nil? || @proposal.image_board_4 == "") %>
@@ -109,7 +109,7 @@
       </div>
     </div>
     <div class="info-box">
-      <span class="info-box-icon bg-aqua"><i class="fa fa-plus"></i></span>
+      <span class="info-box-icon bg-gray-light"><i class="fa fa-plus"></i></span>
       <div class="info-box-content">
         <span class="info-box-number">BTS</span>
         <span class="info-box-text">

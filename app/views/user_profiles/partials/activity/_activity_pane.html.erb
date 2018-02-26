@@ -1,48 +1,61 @@
+<style type="text/css">
+  .activity-background{background: #f4f4f4}
+  .small-padding-top: {padding-top: 6px;}
+</style>
 <div class="active tab-pane" id="activity">
   <% @user_profile.activities.each do |activity|%>
-    <div class="post">
+    <div class="post box-body">
     <div class="user-block">
       <%= image_tag @user_profile.profile_photo, class: 'img-circle img-bordered-sm' %>
           <span class="username">
             <a href="#"><%= @user_profile.display_name%></a>
             <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
           </span>
-      <span class="description"><%= activity.activity_type %>- <%= activity.created_at %> </span>
+      <span class="description"><%= activity.activity_type %>- <%= time_ago_in_words(activity.created_at) %> ago</span>
     </div>
     <%if activity.activity_type == UserActivityType.collection_added %>
+      <div class='activity-background' >
        <% collection = Collection.find(activity.object_id) %>
+       <br>
        <%= link_to collection  do %>
-        <h4> <%= collection.title %> </h4>
+        <h4 style='padding-left:24px;'> <%= collection.title %> </h4>
        <% end %>
-       <div class='row'>
+       <div class='row' style='padding-left: 12px;'>
         <% collection.collection_items.each do |ci| %>
-          <div class='col-md-3'>
+          <div class='col-md-3 text-center'>
             <% if ci.item_type == "image" %>
               <%= image_tag ci.file.url(:small), class: 'img-responsive' %>
             <% else %>
             <% end %>
           </div>
         <% end %>
-       </div>
+     </div>
+      </div>
     <% elsif  activity.activity_type == UserActivityType.collection_photo_added %>
+      <div class='activity-background' >
        <%= image_tag CollectionItem.find(activity.object_id).file %> <br>
+     </div>
     <% elsif  activity.activity_type == UserActivityType.collection_video_added %>
-      <div class='text-center'>
+      <div class='text-center activity-background'>
         <%= video_tag CollectionItem.find(activity.object_id).video, controls: true, autobuffer: true, oncontextmenu:"return false;",  controlsList:"nodownload", class: 'img-responsive', style: 'max-height: 400px;' %> <br>
       </div>
     <% elsif  activity.activity_type == UserActivityType.proposal_accepted %>
-      from: <%= Proposal.find(activity.object_id).company.name %> <br>
+      <div class='activity-background' >
+        from: <%= Proposal.find(activity.object_id).company.name %> <br>
+      </div>
     <% elsif  activity.activity_type == UserActivityType.proposal_created %>
-      <%= Proposal.find(activity.object_id).company.name %> <br>
+      <div class='activity-background' >
+        <%= Proposal.find(activity.object_id).company.name %> <br>
+      </div>
     <% elsif  activity.activity_type == UserActivityType.travel_plan_created %>
         <%si = ScheduleItem.find(activity.object_id) %>
-        <div class="info-box">
+        <div class="info-box activity-background">
           <span class="info-box-icon bg-aqua"><i class="fa fa-map-marker"></i></span>
           <div class="info-box-content">
             <span class="info-box-number">Is Traveling To:</span>
             <span class="info-box-number"><%= si.location.name %></span>
-            <br>
-            <span class="info-box-text">On: <small><%= si.start_date %></small></span>
+
+            <span class="info-box-text">On: <small><%= si.start_date.strftime(" %A,  %B %d, %Y") %></small></span>
           </div>
         </div>
     <% else %>
