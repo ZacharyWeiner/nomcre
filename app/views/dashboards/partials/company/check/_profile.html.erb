@@ -1,0 +1,7 @@
+<% if current_user.company.name.nil? || current_user.company.phone.nil? || current_user.company.logo.nil? || current_user.company.website.nil?  || current_user.company.instagram.nil? %>
+  <%= render 'dashboards/partials/company/check/profile_incomplete' %>
+<% else %>
+<div class="alert alert-success ">
+  <%= render 'dashboards/partials/company/check/profile_complete' %>
+  </div>
+<% end %>

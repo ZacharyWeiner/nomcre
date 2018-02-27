@@ -1,27 +1,115 @@
 <% if current_user.company.proposals.nil? || current_user.company.proposals.count == 0 %>
   <% @proposal = Proposal.new %>
   <div class="alert alert-danger ">
-    <h4><i class="icon fa fa-ban"></i> Create Your First Proposal</h4>
-    <hr>
-    <%= form_for(@proposal) do |f| %>
-      <% unless current_user.company.nil? %>
-      <%= f.hidden_field :company_id, :value => current_user.company.id %>
-      <% end %>
-      <%= render :partial => 'proposals/partials/form/title', :locals => {:f => f} %>
-      <%= render :partial => 'proposals/partials/form/deadline', :locals => {:f => f} %>
-      <%= render :partial => 'proposals/partials/form/creative_brief', :locals => {:f => f} %>
-      <%= render :partial => 'proposals/partials/form/location_selection', :locals => {:f => f} %>
-
+    <div class='text-center'>
+  <h2 class="box-title ">Set Up Your First Project</h2>
+</div>
+<div class="box box-danger" style="color: black">
+    <div class="box-header with-border text-center">
+    </div>
+    <div class="box-body">
+      <%= form_for @proposal, class: 'form-horizontal' do |form| %>
       <div class='row'>
+        <div class='col-md-3'></div>
         <div class='col-md-6'>
-          <%= render :partial => 'proposals/partials/form/content_type', :locals => {:f => f} %>
+          <div class="box box-solid">
+            <h3 class='text-center'> What Should I Be Called? </h3>
+            <%= form.text_field :title, class: 'form-control', placeholder: "Give your project a cool name ... " %>
+          </div>
         </div>
-        <div class='col-md-6'>
-          <%= render :partial => 'proposals/partials/form/shoot_type', :locals => {:f => f} %>
+        <div class='col-md-3'></div>
+      </div>
+      <br> <br>
+
+        <div class="row">
+          <h3 class='text-center'>Is It A Photo Or Video Project? </h3><br>
+          <div class="col-md-6">
+            <div class='row'>
+                <div class='col-md-4'></div>
+                  <div class='text-center col-md-8  '>
+                    <div class='rounded'>
+                    <i class='fa fa-image fa-4x'></i>
+                    <br><br>
+
+                    <%= form.radio_button(:proposal_type, "photo", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}) %>
+                    <%= form.label(:proposal_type_photo, "Photo") %>
+                  </div>
+                </div>
+
+              </div>
+
+
+          </div>
+          <div class="col-md-6">
+             <div class='row'>
+
+                <div class='text-center col-md-8'>
+
+                    <i class='fa fa-video-camera fa-4x'></i>
+                    <br><br>
+                    <%= form.radio_button(:proposal_type, "video", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}) %>
+                    <%= form.label(:proposal_type_video, "Video") %>
+                  </div>
+
+                <div class='col-md-4'></div>
+
+              </div>
+          </div>
+        </div>
+      <br><br>
+      <div class='row'>
+        <div class='col-md-3'></div>
+        <div class='col-md-3'>
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <h4 class="box-title">When Do You Need This??</h4>
+            </div>
+            <div class='form-group text-center' style="margin:12px; padding-bottom: 12px;">
+              <%= form.text_field :deadline,  class: 'form-control datepicker' %>
+            </div>
+          </div>
+        </div>
+        <div class='col-md-3'>
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <h4 class="box-title">Location</h4>
+
+            </div>
+            <div class='form-group' style="margin:12px; padding-bottom: 12px;">
+              <br>
+              <%= form.collection_select(:location_id, Location.all.order(:name), :id, :name, {}, {class: 'form-control'}) %>
+            </div>
+          </div>
+        </div>
+        <div class='col-md-3'></div>
+      </div>
+      <br><br>
+      <div class='row'>
+
         </div>
       </div>
-      <%= f.submit "Save", class: 'btn btn-success' %>
-    <% end %>
+
+      <div class='row'>
+        <div class='col-md-3'></div>
+        <div class='col-md-6'>
+          <%= form.hidden_field :company_id, :value => current_user.company.id %>
+          <%= form.hidden_field :redirect, :value => 'wizard' %>
+          <%= form.submit "Get Started", class: 'btn btn-success btn-block' %>
+        </div>
+        <div class='col-md-3'></div>
+      </div>
+      <br>
+
+      <%end %>
+    </div>
+
+</div>
+
+
+
+
+
+
   </div>
 <% else %>
   <div class="alert alert-success ">

@@ -1,0 +1,64 @@
+<div class="row">
+  <div style='padding:12px;'>
+  <h4><i class='fa fa-users'></i>  Company Profile Complete <i class='fa fa-check pull-right'></i></h4>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-md-3'>
+      <div class="box box-success">
+        <div class="box-body box-profile">
+          <%= image_tag current_user.company.logo, class: 'img-responsive img-circle', style: 'max-width:150px;' %>
+          <p class="text-muted text-center"><%= current_user.email%></p>
+          <%= link_to current_user.company, class: 'btn btn-primary btn-block' do %>
+            <i class='fa fa-eye'></i> View Company
+          <% end %>
+        </div>
+        <!-- /.box-body -->
+      </div>
+  </div>
+  <div class='col-md-9'>
+    <div class="box box-success">
+            <div class="box-header with-border">
+              <h3 class="box-title"><%= current_user.company.name  %></h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <!-- <strong><i class="fa fa-book margin-r-5"></i> Education</strong> -->
+
+              <div class="info-box text-muted">
+                <span class="info-box-icon bg-gray-light "><i class="fa fa-instagram"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Instagram</span>
+                  <span class="info-box-number">@<%= @current_user.company.instagram%></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+
+
+              <div class="info-box text-muted">
+                <span class="info-box-icon bg-gray-light"><i class="fa fa-phone"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Phone Number</span>
+                  <span class="info-box-number"><%= @current_user.company.phone%></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+
+              <div class="info-box text-muted">
+                <span class="info-box-icon bg-gray-light"><i class="fa fa-globe"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">Website</span>
+                  <span class="info-box-number"><%= @current_user.company.website%></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+  </div>
+</div>
+
