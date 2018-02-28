@@ -1,9 +1,8 @@
-<% if current_user.collections.count == 0 || current_user.collections.first.collection_items.nil? || current_user.collections.first.collection_items.count == 0 %>
+<% if current_user.collections.count == 0  %>
   <div class="alert alert-danger ">
-    <h4><i class="icon fa fa-object-group"></i> Add A Collection</h4>
+    <h4><i class="icon fa fa-object-group"></i> Add Your First Collection</h4>
     <hr>
-    Danger alert preview. This alert is dismissable. A wonderful serenity has taken possession of my entire
-    soul, like these sweet mornings of spring which I enjoy with my whole heart.
+    <%= render :partial => 'collections/form', :locals => {:collection => Collection.new}%>
   </div>
 <% else %>
 <div class="alert alert-success ">
@@ -14,11 +13,13 @@
     </div>
     <div class='row'>
       <% collection_items = current_user.collections.first.collection_items.take(6)%>
-      <% row_size = (12/collection_items.count).to_i %>
-      <% collection_items.each do |ci| %>
-        <div class="col-md-<%= row_size %>">
-          <%= image_tag ci.file, class: 'img-responsive', style: 'max-width:150px;' %>
-        </div>
+      <% if collection_items.count > 0 %>
+        <% row_size = (12/collection_items.count).to_i %>
+        <% collection_items.each do |ci| %>
+          <div class="col-md-<%= row_size %>">
+            <%= image_tag ci.file, class: 'img-responsive', style: 'max-width:150px;' %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>

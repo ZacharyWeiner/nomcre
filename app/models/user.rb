@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :notifications
   has_many :schedule_items
   mount_uploader :profile_image, FileUploader
-  has_one :user_profile
+  has_one :user_profile, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

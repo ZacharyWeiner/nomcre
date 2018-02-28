@@ -1,0 +1,51 @@
+<div class="alert alert-danger">
+  <h4><i class="icon fa fa-plane"></i> Update Your Travel Schedule</h4>
+  <hr>
+  <% schedule_item = ScheduleItem.new %>
+  <%= form_for(schedule_item) do |f| %>
+  <% if schedule_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(schedule_item.errors.count, "error") %> prohibited this schedule_item from being saved:</h2>
+
+      <ul>
+      <% schedule_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class='row'>
+    <div class='col-md-4'>
+      <div class="form-group">
+        <%= f.label :start_date %>
+        <%= f.text_field :start_date,  class: 'form-control datepicker' %>
+      </div>
+    </div>
+    <div class='col-md-4'>
+       <div class="form-group">
+        <%= f.label :end_date %>
+        <%= f.text_field :end_date,  class: 'form-control datepicker' %>
+      </div>
+    </div>
+    <div class="col-md-4">
+        <div class="form-group">
+        <%= f.label :location %><br>
+        <span style="color:black" ><%= f.collection_select(:location_id, Location.all.order(:name), :id, :name, {class: 'form-control'}) %></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :notes %>
+    <%= f.text_area :notes, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Add Travel Plan", class: "btn btn-success pull-right" %>
+  </div>
+  <br>
+<% end %>
+
+</div>
