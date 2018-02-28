@@ -1,5 +1,11 @@
-
-
+<% if current_user.user_type == "creative" %>
+<% proposals = current_user.proposals.where('deadline > ?', Date.today - 14.days ) %>
+<%= current_user.company.proposals.count %>
+<% else %>
+<% proposals = current_user.company.proposals.where('deadline > ?', Date.today - 14.days ) %>
+<%= "company" %>
+<% end %>
+<%= proposals.count %>
 <div class="people-list" id="people-list">
   <ul class="list" style="list-style: none;">
     <li>
@@ -9,15 +15,18 @@
             <% end %>
             <hr>
           </li>
-    <% current_user.chatrooms.uniq.each do |room| %>
+
+    <% if proposals.count > 0 %>
+    <%proposals.each do |proposal| %>
       <li class="clearfix">
-        <%= image_tag room.messages.last.user.profile_image unless room.messages.last.nil? %>
+        <%= image_tag proposal.chatroom.messages.last.user.profile_image unless proposal.chatroom.messages.last.nil? %>
         <div class="about">
-          <div class="name"><%= link_to room.proposal.title, chatroom_path(room), style: 'color:white; text-decoration: none;' %></div>
+          <div class="name"><%= link_to proposal.title, chatroom_path(proposal.chatroom), style: 'color:white; text-decoration: none;' %></div>
           <div class="status">
           </div>
         </div>
       </li>
     <% end %>
+    <%end %>
   </ul>
 </div>

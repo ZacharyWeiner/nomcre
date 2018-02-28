@@ -3,6 +3,6 @@
     <h4 class="box-title">Location</h4>
   </div>
   <div style="margin:12px; padding-bottom: 12px;">
-    <%= f.collection_select(:location_id, Location.all.order(:name), :id, :name) %>
+    <%= f.collection_select(:location_id, Location.all.order(:region, :country, :name), :id, :name) %>
   </div>
 </div>

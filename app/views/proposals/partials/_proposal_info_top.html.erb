@@ -34,7 +34,7 @@
     <% if (current_user.company ==  @proposal.company) && @proposal.accepted != true %>
       <%= link_to 'Edit', edit_proposal_path(@proposal), class: "btn btn-primary btn-block" %>
     <% end %>
-    <% if @proposal.accepted == true %>
+    <% if @proposal.accepted == true && @proposal.deadline > Date.today - 14.days%>
       <%= link_to chatroom_path(@proposal.chatroom), class: "btn btn-primary btn-block" do  %>
         <i class="fa fa-comments-o"></i> Chat
       <% end %>

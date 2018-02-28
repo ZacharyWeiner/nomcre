@@ -1,3 +1,6 @@
+<style type="text/css">
+  .edit-padding{padding-right: 12px;}
+</style>
 <div class='continer'>
 <div class='row'>
   <div class="col-md-7">
@@ -56,6 +59,11 @@
         <span class="info-box-icon bg-gray-light"><i class="fa fa-photo"></i></span>
       <% end %>
       <div class="info-box-content">
+        <div class='edit-padding'>
+        <%= link_to edit_proposal_path(@proposal), class: 'pull-right' do %>
+          <i class='fa fa-edit'></i> Edit
+        <% end %>
+      </div>
         <span class="info-box-number">Production</span>
         <span class="info-box-text"><%= @proposal.proposal_type %></span>
       </div>
@@ -63,9 +71,15 @@
     <div class="info-box">
       <span class="info-box-icon bg-gray-light"><i class="fa fa-university"></i></span>
       <div class="info-box-content">
+        <div class='edit-padding'>
+        <%= link_to edit_proposal_path(@proposal), class: 'pull-right' do %>
+          <i class='fa fa-edit'></i> Edit
+        <% end %>
+      </div>
         <span class="info-box-number">Background</span>
         <span class="info-box-text"><%= @proposal.background %></span>
       </div>
+
     </div>
 <!--     <div class="info-box">
       <span class="info-box-icon bg-gray-light"><i class="fa fa-image"></i></span>
@@ -77,8 +91,14 @@
     <div class="info-box">
       <span class="info-box-icon bg-gray-light"><i class="fa fa-sun-o"></i></span>
       <div class="info-box-content">
+         <div class='edit-padding'>
+        <%= link_to edit_proposal_path(@proposal), class: 'pull-right' do %>
+          <i class='fa fa-edit'></i> Edit
+        <% end %>
+      </div>
         <span class="info-box-number">Time Of Day</span>
         <span class="info-box-text"><%= @proposal.time_of_day %></span>
+
       </div>
     </div>
     <!-- <div class="info-box">
@@ -98,12 +118,20 @@
 
     <div class="info-box">
     <%= render 'proposals/partials/instagram_inspiration' %>
+
     </div>
     <div class="info-box">
       <span class="info-box-icon bg-gray-light"><i class="fa fa-globe"></i></span>
       <div class="info-box-content">
+            <div class='edit-padding pull-right'>
+        <%= link_to edit_proposal_path(@proposal), class: '' do %>
+          <i class='fa fa-edit'></i> Edit
+        <% end %>
+      </div>
         <span class="info-box-number"> Inspiration Boards</span>
-        <% unless (@proposal.image_board_1.nil? || @proposal.image_board_1 == "") && (@proposal.image_board_2.nil? || @proposal.image_board_2 == "") && (@proposal.image_board_3.nil? || @proposal.image_board_3 == "") && (@proposal.image_board_4.nil? || @proposal.image_board_4 == "") %>
+        <% if (@proposal.image_board_1.nil? || @proposal.image_board_1 == "") && (@proposal.image_board_2.nil? || @proposal.image_board_2 == "") && (@proposal.image_board_3.nil? || @proposal.image_board_3 == "") && (@proposal.image_board_4.nil? || @proposal.image_board_4 == "") %>
+          No Inspiration Added
+        <% else %>
           <%= render 'proposals/partials/image_boards' %>
         <%end %>
       </div>
@@ -111,6 +139,11 @@
     <div class="info-box">
       <span class="info-box-icon bg-gray-light"><i class="fa fa-plus"></i></span>
       <div class="info-box-content">
+              <div class='edit-padding pull-right'>
+        <%= link_to edit_proposal_path(@proposal), class: '' do %>
+          <i class='fa fa-edit'></i> Edit
+        <% end %>
+      </div>
         <span class="info-box-number">BTS</span>
         <span class="info-box-text">
           <% @proposal.bts.each do |bts| %>

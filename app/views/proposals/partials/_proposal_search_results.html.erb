@@ -14,6 +14,7 @@
   </div>
   <!-- /.user-block -->
   <p>
+    <%= render :partial =>  'proposals/partials/search_results/request_buttons', :locals => {:sr => sr} %>
     <div class='row'>
       <% sr.user.collections.first.collection_items.where(item_type: "image").reverse.take(4).each do |ci| %>
         <div class='col-md-3'>
@@ -28,7 +29,8 @@
         <i class="fa fa-eye margin-r-5"></i> View</a>
       <%end%>
     </li>
-    <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+    <li>
+
     </li>
   </ul>
 </div>

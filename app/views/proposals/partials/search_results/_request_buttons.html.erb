@@ -1,3 +1,4 @@
+<div class='pull-right'>
   <!-- New Layout -->
   <% if @proposal.accepted != true && @proposal.user.nil? %>
     <% puts " No User Has Been Approved  " %>
@@ -43,3 +44,5 @@
       <%= link_to "Already Assigned", "#", class: 'btn btn-primary disabled' %>
     <% end %>
   <% end %>
+</div>
+<br>

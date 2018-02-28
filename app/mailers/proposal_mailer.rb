@@ -6,7 +6,7 @@ class ProposalMailer < ApplicationMailer
     mail(to: @user.email, subject: 'Your Deposit Has Been Recieved!')
   end
 
-  def balance_recieved(proposal)
+  def balance_received(proposal)
     @proposal = proposal
     @user = proposal.company.users.first
     @url  = 'http://nomcre.com/proposals/' + "#{proposal.id}"
@@ -31,12 +31,12 @@ class ProposalMailer < ApplicationMailer
     mail(to: @creative.email, subject: "#{@company.name} Requested Your Skills")
   end
 
-  def proposal_assigned(proposal)
-    @proposal = proposal
-    @user = proposal.company.users.first
-    @company = proposal.company
-    @creative = proposal.user
-    @url  = 'http://nomcre.com/proposals/' + "#{proposal.id}"
+  def proposal_assigned(proposal_request)
+    @proposal = proposal_request.proposal
+    @user = @proposal.company.users.first
+    @company = @proposal.company
+    @creative = @proposal.user
+    @url  = 'http://nomcre.com/proposals/' + "#{@proposal.id}"
     mail(to: @user.email, subject: "You've got new work on NomCre")
   end
 end
