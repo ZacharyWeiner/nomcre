@@ -72,22 +72,7 @@
               <h4 class="box-title">Location</h4>
             </div>
             <div class='form-group' style="margin:12px; padding-bottom: 12px;">
-              <% regions  = Location.where(location_type: 'Region') %>
-              <% countries = Location.where(location_type: 'Country').collect{|l| [l.name, l.id]}  %>
-              <% cities = Location.where(location_type: 'City').collect{|l| [l.name, l.id]}  %>
-              <% options = [] %>
-              <% regions.each do |region| %>
-                <% options << ["#{region.name}", "#{region.id}"] %>
-                <% region_countries = Location.where(parent_id: region.id) %>
-                <% region_countries.each do |country| %>
-                  <% options << ["#{region.name} : #{country.name}", "#{country.id}"] %>
-                  <% country_cities = Location.where(parent_id: country.id) %>
-                  <% country_cities.each do |city| %>
-                   <% options << ["#{region.name} : #{country.name} : #{city.name}", "#{city.id}"] %>
-                  <% end %>
-                <% end %>
-              <% end %>
-              <%= form.select(:location_id, options_for_select(options), {}, {class: 'form-control'}) %>
+              <%= form.select(:location_id, options_for_select(Location.locations_for_select), {}, {class: 'form-control'}) %>
             </div>
           </div>
         </div>

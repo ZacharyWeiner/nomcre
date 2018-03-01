@@ -2,8 +2,10 @@
   <span class="info-box-icon bg-gray-light"><i class="fa fa-instagram"></i></span>
   <div class="info-box-content">
           <div class='edit-padding'>
+            <%if current_user.company == @proposal.company  %>
         <%= link_to edit_proposal_path(@proposal), class: 'pull-right' do %>
           <i class='fa fa-edit'></i> Edit
+        <% end %>
         <% end %>
       </div>
     <span class="info-box-number">Insta Inspiration</span>

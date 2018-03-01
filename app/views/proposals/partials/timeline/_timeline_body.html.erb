@@ -18,7 +18,7 @@
         <i class='fa fa-map-marker'></i>
         <span><b> Location</b> <p class='pull-right'><%= proposal.location.name unless proposal.location.nil?%></p></span>
       </li>
-      <% if proposal.user %>
+      <% if proposal.user && proposal.deadline > (Date.today - 14.days) %>
         <li class="list-group-item">
           <%= link_to proposal.chatroom, class: 'btn btn-primary btn-block' do %>
           <i class='fa fa-comments-o'></i> Chat
