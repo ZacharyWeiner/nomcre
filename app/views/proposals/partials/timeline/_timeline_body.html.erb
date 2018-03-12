@@ -28,7 +28,7 @@
     </ul>
   </div>
   <div class='col-md-9'>
-    <p><%= proposal.content.first(300) unless proposal.content.nil? %>...</p>
+    <p><%= simple_format(proposal.content.first(300)) unless proposal.content.nil? %>...</p>
     <br>
     <div class="row">
       <div class="col-md-6">

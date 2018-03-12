@@ -15,8 +15,9 @@
           </li>
 
     <% if proposals.count > 0 %>
-    <%proposals.each do |proposal| %>
+    <% proposals.each do |proposal| %>
       <li class="clearfix">
+        <% puts proposal.id %>
         <%= image_tag proposal.chatroom.messages.last.user.profile_image unless proposal.chatroom.messages.last.nil? %>
         <div class="about">
           <div class="name"><%= link_to proposal.title, chatroom_path(proposal.chatroom), style: 'color:white; text-decoration: none;' %></div>
