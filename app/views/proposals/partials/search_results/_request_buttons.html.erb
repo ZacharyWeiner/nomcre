@@ -5,30 +5,30 @@
     <% puts '-------No User Assigned  -------' %>
     <% if @proposal.deposit_paid != true %>
       <% puts " Deposit not yet Paid " %>
-      <%= link_to "Deposit Required", "#", class: 'btn btn-primary disabled' %>
+      <%= link_to "<i class='fa fa-dollar'> </i> Deposit Required".html_safe, "#", class: 'btn btn-secondary disabled' %>
     <% else %>
       <% puts " Deposit is already Paid " %>
       <% context_user = User.find(sr.user_id) %>
       <% if context_user.has_request(@proposal.id)%>
         <% puts " A Request Already Exists For This User " %>
         <% if context_user.get_proposal_request(@proposal.id).accepted %>
-          <%= link_to "Request Accepted", "#", class: 'btn btn-primary disabled' %>
+          <%= link_to "<i class='fa fa-check'> </i> Request Accepted".html_safe, "#", class: 'btn btn-secodary disabled' %>
           <% if @proposal.paid == true %>
             <% puts " proposal is  paid for " %>
             <% if context_user.get_proposal_request(@proposal.id).accepted? %>
               <% puts " Creative Accepted Request " %>
-              <%= link_to "Approve", proposal_approve_request_path(@proposal), class: 'btn btn-success btn-block' %>
+              <%= link_to "<i class='fa fa-check'> </i> Approve".html_safe, proposal_approve_request_path(@proposal), class: 'btn btn-secondary btn-block' %>
             <% end %>
           <% else %>
             <% puts " proposal is not paid for " %>
-            <%= link_to "Complete Payment", proposal_payment_path(@proposal), class: 'btn btn-warning btn-block' %>
+            <%= link_to "<i class='fa fa-dollar'> </i>Complete Payment".html_safe, proposal_payment_path(@proposal), class: 'btn btn-secondary btn-block' %>
           <% end %>
         <% else %>
-          <%= link_to "Already Requested", "#", class: 'btn btn-primary disabled' %>
+          <%= link_to "<i class='fa fa-check'> </i> Already Requested".html_safe, "#", class: 'btn btn-secondary disabled' %>
         <% end %>
       <% else %>
         <% puts " No Request Exists For This User " %>
-        <%= link_to "Request Creative", proposal_create_request_path(@proposal, sr.user), class: 'btn btn-primary' %>
+        <%= link_to "<i class='fa fa-plus'> </i> Request Creative".html_safe, proposal_create_request_path(@proposal, sr.user), class: 'btn btn-secondary' %>
       <% end %>
     <% end %>
   <% else %>
@@ -37,11 +37,11 @@
     <% if @proposal.user.id == sr.user_id %>
       <% puts " This Is The Assigned User " %>
         <% puts '-------Assigned To THIS User -------' %>
-         <%= link_to "Approved", "#", class: 'btn btn-success disabled' %>
+         <%= link_to "<i class='fa fa-check'> </i> Approved".html_safe, "#", class: 'btn btn-secondary disabled' %>
     <% else %>
       <% puts " This Proposal is Assigned To Someone Else " %>
         <% puts '-------Assigned To Different User -------' %>
-      <%= link_to "Already Assigned", "#", class: 'btn btn-primary disabled' %>
+      <%= link_to "<i class='fa fa-check'> </i> Already Assigned".html_safe, "#", class: 'btn btn-secondary disabled' %>
     <% end %>
   <% end %>
 </div>

@@ -1,11 +1,9 @@
 <% if current_user.user_type == "creative" %>
 <% proposals = current_user.proposals.where('deadline > ?', Date.today - 14.days ) %>
-<%= current_user.company.proposals.count %>
 <% else %>
 <% proposals = current_user.company.proposals.where('deadline > ?', Date.today - 14.days ) %>
 <%= "company" %>
 <% end %>
-<%= proposals.count %>
 <div class="people-list" id="people-list">
   <ul class="list" style="list-style: none;">
     <li>

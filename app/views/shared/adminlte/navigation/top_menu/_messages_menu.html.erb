@@ -16,7 +16,7 @@
         <li><!-- start message -->
           <%= link_to chatroom_path(@chatroom) do %>
             <div class="pull-left">
-              <img src="<%= @chatroom.messages.last.user.profile_image.url unless @chatroom.messages.last.user.profile_image.nil? %>" class="img-circle" alt="User Image">
+              <img src="<%= @chatroom.messages.last.user.profile_image%>" class="img-circle" alt="User Image">
             </div>
             <h4>
               <%= @chatroom.messages.last.user.email %>

@@ -1,5 +1,5 @@
 <div class="alert alert-danger">
-  <h4><i class="icon fa fa-plane"></i> Update Your Travel Schedule</h4>
+  <h4><i class="icon fa fa-plane"></i> Update Your Travel Schedule <i class='fa fa-ban pull-right'></i></h4>
   <hr>
   <% schedule_item = ScheduleItem.new %>
   <%= form_for(schedule_item) do |f| %>
@@ -43,7 +43,8 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Add Travel Plan", class: "btn btn-success pull-right" %>
+    <%= f.button '<i class="fa fa-plane"></i> Add Travel Plan'.html_safe, class: "btn btn-success pull-right" %>
+    <br>
   </div>
   <br>
 <% end %>

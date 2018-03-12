@@ -3,10 +3,12 @@
     <%= message.user.email %>
   </div>
   <div class='col-md-10'>
-    <%= message.content %>
+    <%= message %>
     <br>
-    <% unless message.file.nil? %>
+    <% if message.file? %>
       <%= image_tag message.file, class: 'img-responsive'%>
+    <% else %>
+    <p> no file </p>
     <%end %>
   </div>
 </div>

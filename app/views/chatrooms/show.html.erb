@@ -4,7 +4,6 @@
   </div>
   <div class="container clearfix">
     <%= render 'chatrooms/partials/user_chatroom_list'%>
-
     <div class="chat">
       <% unless @chatroom.messages.nil? || @chatroom.messages.count == 0 %>
       <div class="chat-header clearfix">
@@ -21,7 +20,7 @@
 
       <div class="chat-history" >
         <ul style="list-style: none;">
-          <% @chatroom.messages.reverse.each do |message| %>
+          <% @chatroom.messages.each do |message| %>
           <!-- Right Side -->
             <% if message.user == current_user %>
               <li class="clearfix">
@@ -32,6 +31,9 @@
                 </div>
                 <div class="message other-message float-right">
                   <%= message.content.html_safe %>
+                   <% unless message.file.nil? %>
+                    <%= image_tag message.file, class: 'img-responsive'%>
+                  <%end %>
                 </div>
               </li>
             <% else %>
@@ -43,6 +45,9 @@
                 </div>
                 <div class="message my-message">
                  <%= message.content.html_safe%>
+                  <% unless message.file.nil? %>
+                    <%= image_tag message.file, class: 'img-responsive'%>
+                  <%end %>
                 </div>
               </li>
             <% end %>

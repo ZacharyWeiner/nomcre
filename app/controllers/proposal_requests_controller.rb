@@ -2,9 +2,9 @@ class ProposalRequestsController < ApplicationController
   layout 'adminlte'
   def requests
      if current_user.user_type == 'creative'
-      @requests = ProposalRequest.where(requested: current_user.id).where(accepted: nil)
+      @requests = ProposalRequest.where(requested: current_user.id).where(approved: nil)
      elsif current_user.user_type == 'company'
-      @requests = ProposalRequest.where(requested_by: current_user.id).where(accepted: nil)
+      @requests = ProposalRequest.where(requested_by: current_user.id).where(approved: nil)
      end
 
     @notifications = Notification.where(user_id: current_user.id).where(notification_type: "New Request").where(read: false)

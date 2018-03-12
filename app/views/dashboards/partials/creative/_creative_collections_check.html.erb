@@ -1,6 +1,6 @@
 <% if current_user.collections.count == 0  %>
   <div class="alert alert-danger ">
-    <h4><i class="icon fa fa-object-group"></i> Add Your First Collection</h4>
+    <h4><i class="icon fa fa-object-group"></i> Add Your First Collection <i class='fa fa-ban pull-right'></i></h4>
     <hr>
     <%= render :partial => 'collections/form', :locals => {:collection => Collection.new}%>
   </div>

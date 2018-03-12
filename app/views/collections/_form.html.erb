@@ -17,7 +17,8 @@
   <%= f.hidden_field :user_id, :value => current_user.id %>
   <br>
   <div class="actions">
-    <%= f.submit "Save Collection", class: 'btn btn-success' %>
+    <%= f.button "<i class='fa fa-save'></i> Save Collection".html_safe, class: 'btn btn-success pull-right' %>
+    <br><br>
   </div>
 <% end %>
 

@@ -1,5 +1,19 @@
 <% unless @proposal.deposit_paid %>
-  <p> Deposit Must Be Paid Prior To Requesting Creatives </p>
+
+<div class="small-box bg-yellow">
+  <div class="inner">
+    <h3>Deposit Must Be Paid</h3>
+
+    <p>Prior To Requesting Creatives</p>
+  </div>
+  <div class="icon">
+    <i class="fa fa-certificate"></i>
+  </div>
+</div>
+
+
+
+  <p>   </p>
 <% end %>
 <% @creatives = @proposal.find_creatives %>
 <% @proposal.find_creatives.each do |sr| %>
@@ -15,6 +29,7 @@
   <!-- /.user-block -->
   <p>
     <%= render :partial =>  'proposals/partials/search_results/request_buttons', :locals => {:sr => sr} %>
+    <br>
     <div class='row'>
       <% sr.user.collections.first.collection_items.where(item_type: "image").reverse.take(4).each do |ci| %>
         <div class='col-md-3'>
