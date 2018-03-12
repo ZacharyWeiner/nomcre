@@ -1,9 +1,4 @@
-<% if current_user.user_type == "creative" %>
-<% proposals = current_user.proposals.where('deadline > ?', Date.today - 14.days ) %>
-<% else %>
-<% proposals = current_user.company.proposals.where('deadline > ?', Date.today - 14.days ) %>
-<%= "company" %>
-<% end %>
+
 <div class="people-list" id="people-list">
   <ul class="list" style="list-style: none;">
     <li>
@@ -14,8 +9,8 @@
             <hr>
           </li>
 
-    <% if proposals.count > 0 %>
-    <% proposals.each do |proposal| %>
+    <% if @proposals.count > 0 %>
+    <% @proposals.each do |proposal| %>
       <li class="clearfix">
         <% puts proposal.id %>
         <%= image_tag proposal.chatroom.messages.last.user.profile_image unless proposal.chatroom.messages.last.nil? %>

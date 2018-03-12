@@ -32,7 +32,7 @@
                 <div class="message other-message float-right">
                   <%= message.content.html_safe %>
                    <% unless message.file.nil? %>
-                    <%= image_tag message.file, class: 'img-responsive'%>
+                    <%= image_tag message.file, class: 'img-responsive', style: 'max-width:500px;'%>
                   <%end %>
                 </div>
               </li>
@@ -46,7 +46,7 @@
                 <div class="message my-message">
                  <%= message.content.html_safe%>
                   <% unless message.file.nil? %>
-                    <%= image_tag message.file, class: 'img-responsive'%>
+                    <%= image_tag message.file, class: 'img-responsive',  style: 'max-width:500px;'%>
                   <%end %>
                 </div>
               </li>

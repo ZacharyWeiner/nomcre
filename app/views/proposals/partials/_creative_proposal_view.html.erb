@@ -12,6 +12,7 @@
     </div>
     <!-- /.col -->
     <div class="col-md-9">
+      <%= render :partial => 'proposals/partials/proposal_show_top_widget', :locals => {:proposal => @proposal}%>
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
           <li class="active"><a href="#basic_info" data-toggle="tab">Basic Info</a></li>
