@@ -26,6 +26,29 @@
 
 
   <% if current_user.company.nil? == true %>
+    <div class="field">
+    <div class='row'>
+      <div class='col-md-6'>
+        <h4> How Would You Like To Be Paid? </h4>
+        <select name="user_profile[paypal_or_venmo]" id="user_profile_payment_type" class='form-control'>
+
+          <% if @user_profile.paypal_or_venmo == "venmo" %>
+            <option value="paypal">PayPal</option>
+            <option value="venmo" selected >Venmo</option>
+          <%else %>
+            <option value="paypal" selected>PayPal</option>
+            <option value="venmo"  >Venmo</option>
+          <% end %>
+        </select>
+      </div>
+      <div class='col-md-6'>
+        <h4> Email / Username </h4>
+        <%= form.text_field :account_name, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <hr>
 
     <div class="row">
       <div class="col-md-6">
@@ -77,6 +100,8 @@
     <br>
     <hr>
   <% end %>
+
+
 
 
   <div class="field">
