@@ -35,9 +35,15 @@
           <% if @user_profile.paypal_or_venmo == "venmo" %>
             <option value="paypal">PayPal</option>
             <option value="venmo" selected >Venmo</option>
-          <%else %>
+            <option value="zelle">Zelle</option>
+          <%elsif @user_profile.paypal_or_venmo == "paypal" %>
             <option value="paypal" selected>PayPal</option>
             <option value="venmo"  >Venmo</option>
+            <option value="zelle">Zelle</option>
+          <%elsif @user_profile.paypal_or_venmo == "zelle" %>
+            <option value="paypal" >PayPal</option>
+            <option value="venmo"  >Venmo</option>
+            <option value="zelle" selected>Zelle</option>
           <% end %>
         </select>
       </div>

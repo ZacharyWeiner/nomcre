@@ -41,7 +41,6 @@ class UserProfilesController < ApplicationController
   # PATCH/PUT /user_profiles/1
   # PATCH/PUT /user_profiles/1.json
   def update
-    byebug
     respond_to do |format|
       unless params[:user_profile][:content_type].nil? || params[:user_profile][:content_type].count == 0
         @user_profile.content_type.clear
