@@ -1,11 +1,13 @@
 <% if current_user.collections.count == 0  %>
-  <div class="alert alert-danger ">
-    <h4><i class="icon fa fa-object-group"></i> Add Your First Collection <i class='fa fa-ban pull-right'></i></h4>
-    <hr>
-    <%= render :partial => 'collections/form', :locals => {:collection => Collection.new}%>
+  <div class="box box-danger ">
+    <div class='container'>
+      <h4><i class="icon fa fa-object-group"></i> Add Your First Collection <i class='fa fa-ban pull-right'></i></h4>
+      <hr>
+      <%= render :partial => 'collections/form', :locals => {:collection => Collection.new}%>
+    </div>
   </div>
 <% else %>
-<div class="alert alert-success ">
+<div class="box box-success">
   <h4><i class="icon fa fa-check"></i> Collection Complete</h4>
   <hr>
     <div class='row'>

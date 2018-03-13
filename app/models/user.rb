@@ -35,6 +35,19 @@ class User < ApplicationRecord
     end
   end
 
+def reset_user_info
+    if self.user_profile && self.user_profile.description.nil?
+      self.user_profile.delete
+    end
+    if self.user_profile.nil?
+      up = UserProfile.create!(user: self)
+      self.user_profile = up
+    end
+    self.collections.clear
+    self.schedule_items.clear
+    self.intro_complete = false
+    self.save
+  end
 
   private
   def check_company_intro_complete
@@ -63,4 +76,6 @@ class User < ApplicationRecord
       self.save
     end
   end
+
+
 end

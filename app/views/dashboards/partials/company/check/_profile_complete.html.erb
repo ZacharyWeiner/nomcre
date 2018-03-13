@@ -1,3 +1,4 @@
+<div class='container'>
 <div class="row">
   <div style='padding:12px;'>
   <h4><i class='fa fa-users'></i>  Company Profile Complete <i class='fa fa-check pull-right'></i></h4>
@@ -6,7 +7,7 @@
 
 <div class='row'>
   <div class='col-md-3'>
-      <div class="box box-success">
+      <div class=" ">
         <div class="box-body box-profile">
           <%= image_tag current_user.company.logo, class: 'img-responsive img-circle', style: 'max-width:150px;' %>
           <p class="text-muted text-center"><%= current_user.email%></p>
@@ -18,7 +19,7 @@
       </div>
   </div>
   <div class='col-md-9'>
-    <div class="box box-success">
+    <div class="">
             <div class="box-header with-border">
               <h3 class="box-title"><%= current_user.company.name  %></h3>
             </div>
@@ -60,5 +61,6 @@
             <!-- /.box-body -->
           </div>
   </div>
+</div>
 </div>
 

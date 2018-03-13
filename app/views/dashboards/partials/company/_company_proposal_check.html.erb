@@ -1,10 +1,10 @@
 <% if current_user.company.proposals.nil? || current_user.company.proposals.count == 0 %>
   <% @proposal = Proposal.new %>
-  <div class="alert alert-danger ">
+  <div class="box box-danger ">
     <div class='text-center'>
   <h2 class="box-title ">Set Up Your First Project</h2>
 </div>
-<div class="box box-danger" style="color: black">
+<div class="" style="color: black">
     <div class="box-header with-border text-center">
     </div>
     <div class="box-body">
@@ -112,7 +112,7 @@
 
   </div>
 <% else %>
-  <div class="alert alert-success ">
+  <div class="box box-success ">
     <h4><i class="icon fa fa-check"></i> Your First Proposal</h4>
     <hr>
     <div class='container'>
