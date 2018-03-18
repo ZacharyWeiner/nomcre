@@ -55,6 +55,7 @@ class UserProfilesController < ApplicationController
         end
       end
       if @user_profile.update(user_profile_params)
+        activity = UserActivity.create!((activity_type: UserActivityType.updated_profile, user_id: current_user.id, object_id: current_user.id)
         format.html { redirect_to @user_profile, notice: 'User profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @user_profile }
       else

@@ -22,6 +22,12 @@ class Proposal < ApplicationRecord
       ScheduleItem.where(location_id: self.location.parent_id).where("end_date > ?", search_date).map{|si|
         creatives << ProposalSearchResult.new(user_id: si.user.id, rank: 2, schedule_item_id: si.id)
       }
+      parent = Location.find(location.parent_id);
+      unless parent.nil?
+        ScheduleItem.where(location_id: parent.parent_id).where("end_date > ?", search_date).map{|si|
+          creatives << ProposalSearchResult.new(user_id: si.user.id, rank: 1, schedule_item_id: si.id)
+        }
+      end
     end
     return creatives.sort! { |a, b|  b.rank <=> a.rank }
   end

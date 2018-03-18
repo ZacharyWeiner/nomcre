@@ -39,10 +39,8 @@ gem "cocoon"
 gem 'jquery-ui-rails'
 gem 'icheck-rails'
 gem 'file_validators'
+gem 'newrelic_rpm'
 
-group :production do
-  gem 'newrelic_rpm'
-end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
