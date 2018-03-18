@@ -1,4 +1,9 @@
-<% head_url = @collection.collection_items.first.file.url unless @collection.collection_items.count ==0  %>
+<% unless @collection.collection_items.count ==0  %>
+  <% head_url = @collection.collection_items.where(is_header: true).first.file.url unless  @collection.collection_items.where(is_header: true).first.nil? %>
+  <% if head_url.nil? %>
+    head_url = @collection.collection_items.first.file.url
+  <% end %>
+<% end %>
 <% if head_url.nil? %>
  <% head_url = current_user.user_profile.header_image %>
 <%end %>
@@ -46,8 +51,8 @@
 </div>
 <br>
 
-<% videos =  @collection.collection_items.where(item_type: 'video') %>
-<% images =  @collection.collection_items.where.not(item_type: 'video') %>
+<% videos =  @collection.collection_items.where(item_type: 'video').order(:order) %>
+<% images =  @collection.collection_items.where.not(item_type: 'video').order(:order) %>
 <% if videos.count > 0  && images.count > 0 %>
 <div class='nk-box-2 bg-gray-4' style='margin: 24px;'>
 <div class='row' >

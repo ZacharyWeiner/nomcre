@@ -9,6 +9,12 @@ Rails.application.routes.draw do
   resources :collections do
     resources :collection_items
   end
+
+  resources :collection_items do
+    get '/move_up', to: 'collection_items#move_up', as: 'move_up'
+    get '/move_down', to: 'collection_items#move_down', as: 'move_down'
+    get '/make_header', to: 'collection_items#make_header', as: 'make_header'
+  end
   get '/collection_item/download/:id', to: 'collection_items#download', as:'download'
   resources :waitlists
   get 'waitlist/thank-you', to: 'waitlists#thank_you', as: 'thank_you'

@@ -1,5 +1,5 @@
 class CollectionItemsController < ApplicationController
-  before_action :set_collection_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_collection_item, only: [:show, :edit, :update, :destroy, :move_up, :move_down, :make_header]
   before_action :set_collection
   layout 'adminlte'
   # GET /collection_items
@@ -35,7 +35,9 @@ class CollectionItemsController < ApplicationController
       if @collection_item.file.file.nil? && @collection_item.video.file.nil?
         format.html { render :new }
       else
+        @collection_item.order = @collection_item.collection.collection_items.count
         if @collection_item.save
+
           set_user_activity
           format.html { redirect_to @collection, notice: 'Collection item was successfully created.' }
           format.json { render :show, status: :created, location: @collection_item }
@@ -78,10 +80,58 @@ class CollectionItemsController < ApplicationController
     send_data data.read, filename: @collection_item.file.instance_variable_get('@file').filename,  disposition: 'attach', stream: 'true', buffer_size: '4096'
   end
 
+  def move_up
+    if @collection_item.order.nil?
+      @collection_item.order = 1
+    else
+      current_minus_one = @collection_item.order - 1
+      above = CollectionItem.where(order: current_minus_one).first
+      unless above.nil?
+        above.order = @collection_item.order
+        above.save
+      end
+      @collection_item.order = current_minus_one
+    end
+    @collection_item.save
+    redirect_to edit_collection_path(@collection_item.collection)
+  end
+
+  def move_down
+    if @collection_item.order.nil?
+      @collection_item.order = 1
+    else
+      current_plus_one = @collection_item.order + 1
+      below = CollectionItem.where(order: current_plus_one).first
+      unless below.nil?
+        below.order = @collection_item.order
+        below.save
+      end
+      @collection_item.order = current_plus_one
+    end
+    @collection_item.save
+    redirect_to edit_collection_path(@collection_item.collection)
+  end
+
+  def make_header
+    remove = CollectionItem.where(is_header: true)
+    remove.each do |r|
+      r.is_header = false
+      r.save
+    end
+    @collection_item.is_header = true
+    @collection_item.save
+
+    redirect_to edit_collection_path(@collection_item.collection)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_collection_item
-      @collection_item = CollectionItem.find(params[:id])
+      if params[:collection_item_id].nil? == false
+        @collection_item = CollectionItem.find(params[:collection_item_id])
+      else
+        @collection_item = CollectionItem.find(params[:id])
+      end
     end
 
     def set_collection

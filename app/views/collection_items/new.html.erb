@@ -69,7 +69,7 @@
   <div class="box-body">
     <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
     <ul class="todo-list ui-sortable">
-      <% Collection.find(params[:collection_id]).collection_items.reverse.each do |ci| %>
+      <% Collection.find(params[:collection_id]).collection_items.order(:order).each do |ci| %>
       <li>
         <!-- drag handle -->
         <span class="handle ui-sortable-handle">
@@ -88,14 +88,24 @@
         <small class="label label-danger"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(ci.created_at)%></small>
         <!-- General tools such as edit or delete-->
         <div class="tools">
-          <i class='fa fa-arrow-up' style='color:green'></i>
-          <i class='fa fa-arrow-down'></i>
-         <%= link_to collection_collection_item_path(@collection, ci)  do %>
-        <i class='fa fa-eye'></i>
-        <% end %>
-        <%= link_to collection_collection_item_path(@collection, ci), method: :delete  do %>
-        <i class='fa fa-trash'></i>
-        <% end %>
+          <%= link_to collection_item_move_up_path(ci), class: 'success' do %>
+            <i class='fa fa-arrow-up'></i>
+          <%end%>
+          <%= link_to collection_item_move_down_path(ci) do %>
+            <i class='fa fa-arrow-down ' style='color:red'></i>
+          <%end%>
+          <%= link_to collection_collection_item_path(@collection, ci)  do %>
+            <i class='fa fa-eye'></i>
+          <% end %>
+          <%= link_to collection_collection_item_path(@collection, ci), method: :delete  do %>
+            <i class='fa fa-trash'></i>
+          <% end %>
+          <br><br>
+          <% if ci.is_header == true %>
+            <%= link_to "Is Header", collection_item_make_header_path(ci), class: 'btn btn-success disabled'%>
+          <% else %>
+            <%= link_to "Make Header", collection_item_make_header_path(ci), class: 'btn btn-primary'%>
+          <% end %>
         </div>
       </li>
       <% end %>

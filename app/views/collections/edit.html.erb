@@ -51,9 +51,13 @@
     <div class="box ">
       <div class="box-header ui-sortable-handle" style="cursor: move;">
         <i class="fa fa-gallery"></i>
-        <h3 class="box-title"> <%= render 'form', collection: @collection %></h3>
+        <h3 class="box-title">
+          <%= render 'form', collection: @collection %>
+        </h3>
+        <div class=''>
         <%= link_to 'Show', @collection %> |
         <%= link_to 'Back', collections_path %>
+      </div>
       </div>
     </div>
   </div>
@@ -92,7 +96,7 @@
   <div class="box-body">
     <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
     <ul class="todo-list ui-sortable">
-      <% @collection.collection_items.reverse.each do |ci| %>
+      <% @collection.collection_items.order(:order).each do |ci| %>
       <li>
         <!-- drag handle -->
         <span class="handle ui-sortable-handle">
@@ -111,14 +115,24 @@
         <small class="label label-danger"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(ci.created_at)%></small>
         <!-- General tools such as edit or delete-->
         <div class="tools">
-          <i class='fa fa-arrow-up' style='color:green'></i>
-          <i class='fa fa-arrow-down'></i>
-         <%= link_to collection_collection_item_path(@collection, ci)  do %>
-        <i class='fa fa-eye'></i>
-        <% end %>
-        <%= link_to collection_collection_item_path(@collection, ci), method: :delete  do %>
-        <i class='fa fa-trash'></i>
-        <% end %>
+          <%= link_to collection_item_move_up_path(ci) do %>
+            <i class='fa fa-arrow-up success' ></i>
+          <%end%>
+          <%= link_to collection_item_move_down_path(ci) do %>
+            <i class='fa fa-arrow-down danger'></i>
+          <%end%>
+          <%= link_to collection_collection_item_path(@collection, ci)  do %>
+            <i class='fa fa-eye'></i>
+          <% end %>
+          <%= link_to collection_collection_item_path(@collection, ci), method: :delete  do %>
+            <i class='fa fa-trash'></i>
+          <% end %>
+          <br><br>
+          <% if ci.is_header == true %>
+            <%= link_to "Is Header", collection_item_make_header_path(ci), class: 'btn btn-success disabled'%>
+          <% else %>
+            <%= link_to "Make Header", collection_item_make_header_path(ci), class: 'btn btn-primary'%>
+          <% end %>
         </div>
       </li>
       <% end %>
