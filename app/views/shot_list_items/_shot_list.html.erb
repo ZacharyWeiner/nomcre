@@ -48,27 +48,28 @@
   </div>
   <!-- /.box-body -->
   <div class="box-footer clearfix no-border">
-    <% if params[:proposal_id] %>
-      <% proposal = Proposal.find(params[:proposal_id]) %>
-       <%= link_to proposal, class: "btn btn-success" do %>
-          <i class='fa fa-eye'></i> View Proposal
-        <% end %>
-    <% else %>
-      <% proposal = Proposal.find(params[:id]) %>
-    <% end %>
-
+     <% proposal = Proposal.find(params[:id]) %>
     <% if proposal.proposal_type == 'photo' %>
       <% if shot_list_items.count < 25 && current_user.company == proposal.company%>
-        <%= link_to new_proposal_shot_list_item_path(proposal), class: 'btn btn-default pull-right' do %>
+        <%= link_to new_proposal_shot_list_item_path(proposal), class: 'btn btn-default pull-left' do %>
           <i class="fa fa-plus"></i> Add To Shot List
         <% end %>
       <% end %>
     <% else %>
       <% if shot_list_items.count < 4 && current_user.company == proposal.company%>
-        <%= link_to new_proposal_shot_list_item_path(proposal), class: 'btn btn-default pull-right' do %>
+        <%= link_to new_proposal_shot_list_item_path(proposal), class: 'btn btn-default pull-left' do %>
           <i class="fa fa-plus"></i> Add To Shot List
         <% end %>
       <% end %>
     <% end %>
+    <% if params[:proposal_id] %>
+      <% proposal = Proposal.find(params[:proposal_id]) %>
+       <%= link_to proposal, class: "btn btn-success pull-right" do %>
+          <i class='fa fa-eye'></i> View Proposal
+        <% end %>
+    <% else %>
+
+    <% end %>
+
   </div>
 </div>

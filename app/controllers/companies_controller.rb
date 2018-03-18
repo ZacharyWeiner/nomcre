@@ -27,6 +27,9 @@ class CompaniesController < ApplicationController
   # POST /companies.json
   def create
     @company = Company.new(company_params)
+    if @company.instagram.contains('@')
+      @company.instagram = @company.instagram.gsub!('@', '')
+    end
     respond_to do |format|
       if @company.save
         if current_user.user_type == 'company'
@@ -34,7 +37,7 @@ class CompaniesController < ApplicationController
           current_user.save
         end
         CompanyMailer.welcome_email(current_user).deliver_later
-        format.html { redirect_to @company, notice: 'Company was successfully created.' }
+        format.html { redirect_to company_dashboard_path, notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @company }
       else
         format.html { render :new }
@@ -47,8 +50,14 @@ class CompaniesController < ApplicationController
   # PATCH/PUT /companies/1.json
   def update
     respond_to do |format|
+       if company_params['instagram'].include?('@')
+
+        new_insta = @company.instagram.gsub!('@', '')
+        byebug
+        company_params[:instagram] = new_insta
+      end
       if @company.update(company_params)
-        format.html { redirect_to @company, notice: 'Company was successfully updated.' }
+        format.html { redirect_to company_dashboard_path, notice: 'Company was successfully updated.' }
         format.json { render :show, status: :ok, location: @company }
       else
         format.html { render :edit }

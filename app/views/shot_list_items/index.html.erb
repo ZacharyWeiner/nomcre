@@ -50,11 +50,11 @@
   <!-- /.box-body -->
   <div class="box-footer clearfix no-border">
     <% proposal = Proposal.find(params[:proposal_id]) %>
-    <%= link_to proposal, class: "btn btn-success" do %>
+    <%= link_to proposal, class: "btn btn-success pull-right" do %>
       <i class='fa fa-eye'></i> View Proposal
     <% end %>
     <% unless @shot_list_items.count > 25 %>
-      <%= link_to new_proposal_shot_list_item_path(proposal), class: 'btn btn-default pull-right' do %>
+      <%= link_to new_proposal_shot_list_item_path(proposal), class: 'btn btn-default pull-left' do %>
         <i class="fa fa-plus"></i> Add To Shot List
       <% end %>
     <% end %>

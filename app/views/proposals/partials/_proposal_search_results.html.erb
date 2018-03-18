@@ -15,6 +15,23 @@
 
   <p>   </p>
 <% end %>
+<% unless @proposal.paid %>
+
+<div class="small-box bg-yellow">
+  <div class="inner">
+    <h3>Balnace Must Be Paid</h3>
+
+    <p>Prior To Approving Creatives</p>
+  </div>
+  <div class="icon">
+    <i class="fa fa-certificate"></i>
+  </div>
+</div>
+
+
+
+  <p>   </p>
+<% end %>
 <% @creatives = @proposal.find_creatives %>
 <% @proposal.find_creatives.each do |sr| %>
 <div class="post">

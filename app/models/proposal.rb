@@ -16,6 +16,7 @@ class Proposal < ApplicationRecord
     creatives =[]
     search_date = Date.today
     creatives = ScheduleItem.where(location: self.location).where("end_date > ?", search_date).map{|si|
+
       ProposalSearchResult.new(user_id: si.user.id, rank: 3, schedule_item_id: si.id)
     }
     unless self.location.parent_id.nil?

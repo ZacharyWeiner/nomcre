@@ -31,7 +31,6 @@
       <div class='col-md-6'>
         <h4> How Would You Like To Be Paid? </h4>
         <select name="user_profile[paypal_or_venmo]" id="user_profile_payment_type" class='form-control'>
-
           <% if @user_profile.paypal_or_venmo == "venmo" %>
             <option value="paypal">PayPal</option>
             <option value="venmo" selected >Venmo</option>
@@ -44,6 +43,10 @@
             <option value="paypal" >PayPal</option>
             <option value="venmo"  >Venmo</option>
             <option value="zelle" selected>Zelle</option>
+          <% else %>
+            <option value="paypal" >PayPal</option>
+            <option value="venmo"  >Venmo</option>
+            <option value="zelle" >Zelle</option>
           <% end %>
         </select>
       </div>
@@ -124,6 +127,7 @@
             </div>
         </div>
         <%= form.label :profile_photo %>
+        <p> [500 x 500] </p>
         <%= form.file_field :profile_photo, id: :user_profile_profile_photo, class: 'form-control' %>
         <br>
         <% if @user_profile.profile_photo %>
@@ -142,6 +146,7 @@
             </div>
         </div>
         <%= form.label :header_image %>
+        <p> [1920 x 1080] </p>
         <%= form.file_field :header_image, id: :user_profile_header_image, class: 'form-control' %>
         <br>
         <% if @user_profile.header_image %>

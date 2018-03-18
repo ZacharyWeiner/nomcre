@@ -15,15 +15,15 @@
       <%= render :partial => 'proposals/partials/proposal_show_top_widget', :locals => {:proposal => @proposal} %>
       <div class="nav-tabs-custom">
         <ul class="nav nav-tabs">
-          <li class="active"><a href="#basic_info" data-toggle="tab">Basic Info</a></li>
-          <li class=""><a href="#shot_list" data-toggle="tab">Shot List</a></li>
+          <li class="active"><a href="#basic_info" data-toggle="tab">Proposal Info</a></li>
+          <li class=""><a href="#shot_list" data-toggle="tab">Set Up Shot List</a></li>
           <!-- <li><a href="#details" data-toggle="tab">Details</a></li> -->
           <% unless @proposal.tasks.count == 0 %>
-          <li><a href="#tasks" data-toggle="tab">Tasks</a></li>
+          <li><a href="#tasks" data-toggle="tab">Your Tasks</a></li>
           <% end %>
-          <li><a href="#creatives" data-toggle="tab">Suggested Creatives</a></li>
-          <li><a href="#disclosures" data-toggle="tab">Disclosures</a></li>
-          <li><a href="#invoice" data-toggle="tab">Invoice</a></li>
+          <li><a href="#creatives" data-toggle="tab">Pick A Creative</a></li>
+          <li><a href="#disclosures" data-toggle="tab">Disclosure Uploads</a></li>
+          <li><a href="#invoice" data-toggle="tab">Review Invoice</a></li>
         </ul>
         <div class="tab-content">
           <div class="active tab-pane" id="basic_info">
