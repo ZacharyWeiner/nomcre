@@ -53,7 +53,6 @@ class CompaniesController < ApplicationController
        if company_params['instagram'].include?('@')
 
         new_insta = @company.instagram.gsub!('@', '')
-        byebug
         company_params[:instagram] = new_insta
       end
       if @company.update(company_params)
