@@ -33,7 +33,7 @@
       </div>
     <% elsif  activity.activity_type == UserActivityType.collection_photo_added %>
       <div class='activity-background' >
-       <%= image_tag CollectionItem.find(activity.object_id).file %> <br>
+       <%= image_tag CollectionItem.find(activity.object_id).file, class: 'img-responsive' %> <br>
      </div>
     <% elsif  activity.activity_type == UserActivityType.collection_video_added %>
       <div class='text-center activity-background'>

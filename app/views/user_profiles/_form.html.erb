@@ -88,9 +88,11 @@
             <h4>I Like To Shoot:</h4>
           </div>
 
-          <%= check_box_tag 'user_profile[shot_preference][]', 'Editorial', checked = @user_profile.shot_preference.include?("Editorial"), :'data-toggle' => "toggle" %>
-          <%= form.label :editorial %>
+          <%= check_box_tag 'user_profile[shot_preference][]', 'Product', checked = @user_profile.shot_preference.include?("Product"), :'data-toggle' => "toggle" %>
+          <%= form.label :product %>
           <br><br>
+
+
 
           <%= check_box_tag 'user_profile[shot_preference][]', 'Lifestyle', checked = @user_profile.shot_preference.include?("Lifestyle") , :'data-toggle' => "toggle"%>
           <%= form.label :lifestyle %>
@@ -103,6 +105,10 @@
           <br><br>
           <%= check_box_tag 'user_profile[shot_preference][]', 'Action', checked = @user_profile.shot_preference.include?("Action"), :'data-toggle' => "toggle" %>
           <%= form.label :action %>
+          <br><br>
+          <%= check_box_tag 'user_profile[shot_preference][]', 'Editorial', checked = @user_profile.shot_preference.include?("Editorial"), :'data-toggle' => "toggle" %>
+          <%= form.label :editorial %>
+
         </div>
       </div>
     </div>
