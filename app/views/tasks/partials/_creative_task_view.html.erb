@@ -19,7 +19,7 @@
         <div class="box-body">
 
           <ul class="todo-list ui-sortable">
-            <% tasks.where.not(can_accept: 'creative' ).each do |task| %>
+            <% tasks.where(can_accept: 'creative' ).each do |task| %>
               <li>
                 <span class="handle ui-sortable-handle">
                   <i class="fa fa-ellipsis-v"></i>
@@ -47,7 +47,7 @@
         <div class='box-header text-center'><h2>Company Tasks</h2></div>
         <div class="box-body">
           <ul class="todo-list ui-sortable">
-            <% tasks.where.not(can_accept: 'company').each do |task| %>
+            <% tasks.where(can_accept: 'company').each do |task| %>
               <li>
                 <span class="handle ui-sortable-handle">
                   <i class="fa fa-ellipsis-v"></i>
