@@ -52,4 +52,7 @@ drift.load('2kydddnkkp4a');
   <%= render 'khaki/nomcre/footer'%>
 </body>
 <%= javascript_include_tag 'khaki_theme' %>
+<%= content_for?(:js) do %>
+<%= yield(:js) %>
+<% end %>
 </html>
