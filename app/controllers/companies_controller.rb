@@ -30,7 +30,7 @@ class CompaniesController < ApplicationController
     if company_params[:instagram] && company_params[:instagram].include?('@')
       @company.instagram = company_params[:instagram].gsub!('@', '')
     end
-    byebug
+
     respond_to do |format|
       if @company.save
         if current_user.user_type == 'company'
