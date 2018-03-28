@@ -27,14 +27,18 @@ class CompaniesController < ApplicationController
   # POST /companies.json
   def create
     @company = Company.new(company_params)
-    if @company.instagram.contains('@')
-      @company.instagram = @company.instagram.gsub!('@', '')
+    if company_params[:instagram] && company_params[:instagram].include?('@')
+      @company.instagram = company_params[:instagram].gsub!('@', '')
     end
+    byebug
     respond_to do |format|
       if @company.save
         if current_user.user_type == 'company'
           current_user.company = @company
           current_user.save
+           if current_user.user_profile.nil?
+            current_user.create_user_profile!(display_name: current_user.name)
+          end
         end
         CompanyMailer.welcome_email(current_user).deliver_later
         format.html { redirect_to company_dashboard_path, notice: 'Company was successfully created.' }
@@ -103,7 +107,7 @@ class CompaniesController < ApplicationController
     end
 
     def authorize
-      unless current_user.company == @company
+      if  current_user && current_user.company == @company
         redirect_to root_path
       end
     end
