@@ -332,6 +332,7 @@ class ProposalsController < ApplicationController
                                       :background,
                                       :model_release,
                                       :shoot_type,
+                                      :shot_count,
                                       :raw,
                                       :background_note,
                                       :instagram_1,
