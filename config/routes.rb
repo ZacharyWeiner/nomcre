@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :collections do
     resources :collection_items
   end
-
+  resources :locations
   resources :collection_items do
     get '/move_up', to: 'collection_items#move_up', as: 'move_up'
     get '/move_down', to: 'collection_items#move_down', as: 'move_down'

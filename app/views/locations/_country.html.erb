@@ -1,0 +1,25 @@
+<%= form_for(@location) do |f| %>
+  <% if @location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+      <ul>
+      <% @location.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% Location.where(location_type: 'Region').each do |region| %>
+    <%= f.radio_button(:parent_id, "#{region.id}", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}) %>
+    <%= f.label(:proposal_type_photo, "#{region.name}") %>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :country_name %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

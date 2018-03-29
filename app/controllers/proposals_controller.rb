@@ -71,6 +71,12 @@ class ProposalsController < ApplicationController
       end
     end
 
+    if @proposal.shoot_type == 'video' || @proposal.shoot_type == 'drone'
+      @proposal.shot_count = 4
+    else
+      @proposal.shot_count = 25
+    end
+
     respond_to do |format|
       if @proposal.save!
         set_price(@proposal)

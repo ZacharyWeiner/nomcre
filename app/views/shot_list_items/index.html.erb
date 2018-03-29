@@ -53,7 +53,7 @@
     <%= link_to proposal, class: "btn btn-success pull-right" do %>
       <i class='fa fa-eye'></i> View Proposal
     <% end %>
-    <% unless @shot_list_items.count > 25 %>
+    <% if @shot_list_items.count < proposal.shot_count %>
       <%= link_to new_proposal_shot_list_item_path(proposal), class: 'btn btn-default pull-left' do %>
         <i class="fa fa-plus"></i> Add To Shot List
       <% end %>
