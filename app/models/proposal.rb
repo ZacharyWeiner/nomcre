@@ -3,7 +3,7 @@ class Proposal < ApplicationRecord
   belongs_to :user, optional: true
   belongs_to :location
   has_many :tasks, dependent: :destroy
-  has_many :proposal_requests
+  has_many :proposal_requests, dependent: :destroy
   has_one :chatroom, dependent: :destroy
   paginates_per 20
   mount_uploader :model_release, FileUploader
