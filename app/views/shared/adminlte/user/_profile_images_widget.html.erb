@@ -1,6 +1,6 @@
 <div class="box box-widget widget-user">
     <% if user %>
-      <div class="widget-user-header bg-black" style="background: url('<%= user.user_profile.safe_header_image_url%>') center center;background-size:cover">
+      <div class="widget-user-header bg-black" style="background: url('<%= user.user_profile.safe_header_image_url%>'); background-size: 100% 100%">
         <h3 class="widget-user-username">
           <%= user.user_profile.display_name  %></h3>
         <h5 class="widget-user-desc">Creative</h5>
@@ -12,7 +12,7 @@
 
       </div>
     <% else %>
-     <div class="widget-user-header bg-black" style="background: url('<%= UserProfile.default_header_image%>') center center;background-size:cover">
+     <div class="widget-user-header bg-black" style="background: url('<%= UserProfile.default_header_image%>'); background-size: 100% 100%">
         <h3 class="widget-user-username">Unassigned</h3>
       </div>
       <div class="widget-user-image">

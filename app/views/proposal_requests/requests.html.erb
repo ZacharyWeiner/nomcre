@@ -28,7 +28,7 @@
                 <div class="col-md-3">
                   <div class="box box-widget widget-user">
                     <% if pr.proposal.user %>
-                      <div class="widget-user-header bg-black" style="background: url('<%= user.user_profile.safe_header_image_url%>') center center;background-size:cover">
+                      <div class="widget-user-header bg-black" style="background: url('<%= user.user_profile.safe_header_image_url%>'); background-size: 100% 100%">
                         <h3 class="widget-user-username">
                           <%= pr.proposal.company.name  %></h3>
                         <h5 class="widget-user-desc"></h5>
