@@ -14,6 +14,8 @@
     <%= csrf_meta_tags %>
     <script src="https://use.fontawesome.com/1494e0c4f8.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+
   </head>
   <body class="hold-transition skin-black-light sidebar-mini">
 
@@ -32,9 +34,9 @@
   </body>
 
   <%= javascript_include_tag 'application_back' %>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
   <% if content_for?(:added_scripts) %>
     <%= yield :added_scripts %>
   <% end %>
-
 </html>
 

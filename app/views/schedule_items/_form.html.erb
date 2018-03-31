@@ -18,7 +18,7 @@
       <div class="box-body">
         <div class="form-group">
           <label for="exampleInputFile">I'm Going To:</label>
-          <%= f.select(:location_id, options_for_select(Location.locations_for_select), {}, {class: 'form-control'}) %>
+          <%= f.select(:location_id, options_for_select(Location.locations_for_select), {}, {class: 'form-control select2'}) %>
         </div>
         <div class="form-group">
           <label for="exampleInputEmail1">From: </label>
@@ -42,3 +42,7 @@
       </div>
   <%end%>
 </div>
+
+<% content_for :added_scripts do %>
+
+<%end %>
