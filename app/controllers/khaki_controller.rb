@@ -12,6 +12,7 @@ class KhakiController < ApplicationController
   def creative_landing
   end
   def creative_showcase
+    @showcase_images = ShowcaseImage.where(show: true).where(showcase_type: 'main').order(:order)
   end
 
   def contact

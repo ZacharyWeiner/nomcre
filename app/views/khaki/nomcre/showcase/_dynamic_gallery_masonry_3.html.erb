@@ -1,0 +1,22 @@
+<div class="nk-isotope nk-isotope-3-cols nk-popup-gallery bg-dark-1">
+<% @showcase_images.each do |si| %>
+  <%= p "#{si.height} #{si.width}" %>
+  <% if si.height < si.width %>
+  <div class="nk-isotope-item">
+      <div class="nk-image-box-1">
+        <a href="<%= si.file%>" oncontextmenu= "return false" class="nk-gallery-item nk-no-effect" data-size="1920x1280">
+          <img src="<%= si.file %>" alt="">
+        </a>
+      </div>
+    </div>
+  <% else %>
+  <div class="nk-isotope-item">
+    <div class="nk-image-box-1">
+      <a href="<%= si.file%>" oncontextmenu="return false"  class="nk-gallery-item nk-no-effect" data-size="1500x2250">
+        <img src="<%= si.file%>" alt="">
+      </a>
+    </div>
+  </div>
+  <% end %>
+<% end %>
+</div>

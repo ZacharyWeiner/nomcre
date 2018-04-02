@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-6'>
+      <%= image_tag @showcase_image.file, class: 'img-responsive'%>
+    </div>
+    <div class='col-md-6'>
+      <p>
+        <strong>File:</strong>
+        <%= @showcase_image.file %>
+      </p>
+
+      <p>
+        <strong>Showcase type:</strong>
+        <%= @showcase_image.showcase_type %>
+      </p>
+
+      <p>
+        <strong>Show:</strong>
+        <%= @showcase_image.show %>
+      </p>
+
+      <p>
+        <strong>Order:</strong>
+        <%= @showcase_image.order %>
+      </p>
+
+      <p>
+        <strong>Name:</strong>
+        <%= @showcase_image.name %>
+      </p>
+
+    </div>
+  </div>
+</div>
+
+<%= link_to 'Edit', edit_showcase_image_path(@showcase_image) %> |
+<%= link_to 'Back', showcase_images_path %>
