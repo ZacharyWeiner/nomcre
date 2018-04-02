@@ -76,6 +76,7 @@ Rails.application.routes.draw do
   get '/dashboard/company', to: 'dashboards#company_dashboard', as: 'company_dashboard'
   get 'dashboard/creative', to: 'dashboards#creative_dashboard', as: 'creative_dashboard'
   get 'dashboard/accounting', to: 'dashboards#accounting_dashboard', as: 'accounting_dashboard'
+  get 'dashboard/admin', to: 'dashboards#admin_dashboard', as: 'admin_dashboard'
   get 'home', to:'khaki#nomcre_home', as:'nomcre_home'
   get 'process', to:'khaki#nomcre_process', as: 'nomcre_process'
   get 'creative', to:'khaki#creative_landing', as: 'creative_landing'
@@ -87,6 +88,8 @@ Rails.application.routes.draw do
   get 'company_tutorial', to:'khaki#proposal_tutorial_company', as: 'proposal_tutorial_company'
   get 'khaki/index', to:'khaki#index'
 
+  get 'admin/users', to: 'admin#users', as: 'admin_users'
+  get 'admin/proposals', to: 'admin#proposals', as: 'admin_proposals'
 
   #root 'khaki#nomcre_home'
   root 'application#home'

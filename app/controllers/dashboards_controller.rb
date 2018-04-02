@@ -15,5 +15,8 @@ class DashboardsController < ApplicationController
 
   def accounting_dashboard
   end
+
+  def admin_dashboard
+  end
 end
 

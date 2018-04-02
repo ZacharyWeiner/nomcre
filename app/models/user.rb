@@ -18,6 +18,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  paginates_per 10
 
   def has_request(proposal_id)
     ProposalRequest.where(requested: self.id, proposal_id: proposal_id).count > 0

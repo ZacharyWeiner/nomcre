@@ -8,7 +8,7 @@
       <% elsif current_user.user_type == 'creative' %>
         <%= render 'shared/adminlte/navigation/left_menu/creative_menu' %>
       <% end %>
-      <% if current_user.role == 'admin' %>
+      <% if current_user.role == 0 %>
         <%= render 'shared/adminlte/navigation/left_menu/admin_menu' %>
       <% end %>
     </ul>

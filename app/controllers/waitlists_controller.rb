@@ -1,7 +1,7 @@
 class WaitlistsController < ApplicationController
   before_action :set_waitlist, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:index, :show, :update, :destroy]
-  layout 'khaki'
+  layout :set_layout
 
   # GET /waitlists
   # GET /waitlists.json
@@ -81,6 +81,14 @@ class WaitlistsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_waitlist
       @waitlist = Waitlist.find(params[:id])
+    end
+
+    def set_layout
+      if request.path.include?('waitlists')
+        return 'adminlte'
+      else
+        'khaki'
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
