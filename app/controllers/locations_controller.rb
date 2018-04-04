@@ -1,5 +1,7 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :authorize
   layout 'adminlte'
   # GET /locations
   # GET /locations.json
@@ -71,6 +73,11 @@ class LocationsController < ApplicationController
     def location_params
       params.require(:location).permit(:name, :parent_id, :location_type)
     end
+
+    def authorize
+      if current_user.nil? || current_user.role != 0
+        redirect_to root_path
+      end
+    end
 end
-class LocationController < ApplicationController
-end
+

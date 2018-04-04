@@ -5,19 +5,20 @@ class CollectionsController < ApplicationController
   # GET /collections.json
   layout 'khaki'
   def index
-      if params[:user_id]
-      @collections = current_user.collections
-      return
-    end
-    if current_user
-      if current_user.user_type == 'creative'
-        @collections = Collection.where(user: current_user)
+    if params[:user_id]
+      @collections = Collection.where(user_id: params[:user_id])
+    else
+      if current_user
+        if current_user.user_type == 'creative'
+          @collections = Collection.where(user: current_user)
+        else
+          @collections = Collection.all
+        end
       else
         @collections = Collection.all
       end
-    else
-      @collections = Collection.all
     end
+    @collections
   end
 
   # GET /collections/1

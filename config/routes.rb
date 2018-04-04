@@ -58,7 +58,7 @@ Rails.application.routes.draw do
   get 'invoices', to:'companies#invoices', as: 'invoices'
   devise_for :users
   get 'user/:id', to: "users#show", as: 'user_show'
-  get 'users/:id/collections', to: "collections#index", as: 'user_collection'
+  get 'users/:user_id/collections', to: "collections#index", as: 'user_collection'
   get 'user_type', to: 'users#user_type', as: 'user_type'
   get 'set_user_type', to:'users#set_user_type', as:'set_user_type'
   resources :pages
@@ -91,6 +91,7 @@ Rails.application.routes.draw do
 
   get 'admin/users', to: 'admin#users', as: 'admin_users'
   get 'admin/proposals', to: 'admin#proposals', as: 'admin_proposals'
+  get 'admin/schedule_items', to: 'admin#schedule_items', as: 'admin_schedule_items'
 
   #root 'khaki#nomcre_home'
   root 'application#home'

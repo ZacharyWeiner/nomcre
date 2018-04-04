@@ -10,6 +10,10 @@ class AdminController < ApplicationController
     @proposals = Proposal.all.page params[:page]
   end
 
+  def schedule_items
+    @schedule_items = ScheduleItem.all.page params[:page]
+  end
+
   def is_admin
     if current_user.nil? || current_user.role != 0
       redirect_to root_path
