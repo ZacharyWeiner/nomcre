@@ -1,5 +1,6 @@
 class CollectionsController < ApplicationController
   before_action :set_collection, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index]
   layout :set_layout
   # GET /collections
   # GET /collections.json
