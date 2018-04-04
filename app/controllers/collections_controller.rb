@@ -6,17 +6,38 @@ class CollectionsController < ApplicationController
   # GET /collections.json
   layout 'khaki'
   def index
+    @collections = []
     if params[:user_id]
-      @collections = Collection.where(user_id: params[:user_id])
+      @user_collections = Collection.where(user_id: params[:user_id])
+      @user_collections.each do |uc|
+        if uc.collection_items.count > 0
+          @collections << uc
+        end
+      end
     else
       if current_user
         if current_user.user_type == 'creative'
-          @collections = Collection.where(user: current_user)
+          @user_collections = Collection.where(user: current_user)
+          @user_collections.each do |uc|
+            if uc.collection_items.count > 0
+              @collections << uc
+            end
+          end
         else
-          @collections = Collection.all
+          @response_collections = Collection.all
+          @response_collections.each do |uc|
+            if uc.collection_items.count > 0
+              @collections << uc
+            end
+          end
         end
       else
-        @collections = Collection.all
+         @response_collections = Collection.all
+         @response_collections.each do |uc|
+          if uc.collection_items.count > 0
+            @collections << uc
+          end
+        end
       end
     end
     @collections
@@ -42,7 +63,9 @@ class CollectionsController < ApplicationController
   # POST /collections.json
   def create
     @collection = Collection.new(collection_params)
-
+    if @collection.title.nil? || @collection.title == ''
+      redirect_to new_collection_path and return
+    end
     respond_to do |format|
       if @collection.save
         UserActivity.create!(activity_type: UserActivityType.collection_added, user_id: current_user.id, object_id: @collection.id)
