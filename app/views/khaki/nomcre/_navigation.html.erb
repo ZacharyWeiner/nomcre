@@ -118,7 +118,7 @@
                             </div>
                         </div>
                         <% else %>
-                            <%= link_to  destroy_user_session_path(current_user), class: "no-link-effect" do %>
+                            <%= link_to destroy_user_session_path, method: :delete, class: "no-link-effect" do %>
                              Sign Out <span class="fa fa-sign-in"></span>
                             <% end %>
                         <% end%>

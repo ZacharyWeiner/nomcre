@@ -24,7 +24,15 @@ class ProfileImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
+  process :fix_exif_rotation
   process resize_to_fill: [250, 250]
+
+
+  def fix_exif_rotation #this is my attempted solution
+    manipulate! do |img|
+      img.tap(&:auto_orient)
+    end
+  end
 
   #
   # def scale(width, height)
