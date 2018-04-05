@@ -17,12 +17,7 @@ class CollectionsController < ApplicationController
     else
       if current_user
         if current_user.user_type == 'creative'
-          @user_collections = Collection.where(user: current_user)
-          @user_collections.each do |uc|
-            if uc.collection_items.count > 0
-              @collections << uc
-            end
-          end
+          @collections = Collection.where(user: current_user)
         else
           @response_collections = Collection.all
           @response_collections.each do |uc|

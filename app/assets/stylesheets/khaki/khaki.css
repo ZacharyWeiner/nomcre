@@ -4296,7 +4296,7 @@ img.rounded {
     bottom: 0;
     opacity: 0;
     background-color: #1c1c1c;
-    cursor: url("../images/nav-close-cursor.png") 15 15, pointer;
+    /*cursor: url("../images/nav-close-cursor.png") 15 15, pointer;*/
 }
 
 /*------------------------------------------------------------------
