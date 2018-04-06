@@ -1,0 +1,17 @@
+
+ <% video = CollectionItem.where(id: activity.object_id).first %>
+ <% unless video.nil? %>
+   <div class="post box-body">
+    <div class="user-block">
+      <%= image_tag @user_profile.profile_photo, class: 'img-circle img-bordered-sm' %>
+          <span class="username">
+            <a href="#"><%= @user_profile.display_name%></a>
+           <!--  <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a> -->
+          </span>
+      <span class="description"><%= activity.activity_type %>- <%= time_ago_in_words(activity.created_at) %> ago</span>
+    </div>
+    <div class='text-center activity-background'>
+      <%= video_tag video.video, controls: true, autobuffer: true, oncontextmenu:"return false;",  controlsList:"nodownload", class: 'img-responsive', style: 'max-height: 400px;' unless CollectionItem.where(id:activity.object_id).first.nil? %> <br>
+    </div>
+  </div>
+  <% end %>

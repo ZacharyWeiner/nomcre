@@ -4,76 +4,22 @@
 </style>
 <div class="active tab-pane" id="activity">
   <% @user_profile.activities.reverse.each do |activity|%>
-    <div class="post box-body">
-    <div class="user-block">
-      <%= image_tag @user_profile.profile_photo, class: 'img-circle img-bordered-sm' %>
-          <span class="username">
-            <a href="#"><%= @user_profile.display_name%></a>
-           <!--  <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a> -->
-          </span>
-      <span class="description"><%= activity.activity_type %>- <%= time_ago_in_words(activity.created_at) %> ago</span>
-    </div>
     <%if activity.activity_type == UserActivityType.collection_added %>
-    <% collection = Collection.where(id: activity.object_id).first %>
-      <% if collection %>
-        <div class='activity-background' >
-          <br>
-          <%= link_to collection  do %>
-            <h4 style='padding-left:24px;'> <%= collection.title %> </h4>
-          <% end %>
-          <div class='row' style='padding-left: 12px;'>
-            <% collection.collection_items.each do |ci| %>
-              <div class='col-md-3 text-center'>
-                <% if ci.item_type == "image" %>
-                  <%= image_tag ci.file.url(:small), class: 'img-responsive' %>
-                <% else %>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
+      <%= render :partial => 'user_profiles/partials/activity/collection_added', :locals => {:activity => activity} %>
     <% elsif  activity.activity_type == UserActivityType.collection_photo_added %>
-      <div class='activity-background' >
-       <%= image_tag CollectionItem.where(id: activity.object_id).first.file, class: 'img-responsive' unless CollectionItem.where(id:activity.object_id).first.nil?%> <br>
-     </div>
+     <%= render :partial => 'user_profiles/partials/activity/collection_photo_added', :locals => {:activity => activity} %>
     <% elsif  activity.activity_type == UserActivityType.collection_video_added %>
-      <div class='text-center activity-background'>
-        <%= video_tag CollectionItem.where(id: activity.object_id).first.video, controls: true, autobuffer: true, oncontextmenu:"return false;",  controlsList:"nodownload", class: 'img-responsive', style: 'max-height: 400px;' unless CollectionItem.where(id:activity.object_id).first.nil? %> <br>
-      </div>
+      <%= render :partial => 'user_profiles/partials/activity/collection_video_added', :locals => {:activity => activity} %>
     <% elsif  activity.activity_type == UserActivityType.proposal_accepted %>
-      <div class='activity-background' >
-        <div class="user-block">
-          <% proposal  = Proposal.find(activity.object_id) %>
-          <%= image_tag proposal.company.logo, class: 'img-circle img-bordered-sm' %>
-              <span class="username">
-                <%= proposal.title %>
-              </span>
-          <span class="description">
-             From: <%= proposal.company.name %>
-          </span>
-        </div>
-      </div>
+      <%= render :partial => 'user_profiles/partials/activity/proposal_accepted', :locals => {:activity => activity} %>
     <% elsif  activity.activity_type == UserActivityType.proposal_created %>
       <div class='activity-background' >
         <%= Proposal.find(activity.object_id).company.name %> <br>
       </div>
     <% elsif  activity.activity_type == UserActivityType.travel_plan_created %>
-      <%si = ScheduleItem.where(id: activity.object_id).first %>
-      <% unless si.nil?%>
-        <div class="info-box activity-background">
-          <span class="info-box-icon bg-aqua"><i class="fa fa-map-marker"></i></span>
-          <div class="info-box-content">
-            <span class="info-box-number">Is Traveling To:</span>
-            <span class="info-box-number"><%= si.location.name %></span>
-
-            <span class="info-box-text">On: <small><%= si.start_date.strftime(" %A,  %B %d, %Y") %></small></span>
-          </div>
-        </div>
-        <% end %>
+      <%= render :partial => 'user_profiles/partials/activity/travel_plan_created', :locals => {:activity => activity} %>
     <% else %>
     <% end %>
-</div>
   <% end %>
 </div>
 

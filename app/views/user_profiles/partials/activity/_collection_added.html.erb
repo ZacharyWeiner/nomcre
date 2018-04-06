@@ -1,0 +1,30 @@
+<% collection = Collection.where(id: activity.object_id).first %>
+<% if collection %>
+  <div class="post box-body">
+    <div class="user-block">
+      <%= image_tag @user_profile.profile_photo, class: 'img-circle img-bordered-sm' %>
+          <span class="username">
+            <a href="#"><%= @user_profile.display_name%></a>
+           <!--  <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a> -->
+          </span>
+      <span class="description"><%= activity.activity_type %>- <%= time_ago_in_words(activity.created_at) %> ago</span>
+    </div>
+    <div class='activity-background' >
+      <br>
+      <%= link_to collection  do %>
+        <h4 style='padding-left:24px;'> <%= collection.title %> </h4>
+      <% end %>
+      <div class='row' style='padding-left: 12px;'>
+        <% collection.collection_items.each do |ci| %>
+          <div class='col-md-3 text-center'>
+            <% if ci.item_type == "image" %>
+              <%= image_tag ci.file.url(:small), class: 'img-responsive' %>
+            <% else %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
