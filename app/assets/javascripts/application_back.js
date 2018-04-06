@@ -69,7 +69,7 @@ $(function(){
 });
 
 function validateImage(inputFile) {
-  var maxExceededMessage = "This file exceeds the maximum allowed file size (15 MB)";
+  var maxExceededMessage = "This file exceeds the maximum allowed file size (15 MB) <br>";
   var extErrorMessage = "To upload a video please use the video uploader. Only .jpg, .jpeg, .gif or .png are allowed in the photo section";
   var allowedExtension = ["jpg", "jpeg", "gif", "png"];
 
@@ -77,6 +77,7 @@ function validateImage(inputFile) {
   var maxFileSize = $(inputFile).data('max-file-size');
   var sizeExceeded = false;
   var extError = false;
+  var message = '';
 
   $.each(inputFile.files, function() {
     if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) {sizeExceeded=true;};
@@ -85,44 +86,57 @@ function validateImage(inputFile) {
   });
 
   if (sizeExceeded) {
-    $('.modal-body').html( maxExceededMessage);
-    $('#photoModal').modal('toggle');
+    // $('.modal-body').html( maxExceededMessage);
+    // $('#photoModal').modal('toggle');
+     message += maxExceededMessage;
     $(inputFile).val('');
   };
 
   if (extError) {
-    $('.modal-body').html( extErrorMessage);
-    $('#photoModal').modal('toggle');
+    // $('.modal-body').html( extErrorMessage);
+    // $('#photoModal').modal('toggle');
+    message += extErrorMessage;
     $(inputFile).val('');
+  };
+  if(extError || sizeExceeded){
+    $('.modal-body').html( message);
+    $('#videoModal').modal('toggle');
   };
 };
 
 function validateVideo(inputFile) {
-  var maxExceededMessage = "This file exceeds the maximum allowed file size (50 MB)";
-  var extErrorMessage = "To upload a video please use the video uploader. Only .mp4, .m4v, .avi or .mov re allowed in the photo section";
+  var maxExceededMessage = "This file exceeds the maximum allowed file size (50 MB) <br>";
+  var extErrorMessage = "To upload a video please use the video uploader. Only .mp4, .m4v, .avi or .mov are allowed in the video section";
   var allowedExtension = ["mp4", "m4v", "avi", "mov"];
 
   var extName;
   var maxFileSize = $(inputFile).data('max-file-size');
   var sizeExceeded = false;
   var extError = false;
-
+  var message = '';
   $.each(inputFile.files, function() {
     if (this.size && maxFileSize && this.size > parseInt(maxFileSize)) {sizeExceeded=true;};
     extName = this.name.split('.').pop();
     if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
   });
   if (sizeExceeded) {
-    $('.modal-body').html( maxExceededMessage);
-    $('#videoModal').modal('toggle');
+    message += maxExceededMessage;
+    // $('.modal-body').html( maxExceededMessage);
+    // $('#videoModal').modal('toggle');
     /*window.alert(maxExceededMessage); */
     $(inputFile).val('');
   };
 
   if (extError) {
-    $('.modal-body').html( extErrorMessage);
-    $('#videoModal').modal('toggle');
+    message += extErrorMessage;
+    // $('.modal-body').html( extErrorMessage);
+    // $('#videoModal').modal('toggle');
     $(inputFile).val('');
+  };
+
+  if(extError || sizeExceeded){
+    $('.modal-body').html( message);
+    $('#videoModal').modal('toggle');
   };
 };
 
