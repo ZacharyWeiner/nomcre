@@ -4,7 +4,6 @@ class ScheduleItem < ApplicationRecord
   before_destroy :destroy_related_entities
 
   def destroy_related_entities
-    byebug
     activities = UserActivity.where(user: self.user).where(activity_type: UserActivityType.travel_plan_created).where(object_id: self.id)
      activities.each do |a|
       a.destroy
