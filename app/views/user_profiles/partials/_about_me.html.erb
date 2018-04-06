@@ -29,7 +29,7 @@
     <p>
       <% @user_profile.content_type.each do |type|%>
         <% if type.downcase == 'photography' %>
-          <span class="label label-danger"><%= type %></span>
+          <span class="label label-primary"><%= type %></span>
         <% elsif  type.downcase == 'videography' %>
           <span class="label label-info"><%= type %></span>
         <% elsif  type.downcase == 'aerial' %>
@@ -49,7 +49,7 @@
     <p>
        <% @user_profile.shot_preference.each do |type|%>
         <% if type.downcase == 'editorial' %>
-          <span class="label label-danger"><%= type %></span>
+          <span class="label label-primary"><%= type %></span>
         <% elsif  type.downcase == 'story' %>
           <span class="label label-info"><%= type %></span>
         <% elsif  type.downcase == 'lifestyle' %>
