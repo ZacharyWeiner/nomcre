@@ -4,7 +4,7 @@
   <meta property="og:title" content="NomCre - Collections" />
   <meta property="og:description" content="Nomcre - Our Best Visual Creators. The Best Photographers and Videographers." />
   <% if @collections.count > 0 %>
-    <% if @collections.first.collection_items.count > 0 %>
+    <% if @collections.first.collection_items.where(item_type: 'image').count > 0 %>
       <meta property="og:image" content="<%= @collections.first.collection_items.where(item_type: 'image').first.file_url(:small).to_s %>" />
     <% end %>
   <% end %>
@@ -61,6 +61,9 @@
     </div>
    </div>
    <div class='pull-right'>
+     <%= link_to user_profile_path(collection.user.user_profile), style: 'padding-left:6px;padding-right:6px;' do %>
+          <i class='fa fa-user '></i> View Profile
+        <% end %>
     <%if current_user && collection.user == current_user %>
       <%= link_to new_collection_collection_item_path(collection), style: 'padding-left:6px;padding-right:6px;' do %>
         <i class='fa fa-plus '></i> Add Images
