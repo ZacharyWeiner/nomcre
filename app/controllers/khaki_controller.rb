@@ -33,4 +33,7 @@ class KhakiController < ApplicationController
 
   def proposal_tutorial_company
   end
+
+  def tos
+  end
 end
