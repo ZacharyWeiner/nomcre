@@ -15,29 +15,31 @@
     </div>
     <%if activity.activity_type == UserActivityType.collection_added %>
       <div class='activity-background' >
-       <% collection = Collection.find(activity.object_id) %>
+       <% collection = Collection.where(id: activity.object_id).first %>
        <br>
-       <%= link_to collection  do %>
-        <h4 style='padding-left:24px;'> <%= collection.title %> </h4>
-       <% end %>
-       <div class='row' style='padding-left: 12px;'>
-        <% collection.collection_items.each do |ci| %>
+       <% if collection %>
+        <%= link_to collection  do %>
+          <h4 style='padding-left:24px;'> <%= collection.title %> </h4>
+        <% end %>
+        <div class='row' style='padding-left: 12px;'>
+          <% collection.collection_items.each do |ci| %>
           <div class='col-md-3 text-center'>
             <% if ci.item_type == "image" %>
               <%= image_tag ci.file.url(:small), class: 'img-responsive' %>
             <% else %>
             <% end %>
           </div>
-        <% end %>
-     </div>
+          <% end %>
+        </div>
+       <% end %>
       </div>
     <% elsif  activity.activity_type == UserActivityType.collection_photo_added %>
       <div class='activity-background' >
-       <%= image_tag CollectionItem.find(activity.object_id).file, class: 'img-responsive' %> <br>
+       <%= image_tag CollectionItem.where(id: activity.object_id).first.file, class: 'img-responsive' unless CollectionItem.where(id:activity.object_id).first.nil?%> <br>
      </div>
     <% elsif  activity.activity_type == UserActivityType.collection_video_added %>
       <div class='text-center activity-background'>
-        <%= video_tag CollectionItem.find(activity.object_id).video, controls: true, autobuffer: true, oncontextmenu:"return false;",  controlsList:"nodownload", class: 'img-responsive', style: 'max-height: 400px;' %> <br>
+        <%= video_tag CollectionItem.where(id: activity.object_id).first.video, controls: true, autobuffer: true, oncontextmenu:"return false;",  controlsList:"nodownload", class: 'img-responsive', style: 'max-height: 400px;' unless CollectionItem.where(id:activity.object_id).first.nil? %> <br>
       </div>
     <% elsif  activity.activity_type == UserActivityType.proposal_accepted %>
       <div class='activity-background' >
@@ -57,7 +59,8 @@
         <%= Proposal.find(activity.object_id).company.name %> <br>
       </div>
     <% elsif  activity.activity_type == UserActivityType.travel_plan_created %>
-        <%si = ScheduleItem.find(activity.object_id) %>
+      <%si = ScheduleItem.where(id: activity.object_id).first %>
+      <% unless si.nil?%>
         <div class="info-box activity-background">
           <span class="info-box-icon bg-aqua"><i class="fa fa-map-marker"></i></span>
           <div class="info-box-content">
@@ -67,6 +70,7 @@
             <span class="info-box-text">On: <small><%= si.start_date.strftime(" %A,  %B %d, %Y") %></small></span>
           </div>
         </div>
+        <% end %>
     <% else %>
     <% end %>
 </div>

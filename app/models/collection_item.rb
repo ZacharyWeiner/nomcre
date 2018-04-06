@@ -6,14 +6,12 @@ class CollectionItem < ApplicationRecord
   mount_uploader :video, VideoUploader
   validates :file, file_size: { less_than_or_equal_to: 25.megabytes }
   validates :video, file_size: { less_than_or_equal_to: 25.megabytes }
-  #validates :file_size
+  before_destroy :destroy_related_entities
 
-
-
-  # def file_size
-  #   byebug
-  #   if file.file.size.to_f/(1000*1000) > 10485760.to_f
-  #     errors.add(:file, "You cannot upload a file greater than 10 MB")
-  #   end
-  # end
+  def destroy_related_entities
+    activities = UserActivity.where(user: self.user).where(activity_type: UserActivityType.collection_photo_added).where(object_id: self.id)
+     activities.each do |a|
+      a.destroy
+    end
+  end
 end

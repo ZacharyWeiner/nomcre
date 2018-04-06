@@ -83,6 +83,7 @@ function validateImage(inputFile) {
     extName = this.name.split('.').pop();
     if ($.inArray(extName, allowedExtension) == -1) {extError=true;};
   });
+
   if (sizeExceeded) {
     $('.modal-body').html( maxExceededMessage);
     $('#photoModal').modal('toggle');
@@ -94,7 +95,7 @@ function validateImage(inputFile) {
     $('#photoModal').modal('toggle');
     $(inputFile).val('');
   };
-}
+};
 
 function validateVideo(inputFile) {
   var maxExceededMessage = "This file exceeds the maximum allowed file size (50 MB)";
@@ -123,5 +124,5 @@ function validateVideo(inputFile) {
     $('#videoModal').modal('toggle');
     $(inputFile).val('');
   };
-}
+};
 
