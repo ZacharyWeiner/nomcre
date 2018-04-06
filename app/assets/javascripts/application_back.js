@@ -69,6 +69,7 @@ $(function(){
 });
 
 function validateImage(inputFile) {
+
   var maxExceededMessage = "This file exceeds the maximum allowed file size (15 MB) <br>";
   var extErrorMessage = "To upload a video please use the video uploader. Only .jpg, .jpeg, .gif or .png are allowed in the photo section";
   var allowedExtension = ["jpg", "jpeg", "gif", "png"];
@@ -100,7 +101,7 @@ function validateImage(inputFile) {
   };
   if(extError || sizeExceeded){
     $('.modal-body').html( message);
-    $('#videoModal').modal('toggle');
+    $('#photoModal').modal('toggle');
   };
 };
 

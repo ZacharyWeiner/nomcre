@@ -134,7 +134,10 @@
         </div>
         <%= form.label :profile_photo %>
         <p> [500 x 500] </p>
-        <%= form.file_field :profile_photo, id: :user_profile_profile_photo, class: 'form-control' %>
+
+        <%= form.file_field :profile_photo, id: :user_profile_profile_photo, onchange: "validateImage(this);",
+              data: { max_file_size: 15.megabytes }
+             %>
         <br>
         <% if @user_profile.profile_photo %>
           <%= image_tag @user_profile.profile_photo, style: 'max-height:250px; max-width:250px;'%>
@@ -153,7 +156,9 @@
         </div>
         <%= form.label :header_image %>
         <p> [1920 x 1080] </p>
-        <%= form.file_field :header_image, id: :user_profile_header_image, class: 'form-control' %>
+         <%= form.file_field :header_image, id: :user_profile_header_image, onchange: "validateImage(this);",
+              data: { max_file_size: 15.megabytes }
+             %>
         <br>
         <% if @user_profile.header_image %>
           <%= image_tag @user_profile.header_image, style: 'max-height:250px; max-width:250px;'%>
@@ -169,3 +174,23 @@
 
   <%= link_to "Change your password", edit_user_registration_path %>
 <% end %>
+
+<div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sorry Something Went Wrong ... </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p> </p>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
