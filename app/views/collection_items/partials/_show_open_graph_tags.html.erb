@@ -1,0 +1,17 @@
+<% content_for :head do %>
+  <meta property="og:url" content="<%= request.original_url %>" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="<%= @collection_item.collection.title %>" />
+  <% description =  "A Collection By: " %>
+  <% if collection_item.collection.user && collection_item.collection.user.name.nil? == false %>
+    <% description += collection_item.collection.user.name %>
+  <% else %>
+    <% description += "Nomadic Creative" %>
+  <% end %>
+  <meta property="og:description" content="<%= description %>" />
+  <% if @collection_item.file.nil? == false %>
+    <meta property="og:image" content="<%= collection_item.file.url%>" />
+  <% elsif collection_item.video.nil? == false %>  %>
+    <meta property="og:video" content="<%= collection_item.video.url%>" />
+  <% end %>
+<% end %>
