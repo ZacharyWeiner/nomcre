@@ -39,7 +39,7 @@
         <div class='col-md-4'></div>
       </div>
       <br>
-      <%= f.submit "Upload Video", class: 'btn btn-primary  btn-block' %>
+      <%= f.submit "Upload Video",  id: 'uploadVideoBtn', class: 'btn btn-primary  btn-block' %>
 
   <% if params[:collection_id]%>
   <%= f.hidden_field :collection_id, :value => params[:collection_id]%>
@@ -70,4 +70,19 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Please Wait While Your File Uploads ... </h5>
+      </div>
+      <div class="modal-body text-center">
+        <p><i class="fa fa-spinner fa-spin" style="font-size:24px"></i> </p>
+      </div>
+      <div class="modal-footer">
 
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+      </div>
+    </div>
+  </div>
+</div>

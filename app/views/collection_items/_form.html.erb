@@ -33,13 +33,13 @@
           <i class='fa fa-image fa-4x'></i>
           <br><br>
           <%= f.file_field :file, onchange: "validateImage(this);",
-              data: { max_file_size: 15.megabytes }
+              data: { max_file_size: 15.megabytes, disable_with: "<i class='fa fa-spinner fa-spin'></i> Signing In..." }
              %>
         </div>
         <div class='col-md-4'></div>
       </div>
       <br>
-      <%= f.submit "Upload Image", class: 'btn btn-primary  btn-block' %>
+      <%= f.submit "Upload Image", id: 'uploadImageBtn',  class: 'btn btn-primary  btn-block' %>
 
   <% if params[:collection_id]%>
   <%= f.hidden_field :collection_id, :value => params[:collection_id]%>
@@ -65,6 +65,22 @@
       <div class="modal-footer">
 
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Please Wait While Your File Uploads ... </h5>
+      </div>
+      <div class="modal-body text-center">
+        <p> <i class="fa fa-spinner fa-spin" style="font-size:24px"></i></p>
+      </div>
+      <div class="modal-footer">
+
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
       </div>
     </div>
   </div>

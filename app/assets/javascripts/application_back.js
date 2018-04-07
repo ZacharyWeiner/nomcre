@@ -18,6 +18,13 @@ $(document).ready(function() {
     dateFormat: 'dd-mm-yy'
  });
 
+  $('#uploadImageBtn').click(function(){
+     $('#uploadModal').modal('toggle');
+  });
+  $('#uploadVideoBtn').click(function(){
+     $('#uploadModal').modal('toggle');
+  });
+
   $('.select2').select2();
 
   var table = $('.dataTable').DataTable();
