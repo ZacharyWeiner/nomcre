@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-sm-4 border-right">
         <div class="description-block">
-          <h5 class="description-header"><%= current_user.collection_items.count  %></h5>
+          <h5 class="description-header"><%= @user_profile.user.collection_items.count  %></h5>
           <span class="description-text"><i class='fa fa-camera'></i></span>
         </div>
         <!-- /.description-block -->
@@ -20,7 +20,7 @@
       <!-- /.col -->
       <div class="col-sm-4 border-right">
         <div class="description-block">
-          <h5 class="description-header"><%= current_user.proposals.where.not(completed: true).count %></h5>
+          <h5 class="description-header"><%= @user_profile.user.proposals.where.not(completed: true).count %></h5>
           <span class="description-text"><i class='fa fa-briefcase'></i></span>
         </div>
         <!-- /.description-block -->
@@ -28,7 +28,7 @@
       <!-- /.col -->
       <div class="col-sm-4">
         <div class="description-block">
-          <h5 class="description-header"><%= current_user.proposals.where(completed: true).count %></h5>
+          <h5 class="description-header"><%= @user_profile.user.proposals.where(completed: true).count %></h5>
           <span class="description-text"><i class='fa fa-trophy'></i></span>
         </div>
         <!-- /.description-block -->
