@@ -62,6 +62,9 @@ class CollectionsController < ApplicationController
       redirect_to new_collection_path and return
     end
     respond_to do |format|
+      if @collection.user_id == nil?
+        @collection.user = current_user
+      end
       if @collection.save
         UserActivity.create!(activity_type: UserActivityType.collection_added, user_id: current_user.id, object_id: @collection.id)
         format.html { redirect_to new_collection_collection_item_path(@collection), notice: 'Collection was successfully created.' }

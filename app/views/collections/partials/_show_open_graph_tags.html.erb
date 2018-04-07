@@ -1,0 +1,15 @@
+
+<!-- end -->
+<% content_for :head do %>
+<meta property="og:url" content="<%= request.original_url %>" />
+<meta property="og:type" content="profile" />
+<meta property="og:title" content="<%= collection.title %>" />
+<% description =  "A Collection By: " %>
+<% if collection.user && collection.user.name.nil? == false %>
+  <% description += collection.user.name %>
+<% else %>
+ <% description += "Nomadic Creative" %>
+<% end %>
+<meta property="og:description" content="<%= description %>" />
+<meta property="og:image" content="<%= head_url%>" />
+<% end %>

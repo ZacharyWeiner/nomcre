@@ -1,20 +1,6 @@
-<% unless @collection.collection_items.count ==0  %>
-  <% head_url = @collection.collection_items.where(is_header: true).first.file.url unless  @collection.collection_items.where(is_header: true).first.nil? %>
-  <% if head_url.nil? %>
-    head_url = @collection.collection_items.first.file.url
-  <% end %>
-<% end %>
-<% if head_url.nil? %>
- <% head_url = current_user.user_profile.header_image %>
-<%end %>
-<% content_for :head do %>
-<meta property="og:url" content="<%= request.original_url %>" />
-<meta property="og:type" content="profile" />
-<meta property="og:title" content="<%= @collection.title %>" />
-<meta property="og:description" content="A Collection By <%= @collection.user.name %>" />
-<meta property="og:image" content="<%= head_url%>" />
-<% end %>
 
+<% head_url = Collection.get_jumbotron_url(@collection) %>
+<% render :partial => 'collections/partials/show_open_graph_tags', :locals => {collection: @collection, head_url: head_url, request: request} %>
 
 <div class="nk-header-title nk-header-title-sm nk-header-title-parallax nk-header-title-parallax-opacity">
   <div class="bg-image op-5">
@@ -28,7 +14,6 @@
     </div>
   </div>
   <div class="nk-header-text-bottom">
-
       <%= link_to @collection.user.user_profile, class: 'btn btn-secondary' do %>
        <i class='fa fa-eye'></i> <span style='padding-right: 6px;'><%= @collection.user.user_profile.display_name %></span>
       <% end %>

@@ -1,0 +1,11 @@
+<% content_for :head do %>
+  <meta property="og:url" content="<%= request.original_url %>" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="NomCre - Collections" />
+  <meta property="og:description" content="Nomcre - Only The Best From Our Visual Creators." />
+  <% if collections.count > 0 %>
+    <% if collections.last.collection_items.where(item_type: 'image').count > 0 %>
+      <meta property="og:image" content="<%= collections.last.collection_items.where(item_type: 'image').first.file_url.to_s %>" />
+    <% end %>
+  <% end %>
+<% end %>

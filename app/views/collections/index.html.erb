@@ -1,14 +1,4 @@
-<% content_for :head do %>
-  <meta property="og:url" content="<%= request.original_url %>" />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="NomCre - Collections" />
-  <meta property="og:description" content="Nomcre - Our Best Visual Creators. The Best Photographers and Videographers." />
-  <% if @collections.count > 0 %>
-    <% if @collections.first.collection_items.where(item_type: 'image').count > 0 %>
-      <meta property="og:image" content="<%= @collections.first.collection_items.where(item_type: 'image').first.file_url(:small).to_s %>" />
-    <% end %>
-  <% end %>
-<% end %>
+<%= render :partial => 'collections/partials/index_open_graph_tags', :locals => {collections: @collections} %>
 <div class="nk-header-title nk-header-title-sm nk-header-title-parallax nk-header-title-parallax-opacity">
   <div class="bg-image">
     <% if @collections.count > 0 %>
@@ -61,22 +51,7 @@
     </div>
    </div>
    <div class='pull-right'>
-     <%= link_to user_profile_path(collection.user.user_profile), style: 'padding-left:6px;padding-right:6px;' do %>
-          <i class='fa fa-user '></i> View Profile
-        <% end %>
-    <%if current_user && collection.user == current_user %>
-      <%= link_to new_collection_collection_item_path(collection), style: 'padding-left:6px;padding-right:6px;' do %>
-        <i class='fa fa-plus '></i> Add Images
-      <% end %>
-      <%= link_to collection, style: 'padding-left:6px;padding-right:6px;' do  %>
-        <i class='fa fa-eye '></i> View Collection
-      <% end %>
-      <%= link_to "<i class='fa fa-trash'> </i> Delete".html_safe, collection_path(collection), method: :delete, data: { confirm: 'Are you sure?' }, style: 'padding-left:6px;padding-right:6px;'   %>
-      <% else %>
-        <%= link_to collection, style: 'padding-left:6px;padding-right:6px;' do %>
-          <i class='fa fa-eye '></i> View Collection
-        <% end %>
-      <% end %>
+    <%= render :partial => 'collections/partials/links/collection_links', :locals => {collection: collection} %>
    </div>
 
 
