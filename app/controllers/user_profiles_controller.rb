@@ -1,5 +1,7 @@
 class UserProfilesController < ApplicationController
   before_action :set_user_profile, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:show]
+
   layout 'adminlte'
   # GET /user_profiles
   # GET /user_profiles.json
@@ -10,7 +12,9 @@ class UserProfilesController < ApplicationController
   # GET /user_profiles/1
   # GET /user_profiles/1.json
   def show
-
+    if current_user.nil?
+      redirect_to user_collection_path(@user_profile.user)
+    end
   end
 
   # GET /user_profiles/new
