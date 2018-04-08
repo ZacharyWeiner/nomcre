@@ -37,18 +37,20 @@
 <% end %>
 
 </div>
-  <div class="nk-box bg-dark-1">
+  <div class="nk-box bg-dark-1 nk-pricing-menu">
     <div class="">
       <div class="row vertical-gap">
         <div class="nk-gap-4"></div>
         <% @collections.each do |collection| %>
           <% first = collection.collection_items.where(is_header: true).first %>
           <% if first %>
-            <div class="col-md-4 col-lg-4 text-center" style="margin-top: 24px;">
+            <div class="col-md-4 col-lg-4 " style="margin-top: 24px;">
+               <h4 class="nk-sub-title text-white op-7"><%= image_tag collection.user.user_profile.safe_profile_image_url, style: 'border-radius:100%; max-height:30px; max-width:30px;' %><span style='padding-left:8px;'><%= collection.user.name %><span></h4>
               <div class="nk-image-box-1-a">
                 <a href="<%= collection_path(collection) %>" class="nk-image-box-link"></a>
                 <img src="<%= first.file.url(:medium).to_s %>" alt="" style="transform: matrix(1, 0, 0, 1, 0, 0);">
                 <div class="nk-image-box-overlay nk-image-box-center">
+
                   <div>
                     <!-- <h3 class="nk-title text-white h5"><% collection.title %></h3> -->
                     <a href="#" class="nk-image-box-icon-btn text-center"><span class=" fa fa-eye"></span>View</a>
@@ -56,7 +58,7 @@
                   </div>
                 </div>
                 <h3 class="nk-title text-white h5" style="margin-top:8px;"><%= collection.title %></h3>
-                <h4 class="nk-sub-title text-white op-7">By: <%= collection.user.name %></h4>
+
               </div>
             </div>
           <% end %>
@@ -65,3 +67,4 @@
       <div class="nk-gap-4"></div>
     </div>
   </div>
+
