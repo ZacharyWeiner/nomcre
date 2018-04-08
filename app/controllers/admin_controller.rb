@@ -14,6 +14,10 @@ class AdminController < ApplicationController
     @schedule_items = ScheduleItem.all.page params[:page]
   end
 
+  def collections
+    @collections = Collection.all.page params[:page]
+  end
+
   def is_admin
     if current_user.nil? || current_user.role != 0
       redirect_to root_path

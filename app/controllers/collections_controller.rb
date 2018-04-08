@@ -1,5 +1,5 @@
 class CollectionsController < ApplicationController
-  before_action :set_collection, only: [:show, :edit, :update, :destroy]
+  before_action :set_collection, only: [:show, :edit, :update, :destroy, :make_featured, :remove_featured]
   before_action :authenticate_user!, except: [:index, :show]
   layout :set_layout
   # GET /collections
@@ -7,6 +7,7 @@ class CollectionsController < ApplicationController
   layout 'khaki'
   def index
     @collection_ids = []
+    #if we are showing a specific user
     if params[:user_id]
       @user_collections = Collection.where(user_id: params[:user_id])
       @user_collections.each do |uc|
@@ -15,7 +16,10 @@ class CollectionsController < ApplicationController
         end
       end
     else
+      #if we are NOT showing a specific user
+      #if the user is logged in
       if current_user
+        #if the current user is a creative show their stuff
         if current_user.user_type == 'creative'
           @collections = Collection.where(user: current_user).page params[:page]
           return
@@ -27,8 +31,9 @@ class CollectionsController < ApplicationController
             end
           end
         end
+      #if the user is NOT logged in
       else
-         @response_collections = Collection.order(:created_at)
+         @response_collections = Collection.where(featured: true).order(:created_at)
          @response_collections.each do |uc|
           if uc.collection_items.count > 0
             @collection_ids << uc.id
@@ -48,6 +53,18 @@ class CollectionsController < ApplicationController
   # GET /collections/new
   def new
     @collection = Collection.new
+  end
+
+  def make_featured
+    @collection.featured = true
+    @collection.save
+    redirect_to admin_collections_path
+  end
+
+  def remove_featured
+    @collection.featured = false
+    @collection.save
+    redirect_to admin_collections_path
   end
 
   # GET /collections/1/edit
@@ -104,7 +121,11 @@ class CollectionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_collection
-      @collection = Collection.find(params[:id])
+      if params[:collection_id]
+        @collection = Collection.find(params[:collection_id])
+      else
+        @collection = Collection.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   resources :schedule_items
   resources :collections do
     resources :collection_items
+    get '/feature', to: 'collections#make_featured', as: 'make_featured'
+    get '/remove_feature', to: 'collections#remove_featured', as: 'remove_featured'
   end
   resources :locations
   resources :collection_items do
@@ -93,6 +95,7 @@ Rails.application.routes.draw do
   get 'admin/users', to: 'admin#users', as: 'admin_users'
   get 'admin/proposals', to: 'admin#proposals', as: 'admin_proposals'
   get 'admin/schedule_items', to: 'admin#schedule_items', as: 'admin_schedule_items'
+  get 'admin/collections', to: 'admin#collections', as: 'admin_collections'
 
   #root 'khaki#nomcre_home'
   root 'application#home'
