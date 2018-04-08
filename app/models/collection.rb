@@ -47,7 +47,7 @@ class Collection < ApplicationRecord
       header = self.collection_items.where.not(file: nil).first
     end
     if header.nil?
-      header = self.user.safe_header_image_url
+      header = self.user.user_profile.safe_header_image_url
     end
     header
   end
