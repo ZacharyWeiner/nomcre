@@ -114,7 +114,7 @@ class CollectionItemsController < ApplicationController
   end
 
   def make_header
-    remove = CollectionItem.where(is_header: true)
+    remove = CollectionItem.where(is_header: true).where(collection_id: @collection_item.collection.id)
     remove.each do |r|
       r.is_header = false
       r.save

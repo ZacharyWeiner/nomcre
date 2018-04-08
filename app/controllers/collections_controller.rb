@@ -6,36 +6,37 @@ class CollectionsController < ApplicationController
   # GET /collections.json
   layout 'khaki'
   def index
-    @collections = []
+    @collection_ids = []
     if params[:user_id]
       @user_collections = Collection.where(user_id: params[:user_id])
       @user_collections.each do |uc|
         if uc.collection_items.count > 0
-          @collections << uc
+          @collection_ids << uc.id
         end
       end
     else
       if current_user
         if current_user.user_type == 'creative'
-          @collections = Collection.where(user: current_user)
+          @collections = Collection.where(user: current_user).page params[:page]
+          return
         else
           @response_collections = Collection.all
           @response_collections.each do |uc|
             if uc.collection_items.count > 0
-              @collections << uc
+              @collection_ids << uc.id
             end
           end
         end
       else
-         @response_collections = Collection.all
+         @response_collections = Collection.order(:created_at)
          @response_collections.each do |uc|
           if uc.collection_items.count > 0
-            @collections << uc
+            @collection_ids << uc.id
           end
         end
       end
     end
-    @collections
+    @collections = Collection.where(id: @collection_ids).page params[:page]
   end
 
   # GET /collections/1

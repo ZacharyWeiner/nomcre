@@ -2,7 +2,7 @@ class Collection < ApplicationRecord
   belongs_to :user
   has_many :collection_items, dependent: :destroy
   before_destroy :destroy_related_entities
-
+  paginates_per 10
 
   def destroy_related_entities
     activities = UserActivity.where(user: self.user).where(activity_type: UserActivityType.collection_added).where( object_id: self.id)
@@ -39,5 +39,16 @@ class Collection < ApplicationRecord
       end
     end
     head_url
+  end
+
+  def get_header_or_first
+    header = self.collection_items.where(is_header: true).first
+    if header.nil?
+      header = self.collection_items.where.not(file: nil).first
+    end
+    if header.nil?
+      header = self.user.safe_header_image_url
+    end
+    header
   end
 end
