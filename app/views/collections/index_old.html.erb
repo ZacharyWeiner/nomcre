@@ -1,1 +1,65 @@
-style: 'padding-left:6px;padding-right:6px;'
+<div class='nk-pricing-menu'>
+  <h3><%= collection.title %></h3>
+  <div class="nk-carousel-2  nk-carousel-all-visible" data-autoplay="5000">
+    <div class="nk-carousel-inner">
+      <% collection.collection_items.take(4).each do |item| %>
+        <div>
+          <div>
+
+              <% if item.item_type == 'image'%>
+                <%= image_tag item.file, class: 'nk-img-fit', style: 'max-height:300px' %>
+              <%else%>
+                <%= video_tag item.video, controls: false, class: 'nk-img-fit',  oncontextmenu:"return false;"%>
+              <%end%>
+
+          </div>
+        </div>
+      <%end%>
+    </div>
+   </div>
+   <div class='pull-right'>
+    <%= render :partial => 'collections/partials/links/collection_links', :locals => {collection: collection} %>
+   </div>
+
+
+ </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="nk-box bg-dark-1">
+    <div class="container">
+      <div class="row vertical-gap">
+        <div class="nk-gap-4"></div>
+        <% @collections.each do |collection| %>
+          <% first = collection.collection_items.where(is_header: true).first %>
+          <% if first %>
+            <div class="col-md-6 col-lg-4 text-center" style="margin-top: 24px;">
+              <div class="nk-image-box-1-a">
+                <a href="<%= collection_path(collection) %>" class="nk-image-box-link"></a>
+                <img src="<%= first.file.url(:small).to_s %>" alt="" style="transform: matrix(1, 0, 0, 1, 0, 0);">
+                <div class="nk-image-box-overlay nk-image-box-center">
+                  <div>
+                    <!-- <h3 class="nk-title text-white h5"><% collection.title %></h3> -->
+                    <h4 class="nk-sub-title text-white op-7">By: <br><%= collection.user.name %></h4>
+                  </div>
+                </div>
+                <h3 class="nk-title text-white h5" style="margin-top:8px;"><%= collection.title %></h3>
+                <!-- <h4 class="nk-sub-title text-white op-7"><% collection.user.name %></h4> -->
+              </div>
+            </div>
+          <% end %>
+        <%end%>
+      </div>
+      <div class="nk-gap-4"></div>
+    </div>
+  </div>
