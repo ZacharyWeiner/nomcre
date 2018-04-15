@@ -91,6 +91,7 @@ Rails.application.routes.draw do
   get 'company_tutorial', to:'khaki#proposal_tutorial_company', as: 'proposal_tutorial_company'
   get 'khaki/index', to:'khaki#index'
   get 'tos', to: 'khaki#tos', as: 'tos'
+  get 'thew', to: 'khaki#thew', as:'thew'
 
   get 'admin/users', to: 'admin#users', as: 'admin_users'
   get 'admin/proposals', to: 'admin#proposals', as: 'admin_proposals'

@@ -36,4 +36,7 @@ class KhakiController < ApplicationController
 
   def tos
   end
+
+  def thew
+  end
 end
