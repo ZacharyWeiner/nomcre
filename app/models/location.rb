@@ -1,4 +1,7 @@
 class Location < ApplicationRecord
+  has_and_belongs_to_many :tags
+
+
   def self.locations_for_select
     regions  = Location.where(location_type: 'Region')
     countries = Location.where(location_type: 'Country').collect{|l| [l.name, l.id]}

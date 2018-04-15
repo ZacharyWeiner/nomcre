@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tags
   resources :showcase_images
   resources :user_activities
   resources :shot_list_items

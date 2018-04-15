@@ -1,5 +1,6 @@
 class Collection < ApplicationRecord
   belongs_to :user
+  has_and_belongs_to_many :tags
   has_many :collection_items, dependent: :destroy
   before_destroy :destroy_related_entities
   paginates_per 10

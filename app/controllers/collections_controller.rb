@@ -24,6 +24,7 @@ class CollectionsController < ApplicationController
           @collections = Collection.where(user: current_user).page params[:page]
           return
         else
+          #if the current user is a an show their stuff
           @response_collections = Collection.all
           @response_collections.each do |uc|
             if uc.collection_items.count > 0
