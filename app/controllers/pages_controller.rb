@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :set_page, only: [:show, :edit, :update, :destroy]
+  before_action :set_page, only: [:edit, :update, :destroy]
   layout 'adminlte'
   # GET /pages
   # GET /pages.json
@@ -11,6 +11,7 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
+    if params[:title]
   end
 
   # GET /pages/new

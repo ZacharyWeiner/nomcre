@@ -81,6 +81,6 @@ class ShotListItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shot_list_item_params
-      params.require(:shot_list_item).permit(:proposal_id, :description, :background, :upload, :item_type, :task_id, :focus_point)
+      params.require(:shot_list_item).permit(:proposal_id, :description, :background, :upload, :item_type, :task_id, :focus_point, :aspect_ratio, :reference_image)
     end
 end

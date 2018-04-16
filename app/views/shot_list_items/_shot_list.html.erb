@@ -24,6 +24,7 @@
         <span class="text"><small> Focus Point: <%= shot_list_item.focus_point %> </small> - <%= shot_list_item.description %> </span>
         <!-- Emphasis label -->
         <small class="label label-success"><i class="fa fa-image"></i> <%= shot_list_item.background %></small>
+        <small class="label label-success"><i class="fa fa-image"></i> <%= shot_list_item.aspect_ratio %></small>
 
         <!-- General tools such as edit or delete-->
         <div class="tools">
@@ -42,6 +43,9 @@
           <i class="fa fa-trash-o"></i>
           <% end %>
         </div>
+        <% if shot_list_item.reference_image.url %>
+          <%= image_tag shot_list_item.reference_image.url, class: 'img-responsive', style: 'max-height: 300px;'%>
+        <% end %>
       </li>
     <% end %>
     </ul>

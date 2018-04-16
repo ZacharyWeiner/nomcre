@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180408194829) do
+ActiveRecord::Schema.define(version: 20180416221642) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,6 +63,13 @@ ActiveRecord::Schema.define(version: 20180408194829) do
     t.index ["user_id"], name: "index_collections_on_user_id"
   end
 
+  create_table "collections_tags", id: false, force: :cascade do |t|
+    t.bigint "tag_id"
+    t.bigint "collection_id"
+    t.index ["collection_id"], name: "index_collections_tags_on_collection_id"
+    t.index ["tag_id"], name: "index_collections_tags_on_tag_id"
+  end
+
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.string "logo"
@@ -87,6 +94,13 @@ ActiveRecord::Schema.define(version: 20180408194829) do
     t.string "location_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "locations_tags", id: false, force: :cascade do |t|
+    t.bigint "tag_id"
+    t.bigint "location_id"
+    t.index ["location_id"], name: "index_locations_tags_on_location_id"
+    t.index ["tag_id"], name: "index_locations_tags_on_tag_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -194,6 +208,8 @@ ActiveRecord::Schema.define(version: 20180408194829) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "focus_point"
+    t.string "reference_image"
+    t.string "aspect_ratio"
     t.index ["proposal_id"], name: "index_shot_list_items_on_proposal_id"
     t.index ["task_id"], name: "index_shot_list_items_on_task_id"
   end
@@ -208,6 +224,22 @@ ActiveRecord::Schema.define(version: 20180408194829) do
     t.datetime "updated_at", null: false
     t.integer "height"
     t.integer "width"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.bigint "parent_id"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "category"
+  end
+
+  create_table "tags_users", id: false, force: :cascade do |t|
+    t.bigint "tag_id"
+    t.bigint "user_id"
+    t.index ["tag_id"], name: "index_tags_users_on_tag_id"
+    t.index ["user_id"], name: "index_tags_users_on_user_id"
   end
 
   create_table "tasks", force: :cascade do |t|
@@ -301,6 +333,10 @@ ActiveRecord::Schema.define(version: 20180408194829) do
   add_foreign_key "collection_items", "collections"
   add_foreign_key "collection_items", "users"
   add_foreign_key "collections", "users"
+  add_foreign_key "collections_tags", "collections"
+  add_foreign_key "collections_tags", "tags"
+  add_foreign_key "locations_tags", "locations"
+  add_foreign_key "locations_tags", "tags"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "users"
@@ -312,6 +348,8 @@ ActiveRecord::Schema.define(version: 20180408194829) do
   add_foreign_key "schedule_items", "users"
   add_foreign_key "shot_list_items", "proposals"
   add_foreign_key "shot_list_items", "tasks"
+  add_foreign_key "tags_users", "tags"
+  add_foreign_key "tags_users", "users"
   add_foreign_key "tasks", "companies"
   add_foreign_key "tasks", "proposals"
   add_foreign_key "tasks", "users"

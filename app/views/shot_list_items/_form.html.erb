@@ -54,7 +54,40 @@
     </div>
   </div>
   <div class="col-md-6">
-    <% if proposal.shoot_type == 'Mixed'%>
+
+    <div class='box box-yellow'>
+      <div class="box-header with-border">
+        <h4 class="box-title">Aspect Ratio</h4>
+      </div>
+      <div class='row' style="margin:12px;">
+        <div class='col-md-4 col-sm-4 col-xs-4'>
+          <%= form.radio_button :aspect_ratio, "Portrait", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+          <%= form.label :portrait %>
+        </div>
+        <div class='col-md-4 col-sm-4 col-xs-4 '>
+          <%= form.radio_button :aspect_ratio, "Landscape", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+          <%= form.label :landscape %>
+        </div>
+        <div class='col-md-4 col-sm-4 col-xs-4 '>
+          <%= form.radio_button :aspect_ratio, "Square" , class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+          <%= form.label :square  %>
+        </div>
+      </div>
+    </div>
+
+
+    <%= form.hidden_field :item_type, :value => proposal.shoot_type %>
+
+    <% end %>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-6 col-sm-12 col-xs-12'>
+    <%= form.label :reference_image %>
+    <%= form.file_field :reference_image, id: :shot_list_item_reference_image, class: 'form-control' %>
+  </div>
+
+  <% if proposal.shoot_type == 'Mixed'%>
       <div class='box box-purple'>
         <div class="box-header with-border">
           <h4 class="box-title">Shot Type</h4>
@@ -71,10 +104,6 @@
         </div>
       </div>
     <% else %>
-    <%= form.hidden_field :item_type, :value => proposal.shoot_type %>
-
-    <% end %>
-  </div>
 </div>
 <% end %>
 

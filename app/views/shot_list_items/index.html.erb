@@ -22,7 +22,7 @@
         <!-- checkbox -->
         <input type="checkbox" value="">
         <!-- todo text -->
-        <span class="text"><small> <%= shot_list_item.item_type %> </small> - <%= shot_list_item.description %> </span>
+        <span class="text"><small> <%= shot_list_item.item_type %> </small> - <%= shot_list_item.aspect_ratio %> - <%= shot_list_item.description %> </span>
         <!-- Emphasis label -->
         <small class="label label-success"><i class="fa fa-image"></i> <%= shot_list_item.background %></small>
 
@@ -43,6 +43,9 @@
           <i class="fa fa-trash-o"></i>
           <% end %>
         </div>
+        <% if shot_list_item.reference_image.url %>
+          <%= image_tag shot_list_item.reference_image.url, class: 'img-responsive', style: 'max-height: 300px;'%>
+        <% end %>
       </li>
     <% end %>
     </ul>
