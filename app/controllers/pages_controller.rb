@@ -12,6 +12,7 @@ class PagesController < ApplicationController
   # GET /pages/1.json
   def show
     if params[:title]
+    end
   end
 
   # GET /pages/new
