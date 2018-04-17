@@ -1,5 +1,7 @@
 class ProposalRequestsController < ApplicationController
   layout 'adminlte'
+  before_action :authenticate_user!
+
   def requests
      if current_user.user_type == 'creative'
       @requests = ProposalRequest.where(requested: current_user.id).where(approved: nil)
