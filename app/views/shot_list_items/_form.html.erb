@@ -22,13 +22,15 @@
       </div>
 
     <%= form.text_area :description, id: :shot_list_item_description, class: 'form-control', rows: 2, placeholder: 'Tell us what you want the shot to look like...' %>
+
   </div>
 </div>
   <br>
 <% if current_user.user_type == "creative" %>
 <div class="field">
  <%= form.label :upload %>
- <%= form.file_field :upload, id: :shot_list_item_upload, class: 'form-control' %>
+ <%= form.file_field :upload, id: :shot_list_item_upload, class: 'form-control', onchange: "validateImage(this);",
+              data: { max_file_size: 15.megabytes, disable_with: "<i class='fa fa-spinner fa-spin'></i> Signing In..." } %>
 </div>
 <% else %>
 <div class='row'>
@@ -84,7 +86,8 @@
 <div class='row'>
   <div class='col-md-6 col-sm-12 col-xs-12'>
     <%= form.label :reference_image %>
-    <%= form.file_field :reference_image, id: :shot_list_item_reference_image, class: 'form-control' %>
+    <%= form.file_field :reference_image, id: :shot_list_item_reference_image, class: 'form-control', onchange: "validateImage(this);",
+              data: { max_file_size: 15.megabytes, disable_with: "<i class='fa fa-spinner fa-spin'></i> Signing In..." } %>
   </div>
 
   <% if proposal.shoot_type == 'Mixed'%>
@@ -114,9 +117,44 @@
 <% end %>
 <br>
 <div class="actions">
-  <%= form.submit "Update List", class: 'btn btn-success pull-right' %>
+  <%= form.submit "Update List", id: 'uploadImageBtn', class: 'btn btn-success pull-right' %>
 </div>
 <% end %>
+<div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sorry Something Went Wrong ... </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p> </p>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Please Wait While Your File Uploads ... </h5>
+      </div>
+      <div class="modal-body text-center">
+        <p> <i class="fa fa-spinner fa-spin" style="font-size:24px"></i></p>
+      </div>
+      <div class="modal-footer">
+
+        <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
