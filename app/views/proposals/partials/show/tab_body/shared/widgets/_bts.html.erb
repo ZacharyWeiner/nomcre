@@ -1,0 +1,18 @@
+<span class="info-box-icon bg-gray-light"><i class="fa fa-plus"></i></span>
+      <div class="info-box-content">
+              <div class='edit-padding pull-right'>
+                <%if current_user.company == proposal.company  %>
+        <%= link_to edit_proposal_path(proposal), class: '' do %>
+          <i class='fa fa-edit'></i> Edit
+        <% end %>
+        <% end %>
+      </div>
+        <span class="info-box-number">BTS</span>
+        <span class="info-box-text">
+          <% proposal.bts.each do |bts| %>
+            <% unless bts == "0"%>
+              <span class="label label-success"><%= bts %></span>
+            <% end %>
+          <% end %>
+        </span>
+      </div>

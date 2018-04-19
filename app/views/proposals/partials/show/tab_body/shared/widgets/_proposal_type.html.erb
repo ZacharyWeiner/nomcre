@@ -1,0 +1,17 @@
+<% if proposal.proposal_type == 'video' %>
+  <span class="info-box-icon bg-gray-light"><i class="fa fa-video-camera"></i></span>
+<% elsif proposal.proposal_type == 'photo' %>
+  <span class="info-box-icon bg-gray-light"><i class="fa fa-photo"></i></span>
+<% end %>
+<div class="info-box-content">
+  <div class='edit-padding'>
+  <%if current_user.company == @proposal.company  %>
+  <%= link_to edit_proposal_path(@proposal), class: 'pull-right' do %>
+    <i class='fa fa-edit'></i> Edit
+  <% end %>
+  <% end %>
+</div>
+  <span class="info-box-number">Production</span>
+  <span class="info-box-text"><%= @proposal.proposal_type %></span>
+</div>
+
