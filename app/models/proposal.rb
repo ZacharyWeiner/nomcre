@@ -6,7 +6,7 @@ class Proposal < ApplicationRecord
   has_many :proposal_requests, dependent: :destroy
   has_one :chatroom, dependent: :destroy
   paginates_per 20
-  mount_uploader :model_release, FileUploader
+  mount_uploader :model_release, DisclosureUploader
   has_many :assistants, dependent: :destroy
   has_many :shot_list_items, dependent: :destroy
 
