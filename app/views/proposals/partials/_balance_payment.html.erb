@@ -32,11 +32,9 @@
         </div>
         <!-- /.col -->
         <div class="col-sm-4 invoice-col">
-          <b>Invoice #007612</b><br>
-          <br>
-          <b>Order ID:</b> 4F3S8J<br>
-          <b>Payment Due:</b> 2/22/2014<br>
-          <b>Account:</b> 968-34567
+          <b>Invoice - #D0<%= @proposal.id %></b><br>
+          <b>Proposal ID:</b> <%= @proposal.id %> <br>
+          <b>Paid On:</b> <%= @proposal.balance_paid_on %><br>
         </div>
         <!-- /.col -->
       </div>

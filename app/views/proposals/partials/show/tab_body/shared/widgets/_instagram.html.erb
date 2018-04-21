@@ -1,40 +1,40 @@
-<div class="">
-  <span class="info-box-icon bg-gray-light"><i class="fa fa-instagram"></i></span>
-  <div class="info-box-content">
-          <div class='edit-padding'>
-            <%if current_user.company == proposal.company  %>
-        <%= link_to edit_proposal_path(proposal), class: 'pull-right' do %>
-          <i class='fa fa-edit'></i> Edit
-        <% end %>
-        <% end %>
-      </div>
-    <span class="info-box-number">Insta Inspiration</span>
-    <span class="info-box-text">
 
-     <% unless proposal.instagram_1.nil? || proposal.instagram_1 == ""%>
+<span class="info-box-icon bg-gray-light"><i class="fa fa-instagram"></i></span>
+<div class="info-box-content">
+  <div class='edit-padding'>
+    <%if current_user.company == proposal.company  %>
+      <%= link_to edit_proposal_path(proposal), class: 'pull-right' do %>
+        <i class='fa fa-edit'></i> Edit
+      <% end %>
+    <% end %>
+  </div>
+  <span class="info-box-number">Insta Inspiration</span>
+  <span class="info-box-text">
+
+   <% unless proposal.instagram_1.nil? || proposal.instagram_1 == ""%>
       <%= link_to "http://www.instagram.com/#{proposal.instagram_1}", target:"_blank", class: 'btn btn-aqua '  do %>
         <i class='fa fa-instagram'></i> <%= proposal.instagram_1 %>
       <% end %>
-    <% end %>
-    <br>
-    <% unless proposal.instagram_2.nil? || proposal.instagram_2 == "" %>
+   <% end %>
+   <br>
+   <% unless proposal.instagram_2.nil? || proposal.instagram_2 == "" %>
       <%= link_to "http://www.instagram.com/#{proposal.instagram_2}", target:"_blank", class: 'btn btn-aqua '  do %>
-        <i class='fa fa-instagram'></i> <%= proposal.instagram_2 %>
+      <i class='fa fa-instagram'></i> <%= proposal.instagram_2 %>
       <% end %>
-    <% end %>
-    <br>
-    <% unless proposal.instagram_3.nil? || proposal.instagram_3 == ""%>
+   <% end %>
+   <br>
+   <% unless proposal.instagram_3.nil? || proposal.instagram_3 == ""%>
       <%= link_to "http://www.instagram.com/#{proposal.instagram_3}", target:"_blank", class: 'btn btn-aqua '  do %>
         <i class='fa fa-instagram'></i> <%= proposal.instagram_3 %>
       <% end %>
-    <% end %>
-    <br>
-    <% unless proposal.instagram_4.nil? || proposal.instagram_4 == ""%>
+   <% end %>
+   <br>
+   <% unless proposal.instagram_4.nil? || proposal.instagram_4 == ""%>
       <%= link_to "http://www.instagram.com/#{proposal.instagram_4}", target:"_blank", class: 'btn btn-aqua '  do %>
         <i class='fa fa-instagram'></i> <%= proposal.instagram_4 %>
-      <% end %>
     <% end %>
-    </span>
-  </div>
+   <% end %>
+ </span>
 </div>
+
 

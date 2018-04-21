@@ -1,42 +1,9 @@
-<% unless @proposal.deposit_paid %>
-
-<div class="small-box bg-yellow">
-  <div class="inner">
-    <h3>Deposit Must Be Paid</h3>
-
-    <p>Prior To Requesting Creatives</p>
-  </div>
-  <div class="icon">
-    <i class="fa fa-certificate"></i>
-  </div>
-</div>
-
-
-
-  <p>   </p>
-<% end %>
-<% unless @proposal.paid %>
-
-<div class="small-box bg-yellow">
-  <div class="inner">
-    <h3>Balnace Must Be Paid</h3>
-
-    <p>Prior To Approving Creatives</p>
-  </div>
-  <div class="icon">
-    <i class="fa fa-certificate"></i>
-  </div>
-</div>
-
-
-
-  <p>   </p>
-<% end %>
-<% @creatives = @proposal.find_creatives %>
-<% @proposal.find_creatives.each do |sr| %>
+<%= render :partial => 'proposals/partials/search_results/deposit_check', :locals => {proposal: proposal} %>
+<% @creatives = proposal.find_creatives %>
+<% proposal.find_creatives.each do |sr| %>
 <div class="post">
   <div class="user-block">
-    <img class="img-circle img-bordered-sm" src="<%= sr.user.user_profile.profile_photo %>" alt="user image">
+    <img class="img-circle img-bordered-sm" src="<%= sr.user.user_profile.safe_profile_image_url %>" alt="user image">
         <span class="username">
           <%= link_to sr.user.name, user_collection_path(sr.user) %>
           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -73,7 +40,7 @@
    <% @creatives.each do |cr| %>
     <li>
        <div class="user-block">
-        <%= image_tag cr.user_profile.profile_photo, class: 'img-circle img-bordered-sm' %>
+        <%= image_tag cr.user_profile.safe_profile_image_url, class: 'img-circle img-bordered-sm' %>
         <span class="username">
           <%= link_to cr.user_profile.display_name, user_collection_path(cr), style: 'margin-top:12px' %>
           <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a>
@@ -89,6 +56,7 @@
     </li>
   <% end %>
   </ul>
+
 <% end %>
 
 

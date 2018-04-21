@@ -1,5 +1,5 @@
 <% if current_user.user_type == 'company' %>
-  <%= render 'proposals/partials/company_proposal_view'%>
+  <%= render :partial => 'proposals/partials/show/company', :locals => {proposal: @proposal} %>
 <% else %>
-  <%= render 'proposals/partials/creative_proposal_view'%>
+  <%= render :partial => 'proposals/partials/show/creative', :locals => {proposal: @proposal} %>
 <% end %>

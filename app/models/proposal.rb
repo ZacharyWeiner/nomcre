@@ -75,6 +75,14 @@ class Proposal < ApplicationRecord
     return is_complete
   end
 
+  def is_editable
+    is_editable = true
+    if self.paid? && self.user.nil? == false
+      is_editable = false
+    end
+    is_editable
+  end
+
   def create_tasks
     if self.proposal_type = "Photo"
       # PreProduction Company

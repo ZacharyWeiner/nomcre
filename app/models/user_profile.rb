@@ -5,7 +5,7 @@ class UserProfile < ApplicationRecord
 
 
   def safe_profile_image_url
-    unless self.profile_photo.url.nil?
+    unless self.profile_photo.url.nil? || self.profile_photo.file.nil?
       return self.profile_photo
     else
       return UserProfile.default_profile_image
