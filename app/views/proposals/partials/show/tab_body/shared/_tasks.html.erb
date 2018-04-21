@@ -2,20 +2,21 @@
 <% @proposal.tasks.each do |task| %>
   <li class="list-group-item">
     <div class='row' style="margin:8px;">
-      <div class='col-md-2'><img class="img-circle img-bordered-sm" src="<%= task.approver.user_profile.safe_profile_image_url %>" alt="user image" style='max-width:50px;'></div>
+      <div class='col-md-2'>
+        <img class="img-circle img-bordered-sm" src="<%= task.approver.user_profile.safe_profile_image_url %>" alt="user image" style='max-width:50px;'></div>
       <div class='col-md-4'><%= task.description%></div>
       <div class='col-md-4'><%= task.deadline%></div>
       <div class='col-md-1'>
-        <% if  task.user == current_user || task.company == current_user.company %>
-          <% if task.completed? %>
-            <%= link_to  task_task_complete_path(task), class: 'success' do  %>
-              <i class='fa fa-check' style='color:lime'></i>
-            <% end %>
-          <% else %>
+        <% if task.completed? %>
+         <i class='fa fa-check' style='color:lime'></i>
+        <% else %>
+         <% if  task.approver == current_user %>
             <%= link_to task_task_complete_path(task), class: 'success' do %>
               <i class='fa fa-thumbs-o-up'></i>
             <% end %>
-          <% end %>
+         <% else %>
+            <i class='fa fa-ban'></i>
+         <% end %>
         <% end %>
       </div>
       <div class='col-md-1'>

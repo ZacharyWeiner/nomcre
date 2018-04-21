@@ -4,7 +4,7 @@ class Task < ApplicationRecord
   belongs_to :proposal
 
   def approver
-    if company.nil?
+    if self.can_accept == 'creative'
       return user
     else
       return company.users.first
