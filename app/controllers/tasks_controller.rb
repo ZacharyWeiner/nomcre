@@ -69,7 +69,6 @@ class TasksController < ApplicationController
   def complete
     new_path = params[:redirect]
     @task.completed = true
-    byebug
     if @task.save
       respond_to do |format|
         tasks = @task.proposal.tasks.where.not(completed: true)
@@ -79,7 +78,6 @@ class TasksController < ApplicationController
         if new_path
            redirect_to creative_dashboard_path and return
         else
-          byebug
           format.html { redirect_to @task.proposal, notice: 'Task was successfully completed.' }
         end
       end
