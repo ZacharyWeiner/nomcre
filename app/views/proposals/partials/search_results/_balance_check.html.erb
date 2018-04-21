@@ -1,0 +1,14 @@
+<% unless proposal.paid %>
+  <div class="small-box bg-yellow">
+    <div class="inner">
+      <h3>Balance Must Be Paid</h3>
+      <p>Prior To Assigning A Creative</p>
+      <p><%= link_to "<i class='fa fa-dollar' ></i> Pay Now".html_safe, proposal_payment_path(proposal), class: 'btn btn-success'%></p>
+    </div>
+    <div class="icon">
+      <i class="fa fa-certificate"></i>
+    </div>
+
+  </div>
+<% end %>
+

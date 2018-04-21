@@ -1,7 +1,7 @@
 <style type="text/css">
   .edit-padding{padding-right: 12px;}
 </style>
-<div class='continer'>
+<div class='tab-pane active continer' id="basic_info">
 <div class='row'>
   <div class="col-md-7">
     <b>Creative Brief</b>
@@ -11,6 +11,9 @@
   <div class="col-md-5">
     <div class="info-box">
       <%= render :partial => 'proposals/partials/show/tab_body/shared/widgets/proposal_type', :locals => {:proposal => @proposal} %>
+    </div>
+    <div class="info-box">
+      <%= render :partial => 'proposals/partials/show/tab_body/shared/widgets/location', :locals => {:proposal => @proposal} %>
     </div>
     <div class="info-box">
       <%= render :partial => 'proposals/partials/show/tab_body/shared/widgets/background', :locals => {:proposal => @proposal} %>

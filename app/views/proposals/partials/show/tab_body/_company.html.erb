@@ -1,0 +1,5 @@
+<% if proposal.is_editable %>
+  <%= render :partial => 'proposals/partials/show/tab_body/company/editable', :locals => {proposal: proposal} %>
+<% else %>
+  <%= render :partial => 'proposals/partials/show/tab_body/company/display_only', :locals => {proposal: proposal} %>
+<% end %>

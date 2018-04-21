@@ -28,6 +28,9 @@
                   </p>
               </div>
           </div>
+          <% if @shot_list_item.reference_image.url %>
+            <%= image_tag @shot_list_item.reference_image.url, class: '', style: 'max-width: 600px;'%>
+          <% end %>
       </div>
   </div>
 </div>

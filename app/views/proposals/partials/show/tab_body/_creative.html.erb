@@ -12,33 +12,28 @@
     </div>
     <!-- /.col -->
     <div class="col-md-9">
-      <%= render :partial => 'proposals/partials/proposal_show_top_widget', :locals => {:proposal => @proposal} %>
       <div class="nav-tabs-custom">
-        <%= render :partial =>  'proposals/partials/show/tabs/company', :locals => {:proposal => @proposal} %>
+        <%= render :partial => 'proposals/partials/show/tabs/creative', :locals => { proposal: proposal } %>
         <div class="tab-content">
           <div class="active tab-pane" id="basic_info">
             <%= render 'proposals/partials/proposal_basic_info'%>
           </div>
           <div class="tab-pane" id="shot_list">
-            <%= render :partial => 'shot_list_items/shot_list', :locals => {:shot_list_items => @proposal.shot_list_items} %>
+            <%= render :partial => 'shot_list_items/shot_list', :locals => {:shot_list_items => proposal.shot_list_items} %>
           </div>
           <% unless @proposal.tasks.count == 0 %>
           <div class="tab-pane" id="tasks">
-            <%= render 'proposals/partials/proposal_tasks_list'%>
+            <%= render 'proposals/partials/show/tab_body/shared/tasks'%>
           </div>
           <% end %>
-          <div class="tab-pane" id="creatives">
-            <%= render 'proposals/partials/proposal_search_results' %>
+          <div class="tab-pane" id="assistants">
+            <% render :partial => 'proposals/partials/assistant_list', :locals => {:proposal => @proposal}%>
+            <%= render :partial => 'proposals/partials/assistants_form', :locals => {:proposal => @proposal}%>
           </div>
           <div class="tab-pane" id="disclosures">
+
             <%= render 'proposals/partials/proposal_disclosures' %>
-          </div>
-           <div class="tab-pane" id="invoice">
-            <h3> Deposit </h3>
-            <%= render 'proposals/partials/invoices/deposit_invoice' %>
-            <br><hr><br>
-            <h3> Balance </h3>
-            <%= render 'proposals/partials/invoices/balance_invoice' %>
+            <%= render :partial => 'proposals/partials/show/tab_body/shared/widgets/disclosures', :locals => {proposal: @proposal } %>
           </div>
           <!-- /.tab-pane -->
         </div>

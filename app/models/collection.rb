@@ -42,7 +42,7 @@ class Collection < ApplicationRecord
   end
 
   def get_header_or_first
-    header = self.collection_items.where(is_header: true).first
+    header = self.collection_items.where.not(file: nil).where(is_header: true).first
     if header.nil?
       header = self.collection_items.where.not(file: nil).first
     end

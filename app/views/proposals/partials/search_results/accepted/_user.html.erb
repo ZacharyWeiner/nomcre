@@ -1,0 +1,21 @@
+
+<div class='box' style="padding:6px;">
+  <div class='row' style="padding-left:24px;padding-top: 8px;">
+    <img class="img-circle img-bordered-sm" src="<%= user.user_profile.safe_profile_image_url %>" alt="user image" style='max-width:50px;'>
+    <span class="username">
+      <%= link_to user.name, user_collection_path(user) %>
+      <a href="#" class="pull-right btn-box-tool"><!-- <i class="fa fa-times"></i> --></a>
+    </span>
+    <div class='pull-right'>
+      <% sr = ProposalSearchResult.new(user_id: user.id, rank: 2, schedule_item_id: user.schedule_items.first) %>
+      <%= render :partial => 'proposals/partials/search_results/request_buttons', :locals => {:sr => sr}%>
+    </div>
+  </div>
+  <div class='row'>
+    <% user.collections.first.collection_items.where(item_type: "image").reverse.take(4).each do |ci| %>
+    <div class='col-md-3'>
+      <%= image_tag ci.file, class: 'img-responsive' %>
+    </div>
+    <% end %>
+  </div>
+</div>
