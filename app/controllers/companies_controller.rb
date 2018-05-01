@@ -107,7 +107,7 @@ class CompaniesController < ApplicationController
     end
 
     def authorize
-      if  current_user && current_user.company == @company
+      unless  current_user && current_user.company == @company
         redirect_to root_path
       end
     end

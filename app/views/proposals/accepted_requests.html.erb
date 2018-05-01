@@ -1,5 +1,19 @@
 <%= render :partial => 'proposals/partials/search_results/deposit_check', :locals => {proposal: @proposal} %>
 <div class='row'>
+  <!-- <div class=''> -->
+    <% if @accepted.count ==0 && @proposal.deposit_paid %>
+     <div class="small-box bg-yellow">
+      <div class="inner">
+        <h3>Hold On </h3>
+
+        <p>While We Wait For Responses...</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-certificate"></i>
+      </div>
+    </div>
+    <% end %>
+  <!-- </div> -->
   <% @accepted.each do |request| %>
     <% user = User.find(request.requested) %>
     <div class="col-md-6">
