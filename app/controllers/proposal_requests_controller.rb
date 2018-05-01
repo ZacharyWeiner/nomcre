@@ -16,6 +16,21 @@ class ProposalRequestsController < ApplicationController
     end
   end
 
+  def assign
+    set_proposal_request
+    if @proposal_request.approved
+      redirect_to @proposal_request.proposal and return
+    end
+    @proposal_request.approved = true
+    @proposal_request.save
+    @proposal_request.proposal.assign_user @proposal_request.requested
+    @proposal_request.proposal.chatroom.messages.create!(user: @proposal_request.proposal.user, content: "#{@proposal_request.proposal.user.name} has been added to the chat")
+    @proposal_request.proposal.create_tasks
+    ProposalMailer.proposal_assigned(@proposal_request).deliver_now!
+    UserActivity.create!(activity_type: UserActivityType.proposal_accepted, user_id: @proposal_request.proposal.user.id, object_id: @proposal_request.proposal.id)
+    redirect_to @proposal_request.proposal
+  end
+
   def decline
     set_proposal_request
     @proposal_request.accepted = false

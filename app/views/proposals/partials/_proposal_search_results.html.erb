@@ -1,4 +1,4 @@
-<%= render :partial => 'proposals/partials/search_results/deposit_check', :locals => {proposal: proposal} %>
+<% render :partial => 'proposals/partials/search_results/deposit_check', :locals => {proposal: proposal} %>
 <% @creatives = proposal.find_creatives %>
 <% proposal.find_creatives.each do |sr| %>
 <div class="post">
@@ -12,7 +12,7 @@
   </div>
   <!-- /.user-block -->
   <p>
-    <%= render :partial =>  'proposals/partials/search_results/request_buttons', :locals => {:sr => sr} %>
+    <%= render :partial =>  'proposals/partials/search_results/request_buttons', :locals => {proposal: proposal, :user => sr.user} %>
     <br>
     <div class='row'>
       <% sr.user.collections.first.collection_items.where(item_type: "image").reverse.take(4).each do |ci| %>
@@ -24,7 +24,7 @@
   </p>
   <ul class="list-inline">
     <li>
-      <%= link_to user_show_path(sr.user), class: 'link-black text-sm' do %>
+      <%= link_to user_collection_path(sr.user), class: 'link-black text-sm' do %>
         <i class="fa fa-eye margin-r-5"></i> View</a>
       <%end%>
     </li>

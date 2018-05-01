@@ -1,17 +1,13 @@
 <ul class="nav nav-tabs">
   <li class="active"><a href="#basic_info" data-toggle="tab">Step 1 <hr> Proposal Info</a></li>
   <li class=""><a href="#shot_list" data-toggle="tab">Step 2 <hr> Set Up Shot List</a></li>
+  <li><a href="#creatives" data-toggle="tab">Step 3 <hr> Request Creatives</a></li>
   <li class="">
-    <a href="#deposit" data-toggle="tab">Step 3 <hr> Pay Deposit</a>
-    <% link_to proposal_payment_path(proposal) do %> Step 3 <hr> Pay Deposit <% end %>
-  </li>
-  <li><a href="#creatives" data-toggle="tab">Step 4 <hr> Request Creatives</a></li>
-  <li>
-    <% link_to proposal_payment_path(proposal) do %> Step 5 <hr> Pay Balance <% end %>
-    <a href="#balance" data-toggle="tab">Step 5 <hr> Pay Balance</a>
+    <a href="#deposit" data-toggle="tab">Step 4 <hr> Pay Deposit</a>
+    <% link_to proposal_payment_path(proposal) do %> Step 4 <hr> Pay Deposit <% end %>
   </li>
   <li>
-    <%= link_to proposal_accepted_requests_path(proposal) do %> Step 6 <hr> Assign A Creative <% end %>
+    <%= link_to proposal_accepted_requests_path(proposal) do %> Step 5 <hr> Assign A Creative <% end %>
     </li>
 </ul>
 

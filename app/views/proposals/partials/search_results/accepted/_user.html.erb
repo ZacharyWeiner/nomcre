@@ -8,7 +8,7 @@
     </span>
     <div class='pull-right'>
       <% sr = ProposalSearchResult.new(user_id: user.id, rank: 2, schedule_item_id: user.schedule_items.first) %>
-      <%= render :partial => 'proposals/partials/search_results/request_buttons', :locals => {:sr => sr}%>
+      <%= render :partial => 'proposals/partials/search_results/buttons/accept_button', :locals => {proposal: proposal, :user => sr.user, request: request}%>
     </div>
   </div>
   <div class='row'>

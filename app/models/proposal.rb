@@ -1,4 +1,5 @@
 class Proposal < ApplicationRecord
+  include ProposalsHelper
   belongs_to :company
   belongs_to :user, optional: true
   belongs_to :location
@@ -31,6 +32,15 @@ class Proposal < ApplicationRecord
       end
     end
     return creatives.sort! { |a, b|  b.rank <=> a.rank }
+  end
+
+   #Payment
+  def self.deposit_percent
+    return 0.70
+  end
+
+  def self.balance_percent
+    return 0.30
   end
 
   def mark_as_complete
@@ -123,6 +133,29 @@ class Proposal < ApplicationRecord
       self.tasks.create!(company: self.company, description: "Drone Task 1", deadline: self.deadline, completed: false, user:self.user)
       self.tasks.create!(company: self.company, description: "Drone Task 1", deadline: self.deadline, completed: false, user:self.user)
       self.tasks.create!(company: self.company, description: "Drone Task 1", deadline: self.deadline, completed: false, user:self.user)
+    end
+  end
+
+  #Users
+  def assign_user user_id
+    self.user = User.find(user_id)
+    self.accepted = true
+    self.save
+    self.send_assigned_notifications(user_id)
+  end
+
+  def send_assigned_notifications user_id
+    user = User.find(user_id)
+    self.send_notification(user_id, "New Message", self.chatroom.id)
+    self.send_notification(user_id, "Proposal Assigned", self.id)
+    self.send_notification(user_id, "Task", self.id)
+  end
+
+
+  def send_notification(user_id, notification_type, request_id)
+    notification = Notification.where(user_id: user_id, notification_type: notification_type, notification_object_id: request_id).first
+    if notification.nil?
+      notification = Notification.create!(user_id: user_id, notification_type: notification_type, notification_object_id: request_id, read: false)
     end
   end
 end

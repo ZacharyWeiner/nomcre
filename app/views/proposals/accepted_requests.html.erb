@@ -1,9 +1,9 @@
-<%= render :partial => 'proposals/partials/search_results/balance_check', :locals => {proposal: @proposal} %>
+<%= render :partial => 'proposals/partials/search_results/deposit_check', :locals => {proposal: @proposal} %>
 <div class='row'>
   <% @accepted.each do |request| %>
     <% user = User.find(request.requested) %>
     <div class="col-md-6">
-      <%= render :partial => 'proposals/partials/search_results/accepted/user', :locals => {proposal: @proposal, user: user} %>
+      <%= render :partial => 'proposals/partials/search_results/accepted/user', :locals => {proposal: @proposal, user: user, request: request} %>
     </div>
   <% end %>
 </div>

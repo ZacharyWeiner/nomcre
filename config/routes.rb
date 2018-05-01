@@ -45,6 +45,7 @@ Rails.application.routes.draw do
   get 'proposal/completed', to: 'proposals#completed', as: 'proposals_completed'
   get 'requests', to: 'proposal_requests#requests', as:'proposal_requests'
   get 'requests/:id/decline', to: 'proposal_requests#decline', as:'decline_proposal_request'
+  get 'requests/:id/approve', to: 'proposal_requests#assign', as: 'assign_proposal'
   get 'proposal_requests/:id/send_request_accepted_email', to: 'proposal_requests#send_request_accepted_email'
   get 'proposal_requests/:id/send_request_created_email', to: 'proposal_requests#send_request_created_email'
 
