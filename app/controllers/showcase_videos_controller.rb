@@ -1,6 +1,6 @@
 class ShowcaseVideosController < ApplicationController
   before_action :set_showcase_video, only: [:show, :play, :edit, :update, :destroy]
-  before_action :authorize
+  before_action :authorize, except: [:play]
 
   layout :set_layout
   # GET /showcase_videos

@@ -42,18 +42,20 @@
                         <%= link_to "The NOMCRE Way", nomcre_process_path %>
                     </li>
                     <li class='nk-drop-item'>
-                        <a href="showcase" class="link-effect-3 ready" >
+                        <%= link_to creative_showcase_path, class: 'link-effect-3' do %>
+
                             <span>
                                 <span class="link-effect-shade">
                                     Showcase
                                 </span>
                                 Showcase
                             </span>
-                        </a>
+                        <% end %>
 
                         <ul class="dropdown" >
                             <li>
-                                <a href="showcase" class="link-effect-3 ready">
+                                <%= link_to creative_showcase_path, class: 'link-effect-3' do %>
+
                                     <span>
                                         <span class="link-effect-shade">
                                             Photos
@@ -62,10 +64,11 @@
                                         Photos
                                         <span class="nk-item-descr">Photo Showcase</span>
                                     </span>
-                                </a>
+                                <% end %>
                             </li>
                              <li>
-                                <a href="video_showcase" class="link-effect-3 ready">
+                                 <%= link_to video_showcase_path, class: 'link-effect-3' do %>
+
                                     <span>
                                         <span class="link-effect-shade">
                                             Videos
@@ -74,7 +77,7 @@
                                         Videos
                                         <span class="nk-item-descr">Video Showcase</span>
                                     </span>
-                                </a>
+                                <% end %>
                             </li>
 
 
