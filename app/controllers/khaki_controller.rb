@@ -14,6 +14,9 @@ class KhakiController < ApplicationController
   def creative_showcase
     @showcase_images = ShowcaseImage.where(show: true).where(showcase_type: 'main').order(:order)
   end
+  def video_showcase
+    @showcase_videos = ShowcaseVideo.all.order(:order)
+  end
 
   def contact
     @contact = Contact.new

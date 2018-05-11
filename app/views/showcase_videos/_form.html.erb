@@ -1,0 +1,57 @@
+<%= form_with(model: showcase_video, local: true) do |form| %>
+  <% if showcase_video.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(showcase_video.errors.count, "error") %> prohibited this showcase_video from being saved:</h2>
+
+      <ul>
+      <% showcase_video.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+   <div class="field">
+    <%= form.label :file %>
+    <%= form.file_field :file, id: :showcase_image_file %>
+  </div>
+
+  <div class="field">
+    <%= form.label :showcase_type %>
+    <select name="showcase_image[showcase_type]" id="showcase_image_shwcase_type">
+      <option value="main">main</option>
+<!--       <option value="joke">joke</option>
+      <option value="poem">poem</option> -->
+    </select>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :show %>
+    <%= form.check_box :show, id: :showcase_video_show %>
+  </div>
+
+  <div class="field">
+    <%= form.label :order %>
+    <%= form.number_field :order, id: :showcase_video_order %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :showcase_video_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :showcase_video_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :thumbnail %>
+    <%= form.file_field :thumbnail, id: :showcase_video_thumbnail %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

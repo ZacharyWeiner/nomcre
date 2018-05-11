@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :showcase_videos do
+    get '/play', to: 'showcase_videos#play', as: 'play'
+  end
   resources :showcase_images
   resources :user_activities
   resources :shot_list_items
@@ -85,6 +88,7 @@ Rails.application.routes.draw do
   get 'process', to:'khaki#nomcre_process', as: 'nomcre_process'
   get 'creative', to:'khaki#creative_landing', as: 'creative_landing'
   get 'showcase', to:'khaki#creative_showcase', as: 'creative_showcase'
+  get 'video_showcase', to:'khaki#video_showcase', as: 'video_showcase'
   get 'contact', to:'khaki#contact', as: 'nomcre_contact'
   get 'about', to:'khaki#about', as: 'nomcre_about'
   get 'featured', to:'khaki#featured_creatives', as: 'featured_creatives'
