@@ -41,12 +41,44 @@
                     <% end %>
                         <%= link_to "The NOMCRE Way", nomcre_process_path %>
                     </li>
-                    <% if current_page?(controller: 'khaki', action: 'creative_showcase') %>
-                        <li class="active ">
-                    <% else %>
-                        <li class="">
-                    <% end %>
-                         <%= link_to "Showcase", creative_showcase_path %>
+                    <li class='nk-drop-item'>
+                        <a href="showcase" class="link-effect-3 ready" >
+                            <span>
+                                <span class="link-effect-shade">
+                                    Showcase
+                                </span>
+                                Showcase
+                            </span>
+                        </a>
+
+                        <ul class="dropdown" >
+                            <li>
+                                <a href="showcase" class="link-effect-3 ready">
+                                    <span>
+                                        <span class="link-effect-shade">
+                                            Photos
+                                            <span class="nk-item-descr">Photo Showcase</span>
+                                        </span>
+                                        Photos
+                                        <span class="nk-item-descr">Photo Showcase</span>
+                                    </span>
+                                </a>
+                            </li>
+                             <li>
+                                <a href="video_showcase" class="link-effect-3 ready">
+                                    <span>
+                                        <span class="link-effect-shade">
+                                            Videos
+                                            <span class="nk-item-descr">Video Showcase</span>
+                                        </span>
+                                        Videos
+                                        <span class="nk-item-descr">Video Showcase</span>
+                                    </span>
+                                </a>
+                            </li>
+
+
+                        </ul>
                     </li>
                 </ul>
                 <ul class="nk-nav nk-nav-right nk-nav-icons">
