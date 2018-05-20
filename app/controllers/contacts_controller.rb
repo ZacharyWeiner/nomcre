@@ -1,17 +1,17 @@
 class ContactsController < ApplicationController
   before_action :set_contact, only: [:show, :edit, :update, :destroy]
-
+  before_action :authorize, only: [:index, :show, :edit, :update, :destroy]
   # GET /contacts
   # GET /contacts.json
   def index
-    :authenticate_user!
+
     @contacts = Contact.all
   end
 
   # GET /contacts/1
   # GET /contacts/1.json
   def show
-    :authenticate_user!
+
   end
 
   # GET /contacts/new
@@ -21,7 +21,7 @@ class ContactsController < ApplicationController
 
   # GET /contacts/1/edit
   def edit
-    :authenticate_user!
+
   end
 
   # POST /contacts
@@ -43,7 +43,6 @@ class ContactsController < ApplicationController
   # PATCH/PUT /contacts/1
   # PATCH/PUT /contacts/1.json
   def update
-    :authenticate_user!
     respond_to do |format|
       if @contact.update(contact_params)
         format.html { redirect_to @contact, notice: 'Contact was successfully updated.' }
@@ -58,7 +57,6 @@ class ContactsController < ApplicationController
   # DELETE /contacts/1
   # DELETE /contacts/1.json
   def destroy
-    :authenticate_user!
     @contact.destroy
     respond_to do |format|
       format.html { redirect_to contacts_url, notice: 'Contact was successfully destroyed.' }
@@ -75,5 +73,11 @@ class ContactsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def contact_params
       params.require(:contact).permit(:name, :email, :message)
+    end
+
+    def authorize
+      if current_user.nil? || current_user.role != 0
+        redirect_to root_path
+      end
     end
 end
