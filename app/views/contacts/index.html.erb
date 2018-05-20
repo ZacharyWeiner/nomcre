@@ -1,7 +1,36 @@
+<div class="nk-header-title nk-header-title-xl nk-header-title-parallax nk-header-title-parallax-opacity">
+    <div class="bg-image op-2">
+        <div style="background-image: url('<%= CollectionItem.last.file %>');"></div>
+    </div>
+    <div class="nk-header-table">
+        <div class="nk-header-table-cell">
+            <div class="container">
+
+
+
+
+                <div class="nk-header-text">
+
+                    <h1 class="nk-title display-3">Messages From Contact Form</h1>
+                    <div class="nk-gap"></div>
+                    <h2 class="nk-title nk-font-inherit fw-500">Chekc them out ....</h2>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="nk-main">
 <p id="notice"><%= notice %></p>
 
 <h1>Contacts</h1>
-
+<style>
+  td {
+    padding: 8px;
+  }
+</style>
 <table>
   <thead>
     <tr>
@@ -29,3 +58,4 @@
 <br>
 
 <%= link_to 'New Contact', new_contact_path %>
+</div>
