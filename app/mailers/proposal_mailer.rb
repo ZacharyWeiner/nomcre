@@ -3,14 +3,14 @@ class ProposalMailer < ApplicationMailer
     @proposal = proposal
     @user = proposal.company.users.first
     @url  = 'http://nomcre.com/proposals/' + "#{proposal.id}"
-    mail(to: @user.email, subject: 'Your Deposit Has Been Recieved!')
+    mail(to: @user.email, subject: 'Your Deposit Has Been Received!')
   end
 
   def balance_received(proposal)
     @proposal = proposal
     @user = proposal.company.users.first
     @url  = 'http://nomcre.com/proposals/' + "#{proposal.id}"
-    mail(to: @user.email, subject: 'Your Balance Has Been Recieved!')
+    mail(to: @user.email, subject: 'Your Balance Has Been Received!')
   end
 
   def request_accepted(proposal_request)
