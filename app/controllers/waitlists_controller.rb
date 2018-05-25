@@ -84,10 +84,10 @@ class WaitlistsController < ApplicationController
     end
 
     def set_layout
-      if request.path.include?('waitlists')
-        return 'adminlte'
+      if request.path.include?('new')
+        return 'khaki'
       else
-        'khaki'
+        'adminlte'
       end
     end
 
