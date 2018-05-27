@@ -98,6 +98,7 @@ Rails.application.routes.draw do
   get 'tos', to: 'khaki#tos', as: 'tos'
   get 'thew', to: 'khaki#thew', as:'thew'
   get 'THEW', to: 'khaki#thew', as:'THEW'
+  get 'explainer', to: 'khaki#explainer', as:'explainer'
 
   get 'admin/users', to: 'admin#users', as: 'admin_users'
   get 'admin/proposals', to: 'admin#proposals', as: 'admin_proposals'

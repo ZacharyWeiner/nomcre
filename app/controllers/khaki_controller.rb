@@ -42,4 +42,7 @@ class KhakiController < ApplicationController
 
   def thew
   end
+
+  def explainer
+  end
 end
