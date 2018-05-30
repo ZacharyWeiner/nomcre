@@ -49,7 +49,7 @@
         </span>
       </div>
       <div class='row'>
-        <% if cr.users.collections.first.nil? == false %>
+        <% if cr.user.collections.first.nil? == false %>
         <% cr.collection_items.where(item_type: "image").reverse.take(4).each do |ci| %>
           <div class='col-md-3'>
             <%= image_tag ci.file, class: 'img-responsive' %>
