@@ -15,10 +15,12 @@
     <%= render :partial =>  'proposals/partials/search_results/request_buttons', :locals => {proposal: proposal, :user => sr.user} %>
     <br>
     <div class='row'>
-      <% sr.user.collections.first.collection_items.where(item_type: "image").reverse.take(4).each do |ci| %>
-        <div class='col-md-3'>
-          <%= image_tag ci.file, class: 'img-responsive' %>
-        </div>
+      <% if sr.users.collections.first.nil? == false %>
+        <% sr.user.collections.first.collection_items.where(item_type: "image").reverse.take(4).each do |ci| %>
+          <div class='col-md-3'>
+            <%= image_tag ci.file, class: 'img-responsive' %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </p>
