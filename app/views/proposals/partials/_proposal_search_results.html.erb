@@ -15,7 +15,7 @@
     <%= render :partial =>  'proposals/partials/search_results/request_buttons', :locals => {proposal: proposal, :user => sr.user} %>
     <br>
     <div class='row'>
-      <% if sr.users.collections.first.nil? == false %>
+      <% if sr.user.collections.first.nil? == false %>
         <% sr.user.collections.first.collection_items.where(item_type: "image").reverse.take(4).each do |ci| %>
           <div class='col-md-3'>
             <%= image_tag ci.file, class: 'img-responsive' %>
@@ -49,10 +49,12 @@
         </span>
       </div>
       <div class='row'>
+        <% if cr.users.collections.first.nil? == false %>
         <% cr.collection_items.where(item_type: "image").reverse.take(4).each do |ci| %>
           <div class='col-md-3'>
             <%= image_tag ci.file, class: 'img-responsive' %>
           </div>
+        <% end %>
         <% end %>
       </div>
     </li>
