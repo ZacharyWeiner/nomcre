@@ -87,7 +87,7 @@ class Proposal < ApplicationRecord
 
   def is_editable
     is_editable = true
-    if self.paid? && self.user.nil? == false
+    if self.deposit_paid? && self.user.nil? == false
       is_editable = false
     end
     is_editable
