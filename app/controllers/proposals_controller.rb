@@ -147,8 +147,11 @@ class ProposalsController < ApplicationController
       end
 
       if @proposal.update!(proposal_params)
-
-        set_price(@proposal)
+        if proposal_params[:price]
+          @proposal.price = proposal_params[:price]
+        else
+          set_price(@proposal)
+        end
         if @proposal.is_info_complete
           format.html { redirect_to @proposal, notice: 'Proposal was successfully updated.' }
           format.json { render :show, status: :ok, location: @proposal }

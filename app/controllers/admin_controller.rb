@@ -27,4 +27,10 @@ class AdminController < ApplicationController
   def chatrooms
     @chatrooms = Chatroom.all.page params[:page]
   end
+
+  def proposal_price
+    if params[:proposal_id]
+      @proposal = Proposal.find(params[:proposal_id])
+    end
+  end
 end

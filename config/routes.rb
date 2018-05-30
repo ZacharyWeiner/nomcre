@@ -105,6 +105,7 @@ Rails.application.routes.draw do
   get 'admin/schedule_items', to: 'admin#schedule_items', as: 'admin_schedule_items'
   get 'admin/collections', to: 'admin#collections', as: 'admin_collections'
   get 'admin/chats', to: 'admin#chatrooms', as: 'admin_chatrooms'
+  get 'admin/proposal_price/:proposal_id', to: 'admin#proposal_price', as: 'admin_proposal_price'
 
   #root 'khaki#nomcre_home'
   root 'application#home'
