@@ -36,11 +36,11 @@ class Proposal < ApplicationRecord
 
    #Payment
   def self.deposit_percent
-    return 0.70
+    return 0.60
   end
 
   def self.balance_percent
-    return 0.30
+    return 0.40
   end
 
   def mark_as_complete

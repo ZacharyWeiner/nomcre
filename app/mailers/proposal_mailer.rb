@@ -33,7 +33,7 @@ class ProposalMailer < ApplicationMailer
 
   def proposal_assigned(proposal_request)
     @proposal = proposal_request.proposal
-    @user = @proposal.company.users.first
+    @user = @proposal.user.first
     @company = @proposal.company
     @creative = @proposal.user
     @url  = 'http://nomcre.com/proposals/' + "#{@proposal.id}"

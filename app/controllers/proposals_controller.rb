@@ -41,6 +41,9 @@ class ProposalsController < ApplicationController
   # POST /proposals
   # POST /proposals.json
   def create
+    if proposal_params[:title].nil? || proposal_params[:proposal_type].nil?
+      redirect_to new_proposal_path and return
+    end
     unless params[:proposal][:instagram_1].nil?
         proposal_params[:instagram_1] = params[:proposal][:instagram_1].gsub!("@", "")
       end
@@ -80,9 +83,13 @@ class ProposalsController < ApplicationController
     respond_to do |format|
       if @proposal.save!
         set_price(@proposal)
-        @chatroom = Chatroom.create!(topic: @proposal.title, proposal: @proposal)
+        @chatroom = Chatroom.create!(topic: "#{@proposal.title} - #{@proposal.company.name}", proposal: @proposal)
         @chatroom.messages.create!(user: current_user, content: "#{@proposal.company.name}' - '#{@proposal.title} Chat Was Created")
-
+        admin = User.where(email: 'justin@nomcre.com').first
+        @chatroom.messages.create!(user: current_user, content: "#{@proposal.company.name}' - '#{@proposal.title} Chat Was Created")
+        unless admin.nil?
+          @chatroom.messages.create!(user: current_user, content: "Justin has joined the chat")
+        end
         if params[:proposal][:redirect] && params[:proposal][:redirect] == 'wizard'
           format.html { redirect_to proposal_wizard_path(@proposal), notice: 'Proposal was successfully created.' }
         else

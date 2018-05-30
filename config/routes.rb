@@ -104,6 +104,7 @@ Rails.application.routes.draw do
   get 'admin/proposals', to: 'admin#proposals', as: 'admin_proposals'
   get 'admin/schedule_items', to: 'admin#schedule_items', as: 'admin_schedule_items'
   get 'admin/collections', to: 'admin#collections', as: 'admin_collections'
+  get 'admin/chats', to: 'admin#chatrooms', as: 'admin_chatrooms'
 
   #root 'khaki#nomcre_home'
   root 'application#home'

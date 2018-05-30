@@ -99,7 +99,7 @@
   </div>
 </div>
 
-
-<%= paginate @collections, window: 2 %>
-
+<% if collections.count > 0 %>
+  <%= paginate @collections, window: 2 %>
+<% end %>
 

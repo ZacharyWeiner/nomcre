@@ -11,7 +11,7 @@
         <div class='col-md-6'>
           <div class="box box-solid">
             <h3 class='text-center'> What Should I Be Called? </h3>
-            <%= form.text_field :title, class: 'form-control', placeholder: "Give your project a cool name ... " %>
+            <%= form.text_field :title, class: 'form-control', placeholder: "Give your project a cool name ... ", required: true%>
           </div>
         </div>
         <div class='col-md-3'></div>
@@ -89,7 +89,8 @@
         <div class='col-md-6'>
           <%= form.hidden_field :company_id, :value => current_user.company.id %>
           <%= form.hidden_field :redirect, :value => 'wizard' %>
-          <%= form.submit "Get Started", class: 'btn btn-success btn-block' %>
+          <%= form.submit "Take Flight", class: 'btn btn-success btn-block' %>
+          <p>* all fields are required </p>
         </div>
         <div class='col-md-3'></div>
       </div>

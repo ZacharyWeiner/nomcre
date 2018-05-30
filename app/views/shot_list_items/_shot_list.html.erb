@@ -5,14 +5,14 @@
      <% end %>
     <% p "Shout List Count: #{shot_list_items.count}     Shot List Limit: #{proposal.shot_count}" %>
       <% if shot_list_items.count < proposal.shot_count && current_user.company == proposal.company && proposal.is_editable == true%>
-        <%= link_to new_proposal_shot_list_item_path(proposal), class: 'btn btn-default pull-right' do %>
+        <%= link_to new_proposal_shot_list_item_path(proposal), class: 'btn btn-success pull-right' do %>
           <i class="fa fa-plus"></i> Add To Shot List
         <% end %>
       <% end %>
 
     <% if params[:proposal_id] %>
       <% proposal = Proposal.find(params[:proposal_id]) %>
-       <%= link_to proposal, class: "btn btn-success pull-right" do %>
+       <%= link_to proposal, class: "btn btn-default pull-right" do %>
           <i class='fa fa-eye'></i> View Proposal
         <% end %>
     <% else %>
