@@ -28,6 +28,10 @@ class AdminController < ApplicationController
     @chatrooms = Chatroom.all.page params[:page]
   end
 
+  def leads
+    @leads = Lead.all.page params[:page]
+  end
+
   def proposal_price
     set_proposal
   end

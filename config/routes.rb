@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :lead_notes
+  resources :leads
   resources :showcase_videos do
     get '/play', to: 'showcase_videos#play', as: 'play'
   end
@@ -108,6 +110,7 @@ Rails.application.routes.draw do
   get 'admin/proposal_price/:proposal_id', to: 'admin#proposal_price', as: 'admin_proposal_price'
   get 'admin/deposit_paid/:proposal_id', to: 'admin#proposal_mark_deposit_paid', as: 'admin_proposal_mark_deposit_paid'
   get 'admin/balance_paid/:proposal_id', to: 'admin#proposal_mark_balance_paid', as: 'admin_proposal_mark_balance_paid'
+  get 'admin/leads', to: 'admin#leads', as: 'admin_leads'
 
 
   #root 'khaki#nomcre_home'

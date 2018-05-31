@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lead Notes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Note</th>
+      <th>Lead</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lead_notes.each do |lead_note| %>
+      <tr>
+        <td><%= lead_note.note %></td>
+        <td><%= lead_note.lead %></td>
+        <td><%= link_to 'Show', lead_note %></td>
+        <td><%= link_to 'Edit', edit_lead_note_path(lead_note) %></td>
+        <td><%= link_to 'Destroy', lead_note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lead Note', new_lead_note_path %>

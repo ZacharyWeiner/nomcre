@@ -1,0 +1,52 @@
+<%= form_with(model: lead, local: true) do |form| %>
+  <% if lead.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lead.errors.count, "error") %> prohibited this lead from being saved:</h2>
+
+      <ul>
+      <% lead.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :lead_name, class: 'form-control' %>
+  </div>
+
+    <div class="form-group">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :lead_email, class: 'form-control' %>
+  </div>
+
+    <div class="form-group">
+    <%= form.label :company_name %>
+    <%= form.text_field :company_name, id: :lead_company_name, class: 'form-control' %>
+  </div>
+
+    <div class="form-group">
+    <%= form.label :office_phone %>
+    <%= form.text_field :office_phone, id: :lead_office_phone, class: 'form-control' %>
+  </div>
+
+    <div class="form-group">
+    <%= form.label :cell_phone %>
+    <%= form.text_field :cell_phone, id: :lead_cell_phone, class: 'form-control' %>
+  </div>
+
+    <div class="form-group">
+    <%= form.label :last_contacted %>
+    <%= form.date_select :last_contacted, id: :lead_last_contacted, class: 'form-control' %>
+  </div>
+
+    <div class="form-group">
+    <%= form.label :next_contact %>
+    <%= form.date_select :next_contact, id: :lead_next_contact, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Note:</strong>
+  <%= @lead_note.note %>
+</p>
+
+<p>
+  <strong>Lead:</strong>
+  <%= @lead_note.lead %>
+</p>
+
+<%= link_to 'Edit', edit_lead_note_path(@lead_note) %> |
+<%= link_to 'Back', lead_notes_path %>

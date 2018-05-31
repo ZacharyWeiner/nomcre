@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180511181158) do
+ActiveRecord::Schema.define(version: 20180531023322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,27 @@ ActiveRecord::Schema.define(version: 20180511181158) do
     t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "lead_notes", force: :cascade do |t|
+    t.string "note"
+    t.bigint "lead_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lead_id"], name: "index_lead_notes_on_lead_id"
+  end
+
+  create_table "leads", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "company_name"
+    t.string "office_phone"
+    t.string "cell_phone"
+    t.date "last_contacted"
+    t.date "next_contact"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "rep_id"
   end
 
   create_table "locations", force: :cascade do |t|
@@ -347,6 +368,7 @@ ActiveRecord::Schema.define(version: 20180511181158) do
   add_foreign_key "collections", "users"
   add_foreign_key "collections_tags", "collections"
   add_foreign_key "collections_tags", "tags"
+  add_foreign_key "lead_notes", "leads"
   add_foreign_key "locations_tags", "locations"
   add_foreign_key "locations_tags", "tags"
   add_foreign_key "messages", "chatrooms"
