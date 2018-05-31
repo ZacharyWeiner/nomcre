@@ -106,6 +106,9 @@ Rails.application.routes.draw do
   get 'admin/collections', to: 'admin#collections', as: 'admin_collections'
   get 'admin/chats', to: 'admin#chatrooms', as: 'admin_chatrooms'
   get 'admin/proposal_price/:proposal_id', to: 'admin#proposal_price', as: 'admin_proposal_price'
+  get 'admin/deposit_paid/:proposal_id', to: 'admin#proposal_mark_deposit_paid', as: 'admin_proposal_mark_deposit_paid'
+  get 'admin/balance_paid/:proposal_id', to: 'admin#proposal_mark_balance_paid', as: 'admin_proposal_mark_balance_paid'
+
 
   #root 'khaki#nomcre_home'
   root 'application#home'

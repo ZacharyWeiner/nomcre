@@ -12,6 +12,7 @@
         <th>Paid</th>
         <th>View</th>
         <th>Change Price</th>
+        <th>Mark Deposit Paid</th>
       </tr>
       <% @proposals.each do |p| %>
       <tr>
@@ -21,6 +22,8 @@
         <td><%= p.paid %></td>
         <td><%= link_to "View", proposal_path(p) %></td>
         <td><%= link_to "Change $", admin_proposal_price_path(p) %></td>
+        <td><%= link_to "Deposit Paid", admin_proposal_mark_deposit_paid_path(p) %></td>
+        <td><%= link_to "Balance Paid", admin_proposal_mark_balance_paid_path(p) %></td>
       </tr>
       <% end %>
     </tbody>

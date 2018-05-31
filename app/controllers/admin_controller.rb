@@ -29,8 +29,30 @@ class AdminController < ApplicationController
   end
 
   def proposal_price
-    if params[:proposal_id]
+    set_proposal
+  end
+
+  def proposal_mark_deposit_paid
+    set_proposal
+    @proposal.deposit_paid = true
+    @proposal.deposit_paid_on = Date.today
+    @proposal.save!
+    redirect_to admin_proposals_path
+  end
+
+  def proposal_mark_balance_paid
+    set_proposal
+    @proposal.paid = true
+    @proposal.balance_paid_on = Date.today
+    @proposal.save!
+    redirect_to admin_proposals_path
+  end
+
+  private
+  def set_proposal
+     if params[:proposal_id]
       @proposal = Proposal.find(params[:proposal_id])
     end
   end
+
 end
