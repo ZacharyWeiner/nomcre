@@ -11,14 +11,13 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :note %>
-    <%= form.text_field :note, id: :lead_note_note %>
+    <%= form.text_area :note, id: :lead_note_note, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :lead_id %>
-    <%= form.text_field :lead_id, id: :lead_note_lead_id %>
+    <%= form.hidden_field :lead_id, :value => params[:lead_id] %>
   </div>
 
   <div class="actions">

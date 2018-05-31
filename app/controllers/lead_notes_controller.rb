@@ -27,7 +27,7 @@ class LeadNotesController < ApplicationController
   # POST /lead_notes.json
   def create
     @lead_note = LeadNote.new(lead_note_params)
-
+    @lead_note.lead = Lead.find(lead_note_params[:lead_id])
     respond_to do |format|
       if @lead_note.save
         format.html { redirect_to @lead_note, notice: 'Lead note was successfully created.' }
@@ -66,7 +66,11 @@ class LeadNotesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lead_note
-      @lead_note = LeadNote.find(params[:id])
+      if params[:lead_note_id]
+        @lead_note = LeadNote.find(params[:id])
+      else
+        @lead_note = LeadNote.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

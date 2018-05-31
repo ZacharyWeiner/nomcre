@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+
   resources :lead_notes
-  resources :leads
+  resources :leads do
+    resources :lead_notes
+  end
   resources :showcase_videos do
     get '/play', to: 'showcase_videos#play', as: 'play'
   end
