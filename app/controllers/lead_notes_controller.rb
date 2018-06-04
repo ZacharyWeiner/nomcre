@@ -79,7 +79,7 @@ class LeadNotesController < ApplicationController
     end
 
     def authorize
-      if current_user.role != 0
+      if current_user.role.nil? == true
         redirect_to root_path
       end
     end

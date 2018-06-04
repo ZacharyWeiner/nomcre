@@ -19,7 +19,7 @@ class AdminController < ApplicationController
   end
 
   def is_admin
-    if current_user.nil? || current_user.role != 0
+    if current_user.nil? || current_user.role.nil? == true
       redirect_to root_path
     end
   end

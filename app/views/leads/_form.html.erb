@@ -45,7 +45,10 @@
     <%= form.label :next_contact %>
     <%= form.date_select :next_contact, id: :lead_next_contact, class: 'form-control' %>
   </div>
-
+    <div class="form-group">
+    <%= form.label :next_contact_time %>
+    <%= form.time_select :next_contact_time, id: :lead_next_contact_time, class: 'form-control' %>
+  </div>
   <div class="actions">
     <%= form.submit %>
   </div>

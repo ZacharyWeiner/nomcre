@@ -34,16 +34,30 @@
   <strong>Next contact:</strong>
   <%= @lead.next_contact %>
 </p>
+<p>
+  <strong>Next contact:</strong>
+  <%= @lead.next_contact_time.strftime('%H:%M') %>
+</p>
 
 
 
 <%= link_to 'Edit', edit_lead_path(@lead) %> |
 <%= link_to 'Back', leads_path %>
 
+<br> <br>
+
 <%= link_to "New Lead Note", new_lead_lead_note_path(@lead), class: 'btn btn-success' %>
 
 <br> <br>
 
 <% @lead.lead_notes.each do |note| %>
-<p> <%= note.note %> <p>
+  <div class='row'>
+    <div class='col-md-3'>
+      <%= note.created_at.strftime('%A %B %C') %>
+    </div>
+    <div class='col-md-9'>
+      <p> <%= note.note %> </p>
+    </div>
+
+  </div>
 <% end %>

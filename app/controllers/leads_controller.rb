@@ -71,11 +71,11 @@ class LeadsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lead_params
-      params.require(:lead).permit(:name, :email, :company_name, :office_phone, :cell_phone, :last_contacted, :next_contact)
+      params.require(:lead).permit(:name, :email, :company_name, :office_phone, :cell_phone, :last_contacted, :next_contact, :next_contact_time)
     end
 
     def authorize
-      if current_user.role != 0
+      if current_user.role.nil? == true
         redirect_to root_path
       end
     end
