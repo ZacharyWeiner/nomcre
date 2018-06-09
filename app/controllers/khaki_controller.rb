@@ -45,4 +45,7 @@ class KhakiController < ApplicationController
 
   def explainer
   end
+
+  def pricing
+  end
 end
