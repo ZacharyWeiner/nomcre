@@ -48,4 +48,7 @@ class KhakiController < ApplicationController
 
   def pricing
   end
+
+  def sales_materials
+  end
 end
