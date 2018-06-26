@@ -469,7 +469,7 @@ html {
 }
 
 body {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Raleway", sans-serif;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -490,7 +490,7 @@ h3, .h3,
 h4, .h4,
 h5, .h5,
 h6, .h6 {
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Raleway", sans-serif;
     font-weight: bold;
     margin-bottom: 1rem;
 }
@@ -499,7 +499,7 @@ h6, .h6 {
 .display-2,
 .display-3,
 .display-4 {
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Raleway", sans-serif;
     font-weight: bold;
 }
 
@@ -530,7 +530,7 @@ h6, .h6 {
     position: relative;
     font-weight: normal;
     font-style: italic;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Raleway", sans-serif;
     font-size: 1.1rem;
     color: #bea175;
     z-index: 1;
@@ -606,7 +606,7 @@ h6, .h6 {
 
 /* mega menu titles */
 .nk-mega-item > .dropdown > ul li > label {
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Raleway", sans-serif;
 }
 
 /*------------------------------------------------------------------
@@ -5358,7 +5358,7 @@ img.rounded {
 }
 
 .nk-page-nav-3 .nk-page-nav-title {
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Raleway", sans-serif;
     font-weight: bold;
     font-size: 1.2rem;
 }
@@ -7421,7 +7421,7 @@ img.rounded {
 }
 
 .nk-progress .nk-progress-title {
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Raleway", sans-serif;
     margin-bottom: 5px;
 }
 
@@ -8200,7 +8200,7 @@ img.rounded {
 .nk-counter .nk-count,
 .nk-counter-2 .nk-count,
 .nk-counter-3 .nk-count {
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Raleway", sans-serif;
     font-weight: bold;
 }
 
@@ -8229,7 +8229,7 @@ img.rounded {
 }
 
 .nk-counter-3 .nk-counter-title {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Raleway", sans-serif;
     font-weight: normal;
     line-height: 1;
 }
@@ -8283,7 +8283,7 @@ img.rounded {
             user-select: none;
     pointer-events: none;
     font-weight: bold;
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Raleway", sans-serif;
     font-size: 6rem;
     width: 35px;
     height: 40px;
@@ -8474,7 +8474,7 @@ img.rounded {
     font-size: 4.5rem;
     line-height: 1;
     font-weight: bold;
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Raleway", sans-serif;
     margin-bottom: 1rem;
 }
 
@@ -8594,14 +8594,14 @@ img.rounded {
     font-size: 4.5rem;
     line-height: 1;
     font-weight: bold;
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Raleway", sans-serif;
     margin-bottom: 0.5rem;
 }
 
 .nk-pricing-2 .nk-pricing-currency,
 .nk-pricing-2 .nk-pricing-period {
     font-size: 1rem;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Raleway", sans-serif;
     font-weight: normal;
 }
 
@@ -8657,13 +8657,13 @@ img.rounded {
     font-size: 4rem;
     line-height: 1;
     font-weight: bold;
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Raleway", sans-serif;
 }
 
 .nk-pricing-3 .nk-pricing-currency,
 .nk-pricing-3 .nk-pricing-period {
     font-size: 1rem;
-    font-family: "Open Sans", sans-serif;
+    font-family: "Raleway", sans-serif;
     font-weight: normal;
 }
 
@@ -8875,7 +8875,7 @@ img.rounded {
 .nk-testimonial-2 .nk-testimonial-body:before {
     content: '\201C';
     position: absolute;
-    font-family: Times New Roman, Times, serif;
+    font-family: "Raleway", serif;
     font-weight: bold;
     font-size: 150px;
     line-height: 135px;
@@ -8948,7 +8948,7 @@ img.rounded {
 .nk-blockquote .nk-blockquote-icon {
     position: absolute;
     color: #aaa;
-    font-family: Times New Roman, Times, serif;
+    font-family: "Raleway", serif;
     font-weight: bold;
     font-size: 150px;
     line-height: 135px;
@@ -9150,7 +9150,7 @@ img.rounded {
 
 .nk-carousel .nk-carousel-prev .nk-carousel-arrow-name,
 .nk-carousel .nk-carousel-next .nk-carousel-arrow-name {
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Raleway", sans-serif;
     font-weight: bold;
     font-size: 1.2rem;
     white-space: nowrap;
@@ -9388,7 +9388,7 @@ img.rounded {
 
 .nk-carousel-3 .nk-carousel-prev .nk-carousel-arrow-name,
 .nk-carousel-3 .nk-carousel-next .nk-carousel-arrow-name {
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Raleway", sans-serif;
     font-weight: bold;
     font-size: 1.2rem;
     white-space: nowrap;
@@ -11035,7 +11035,7 @@ div.nk-error {
     display: block;
     font-size: 4rem;
     font-weight: bold;
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Raleway", sans-serif;
 }
 
 @media (max-width: 767px) {
@@ -13366,7 +13366,7 @@ a.active > .nk-icon-search:after {
     font-size: 1.2rem;
     margin-top: 20px;
     margin-bottom: 10px;
-    font-family: "Ubuntu", sans-serif;
+    font-family: "Raleway", sans-serif;
     font-weight: bold;
 }
 

@@ -1,17 +1,18 @@
-<div class="nk-header-title nk-header-title-xl nk-header-title-parallax nk-header-title-parallax-opacity" style="transform: translate3d(0px, 0px, 0px); background-image: none; background-attachment: scroll; background-size: auto;" data-jarallax-original-styles="transform: translate3d(0px, 0px, 0px);">
-  <div class="bg-image op-2 bg-parallaxed" style="transform: translate3d(-16.8802px, -12.0861px, 0px);">
-    <div style="background-image: url(&quot;https://s3-us-west-2.amazonaws.com/nomcre-rails/public-page-images/HompageHeader/HomePageHeader.jpg&quot;); transform: translateY(0px) translateZ(0px);"></div>
-  </div>
-  <div class="nk-header-table" style="transform: translateY(0px) translateZ(0px); opacity: 1; padding-top: 109px;">
-    <div class="nk-header-table-cell">
-      <div class="container">
+ <div class="nk-header-title nk-header-title-xl nk-header-title-parallax nk-header-title-parallax-opacity">
+            <div class="bg-image op-2">
+                <div style="background-image: url('https://s3-us-west-2.amazonaws.com/nomcre-rails/public-page-images/HompageHeader/HomePageHeader.jpg');"></div>
+            </div>
+            <div class="nk-header-table">
+                <div class="nk-header-table-cell">
+                    <div class="container">
 
 
 
 
-        <div class="nk-header-text">
+                        <div class="nk-header-text">
 
-          <h1 class="display-3" style="font: raleway; font-weight: 800;">
+
+          <h1  style="font: raleway; font-weight: 500;">
             NOW
             <span class='raleway-thinnest' style="padding-right: 6px; padding-left: 6px">YOUR</span>
             BRAND
@@ -19,16 +20,29 @@
             GLOBAL
           </h1>
 
-          <div class="nk-gap-2"></div>
-          <a class="nk-video-fullscreen-toggle" href="https://vimeo.com/271028634">
-            <span class="nk-video-icon-2-light"><i class="fa fa-play pl-5"></i></span>
-          </a>
+                            <div class="nk-gap-2"></div>
+                            <a class="nk-video-fullscreen-toggle" href="https://vimeo.com/271028634" onclick="sendHeaderView();">
+                                <span class="nk-video-icon-2-light"><i class="fa fa-play pl-5" style='padding-top: 14px;'></i></span>
+                            </a>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
 
         </div>
 
 
-      </div>
-    </div>
-  </div>
 
-  <div id="jarallax-container-0" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -100; transform: translateX(0px) translateY(0px);"><div style="background-position: 50% 50%; background-size: 100%; background-repeat: no-repeat; background-image: url(&quot;data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7&quot;); position: absolute; top: 0px; left: 0px; width: 1341px; height: 1341px; overflow: hidden; pointer-events: none; margin-left: 0px; margin-top: -295.5px; visibility: visible;"></div></div></div>
+<script type="text/javascript">
+    function sendHeaderView(){
+        if ("ga" in window) {
+            tracker = ga.getAll()[0];
+            if (tracker)
+                tracker.send("event", "Videos", "play", 'Homepage Header Play');
+        }
+    }
+</script>
+

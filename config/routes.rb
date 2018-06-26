@@ -116,6 +116,7 @@ Rails.application.routes.draw do
   get 'admin/balance_paid/:proposal_id', to: 'admin#proposal_mark_balance_paid', as: 'admin_proposal_mark_balance_paid'
   get 'admin/leads', to: 'admin#leads', as: 'admin_leads'
   get '/sales_materials', to: 'khaki#sales_materials', as: 'sales_materials'
+  get '/faq', to: 'khaki#faq', as: 'faq'
 
 
   #root 'khaki#nomcre_home'
