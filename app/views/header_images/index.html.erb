@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Header Images</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>File</th>
+      <th>Homepage</th>
+      <th>Showcase</th>
+      <th>Creators</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @header_images.each do |header_image| %>
+      <tr>
+        <td><%= header_image.title %></td>
+        <td><%= header_image.file %></td>
+        <td><%= header_image.homepage %></td>
+        <td><%= header_image.showcase %></td>
+        <td><%= header_image.creators %></td>
+        <td><%= link_to 'Show', header_image %></td>
+        <td><%= link_to 'Edit', edit_header_image_path(header_image) %></td>
+        <td><%= link_to 'Destroy', header_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Header Image', new_header_image_path %>

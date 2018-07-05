@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :header_images
   resources :lead_notes
   resources :leads do
     resources :lead_notes
