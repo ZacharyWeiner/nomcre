@@ -11,11 +11,14 @@ class KhakiController < ApplicationController
   end
 
   def creative_landing
+    set_creator_header_image
   end
   def creative_showcase
+    set_showcase_header_image
     @showcase_images = ShowcaseImage.where(show: true).where(showcase_type: 'main').order(:order)
   end
   def video_showcase
+    set_showcase_header_image
     @showcase_videos = ShowcaseVideo.all.order(:order)
   end
 
@@ -54,5 +57,20 @@ class KhakiController < ApplicationController
   end
 
   def faq
+  end
+
+  def set_showcase_header_image
+    @header_images = HeaderImage.all.where(showcase: true)
+    count = @header_images.count
+    random = Random.new
+    index_to_use = rand(count)
+    @header_image = @header_images[index_to_use]
+  end
+  def set_creator_header_image
+    @header_images = HeaderImage.all.where(creators: true)
+    count = @header_images.count
+    random = Random.new
+    index_to_use = rand(count)
+    @header_image = @header_images[index_to_use]
   end
 end
