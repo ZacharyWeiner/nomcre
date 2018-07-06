@@ -17,8 +17,8 @@
   <tbody>
     <% @header_images.each do |header_image| %>
       <tr>
+        <td><%= image_tag header_image.file, style: 'max-height:100px;max-width:200px;' %></td>
         <td><%= header_image.title %></td>
-        <td><%= header_image.file %></td>
         <td><%= header_image.homepage %></td>
         <td><%= header_image.showcase %></td>
         <td><%= header_image.creators %></td>

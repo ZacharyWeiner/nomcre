@@ -8,6 +8,12 @@ class ApplicationController < ActionController::Base
 
 
   def home
+    @header_images = HeaderImage.all.where(homepage: true)
+    count = @header_images.count
+    random = Random.new
+    index_to_use = rand(count)
+    @header_image = @header_images[index_to_use]
+
     #check to see if the user is logged in
     if current_user
 

@@ -1,6 +1,7 @@
 class KhakiController < ApplicationController
   layout 'khaki'
   def index
+
   end
 
   def nomcre_home
