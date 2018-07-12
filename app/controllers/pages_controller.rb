@@ -12,6 +12,10 @@ class PagesController < ApplicationController
   # GET /pages/1.json
   def show
     set_page
+    if !request.original_url.include?(@page.slug)
+      redirect_to @page.build_link(request) and return
+    end
+
     if (current_user && current_user.role >=0)
       if @page.status != 'published'
         @page.title = @page.title + " - Draft"
@@ -43,6 +47,7 @@ class PagesController < ApplicationController
   def create
     @page = Page.new(page_params)
     @page.status = 'draft'
+    @page.slug = URI.escape(@page.title.gsub(' ', '-'))
     respond_to do |format|
       if @page.save
         format.html { redirect_to edit_page_path(@page), notice: 'Page was successfully created.' }
@@ -101,7 +106,10 @@ class PagesController < ApplicationController
       if params[:page_id]
         @page = Page.find(params[:page_id])
       else
-        @page = Page.find(params[:id])
+        @page = Page.where(slug: URI.escape(params[:id])).first
+        if @page.nil?
+          @page = Page.find(params[:id]);
+        end
       end
     end
 
