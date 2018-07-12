@@ -1,27 +1,36 @@
 class PagesController < ApplicationController
   before_action :set_page, only: [:edit, :update, :destroy]
-  layout 'adminlte'
+  before_action :authorize, except: [:show]
+  layout :set_layout
   # GET /pages
   # GET /pages.json
   def index
     @pages = Page.all
-
   end
 
   # GET /pages/1
   # GET /pages/1.json
   def show
-    if params[:title]
+    set_page
+    if (current_user && current_user.role >=0)
+    else
+      @page.views = @page.views + 1
+      @page.save
     end
+    @page_sections = @page.page_sections.order(:order);
+
   end
 
   # GET /pages/new
   def new
     @page = Page.new
+
   end
 
   # GET /pages/1/edit
   def edit
+    @page_sections = @page.page_sections.order(:order);
+    @new_section = PageSection.new
   end
 
   # POST /pages
@@ -72,6 +81,25 @@ class PagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
-      params.require(:page).permit(:title, :content, :views)
+      params.require(:page).permit(:title, :content, :views, :header_image, :is_blog)
     end
+
+    def authorize
+      if current_user.nil?
+      redirect_to root_path
+      else
+        if current_user.role >= 1
+          redirect_to root_path
+        end
+      end
+    end
+
+    def set_layout
+      if action_name == "show"
+        return 'khaki'
+      else
+        return 'adminlte'
+      end
+    end
+
 end

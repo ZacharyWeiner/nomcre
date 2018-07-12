@@ -1,0 +1,35 @@
+<%= form_with(model: page_section, local: true) do |form| %>
+  <% if page_section.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(page_section.errors.count, "error") %> prohibited this page_section from being saved:</h2>
+
+      <ul>
+      <% page_section.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= form.label :title, class: 'form-group' %>
+    <%= form.text_field :title, id: :page_section_title, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content, class: 'form-group' %>
+    <%= form.text_area :content, id: :page_section_content, class: 'form-control', rows: '10' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :order, class: 'form-group' %>
+    <%= form.number_field :order, id: :page_section_order, class: 'form-control' %>
+  </div>
+  <% if params[:page_id] %>
+    <%= form.hidden_field :page_id, :value =>  params[:page_id]  %>
+  <% else %>
+    <%= form.hidden_field :page_id, :value =>  @page_section.page.id  %>
+  <% end %>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

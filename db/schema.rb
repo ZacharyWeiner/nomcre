@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180705203749) do
+ActiveRecord::Schema.define(version: 20180712010432) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -156,12 +156,24 @@ ActiveRecord::Schema.define(version: 20180705203749) do
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
+  create_table "page_sections", force: :cascade do |t|
+    t.bigint "page_id"
+    t.string "title"
+    t.text "content"
+    t.integer "order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["page_id"], name: "index_page_sections_on_page_id"
+  end
+
   create_table "pages", force: :cascade do |t|
     t.string "title"
     t.text "content"
     t.integer "views"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "header_image"
+    t.boolean "is_blog"
   end
 
   create_table "proposal_requests", force: :cascade do |t|
@@ -385,6 +397,7 @@ ActiveRecord::Schema.define(version: 20180705203749) do
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "users"
+  add_foreign_key "page_sections", "pages"
   add_foreign_key "proposal_requests", "proposals"
   add_foreign_key "proposals", "companies"
   add_foreign_key "proposals", "locations"

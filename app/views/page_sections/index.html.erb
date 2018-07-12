@@ -1,0 +1,43 @@
+
+<div class="box">
+  <div class="box-header">
+    <h3 class="box-title">Page Sections </h3>
+
+    <div class="box-tools">
+      <div class="input-group input-group-sm" style="width: 150px;">
+        <!-- <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+        <div class="input-group-btn">
+          <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+        </div> -->
+        <%= link_to "Add New Page Section", new_page_page_section_path, class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body table-responsive no-padding">
+    <table class="table table-hover">
+      <tbody><tr>
+         <th>Page</th>
+      <th>Title</th>
+      <th>Content</th>
+      <th>Order</th>
+      <th colspan="3"></th>
+      </tr>
+
+         <% @page_sections.each do |page_section| %>
+          <tr>
+            <td><%= page_section.page %></td>
+            <td><%= page_section.title %></td>
+            <td><%= page_section.content %></td>
+            <td><%= page_section.order %></td>
+            <td><%= link_to page_section, class:'fa fa-eye' %></td>
+            <td><%= link_to  edit_page_section_path(page_section), class:'fa fa-edit' %></td>
+            <td><%= link_to 'Destroy', page_section, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+    </tbody></table>
+  </div>
+  <!-- /.box-body -->
+</div>
+
