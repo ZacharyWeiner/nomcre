@@ -24,7 +24,6 @@ class PagesController < ApplicationController
   # GET /pages/new
   def new
     @page = Page.new
-
   end
 
   # GET /pages/1/edit
