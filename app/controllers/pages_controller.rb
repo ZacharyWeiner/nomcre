@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :set_page, only: [:edit, :update, :destroy]
+  before_action :set_page, only: [:edit, :update, :destroy, :publish]
   before_action :authorize, except: [:show]
   layout :set_layout
   # GET /pages
@@ -13,12 +13,18 @@ class PagesController < ApplicationController
   def show
     set_page
     if (current_user && current_user.role >=0)
+      if @page.status != 'published'
+        @page.title = @page.title + " - Draft"
+      end
     else
-      @page.views = @page.views + 1
-      @page.save
+      if(@page.status == 'published')
+        @page.views = @page.views + 1
+        @page.save
+      else
+        redirect_to root_path
+      end
     end
     @page_sections = @page.page_sections.order(:order);
-
   end
 
   # GET /pages/new
@@ -36,11 +42,11 @@ class PagesController < ApplicationController
   # POST /pages.json
   def create
     @page = Page.new(page_params)
-
+    @page.status = 'draft'
     respond_to do |format|
       if @page.save
-        format.html { redirect_to @page, notice: 'Page was successfully created.' }
-        format.json { render :show, status: :created, location: @page }
+        format.html { redirect_to edit_page_path(@page), notice: 'Page was successfully created.' }
+        format.json { render :edit, status: :created, location: @page }
       else
         format.html { render :new }
         format.json { render json: @page.errors, status: :unprocessable_entity }
@@ -72,15 +78,36 @@ class PagesController < ApplicationController
     end
   end
 
+  def publish
+    if @page.status != 'published'
+      @page.status = 'published'
+    else
+      @page.status = 'draft'
+    end
+    respond_to do |format|
+      if @page.save
+        format.html { redirect_to @page, notice: 'Page was successfully updated.' }
+        format.json { render :show, status: :ok, location: @page }
+      else
+        format.html { render :edit }
+        format.json { render json: @page.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_page
-      @page = Page.find(params[:id])
+      if params[:page_id]
+        @page = Page.find(params[:page_id])
+      else
+        @page = Page.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def page_params
-      params.require(:page).permit(:title, :content, :views, :header_image, :is_blog)
+      params.require(:page).permit(:title, :content, :views, :header_image, :is_blog, :status)
     end
 
     def authorize

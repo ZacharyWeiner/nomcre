@@ -75,6 +75,7 @@ Rails.application.routes.draw do
   get 'user_type', to: 'users#user_type', as: 'user_type'
   get 'set_user_type', to:'users#set_user_type', as:'set_user_type'
   resources :pages do
+    get '/publish', to: 'pages#publish', as:'publish'
     resources :page_sections
   end
   resources :page_sections
