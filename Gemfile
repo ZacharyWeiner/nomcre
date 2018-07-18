@@ -41,6 +41,7 @@ gem 'icheck-rails'
 gem 'file_validators'
 gem 'newrelic_rpm'
 gem 'sitemap_generator'
+gem 'fog-aws'
 
 
 group :development, :test do

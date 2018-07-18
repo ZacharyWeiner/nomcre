@@ -1,1 +1,1 @@
-Sitemap: https://www.nomcre.com/sitemap.xml.gz
+Sitemap: https://www.nomcre.com/sitemap

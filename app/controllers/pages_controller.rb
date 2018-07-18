@@ -100,6 +100,10 @@ class PagesController < ApplicationController
     end
   end
 
+  def sitemap
+    redirect_to 'https://s3.console.aws.amazon.com/s3/buckets/nomcre-rails/sitemaps/sitemap.xml.gz'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_page

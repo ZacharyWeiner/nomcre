@@ -123,7 +123,7 @@ Rails.application.routes.draw do
   get 'admin/leads', to: 'admin#leads', as: 'admin_leads'
   get '/sales_materials', to: 'khaki#sales_materials', as: 'sales_materials'
   get '/faq', to: 'khaki#faq', as: 'faq'
-
+  get '/sitemap', to: 'pages#sitemap'
 
   #root 'khaki#nomcre_home'
   root 'application#home'

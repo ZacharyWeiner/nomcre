@@ -1,3 +1,4 @@
+
 # Set the host name for URL creation
 SitemapGenerator::Sitemap.default_host = "https://www.nomcre.com"
 
@@ -24,7 +25,17 @@ SitemapGenerator::Sitemap.create do
   #   Article.find_each do |article|
   #     add article_path(article), :lastmod => article.updated_at
   #   end
+  SitemapGenerator::Sitemap.adapter = SitemapGenerator::S3Adapter.new(fog_provider: 'AWS',
+                                                                    aws_access_key_id: ENV.fetch('AWS_ACCESS_KEY'),
+                                                                    aws_secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
+                                                                    fog_directory: 'nomcre-rails',
+                                                                    fog_region: ENV.fetch('AWS_REGION'))
 
+  SitemapGenerator::Sitemap.public_path = 'tmp/'
+
+  SitemapGenerator::Sitemap.sitemaps_host = "https://s3-us-west-2.amazonaws.com/nomcre-rails/sitemaps/"
+  SitemapGenerator::Sitemap.sitemaps_path = 'sitemaps/'
+  SitemapGenerator::Sitemap.ping_search_engines('http://www.nomcre.com/sitemap')
 
   add faq_path
   add pricing_path
@@ -43,4 +54,7 @@ SitemapGenerator::Sitemap.create do
   Collection.find_each do |collection|
     add collection_path(collection)
   end
+
+
+
 end
