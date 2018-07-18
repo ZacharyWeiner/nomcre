@@ -40,6 +40,7 @@ gem 'jquery-ui-rails'
 gem 'icheck-rails'
 gem 'file_validators'
 gem 'newrelic_rpm'
+gem 'sitemap_generator'
 
 
 group :development, :test do
