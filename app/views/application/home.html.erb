@@ -1,10 +1,10 @@
 <% content_for :head do %>
 <meta property="og:url" content="<%= request.original_url %>" />
 <meta property="og:type" content="website" />
-<meta property="og:title" content="NomCre - On Demand Visual Creative Content" />
+<meta property="og:title" content="NomCre - On Demand Visual Custom Creative Content" />
 <meta property="og:description" content="Nomcre - Custom Creative Content for your brand, simplified." />
 <meta property="og:image" content="https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/horizontal/nomcre-horizontal-19.jpg" />
-<script type="application/ld+json">
+
   {
     "@context" : "http://schema.org",
     "@type" : "Product",
@@ -17,6 +17,14 @@
       "logo" : "https://s3-us-west-2.amazonaws.com/nomcre/logos/UpperLeftHPlogo+2.png"
     }
   }
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "url": "https://www.nomcre.com",
+  "logo": "https://s3-us-west-2.amazonaws.com/nomcre/logos/UpperLeftHPlogo+2.png"
+}
 </script>
 <% end %>
 <div class="nk-main">
