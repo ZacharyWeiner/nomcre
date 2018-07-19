@@ -105,7 +105,7 @@ class PagesController < ApplicationController
   end
 
   def sitemap
-    redirect_to 'https://s3.console.aws.amazon.com/s3/object/nomcre-rails/sitemaps/sitemap.xml.gz?region=us-east-1'
+    redirect_to 'https://s3-us-west-2.amazonaws.com/nomcre-rails/sitemaps/sitemap.xml.gz'
   end
 
   private
