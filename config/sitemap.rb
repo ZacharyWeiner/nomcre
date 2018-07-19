@@ -47,7 +47,7 @@ SitemapGenerator::Sitemap.create do
   add creative_showcase_path
   add creative_landing_path
   add nomcre_process_path
-  Page.find_each do |page|
+  Page.where(status: 'published').each do |page|
     add page_path(page)
   end
 
