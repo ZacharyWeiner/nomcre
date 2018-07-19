@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :set_page, only: [:edit, :update, :show, :destroy, :publish]
+  before_action :set_page, only: [:edit, :update, :destroy, :publish]
   before_action :authorize, except: [:show]
   layout :set_layout
   # GET /pages
@@ -16,7 +16,7 @@ class PagesController < ApplicationController
       redirect_to @page.build_link(request) and return
     end
 
-    if (current_user && current_user.role >=0)
+    if (current_user.nil? == false && current_user.role >=0)
       if @page.status != 'published'
         @page.title = @page.title + " - Draft"
       end
