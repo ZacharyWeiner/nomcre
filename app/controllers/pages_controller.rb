@@ -22,7 +22,11 @@ class PagesController < ApplicationController
       end
     else
       if(@page.status == 'published')
-        @page.views = @page.views + 1
+        if @page.views.nil? == true
+          @page.views = 1
+        else
+          @page.views = @page.views + 1
+        end
         @page.save
       else
         redirect_to root_path
