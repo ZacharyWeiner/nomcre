@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :set_page, only: [:edit, :update, :destroy, :publish]
+  before_action :set_page, only: [:edit, :update, :show, :destroy, :publish]
   before_action :authorize, except: [:show]
   layout :set_layout
   # GET /pages
@@ -124,7 +124,7 @@ class PagesController < ApplicationController
 
     def authorize
       if current_user.nil?
-      redirect_to root_path
+        redirect_to root_path
       else
         if current_user.role >= 1
           redirect_to root_path
