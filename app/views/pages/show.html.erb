@@ -26,7 +26,11 @@
 
 </div>
 <div class='nk-main'>
-<% @page_sections.each do |ps| %>
-  <%= ps.content.html_safe %>
-<% end %>
+    <div class='container'>
+        <% @page_sections.each do |ps| %>
+            <div class='nk-gap'></div>
+          <h3><%= ps.title %></h3>
+          <p class='text-left'><%= ps.content.html_safe %></p>
+        <% end %>
+    </div>
 </div>
