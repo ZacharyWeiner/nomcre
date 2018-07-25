@@ -10,6 +10,7 @@ class ShowcaseVideosController < ApplicationController
   end
 
   def play
+    set_showcase_header_image
   end
 
   # GET /showcase_videos/1
@@ -91,5 +92,13 @@ class ShowcaseVideosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def showcase_video_params
       params.require(:showcase_video).permit(:file, :showcase_type, :show, :order, :title, :description, :thumbnail)
+    end
+
+    def set_showcase_header_image
+      @header_images = HeaderImage.all.where(showcase: true)
+      count = @header_images.count
+      random = Random.new
+      index_to_use = rand(count)
+      @header_image = @header_images[index_to_use]
     end
 end
