@@ -54,7 +54,4 @@ SitemapGenerator::Sitemap.create do
   Collection.find_each do |collection|
     add collection_path(collection)
   end
-
-
-
 end
