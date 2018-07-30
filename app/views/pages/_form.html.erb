@@ -23,7 +23,12 @@
 
   <div class="field-group">
     <%= form.label :description %>
-    <%= form.text_area :content, id: :page_content, class: 'form-control', rows: '2' %>
+    <%= form.text_area :description, id: :page_content, class: 'form-control', rows: '2' %>
+  </div>
+
+  <div class="field-group">
+    <%= form.label :keywords %>
+    <%= form.text_field :keywords, id: :page_keywords, class: 'form-control' %>
   </div>
 
   <div class="field-group">

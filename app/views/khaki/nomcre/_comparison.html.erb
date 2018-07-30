@@ -1,6 +1,6 @@
 <style type="text/css">
 @media only screen and (min-width: 750px) {
-   ul > h1 {font-weight: 200; color: white; padding-top: 10%; font-size:18px;}
+   ul > h1 {font-weight: 400; color: white; padding-top: 10%; font-size:18px;}
   .col-sm-4 > h4 {font-weight: 200; text-align: left; }
   .bordered {border-left-width: 1px; border-color: #2196F3!important;}
   .green{color: green;}
@@ -8,7 +8,7 @@
   .centered {text-align: center}
 }
 @media only screen and (max-width: 749px) {
-   ul > h1 {font-weight: 400; color: white; padding-top: 35%; font-size:12px; vertical-align: bottom;}
+   ul > h1 {font-weight: 400; color: white; padding-top: 35%; font-size:14px; vertical-align: bottom;}
   .col-sm-4 > h4 {font-weight: 200; text-align: left; font-size:16px;}
   .bordered {border-left-width: 1px; border-color: #2196F3!important;}
   .green{color: green;}
@@ -37,7 +37,7 @@
       <div class="col-sm-4 col-4 col-xs-12 ">
         <div class="">
         <ul>
-          <h1 >Features</h1>
+          <h1 class='pad'>Features</h1>
         </ul>
       </div>
       </div>
@@ -65,7 +65,7 @@
       <div class="col-sm-2 col-2 col-xs-12 no-padding">
          <div class="">
             <ul>
-                <h1 class='centered' style='padding-top:36px'>Nomcre</h1>
+                <h1 class='centered' style='padding-top:24px'><%= image_tag "https://s3-us-west-2.amazonaws.com/nomcre-rails/public-page-images/logos/FullLogo.png", class: 'img-fluid', style: 'max-width:42px' %></h1>
             </ul>
           </div>
         </div>
@@ -132,10 +132,10 @@
          <span class='ion-android-done green'> </span>
        </div>
        <div class="col-sm-2 col-2 col-xs-12 bordered centered">
-         <span class='ion-android-done green'> </span>
+         <span class='ion-android-close red'> </span>
        </div>
        <div class="col-sm-2 col-2 col-xs-12 bordered centered">
-         <span class='ion-android-close red'> </span>
+         <span class='ion-android-done green'> </span>
        </div>
        <div class="col-sm-2 col-2 col-xs-12 bordered centered">
          <span class='ion-android-done green'> </span>

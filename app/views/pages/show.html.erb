@@ -1,3 +1,14 @@
+<% content_for :head do %>
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="<%= @page.title %>" />
+    <meta property="og:description" content="<%= @page.description %>" />
+    <meta property="og:image" content="<@page.header_image.url>" />
+    <meta property="title" content="<%= @page.title %>" />
+    <meta property="description" content="<%= @page.description %>" />
+    <meta property="keywords" content="<%= @page.keywords %>" />
+<% end %>
+
 <div class="nk-header-title nk-header-title-xl nk-header-title-parallax nk-header-title-parallax-opacity">
     <div class="bg-image op-6">
         <div style="height:750px; background-image: url('<%= @page.header_image %>');"></div>
