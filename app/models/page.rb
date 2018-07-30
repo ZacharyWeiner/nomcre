@@ -1,5 +1,5 @@
 class Page < ApplicationRecord
-  mount_uploader :header_image, ShotListUploader
+  mount_uploader :header_image, PageImageUploader
   validates :title, presence: true, uniqueness: true
   has_many :page_sections
 

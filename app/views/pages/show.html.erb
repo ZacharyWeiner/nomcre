@@ -3,7 +3,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="<%= @page.title %>" />
     <meta property="og:description" content="<%= @page.description %>" />
-    <meta property="og:image" content="<%= @page.header_image.url %>" />
+    <meta property="og:image" content="<%= @page.header_image.url(:medium).to_s %>" />
     <meta property="title" content="<%= @page.title %>" />
     <meta property="description" content="<%= @page.description %>" />
     <meta property="keywords" content="<%= @page.keywords %>" />
