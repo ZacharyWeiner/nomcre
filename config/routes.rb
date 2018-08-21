@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  get '/pages/Entrepreneur-Magazine', to: 'landing_pages#marketing', as: 'entrepreneur_marketing'
   resources :header_images
   resources :lead_notes
   resources :leads do
