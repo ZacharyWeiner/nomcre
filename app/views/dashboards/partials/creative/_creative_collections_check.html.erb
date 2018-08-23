@@ -1,0 +1,30 @@
+<% if current_user.collections.count == 0  %>
+  <div class="box box-danger ">
+    <div  style='padding:12px;'>
+      <h4><i class="icon fa fa-object-group"></i> Add Your First Collection <i class='fa fa-ban pull-right'></i></h4>
+      <hr>
+      <%= render :partial => 'collections/form', :locals => {:collection => Collection.new}%>
+    </div>
+  </div>
+<% else %>
+<div class="box box-success">
+  <div  style='padding:12px;'>
+  <h4><i class="icon fa fa-check"></i> Collection Complete</h4>
+  <hr>
+    <div class='row'>
+      <h3 class='details'> <%= current_user.collections.first.title %> </h3>
+    </div>
+    <div class='row'>
+      <% collection_items = current_user.collections.first.collection_items.take(6)%>
+      <% if collection_items.count > 0 %>
+        <% row_size = (12/collection_items.count).to_i %>
+        <% collection_items.each do |ci| %>
+          <div class="col-md-<%= row_size %>">
+            <%= image_tag ci.file, class: 'img-responsive', style: 'max-width:150px;' %>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

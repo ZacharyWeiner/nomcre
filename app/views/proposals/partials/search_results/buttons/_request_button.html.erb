@@ -1,0 +1,10 @@
+<div class='pull-right'>
+  <!-- The user already has a request show "already requested" -->
+  <% if proposal.has_user_request(user.id)  %>
+    <%= link_to "Requested", proposal_path(proposal), class: 'btn btn-success disabled' %>
+  <% else %>
+  <!-- If the user already does NOT have a request show "request" button -->
+  <%= link_to "<i class='fa fa-plus'> </i> Request Creative".html_safe, proposal_create_request_path(proposal, user), class: 'btn btn-primary' %>
+  <% end %>
+</div>
+<br>

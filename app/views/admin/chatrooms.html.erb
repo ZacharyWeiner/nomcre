@@ -1,0 +1,45 @@
+<div class="box">
+  <div class="box-header with-border">
+    <h3 class="box-title">Chatrooms</h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table class="table table-bordered">
+      <tbody><tr>
+        <th>Title </th>
+        <th>Company</th>
+        <th>Proposal</th>
+        <th>View</th>
+        <th>Delete</th>
+      </tr>
+      <% @chatrooms.each do |c| %>
+      <tr>
+        <td><%= c.topic %></td>
+        <td><%= c.proposal.company.name %></td>
+        <td><%= c.proposal.title  %></td>
+        <td>
+          <%= link_to "View", chatroom_path(c) %>
+        </td>
+        <td>
+
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+  <div class='container pull-right'>
+  <%= paginate @chatrooms %>
+</div>
+
+ <!--  <div class="box-footer clearfix">
+    <ul class="pagination pagination-sm no-margin pull-right">
+      <li><a href="#">«</a></li>
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">»</a></li>
+    </ul>
+  </div> -->
+</div>
+

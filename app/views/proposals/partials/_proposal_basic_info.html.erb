@@ -1,47 +1,30 @@
-<div class="box box-solid">
-<!-- /.box-header -->
-<div class="box-body">
-  <div class='row'>
-    <div class='col-md-6'>
-      <dl>
-        <dt>
-          Production Type
-        </dt>
-        <dd>
-          <%= @proposal.proposal_type %>
-        </dd>
-      </dl>
-      <dl>
-        <dt>
-          Background
-        </dt>
-        <dd>
-          <%= @proposal.background %> <br>
-          <div class='light'>
-            <%= @proposal.background_note unless @proposal.background_note.nil?%>
-          </div>
-        </dd>
-      </dl>
+<style type="text/css">
+  .edit-padding{padding-right: 12px;}
+</style>
+<div class='continer'>
+<div class='row'>
+  <div class="col-md-7">
+    <b>Creative Brief</b>
+    <p><%= simple_format(@proposal.content)%></p>
+    <br>
+  </div>
+  <div class="col-md-5">
+    <div class="info-box">
+      <%= render :partial => 'proposals/partials/show/tab_body/shared/widgets/proposal_type', :locals => {:proposal => @proposal} %>
     </div>
-    <div class='col-md-6'>
-      <dl>
-        <dt>Shoot Type</dt>
-        <dd><%= @proposal.shoot_type%> Shots</dd>
-      </dl>
-      <dl>
-        <dt>Time Of Day</dt>
-        <dd><%= @proposal.time_of_day %></dd>
-      </dl>
+    <div class="info-box">
+      <%= render :partial => 'proposals/partials/show/tab_body/shared/widgets/background', :locals => {:proposal => @proposal} %>
+    </div>
+    <div class="info-box">
+      <%= render :partial => 'proposals/partials/show/tab_body/shared/widgets/time_of_day', :locals => {:proposal => @proposal} %>
+    </div>
+    <div class="info-box">
+      <%= render :partial => 'proposals/partials/show/tab_body/shared/widgets/instagram', :locals => {:proposal => @proposal} %>
+    </div>
+    <%= render :partial => 'proposals/partials/show/tab_body/shared/widgets/image_boards', :locals => {:proposal => @proposal} %>
+    <div class="info-box">
+      <%= render :partial => 'proposals/partials/show/tab_body/shared/widgets/bts', :locals => {:proposal => @proposal} %>
     </div>
   </div>
-  <hr>
-  <dl>
-    <dt>Creative Brief</dt>
-    <dd><%= @proposal.content%></dd>
-  </dl>
-</div>
-<!-- /.box-body -->
-<div class="pull-right">
-  <%= link_to "Edit", edit_proposal_path(@proposal) unless  @proposal.company.users.include?(current_user) == false %>
 </div>
 </div>

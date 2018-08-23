@@ -1,0 +1,38 @@
+<div class="box box-success">
+  <div class="box-header with-border">
+    <h3 class="box-title">Open Requests</h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <ul class="products-list product-list-in-box">
+      <% ProposalRequest.where(requested_by: current_user).where(accepted: nil).order(:created_at).each do |p|%>
+      <li class="item">
+        <div class="product-img">
+         <%= image_tag p.proposal.company.logo %>
+       </div>
+       <div class="product-info">
+        <%= link_to proposal_requests_path, class: 'product-title' do %>
+        <%= User.find(p.requested_by).user_profile.display_name %>
+        <span class="label label-success pull-right">
+          <%= number_to_currency(p.proposal.price) %> USD
+        </span>
+        <% end %>
+        <span class="product-description">
+          <%= p.proposal.shoot_type %>
+        </span>
+        <span class="product-description">
+          <%= p.proposal.content[0...100]%>
+        </span>
+      </div>
+    </li>
+    <!-- /.item -->
+    <% end %>
+  </ul>
+</div>
+<!-- /.box-body -->
+<div class="box-footer text-center">
+  <%= link_to "View All", proposals_path, class: 'uppercase'%>
+</div>
+<!-- /.box-footer -->
+</div>
+

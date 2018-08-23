@@ -1,15 +1,18 @@
 <div class='box box-info'>
 <div class="box-header with-border">
-  <h4 class="box-title">Content Type</h4>
+  <h4 class="box-title">Proposal Type</h4>
 </div>
 <div style="margin:12px; padding-bottom: 12px;">
-  <%= f.radio_button(:proposal_type, "photo") %>
+  <%= f.radio_button(:proposal_type, "photo", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}) %>
   <%= f.label(:proposal_type_photo, "Photo") %>
-  <%= f.radio_button(:proposal_type, "video") %>
+  <%= f.radio_button(:proposal_type, "video", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}) %>
   <%= f.label(:proposal_type_video, "Video") %>
-  <%= f.radio_button(:proposal_type, "drone") %>
+  <%= f.radio_button(:proposal_type, "drone", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}) %>
   <%= f.label(:proposal_type_drone, "Drone") %>
-  <%= f.radio_button(:proposal_type, "custom") %>
+  <%= f.radio_button(:proposal_type, "custom", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}) %>
   <%= f.label(:proposal_type_custom, "Custom") %>
 </div>
 </div>
+<script>
+
+</script>

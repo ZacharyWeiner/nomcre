@@ -1,4 +1,4 @@
-<%= form_for(proposal) do |f| %>
+<%= form_for proposal, class: 'form-horizontal' do |f| %>
   <% if proposal.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(proposal.errors.count, "error") %> prohibited this proposal from being saved:</h2>
@@ -10,32 +10,41 @@
       </ul>
     </div>
   <% end %>
-
-  <%= render :partial => 'proposals/partials/form/title', :locals => {:f => f} %>
-  <%= render :partial => 'proposals/partials/form/creative_brief', :locals => {:f => f} %>
-
-  <div class='row'>
-    <div class='col-md-6'>
-      <%= render :partial => 'proposals/partials/form/content_type', :locals => {:f => f} %>
-    </div>
-    <div class='col-md-6'>
-      <%= render :partial => 'proposals/partials/form/shoot_type', :locals => {:f => f} %>
-    </div>
-  </div>
-  <div class='row'>
-    <div class='col-md-6'>
-      <%= render :partial => 'proposals/partials/form/deadline', :locals => {:f => f} %>
-    </div>
-    <div class='col-md-6'>
-      <%= render :partial => 'proposals/partials/form/location_selection', :locals => {:f => f} %>
-    </div>
-  </div>
-
-  <%= render :partial => 'proposals/partials/form/file_type', :locals => {:f => f} %>
-  <%= render :partial => 'proposals/partials/form/background', :locals => {:f => f} %>
-
+  <% unless current_user.company.nil? %>
   <%= f.hidden_field :company_id, :value => current_user.company.id %>
+  <% end %>
+  <div class='row'>
+    <div class='col-md-8'>
+      <div class='box'>
+        <%= render :partial => 'proposals/partials/form/title', :locals => {:f => f} %>
+        <%= render :partial => 'proposals/partials/form/creative_brief', :locals => {:f => f} %>
+      </div>
+      <% render :partial => 'proposals/partials/form/focus_points', :locals => {:f => f} %>
+        <div class='row'>
+          <div class='col-md-6'>
+            <%= render :partial => 'proposals/partials/form/instagram_fields', :locals => {:f => f} %>
+            <%= render :partial => 'proposals/partials/form/file_type', :locals => {:f => f} %>
+          </div>
+          <div class='col-md-6'>
+            <%= render :partial => 'proposals/partials/form/image_board_fields', :locals => {:f => f} %>
+            <%= render :partial => 'proposals/partials/form/bts', :locals => {:f => f} %>
+          </div>
+        </div>
+    </div>
+    <div class='col-md-4'>
+      <%= render :partial => 'proposals/partials/form/content_and_shoot_types', :locals => {:f => f} %>
+      <%= render :partial => 'proposals/partials/form/deadline_and_location', :locals => {:f => f} %>
+      <%= render :partial => 'proposals/partials/form/background', :locals => {:f => f} %>
+      <%= render :partial => 'proposals/partials/form/time_of_day', :locals => {:f => f} %>
+
+
+    </div>
+  </div>
+
   <div class="row">
     <%= f.submit "Save", class: 'btn btn-success pull-right', style: 'margin-right:24px;' %>
   </div>
 <% end %>
+
+
+

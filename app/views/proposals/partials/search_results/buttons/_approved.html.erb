@@ -1,0 +1,5 @@
+<% if proposal.user == user %>
+  <%= link_to "Assigned", proposal_path(proposal), class: 'btn btn-success' %>
+<% else %>
+  <%= link_to "Not Selected", proposal_path(proposal), class: 'btn btn-danger disabled' %>
+<% end %>

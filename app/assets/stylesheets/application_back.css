@@ -1,10 +1,14 @@
 /*
- *= require back/font-awesome/font-awesome.min
  *= require back/ionicons/ionicons.min
  *= require back/bootstrap/bootstrap.min
  *= require back/bootstrap-tagsinput/bootstrap-tagsinput
  *= require back/datatables/dataTables.bootstrap.css
+ *= require back/jvectormap/jquery-jvectormap-1.2.2
+ *= require jquery-ui
  *= require back/AdminLTE
- *= require back/skins/skin-black
+ *= require back/skins/skin-black-light
+ *= require bootstrap-toggle
+ *= require icheck/square/_all
  *= require_self
  */
+

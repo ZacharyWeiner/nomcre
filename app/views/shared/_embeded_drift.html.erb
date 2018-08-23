@@ -1,0 +1,13 @@
+<div id='conversation'>
+
+</div>
+
+<script type="text/javascript">
+moveConversation = function moveDrift() {
+    document.getElementById('conversation').appendChild(document.getElementById('drift-widget'));
+}
+drift.on('startConversation', function () {
+  //alert(document.getElementById('drift-widget-container').id);
+  //moveConversation();
+});
+</script>

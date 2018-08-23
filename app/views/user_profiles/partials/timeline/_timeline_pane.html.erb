@@ -1,0 +1,52 @@
+<div class="tab-pane" id="timeline">
+
+
+
+
+
+
+<%= link_to "<i class='fa fa-calendar'></i> Add Travel Plan".html_safe, new_schedule_item_path, class: 'btn btn-primary pull-right' %>
+<br/>
+<br/>
+<% if ScheduleItem.where(user_id: UserProfile.find(params[:id]).user_id).count == 0 %>
+  <div class="alert alert-warning alert-dismissible">
+    <h4><i class="icon fa fa-warning"></i> Wo0ps!</h4>
+    You Havent Added Any Travel Plans Yet!
+    </div>
+<% else %>
+<ul class="timeline timeline-inverse">
+  <% ScheduleItem.where(user_id: UserProfile.find(params[:id]).user_id).each do |schedule_item| %>
+    <!-- timeline time label -->
+    <li class="time-label">
+        <span class="bg-green">
+            <%= schedule_item.start_date %>
+        </span>
+    </li>
+    <!-- /.timeline-label -->
+
+    <!-- timeline item -->
+    <li>
+        <!-- timeline icon -->
+        <i class="fa fa-plane bg-blue"></i>
+        <div class="timeline-item">
+            <span class="time"><span>Departure</span> <i class="fa fa-calendar"></i> <%= schedule_item.end_date %></span>
+
+            <h3 class="timeline-header"><%= schedule_item.location.name unless schedule_item.location.nil? %></h3>
+
+            <div class="timeline-body">
+              <%= schedule_item.notes %>
+            </div>
+
+            <div class="timeline-footer">
+              <% if current_user == @user_profile.user %>
+                <%= link_to 'Edit', edit_schedule_item_path(schedule_item), class: 'btn btn-warning' %>
+                <%= link_to 'Destroy', schedule_item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger pull-right' %>
+              <% end %>
+            </div>
+        </div>
+    </li>
+    <!-- END timeline item -->
+  <% end %>
+</ul>
+<% end %>
+</div>

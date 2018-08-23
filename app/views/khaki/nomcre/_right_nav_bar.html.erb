@@ -14,7 +14,7 @@ Additional Classes:
 <nav class="nk-navbar nk-navbar-side nk-navbar-right-side nk-navbar-lg nk-navbar-align-center nk-navbar-overlay-content" id="nk-side">
 
     <div class="nk-navbar-bg">
-        <div class="bg-image op-4" style="background-image: url('https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/vertical/nomcre-vertical21.jpg')"></div>
+        <div class="bg-image op-4" style="background-image: url('https://s3-us-west-2.amazonaws.com/nomcre-rails/public-page-images/SideMenu/SideMenu.jpg')"></div>
     </div>
 
 
@@ -24,7 +24,7 @@ Additional Classes:
             <div class="nk-nav-table">
 
                 <div class="nk-nav-row">
-                    <a href="index.html" class="nk-nav-logo">
+                    <a href="/" class="nk-nav-logo">
                         <img src="https://s3-us-west-2.amazonaws.com/nomcre/logos/UpperLeftHPlogo+2.png" alt="" width="130">
                     </a>
                 </div>
@@ -37,15 +37,12 @@ Additional Classes:
                 -->
                 <div class="nk-nav-row nk-nav-row-full nk-nav-row-center">
                     <ul class="nk-nav">
-                        <li>
-                            <%= link_to "About Us", nomcre_about_path %>
-                        </li>
-                        <li>
-                            <%= link_to "For Creators", creative_landing_path %>
-                        </li>
-                        <li>
-                           <%= link_to "Contact Us", nomcre_contact_path %>
-                        </li>
+                        <li><%= link_to "For Creators", creative_landing_path %></li>
+                        <li> <%= link_to "Pricing", pricing_path %> </li>
+                        <li> <%= link_to "FAQ", faq_path %> </li>
+                        <li><%= link_to "About Us", nomcre_about_path %></li>
+                        <li><%= link_to "Contact Us", nomcre_contact_path %></li>
+                        <li> <%= link_to "Terms Of Service", tos_path %> </li>
                         <!-- <li>
                             <a href="page-coming-soon.html">
                                 Terms Of Service
@@ -57,13 +54,13 @@ Additional Classes:
                 <div class="nk-nav-row">
                     <div class="nk-nav-social">
                         <ul>
-                            <li><a href="#" class="no-link-effect"><i class="fa fa-instagram"></i></a></li>
-                            <li><a href="#" class="no-link-effect"><i class="fa fa-facebook"></i></a></li>
-                            <li><a href="#" class="no-link-effect"><i class="fa fa-behance"></i></a></li>
-                            <li><a href="#" class="no-link-effect"><i class="fa fa-vimeo"></i></a></li>
+                            <li><a href="http://instagram.com/nomadiccreative" class="no-link-effect"><i class="fa fa-instagram"></i></a></li>
+                            <li><a href="https://facebook.com/nomadiccreative" class="no-link-effect"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="https://www.behance.net/nomadiccreative" class="no-link-effect"><i class="fa fa-behance"></i></a></li>
+                           <!--  <li><a href="https://vimeo.com/nomcre" class="no-link-effect"><i class="fa fa-vimeo"></i></a></li> -->
                         </ul>
                         <footer>
-                            <a href="http://nkdev.info" target="_blank">nomcre.com</a> &copy; 2017. All rights reserved
+                            <a href="/" target="_blank">nomcre.com</a> &copy; 2018. All rights reserved
                         </footer>
                     </div>
                 </div>

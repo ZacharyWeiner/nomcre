@@ -1,0 +1,20 @@
+<% content_for :head do %>
+<meta property="og:url" content="<%= request.original_url %>" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="NomCre - Pricing" />
+<meta property="og:description" content="Nomcre - The Best Nomadic Creative Prices" />
+<meta property="og:image" content="https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/horizontal/nomcre-horizontal-19.jpg" />
+<meta property="title" content="Nomcre - The Best Nomadic Creative Pricing" />
+<meta property="keywords" content="On Demand, On-Demand, Visual, Custom, Creative, Content, Photography, Videography, Videos, product photos, pictures" />
+<% end %>
+<div class="nk-main">
+<%= render 'khaki/nomcre/pricing/header'%>
+<%= render 'khaki/nomcre/pricing/photo'%>
+<hr>
+<%= render 'khaki/nomcre/pricing/video'%>
+<hr>
+<%= render 'khaki/nomcre/pricing/combo'%>
+<% render 'khaki/nomcre/pricing/enterprise'%>
+<%= render 'khaki/nomcre/pricing/cta'%>
+<% render 'shared/khaki_theme/cost_comparison'%>
+</div>

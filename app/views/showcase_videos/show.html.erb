@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>File:</strong>
+  <%= video_tag @showcase_video.file, class: 'img-responsive' %>
+</p>
+
+<p>
+  <strong>Showcase type:</strong>
+  <%= @showcase_video.showcase_type %>
+</p>
+
+<p>
+  <strong>Show:</strong>
+  <%= @showcase_video.show %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @showcase_video.order %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @showcase_video.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @showcase_video.description %>
+</p>
+
+<p>
+  <strong>Thumbnail:</strong>
+  <%= @showcase_video.thumbnail %>
+</p>
+
+<%= link_to 'Edit', edit_showcase_video_path(@showcase_video) %> |
+<%= link_to 'Back', showcase_videos_path %>

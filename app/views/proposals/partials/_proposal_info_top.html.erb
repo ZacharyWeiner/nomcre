@@ -1,8 +1,6 @@
-<div class="box box-primary">
-  <div class="box-body box-profile">
-    <% unless @proposal.company.nil? %>
-      <%= image_tag @proposal.company.logo, class: 'profile-user-img img-responsive img-circle'%>
-    <% end %>
+<div class="box ">
+  <div class="box-body">
+    <%= render :partial => 'shared/adminlte/user/profile_images_widget', locals: {user: @proposal.user }%>
     <h3 class="profile-username text-center"> <%= @proposal.title %></h3>
 
     <!-- <p class="text-muted text-center">Software Engineer</p> -->
@@ -12,27 +10,48 @@
         <b>Deadline</b> <a class="pull-right"><%= @proposal.deadline %></a>
       </li>
       <li class="list-group-item">
-        <b>Is Paid</b> <a class="pull-right"><%= @proposal.paid? %></a>
+        <b>Is Paid</b>
+        <a class="pull-right">
+          <% if @proposal.paid? %>
+            <i class='fa fa-check success'></i>
+          <% else %>
+            <i class='fa fa-times-circle error'></i>
+          <% end %>
+        </a>
       </li>
       <li class="list-group-item">
-        <b>Complete</b> <a class="pull-right"><%= @proposal.completed? %></a>
-      </li>
-      <li class="list-group-item">
-        <b>Assigned To</b> <a class="pull-right"><%= @proposal.user.email unless @proposal.user.nil? %></a>
+        <b>Complete</b>
+        <a class="pull-right">
+          <%if @proposal.completed? %>
+           <i class='fa fa-check success'></i>
+          <% else %>
+            <i class='fa fa-times-circle error'></i>
+          <% end %>
+        </a>
       </li>
     </ul>
 
     <% if (current_user.company ==  @proposal.company) && @proposal.accepted != true %>
       <%= link_to 'Edit', edit_proposal_path(@proposal), class: "btn btn-primary btn-block" %>
     <% end %>
-    <%= link_to 'Chat', chatroom_path(@proposal.chatroom), class: "btn btn-primary btn-block" %>
+    <% if @proposal.accepted == true && (@proposal.deadline > Date.today - 14.days)%>
+      <%= link_to chatroom_path(@proposal.chatroom), class: "btn btn-primary btn-block" do  %>
+        <i class="fa fa-comments-o"></i> Chat
+      <% end %>
+    <% end %>
     <% if  @proposal.deposit_paid == true %>
-      <%= link_to 'Deposit Paid', "#", class: "btn btn-success btn-block disabled" %>
+      <%= link_to  "#", class: "btn btn-success btn-block disabled" do %>
+      <i class='fa fa-dollar'></i> Deposit Paid
+      <% end %>
     <% else %>
-      <%= link_to 'Pay Depost', proposal_payment_path(@proposal), class: "btn btn-warning btn-block" %>
+      <%= link_to proposal_payment_path(@proposal), class: "btn btn-warning btn-block" do  %>
+        <i class='fa fa-dollar'></i> Pay Depost
+      <% end %>
     <% end %>
      <% if  @proposal.paid == true %>
-      <%= link_to 'Balance Paid', proposal_payment_path(@proposal), class: "btn btn-success btn-block disabled" %>
+      <%= link_to  proposal_payment_path(@proposal), class: "btn btn-success btn-block disabled" do %>
+       <i class='fa fa-dollar'></i> Balance Paid
+       <% end %>
     <% else %>
       <% if @proposal.deposit_paid == true %>
         <%= link_to 'Pay', proposal_payment_path(@proposal), class: "btn btn-warning btn-block" %>

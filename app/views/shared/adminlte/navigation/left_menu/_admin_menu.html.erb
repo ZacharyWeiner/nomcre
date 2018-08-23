@@ -1,15 +1,46 @@
-<li class="header"><%= t('admin.sidebar.administration') %></li>
-<li> <%= link_to '<i class="fa fa-list-ol"></i><span>Waitlist</span>'.html_safe, waitlists_path %> </li>
+<li class="header"><%= "Admin" %></li>
+<li> <%= link_to '<i class="fa fa-briefcase"></i><span>Proposals</span>'.html_safe, admin_proposals_path %> </li>
 <li class="treeview">
   <a href="#">
-    <i class="fa fa-users"></i>
-    <span>Users</span>
+    <i class="fa fa-users"></i> <span>People</span>
     <span class="pull-right-container">
       <i class="fa fa-angle-left pull-right"></i>
     </span>
   </a>
   <ul class="treeview-menu">
-    <li> <%= link_to '<i class="fa fa-circle-o"></i> List Users'.html_safe, admin_users_path %> </li>
-    <li> <%= link_to '<i class="fa fa-circle-o"></i> Create User'.html_safe, new_admin_user_path %> </li>
+    <li> <%= link_to '<i class="fa fa-list-ol"></i><span>Waitlist</span>'.html_safe, waitlists_path %> </li>
+    <li> <%= link_to '<i class="fa fa-list"></i><span>Leads</span>'.html_safe, admin_leads_path %> </li>
+    <li> <%= link_to '<i class="fa fa-users"></i><span>Users</span>'.html_safe, admin_users_path %> </li>
   </ul>
 </li>
+<li class="treeview">
+  <a href="#">
+    <i class="fa fa-user-o"></i> <span>Creatives</span>
+    <span class="pull-right-container">
+      <i class="fa fa-angle-left pull-right"></i>
+    </span>
+  </a>
+  <ul class="treeview-menu">
+    <li> <%= link_to '<i class="fa fa-plane"></i><span>Schedules</span>'.html_safe, admin_schedule_items_path %></li>
+    <li> <%= link_to '<i class="fa fa-camera"></i><span>Collections</span>'.html_safe, admin_collections_path %></li>
+  </ul>
+</li>
+<li class="treeview">
+  <a href="#">
+    <i class="fa fa-image"></i> <span>Images</span>
+    <span class="pull-right-container">
+      <i class="fa fa-angle-left pull-right"></i>
+    </span>
+  </a>
+  <ul class="treeview-menu">
+    <li> <%= link_to '<i class="fa fa-image"></i><span>Showcase</span>'.html_safe, showcase_images_path %>
+    <li> <%= link_to '<i class="fa fa-image"></i><span>HeaderImages</span>'.html_safe, header_images_path %> </li>
+  </ul>
+</li>
+
+<li> <%= link_to '<i class="fa fa-comments-o"></i><span>Chats</span>'.html_safe, admin_chatrooms_path %></li>
+
+
+
+<li> <%= link_to '<i class="fa fa-laptop"></i><span>Pages</span>'.html_safe, pages_path %> </li>
+

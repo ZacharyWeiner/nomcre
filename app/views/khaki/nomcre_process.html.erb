@@ -1,10 +1,25 @@
+<% content_for :head do %>
+<meta property="og:url" content="<%= request.original_url %>" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="NomCre - On Demand Visual Creative Content" />
+<meta property="og:description" content="Nomcre - Custom Creative Content for your brand, simplified." />
+<meta property="og:image" content="https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/horizontal/nomcre-horizontal16.jpg" />
 
+<meta property="title" content="Nomcre - Custom Creative Content for your brand, simplified." />
+<meta property="keywords" content="On Demand, On-Demand, Visual, Custom, Creative, Content, Photography, Videography, Videos, product photos, pictures" />
+<% end %>
 <div class="nk-main">
 <%= render 'khaki/nomcre/process/header_title'%>
-<%= render 'khaki/nomcre/process/icon_box_process_1'%>
+<% render 'khaki/nomcre/process/icon_box_process_1'%>
+<%= render 'khaki/nomcre/process/benefits'%>
 <%= render 'khaki/nomcre/process/top_call_to_action'%>
-<%= render 'khaki/nomcre/process/why_chose_us' %>
-<%= render 'khaki/nomcre/home/icon_box_background_home'%>
-<%= render 'shared/khaki_theme/cta_white_background'%>
+<%= render 'khaki/nomcre/home/what_is_nomcre'%>
+<%= render 'khaki/nomcre/process/intro'%>
+<%= render 'khaki/nomcre/process/bottom'%>
+
+<% render 'khaki/nomcre/home/icon_box_background_home'%>
 <% render 'khaki/nomcre/home/call_to_action_bottom_home'%>
+<% render 'khaki/nomcre/process/why_chose_us' %>
+
+<% render 'khaki/nomcre/process/white_cta'%>
 </div>

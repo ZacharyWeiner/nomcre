@@ -1,12 +1,26 @@
+<% content_for :head do %>
+<meta property="og:url" content="<%= request.original_url %>" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Nomcre For Photographers & Videographers" />
+<meta property="og:description" content="Nomcre Kicks Ass For Visual Creatives " />
+<meta property="og:image" content="https://s3-us-west-2.amazonaws.com/nomcre-rails/public-page-images/HompageBoxImages/BoxImage1.jpg" />
+<meta property="og:video:url" content="https://s3-us-west-2.amazonaws.com/nomcre-rails/public-videos/Nomcre-Creator-Vid-1-sound.mp4" />
+<meta property="og:video:secure_url" content="https://s3-us-west-2.amazonaws.com/nomcre-rails/public-videos/Nomcre-Creator-Vid-1-sound.mp4" />
+<meta property="og:video:type" content="video/mp4" />
+<meta property="og:video:height" content="1080" />
+<meta property="og:video:width" content="1920" />
+<meta property="title" content="Nomcre - The For Photographers & Videographers" />
+<meta property="keywords" content="On Demand, On-Demand, Visual, Custom, Creative, Content, Photography, Videography, Videos, product photos, pictures" />
+
+<% end %>
 <div class="nk-main">
-<%= render 'khaki/nomcre/creative/header_title'%>
+<%= render 'khaki/nomcre/creative/video_header'%>
 <%= render 'khaki/nomcre/creative/top_call_to_action'%>
+<%= render 'khaki/nomcre/creative/why_chose_us_tabs' %>
+<%= render 'khaki/nomcre/creative/typed_js'%>
 <%= render 'khaki/nomcre/creative/icon_box_1'%>
 <%= render 'khaki/nomcre/creative/side_parallax' %>
 <%= render 'khaki/nomcre/creative/cta_image_background'%>
-<%= render 'khaki/nomcre/creative/why_chose_us_tabs' %>
-<%= render 'khaki/nomcre/creative/typed_js'%>
-<%= render 'khaki/nomcre/creative/places_carousel' %>
+<%= render 'khaki/nomcre/home/places_carousel_home' %>
 <% render 'khaki/nomcre/creative/call_to_action_bottom' %>
-
 </div>

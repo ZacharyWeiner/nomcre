@@ -12,25 +12,21 @@
     </div>
     <!-- /.col -->
     <div class="col-md-9">
+      <%= render :partial => 'proposals/partials/proposal_show_top_widget', :locals => {:proposal => @proposal} %>
       <div class="nav-tabs-custom">
-        <ul class="nav nav-tabs">
-          <li class="active"><a href="#basic_info" data-toggle="tab">Basic Info</a></li>
-          <li><a href="#details" data-toggle="tab">Details</a></li>
-          <li><a href="#tasks" data-toggle="tab">Tasks</a></li>
-          <li><a href="#creatives" data-toggle="tab">Suggested Creatives</a></li>
-          <li><a href="#disclosures" data-toggle="tab">Disclosures</a></li>
-          <li><a href="#invoice" data-toggle="tab">Invoice</a></li>
-        </ul>
+        <%= render :partial =>  'proposals/partials/show/tabs/company', :locals => {:proposal => @proposal} %>
         <div class="tab-content">
           <div class="active tab-pane" id="basic_info">
             <%= render 'proposals/partials/proposal_basic_info'%>
           </div>
-          <div class="tab-pane" id="details">
-            <%= render 'proposals/partials/proposal_details'%>
+          <div class="tab-pane" id="shot_list">
+            <%= render :partial => 'shot_list_items/shot_list', :locals => {:shot_list_items => @proposal.shot_list_items} %>
           </div>
+          <% unless @proposal.tasks.count == 0 %>
           <div class="tab-pane" id="tasks">
             <%= render 'proposals/partials/proposal_tasks_list'%>
           </div>
+          <% end %>
           <div class="tab-pane" id="creatives">
             <%= render 'proposals/partials/proposal_search_results' %>
           </div>
@@ -38,7 +34,11 @@
             <%= render 'proposals/partials/proposal_disclosures' %>
           </div>
            <div class="tab-pane" id="invoice">
-            Invoice Goes Here
+            <h3> Deposit </h3>
+            <%= render 'proposals/partials/invoices/deposit_invoice' %>
+            <br><hr><br>
+            <h3> Balance </h3>
+            <%= render 'proposals/partials/invoices/balance_invoice' %>
           </div>
           <!-- /.tab-pane -->
         </div>

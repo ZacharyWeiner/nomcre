@@ -1,3 +1,9 @@
+<% if @requests.count == 0 %>
+<div class="alert alert-warning alert-dismissible">
+  <h4><i class="icon fa fa-warning"></i> Wo0ps!</h4>
+  You Haven't Been Reuested Yet!
+</div>
+<% else %>
 <ul class="timeline">
   <% @requests.each do |pr| %>
     <!-- timeline time label -->
@@ -14,30 +20,130 @@
         <i class="fa fa-briefcase bg-blue"></i>
         <div class="timeline-item">
             <span class="time"><span>Requested On:</span> <i class="fa fa-calendar"></i> <%= pr.created_at %></span>
-            <div style='padding:24px'
+            <div style='padding:24px'>
             <h3 class="timeline-header"><%= pr.proposal.title %></h3>
 
             <div class="timeline-body">
               <div class='row'>
-                <h4><%= pr.proposal.company.name %></h4>
-                <br>
-                <h5><%= pr.proposal.location.name %></h5>
-                <div class='row'>
-                   <div class='col-md-4'>
-                    <strong>Proposal Type:</strong> <%= pr.proposal.proposal_type unless pr.proposal.time_of_day.nil? %>
+                <div class="col-md-3">
+                  <div class="box box-widget widget-user">
+                    <% if pr.proposal.user %>
+                      <div class="widget-user-header bg-black" style="background: url('<%= user.user_profile.safe_header_image_url%>'); background-size: 100% 100%">
+                        <h3 class="widget-user-username">
+                          <%= pr.proposal.company.name  %></h3>
+                        <h5 class="widget-user-desc"></h5>
+                      </div>
+                      <div class="widget-user-image">
+                        <%= image_tag pr.proposal.company.logo, class: "img-circle" %><br/>
+                      </div>
+                      <div class="box-footer">
+
+                      </div>
+                    <% else %>
+                     <div class="widget-user-header bg-black" style="background: url('<%= UserProfile.default_header_image%>') center center;background-size:cover">
+                        <h3 class="widget-user-username">Unassigned</h3>
+                      </div>
+                      <div class="widget-user-image">
+                        <%= image_tag pr.proposal.company.logo, class: "img-circle" %><br/>
+                      </div>
+                      <div class="box-footer">
+                      </div>
+                    <% end %>
                   </div>
-                  <div class='col-md-4'><strong>Time Of Day:</strong> <%= pr.proposal.time_of_day unless pr.proposal.time_of_day.nil? %></div>
-                  <div class='col-md-4'><strong>Background:</strong> <%= pr.proposal.background unless pr.proposal.background.nil? %></div>
+                  <b> Progress: </b>
+                  <div class="progress">
+                    <% if pr.proposal.tasks.count == 0 %>
+                      <% percent_complete =0 %>
+                    <% else %>
+                      <% task_count = pr.proposal.tasks.count.to_f %>
+                      <% completed_tasks = pr.proposal.tasks.where(completed: true).count %>
+                      <% percent_complete = ((completed_tasks / task_count) * 100).to_i%>
+                    <% end %>
+                    <div class="progress-bar progress-bar-success progress-bar-striped" style="width: <%= percent_complete %>%"></div>
+                  </div>
+                  <ul class="list-group list-group-unbordered">
+
+                    <li class="list-group-item">
+                      <i class='fa fa-map-marker'></i>
+                      <span><b> Location</b> <p class='pull-right'><%= pr.proposal.location.name unless pr.proposal.location.nil?%></p></span>
+                    </li>
+                    <% if pr.proposal.user %>
+                      <li class="list-group-item">
+                        <%= link_to pr.proposal.chatroom, class: 'btn btn-primary btn-block' do %>
+                        <i class='fa fa-comments-o'></i> Chat
+                        <% end %>
+                      </li>
+                    <% end %>
+                  </ul>
+                </div>
+                <div class='col-md-9'>
+                  <p><%= simple_format(pr.proposal.content.first(300)) %>...</p>
+                  <br>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="info-box">
+                        <span class="info-box-icon bg-aqua"><i class="fa fa-photo"></i></span>
+                        <div class="info-box-content">
+                          <h4 class="">Shoot Type</h4>
+                           <h5><%= pr.proposal.shoot_type%> Shots </h5>
+                        </div>
+                        <!-- /.info-box-content -->
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="info-box">
+                        <span class="info-box-icon bg-aqua"><i class="fa fa-clock-o"></i></span>
+                        <div class="info-box-content">
+                          <h4 class="">Time Of Day</h4>
+                          <h5><%= pr.proposal.time_of_day %></h5>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="info-box">
+                        <span class="info-box-icon bg-aqua"><i class="fa fa-university"></i></span>
+                        <div class="info-box-content">
+                          <h4 class="">Background</h4>
+                           <h5><%= pr.proposal.background %> </h5>
+                          <div class='light'>
+                            <%= pr.proposal.background_note unless pr.proposal.background_note.nil?%>
+                          </div>
+                        </div>
+                        <!-- /.info-box-content -->
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="info-box">
+                        <span class="info-box-icon bg-aqua"><i class="fa fa-crosshairs"></i></span>
+                        <div class="info-box-content">
+                          <h4 class="">Focus Points</h4>
+                          <div class='light'>
+                            <% pr.proposal.focus_points.each do |fp| %>
+                              <% unless fp == "0" %>
+                              <span class="label label-success"><%= fp %></span>
+                              <% end %>
+                            <% end %>
+                          </div>
+                        </div>
+                        <!-- /.info-box-content -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class='col-md-12'>
+
+                  </div>
                 </div>
               </div>
+
             </div>
             </div>
             <div class="timeline-footer">
-              <%= link_to "View", pr.proposal, class: 'btn btn-primary '%>
+              <%= link_to "<i class='fa fa-eye'></i> View".html_safe, pr.proposal, class: 'btn btn-primary '%>
               <% if pr.accepted == true %>
-                <%= link_to "Accepted", proposal_accept_request_path(pr.proposal), class: 'btn btn-success disabled'%>
+                <%= link_to "<i class='fa fa-dollar'></i> Accepted".html_safe, proposal_accept_request_path(pr.proposal), class: 'btn btn-success disabled'%>
               <% else %>
-                <%= link_to "Accept", proposal_accept_request_path(pr.proposal), class: 'btn btn-success '%>
+                <%= link_to "<i class='fa fa-dollar'></i> Accept".html_safe, proposal_accept_request_path(pr.proposal), class: 'btn btn-success '%>
+                <%= link_to "<i class='fa fa-trash'></i> Decline".html_safe, decline_proposal_request_path(pr), class: 'btn btn-danger pull-right' %>
               <% end %>
             </div>
         </div>
@@ -45,3 +151,4 @@
     <!-- END timeline item -->
   <% end %>
 </ul>
+<%end %>

@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.where(user: current_user)
+    @tasks = Task.where(user: current_user).where(completed: false).order(:deadline)
     @notifications = Notification.where(user: current_user).where(notification_type: "Task").where(read: false)
     @notifications.each do |note|
       note.read = true
@@ -67,10 +67,19 @@ class TasksController < ApplicationController
   end
 
   def complete
+    new_path = params[:redirect]
     @task.completed = true
-    respond_to do |format|
-      if @task.save
-        format.html { redirect_to proposal_path(@task.proposal), notice: 'Task was successfully completed.' }
+    if @task.save
+      respond_to do |format|
+        tasks = @task.proposal.tasks.where.not(completed: true)
+        if tasks.count == 0
+          @task.proposal.mark_as_complete
+        end
+        if new_path
+           redirect_to creative_dashboard_path and return
+        else
+          format.html { redirect_to @task.proposal, notice: 'Task was successfully completed.' }
+        end
       end
     end
   end

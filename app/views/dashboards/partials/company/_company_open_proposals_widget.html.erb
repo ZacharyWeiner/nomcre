@@ -1,0 +1,37 @@
+<div class="box box-aqua">
+  <div class="box-header with-border">
+    <h3 class="box-title">Open Proposals</h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <ul class="products-list product-list-in-box">
+      <% Proposal.where(company: current_user.company).where(completed: nil).each do |p|%>
+      <li class="item">
+        <div class="product-img">
+         <%= image_tag p.company.logo %>
+       </div>
+       <div class="product-info">
+        <%= link_to p, class: 'product-title' do %>
+        <%= p.title %>
+        <span class="label label-success pull-right">
+         <%= number_to_currency(p.price) %> USD
+        </span>
+        <% end %>
+        <span class="product-description">
+          <%= p.shoot_type %>
+        </span>
+        <span class="product-description">
+          <%= p.content[0...100] unless p.content.nil? %>
+        </span>
+      </div>
+    </li>
+    <!-- /.item -->
+    <% end %>
+  </ul>
+</div>
+<!-- /.box-body -->
+<div class="box-footer text-center">
+  <%= link_to "View All", proposals_path, class: 'uppercase'%>
+</div>
+<!-- /.box-footer -->
+</div>

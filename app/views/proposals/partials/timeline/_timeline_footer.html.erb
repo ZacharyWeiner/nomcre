@@ -1,0 +1,19 @@
+<div class='row'>
+  <div class='col-md-4'>
+    <%= link_to proposal do %>
+    <i class='fa fa-eye'> </i>
+    <% end %>
+    <%= link_to edit_proposal_path(proposal) do %>
+    <i class='fa fa-edit'> </i>
+    <% end %>
+    <%= link_to proposal_path(proposal), method: :delete do %>
+    <i class='fa fa-trash-o'> </i>
+    <% end %>
+  </div>
+  <div class='col-md-4'>
+
+  </div>
+  <div class='col-md-4'>
+
+  </div>
+</div>

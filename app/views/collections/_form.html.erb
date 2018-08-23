@@ -1,4 +1,4 @@
-<%= form_for(collection) do |f| %>
+<%= form_for collection, :html => {class: "nk-form nk-form-style-1"} do |f| %>
   <% if collection.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(collection.errors.count, "error") %> prohibited this collection from being saved:</h2>
@@ -11,12 +11,14 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+    <h2 class="nk-title">Give Your Collection A Creative Name</h2>
+    <%= f.text_field :title, placeholder: 'Sunsets Over London', class: 'form-control' %>
   </div>
   <%= f.hidden_field :user_id, :value => current_user.id %>
-
+  <br>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.button "<i class='fa fa-save'></i> Save Collection".html_safe, class: 'btn btn-success pull-right' %>
+    <br><br>
   </div>
 <% end %>
+

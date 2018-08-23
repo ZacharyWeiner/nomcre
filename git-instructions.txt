@@ -1,0 +1,6 @@
+git-instructions.txt
+
+
+git push staging development:master
+
+says push to the staging remote, use the development local branch to push to the master remote branch

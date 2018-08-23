@@ -1,0 +1,196 @@
+<%= form_with(model: @user_profile, local: true) do |form| %>
+  <% if @user_profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_profile.errors.count, "error") %> prohibited this user_profile from being saved:</h2>
+
+      <ul>
+      <% @user_profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :display_name %>
+    <%= form.text_field :display_name, id: :user_profile_display_name, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :user_profile_description, class: 'form-control' %>
+  </div>
+
+    <br>
+    <hr>
+
+
+  <% if current_user.company.nil? == true %>
+    <div class="field">
+    <div class='row'>
+      <div class='col-md-6'>
+        <h4> How Would You Like To Be Paid? </h4>
+        <select name="user_profile[paypal_or_venmo]" id="user_profile_payment_type" class='form-control'>
+          <% if @user_profile.paypal_or_venmo == "venmo" %>
+            <option value="paypal">PayPal</option>
+            <option value="venmo" selected >Venmo</option>
+            <option value="zelle">Zelle</option>
+          <%elsif @user_profile.paypal_or_venmo == "paypal" %>
+            <option value="paypal" selected>PayPal</option>
+            <option value="venmo"  >Venmo</option>
+            <option value="zelle">Zelle</option>
+          <%elsif @user_profile.paypal_or_venmo == "zelle" %>
+            <option value="paypal" >PayPal</option>
+            <option value="venmo"  >Venmo</option>
+            <option value="zelle" selected>Zelle</option>
+          <% else %>
+            <option value="paypal" >PayPal</option>
+            <option value="venmo"  >Venmo</option>
+            <option value="zelle" >Zelle</option>
+          <% end %>
+        </select>
+      </div>
+      <div class='col-md-6'>
+        <h4> Email / Username </h4>
+        <%= form.text_field :account_name, class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <br>
+  <hr>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="field">
+          <div class="container">
+            <h4>My Skills Include:<h4>
+          </div>
+
+          <%= check_box_tag 'user_profile[content_type][]', 'Photography', checked = @user_profile.content_type.include?("Photography"), :'data-toggle' => "toggle" %>
+          <%= form.label :photography %>
+            <br><br>
+          <%= check_box_tag 'user_profile[content_type][]', 'Videography', checked = @user_profile.content_type.include?("Videography"), :'data-toggle' => "toggle" %>
+          <%= form.label :videography %>
+          <br><br>
+          <%= check_box_tag 'user_profile[content_type][]', 'Aerial', checked = @user_profile.content_type.include?("Aerial"), :'data-toggle' => "toggle" %>
+          <%= form.label :areial %>
+          <br><br>
+          <%= check_box_tag 'user_profile[content_type][]', '360 - Video', checked = @user_profile.content_type.include?("360 - Video"), :'data-toggle' => "toggle" %>
+          <%= form.label :video_360 %>
+          <br><br>
+          <%= check_box_tag 'user_profile[content_type][]', '360 - Photo', checked = @user_profile.content_type.include?("360 - Photo"), :'data-toggle' => "toggle" %>
+          <%= form.label :photo_360 %>
+        </div>
+      </div>
+      <div class='col-md-6'>
+        <div class="field">
+          <div class="container">
+            <h4>I Like To Shoot:</h4>
+          </div>
+
+          <%= check_box_tag 'user_profile[shot_preference][]', 'Product', checked = @user_profile.shot_preference.include?("Product"), :'data-toggle' => "toggle" %>
+          <%= form.label :product %>
+          <br><br>
+
+
+
+          <%= check_box_tag 'user_profile[shot_preference][]', 'Lifestyle', checked = @user_profile.shot_preference.include?("Lifestyle") , :'data-toggle' => "toggle"%>
+          <%= form.label :lifestyle %>
+          <br><br>
+          <%= check_box_tag 'user_profile[shot_preference][]', 'Story', checked = @user_profile.shot_preference.include?("Story"), :'data-toggle' => "toggle" %>
+          <%= form.label :story %>
+          <br><br>
+          <%= check_box_tag 'user_profile[shot_preference][]', 'Lookbook', checked = @user_profile.shot_preference.include?("Lookbook"), :'data-toggle' => "toggle" %>
+          <%= form.label :lookbook %>
+          <br><br>
+          <%= check_box_tag 'user_profile[shot_preference][]', 'Action', checked = @user_profile.shot_preference.include?("Action"), :'data-toggle' => "toggle" %>
+          <%= form.label :action %>
+          <br><br>
+          <%= check_box_tag 'user_profile[shot_preference][]', 'Editorial', checked = @user_profile.shot_preference.include?("Editorial"), :'data-toggle' => "toggle" %>
+          <%= form.label :editorial %>
+
+        </div>
+      </div>
+    </div>
+    <br>
+    <hr>
+  <% end %>
+
+
+
+
+  <div class="field">
+    <div class='row'>
+      <div class='col-md-6'>
+        <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+
+            <div class="widget-user-header bg-black" style="background: url('../dist/img/photo1.png') center center;">
+              <h3 class="widget-user-username"><strong>Picture In Circle</strong></h3>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="<%= @user_profile.safe_profile_image_url%>" alt="User Avatar">
+            </div>
+        </div>
+        <%= form.label :profile_photo %>
+        <p> [500 x 500] </p>
+
+        <%= form.file_field :profile_photo, id: :user_profile_profile_photo, onchange: "validateImage(this);",
+              data: { max_file_size: 15.megabytes }
+             %>
+        <br>
+        <% if @user_profile.profile_photo %>
+          <%= image_tag @user_profile.profile_photo, style: 'max-height:250px; max-width:250px;'%>
+        <% end %>
+      </div>
+      <div class='col-md-6'>
+        <div class="box box-widget widget-user">
+            <!-- Add the bg color to the header using any of the bg-* classes -->
+
+            <div class="widget-user-header bg-black" style="background: url('<%= @user_profile.safe_header_image_url%>') ; background-size: 100% 100%">
+              <h3 class="widget-user-username"><strong>Picture In Background</strong></h3>
+            </div>
+            <div class="widget-user-image">
+              <img class="img-circle" src="https://s3-us-west-2.amazonaws.com/nomcre/assets/Dummy-profile-picture.png" alt="User Avatar">
+            </div>
+        </div>
+        <%= form.label :header_image %>
+        <p> [1920 x 1080] </p>
+         <%= form.file_field :header_image, id: :user_profile_header_image, onchange: "validateImage(this);",
+              data: { max_file_size: 15.megabytes }
+             %>
+        <br>
+        <% if @user_profile.header_image %>
+          <%= image_tag @user_profile.header_image, style: 'max-height:250px; max-width:250px;'%>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="actions">
+    <%= form.submit "Update", class: 'btn btn-primary' %>
+  </div>
+
+  <%= link_to "Change your password", edit_user_registration_path %>
+<% end %>
+
+<div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sorry Something Went Wrong ... </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p> </p>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

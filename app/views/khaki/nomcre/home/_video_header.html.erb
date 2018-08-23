@@ -1,0 +1,48 @@
+ <div class="nk-header-title nk-header-title-xl nk-header-title-parallax nk-header-title-parallax-opacity">
+            <div class="bg-image">
+                <div style="background-image: url('<%= @header_image.file.url %>');"></div>
+            </div>
+            <div class="nk-header-table">
+                <div class="nk-header-table-cell">
+                    <div class="container">
+
+
+
+
+                        <div class="nk-header-text">
+
+
+          <h1  style="font: raleway; font-weight: 500;">
+            NOW
+            <span class='raleway-thinnest' style="padding-right: 6px; padding-left: 6px">YOUR</span>
+            BRAND
+            <span class='raleway-thinnest' style="padding-right: 6px; padding-left: 6px">IS</span>
+            GLOBAL
+          </h1>
+
+                            <div class="nk-gap-2"></div>
+                            <a class="nk-video-fullscreen-toggle" href="https://vimeo.com/271028634" onclick="sendHeaderView();">
+                                <span class="nk-video-icon-2-light"><i class="fa fa-play pl-5" style='padding-top: 14px;'></i></span>
+                            </a>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+<script type="text/javascript">
+    function sendHeaderView(){
+        if ("ga" in window) {
+            tracker = ga.getAll()[0];
+            if (tracker)
+                tracker.send("event", "Videos", "play", 'Homepage Header Play');
+        }
+    }
+</script>
+

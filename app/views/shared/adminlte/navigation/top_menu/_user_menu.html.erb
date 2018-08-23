@@ -1,11 +1,11 @@
 <li class="dropdown user user-menu">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-    <%= image_tag current_user.profile_image, class: "user-image" unless current_user.profile_image.nil? %>
+    <%= image_tag current_user.user_profile.safe_profile_image_url, class: "user-image" unless current_user.user_profile.nil? %>
     <span class="hidden-xs"><%= current_user.name %></span>
   </a>
   <ul class="dropdown-menu">
     <li class="user-header">
-      <%= image_tag current_user.profile_image, class: "img-circle" unless current_user.profile_image.nil? %>
+      <%= image_tag current_user.user_profile.safe_profile_image_url, class: "img-circle" unless current_user.user_profile.nil? %>
       <p>
         <%= current_user.name %>
         <small>Member since <%= current_user.created_at.strftime("%B, %Y") %></small>
@@ -13,7 +13,8 @@
     </li>
     <li class="user-footer">
       <div class="pull-left">
-        <%= link_to 'Profile', edit_user_registration_path, class: 'btn btn-default -btn-flat' %>
+        <%= link_to 'Profile', user_profile_path(@current_user.user_profile), class: 'btn btn-default -btn-flat' unless current_user.user_profile.nil? %>
+         <%= link_to 'Company ', company_path(@current_user.company), class: 'btn btn-default -btn-flat'unless current_user.company.nil? %>
       </div>
       <div class="pull-right">
         <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'btn btn-default btn-flat' %>

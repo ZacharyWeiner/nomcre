@@ -1,0 +1,11 @@
+
+<% if current_user.user_profile.display_name.nil? || current_user.user_profile.description.nil? || current_user.user_profile.profile_photo.file.nil?  || current_user.user_profile.header_image.file.nil? %>
+  <div class="box box-danger ">
+    <%= render 'dashboards/partials/creative/check/profile_incomplete' %>
+  </div>
+<% else %>
+<div class="box box-success">
+  <%= render 'dashboards/partials/creative/check/profile_complete' %>
+</div>
+<%end%>
+

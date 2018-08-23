@@ -1,19 +1,49 @@
-<p id="notice"><%= notice %></p>
+<% content_for :head do %>
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="<%= @page.title %>" />
+    <meta property="og:description" content="<%= @page.description %>" />
+    <meta property="og:image" content="<%= @page.header_image.url(:medium).to_s %>" />
+    <meta property="title" content="<%= @page.title %>" />
+    <meta property="description" content="<%= @page.description %>" />
+    <meta property="keywords" content="<%= @page.keywords %>" />
+<% end %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @page.title %>
-</p>
+<div class="nk-header-title nk-header-title-xl nk-header-title-parallax nk-header-title-parallax-opacity">
+    <div class="bg-image op-6">
+        <div style="height:750px; background-image: url('<%= @page.header_image.url %>');"></div>
+    </div>
+    <div class="nk-header-table">
+        <div class="nk-header-table-cell">
+            <div class="container">
+                <div class="nk-header-text">
+                    <h1 class="display-3" style="font: raleway; font-weight: 800;">
+                     <%= @page.title %>
+                    </h1>
+                    <div class="nk-gap"></div>
+                    <!-- <h2 class="nk-title nk-font-inherit fw-500">The Most Advanced Website Layouts</h2>
 
-<p>
-  <strong>Content:</strong>
-  <%= @page.content %>
-</p>
+                    <div class="nk-gap-2"></div> -->
+                    <!-- <a class="nk-video-fullscreen-toggle" href="https://vimeo.com/108018156">
+                        <span class="nk-video-icon-2-light"><i class="fa fa-play pl-5"></i></span>
+                    </a> -->
 
-<p>
-  <strong>Views:</strong>
-  <%= @page.views %>
-</p>
+                </div>
 
-<%= link_to 'Edit', edit_page_path(@page) %> |
-<%= link_to 'Back', pages_path %>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class='nk-main'>
+    <div class='nk-gap'></div>
+    <div class='container'>
+        <% @page_sections.each do |ps| %>
+            <div class='nk-gap'></div>
+          <h3><%= ps.title %></h3>
+          <p class='text-left'><%= ps.content.html_safe %></p>
+        <% end %>
+    </div>
+    <div class='nk-gap'></div>
+</div>

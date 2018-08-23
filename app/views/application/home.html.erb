@@ -1,14 +1,64 @@
+<% content_for :head do %>
+<meta property="og:url" content="<%= request.original_url %>" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Commercial Branded Visual Stories. Where You Want. When You Want." />
+<meta property="og:description" content="Nomcre Crafts Branded Visual Stories. Product Photography, Action Videos, Lifestyle or Editorial Shoots, Build Your Brands Visual Library Faster Than You Can Get A Meeting With Your Agency." />
+<meta property="og:image" content="https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/horizontal/nomcre-horizontal-19.jpg" />
+<meta property="title" content="Commercial Branded Visual Stories. Where You Want. When You Want." />
+<meta property="description" content="Nomcre Crafts Branded Visual Stories. Product Photography, Action Videos, Lifestyle or Editorial Shoots, Build Your Brands Visual Library Faster Than You Can Get A Meeting With Your Agency." />
+<meta property="keywords" content="On Demand, On-Demand, Visual, Custom, Creative, Content, Photography, Videography, Videos, product photos, pictures" />
+<script type="application/ld+json">
 
+  {
+    "@context" : "http://schema.org",
+    "@type" : "Product",
+    "name" : "Custom Content - Photography & Videos",
+    "image": "https://s3-us-west-2.amazonaws.com/nomcre-rails/public-page-images/stacked-images/PhotoStack.png",
+    "description" : "We have talented creators waiting to fulfill your creative needs anywhere, anytime. From look books, to campaigns to product shoots, NOMCRE does it all, including access to stylists, models and assistants.  Do you need a fully developed commercial shoot; some social media content for the next few months? We’ve got you. Our photographers are all vetted, you can choose the photographer that fits you best, but everyone we work with can handle every style of shooting. We have the top creatives, in the top places.",
+    "brand" : {
+      "@type" : "Brand",
+      "name" : "Nomadic Creative",
+      "logo" : "https://s3-us-west-2.amazonaws.com/nomcre/logos/UpperLeftHPlogo+2.png"
+    }
+  }
+</script>
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Organization",
+  "url": "https://www.nomcre.com",
+  "logo": "https://s3-us-west-2.amazonaws.com/nomcre/logos/UpperLeftHPlogo+2.png",
+  "contactPoint": [{
+    "@type": "ContactPoint",
+    "telephone": "+1-312-493-5523",
+    "contactType": "customer service"
+  }]
+}
+}
+</script>
+<% end %>
 <div class="nk-main">
-<%= render 'khaki/nomcre/home/header_title'%>
-<%= render 'khaki/nomcre/home/top_call_to_action'%>
-<%= render 'shared/khaki_theme/why_choose_nomcre_top'%>
-<%= render 'shared/khaki_theme/why_choose_nomcre_bottom_2'%>
-<%= render 'shared/khaki_theme/create_a_brief_cta'%>
+<% render 'khaki/nomcre/home/header_title'%>
+<%= render 'khaki/nomcre/home/video_header'%>
+<% render 'khaki/shared/original/counters'%>
+<%= render 'khaki/nomcre/home/features'%>
+<% render 'khaki/nomcre/home/top_call_to_action'%>
+<% render 'khaki/shared/original/counters'%>
+<% render 'khaki/nomcre/home/why_choose_us_tabs'%>
+<%= render 'khaki/nomcre/home/why_choose_nomcre_stacked'%>
+<hr>
+<% render 'shared/symbol'%>
+<% render 'shared/khaki_theme/why_choose_nomcre_bottom_2'%>
+<%= render 'khaki/nomcre/home/what_is_nomcre'%>
+<% render 'shared/khaki_theme/create_a_brief_cta'%>
+<% render 'khaki/nomcre/home/side_video'%>
+<% render 'shared/khaki_theme/how_it_works_carousel'%>
+<% render 'khaki/nomcre/home/typed_js_home'%>
+<%= render 'khaki/nomcre/home/benefits'%>
+<%= render 'khaki/nomcre/comparison'%>
 <%= render 'khaki/nomcre/home/places_carousel_home'%>
-<%= render 'khaki/nomcre/home/typed_js_home'%>
-<%= render 'shared/khaki_theme/how_it_works_carousel'%>
-<%= render 'khaki/nomcre/home/pricing_table_home'%>
-<% render 'khaki/nomcre/home/call_to_action_bottom_home'%>
+<% render 'khaki/nomcre/home/pricing_table_home'%>
+
+<%= render 'khaki/nomcre/home/call_to_action_bottom_home'%>
 </div>
 

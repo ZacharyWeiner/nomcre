@@ -1,0 +1,115 @@
+<% content_for :head do %>
+<meta property="og:url" content="<%= request.original_url %>" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="NomCre - Explainer Video" />
+<meta property="og:description" content="Nomcre - Our Best Visual Creators. The Best Photographers and Videographers." />
+<meta property="og:image" content="https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/horizontal/nomcre-horizontal-19.jpg" />
+<meta property="title" content="Nomcre - A Simple Video Introducting The Skills of Nomadic Creative" />
+<meta property="keywords" content="On Demand, On-Demand, Visual, Custom, Creative, Content, Photography, Videography, Videos, product photos, pictures" />
+<% end %>
+<style> .fa-play {padding-top:16px;} </style>
+<!-- START: Header Title -->
+    <!--
+Additional Classes:
+    .nk-header-title-sm
+    .nk-header-title-md
+    .nk-header-title-lg
+    .nk-header-title-xl
+    .nk-header-title-full
+    .nk-header-title-parallax
+    .nk-header-title-parallax-opacity
+-->
+<div class="nk-header-title nk-header-title-xl nk-header-title-parallax nk-header-title-parallax-opacity">
+    <div class="bg-image op-6">
+        <div style="height:750px; background-image: url('https://s3-us-west-2.amazonaws.com/nomcre-rails/public-page-images/headers/NewExplainerHeader.jpg');"></div>
+    </div>
+    <div class="nk-header-table">
+        <div class="nk-header-table-cell">
+            <div class="container">
+                <div class="nk-header-text">
+                    <h1 class="display-3" style="font: raleway; font-weight: 500;">
+                      Custom
+                     <!--  <span class='raleway-thinnest' style="padding-right: 6px; padding-left: 6px"></span> -->
+                      Imagery
+                     <!--  <span class='raleway-thinnest' style="padding-right: 6px; padding-left: 6px">-</span> -->
+                    <h5>[On-Demand]</h5>
+                    </h1>
+
+                    <h6>#NEVERSTOCK</h6>
+                    <div class="nk-gap"></div>
+
+                    <!-- <h2 class="nk-title nk-font-inherit fw-500">The Most Advanced Website Layouts</h2>
+
+                    <div class="nk-gap-2"></div> -->
+                    <!-- <a class="nk-video-fullscreen-toggle" href="https://vimeo.com/108018156">
+                        <span class="nk-video-icon-2-light"><i class="fa fa-play pl-5"></i></span>
+                    </a> -->
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- END: Header Title -->
+
+
+        <div class="nk-box bg-dark-1 text-white">
+            <div class="nk-video-fullscreen-toggle-right">
+                <a class="nk-video-fullscreen-toggle" href="https://vimeo.com/271028634">
+                    <span class="nk-video-icon"><i class="fa fa-play pl-5"></i></span>
+                </a>
+            </div>
+            <div class="bg-video-row row">
+                <div class="col-lg-6 push-lg-6">
+                    <div class="bg-video bg-video-parallax" style="background-image: url('https://s3-us-west-2.amazonaws.com/nomcre-rails/public-page-images/nomcre_explainer_thumb.png');"></div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5 text-left">
+                        <div class="nk-gap-5"></div>
+
+                        <h2 class="h1 nk-title" style='margin-left:auto; margin-right:auto;'>Welcome, we are so glad you're here.</h2>
+                        <h3 class="nk-sub-title"></h3>
+                        <div class="nk-gap"></div>
+                          Take a look at the video, and click the TakeFlight button Below to Book Your Demo or just to talk about how NOMCRE might work for your brand. <br><br>
+
+                        NOMCRE creates best-in-class, on-demand, custom content with our global network of
+photographers, videographers, directors, producers, and editors.<br><br>
+
+                        We curate top talent giving
+you the ability to select the creatives with the specific skill sets and experience needed to make
+your brand shine.<br><br>
+
+                            <strong>That’s the NomCre way.</strong>
+                        </p>
+                        <p> <a href='https://calendly.com/nomcre/intro/'> Book A  Demo </a> Now To Find Out What NOMCRE Can Do For You</p>
+
+                        <div class="nk-gap-5"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div class= "nk-box">
+  <div class="nk-gap-1"></div>
+  <div class="container">
+    <div class="row">
+      <div class='col-md-4' style="color:white">
+        <h3 class='raleway-thinnest'> Book Your Demo</h3>
+        <p class='raleway-thinnest align-left' style="margin-top: -16px;"> Today!</p>
+      </div>
+      <div class='col-md-4'>
+
+      </div>
+      <div class='col-md-4 align-right'>
+        <%= link_to 'https://calendly.com/nomcre/intro/' do  %>
+          <%= image_tag "https://s3-us-west-2.amazonaws.com/nomcre/assets/TakeFlightCTA.png", class: 'img-fluid', style: 'max-height:100px; max-width:200px;margin-top:-6px' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

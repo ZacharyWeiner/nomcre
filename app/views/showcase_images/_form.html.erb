@@ -1,0 +1,46 @@
+<%= form_with(model: showcase_image, local: true) do |form| %>
+  <% if showcase_image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(showcase_image.errors.count, "error") %> prohibited this showcase_image from being saved:</h2>
+
+      <ul>
+      <% showcase_image.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :file %>
+    <%= form.file_field :file, id: :showcase_image_file %>
+  </div>
+
+  <div class="field">
+    <%= form.label :showcase_type %>
+    <select name="showcase_image[showcase_type]" id="showcase_image_shwcase_type">
+      <option value="main">main</option>
+<!--       <option value="joke">joke</option>
+      <option value="poem">poem</option> -->
+    </select>
+  </div>
+
+  <div class="field">
+    <%= form.label :show %>
+    <%= form.check_box :show, id: :showcase_image_show, checked: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :order %>
+    <%= form.number_field :order, id: :showcase_image_order %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :showcase_image_name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

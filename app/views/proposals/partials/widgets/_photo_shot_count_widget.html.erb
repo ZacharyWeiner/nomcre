@@ -1,0 +1,21 @@
+<div class="small-box bg-green">
+  <div class="inner">
+    <h3><%= proposal.shot_list_items.count%> of <%= proposal.shot_count %> </h3>
+    <p>Available Shots  </p>
+    <small>[We will deliver much more!]</small>
+  </div>
+  <div class="icon">
+    <i class="fa fa-list"></i>
+  </div>
+  <% if  proposal.company.users.include?(current_user) == true && proposal.is_editable == true %>
+    <% if (proposal.shot_list_items.count < proposal.shot_count) %>
+      <%= link_to new_proposal_shot_list_item_path(@proposal), class: 'small-box-footer' do %>
+        <i class="fa fa-plus"></i> Add To Shot List
+      <% end %>
+     <% else %>
+      <span class='small-box-footer'> <i class="fa fa-ban"></i> Shot List Limit Reached </span>
+    <% end %>
+  <% else %>
+      <span class='small-box-footer'> <i class="fa fa-ban"></i> Not Authorized To Add </span>
+  <% end %>
+</div>

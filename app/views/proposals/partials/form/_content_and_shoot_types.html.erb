@@ -1,0 +1,36 @@
+
+<div class='box box'>
+  <div class='row'>
+    <div class='col-md-6 col-sm-6 col-xs-6 '>
+      <h3 class='' style='padding-left:6px;'>Proposal Type</h3>
+      <hr>
+      <div style="margin:12px; padding-bottom: 12px;">
+        <%= f.radio_button(:proposal_type, "photo", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}) %>
+        <%= f.label(:proposal_type_photo, "Photo") %>
+        <br>
+        <%= f.radio_button(:proposal_type, "video", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}) %>
+        <%= f.label(:proposal_type_video, "Video") %>
+        <br>
+        <%= f.radio_button(:proposal_type, "drone", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}) %>
+        <%= f.label(:proposal_type_drone, "Drone") %>
+        <br>
+        <%= f.radio_button(:proposal_type, "custom", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}) %>
+        <%= f.label(:proposal_type_custom, "Custom") %>
+      </div>
+    </div>
+    <div class='col-md-6 col-sm-6 col-xs-6 '>
+      <h3 class=''> Shoot Style </h3>
+      <hr>
+      <div class="form-group" style="margin:12px; padding-bottom: 12px;">
+        <%= f.radio_button(:shoot_type, 'Product', class: "icheck-me", :data => {:skin => 'square', :color => 'green'}) %>
+        <%= f.label :product %><br>
+        <%= f.radio_button(:shoot_type, 'Lifestyle', class: "icheck-me", :data => {:skin => 'square', :color => 'green'}) %>
+        <%= f.label :lifestyle %><br>
+        <%= f.radio_button(:shoot_type, 'Mixed', class: "icheck-me", :data => {:skin => 'square', :color => 'green'}) %>
+        <%= f.label :mixed %><br>
+        <%= f.radio_button(:shoot_type, 'Action', class: "icheck-me", :data => {:skin => 'square', :color => 'green'}) %>
+        <%= f.label :action %>
+      </div>
+    </div>
+  </div>
+</div>

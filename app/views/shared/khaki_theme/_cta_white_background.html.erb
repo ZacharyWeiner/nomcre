@@ -3,9 +3,12 @@
   <div class="container">
     <div class="row">
       <div class="col-md-4 push-md-8 text-md-right">
-        <a href="#!" class="nk-btn nk-btn-x2 nk-btn-effect-3-left">
-         <%= image_tag "https://s3-us-west-2.amazonaws.com/nomcre/assets/CTAbuttonBLACK.png", class: 'img-responsive', style:'max-width:200px;' %>
-        </a>
+        <%= link_to new_user_registration_path, class: 'nk-btn nk-btn-x2 nk-btn-effect-3-left' do %>
+        <%= image_tag "https://s3-us-west-2.amazonaws.com/nomcre/assets/CTAbuttonBLACK.png", class: 'img-responsive', style:'max-width:200px;' %>
+        <% end %>
+        <!-- <a href="#!" class="nk-btn nk-btn-x2 nk-btn-effect-3-left">
+
+        </a> -->
       </div>
       <div class="col-md-8 pull-md-4 text-md-left">
       <div class="hidden-md-up"></div>

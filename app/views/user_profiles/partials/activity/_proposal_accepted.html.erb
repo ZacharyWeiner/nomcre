@@ -1,0 +1,22 @@
+<div class="post box-body">
+  <div class="user-block">
+    <%= image_tag @user_profile.profile_photo, class: 'img-circle img-bordered-sm' %>
+        <span class="username">
+          <a href="#"><%= @user_profile.display_name%></a>
+         <!--  <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a> -->
+        </span>
+    <span class="description"><%= activity.activity_type %>- <%= time_ago_in_words(activity.created_at) %> ago</span>
+  </div>
+  <div class='activity-background' >
+    <div class="user-block">
+      <% proposal  = Proposal.find(activity.object_id) %>
+      <%= image_tag proposal.company.logo, class: 'img-circle img-bordered-sm' %>
+          <span class="username">
+            <%= proposal.title %>
+          </span>
+      <span class="description">
+         From: <%= proposal.company.name %>
+      </span>
+    </div>
+  </div>
+</div>

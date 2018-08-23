@@ -8,6 +8,7 @@ class FileUploader < CarrierWave::Uploader::Base
   storage :aws
   # storage :fog
 
+
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
@@ -28,8 +29,27 @@ class FileUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+   process :fix_exif_rotation
+   process :store_dimensions
+
+
+  def store_dimensions
+    if file && model
+      model.width, model.height = ::MiniMagick::Image.open(file.file)[:dimensions]
+    end
+  end
+
+   def fix_exif_rotation #this is my attempted solution
+    manipulate! do |img|
+      img.tap(&:auto_orient)
+    end
+  end
+
+
 
   # Create different versions of your uploaded files:
+
+
    version :medium do
      process resize_to_fit: [500, 500]
    end

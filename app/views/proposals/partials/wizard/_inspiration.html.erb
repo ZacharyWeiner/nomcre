@@ -1,0 +1,70 @@
+
+
+<%= form_for proposal, class: 'form-horizontal' do |form| %>
+<div class='row'>
+  <h3 class="box-title text-center" style='padding-left: 6px'>What Instragram Accounts Do You Want To Look Like?</h3>
+  <div class='col-md-2'></div>
+  <div class='col-md-8'>
+    <div class="box-header with-border">
+      <div class=" box box-aqua text-center">
+
+
+        <div class="input-group">
+          <span class="input-group-addon">@</span>
+          <%= form.text_field :instagram_1, class: 'form-control', placeholder: 'First Instagram User Name' %>
+        </div><br>
+        <div class="input-group">
+          <span class="input-group-addon">@</span>
+          <%= form.text_field :instagram_2, class: 'form-control', placeholder: 'Second Instagram User Name' %>
+        </div><br>
+        <div class="input-group">
+          <span class="input-group-addon">@</span>
+          <%= form.text_field :instagram_3, class: 'form-control', placeholder: 'Third Instagram User Name' %>
+        </div><br>
+        <div class="input-group">
+          <span class="input-group-addon">@</span>
+          <%= form.text_field :instagram_4, class: 'form-control', placeholder: 'Fourth Instagram User Name' %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='col-md-2'></div>
+</div>
+
+<div class='row'>
+  <h3 class="box-title text-center" style='padding-left: 6px'>Share Some Of Your Image Boards With Us ...</h3>
+  <div class='col-md-2'></div>
+  <div class='col-md-8'>
+    <div class="box-header with-border">
+      <div class=" box box-success text-center">
+
+
+        <div class="input-group">
+          <span class="input-group-addon"><i class='fa fa-globe'></i></span>
+           <%= form.text_field :image_board_1, class: 'form-control', placeholder: 'http://myimageboard.com/first' %>
+        </div><br>
+        <div class="input-group">
+          <span class="input-group-addon"><i class='fa fa-globe'></i></span>
+           <%= form.text_field :image_board_2, class: 'form-control', placeholder: 'http://myimageboard.com/second' %>
+        </div><br>
+        <div class="input-group">
+          <span class="input-group-addon"><i class='fa fa-globe'></i></span>
+           <%= form.text_field :image_board_3, class: 'form-control', placeholder: 'http://myimageboard.com/third' %>
+        </div><br>
+        <div class="input-group">
+          <span class="input-group-addon"><i class='fa fa-globe'></i></span>
+           <%= form.text_field :image_board_4, class: 'form-control', placeholder: 'http://myimageboard.com/fourth' %>
+        </div>
+      </div>
+    </div>
+     <%= form.hidden_field :redirect, :value => 'wizard' %>
+    <%= form.hidden_field :source, :value => 'inspiration' %>
+    <%= form.submit "Next Step", class: 'btn btn-success pull-right' %>
+
+  </div>
+  <div class='col-md-2'></div>
+</div>
+<% end %>
+
+
+

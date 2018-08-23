@@ -1,5 +1,7 @@
-<h1>New Proposal</h1>
+<% if @proposal.title.nil? %>
+  <%= render :partial => 'proposals/partials/wizard/title_and_type', :locals => {:proposal => @proposal } %>
+<% end %>
 
-<%= render 'form', proposal: @proposal %>
+<% render 'form', proposal: @proposal %>
 
 <%= link_to 'Back', proposals_path %>

@@ -20,6 +20,9 @@ class UsersController < ApplicationController
     end
   end
 
+  def collections
+  end
+
   protected
   def set_user
     if params[:id]

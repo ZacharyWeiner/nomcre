@@ -1,0 +1,2 @@
+module ShowcaseVideosHelper
+end

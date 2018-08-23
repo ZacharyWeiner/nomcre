@@ -8,8 +8,19 @@ class ApplicationController < ActionController::Base
 
 
   def home
+    @header_images = HeaderImage.all.where(homepage: true)
+    count = @header_images.count
+    random = Random.new
+    index_to_use = rand(count)
+    @header_image = @header_images[index_to_use]
+
     #check to see if the user is logged in
     if current_user
+
+      #if the user does not have a profile - create one
+      if current_user.user_profile.nil?
+        current_user.create_user_profile!(display_name: current_user.name)
+      end
     #if logged in check if they have a user type
       if current_user.user_type.nil? == false
       #if they have a user type
@@ -26,7 +37,7 @@ class ApplicationController < ActionController::Base
           end
         elsif current_user.user_type = 'creative'
         #if the user_type is creative
-          return redirect_to creative_dashbaord_path
+          return redirect_to creative_dashboard_path
           #redirect to creative dashbaord
         end
       elsif current_user.user_type.nil?
@@ -44,7 +55,7 @@ class ApplicationController < ActionController::Base
       #show home
 
    # if session[:user_type]
-   #    byebug
+
    #    current_user.user_type = session[:user_type]
    #    current_user.save
    #    session[:user_type] == nil
@@ -90,7 +101,7 @@ class ApplicationController < ActionController::Base
 
    def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :display_name, :profile_image,  :password])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :profile_image,  :password,  :current_password])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :email, :profile_image,  :password,  :current_password, :intro_complete])
   end
 
    private def layout_by_resource

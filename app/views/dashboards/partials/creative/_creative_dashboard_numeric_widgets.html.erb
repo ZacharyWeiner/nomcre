@@ -1,0 +1,62 @@
+<div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3><%= ProposalRequest.where(requested: current_user).where(accepted: nil).count %></h3>
+
+              <p>New Requests</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-question-circle"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3><%= Proposal.where(user: current_user).where(completed: nil).count %></h3>
+
+              <p>Open Proposals</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-spinner"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3><%= Task.where(user: current_user).where(completed: false).count %></h3>
+
+              <p>Open Tasks</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-tasks"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3><%= Task.where(user: current_user).where(completed: false).where('deadline < ?', Date.today).count %></h3>
+
+              <p>Overdue Tasks</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-dollar"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>

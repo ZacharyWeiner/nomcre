@@ -1,0 +1,43 @@
+<style type="text/css">
+  .input-group{padding-bottom: 12px;}
+</style>
+<div class='nested-fields'>
+<h2> New Assistant </h2>
+  <div class="input-group">
+    <span class="input-group-addon">@</span>
+    <%= f.text_field :name, class: "form-control", placeholder: "Full Name" %>
+  </div>
+
+
+  <div class="input-group">
+    <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+    <%= f.text_field :paypal_email, class: "form-control", placeholder: "PayPal Email" %>
+  </div>
+
+  <div class="input-group">
+    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+    <%= f.text_field :phone, class: "form-control", placeholder: "Assistant Phone Number" %>
+  </div>
+
+  <div class='row'>
+    <div class='col-md-6'>
+      <div class="input-group">
+        <span class="input-group-addon"> <%= f.label :daily_rate %></span>
+        <%= f.number_field :rate, class: "form-control" %>
+      </div>
+    </div>
+    <div class="col-md-6" >
+      <div class="input-group">
+        <span class="input-group-addon"> <%= f.label :assistant_type %></span>
+        <%= f.select :assistant_type, options_for_select([['General', 'General'], ['HMU', 'HMU'], ['Model','Model']]), {}, {class: 'form-control'}  %>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+<br>
+
+
+
+

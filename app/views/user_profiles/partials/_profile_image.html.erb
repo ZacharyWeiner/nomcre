@@ -1,0 +1,40 @@
+
+<div class="box box-widget widget-user" style='background: linear-gradient(to bottom right,#002f4b,#002f4b)'>
+  <!-- Add the bg color to the header using any of the bg-* classes -->
+  <div class="widget-user-header bg-black" style="background: url('<%= @user_profile.safe_header_image_url%>')  center center;background-size:cover">
+    <h3 class="widget-user-username"><strong><%= @user_profile.display_name %></strong></h3>
+    <h5 class="widget-user-desc"></h5>
+  </div>
+  <div class="widget-user-image">
+     <%= image_tag @user_profile.safe_profile_image_url, class: "img-circle" %>
+  </div>
+  <div class="box-footer">
+    <div class="row">
+      <div class="col-sm-4 border-right">
+        <div class="description-block">
+          <h5 class="description-header"><%= @user_profile.user.collection_items.count  %></h5>
+          <span class="description-text"><i class='fa fa-camera'></i></span>
+        </div>
+        <!-- /.description-block -->
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-4 border-right">
+        <div class="description-block">
+          <h5 class="description-header"><%= @user_profile.user.proposals.where.not(completed: true).count %></h5>
+          <span class="description-text"><i class='fa fa-briefcase'></i></span>
+        </div>
+        <!-- /.description-block -->
+      </div>
+      <!-- /.col -->
+      <div class="col-sm-4">
+        <div class="description-block">
+          <h5 class="description-header"><%= @user_profile.user.proposals.where(completed: true).count %></h5>
+          <span class="description-text"><i class='fa fa-trophy'></i></span>
+        </div>
+        <!-- /.description-block -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+</div>

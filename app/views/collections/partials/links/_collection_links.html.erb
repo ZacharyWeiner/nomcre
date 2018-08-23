@@ -1,0 +1,20 @@
+<!-- User Profile  -->
+<%= link_to user_profile_path(collection.user.user_profile), style: 'padding-left:6px;padding-right:6px;' do %>
+    <i class='fa fa-user '></i> View Profile
+<% end %>
+
+<%if current_user && collection.user == current_user %>
+<%= link_to new_collection_collection_item_path(collection), style: 'padding-left:6px;padding-right:6px;' do %>
+  <i class='fa fa-plus '></i> Add Images
+<% end %>
+
+<%= link_to collection, style: 'padding-left:6px;padding-right:6px;' do  %>
+  <i class='fa fa-eye '></i> View Collection
+<% end %>
+
+<%= link_to "<i class='fa fa-trash'> </i> Delete".html_safe, collection_path(collection), method: :delete, data: { confirm: 'Are you sure?' }, style: 'padding-left:6px;padding-right:6px;'   %>
+<% else %>
+  <%= link_to collection, style: 'padding-left:6px;padding-right:6px;' do %>
+    <i class='fa fa-eye '></i> View Collection
+  <% end %>
+<% end %>

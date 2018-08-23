@@ -1,0 +1,15 @@
+<div class="tab-content">
+  <%= render :partial => 'proposals/partials/show/tab_body/shared/basic_info'%>
+  <div class="tab-pane" id="shot_list">
+      <%= render :partial => 'shot_list_items/shot_list', :locals => {:shot_list_items => proposal.shot_list_items} %>
+  </div>
+   <div class="tab-pane" id="creatives">
+    <%= render :partial => 'proposals/partials/proposal_search_results', :locals => { proposal: proposal} %>
+   </div>
+   <div class="tab-pane" id="deposit">
+    <%= render :partial => 'proposals/partials/invoices/deposit_invoice', :locals => { proposal: proposal} %>
+   </div>
+   <div class="tab-pane" id="available-creatives">
+    <!-- TODO: if deposit is paid, and creatives have accepted, show them here with the ability to assign one. -->
+   </div>
+</div>

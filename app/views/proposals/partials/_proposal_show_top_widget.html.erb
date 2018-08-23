@@ -1,0 +1,21 @@
+      <div class="row">
+        <div class="col-lg-4 col-sm-12 col-xs-12">
+          <%= render :partial => 'proposals/partials/widgets/deadline_widget', :locals =>{:proposal => proposal} %>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-4 col-sm-12 col-xs-12">
+          <!-- small box -->
+          <% if proposal.proposal_type == 'photo' %>
+            <%= render :partial => 'proposals/partials/widgets/photo_shot_count_widget', :locals =>{:proposal => proposal} %>
+          <% else %>
+            <%= render :partial => 'proposals/partials/widgets/video_shot_count_widget', :locals =>{:proposal => proposal} %>
+          <% end %>
+        </div>
+        <!-- ./col -->
+        <!-- ./col -->
+        <div class="col-lg-4 col-sm-12 col-xs-12">
+          <!-- small box -->
+          <%= render :partial => 'proposals/partials/widgets/shoot_type_widget', :locals =>{:proposal => proposal} %>
+        </div>
+        <!-- ./col -->
+      </div>

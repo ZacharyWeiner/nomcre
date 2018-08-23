@@ -1,0 +1,20 @@
+<!-- START: Header Title -->
+    <!--
+Additional Classes:
+    .nk-header-title-sm
+    .nk-header-title-md
+    .nk-header-title-lg
+    .nk-header-title-xl
+    .nk-header-title-full
+    .nk-header-title-parallax
+    .nk-header-title-parallax-opacity
+-->
+<div style="padding-top:175px;">
+
+<!-- END: Header Title -->
+
+<div style="padding: 12px;">
+<%= link_to "<i class='fa fa-arrow-left'></i> Back".html_safe, video_showcase_path %>
+</div>
+
+<%= video_tag @showcase_video.file, controls: true, controlsList:"nodownload",   class: 'embed-responsive',  oncontextmenu:"return false" %>

@@ -25,6 +25,9 @@ gem 'stripe'
 gem "typedjs-rails", "~> 1.0.4"
 gem 'parallax-rails'
 gem 'twilio-ruby', '~> 5.5.0'
+gem 'sendgrid-ruby'
+gem 'bootstrap-toggle-rails'
+gem 'geocoder'
 
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -34,6 +37,14 @@ gem 'twilio-ruby', '~> 5.5.0'
 gem 'carrierwave', '~> 1.0'
 gem 'carrierwave-aws'
 gem 'mini_magick'
+gem "cocoon"
+gem 'jquery-ui-rails'
+gem 'icheck-rails'
+gem 'file_validators'
+gem 'newrelic_rpm'
+gem 'sitemap_generator'
+gem 'fog-aws'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

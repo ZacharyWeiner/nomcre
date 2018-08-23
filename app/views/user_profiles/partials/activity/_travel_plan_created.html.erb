@@ -1,0 +1,22 @@
+<%si = ScheduleItem.where(id: activity.object_id).first %>
+<% unless si.nil?%>
+  <div class="post box-body">
+    <div class="user-block">
+      <%= image_tag @user_profile.profile_photo, class: 'img-circle img-bordered-sm' %>
+          <span class="username">
+            <a href="#"><%= @user_profile.display_name%></a>
+           <!--  <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a> -->
+          </span>
+      <span class="description"><%= activity.activity_type %>- <%= time_ago_in_words(activity.created_at) %> ago</span>
+    </div>
+    <div class="info-box activity-background">
+      <span class="info-box-icon bg-aqua"><i class="fa fa-map-marker"></i></span>
+      <div class="info-box-content">
+        <span class="info-box-number">Is Traveling To:</span>
+        <span class="info-box-number"><%= si.location.name %></span>
+
+        <span class="info-box-text">On: <small><%= si.start_date.strftime(" %A,  %B %d, %Y") %></small></span>
+      </div>
+    </div>
+  </div>
+<% end %>

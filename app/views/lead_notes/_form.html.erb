@@ -1,0 +1,26 @@
+<%= form_with(model: lead_note, local: true) do |form| %>
+  <% if lead_note.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lead_note.errors.count, "error") %> prohibited this lead_note from being saved:</h2>
+
+      <ul>
+      <% lead_note.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :note %>
+    <%= form.text_area :note, id: :lead_note_note, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= form.hidden_field :lead_id, :value => params[:lead_id] %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

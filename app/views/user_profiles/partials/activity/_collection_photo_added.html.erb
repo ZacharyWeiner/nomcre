@@ -1,0 +1,16 @@
+<% first = CollectionItem.where(id: activity.object_id).first %>
+<% unless first.nil? %>
+  <div class="post box-body">
+    <div class="user-block">
+      <%= image_tag @user_profile.profile_photo, class: 'img-circle img-bordered-sm' %>
+      <span class="username">
+        <a href="#"><%= @user_profile.display_name%></a>
+       <!--  <a href="#" class="pull-right btn-box-tool"><i class="fa fa-times"></i></a> -->
+      </span>
+      <span class="description"><%= activity.activity_type %>- <%= time_ago_in_words(activity.created_at) %> ago</span>
+    </div>
+    <div class='activity-background' >
+      <%= image_tag first.file, class: 'img-responsive'%> <br>
+    </div>
+  </div>
+<% end %>

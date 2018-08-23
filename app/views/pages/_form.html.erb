@@ -11,22 +11,39 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field-group">
     <%= form.label :title %>
-    <%= form.text_field :title, id: :page_title %>
+    <%= form.text_field :title, id: :page_title, class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content, id: :page_content %>
+  <div class="field-group">
+    <%= form.label :header_image %>
+    <%= form.file_field :header_image, id: :header_image, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="field-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :page_content, class: 'form-control', rows: '2' %>
+  </div>
+
+  <div class="field-group">
+    <%= form.label :keywords %>
+    <%= form.text_field :keywords, id: :page_keywords, class: 'form-control' %>
+  </div>
+
+  <div class="field-group">
     <%= form.label :views %>
-    <%= form.text_field :views, id: :page_views %>
+    <%= form.text_field :views, id: :page_views,  style:"enabled: false" %>
+  </div>
+
+  <div class="field-group">
+    <%= form.label :is_blog %>
+    <%= form.check_box :is_blog, id: :is_blog, checked:  @page.is_blog %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+<hr>
+

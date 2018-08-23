@@ -1,5 +1,22 @@
-<h1>New Collection</h1>
+<div class="nk-header-title nk-header-title-sm nk-header-title-parallax nk-header-title-parallax-opacity">
+  <div class="bg-image">
+    <div style="background-image: url('<%= Collection.first.user.user_profile.safe_header_image_url %>');"></div>
+  </div>
+  <div class="nk-header-table">
+    <div class="nk-header-table-cell">
+      <div class="container">
+        <h1>New Collection</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<%= link_to "<i class='fa fa-arrow-left'></i> Back".html_safe, collections_path %>
+<div class='nk-box bg-gray-2' style="padding:24px;">
+  <div class='row'>
+    <div class='col-md-4'></div>
+    <div class='col-md-4'><%= render 'form', collection: @collection %></div>
+    <div class='col-md-4'></div>
+  </div>
+</div>
 
-<%= render 'form', collection: @collection %>
 
-<%= link_to 'Back', collections_path %>

@@ -1,0 +1,28 @@
+<style type="text/css">
+  .activity-background{background: #f4f4f4}
+  .small-padding-top: {padding-top: 6px;}
+</style>
+<div class="active tab-pane" id="activity">
+  <% @user_profile.activities.reverse.each do |activity|%>
+    <%if activity.activity_type == UserActivityType.collection_added %>
+      <%= render :partial => 'user_profiles/partials/activity/collection_added', :locals => {:activity => activity} %>
+    <% elsif  activity.activity_type == UserActivityType.collection_photo_added %>
+     <%= render :partial => 'user_profiles/partials/activity/collection_photo_added', :locals => {:activity => activity} %>
+    <% elsif  activity.activity_type == UserActivityType.collection_video_added %>
+      <%= render :partial => 'user_profiles/partials/activity/collection_video_added', :locals => {:activity => activity} %>
+    <% elsif  activity.activity_type == UserActivityType.proposal_accepted %>
+      <%= render :partial => 'user_profiles/partials/activity/proposal_accepted', :locals => {:activity => activity} %>
+    <% elsif  activity.activity_type == UserActivityType.proposal_created %>
+      <div class='activity-background' >
+        <%= Proposal.find(activity.object_id).company.name %> <br>
+      </div>
+    <% elsif  activity.activity_type == UserActivityType.travel_plan_created %>
+      <%= render :partial => 'user_profiles/partials/activity/travel_plan_created', :locals => {:activity => activity} %>
+    <% else %>
+    <% end %>
+  <% end %>
+</div>
+
+
+
+

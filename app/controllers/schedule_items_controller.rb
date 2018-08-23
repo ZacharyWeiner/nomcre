@@ -28,6 +28,7 @@ class ScheduleItemsController < ApplicationController
     @schedule_item.user = current_user
     respond_to do |format|
       if @schedule_item.save
+        UserActivity.create!(activity_type: UserActivityType.travel_plan_created, user_id: current_user.id, object_id: @schedule_item.id)
         format.html { redirect_to schedule_items_path, notice: 'Schedule item was successfully created.' }
         format.json { render :show, status: :created, location: @schedule_item }
       else

@@ -9,14 +9,14 @@
 
     <ul class="list-group list-group-unbordered">
       <li class="list-group-item">
-        <b>Followers</b> <a class="pull-right">1,322</a>
+        <b>Open Requests</b> <a class="pull-right"><%= @company.proposals.where(completed: false).count%></a>
       </li>
       <li class="list-group-item">
-        <b>Following</b> <a class="pull-right">543</a>
+        <b>Completed Jobs</b> <a class="pull-right"><%= @company.proposals.where(completed: true).count%></a>
       </li>
-      <li class="list-group-item">
+      <!-- <li class="list-group-item">
         <b>Friends</b> <a class="pull-right">13,287</a>
-      </li>
+      </li> -->
     </ul>
 
     <% if current_user.company ==  @company %>

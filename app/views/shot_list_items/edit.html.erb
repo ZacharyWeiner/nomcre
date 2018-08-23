@@ -1,0 +1,68 @@
+<div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3>Deadline</h3>
+
+              <p><%= @proposal.deadline %></p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-calendar"></i>
+            </div>
+            <a href="#" class="small-box-footer"><!-- More info <i class="fa fa-arrow-circle-right"></i> --></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3><%= @proposal.shot_list_items.count%> of 25</h3>
+
+              <p>Available Shots</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-list"></i>
+            </div>
+            <a href="#" class="small-box-footer"><!-- More info <i class="fa fa-arrow-circle-right"></i> --></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3><%= @proposal.background %></h3>
+
+              <p>Setting</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-image"></i>
+            </div>
+            <a href="#" class="small-box-footer"><!-- More info <i class="fa fa-arrow-circle-right"></i> --></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3><%= @proposal.shoot_type %></h3>
+
+              <p>Style</p>
+            </div>
+            <div class="icon">
+              <i class="fa fa-certificate"></i>
+            </div>
+            <a href="#" class="small-box-footer"><!-- More info <i class="fa fa-arrow-circle-right"></i> --></a>
+          </div>
+        </div>
+        <!-- ./col -->
+</div>
+<h1>Editing Shot List Item</h1>
+
+<%= render 'form', shot_list_item: @shot_list_item %>
+
+<%= link_to 'Show', @shot_list_item %> |
+<%= link_to 'Back', shot_list_items_path %>

@@ -16,19 +16,20 @@
         <li><!-- start message -->
           <%= link_to chatroom_path(@chatroom) do %>
             <div class="pull-left">
-              <img src="<%= @chatroom.messages.last.user.profile_image.url unless @chatroom.messages.last.user.profile_image.nil? %>" class="img-circle" alt="User Image">
+              <%= image_tag @chatroom.messages.last.user.user_profile.safe_profile_image_url, class: "img-circle", alt: "User Image" %><br>
             </div>
             <h4>
               <%= @chatroom.messages.last.user.email %>
-              <small><i class="fa fa-clock-o"></i> <%= @chatroom.messages.last.created_at %></small>
+
             </h4>
             <p>New Message in <%= @chatroom.topic %></p>
+            <small><i class="fa fa-clock-o"></i> <%= @chatroom.messages.last.created_at.strftime("%c") %></small>
           <% end %>
         </li>
         <% end %>
         <!-- end message -->
       </ul>
     </li>
-    <li class="footer"><a href="#">See All Messages</a></li>
+    <li class="footer"><a href="#"></a></li>
   </ul>
 </li>

@@ -1,5 +1,6 @@
 class ProposalsController < ApplicationController
-  before_action :set_proposal, only: [:show, :edit, :edit_details, :payment, :update, :destroy]
+  before_action :set_proposal, only: [:show, :edit, :edit_details, :payment, :update, :destroy, :wizard]
+  before_action :authenticate_user!
   layout 'adminlte'
 
   # GET /proposals
@@ -8,7 +9,7 @@ class ProposalsController < ApplicationController
     if current_user.user_type == 'creative'
       @proposals = Proposal.where(user: current_user).where(completed: nil).order(:created_at).page params[:page]
     else
-      @proposals = Proposal.where(company: current_user.company).order(:created_at).page params[:page]
+      @proposals = Proposal.where(company: current_user.company).where(completed: nil).order(:created_at).page params[:page]
     end
   end
 
@@ -34,18 +35,67 @@ class ProposalsController < ApplicationController
   def edit_details
   end
 
+  def wizard
+  end
+
   # POST /proposals
   # POST /proposals.json
   def create
+    if proposal_params[:title].nil? || proposal_params[:proposal_type].nil?
+      redirect_to new_proposal_path and return
+    end
+    unless params[:proposal][:instagram_1].nil?
+        proposal_params[:instagram_1] = params[:proposal][:instagram_1].gsub!("@", "")
+      end
+      unless params[:proposal][:instagram_2].nil?
+        proposal_params[:instagram_2] = params[:proposal][:instagram_2].gsub!("@", "")
+      end
+      unless params[:proposal][:instagram_3].nil?
+        proposal_params[:instagram_3] = params[:proposal][:instagram_3].gsub!("@", "")
+      end
+      unless params[:proposal][:instagram_4].nil?
+        proposal_params[:instagram_4] = params[:proposal][:instagram_4].gsub!("@", "")
+      end
     @proposal = Proposal.new(proposal_params)
-    @proposal.bts = ["Photo","Video","SetUp"]
+    if proposal_params[:bts].nil? || proposal_params[:bts].count == 0
+      @proposal.bts << "Photo"
+      @proposal.bts << "Video"
+      @proposal.bts << "Set up"
+    else
+      @proposal.bts.clear
+      proposal_params[:bts].each do |bt|
+        @proposal.bts << bt
+      end
+    end
+    unless proposal_params[:focus_points].nil? || proposal_params[:focus_points].count == 0
+      @proposal.focus_points.clear
+      proposal_params[:focus_points].each do |fp|
+        @proposal.focus_points << fp
+      end
+    end
+
+    if @proposal.shoot_type == 'video' || @proposal.shoot_type == 'drone'
+      @proposal.shot_count = 4
+    else
+      @proposal.shot_count = 25
+    end
+
     respond_to do |format|
-      if @proposal.save
+      if @proposal.save!
         set_price(@proposal)
-        @chatroom = Chatroom.create!(topic: @proposal.title, proposal: @proposal)
+        @chatroom = Chatroom.create!(topic: "#{@proposal.title} - #{@proposal.company.name}", proposal: @proposal)
         @chatroom.messages.create!(user: current_user, content: "#{@proposal.company.name}' - '#{@proposal.title} Chat Was Created")
-        format.html { redirect_to @proposal, notice: 'Proposal was successfully created.' }
-        format.json { render :show, status: :created, location: @proposal }
+        admin = User.where(email: 'justin@nomcre.com').first
+        @chatroom.messages.create!(user: current_user, content: "#{@proposal.company.name}' - '#{@proposal.title} Chat Was Created")
+        unless admin.nil?
+          @chatroom.messages.create!(user: current_user, content: "Justin has joined the chat")
+        end
+        if params[:proposal][:redirect] && params[:proposal][:redirect] == 'wizard'
+          format.html { redirect_to proposal_wizard_path(@proposal), notice: 'Proposal was successfully created.' }
+        else
+          format.html { redirect_to @proposal, notice: 'Proposal was successfully created.' }
+          format.json { render :show, status: :created, location: @proposal }
+        end
       else
         format.html { render :new }
         format.json { render json: @proposal.errors, status: :unprocessable_entity }
@@ -57,24 +107,61 @@ class ProposalsController < ApplicationController
   # PATCH/PUT /proposals/1.json
   def update
     respond_to do |format|
-      if @proposal.accepted == true
-        format.html { redirect_to @proposal, notice: 'The Proposal Can Not Be Changed After It Has Been Assigned' }
+      if (params[:proposal][:source] && params[:proposal][:source] == 'brief') && (params[:proposal][:content].nil? || params[:proposal][:content] == "")
+        return redirect_to proposal_wizard_path(@proposal)
       end
-      unless params[:proposal][:bts].nil? || params[:proposal][:bts].count == 0
+
+      if @proposal.accepted == true && current_user.user_type == 'company'
+        format.html { redirect_to @proposal, notice: 'The Proposal Can Not Be Changed After It Has Been Assigned' }
+        return redirect_to @proposal
+      end
+      unless proposal_params[:bts].nil? || proposal_params[:bts].count == 0
         @proposal.bts.clear
-        params[:proposal][:bts].each do |bt|
+        proposal_params[:bts].each do |bt|
           @proposal.bts << bt
         end
       end
-      unless params[:proposal][:focus_points].nil? || params[:proposal][:focus_points].count == 0
+      unless proposal_params[:focus_points].nil? || proposal_params[:focus_points].count == 0
         @proposal.focus_points.clear
-        params[:proposal][:focus_points].each do |fp|
-          @proposal.focus_points << fp
+        proposal_params[:focus_points].each do |fp|
+          if fp == "0"
+
+          else
+
+            @proposal.focus_points << fp
+          end
         end
       end
-      if @proposal.update(proposal_params)
-        format.html { redirect_to @proposal, notice: 'Proposal was successfully updated.' }
-        format.json { render :show, status: :ok, location: @proposal }
+
+      unless params[:proposal][:instagram_1].nil?
+        proposal_params[:instagram_1] = params[:proposal][:instagram_1].gsub("@", "")
+      end
+      unless params[:proposal][:instagram_2].nil?
+        proposal_params[:instagram_2] = params[:proposal][:instagram_2].gsub!("@", "")
+      end
+      unless params[:proposal][:instagram_3].nil?
+        proposal_params[:instagram_3] = params[:proposal][:instagram_3].gsub!("@", "")
+      end
+      unless params[:proposal][:instagram_4].nil?
+        proposal_params[:instagram_4] = params[:proposal][:instagram_4].gsub!("@", "")
+      end
+
+      if @proposal.update!(proposal_params)
+        if proposal_params[:price]
+          @proposal.price = proposal_params[:price]
+        else
+          if proposal_params[:proposal_type].nil? == false
+            if proposal_params[:proposal_type] != @proposal.proposal_type
+              set_price(@proposal)
+            end
+          end
+        end
+        if @proposal.is_info_complete
+          format.html { redirect_to @proposal, notice: 'Proposal was successfully updated.' }
+          format.json { render :show, status: :ok, location: @proposal }
+        else
+          format.html { redirect_to proposal_wizard_path(@proposal) }
+        end
       else
         format.html { render :edit }
         format.json { render json: @proposal.errors, status: :unprocessable_entity }
@@ -85,6 +172,13 @@ class ProposalsController < ApplicationController
   # DELETE /proposals/1
   # DELETE /proposals/1.json
   def destroy
+    if @proposal.accepted || @proposal.deposit_paid
+      respond_to do |format|
+        format.html { redirect_to proposals_url, alert: 'Cannot Delete A Proposal That Has Been Paid For Or Assigned' }
+        format.json { head :no_content }
+      end
+      return
+    end
     @proposal.destroy
     respond_to do |format|
       format.html { redirect_to proposals_url, notice: 'Proposal was successfully destroyed.' }
@@ -92,8 +186,50 @@ class ProposalsController < ApplicationController
     end
   end
 
+  def accepted_requests
+    set_proposal
+    @accepted = @proposal.proposal_requests.where(accepted: true)
+  end
+
+  def copy
+    set_proposal
+    @new_proposal = Proposal.new
+    @new_proposal.title = "Copy_of "+@proposal.title
+    @new_proposal.content = @proposal.content
+    @new_proposal.company = @proposal.company
+    @new_proposal.proposal_type = @proposal.proposal_type
+    @new_proposal.deadline = @proposal.deadline
+    @new_proposal.bts = @proposal.bts
+    @new_proposal.add_ons = @proposal.add_ons
+    @new_proposal.focus_points = @proposal.focus_points
+    @new_proposal.time_of_day = @proposal.time_of_day
+    @new_proposal.background = @proposal.background
+    @new_proposal.location_id = @proposal.location_id
+    @new_proposal.shoot_type = @proposal.shoot_type
+    @new_proposal.raw = @proposal.raw
+    @new_proposal.background_note = @proposal.background_note
+    @new_proposal.instagram_1 = @proposal.instagram_1
+    @new_proposal.instagram_2 = @proposal.instagram_2
+    @new_proposal.instagram_3 = @proposal.instagram_3
+    @new_proposal.instagram_4 = @proposal.instagram_4
+    @new_proposal.image_board_1 = @proposal.image_board_1
+    @new_proposal.image_board_2 = @proposal.image_board_2
+    @new_proposal.image_board_3 = @proposal.image_board_3
+    @new_proposal.image_board_4 = @proposal.image_board_4
+    @new_proposal.save!
+    set_price(@proposal)
+    @chatroom = Chatroom.create!(topic: @new_proposal.title, proposal: @new_proposal)
+    @chatroom.messages.create!(user: current_user, content: "#{@new_proposal.company.name}' - '#{@proposal.title} Chat Was Created")
+    redirect_to @new_proposal
+  end
+
   def payment
   end
+
+  def invoice
+    set_proposal
+  end
+
 
   def requests
     if current_user.user_type == 'creative'
@@ -109,6 +245,7 @@ class ProposalsController < ApplicationController
       @proposal_request = ProposalRequest.create(requested_by: current_user.id, requested: @requested.id, proposal_id: @proposal.id )
     end
     send_notification(@requested.id, "New Request", @proposal_request.id)
+    ProposalMailer.request_created(@proposal_request).deliver_now
     redirect_to @proposal
   end
 
@@ -118,6 +255,7 @@ class ProposalsController < ApplicationController
     @proposal_request.accepted = true
     @proposal_request.save
     send_notification(@proposal_request.requested_by, "Request Accepted", @proposal.id)
+    ProposalMailer.request_accepted(@proposal_request).deliver_now!
     redirect_to proposal_requests_path
   end
 
@@ -138,6 +276,8 @@ class ProposalsController < ApplicationController
     send_notification(@proposal_request.requested, "New Message", @proposal.chatroom.id)
     send_notification(@proposal_request.requested, "Proposal Assigned", @proposal.id)
     send_notification(@proposal_request.requested, "Task", @proposal.id)
+    ProposalMailer.proposal_assigned(@proposal_request).deliver_now!
+    UserActivity.create!(activity_type: UserActivityType.proposal_accepted, user_id: @proposal.user.id, object_id: @proposal.id)
     redirect_to @proposal
   end
 
@@ -149,6 +289,17 @@ class ProposalsController < ApplicationController
     end
   end
 
+  def send_email
+    set_proposal
+    ProposalMailer.deposit_received(@proposal).deliver_now
+    redirect_to @proposal
+  end
+
+  def send_creative_assigned_email
+    set_proposal
+    ProposalMailer.proposal_assigned(@proposal).deliver_now
+    redirect_to @proposal
+  end
   private
     def send_notification(user_id, notification_type, request_id)
       notification = Notification.where(user_id: user_id, notification_type: notification_type, notification_object_id: request_id).first
@@ -159,9 +310,9 @@ class ProposalsController < ApplicationController
 
     def set_price(proposal)
       if proposal.proposal_type == 'photo'
-        proposal.price =  4000
+        proposal.price =  6999
       elsif proposal.proposal_type == 'video'
-        proposal.price =  4000
+        proposal.price =  9999
       elsif proposal.proposal_type == 'drone'
         proposal.price =  1000
       end
@@ -178,6 +329,36 @@ class ProposalsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def proposal_params
-      params.require(:proposal).permit(:title, :content, :deadline, :price, :accepted, :company_id, :proposal_type, :completed, :completed_on, :paid, :charge_id, :bts, :focus_points, :time_of_day, :location_id, :background, :model_release, :shoot_type, :raw, :background_note, :instagram_1, :instagram_2, :instagram_3, :instagram_4)
+      params.require(:proposal).permit(:title,
+                                      :content,
+                                      :deadline,
+                                      :price,
+                                      :accepted,
+                                      :company_id,
+                                      :proposal_type,
+                                      :completed,
+                                      :completed_on,
+                                      :paid,
+                                      :charge_id,
+                                      :focus_points,
+                                      :time_of_day,
+                                      :location_id,
+                                      :background,
+                                      :model_release,
+                                      :shoot_type,
+                                      :shot_count,
+                                      :raw,
+                                      :background_note,
+                                      :instagram_1,
+                                      :instagram_2,
+                                      :instagram_3,
+                                      :instagram_4,
+                                      :image_board_1,
+                                      :image_board_2,
+                                      :image_board_3,
+                                      :image_board_4,
+                                      bts: [],
+                                      focus_points: [],
+                                      assistants_attributes: [:id, :name, :paypal_email, :phone, :rate, :assistant_type, :location_id, :_destroy])
     end
 end

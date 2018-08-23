@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+<%= link_to "View Page", page_path(@page_section.page), class: 'btn btn-priamry' %>
+<p>
+  <strong>Page:</strong>
+  <%= @page_section.page %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @page_section.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @page_section.content.html_safe %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @page_section.order %>
+</p>
+
+<%= link_to 'Edit', edit_page_path(@page_section.page) %> |
+<%= link_to 'Back', page_sections_path %>

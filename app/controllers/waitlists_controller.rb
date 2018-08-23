@@ -1,6 +1,8 @@
 class WaitlistsController < ApplicationController
   before_action :set_waitlist, only: [:show, :edit, :update, :destroy]
-  layout 'khaki'
+  before_action :authenticate_user!, only: [:index, :show, :update, :destroy]
+  layout :set_layout
+
   # GET /waitlists
   # GET /waitlists.json
   def index
@@ -28,7 +30,8 @@ class WaitlistsController < ApplicationController
 
     respond_to do |format|
       if @waitlist.save
-        format.html { redirect_to @waitlist, notice: 'Waitlist was successfully created.' }
+        WaitlistMailer.joined_waitlist(@waitlist.email).deliver_now!
+        format.html { redirect_to thank_you_path, notice: 'Thank You for joining the movement!' }
         format.json { render :show, status: :created, location: @waitlist }
       else
         format.html { render :new }
@@ -61,14 +64,35 @@ class WaitlistsController < ApplicationController
     end
   end
 
+  def thank_youe
+  end
+
+  def send_joined_waitlist_email
+    WaitlistMailer.joined_waitlist("zack@nomcre.com").deliver_now!
+    redirect_to root_path
+  end
+
+  def send_user_accepted_email
+    CreativeMailer.creative_accepted("zack@nomcre.com").deliver_now!
+    redirect_to root_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_waitlist
       @waitlist = Waitlist.find(params[:id])
     end
 
+    def set_layout
+      if request.path.include?('new') || request.path.include?('thank-you')
+        return 'khaki'
+      else
+        'adminlte'
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def waitlist_params
-      params.require(:waitlist).permit(:name, :email, :instagram, :px500, :facebook, :phone, :website, :smugmug)
+      params.require(:waitlist).permit(:name, :email, :instagram, :px500, :facebook, :phone, :website, :smugmug, :question_1, :question_2, :question_3, :question_4, :question_5, :question_6)
     end
 end

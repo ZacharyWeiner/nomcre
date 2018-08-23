@@ -1,3 +1,10 @@
+<% content_for :head do %>
+<meta property="og:url" content="<%= request.original_url %>" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="NomCre - On Demand Visual Creative Content" />
+<meta property="og:description" content="Nomcre - Custom Creative Content for your brand, simplified." />
+<meta property="og:image" content="https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/horizontal/nomcre-horizontal-19.jpg" />
+<% end %>
  <div class="nk-main">
 
 
@@ -13,15 +20,15 @@
         .nk-header-title-parallax-opacity
 -->
         <div class="nk-header-title nk-header-title-md nk-header-title-parallax nk-header-title-parallax-opacity">
-            <div class="bg-image">
-                <div style="background-image: url('assets/images/image-20.jpg');"></div>
+            <div class="bg-image op-8">
+                <div style="background-image: url('https://s3-us-west-2.amazonaws.com/nomcre-rails/public-page-images/HompageHeader/ABoutUsHeader.jpg');"></div>
             </div>
             <div class="nk-header-table">
                 <div class="nk-header-table-cell">
                     <div class="container">
 
 
-                        <h1 class="nk-title">About Us</h1>
+                        <h1 class="nk-title" style="font-weight: 500">About Us</h1>
 
 
 
@@ -47,7 +54,7 @@
                         <h2 class="nk-title">The Spark of Genius</h2>
                         <p class="lead text-left">It was a clear black night....</p>
                         <p class="lead text-left">
-                           The creative world is mind boggling. We come from a land where shoots cost 100’s of 1000’s of dollars, and a bunch of it is spent wining and dining clients, shipping in house photographers around the world, and taking months to agree on the theme of the shoot. The old guard is falling. Now that anyone and there mother can buy a high def camera or a drone, it seems silly to pretend that that you need to spend so much to create breathtaking content. We don’t pretend that your mother and a red can get the job done, but that’s why we select only the top talent to create authentic content and beautiful visual stories. Your brand, your company persona, your way, without all the showmanship.
+                           The creative world is mind boggling. We come from a land where shoots cost 100’s of 1000’s of dollars, and a bunch of it is spent wining and dining clients, shipping in house photographers around the world, and taking months to agree on the theme of the shoot. The old guard is falling. Now that anyone and their brother can buy a high def camera or a drone, it seems preposterous to pretend that that you need to spend so much to create breathtaking content. We don’t pretend that all you need is your sister and a high end camera can get the job done, but that’s why we select only the top talent to create authentic content and beautiful visual stories. Your brand, your company persona, your way, without all the showmanship.
                         </p>
                     </div>
                     <div class="col-md-6">
@@ -72,7 +79,7 @@
                         </div>
                         <div class="nk-gap"></div>
                         <h3 class="nk-title h4 text-center">Justin Pauly - Founder</h3>
-                        <h4 class="nk-sub-title text-dark-1 op-5">I thought up NomCre just before I left on an 14 month adventure around the world. I was a former Art Director and entrepreneur, from fashion to global crisis management and I was about to set sail. From there, it all came together, eventually.  Travel, work and life gave me the time to refine the idea, and here is the result, an always evolving content platform from the future. </h4>
+                        <h4 class="nk-sub-title text-dark-1 op-5">I thought up NOMCRE just before I left on an 14 month adventure around the world. I was a former Art Director and entrepreneur, from fashion to global crisis management and I was about to set sail. From there, it all came together, eventually.  Travel, work and life gave me the time to refine the idea, and here is the result, an always evolving content platform from the future. </h4>
                     </div>
                     <div class="col-md-6 col-md-offset-2 col-lg-6">
                         <div class="nk-image-box-1">
@@ -81,7 +88,8 @@
                         </div>
                         <div class="nk-gap"></div>
                         <h3 class="nk-title h4 text-center">Zack Weiner - Founder</h3>
-                        <h4 class="nk-sub-title text-dark-1 op-5">Justin is such a talented guy. He’s so handsome and people seem to like him a lot. Im no exception. I like Justin so much that I gave up everything to put all my effort into whatever he thinks will work. Just consider me Justin’s #1 Fan. This was definitely written by Zack.</h4>
+                        <h4 class="nk-sub-title text-dark-1 op-5">I have been preparing for this role my whole professional life. I started by building desktop applications to read financial markets in 2008. As a Silverlight Specialist with a background in finance, I was afforded the opportunity to work with PWC, Hilton, and Nascar. I progressed to Sr. Developer at Citrix Systems in Fort Lauderdale, Florida.  At that point I started speaking to developers at conferences and took on the role of Developer Evangelist. Eventually I was promoted to Product Marketing Manager, all while keeping up with the latest web and mobile development practices. As a remote PMM I joined the journey of a lifetime where he met Justin in Kuala Lumpur, Malaysia. The rest is history (in the making).
+                      </h4>
                     </div>
 
                 </div>
@@ -97,6 +105,6 @@
         .nk-footer-parallax-opacity
 -->
 
-
+    <%= image_tag "https://s3-us-west-2.amazonaws.com/nomcre/logos/FinalLogo.jpg", class: 'img-fluid' %>
 
     </div>

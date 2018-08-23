@@ -10,9 +10,9 @@
             </div>
             <div class="col-md-4 text-md-right">
                 <div class="nk-gap-2 hidden-md-up"></div>
-                <a href="#!" class="">
-                    <img class='img-fluid' src="https://s3-us-west-2.amazonaws.com/nomcre/assets/CTAbutton.png" style="max-width: 250px;">
-                </a>
+                <%= link_to new_user_registration_path do %>
+                <%= image_tag "https://s3-us-west-2.amazonaws.com/nomcre/assets/CTAbutton.png", class: 'img-responsive', style:'max-width:250px;' %>
+                <% end %>
             </div>
         </div>
     </div>

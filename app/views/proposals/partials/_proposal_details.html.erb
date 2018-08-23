@@ -29,9 +29,17 @@
       </div>
     </div>
   </div>
-  <%= render 'proposals/partials/instagram_inspiration' %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= render 'proposals/partials/instagram_inspiration' %>
+    </div>
+    <div class="col-md-6">
+      <%= render 'proposals/partials/image_boards' %>
+    </div>
+  </div>
+
   <% if current_user.company == @proposal.company %>
-      <%= link_to "Edit", proposal_edit_details_path(@proposal), class: 'pull-right' unless  @proposal.company.users.include?(current_user) == false %>
+      <% link_to "Edit", proposal_edit_details_path(@proposal), class: 'pull-right' unless  @proposal.company.users.include?(current_user) == false %>
     <% end %>
 </div>
 

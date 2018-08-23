@@ -1,0 +1,45 @@
+<div class="box box-warning">
+  <div class="box-header ui-sortable-handle" style="cursor: move;">
+    <i class="fa fa-clipboard"></i>
+
+    <h3 class="box-title">To Do List</h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+    <ul class="todo-list ui-sortable">
+      <% Task.where(user: current_user).where(completed: false).order(:deadline).take(15).each do |task| %>
+        <li>
+          <!-- drag handle -->
+          <span class="handle ui-sortable-handle">
+            <i class="fa fa-ellipsis-v"></i>
+            <i class="fa fa-ellipsis-v"></i>
+          </span>
+          <!-- checkbox -->
+          <input type="checkbox" value="">
+          <!-- todo text -->
+          <span class="text"><%= task.description %></span>
+          <!-- Emphasis label -->
+          <% if task.deadline < Date.today + 10.days%>
+            <small class="label label-danger">
+          <% elsif  task.deadline < Date.today + 20.days %>
+            <small class="label label-warning">
+          <% else %>
+            <small class="label label-success">
+          <% end %>
+            <i class="fa fa-clock-o"></i> <%= (task.deadline - Date.today).to_int %> days
+          </small>
+          <!-- General tools such as edit or delete-->
+          <div class="tools">
+
+            <%= link_to task_task_complete_path(task,  :redirect => "dashboard") do %><i class="fa fa-thumbs-up"></i> <% end %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+    <div class="box-footer text-center">
+      <%= link_to "View All", tasks_path, class: 'uppercase'%>
+    </div>
+  </div>
+  <!-- /.box-body -->
+</div>

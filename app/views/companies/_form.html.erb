@@ -13,17 +13,23 @@
 
 
   <div class="form-group has-feedback">
-    <%= f.text_field :name, class: 'form-control', placeholder: 'Company Name' %>
+    <%= f.text_field :name, class: 'form-control', placeholder: "Whats Is Your Company's Name?" %>
     <span class='fa fa-user form-control-feedback'></span>
   </div>
 
   <div class="form-group has-feedback">
-    <%= f.file_field :logo, class: 'form-control' %>
-    <span class='fa fa-picture-o form-control-feedback'></span>
+      <div class='row'>
+        <div class='col-md-2'> <h3>  <i class='fa fa-image fa-3x'> </i> Logo</h3> <%= f.file_field :logo %></div>
+        <div class='col-md-4'>
+
+        </div>
+        <div class='col-md-6'></div>
+      </div>
+
   </div>
 
   <div class="form-group has-feedback">
-    <%= f.text_field :phone, class: 'form-control', placeholder: 'Company Phone Number' %>
+    <%= f.text_field :phone, class: 'form-control', placeholder: "What' the best number to reach you?" %>
     <span class='fa fa-phone form-control-feedback'></span>
   </div>
 
@@ -36,6 +42,6 @@
     <span class='fa fa-instagram form-control-feedback'></span>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save Company", class: 'btn btn-success' %>
   </div>
 <% end %>

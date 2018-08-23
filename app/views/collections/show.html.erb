@@ -1,15 +1,107 @@
-<p>
-  <strong>Title:</strong>
-  <%= @collection.title %>
-</p>
-<div class='row'>
-  <% @collection.collection_items.each do |item| %>
-    <div class='col-md-3'>
-      <%= link_to collection_collection_item_path(@collection, item) do %>
-        <%= image_tag item.file, style: 'max-height:300px;max-width:200px' %>
+
+<% head_url = Collection.get_jumbotron_url(@collection) %>
+<% render :partial => 'collections/partials/show_open_graph_tags', :locals => {collection: @collection, head_url: head_url, request: request} %>
+
+<div class="nk-header-title nk-header-title-sm nk-header-title-parallax nk-header-title-parallax-opacity">
+  <div class="bg-image op-5">
+    <div style="background-image: url('<%= head_url %>');"></div>
+  </div>
+  <div class="nk-header-table">
+    <div class="nk-header-table-cell">
+      <div class="container">
+        <h1 class=""><%= @collection.title %></h1>
+      </div>
+    </div>
+  </div>
+  <div class="nk-header-text-bottom">
+      <%= link_to @collection.user.user_profile, class: 'btn btn-secondary' do %>
+       <i class='fa fa-eye'></i> <span style='padding-right: 6px;'><%= @collection.user.user_profile.display_name %></span>
+      <% end %>
+
+  </div>
+</div>
+<div style='padding-right:24px;padding-left:24px;padding-top:12px;'>
+  <div class='row'>
+    <div class="col-md-3">
+      <%= link_to "<i class='fa fa-arrow-left'></i>Back".html_safe, user_collection_path(@collection.user) %>
+    </div>
+    <div class='col-md-6'></div>
+    <div class='col-md-3' style='text-align: right'>
+      <% if current_user.nil? == false && current_user == @collection.user %>
+        <%= link_to "<i class='fa fa-edit'></i> Edit".html_safe, edit_collection_path(@collection) %> |
+        <%= link_to "<i class='fa fa-plus'></i> Add Images".html_safe, new_collection_collection_item_path(@collection) %>
+        <% end %>
+    </div>
+  </div>
+</div>
+<br>
+
+<% videos =  @collection.collection_items.where(item_type: 'video').order(:order) %>
+<% images =  @collection.collection_items.where.not(item_type: 'video').order(:order) %>
+<% if videos.count > 0  && images.count > 0 %>
+<div class='nk-box-2 bg-gray-4' style='margin: 24px;'>
+<div class='row' >
+  <div class='col-md-8 nk-pricing-menu'>
+    <h1> Photos </h1>
+    <div class="nk-isotope nk-isotope-3-cols nk-popup-gallery bg-dark-1">
+      <% images.each do |item| %>
+        <% width = "#{item.width}".to_i%>
+        <% height = "#{item.height}".to_i%>
+        <div class="nk-isotope-item">
+          <div class="nk-image-box-1">
+            <%= link_to collection_collection_item_path(@collection, item), class: 'nk-no-effect', :'data-size' => "#{width}x#{height}"  do %>
+              <%= image_tag item.file,  oncontextmenu:"return false" %>
+            <% end %>
+          </div>
+        </div>
       <% end %>
     </div>
-  <% end %>
+  </div>
+  <div class='col-md-4 nk-pricing-menu'>
+    <h1> Video </h1>
+    <% videos.each do |video |%>
+      <div class='row'>
+      <%= link_to collection_collection_item_path(@collection, video) do %>
+        <%= video_tag video.video, controls: true , controlsList:"nodownload", class: 'embed-responsive',   oncontextmenu:"return false" %>
+      <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
-<%= link_to 'Edit', edit_collection_path(@collection) %> |
-<%= link_to 'Back', collections_path %>
+<%elsif videos.count > 0 && images.count ==0  %>
+  <div class='row nk-pricing-menu'>
+    <div class='col-md-4'>
+      <% videos.each do |video |%>
+        <div class='row'>
+        <%= link_to collection_collection_item_path(@collection, video) do %>
+          <%= video_tag video.video, controls: true, controlsList:"nodownload",   class: 'embed-responsive',  oncontextmenu:"return false" %>
+        <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% else %>
+  <div class='nk-pricing-menu'>
+    <div class="nk-isotope nk-isotope-3-cols nk-popup-gallery bg-dark-1">
+      <% images.each do |item| %>
+        <% width = "#{item.width}".to_i%>
+        <% height = "#{item.height}".to_i%>
+        <%=  p width %>
+        <%= p height %>
+        <div class="nk-isotope-item">
+          <div class="nk-image-box-1">
+            <%= link_to item.file.url, class: 'nk-gallery-item nk-no-effect', :'data-size' => "#{width}x#{height}"  do %>
+              <%= image_tag item.file,  oncontextmenu:"return false" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+</div>
+
+
+
+
+

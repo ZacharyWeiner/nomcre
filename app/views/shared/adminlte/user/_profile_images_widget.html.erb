@@ -1,0 +1,25 @@
+<div class="box box-widget widget-user">
+    <% if user %>
+      <div class="widget-user-header bg-black" style="background: url('<%= user.user_profile.safe_header_image_url%>'); background-size: 100% 100%">
+        <h3 class="widget-user-username">
+          <%= user.user_profile.display_name  %></h3>
+        <h5 class="widget-user-desc">Creative</h5>
+      </div>
+      <div class="widget-user-image">
+        <%= image_tag user.user_profile.safe_profile_image_url, class: "img-circle" %><br/>
+      </div>
+      <div class="box-footer">
+
+      </div>
+    <% else %>
+     <div class="widget-user-header bg-black" style="background: url('<%= UserProfile.default_header_image%>'); background-size: 100% 100%">
+        <h3 class="widget-user-username">Unassigned</h3>
+      </div>
+      <div class="widget-user-image">
+        <%= image_tag UserProfile.default_profile_image, class: "img-circle" %><br/>
+      </div>
+      <div class="box-footer">
+      </div>
+    <% end %>
+  </div>
+

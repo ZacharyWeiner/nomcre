@@ -1,0 +1,83 @@
+<div class='row'>
+  <div class="col-md-3">
+    <%= render :partial =>  'shared/adminlte/user/profile_images_widget', locals:  {user: proposal.user} %>
+    <b> Progress: </b>
+    <div class="progress">
+      <% if proposal.tasks.count == 0 %>
+        <% percent_complete =0 %>
+      <% else %>
+        <% task_count = proposal.tasks.count.to_f %>
+        <% completed_tasks = proposal.tasks.where(completed: true).count %>
+        <% percent_complete = ((completed_tasks / task_count) * 100).to_i%>
+      <% end %>
+      <div class="progress-bar progress-bar-success progress-bar-striped" style="width: <%= percent_complete %>%"></div>
+    </div>
+    <ul class="list-group list-group-unbordered">
+
+      <li class="list-group-item">
+        <i class='fa fa-map-marker'></i>
+        <span><b> Location</b> <p class='pull-right'><%= proposal.location.name unless proposal.location.nil?%></p></span>
+      </li>
+      <% if proposal.user && proposal.deadline > (Date.today - 14.days) %>
+        <li class="list-group-item">
+          <%= link_to proposal.chatroom, class: 'btn btn-primary btn-block' do %>
+          <i class='fa fa-comments-o'></i> Chat
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class='col-md-9'>
+    <p><%= simple_format(proposal.content.first(300)) unless proposal.content.nil? %>...</p>
+    <br>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="info-box">
+          <span class="info-box-icon bg-gray-light"><i class="fa fa-photo"></i></span>
+          <div class="info-box-content">
+            <h4 class="">Shoot Type</h4>
+             <h5><%= proposal.shoot_type%> Shots </h5>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="info-box">
+          <span class="info-box-icon bg-gray-light"><i class="fa fa-clock-o"></i></span>
+          <div class="info-box-content">
+            <h4 class="">Time Of Day</h4>
+            <h5><%= proposal.time_of_day %></h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="info-box">
+          <span class="info-box-icon bg-gray-light"><i class="fa fa-university"></i></span>
+          <div class="info-box-content">
+            <h4 class="">Background</h4>
+             <h5><%= proposal.background %> </h5>
+            <div class='light'>
+              <%= proposal.background_note unless proposal.background_note.nil?%>
+            </div>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="info-box">
+          <span class="info-box-icon bg-gray-light"><i class="fa fa-crosshairs"></i></span>
+          <div class="info-box-content">
+            <h4 class="">Shot Count</h4>
+            <div class='light'>
+              <%= proposal.shot_list_items.count %> Shots Requested
+            </div>
+          </div>
+          <!-- /.info-box-content -->
+        </div>
+      </div>
+    </div>
+    <div class='col-md-12'>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Showcase Images</h1>
+
+<%= link_to "Showcase Videos", showcase_videos_path, class: 'btn btn-primary pull-right'%><br><br>
+
+<div class="box">
+  <div class="box-header with-border">
+    <h3 class="box-title">Bordered Table</h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table class="table table-bordered">
+      <tbody><tr>
+        <th></th>
+        <th>Name</th>
+        <th>Showcase</th>
+        <th>Show</th>
+        <th>Order</th>
+        <th >Actions</th>
+      </tr>
+        <% @showcase_images.each do |showcase_image| %>
+          <tr>
+            <td><%= image_tag showcase_image.file.thumb %></td>
+            <td><%= showcase_image.name %></td>
+            <td><%= showcase_image.showcase_type %></td>
+            <td><%= showcase_image.show %></td>
+            <td><%= showcase_image.order %></td>
+
+            <td><%= link_to 'Show', showcase_image %></td>
+            <td><%= link_to 'Edit', edit_showcase_image_path(showcase_image) %></td>
+            <td><%= link_to 'Destroy', showcase_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+</table>
+</div>
+<!-- /.box-body -->
+<div class="box-footer clearfix">
+  <ul class="pagination pagination-sm no-margin pull-right">
+    <li><a href="#">«</a></li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">»</a></li>
+  </ul>
+</div>
+</div>
+
+<%= link_to 'New Showcase Image', new_showcase_image_path %>
+
+
+
+
+

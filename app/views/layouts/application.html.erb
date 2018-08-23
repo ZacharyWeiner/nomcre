@@ -13,6 +13,7 @@
     <%= javascript_tag 'jquery_include', media: 'all' %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= csrf_meta_tags %>
+    <%= yield :head %>
   </head>
   <body >
 

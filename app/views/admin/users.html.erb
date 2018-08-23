@@ -1,0 +1,40 @@
+<div class="box">
+  <div class="box-header with-border">
+    <h3 class="box-title">Users</h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table class="table table-bordered">
+      <tbody><tr>
+        <th>Name </th>
+        <th>Email</th>
+        <th>Date Added</th>
+        <th>View</th>
+      </tr>
+      <% @users.each do |u| %>
+      <tr>
+        <td><%= u.name %></td>
+        <td><%= u.email %></td>
+        <td><%= u.created_at.strftime("%a %b %y")%></td>
+        <% if u.user_profile %>
+        <td><%= link_to "View", user_profile_path(u.user_profile) %></td>
+        <% end %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+  <div class='pull-right'>
+  <%= paginate @users %>
+</div>
+  <!-- /.box-body -->
+  <!-- <div class="box-footer clearfix">
+    <ul class="pagination pagination-sm no-margin pull-right">
+      <li><a href="#">«</a></li>
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">»</a></li>
+    </ul>
+  </div> -->
+</div>
