@@ -1,6 +1,6 @@
 class LeadsController < ApplicationController
   before_action :set_lead, only: [:show, :edit, :update, :destroy]
-  before_action :authorize
+  before_action :authorize, except: [:create]
   layout 'adminlte'
   # GET /leads
   # GET /leads.json
@@ -27,7 +27,9 @@ class LeadsController < ApplicationController
   # POST /leads.json
   def create
     @lead = Lead.new(lead_params)
-    @lead.rep_id = current_user.id
+    if current_user
+      @lead.rep_id = current_user.id
+    end
     respond_to do |format|
       if @lead.save
         format.html { redirect_to @lead, notice: 'Lead was successfully created.' }

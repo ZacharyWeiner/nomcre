@@ -1,0 +1,45 @@
+
+<div class='nk-box-2 bg-dark-2 text-white'>
+<%= form_with(model: lead, local: true, class: 'nk-form') do |form| %>
+  <% if lead.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lead.errors.count, "error") %> prohibited this lead from being saved:</h2>
+
+      <ul>
+      <% lead.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :your_name, id: :lead_name, class: 'form-control', placeholder: "John Smith" %>
+  </div>
+
+    <div class="form-group">
+    <%= form.label :email %>
+    <%= form.text_field :your_email, id: :lead_email, class: 'form-control', placeholder: "your-email@email.com" %>
+  </div>
+
+    <div class="form-group">
+    <%= form.label :company %>
+    <%= form.text_field :company_name, id: :lead_company_name, class: 'form-control', placeholder: "Nomcre" %>
+  </div>
+
+    <div class="form-group">
+      <%= form.label :phone %>
+      <%= form.text_field :cell_phone, id: :lead_cell_phone, class: 'form-control', placeholder: "888-888-8888" %>
+    </div>
+  <div class="actions">
+    <button  class= 'nk-btn nk-btn-effect-7-h nk-btn-circle btn-info  btn-block'>
+      <span class="icon">
+          <span class="ion-android-time"></span>
+      </span>
+      <span class='railway'>Get Started Now</span>
+      <span class="nk-btn-effect-bg bg-main-1"></span>
+    </button>
+  </div>
+<% end %>
+</div>

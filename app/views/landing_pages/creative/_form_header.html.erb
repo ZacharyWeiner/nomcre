@@ -1,0 +1,28 @@
+<div class='bg-main-1 text-white' style='padding-top: 115px;'>
+<div class="container" style='min-height:400px'>
+  <div class='row'>
+    <div class='col-md-5'>
+      <%= video_tag("https://s3-us-west-2.amazonaws.com/nomcre-rails/public-videos/IMG_2246.1080.mov", :controls => true, :autoplay => true, :loop => false, class: 'img-fluid') %>
+    </div>
+    <div class='col-md-7'>
+      <div class="nk-header-text text-center" style='padding-top: 5%'>
+        <h1 style="font: raleway; font-weight: 500;">
+          Increase
+          <span class='raleway-thinnest' style="padding-right: 6px; padding-left: 6px">Your</span>
+          Conversions
+          <br>& <br>
+          Create
+          <span class='raleway-thinnest' style="padding-right: 6px; padding-left: 6px">A</span>
+          Visual Identity
+        </h1>
+        <div class='text-left'>
+          <%= render 'leads/form_lite', lead: @lead %>
+        </div>
+        <div class="nk-gap"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
