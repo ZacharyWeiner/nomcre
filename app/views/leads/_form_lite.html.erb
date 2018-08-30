@@ -15,12 +15,12 @@
 
   <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :your_name, id: :lead_name, class: 'form-control', placeholder: "John Smith" %>
+    <%= form.text_field :name, id: :lead_name, class: 'form-control', placeholder: "John Smith" %>
   </div>
 
     <div class="form-group">
     <%= form.label :email %>
-    <%= form.text_field :your_email, id: :lead_email, class: 'form-control', placeholder: "your-email@email.com" %>
+    <%= form.text_field :email, id: :lead_email, class: 'form-control', placeholder: "your-email@email.com" %>
   </div>
 
     <div class="form-group">
@@ -32,6 +32,7 @@
       <%= form.label :phone %>
       <%= form.text_field :cell_phone, id: :lead_cell_phone, class: 'form-control', placeholder: "888-888-8888" %>
     </div>
+    <%= form.hidden_field :source, :value => 'landing' %>
   <div class="actions">
     <button  class= 'nk-btn nk-btn-effect-7-h nk-btn-circle btn-info  btn-block'>
       <span class="icon">

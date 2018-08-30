@@ -32,10 +32,13 @@ class LeadsController < ApplicationController
     end
     respond_to do |format|
       if @lead.save
-        format.html { redirect_to @lead, notice: 'Lead was successfully created.' }
+        if lead_params[:source] == 'landing'
+          send_notification(@lead)
+        end
+        format.html { redirect_to landing_thank_you_path, notice: 'Lead was successfully created.' }
         format.json { render :show, status: :created, location: @lead }
       else
-        format.html { render :new }
+        format.html { redirect_to landing_marketing_path }
         format.json { render json: @lead.errors, status: :unprocessable_entity }
       end
     end
@@ -73,12 +76,26 @@ class LeadsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def lead_params
-      params.require(:lead).permit(:name, :email, :company_name, :office_phone, :cell_phone, :last_contacted, :next_contact, :next_contact_time)
+      params.require(:lead).permit(:name, :email, :company_name, :office_phone, :cell_phone, :last_contacted, :next_contact, :next_contact_time, :source)
     end
 
     def authorize
       if current_user.role.nil? == true
         redirect_to root_path
       end
+    end
+
+    def send_notification(lead)
+      @twilio_number = ENV['TWILIO_NUMBER']
+      account_sid = ENV['TWILIO_ACCOUNT_SID']
+      @client = Twilio::REST::Client.new account_sid, ENV['TWILIO_CLIENT_ID']
+      time_str = ((Time.now).localtime).strftime("%I:%M%p on %b. %d, %Y")
+      #reminder = "Hi Zack. Just a reminder that you have an appointment coming up at #{time_str}."
+      text = "#{lead.name} from #{lead.company_name} just filled out the form and their callback number is #{lead.cell_phone}"
+      message = @client.api.account.messages.create(
+        :from => @twilio_number,
+        :to => '19546461240',
+        :body => text,
+      )
     end
 end
