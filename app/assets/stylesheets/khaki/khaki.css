@@ -3072,6 +3072,9 @@ img.rounded {
         bottom: 35px;
         top: 35px;
     }
+    .nk-main{
+        top:0px;
+    }
     .nk-page-border.nk-page-border-md .nk-page-border-t,
     .nk-page-border.nk-page-border-md .nk-page-border-b {
         height: 25px;

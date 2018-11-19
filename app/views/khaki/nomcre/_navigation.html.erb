@@ -28,18 +28,81 @@
 
                 <ul class="nk-nav nk-nav-right hidden-md-down" data-nav-mobile="#nk-nav-mobile">
                     <% if current_page?(controller: 'application', action: 'home') %>
-                        <li class="active ">
+                        <li class="active nk-drop-item">
                     <% else %>
-                        <li class=" ">
+                        <li class=" nk-drop-item">
                     <% end %>
-                        <%= link_to "Home", root_path%>
+                        <%= link_to root_path, class: 'link-effect-3' do %>
+
+                            <span>
+                                <span class="link-effect-shade">
+                                    Nomcre
+                                </span>
+                                Nomcre
+                            </span>
+                        <% end %>
+
+                        <ul class="dropdown" >
+                            <li>
+                                 <%= link_to video_showcase_path, class: 'link-effect-3' do %>
+                                    <span>
+                                        <span class="link-effect-shade">
+                                            Concept
+                                            <span class="nk-item-descr">What Is Nomcre?</span>
+                                        </span>
+                                        Concept
+                                        <span class="nk-item-descr">What Is Nomcre?</span>
+                                    </span>
+                                <% end %>
+                            </li>
+                            <li>
+                                <%= link_to nomcre_process_path, class: 'link-effect-3' do %>
+
+                                    <span>
+                                        <span class="link-effect-shade">
+                                            Process
+                                            <span class="nk-item-descr">How Nomcre Works</span>
+                                        </span>
+                                        Process
+                                        <span class="nk-item-descr">How Nomcre Works</span>
+                                    </span>
+                                <% end %>
+                            </li>
+                        </ul>
                     </li>
                    <% if current_page?(controller: 'khaki', action: 'nomcre_process') %>
-                        <li class="active ">
+                        <li class="active nk-drop-item">
                     <% else %>
-                        <li class=" ">
+                        <li class=" nk-drop-item">
                     <% end %>
-                        <%= link_to "The NOMCRE Way", nomcre_process_path %>
+                        <%= link_to creative_showcase_path, class: 'link-effect-3' do %>
+
+                            <span>
+                                <span class="link-effect-shade">
+                                    Packages
+                                </span>
+                                Packages
+                            </span>
+                        <% end %>
+
+                        <ul class="dropdown" >
+                            <% PackageType.where(show_in_menu: true).each do |p|%>
+                            <li>
+                                <%= link_to p, class: 'link-effect-3' do %>
+
+                                    <span>
+                                        <span class="link-effect-shade">
+                                            <%= p.title %>
+                                            <span class="nk-item-descr"><%= p.subtitle %></span>
+                                        </span>
+                                        <%= p.title %>
+                                        <span class="nk-item-descr"><%= p.subtitle %></span>
+                                    </span>
+                                <% end %>
+                            </li>
+                            <% end %>
+                        </ul>
+                    </li>
                     </li>
                     <li class='nk-drop-item'>
                         <%= link_to creative_showcase_path, class: 'link-effect-3' do %>

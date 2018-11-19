@@ -1,0 +1,100 @@
+
+<%= form_with(model: package_type, local: true) do |form| %>
+  <% if package_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(package_type.errors.count, "error") %> prohibited this package_type from being saved:</h2>
+
+      <ul>
+      <% package_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :package_type_title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :subtitle %>
+    <%= form.text_field :subtitle, id: :package_type_subtitle, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :package_type_description, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description_image %>
+    <%= form.text_field :description_image, id: :package_type_description_image, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :example_image %>
+    <%= form.text_field :example_image, id: :package_type_example_image, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :example_image_description %>
+    <%= form.text_area :example_image_description, id: :package_type_example_image_description, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :example_video %>
+    <%= form.text_field :example_video, id: :package_type_example_video, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :example_video_thumbnail %>
+    <%= form.text_field :example_video_thumbnail, id: :package_type_example_video_thumbnail, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :example_video_description %>
+    <%= form.text_area :example_video_description, id: :package_type_example_video_description, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :header_image_id %>
+    <%= form.collection_select(:header_image_id, @header_images, :id, :title) %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :show_in_menu %>
+    <%= form.check_box :show_in_menu, id: :package_type_show_in_menu %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :menu_link_text %>
+    <%= form.text_area :menu_link_text, id: :package_type_menu_link_text, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :minimum_images %>
+    <%= form.number_field :minimum_images, id: :package_type_minimum_images, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :minimum_videos %>
+    <%= form.number_field :minimum_videos, id: :package_type_minimum_videos, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :max_models %>
+    <%= form.number_field :max_models, id: :package_type_max_models, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :order %>
+    <%= form.number_field :order, id: :package_type_order, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :base_price %>
+    <%= form.text_field :base_price, id: :package_type_base_price, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

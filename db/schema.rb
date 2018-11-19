@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180830183305) do
+ActiveRecord::Schema.define(version: 20181115190745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,6 +155,29 @@ ActiveRecord::Schema.define(version: 20180830183305) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "package_types", force: :cascade do |t|
+    t.string "title"
+    t.string "subtitle"
+    t.text "description"
+    t.string "description_image"
+    t.string "example_image"
+    t.string "example_video"
+    t.bigint "header_image_id"
+    t.boolean "show_in_menu"
+    t.text "menu_link_text"
+    t.integer "minimum_images"
+    t.integer "minimum_videos"
+    t.integer "max_models"
+    t.decimal "base_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "order"
+    t.text "example_image_description"
+    t.text "example_video_description"
+    t.string "example_video_thumbnail"
+    t.index ["header_image_id"], name: "index_package_types_on_header_image_id"
   end
 
   create_table "page_sections", force: :cascade do |t|
@@ -402,6 +425,7 @@ ActiveRecord::Schema.define(version: 20180830183305) do
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "users"
+  add_foreign_key "package_types", "header_images"
   add_foreign_key "page_sections", "pages"
   add_foreign_key "proposal_requests", "proposals"
   add_foreign_key "proposals", "companies"
