@@ -7,141 +7,18 @@
 <% end %>
 
 <div class='nk-main' >
-<div class="nk-header-title nk-header-title-md nk-header-title-parallax nk-header-title-parallax-opacity" style='max-height: 250px'>
-  <div class="bg-image op-8">
-    <div style='background-image: url("<% @package_type.header_image.file.url %>");'></div>
-  </div>
-  <div class="nk-header-table" style='margin-top: -150px'>
-    <div class="nk-header-table-cell">
-      <div class="container">
-        <h1 class="nk-title" style="font-weight: 500"><%= @package_type.subtitle %></h1>
+<%= render '/package_types/partials/show/header' %>
+<%= render '/package_types/partials/show/explanation' %>
 
-      </div>
-    </div>
-  </div>
-
-</div>
-<div class="nk-box" style='text-align: center;'>
-  <div class='nk-gap-2'></div>
-  <div class="bg-image-row row">
-    <div class="col-md-6">
-      <div class="bg-image bg-image-parallax" style="background-image: url('<%= @package_type.description_image %>');">
-      </div>
-    </div>
-  </div>
-
-  <div class="container">
-   <div class="text-right text-main-8">
-    <h3 class="nk-title-back">
-      <%= @package_type.title %>
-
-    </h3>
-    <!-- <h4 class="nk-sub-title text-main-7">[Custom Creative On Demand]</h4> -->
-    <div class='nk-gap-1'></div>
-      <h2 class="nk-title display-4">
-
-      </h2>
-    </div>
-    <div class="row" style='margin-left: 16px;'>
-      <div class="ol-lg-5 offset-lg-7">
-        <!-- <div class="nk-gap-4"></div> -->
-        <div class="row align-items-center">
-
-          <%= @package_type.description %>
-          <div class='nk-gap'></div>
-
-        </div>
-        <div class='row'>
-            <div class='col-md-4'></div>
-            <div class='col-md-2'>
-              <div class="nk-ibox-icon nk-ibox-icon-color-main-1">
-                  <div>
-                    <span class="ion-ios-camera-outline" style='font-size: 3rem;'></span>
-                    <br><%= @package_type.minimum_images %>
-                  </div>
-              </div>
-            </div>
-            <div class='col-md-2'><div class="nk-ibox-icon nk-ibox-icon-color-main-1">
-                  <div>
-                    <span class="ion-ios-videocam" style='font-size: 3rem;'></span><br><%= "#{@package_type.minimum_videos} " %>
-                  </div>
-              </div></div>
-              <div class='col-md-2'><div class="nk-ibox-icon nk-ibox-icon-color-main-1">
-                  <div><span class="ion-ios-people" style='font-size: 3rem;'></span><br><%= "  #{@package_type.max_models} " %></div>
-              </div></div>
-            <div class='col-md-2'></div>
-          </div>
-      </div>
-    </div>
-  </div>
-  <div class="nk-gap-4"></div>
-</div>
 <!-- <div class="nk-gap-2"></div> -->
 <div class='bg-dark-1'>
-  <div class="nk-portfolio-list-2">
-    <div class="nk-gap-2"></div>
-    <div class="nk-portfolio-item ">
-      <div class="nk-image-box-1 nk-portfolio-image-box">
-        <%= link_to "", "", class: "nk-image-box-link" %>
-        <div class="nk-portfolio-image hidden-md-down" style="background-image: url(&quot;<%= @package_type.example_image %>&quot;);">
-        </div>
-        <%=  %>
-      </div>
-
-      <div class="nk-portfolio-text-box">
-        <h2 class="h3">
-          <a href="#" class="nk-portfolio-title" style='padding: 12px;'><%=  %></a>
-        </h2>
-        <div class="nk-portfolio-links">
-          <%= image_tag "https://s3-us-west-2.amazonaws.com/nomcre/logos/UpperLeftHPlogo+2.png", style: 'max-height:25px; max-width:25px; border-radius:100%' %>
-          <%= link_to "#{@package_type.title} Example Image", "#" %>
-
-          <div class="nk-gap"></div>
-          <p>
-            <%= @package_type.example_image_description %>
-          </p>
-          <% link_to "Play Video", "", class: "nk-btn nk-btn-lg nk-btn-effect-2-right nk-btn-circle nk-btn-outline nk-btn-color-dark-4 " %>
-
-
-        </div>
-      </div>
-    </div>
-    <!-- <div class="nk-gap-2"></div> -->
-  </div>
+ <%= render '/package_types/partials/show/example_image' %>
 </div>
 
 <style> .fa-play {padding-top:16px;} </style>
-<div class="nk-gapß"></div>
-        <div class="nk-box ">
-
-            <div class="nk-video-fullscreen-toggle-right">
-                <a class="nk-video-fullscreen-toggle" href="<%= @package_type.example_video%>">
-                    <span class="nk-video-icon"><i class="fa fa-play pl-5"></i></span>
-                </a>
-            </div>
-            <div class="bg-video-row row">
-                <div class="col-lg-6 push-lg-6">
-                    <div class="bg-video bg-video-parallax" style="background-image: url('<%= @package_type.example_video_thumbnail %>');"></div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-5">
-                        <div class="nk-gap-5"></div>
-
-                         <%= image_tag "https://s3-us-west-2.amazonaws.com/nomcre/logos/UpperLeftHPlogo+2.png", style: 'max-height:25px; max-width:25px; border-radius:100%' %>
-          <%= link_to "#{@package_type.title} Example Video", "#" %>
-                        <h3 class="nk-sub-title"></h3>
-                        <div class="nk-gap"></div>
-
-                        <p><%= @package_type.example_video_description %> </p>
-
-                        <div class="nk-gap-5"></div>
-                    </div>
-                </div>
-            </div>
-            <div class='nk-gap-4'></div>
-        </div>
+<!-- <div class="nk-gap"></div> -->
+<%= render '/package_types/partials/show/example_video' %>
+<%= render '/package_types/partials/show/call_to_action' %>
 
 <% if current_user && current_user.role != nil %>
 <%= link_to 'Edit', edit_package_type_path(@package_type) %> |

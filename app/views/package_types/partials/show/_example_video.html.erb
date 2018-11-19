@@ -1,0 +1,29 @@
+<div class="nk-box bg-gray-3 ">
+
+  <div class="nk-video-fullscreen-toggle-left">
+    <a class="nk-video-fullscreen-toggle" href="<%= @package_type.example_video%>">
+      <span class="nk-video-icon"><i class="fa fa-play pl-5"></i></span>
+    </a>
+  </div>
+  <div class="bg-video-row row">
+    <div class="col-lg-6 ">
+      <div class="bg-video bg-video-parallax" style="background-image: url('<%= @package_type.example_video_thumbnail %>');"></div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5 push-lg-7">
+        <div class="nk-gap-5"></div>
+
+        <%= image_tag "https://s3-us-west-2.amazonaws.com/nomcre/logos/UpperLeftHPlogo+2.png", style: 'max-height:25px; max-width:25px; border-radius:100%' %>
+        <h2 class="h2 nk-title"><%= "#{@package_type.title} Example Video"%></h2>
+        <h3 class="nk-sub-title"><%= "#{@package_type.subtitle}"%></h3>
+        <div class="nk-gap"></div>
+        <p><%= "#{@package_type.example_image_description} "%></p>
+
+        <div class="nk-gap-5"></div>
+      </div>
+    </div>
+  </div>
+  <div class='nk-gap-4'></div>
+</div>

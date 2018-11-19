@@ -1,0 +1,55 @@
+<div class="nk-box" style='text-align: center;'>
+  <div class='nk-gap-2'></div>
+  <div class="bg-image-row row">
+    <div class="col-md-6">
+      <div class="bg-image bg-image-parallax" style="background-image: url('<%= @package_type.description_image %>');">
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+   <div class="text-right text-main-8">
+    <h3 class="nk-title-back">
+      <%= @package_type.title %>
+
+    </h3>
+    <!-- <h4 class="nk-sub-title text-main-7">[Custom Creative On Demand]</h4> -->
+    <div class='nk-gap-1'></div>
+      <h2 class="nk-title display-4">
+
+      </h2>
+    </div>
+    <div class="row" style='margin-left: 16px;'>
+      <div class="ol-lg-5 offset-lg-7">
+        <!-- <div class="nk-gap-4"></div> -->
+        <div class="row align-items-center">
+
+          <%= @package_type.description %>
+          <div class='nk-gap'></div>
+
+        </div>
+        <div class='row'>
+            <div class='col-md-4'></div>
+            <div class='col-md-2'>
+              <div class="nk-ibox-icon nk-ibox-icon-color-main-1">
+                  <div>
+                    <span class="ion-ios-camera-outline" style='font-size: 3rem;'></span>
+                    <br><%= @package_type.minimum_images %>
+                  </div>
+              </div>
+            </div>
+            <div class='col-md-2'><div class="nk-ibox-icon nk-ibox-icon-color-main-1">
+                  <div>
+                    <span class="ion-ios-videocam" style='font-size: 3rem;'></span><br><%= "#{@package_type.minimum_videos} " %>
+                  </div>
+              </div></div>
+              <div class='col-md-2'><div class="nk-ibox-icon nk-ibox-icon-color-main-1">
+                  <div><span class="ion-ios-people" style='font-size: 3rem;'></span><br><%= "  #{@package_type.max_models} " %></div>
+              </div></div>
+            <div class='col-md-2'></div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div class="nk-gap-4"></div>
+</div>
