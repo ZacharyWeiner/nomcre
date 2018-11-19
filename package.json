@@ -2,13 +2,21 @@
   "name": "nomcre",
   "private": true,
   "dependencies": {
-    "bower": "1.8.0"
+    "@rails/webpacker": "3.5",
+    "babel-preset-react": "^6.24.1",
+    "bower": "1.8.0",
+    "prop-types": "^15.6.2",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
   },
   "engine": {
-        "node": "4.6.x",
-        "npm": "2.11.x"
-    },
+    "node": "4.6.x",
+    "npm": "2.11.x"
+  },
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
   }
 }

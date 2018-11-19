@@ -44,6 +44,8 @@ gem 'file_validators'
 gem 'newrelic_rpm'
 gem 'sitemap_generator'
 gem 'fog-aws'
+gem "react_on_rails", "11.1.8" # Update to the current version
+gem "webpacker", "~> 3" # Newer versions might be supported
 
 
 group :development, :test do
