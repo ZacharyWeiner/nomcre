@@ -3,7 +3,6 @@ class AdminController < ApplicationController
   layout 'adminlte'
   def users
     @users = User.all.page params[:page]
-
   end
 
   def proposals
@@ -50,6 +49,10 @@ class AdminController < ApplicationController
     @proposal.balance_paid_on = Date.today
     @proposal.save!
     redirect_to admin_proposals_path
+  end
+
+  def black_dashboard
+    render layout: "black_dashboard"
   end
 
   private

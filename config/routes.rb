@@ -119,6 +119,7 @@ Rails.application.routes.draw do
   get 'admin/schedule_items', to: 'admin#schedule_items', as: 'admin_schedule_items'
   get 'admin/collections', to: 'admin#collections', as: 'admin_collections'
   get 'admin/chats', to: 'admin#chatrooms', as: 'admin_chatrooms'
+  get 'admin/black_dashboard', to: 'admin#black_dashboard', as: 'admin_black_dashboard'
   get 'admin/proposal_price/:proposal_id', to: 'admin#proposal_price', as: 'admin_proposal_price'
   get 'admin/deposit_paid/:proposal_id', to: 'admin#proposal_mark_deposit_paid', as: 'admin_proposal_mark_deposit_paid'
   get 'admin/balance_paid/:proposal_id', to: 'admin#proposal_mark_balance_paid', as: 'admin_proposal_mark_balance_paid'
@@ -128,6 +129,9 @@ Rails.application.routes.draw do
   get '/landing_marketing', to: 'landing_pages#marketing', as: 'landing_marketing'
   get '/thank_you', to: 'landing_pages#thank_you', as: 'landing_thank_you'
   get '/sitemap', to: 'pages#sitemap'
+
+
+  get 'black_dashboard/dashboard', to: 'black_dashboard#dashboard', as: 'black_dashboard_dashboard'
 
   #root 'khaki#nomcre_home'
   root 'application#home'

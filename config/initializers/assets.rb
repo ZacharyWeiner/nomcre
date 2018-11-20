@@ -16,6 +16,10 @@ Rails.application.config.assets.precompile += %w( photog.js )
 Rails.application.config.assets.precompile += %w( photog.css )
 Rails.application.config.assets.precompile += %w( khaki_theme.css )
 Rails.application.config.assets.precompile += %w( khaki_theme.js )
+Rails.application.config.assets.precompile += %w( black_dashboard.css )
+Rails.application.config.assets.precompile += %w( black_dashboard.js )
+Rails.application.config.assets.precompile += %w( black_dashboard_boot_and_jquery.js )
+
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
