@@ -1,12 +1,12 @@
 class PackageTypesController < ApplicationController
   before_action :set_package_type, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:show]
+  before_action :authenticate_user!, except: [:show, :index]
   layout :set_layout
 
   # GET /package_types
   # GET /package_types.json
   def index
-    @package_types = PackageType.all
+    @package_types = PackageType.where(show_on_index: true)
   end
 
   # GET /package_types/1
@@ -77,7 +77,7 @@ class PackageTypesController < ApplicationController
     end
 
     def set_layout
-      if action_name == "show" #|| action_name == 'index'
+      if action_name == "show" || (action_name == 'index' && !current_user)
         return 'khaki'
       else
         return 'adminlte'
