@@ -80,7 +80,7 @@ class PackageTypesController < ApplicationController
       if action_name == "show" || (action_name == 'index' && !current_user)
         return 'khaki'
       else
-        return 'adminlte'
+        return 'black_dashboard'
       end
     end
 end

@@ -87,7 +87,7 @@ class WaitlistsController < ApplicationController
       if request.path.include?('new') || request.path.include?('thank-you')
         return 'khaki'
       else
-        'adminlte'
+        'black_dashboard'
       end
     end
 

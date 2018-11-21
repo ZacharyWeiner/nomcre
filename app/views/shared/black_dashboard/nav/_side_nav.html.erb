@@ -22,6 +22,13 @@
         <%= render 'shared/black_dashboard/nav/creative_menu' %>
       <% end %>
       <!-- End User Type Menu -->
+      <!-- admin Menu -->
+      <% if current_user.role == 0 %>
+        <%= render 'shared/black_dashboard/nav/admin_menu' %>
+      <% elsif  current_user.role == 1 %>
+      <%= render 'shared/adminlte/navigation/left_menu/leads_menu' %>
+      <% end %>
+      <!-- end Admin Menu -->
     </ul>
   </div>
 </div>

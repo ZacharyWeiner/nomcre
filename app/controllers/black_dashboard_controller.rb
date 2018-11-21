@@ -1,3 +1,3 @@
 class BlackDashboardController < ApplicationController
-  layout "black_dashboard"
+  layout "black_dashboard_original"
 end

@@ -1,6 +1,7 @@
+<div class='row'>
 <div class="col-md-8 ml-auto mr-auto">
-  <h2 class="text-center">Package Types</h2>
-  <p class="text-center">These are the packages from which a project can be created. They can show in the main menu, and have a display page for logged out users.
+  <h2 class="text-center">Waitlists</h2>
+  <p class="text-center">This is a list of creatives waiting to be activated for work!</a>
   </p>
 </div>
 <div class="row mt-5">
@@ -11,40 +12,54 @@
           <!--        Here you can write extra buttons/actions for the toolbar              -->
         </div>
         <table id="datatable" class="table table-striped">
-          <tbody>
+          <thead>
             <tr>
-              <th>Title</th>
-              <th>Minimum images</th>
-              <th>Minimum videos</th>
-              <th>Max models</th>
-              <th>Base price</th>
-              <th>View</th>
+               <th>Name</th>
+              <th>Email</th>
+              <th>Instagram</th>
+              <th>Px500</th>
+              <th>Facebook</th>
+              <th>Phone</th>
+              <th>Website</th>
+              <th>Smugmug</th>
+              <th>View </th>
               <th>Edit</th>
               <th>Delete</th>
+              <!-- <th class="sorting_desc_disabled sorting_asc_disabled text-right">Actions</th> -->
             </tr>
-            <% @package_types.each do |package_type| %>
-              <tr>
-               <td><%= package_type.title %></td>
-               <td><%= package_type.minimum_images %></td>
-               <td><%= package_type.minimum_videos %></td>
-               <td><%= package_type.max_models %></td>
-               <td><%= package_type.base_price %></td>
-               <td><%= link_to 'Show', package_type %></td>
-               <td><%= link_to 'Edit', edit_package_type_path(package_type) %></td>
-               <td><%= link_to 'Destroy', package_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              </tr>
+          </thead>
+          <tbody>
+             <% @waitlists.each do |waitlist| %>
+            <tr>
+              <td><%= waitlist.name %></td>
+              <td><%= waitlist.email %></td>
+              <td><%= waitlist.instagram %></td>
+              <td><%= waitlist.px500 %></td>
+              <td><%= waitlist.facebook %></td>
+              <td><%= waitlist.phone %></td>
+              <td><%= waitlist.website %></td>
+              <td><%= waitlist.smugmug %></td>
+              <td><%= link_to 'Show', waitlist %></td>
+              <td><%= link_to 'Edit', edit_waitlist_path(waitlist) %></td>
+              <td><%= link_to 'Destroy', waitlist, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+            </tr>
             <% end %>
           </tbody>
           <tfoot>
             <tr>
-              <th>Title</th>
-              <th>Minimum images</th>
-              <th>Minimum videos</th>
-              <th>Max models</th>
-              <th>Base price</th>
-              <th>View</th>
+               <th>Name</th>
+              <th>Email</th>
+              <th>Instagram</th>
+              <th>Px500</th>
+              <th>Facebook</th>
+              <th>Phone</th>
+              <th>Website</th>
+              <th>Smugmug</th>
+              <th>View </th>
               <th>Edit</th>
               <th>Delete</th>
+              <!-- <th class="sorting_desc_disabled sorting_asc_disabled text-right">Actions</th> -->
             </tr>
           </tfoot>
         </table>
@@ -56,10 +71,10 @@
   <!-- end col-md-12 -->
 </div>
 <!-- end row -->
+</div>
 
+<%= link_to 'New Waitlist', new_waitlist_path, class: 'btn btn-primary' %>
 
-
-<%= link_to 'New Package Type', new_package_type_path, class: 'btn btn-primary' %>
 <% content_for :added_scripts do %>
   <script>
     $(document).ready(function() {

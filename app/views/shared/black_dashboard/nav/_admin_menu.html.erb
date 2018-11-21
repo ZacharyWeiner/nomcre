@@ -1,0 +1,81 @@
+<li class="header"><span style="margin-left:20px"><%= "Admin" %><span></li>
+<li>
+  <%= link_to admin_proposals_path do %>
+    <i class="tim-icons "><ion-icon name="briefcase"></ion-icon></i>
+    <p>Projects</p>
+  <% end %>
+</li>
+<li>
+  <%= link_to package_types_path do %>
+    <i class="tim-icons "><ion-icon name="gift"></ion-icon></i>
+    <p>Package Types</p>
+  <% end %>
+</li>
+<li>
+  <a data-toggle="collapse" href="#adminPeople">
+     <i class="tim-icons "><ion-icon name="people"></ion-icon></i>
+    <p>
+      People
+      <b class="caret"></b>
+    </p>
+  </a>
+  <div class="collapse" id="adminPeople">
+    <ul class="nav">
+      <li>
+        <%= link_to waitlists_path do %>
+          <span class="sidebar-mini-icon">?</span>
+          <span class="sidebar-normal"> <i class="tim-icons "><ion-icon name="list"></ion-icon></i>  <b>Waitlist</b> </span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to admin_leads_path do %>
+          <span class="sidebar-mini-icon">O</span>
+          <span class="sidebar-normal"> <i class="tim-icons "><ion-icon name="man"></ion-icon></i>  <b>Leads</b></span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to admin_users_path do %>
+          <span class="sidebar-mini-icon">√</span>
+          <span class="sidebar-normal"> <i class="tim-icons "><ion-icon name="contact"></ion-icon></i>  <b>Users</b></span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</li>
+<li>
+  <a data-toggle="collapse" href="#adminCreatives">
+     <i class="tim-icons "><ion-icon name="contact"></ion-icon></i>
+    <p>
+      Creatives
+      <b class="caret"></b>
+    </p>
+  </a>
+  <div class="collapse" id="adminCreatives">
+    <ul class="nav">
+      <li>
+        <%= link_to admin_schedule_items_path do %>
+          <span class="sidebar-mini-icon">?</span>
+          <span class="sidebar-normal"> <i class="tim-icons "><ion-icon name="list"></ion-icon></i>  <b>Schedule</b> </span>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to admin_collections_path do %>
+          <span class="sidebar-mini-icon">O</span>
+          <span class="sidebar-normal"> <i class="tim-icons "><ion-icon name="camera"></ion-icon></i>  <b>Collections</b></span>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</li>
+<li>
+  <%= link_to admin_chatrooms_path do %>
+    <i class="tim-icons "><ion-icon name="chatbubbles"></ion-icon></i>
+    <p>Communications</p>
+  <% end %>
+</li>
+<li>
+  <%= link_to pages_path do %>
+    <i class="tim-icons "><ion-icon name="laptop"></ion-icon></i>
+    <p>Pages</p>
+  <% end %>
+</li>

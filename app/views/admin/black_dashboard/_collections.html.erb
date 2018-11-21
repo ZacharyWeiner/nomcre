@@ -1,6 +1,9 @@
+
+
+
 <div class="col-md-8 ml-auto mr-auto">
-  <h2 class="text-center">Package Types</h2>
-  <p class="text-center">These are the packages from which a project can be created. They can show in the main menu, and have a display page for logged out users.
+  <h2 class="text-center">User Collections</h2>
+  <p class="text-center">This is a list of creatives waiting to be activated for work!</a>
   </p>
 </div>
 <div class="row mt-5">
@@ -11,38 +14,50 @@
           <!--        Here you can write extra buttons/actions for the toolbar              -->
         </div>
         <table id="datatable" class="table table-striped">
-          <tbody>
+          <thead>
             <tr>
-              <th>Title</th>
-              <th>Minimum images</th>
-              <th>Minimum videos</th>
-              <th>Max models</th>
-              <th>Base price</th>
+               <th>Title </th>
+              <th>Owner</th>
+              <th>Item Count</th>
+              <th>Is Featured?</th>
               <th>View</th>
+              <th>Featured</th>
               <th>Edit</th>
               <th>Delete</th>
             </tr>
-            <% @package_types.each do |package_type| %>
-              <tr>
-               <td><%= package_type.title %></td>
-               <td><%= package_type.minimum_images %></td>
-               <td><%= package_type.minimum_videos %></td>
-               <td><%= package_type.max_models %></td>
-               <td><%= package_type.base_price %></td>
-               <td><%= link_to 'Show', package_type %></td>
-               <td><%= link_to 'Edit', edit_package_type_path(package_type) %></td>
-               <td><%= link_to 'Destroy', package_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-              </tr>
+          </thead>
+          <tbody>
+             <% @collections.each do |c| %>
+             <tr>
+             <td><%= c.title %></td>
+              <td><%= c.user.name %></td>
+              <td><%= c.collection_items.count  %></td>
+              <td><%= c.featured? %></td>
+              <td>
+                <%= link_to "View", collection_path(c) %>
+              </td>
+              <td>
+                <%if c.featured %>
+                  <%= link_to "Remove Feature", collection_remove_featured_path(c) %>
+                <% else %>
+                  <%= link_to "Feature", collection_make_featured_path(c) %>
+                <% end %>
+              </td>
+
+            <td><%= link_to 'Edit', edit_collection_path(c) %></td>
+            <td>Delete</td>
+            </tr>
             <% end %>
+
           </tbody>
           <tfoot>
             <tr>
-              <th>Title</th>
-              <th>Minimum images</th>
-              <th>Minimum videos</th>
-              <th>Max models</th>
-              <th>Base price</th>
+              <th>Title </th>
+              <th>Owner</th>
+              <th>Item Count</th>
+              <th>Is Featured?</th>
               <th>View</th>
+              <th>Featured</th>
               <th>Edit</th>
               <th>Delete</th>
             </tr>
@@ -58,8 +73,8 @@
 <!-- end row -->
 
 
+<%= link_to 'New Waitlist', new_waitlist_path, class: 'btn btn-primary' %>
 
-<%= link_to 'New Package Type', new_package_type_path, class: 'btn btn-primary' %>
 <% content_for :added_scripts do %>
   <script>
     $(document).ready(function() {
@@ -101,3 +116,6 @@
     });
   </script>
   <% end %>
+
+
+

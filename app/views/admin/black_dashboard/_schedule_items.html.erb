@@ -1,0 +1,125 @@
+<div class="col-md-12">
+  <div class="card">
+    <div class="card-header">
+      <div class="tools float-right">
+        <div class="dropdown">
+          <button type="button" class="btn btn-default dropdown-toggle btn-link btn-icon" data-toggle="dropdown">
+            <i class="tim-icons icon-settings-gear-63"></i>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item text-danger" href="#">Remove Data</a>
+          </div>
+        </div>
+      </div>
+      <h4 class="card-title">Travel Plans</h4>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table id="datatable" class="table table-striped">
+          <thead class="text-primary">
+            <tr>
+              <th class="text-center">
+                #
+              </th>
+              <th>
+                Location
+              </th>
+              <th>
+                User
+              </th>
+              <th class="text-center">
+                Arrival
+              </th>
+              <th class="text-right">
+                Departure
+              </th>
+              <th class="text-right">
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @schedule_items.each do |schedule_item| %>
+            <tr>
+              <td class="text-center">
+                <div class="photo">
+
+                  <%= image_tag schedule_item.user.user_profile.safe_profile_image_url %>
+                </div>
+              </td>
+              <td class="text-right">
+                <%= schedule_item.location.name unless schedule_item.location.nil? %>
+              </td>
+              <td>
+                <%= schedule_item.user.name %>
+              </td>
+              <td>
+                <%= schedule_item.start_date.strftime("%a %b %d, %Y") %>
+              </td>
+              <td class="text-center">
+                <%= schedule_item.end_date.strftime("%a %b %d, %Y") %>
+              </td>
+
+              <td class="text-right">
+               <%= link_to edit_schedule_item_path(schedule_item), class: 'btn btn-success btn-link btn-sm', title: "Edit", :data => { :original_title => 'Tooltip on Top'} do %>
+                  <i class="tim-icons"><ion-icon name="paper"></ion-icon></i>
+                <% end %>
+                <!-- <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-sm " data-original-title="Tooltip on top" title="Delete"> -->
+                  <%= link_to schedule_item_path(schedule_item), method: :destroy, class: 'btn btn-danger btn-link btn-sm', title: "Delete", :data => { :original_title => 'Tooltip on Top'} do %>
+                  <i class="tim-icons"><ion-icon name="trash"></ion-icon></i>
+                  <% end %>
+
+                <!-- </button> -->
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<% content_for :added_scripts do %>
+  <script>
+    $(document).ready(function() {
+      $('#datatable').DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"]
+        ],
+        responsive: true,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search records",
+        }
+
+      });
+
+      var table = $('#datatable').DataTable();
+
+      // Edit record
+      table.on('click', '.edit', function() {
+        $tr = $(this).closest('tr');
+
+        var data = table.row($tr).data();
+        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+      });
+
+      // Delete a record
+      table.on('click', '.remove', function(e) {
+        $tr = $(this).closest('tr');
+        table.row($tr).remove().draw();
+        e.preventDefault();
+      });
+
+      //Like record
+      table.on('click', '.like', function() {
+        alert('You clicked on Like button');
+      });
+    });
+  </script>
+  <% end %>
