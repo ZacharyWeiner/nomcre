@@ -14413,14 +14413,14 @@ fieldset[disabled] .btn-link.active {
 
 .has-success:after,
 .has-danger:after {
-  font-family: 'nucleo';
+  /*font-family: 'nucleo';
   content: "\ea1b";
   display: inline-block;
   position: absolute;
   right: 20px;
   top: 13px;
   color: #00f2c3;
-  font-size: 11px;
+  font-size: 11px;*/
 }
 
 .has-success.form-control-lg:after,
