@@ -1,0 +1,93 @@
+
+<%= form_with(model: waitlist, local: true, class: 'form') do |form| %>
+
+<div class="card card-user">
+  <div class="card-body">
+    <p class="card-text">
+      </p><div class="author">
+        <div class="block block-one"></div>
+        <div class="block block-two"></div>
+        <div class="block block-three"></div>
+        <div class="block block-four"></div>
+        <a href="javascript:void(0)">
+          <ion-icon name='contact' size='large' ></ion-icon>
+          <h5 class="title">Edit Waitlist</h5>
+        </a>
+        <p class="description">
+
+            <% if waitlist.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(waitlist.errors.count, "error") %> prohibited this waitlist from being saved:</h2>
+
+                <ul>
+                <% waitlist.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class='row'>
+              <div class='col-md-6'>
+                <div class="form-group ">
+                  <%= form.label :name %>
+                  <%= form.text_field :name, id: :waitlist_name, class: 'form-control required', placeholder: 'Name' %>
+                </div>
+                 <div class="form-group ">
+                  <%= form.label :email %>
+                  <%= form.text_field :email, id: :waitlist_email, class: "form-control required",  placeholder:"Email *" %>
+                </div>
+                <div class="form-group ">
+                  <%= form.label :instagram %>
+                  <%= form.text_field :instagram, id: :waitlist_instagram, class: 'form-control required', placeholder: 'Your Instagram link' %>
+                </div>
+                <div class="form-group ">
+                  <%= form.label :facebook %>
+                  <%= form.text_field :facebook, id: :waitlist_facebook, class: "form-control required",  placeholder:"Your Facebook link" %>
+                </div>
+                <div class="form-group ">
+                  <%= form.label :px500 %>
+                  <%= form.text_field :px500, id: :waitlist_px500, class: 'form-control', placeholder: 'Your 500px link' %>
+                </div>
+                <div class="form-group ">
+                  <%= form.label :smugmug %>
+                  <%= form.text_field :smugmug, id: :waitlist_smugmug, class: "form-control",  placeholder:"Your Smugmug link" %>
+                </div>
+              </div>
+              <div class='col-md-6'>
+
+                <div class="form-group ">
+                  <%= form.label :phone %>
+                  <%= form.text_field :phone, id: :waitlist_phone, class: 'form-control required', placeholder: 'Your Phone #' %>
+                </div>
+                <div class="form-group ">
+                  <%= form.label :website %>
+                  <%= form.text_field :website, id: :waitlist_website, class: "form-control required",  placeholder:"Your Website link" %>
+                </div>
+                <div class="form-group ">
+                  <%= form.label :question_1 %>
+                  <%= form.text_area :question_1, id: :waitlist_question_1, class: 'form-control', placeholder: 'Tell us about the time you hustled the hardest...', rows: 5 %>
+                </div>
+                <div class="form-group ">
+                  <%= form.label :question_2 %>
+                  <%= form.text_area :question_2, id: :waitlist_question_2, class: 'form-control', placeholder: "What was the most high-profile shoot you've been a part of?", rows: 5 %>
+                </div>
+              </div>
+            </div>
+        </p>
+      </div>
+    <p></p>
+    <div class="card-description">
+
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="actions text-center">
+      <%= button_tag( :class => "btn btn-success") do %>
+        <ion-icon name='checkmark'></ion-icon> Save
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>
+
+

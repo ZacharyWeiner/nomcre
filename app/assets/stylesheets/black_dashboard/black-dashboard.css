@@ -1841,7 +1841,7 @@ pre code {
   font-size: 0.875rem;
   line-height: 1.428571;
   color: rgba(255, 255, 255, 0.8);
-  background-color: transparent;
+  background-color: rgba(177, 183, 189, 0.25);
   background-clip: padding-box;
   border: 1px solid #cad1d7;
   border-radius: 0.25rem;
