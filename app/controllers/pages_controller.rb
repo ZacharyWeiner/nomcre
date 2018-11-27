@@ -140,7 +140,7 @@ class PagesController < ApplicationController
       if action_name == "show"
         return 'khaki'
       else
-        return 'adminlte'
+        return 'black_dashboard'
       end
     end
 
