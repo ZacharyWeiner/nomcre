@@ -23,22 +23,26 @@ class Location < ApplicationRecord
     # countries = Location.where(location_type: 'Country').collect{|l| [l.name, l.id]}
     # cities = Location.where(location_type: 'City').collect{|l| [l.name, l.id]}
     #options = []
-    @string_for_show = ""
-    regions.each do |region|
+    @string_for_show = "<div class='row'>"
 
+    regions.each do |region|
+      @string_for_show += '<div class="col-md-3">'
       #options << ["#{region.name}", "#{region.id}"]
-      @string_for_show = @string_for_show + region.name + "<br>"
+      @string_for_show += "<h4><b>#{region.name}</b></h4>"
       region_countries = Location.where(parent_id: region.id)
       region_countries.each do |country|
         #options << ["#{region.name} : #{country.name}", "#{country.id}"]
-        @string_for_show = @string_for_show + "<span style='padding:6px;'></span>" + country.name + "<br>"
+        @string_for_show = @string_for_show + "<span style='padding:6px;'></span>" + "<b>#{country.name}</b>" + "<br>"
         country_cities = Location.where(parent_id: country.id)
         country_cities.each do |city|
           @string_for_show = @string_for_show + "<span style='padding:6px;'></span><span  style='padding:6px;'></span>" + city.name + "<br>"
           #options << ["#{region.name} : #{country.name} : #{city.name}", "#{city.id}"]
         end
+        @string_for_show += "<br/>"
       end
+      @string_for_show += "</div>"
     end
+    @string_for_show += "</div>"
     return @string_for_show
   end
 end

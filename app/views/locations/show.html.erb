@@ -1,1 +1,31 @@
-show.html.erb
+<% parent = nil %>
+<div class="card card-user">
+  <div class="card-body">
+    <p class="card-text">
+    </p><div class="author">
+      <div class="block block-one"></div>
+      <div class="block block-two"></div>
+      <div class="block block-three"></div>
+      <div class="block block-four"></div>
+      <a href="javascript:void(0)">
+        <h4 class="title">Name</h4>
+        <h5 class="title"><%= @location.name %></h5>
+      </a>
+
+    </div>
+    <p></p>
+    <div class="card-description">
+     <p class="description text-center">
+        <% if @location.parent_id != nil %>
+          <h4 class="title text-center">Parent</h4>
+          <h5 class="title text-center"><%= Location.find(@location.parent_id).name %></h5>
+        <%end %>
+      </p>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="button-container">
+      <%= link_to "Edit", edit_location_path(@location), class: 'btn btn-primary'%>
+    </div>
+  </div>
+</div>
