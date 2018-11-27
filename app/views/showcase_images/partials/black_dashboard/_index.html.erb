@@ -1,5 +1,5 @@
 <div class="col-md-8 ml-auto mr-auto">
-  <h2 class="text-center">Showcase Images</h2>
+  <h2 class="text-center">Showcase Videos</h2>
   <p class="text-center">
   </p>
 </div>
@@ -13,40 +13,36 @@
         <table id="datatable" class="table table-striped">
           <thead>
             <tr>
-              <th>File</th>
-              <th>Showcase type</th>
+              <th>Name</th>
+              <th>Showcase</th>
               <th>Show</th>
               <th>Order</th>
-              <th>Title</th>
-              <th>Description</th>
               <th>View</th>
               <th>Edit</th>
               <th>Delete</th>
             </tr>
           </thead>
           <tbody>
-            <% @showcase_videos.each do |showcase_video| %>
+            <% @showcase_images.each do |showcase_image| %>
               <tr>
-                <td><%= image_tag showcase_video.thumbnail, class: 'img-responsive', style: 'max-width: 250px' %></td>
-                <td><%= showcase_video.showcase_type %></td>
-                <td><%= showcase_video.show %></td>
-                <td><%= showcase_video.order %></td>
-                <td><%= showcase_video.title %></td>
-                <td><%= showcase_video.description %></td>
-                <td><%= link_to 'Show', showcase_video %></td>
-                <td><%= link_to 'Edit', edit_showcase_video_path(showcase_video) %></td>
-                <td><%= link_to 'Destroy', showcase_video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                <td><%= image_tag showcase_image.file.thumb %></td>
+                <td><%= showcase_image.name %></td>
+                <td><%= showcase_image.showcase_type %></td>
+                <td><%= showcase_image.show %></td>
+                <td><%= showcase_image.order %></td>
+
+                <td><%= link_to 'Show', showcase_image %></td>
+                <td><%= link_to 'Edit', edit_showcase_image_path(showcase_image) %></td>
+                <td><%= link_to 'Destroy', showcase_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               </tr>
             <% end %>
          </tbody>
          <tfoot>
           <tr>
-             <th>File</th>
-              <th>Showcase type</th>
+              <th>Name</th>
+              <th>Showcase</th>
               <th>Show</th>
               <th>Order</th>
-              <th>Title</th>
-              <th>Description</th>
               <th>View</th>
               <th>Edit</th>
               <th>Delete</th>
