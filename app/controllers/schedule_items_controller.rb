@@ -1,6 +1,6 @@
 class ScheduleItemsController < ApplicationController
   before_action :set_schedule_item, only: [:show, :edit, :update, :destroy]
-  layout 'adminlte'
+  layout 'black_dashboard'
   # GET /schedule_items
   # GET /schedule_items.json
   def index
