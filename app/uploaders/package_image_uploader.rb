@@ -25,7 +25,7 @@ class PackageImageUploader < CarrierWave::Uploader::Base
 
   # Process files as they are uploaded:
   process :fix_exif_rotation
-  process resize_to_fill: [250, 250]
+  #process resize_to_fill: [250, 250]
 
 
   def fix_exif_rotation #this is my attempted solution
