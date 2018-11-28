@@ -1,0 +1,4 @@
+This is a Brave Payments publisher verification file.
+
+Domain: nomcre.com
+Token: 62a119ae1e47cce2fe6a2b3500cb7e2689b1de416b1034dc396a091d70bf669f
