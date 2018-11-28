@@ -1,7 +1,7 @@
 class LeadsController < ApplicationController
   before_action :set_lead, only: [:show, :edit, :update, :destroy]
   before_action :authorize, except: [:create]
-  layout 'adminlte'
+  layout 'black_dashboard'
   # GET /leads
   # GET /leads.json
   def index

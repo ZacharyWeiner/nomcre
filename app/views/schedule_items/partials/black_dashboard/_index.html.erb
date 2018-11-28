@@ -1,0 +1,12 @@
+<%= link_to "<i class='fa fa-calendar'></i> Add Travel Plan".html_safe, new_schedule_item_path, class: 'btn btn-primary float-right' %>
+<div class="card card-timeline card-plain">
+
+  <div class="card-body">
+    <ul class="timeline timeline-simple">
+      <% @schedule_items.each do |si| %>
+      <%= render :partial => 'schedule_items/partials/black_dashboard/schedule_item', :locals => {:schedule_item => si } %>
+      <% end %>
+    </ul>
+  </div>
+</div>
+

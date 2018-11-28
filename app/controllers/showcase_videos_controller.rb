@@ -69,7 +69,7 @@ class ShowcaseVideosController < ApplicationController
 
   private
     def set_layout
-      theme = 'adminlte'
+      theme = 'black_dashboard'
        if action_name == "play"
           theme = 'khaki'
        end

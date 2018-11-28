@@ -1,0 +1,57 @@
+
+
+<%= form_for(task) do |f| %>
+
+<div class="card card-user">
+  <div class="card-body">
+    <p class="card-text">
+      </p><div class="author">
+        <div class="block block-one"></div>
+        <div class="block block-two"></div>
+        <div class="block block-three"></div>
+        <div class="block block-four"></div>
+        <a href="javascript:void(0)">
+          <ion-icon name='checkmark-circle-outline' size='large' ></ion-icon>
+          <h5 class="title">New Task</h5>
+        </a>
+        <p class="description">
+
+            <% if task.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(task.errors.count, "error") %> prohibited this task from being saved:</h2>
+
+                <ul>
+                <% task.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="form-group ">
+              <%= f.label :description %>
+              <%= f.text_area :description, class: 'form-control', autofocus: true, :placeholder => 'Add the description of your task here ... ' %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :deadline %>
+              <%= f.date_select :deadline, class: 'form-control' %>
+            </div>
+            <%= f.hidden_field :user_id, :value => current_user.id%>
+
+
+        </p>
+      </div>
+    <p></p>
+    <div class="card-description">
+
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="actions text-center">
+      <%= button_tag( :class => "btn btn-success") do %>
+        <ion-icon name='checkmark'></ion-icon> Add
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

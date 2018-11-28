@@ -2,7 +2,7 @@ class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
   before_action :authorize
-  layout 'adminlte'
+  layout 'black_dashboard'
   # GET /locations
   # GET /locations.json
   def index

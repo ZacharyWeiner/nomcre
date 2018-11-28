@@ -3,6 +3,7 @@ class ContactsController < ApplicationController
   before_action :authorize, only: [:index, :show, :edit, :update, :destroy]
   # GET /contacts
   # GET /contacts.json
+  layout 'black_dashboard'
   def index
 
     @contacts = Contact.all

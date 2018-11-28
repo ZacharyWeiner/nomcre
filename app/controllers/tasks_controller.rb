@@ -1,10 +1,11 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy, :complete]
-  layout 'adminlte'
+  layout 'black_dashboard'
   # GET /tasks
   # GET /tasks.json
   def index
     @tasks = Task.where(user: current_user).where(completed: false).order(:deadline)
+    @completed_tasks = Task.where(user: current_user).where(completed: true).order(:deadline).limit(100);
     @notifications = Notification.where(user: current_user).where(notification_type: "Task").where(read: false)
     @notifications.each do |note|
       note.read = true

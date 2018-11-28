@@ -1,0 +1,55 @@
+<%= form_with(model: contact, local: true) do |form| %>
+<div class="card card-user">
+  <div class="card-body">
+    <p class="card-text">
+      </p><div class="author">
+        <div class="block block-one"></div>
+        <div class="block block-two"></div>
+        <div class="block block-three"></div>
+        <div class="block block-four"></div>
+        <a href="javascript:void(0)">
+          <ion-icon name='contact' size='large' ></ion-icon>
+          <h5 class="title">New Contact</h5>
+        </a>
+        <p class="description">
+
+            <% if contact.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+
+                <ul>
+                <% contact.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="form-group ">
+              <%= form.label :name %>
+              <%= form.text_field :name, id: :contact_name, class: 'form-control' %>
+            </div>
+
+            <div class="form-group">
+              <%= form.label :email %>
+              <%= form.text_field :email, id: :contact_email, class: 'form-control' %>
+            </div>
+            <div class="form-group">
+              <%= form.label :message %>
+              <%= form.text_field :message, id: :contact_message, class: 'form-control' %>
+            </div>
+        </p>
+      </div>
+    <p></p>
+    <div class="card-description">
+
+    </div>
+  </div>
+  <div class="card-footer">
+    <div class="actions text-center">
+      <%= button_tag( :class => "btn btn-success") do %>
+        <ion-icon name='checkmark'></ion-icon> Save
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

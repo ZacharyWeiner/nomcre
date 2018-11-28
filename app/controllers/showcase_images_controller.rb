@@ -1,7 +1,7 @@
 class ShowcaseImagesController < ApplicationController
   before_action :set_showcase_image, only: [:show, :edit, :update, :destroy]
   before_action :authorize
-  layout 'adminlte'
+  layout 'black_dashboard'
   # GET /showcase_images
   # GET /showcase_images.json
   def index

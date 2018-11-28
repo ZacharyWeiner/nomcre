@@ -2,7 +2,7 @@ class CollectionItemsController < ApplicationController
   before_action :set_collection_item, only: [:show, :edit, :update, :destroy, :move_up, :move_down, :make_header]
   before_action :set_collection
   before_action :authenticate_user!, except: [:index, :show]
-  layout 'adminlte'
+  layout 'black_dashboard'
   # GET /collection_items
   # GET /collection_items.json
   def index

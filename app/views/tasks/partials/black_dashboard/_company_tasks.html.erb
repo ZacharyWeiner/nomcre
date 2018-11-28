@@ -1,0 +1,114 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-category">Tasks</h5>
+    <h3 class="card-title">Toggle Tasks </h3>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-lg-3 col-md-6">
+        <!--
+                            color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+                        -->
+        <ul class="nav nav-pills nav-pills-primary nav-pills-icons flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#link10">
+              <i class="tim-icons"><ion-icon name="checkbox-outline"></ion-icon></i> My Tasks
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#link11">
+              <i class="tim-icons"><ion-icon name="checkmark-circle-outline"></ion-icon></i> Other Tasks
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#link12">
+              <i class="tim-icons"><ion-icon name="done-all"></ion-icon></i> Completed
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-8">
+        <div class="tab-content">
+          <div class="tab-pane active" id="link10">
+            <!-- Tab 1 Content -->
+            <table class="table">
+              <tbody>
+                <% tasks.where(can_accept: 'company' ).each do |task| %>
+                <tr>
+                  <td>
+                    <p class="title"> <%= task.proposal.title %></p>
+                    <p class="text-info"><%= task.description %></p>
+                  </td>
+                  <td>
+                    <% if task.deadline > Date.today %>
+                    <p class="text-success"><i class="fa fa-clock-o"></i>  <%= (task.deadline - Date.today).to_int %> days</p>
+                  <% else %>
+                    <p class="text-danger"><i class="fa fa-clock-o"></i>  <%= time_ago_in_words(task.deadline - Date.today) %> days</p>
+                  <% end %>
+                  </td>
+                  <td class="td-actions text-right">
+                    <%= link_to task_task_complete_path(task), class: "btn btn-link btn-primary", title: "Complete", :data => { :original_title => 'Tooltip on Top'}  do  %>
+                      <i class="tim-icons"><ion-icon name="checkmark" size='large'></ion-icon></i>
+                    <% end %>
+                  </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <!-- End Tab 1 Content -->
+          </div>
+          <div class="tab-pane" id="link11">
+            <table class="table">
+              <tbody>
+                <% tasks.where(can_accept: 'creative' ).each do |task| %>
+                <tr>
+                  <td>
+                    <p class="title"> <%= task.proposal.title %></p>
+                    <p class="text-info"><%= task.description %></p>
+                  </td>
+                  <td>
+                    <% if task.deadline > Date.today %>
+                    <p class='text-success'> <%= (task.deadline - Date.today).to_int %> days</p>
+                  <% else %>
+                    <p class="text-danger"> <%= (task.deadline - Date.today).to_int %> days</p>
+                  <% end %>
+                  </td>
+                  <td class="td-actions text-right">
+                    <%= link_to task_task_complete_path(task), class: "btn btn-primary btn-link", title: "Complete", :data => { :original_title => 'Tooltip on Top'}  do  %>
+                       <i class="tim-icons"><ion-icon name="checkmark" size='large'></ion-icon></i>
+                    <% end %>
+                  </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane" id="link12">
+            <!-- Tab 1 Content -->
+            <table class="table">
+              <tbody>
+                <% completed.where(can_accept: 'company' ).each do |task| %>
+                <tr>
+                  <td>
+                    <p class="title"> <%= task.proposal.title %></p>
+                    <p class="text-info"><%= task.description %></p>
+                  </td>
+                  <td>
+                    <p class="text-success"><i class="fa fa-clock-o"></i>  <%= time_ago_in_words((task.deadline - Date.today)) %></p>
+                  </td>
+                  <td class="td-actions text-right">
+                    <% link_to task_task_complete_path(task), class: "btn btn-link btn-primary", title: "Complete", :data => { :original_title => 'Tooltip on Top'}  do  %>
+                      <i class="tim-icons"><ion-icon name="checkmark" size='large'></ion-icon></i>
+                    <% end %>
+                  </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <!-- End Tab 1 Content -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -36,7 +36,7 @@
 </p>
 <p>
   <strong>Next contact:</strong>
-  <%= @lead.next_contact_time.strftime('%H:%M') %>
+  <%= @lead.next_contact_time.strftime('%H:%M') unless @lead.next_contact_time == nil %>
 </p>
 
 

@@ -1,0 +1,33 @@
+
+<div class="card card-user">
+  <div class="card-body">
+    <p class="card-text">
+      </p><div class="author">
+        <div class="block block-one"></div>
+        <div class="block block-two"></div>
+        <div class="block block-three"></div>
+        <div class="block block-four"></div>
+        <a href="javascript:void(0)">
+          <h5 class="title"><%= @contact.name %></h5>
+        </a>
+        <p class="description">
+          <br>
+          <%= @contact.email %>
+        </p>
+      </div>
+    <p></p>
+    <div class="card-description text-center">
+      <%= @contact.message %>
+    </div>
+  </div>
+  <div class="card-footer text-center">
+
+  </div>
+</div>
+
+
+<% if current_user.role == 0 %>
+<%= link_to 'Edit', edit_contact_path(@contact) %> |
+<%= link_to 'Back', contacts_path %>
+<% end %>
+

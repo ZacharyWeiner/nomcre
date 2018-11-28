@@ -6,7 +6,11 @@ class PackageTypesController < ApplicationController
   # GET /package_types
   # GET /package_types.json
   def index
-    @package_types = PackageType.where(show_on_index: true)
+    if current_user && current_user.role = 0
+      @package_types = PackageType.all
+    else
+      @package_types = PackageType.where(show_on_index: true)
+    end
   end
 
   # GET /package_types/1
@@ -77,7 +81,7 @@ class PackageTypesController < ApplicationController
     end
 
     def set_layout
-      if action_name == "show" || (action_name == 'index' && !current_user)
+      if action_name == "show" || (action_name == 'index' && (!current_user || current_user.role == nil))
         return 'khaki'
       else
         return 'black_dashboard'

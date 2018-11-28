@@ -1,7 +1,7 @@
 class LeadNotesController < ApplicationController
   before_action :set_lead_note, only: [:show, :edit, :update, :destroy]
   before_action :authorize
-  layout 'adminlte'
+  layout 'black_dashboard'
 
   # GET /lead_notes
   # GET /lead_notes.json
