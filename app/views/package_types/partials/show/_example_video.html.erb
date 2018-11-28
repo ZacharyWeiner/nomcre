@@ -19,7 +19,7 @@
         <h2 class="h2 nk-title"><%= "#{@package_type.title} Example Video"%></h2>
         <h3 class="nk-sub-title"><%= "#{@package_type.subtitle}"%></h3>
         <div class="nk-gap"></div>
-        <p><%= "#{@package_type.example_image_description} "%></p>
+        <p><%= simple_format("#{@package_type.example_image_description} ")%></p>
 
         <div class="nk-gap-5"></div>
       </div>
