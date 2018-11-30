@@ -1,0 +1,99 @@
+<%= render 'collection_items/errors', object: @collection_item %>
+
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-category">Collection - <%= @collection.title %></h5>
+    <h3 class="card-title">Manage Phots and Videos In This Collection</h3>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-lg-3 col-md-6">
+        <ul class="nav nav-pills nav-pills-primary nav-pills-icons flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#collection_items">
+              <i class="tim-icons"><ion-icon name='list'></ion-icon></i> Collection Items
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#add_photo">
+              <i class="tim-icons"><ion-icon name='image'></ion-icon></i> Add Photo
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#add_video">
+              <i class="tim-icons"><ion-icon name='videocam'></ion-icon></i> Add Video
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-8">
+        <div class="tab-content">
+          <div class="tab-pane active" id="collection_items">
+            <% Collection.find(params[:collection_id]).collection_items.order(:order).each do |ci| %>
+              <div class='row' >
+                <div class='col-xs-3'>
+                    <% if ci.item_type == 'video' %>
+                      <%= video_tag ci.video, controls: true, style: 'height: 200px; width:200px;  object-fit: contain',  oncontextmenu:"return false;"%>
+                    <% else %>
+                      <%= image_tag ci.file_url(:small).to_s, class: 'img-fluid', style: 'height: 200px; width:200px;  object-fit: contain',  oncontextmenu:"return false;"%>
+                    <%end%>
+                    <br>
+                    <% if ci.is_header == true %>
+                    <%= link_to "Is Header", collection_item_make_header_path(ci), class: 'btn btn-success disabled'%>
+                  <% else %>
+                    <%= link_to "Make Header", collection_item_make_header_path(ci), class: 'btn btn-primary'%>
+                  <% end %>
+                </div>
+                <div class='col-xs-2' style='padding-top: 100px;'>
+                    <span class="text"><%= ci.item_type %></span>
+                </div>
+                <div class='col-sm-3' style='padding-top: 100px;'>
+                    <small class="label label-danger"><i class="fa fa-clock-o"></i> <%= time_ago_in_words(ci.created_at)%> ago</small>
+                </div>
+                <div class='col-xs-4' style='padding-top: 100px;'>
+                  <%= link_to collection_item_move_up_path(ci), class: 'success' do %>
+                    <i class='fa fa-arrow-up'></i>
+                  <%end%>
+                  <%= link_to collection_item_move_down_path(ci) do %>
+                    <i class='fa fa-arrow-down ' style='color:red'></i>
+                  <%end%>
+                  <%= link_to collection_collection_item_path(@collection, ci)  do %>
+                    <i class='fa fa-eye'></i>
+                  <% end %>
+                  <%= link_to collection_collection_item_path(@collection, ci), method: :delete  do %>
+                    <i class='fa fa-trash'></i>
+                  <% end %>
+                </div>
+              </div>
+
+          <% end %>
+
+          </div>
+          <div class="tab-pane" id="add_photo">
+            <%= render 'form', collection_item: @collection_item %>
+          </div>
+          <div class="tab-pane" id="add_video">
+            <%= render 'video_form', collection_item: @collection_item %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+  <!-- todo text -->
+
+  <!-- Emphasis label -->
+
+  <!-- General tools such as edit or delete-->
+  <div class="tools">
+
+    <br><br>
+
+  </div>
+
