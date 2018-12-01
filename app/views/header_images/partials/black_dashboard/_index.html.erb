@@ -1,0 +1,80 @@
+<style type="text/css">.spacer{padding:4px;}</style>
+<div class="card">
+              <div class="card-header">
+                <div class="tools float-right">
+                  <div class="dropdown">
+                    <button type="button" class="btn btn-default dropdown-toggle btn-link btn-icon" data-toggle="dropdown">
+                      <i class="tim-icons"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                      <a class="dropdown-item" href="javascript:void(0)">Action</a>
+                      <a class="dropdown-item" href="javascript:void(0)">Another action</a>
+                      <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
+                      <a class="dropdown-item text-danger" href="javascript:void(0)">Remove Data</a>
+                    </div>
+                  </div>
+                </div>
+                <h4 class="card-title">Headrr Images</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-shopping">
+                    <thead class="">
+                      <tr>
+                        <th class="text-center">
+                        </th>
+                        <th>Title</th>
+                        <th class="text-right">Homepage</th>
+                        <th class="text-right">Showcase</th>
+                        <th class="text-right">Creators</th>
+                        <th class="text-right">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% @header_images.each do |header_image| %>
+                      <tr>
+                        <td>
+                          <div class="img-container">
+                            <%= image_tag header_image.file %>
+                          </div>
+                        </td>
+                        <td class="td-name">
+                          <a href="javascript:void(0)"><%= header_image.title %></a>
+                         <!--  <br> -->
+                          <!-- <small>by Cristianis</small> -->
+                        </td>
+                        <td>
+                          <%=  header_image.homepage? %>
+                        </td>
+                        <td class="td-number">
+                          <%=  header_image.showcase? %>
+                        </td>
+                        <td class="td-number">
+                          <%=  header_image.creators? %>
+                        </td>
+                        <td class="td-number">
+                          <div class="btn-group">
+                            <%= link_to header_image do %>
+                              <ion-icon name='eye'></ion-icon>
+                            <% end %>
+                            <span class='spacer'></span>
+                            <%= link_to edit_header_image_path(header_image) do %>
+                            <ion-icon name='paper'></ion-icon>
+                            <% end %>
+                            <span class='spacer'></span>
+                            <%= link_to  header_image, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                            <ion-icon name='trash'></ion-icon>
+                            <% end %>
+                          </div>
+                        </td>
+                      </tr>
+                      <% end %>
+                    </tbody>
+                  </table>
+                  <!-- <button type="button" rel="tooltip" class="btn btn-info btn-round float-right mr-5" data-original-title="" title="">
+                    Complete Purchase
+                    <i class="tim-icons icon-minimal-right"></i>
+                  </button> -->
+                </div>
+              </div>
+            </div>

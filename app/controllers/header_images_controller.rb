@@ -1,6 +1,6 @@
 class HeaderImagesController < ApplicationController
   before_action :set_header_image, only: [:show, :edit, :update, :destroy]
-  layout 'adminlte'
+  layout 'black_dashboard'
 
   # GET /header_images
   # GET /header_images.json

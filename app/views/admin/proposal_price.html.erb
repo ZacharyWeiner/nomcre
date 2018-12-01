@@ -1,6 +1,7 @@
 <%= form_for @proposal, class: 'form-horizontal' do |f| %>
+  <div class='form-group'>
   <%= f.label :price %>
-  <%= f.number_field :price %>
-
-  <%= f.submit %>
+  <%= f.number_field :price, class: 'form-control' %>
+  </div>
+  <%= f.submit "Save", class: 'btn btn-primary' %>
 <% end %>

@@ -271,21 +271,26 @@
           </div>
         </div></div>
         <div class="col-md-8 col-xl-6 chat" >
-          <div class="card" style="min-height: 600px">
+          <div class="card" style="min-height: 600px; max-height: 800px; overflow-y: scroll">
             <div class="card-header msg_head">
               <div class="d-flex bd-highlight">
                 <div class="img_cont">
-                  <img src="https://devilsworkshop.org/files/2013/01/enlarged-facebook-profile-picture.jpg" class="rounded-circle user_img">
+                  <!-- <img src="https://devilsworkshop.org/files/2013/01/enlarged-facebook-profile-picture.jpg" class="rounded-circle user_img"> -->
+                  <% if current_user.user_type=='creative'%>
+                    <%= image_tag @chatroom.users.where.not(id:  current_user.id).first.user_profile.safe_profile_image_url, class: 'rounded-circle user_img' %>
+                  <% else %>
+                    <%= image_tag @chatroom.users.where.not(id: current_user.id).first.user_profile.safe_profile_image_url, class: 'rounded-circle user_img' %>
+                  <% end %>
                   <span class="online_icon"></span>
                 </div>
                 <div class="user_info">
                   <span>Chat With <%= @chatroom.proposal.company.name %></span>
                   <p>1767 Messages</p>
                 </div>
-                <div class="video_cam">
+                <!-- <div class="video_cam">
                   <span><i class="fas fa-video"></i></span>
                   <span><i class="fas fa-phone"></i></span>
-                </div>
+                </div> -->
               </div>
               <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
               <div class="action_menu">
@@ -302,10 +307,13 @@
               <% if m.user == current_user %>
                 <div class="d-flex justify-content-start mb-4">
                   <div class="img_cont_msg">
-                    <%= image_tag m.user.user_profile.safe_profile_image_url, class: 'rounded-circle user_img_msg' %>
+                    <%= image_tag m.user.user_profile.safe_profile_image_url, class: 'rounded-circle user_img_msg', style: 'min-width: 40px'%>
                   </div>
                   <div class="msg_cotainer">
                     <%= m.content %>
+                    <% if m.file %>
+                      <%= image_tag m.file, class: 'img-fluid'%>
+                    <% end %>
                     <span class="msg_time"></span>
                   </div>
                 </div>
@@ -313,6 +321,9 @@
                 <div class="d-flex justify-content-end mb-4">
                   <div class="msg_cotainer_send">
                     <%= m.content %>
+                    <% if m.file %>
+                      <%= image_tag m.file, class: 'img-fluid' %>
+                    <% end %>
                     <span class="msg_time_send"></span>
                   </div>
                   <div class="img_cont_msg">
@@ -323,7 +334,7 @@
             <% end %>
             </div>
             <div class="card-footer">
-              <div class="input-group">
+              <!-- <div class="input-group">
                 <div class="input-group-append">
                   <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
                 </div>
@@ -331,7 +342,8 @@
                 <div class="input-group-append">
                   <span class="input-group-text send_btn"><i class="fas fa-location-arrow"></i></span>
                 </div>
-              </div>
+              </div> -->
+              <%= render :partial => 'messages/message_form', :locals => {:message => @message, :chatroom => @chatroom }%>
             </div>
           </div>
         </div>
