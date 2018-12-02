@@ -11,24 +11,26 @@
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : Rails.application.secrets[:site_title] %>">
     <title><%= content_for?(:title) ? yield(:title) : Rails.application.secrets[:site_title] %></title>
 
-    <%= stylesheet_link_tag 'application_back', media: 'all' %>
+    <%= stylesheet_link_tag 'black_dashboard', media: 'all' %>
     <%= csrf_meta_tags %>
     <script src="https://use.fontawesome.com/1494e0c4f8.js"></script>
+    <link href="https://unpkg.com/ionicons@4.4.7/dist/css/ionicons.min.css" rel="stylesheet">
   </head>
-  <body class="hold-transition login-page" >
+  <body class="" >
+    <%= render 'shared/black_dashboard/nav/logged_out/top_menu' %>
+    <div class="wrapper wrapper-full-page ">
+      <div class="full-page login-page ">
+         <div class="content">
+          <div class="container">
 
-    <div class="login-box">
-      <%= render partial: '/shared/adminlte/messages' %>
-      <div class="login-logo">
-        <a href="#"><b>NOM</b>ADIC <b>CRE</b>ATIVE</a>
-      </div>
+              <%= yield %>
 
-      <div class="login-box-body">
-        <%= yield %>
+          </div>
+        </div>
       </div>
     </div>
-
-  <%= javascript_include_tag 'application_back' %>
+  <%= javascript_include_tag 'black_dashboard' %>
+  <script src="https://unpkg.com/ionicons@4.4.7/dist/ionicons.js"></script>
 
   <% if content_for?(:added_scripts) %>
     <%= yield :added_scripts %>

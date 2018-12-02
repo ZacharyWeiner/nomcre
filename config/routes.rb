@@ -155,6 +155,7 @@ Rails.application.routes.draw do
   get 'black_dashboard/widgets', to: 'black_dashboard#widgets', as: 'black_dashboard_widgets'
   get 'black_dashboard/charts', to: 'black_dashboard#charts', as: 'black_dashboard_charts'
   get 'black_dashboard/calendar', to: 'black_dashboard#calendar', as: 'black_dashboard_calendar'
+  get 'black_dashboard/nomcre_login', to: 'black_dashboard#nomcre_login', as: 'black_dashboard_nomcre_login'
 
   #root 'khaki#nomcre_home'
   root 'application#home'

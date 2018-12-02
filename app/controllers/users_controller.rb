@@ -9,7 +9,6 @@ class UsersController < ApplicationController
   end
 
   def set_user_type
-    byebug
     if current_user.nil?
       session[:user_type] = params[:user_type]
       cookies[:user_type] = params[:user_type]
