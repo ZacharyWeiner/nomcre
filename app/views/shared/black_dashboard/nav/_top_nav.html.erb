@@ -1,3 +1,8 @@
+<style type="text/css">
+  .top-nav-icon{
+    font-size: 24px;
+  }
+</style>
 <% @notifications = Notification.where(user: current_user).where(read:false).where.not(notification_type: "New Message").where.not(notification_type: "Task") %>
 <% @messages = Notification.where(user: current_user, notification_type:  "New Message").where(read:false) %>
 <!-- Navbar -->
@@ -26,16 +31,16 @@
           </button>
           <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav ml-auto">
-              <li class="search-bar input-group">
+              <!-- <li class="search-bar input-group">
                 <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal">
-                  <ion-icon name="search" size='large' class='tim-icons'></ion-icon>
+                  <ion-icon name="search" size='small' class='tim-icons'></ion-icon>
                   <span class="d-lg-none d-md-block">Search</span>
                 </button>
-              </li>
-              <li class="dropdown nav-item">
-                <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
+              </li> -->
+              <li class="dropdown nav-item ">
+                <a href="javascript:void(0)" class="dropdown-toggle nav-link " data-toggle="dropdown">
                   <div class="<%= @notifications.count > 0 ? 'notification': 'none' %> d-none d-lg-block d-xl-block"></div>
-                  <ion-icon name="pulse" size='large' class='tim-icons <%= @notifications.count > 0 ? 'text-primary': 'none' %>'></ion-icon>
+                  <ion-icon name="pulse" class='tim-icons top-nav-icon <%= @notifications.count > 0 ? 'text-primary': 'none' %>'></ion-icon>
 
                   <p class="d-lg-none">
                     Notifications
@@ -73,7 +78,7 @@
               <li class="dropdown nav-item">
                 <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
                   <div class="<%= @messages.count > 0 ? 'notification': 'none' %> d-none d-lg-block d-xl-block"></div>
-                  <ion-icon name="mail-open" size='large' class='tim-icons <%= @messages.count > 0 ? 'text-primary': 'none' %>'></ion-icon>
+                  <ion-icon name="mail-open" class='tim-icons top-nav-icon <%= @messages.count > 0 ? 'text-primary': 'none' %>'></ion-icon>
 
                   <p class="d-lg-none">
                     Messages
