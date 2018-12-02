@@ -1,3 +1,4 @@
+<% @notifications = Notification.where(user: current_user).where(read:false).where.not(notification_type: "New Message").where.not(notification_type: "Task") %>
 <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
         <div class="container-fluid">
@@ -32,28 +33,25 @@
               </li>
               <li class="dropdown nav-item">
                 <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                  <div class="notification d-none d-lg-block d-xl-block"></div>
+                  <div class="<%= @notifications.count > 0 ? 'notification': 'none' %> d-none d-lg-block d-xl-block"></div>
                   <ion-icon name="pulse" size='large' class='tim-icons'></ion-icon>
+
                   <p class="d-lg-none">
                     Notifications
                   </p>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
-                  <li class="nav-link">
-                    <a href="#" class="nav-item dropdown-item">Mike John responded to your email</a>
-                  </li>
-                  <li class="nav-link">
-                    <a href="javascript:void(0)" class="nav-item dropdown-item">You have 5 more tasks</a>
-                  </li>
-                  <li class="nav-link">
-                    <a href="javascript:void(0)" class="nav-item dropdown-item">Your friend Michael is in town</a>
-                  </li>
-                  <li class="nav-link">
-                    <a href="javascript:void(0)" class="nav-item dropdown-item">Another notification</a>
-                  </li>
-                  <li class="nav-link">
-                    <a href="javascript:void(0)" class="nav-item dropdown-item">Another one</a>
-                  </li>
+                  <% @notifications.each do |notification| %>
+                    <li class='nav-link'>
+                      <% if notification.notification_type == "New Request" %>
+                        <%= link_to "New Work Request", proposal_requests_path, class: 'nav-item dropdown-item' %>
+                      <% elsif notification.notification_type == "Request Accepted" %>
+                        <%= link_to "Your Request Has Been Accepted", proposal_path(notification.notification_object_id), class: 'nav-item dropdown-item' %>
+                      <% elsif notification.notification_type == "Proposal Assigned" %>
+                        <%= link_to "You have a new job", proposal_path(notification.notification_object_id), class: 'nav-item dropdown-item' %>
+                      <% end %>
+                    </li>
+                    <% end %>
                 </ul>
               </li>
               <li class="dropdown nav-item">
@@ -68,14 +66,14 @@
                 </a>
                 <ul class="dropdown-menu dropdown-navbar">
                   <li class="nav-link">
-                    <a href="javascript:void(0)" class="nav-item dropdown-item">Profile</a>
+                    <%= link_to 'My Profile', user_profile_path(@current_user.user_profile), class: 'nav-item dropdown-item' unless current_user.user_profile.nil? %>
                   </li>
                   <li class="nav-link">
-                    <a href="javascript:void(0)" class="nav-item dropdown-item">Settings</a>
+                     <%= link_to 'Company Profile', company_path(@current_user.company), class: 'nav-item dropdown-item'unless current_user.company.nil? %>
                   </li>
                   <li class="dropdown-divider"></li>
                   <li class="nav-link">
-                    <a href="javascript:void(0)" class="nav-item dropdown-item">Log out</a>
+                    <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'nav-item dropdown-item' %>
                   </li>
                 </ul>
               </li>
