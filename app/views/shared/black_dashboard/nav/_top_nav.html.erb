@@ -41,6 +41,7 @@
                   </p>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
+                  <%if @notifications.count > 0 %>
                   <% @notifications.each do |notification| %>
                     <li class='nav-link'>
                       <% if notification.notification_type == "New Request" %>
@@ -51,7 +52,21 @@
                         <%= link_to "You have a new job", proposal_path(notification.notification_object_id), class: 'nav-item dropdown-item' %>
                       <% end %>
                     </li>
+
+
                     <% end %>
+                  <% elsif %>
+                  <li class='nav-link'>
+                       0 New Notifications
+                  </li>
+                  <% end %>
+                    <li class="separator d-lg-none"></li>
+                    <li class="nav-link">
+                      <%= link_to notifications_path, class: 'nav-item dropdown-item text-center' do %>
+                      <hr>
+                        <ion-icon name='eye'></ion-icon> View All
+                        <% end %>
+                    </li>
                 </ul>
               </li>
               <li class="dropdown nav-item">
