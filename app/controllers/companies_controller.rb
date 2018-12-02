@@ -1,7 +1,7 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
   before_action :authorize, except: [:new, :create, :show, :send_welcome_email, :invoices]
-  layout 'adminlte'
+  layout 'black_dashboard'
 
   # GET /companies
   # GET /companies.json
