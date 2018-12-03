@@ -1,65 +1,7 @@
-<div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-aqua">
-            <div class="inner">
-              <h3>Deadline</h3>
-
-              <p><%= @proposal.deadline %></p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-calendar"></i>
-            </div>
-            <a href="#" class="small-box-footer"><!-- More info <i class="fa fa-arrow-circle-right"></i> --></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3><%= @proposal.shot_list_items.count%> of 25</h3>
-
-              <p>Available Shots</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-list"></i>
-            </div>
-            <a href="#" class="small-box-footer"><!-- More info <i class="fa fa-arrow-circle-right"></i> --></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-yellow">
-            <div class="inner">
-              <h3><%= @proposal.background %></h3>
-
-              <p>Setting</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-image"></i>
-            </div>
-            <a href="#" class="small-box-footer"><!-- More info <i class="fa fa-arrow-circle-right"></i> --></a>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-green">
-            <div class="inner">
-              <h3><%= @proposal.shoot_type %></h3>
-
-              <p>Style</p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-certificate"></i>
-            </div>
-            <a href="#" class="small-box-footer"><!-- More info <i class="fa fa-arrow-circle-right"></i> --></a>
-          </div>
-        </div>
-        <!-- ./col -->
-</div>
+<style type="text/css">
+  .alert{min-height: 141px;}
+</style>
+<%= render :partial => 'shot_list_items/partials/black_dashboard/widgets/shot_list_widgets_row', :locals => {:proposal => @proposal} %>
 <h1>Editing Shot List Item</h1>
 
 <%= render 'form', shot_list_item: @shot_list_item %>

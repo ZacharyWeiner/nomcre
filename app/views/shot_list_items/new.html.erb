@@ -1,44 +1,4 @@
-<div class="row">
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <%= render :partial => 'proposals/partials/widgets/deadline_widget', :locals =>{:proposal => @proposal} %>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <% if @proposal.proposal_type == 'photo' %>
-            <%= render :partial => 'proposals/partials/widgets/photo_shot_count_widget', :locals =>{:proposal => @proposal} %>
-          <% else %>
-            <%= render :partial => 'proposals/partials/widgets/video_shot_count_widget', :locals =>{:proposal => @proposal} %>
-          <% end %>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
-          <div class="small-box bg-teal-gradient">
-            <div class="inner">
-              <h3>Backdrop</h3>
-
-              <p><%= @proposal.background %></p>
-            </div>
-            <div class="icon">
-              <i class="fa fa-image"></i>
-            </div>
-             <% unless  (@proposal.company.users.include?(current_user) == false || @proposal.paid == true) %>
-              <%= link_to edit_proposal_path(@proposal), class: 'small-box-footer'  do %>
-                 Edit <i class="fa fa-arrow-circle-right"></i>
-              <% end %>
-            <% end %>
-          </div>
-        </div>
-        <!-- ./col -->
-        <div class="col-lg-3 col-xs-6">
-          <%= render :partial => 'proposals/partials/widgets/shoot_type_widget', :locals =>{:proposal => @proposal} %>
-        </div>
-        <!-- ./col -->
-      </div>
-<h1>Add To Your Shot List </h1>
-
-<%= render 'form', shot_list_item: @shot_list_item %>
-
-<%= link_to '<i class="fa fa-arrow-left" ></i> Back'.html_safe, shot_list_items_path %>
+<style type="text/css">
+  .alert{min-height: 141px;}
+</style>
+<%= render 'shot_list_items/partials/black_dashboard/new'%>

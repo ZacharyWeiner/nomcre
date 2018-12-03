@@ -1,0 +1,4 @@
+<div class=''>
+  <label> Final Image (uploaded by creative) </label>
+  <%= form.file_field :upload, id: :shot_list_item_upload, class: 'form-control', onchange: "validateImage(this);", data: { max_file_size: 15.megabytes, disable_with: "<i class='fa fa-spinner fa-spin'></i> Signing In..." } %>
+</div>

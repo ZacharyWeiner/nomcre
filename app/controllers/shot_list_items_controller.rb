@@ -1,6 +1,6 @@
 class ShotListItemsController < ApplicationController
   before_action :set_shot_list_item, only: [:show, :edit, :update, :destroy]
-  layout 'adminlte'
+  layout 'black_dashboard'
   # GET /shot_list_items
   # GET /shot_list_items.json
   def index

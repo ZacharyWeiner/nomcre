@@ -1,0 +1,19 @@
+
+<div class="alert alert-primary">
+  <div class='row text-center'>
+    <div class='col-sm-12'>
+      <h3> <i class="fa fa-calendar fa-2x" style='font-size: 32px;'></i>   Deadline</h3>
+       <p><%= proposal.deadline.strftime("%A %b %d, %Y") %></p>
+        <small>[25 day minimum for best results]</small>
+    </div>
+  </div>
+  <% unless  (proposal.company.users.include?(current_user) == false || proposal.paid == true) %>
+  <div class='row'>
+    <div class='col-sm-12' style="padding-top:15%">
+        <%= link_to edit_proposal_path(@proposal), class: 'small-box-footer'  do %>
+           Edit <i class="fa fa-arrow-circle-right"></i>
+        <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>

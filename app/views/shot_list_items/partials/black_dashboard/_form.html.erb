@@ -1,0 +1,93 @@
+<% if params[:proposal_id] %>
+<% proposal = Proposal.find(params[:proposal_id]) %>
+<% end %>
+<%= form_with(model: shot_list_item, local: true) do |form| %>
+  <%= render :partial => 'shot_list_items/partials/black_dashboard/form/errors', :locals => {:shot_list_item => shot_list_item}%>
+
+  <%= render :partial => 'shot_list_items/partials/black_dashboard/form/description', :locals => {:shot_list_item => shot_list_item, :form => form }%>
+  <%= render :partial => 'shot_list_items/partials/black_dashboard/form/reference_image', :locals => {:shot_list_item => shot_list_item, :form => form }%>
+  <br>
+  <%= render :partial => 'shot_list_items/partials/black_dashboard/form/focus_point', :locals => {:shot_list_item => shot_list_item, :form => form }%>
+  <br>
+  <%= render :partial => 'shot_list_items/partials/black_dashboard/form/aspect_ratio', :locals => {:shot_list_item => shot_list_item, :form => form }%>
+  <%= form.hidden_field :item_type, :value => proposal.shoot_type %>
+
+  <% if proposal.shoot_type == 'Mixed'%>
+    <div class='box box-purple'>
+      <div class="box-header with-border">
+        <h4 class="box-title">Shot Type</h4>
+      </div>
+      <div class='row' style="margin:12px;">
+        <div class='col-md-4 col-sm-4 col-xs-4'>
+          <%= form.radio_button :item_type, "Lifestyle", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+          <%= form.label :lifestyle %>
+        </div>
+        <div class='col-md-4 col-sm-4 col-xs-4 '>
+          <%= form.radio_button :item_type, "Product", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
+          <%= form.label :product %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <% if current_user.user_type =='creative'%>
+  <%= render :partial => 'shot_list_items/partials/black_dashboard/form/upload', :locals => {:shot_list_item => shot_list_item, :form => form }%>
+  <% end %>
+  <% if params[:proposal_id] %>
+    <%= form.hidden_field :proposal_id, :value => proposal.id %>
+    <%= form.hidden_field :background, :value => proposal.background %>
+  <% end %>
+  <br>
+  <div class="actions">
+    <%= form.submit "Update List", id: 'uploadImageBtn', class: 'btn btn-success pull-right' %>
+  </div>
+<% end %>
+
+
+<!--
+
+<div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Sorry Something Went Wrong ... </h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p> </p>
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Please Wait While Your File Uploads ... </h5>
+      </div>
+      <div class="modal-body text-center">
+        <p> <i class="fa fa-spinner fa-spin" style="font-size:24px"></i></p>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
+ -->
+
+
+
+
+
+
+
+
+
+
