@@ -1,6 +1,6 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+
+<% form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="field">
@@ -36,8 +36,85 @@
   </div>
 <% end %>
 
-<h3>Cancel my account</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+
+
+<div class="card card-register card-white">
+        <div class="card-header">
+          <img class="card-img" src="https://s3-us-west-2.amazonaws.com/nomcre-rails/assets/black-dashboard/assets/img/card-primary.png" alt="Card image">
+          <h4 class="card-title">Edit Account</h4>
+        </div>
+        <div class="card-body">
+          <br><br><br><br><br>
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {method: :put, :class => "form"}) do |f| %>
+            <%= devise_error_messages! %>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="tim-icons"><ion-icon name='contact'></ion-icon></i>
+                </div>
+              </div>
+              <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Your Name' %>
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="tim-icons"><ion-icon name='mail'></ion-icon></i>
+                </div>
+              </div>
+              <%= f.email_field :email, autofocus: false, class: 'form-control', placeholder: 'Your Email' %>
+              <!-- <input type="text" placeholder="Email" class="form-control"> -->
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="tim-icons"><ion-icon name='lock'></ion-icon></i>
+                </div>
+              </div>
+              <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password' %>
+
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="tim-icons"><ion-icon name='lock'></ion-icon></i>
+                </div>
+              </div>
+               <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Password Confirmation' %>
+              <!-- <input type="text" class="form-control" placeholder="Password"> -->
+            </div>
+            <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
+              <br />
+            <div class="input-group">
+
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="tim-icons"><ion-icon name='lock'></ion-icon></i>
+                </div>
+              </div>
+
+               <%= f.password_field :current_password, autocomplete: "off", class: 'form-control', placeholder: 'Current Password' %>
+              <!-- <input type="text" class="form-control" placeholder="Password"> -->
+            </div>
+            <%= f.submit "Save", class: 'btn btn-primary btn-round btn-lg' %>
+          <% end %>
+        </div>
+        <div class="card-footer">
+        <h3>Cancel my account</h3>
+
+        <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger btn-link float-right' %></p>
+
+        <p><%= link_to "<ion-icon name='arrow-back'></ion-icon> Back".html_safe, :back, class: 'btn btn-info' %></p>
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+

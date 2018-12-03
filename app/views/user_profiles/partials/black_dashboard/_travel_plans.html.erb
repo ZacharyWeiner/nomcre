@@ -1,0 +1,44 @@
+<% sis = ScheduleItem.where(user_id: UserProfile.find(params[:id]).user_id) %>
+<% if sis.count == 0 %>
+  <div class="alert alert-warning alert-dismissible">
+    <h4><i class="icon fa fa-warning"></i> Wo0ps!</h4>
+    You Havent Added Any Travel Plans Yet!
+    </div>
+<% else %>
+<div class="card card-timeline card-plain">
+  <div class="card-body">
+    <ul class="timeline">
+      <% sis.each do |si| %>
+      <%color = cycle("info", "success", "primary", name:"color") -%>
+      <li class="<%= cycle("", "timeline-inverted") -%>" >
+        <div class="timeline-badge <%=color%>">
+          <i class="tim-icons"><ion-icon name="<%= cycle("paper-plane", "jet", name:"plane") -%>"></ion-icon></i>
+        </div>
+        <div class="timeline-panel">
+          <div class="timeline-heading">
+            <span class="badge badge-pill badge-<%=color%>">
+              <ion-icon name='calendar'></ion-icon> <%= si.start_date.strftime("%A %b %d, %Y") %>
+            </span>
+          </div>
+          <div class="timeline-body text-center">
+            <ion-icon name='pin' size='large' class= 'text-primary'></ion-icon>
+            <%= link_to schedule_item_path(si) do %>
+            <h3 class="card-title"> <%= si.location.name %> </h3>
+            <% if si.location.parent_id != nil %>
+              <h5 class="card-title"> <%= si.location.parent.name unless si.location.parent == nil %> </h5>
+            <% end %>
+            <% end %>
+
+          </div>
+          <h6 class='text-center'>
+            <i class="ti-time"></i>
+            <%= si.start_date.strftime("%A %b %d, %Y") %> - <%= si.end_date.strftime("%A %b %d, %Y") %>
+          </h6>
+        </div>
+      </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
+

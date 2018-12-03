@@ -1,0 +1,73 @@
+<% proposal = Proposal.find(activity.object_id)  %>
+<div class="card">
+  <div class="card-header" >
+    <h3 class="card-category">
+      <%= image_tag activity.user.user_profile.safe_profile_image_url, class: 'avatar'%>
+      <span class='pull-right' style='padding-top: 12px;'>
+        <%= activity.user.name  %> <%= action_text %> A Job
+      </span>
+      <hr>
+    </h3>
+  </div>
+
+  <div class="card-body">
+    <div class="card card-user">
+    <div class="card-body">
+      <p class="card-text">
+        <div class="author">
+          <div class="block block-one"></div>
+          <div class="block block-two"></div>
+          <div class="block block-three"></div>
+          <div class="block block-four"></div>
+           <%= link_to proposal_path(proposal) do %>
+            <h3 class="card-title"> <%= proposal.title %> </h3>
+            <% end %>
+            <%= image_tag proposal.company.logo, class: 'avatar'%>
+            <h5 class="title"><%= proposal.company.name %></h5>
+          <p class="description">
+            <span><i class='tim-icons'><ion-icon name="pin"></ion-icon></i> <%= proposal.location.name %></span>
+            <br>
+          </p>
+        </div>
+      </p>
+      <!-- <div class='row text-primary'>
+        <div class='col-md-4'></div>
+          <div class='col-md-4'>
+            <br>
+            <div class="row text-center">
+              <div class="col-sm-4 ">
+                <div class="description-block">
+                  <h5 class="description-header"><%= @user_profile.user.collection_items.count  %></h5>
+                  <span class="description-text"><i class='fa fa-camera fa'></i></span>
+                </div>
+              </div>
+              <div class="col-sm-4 ">
+                <div class="description-block">
+                  <h5 class="description-header">
+                    <%= @user_profile.user.proposals.where.not(completed: true).count %>
+                  </h5>
+                  <span class="description-text"><i class='fa fa-briefcase'></i></span>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="description-block">
+                  <h5 class="description-header">
+                    <%= @user_profile.user.proposals.where(completed: true).count %>
+                  </h5>
+                  <span class="description-text"><i class='fa fa-trophy'></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='col-md-4'></div>
+      </div> -->
+      <div class="card-description text-center">
+       <%= proposal.content %>
+     </div>
+    </div>
+    <div class="card-footer text-primary text-center">
+
+    </div>
+  </div>
+  </div>
+</div>

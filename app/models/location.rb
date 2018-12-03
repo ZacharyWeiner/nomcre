@@ -1,4 +1,13 @@
 class Location < ApplicationRecord
+
+  def parent
+    parent = nil
+    if self.parent_id != nil
+      parent = Location.find(self.parent_id)
+    end
+    return parent
+  end
+
   def self.locations_for_select
     regions  = Location.where(location_type: 'Region')
     countries = Location.where(location_type: 'Country').collect{|l| [l.name, l.id]}

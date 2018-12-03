@@ -1,3 +1,4 @@
+<%= link_to "Change your password", edit_user_registration_path, class: 'btn btn-danger float-right' %>
 <%= form_with(model: @user_profile, local: true) do |form| %>
   <% if @user_profile.errors.any? %>
     <div id="error_explanation">
@@ -113,6 +114,8 @@
       </div>
     </div>
     <br>
+    <%= form.submit "Save", class: 'btn btn-primary btn-block' %>
+
     <hr>
   <% end %>
 
@@ -120,16 +123,17 @@
 
 
   <div class="field">
+    <br>
     <div class='row'>
-      <div class='col-md-6'>
-        <div class="box box-widget widget-user">
+      <div class='col-md-6 text-center'>
+        <div class="box box-widget widget-user ">
             <!-- Add the bg color to the header using any of the bg-* classes -->
 
-            <div class="widget-user-header bg-black" style="background: url('../dist/img/photo1.png') center center;">
+            <div class="rounded-circle" style="background: url('../dist/img/photo1.png') center center;">
               <h3 class="widget-user-username"><strong>Picture In Circle</strong></h3>
             </div>
             <div class="widget-user-image">
-              <img class="img-circle" src="<%= @user_profile.safe_profile_image_url%>" alt="User Avatar">
+              <%= image_tag @user_profile.safe_profile_image_url, class: 'rounded-circle'%>
             </div>
         </div>
         <%= form.label :profile_photo %>
@@ -138,20 +142,17 @@
         <%= form.file_field :profile_photo, id: :user_profile_profile_photo, onchange: "validateImage(this);",
               data: { max_file_size: 15.megabytes }
              %>
-        <br>
-        <% if @user_profile.profile_photo %>
-          <%= image_tag @user_profile.profile_photo, style: 'max-height:250px; max-width:250px;'%>
-        <% end %>
+
       </div>
-      <div class='col-md-6'>
+      <div class='col-md-6 text-center'>
         <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
 
-            <div class="widget-user-header bg-black" style="background: url('<%= @user_profile.safe_header_image_url%>') ; background-size: 100% 100%">
+            <div class="widget-user-header bg-black" style="background: url('') ; ">
               <h3 class="widget-user-username"><strong>Picture In Background</strong></h3>
             </div>
             <div class="widget-user-image">
-              <img class="img-circle" src="https://s3-us-west-2.amazonaws.com/nomcre/assets/Dummy-profile-picture.png" alt="User Avatar">
+             <%= image_tag @user_profile.safe_header_image_url, style: 'max-height:250px'%>
             </div>
         </div>
         <%= form.label :header_image %>
@@ -160,19 +161,16 @@
               data: { max_file_size: 15.megabytes }
              %>
         <br>
-        <% if @user_profile.header_image %>
-          <%= image_tag @user_profile.header_image, style: 'max-height:250px; max-width:250px;'%>
-        <% end %>
       </div>
     </div>
   </div>
   <br>
 
-  <div class="actions">
-    <%= form.submit "Update", class: 'btn btn-primary' %>
+  <div class="actions text-center">
+    <%= form.submit "Save", class: 'btn btn-primary btn-block' %>
   </div>
 
-  <%= link_to "Change your password", edit_user_registration_path %>
+
 <% end %>
 
 <div class="modal fade" id="photoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

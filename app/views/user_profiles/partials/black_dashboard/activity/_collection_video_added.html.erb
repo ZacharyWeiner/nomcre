@@ -1,0 +1,18 @@
+ <% video = CollectionItem.where(id: activity.object_id).first %>
+ <% unless video.nil? %>
+  <div class="card">
+  <div class="card-header">
+    <h3 class="card-category">
+      <%= image_tag activity.user.user_profile.safe_profile_image_url, class: 'avatar'%> <span class='pull-right' style='padding-top: 12px;'><%= activity.user.name  %> Added A Photo<br></span>
+      </h3>
+    <h3 class="card-title">
+      <%= link_to collection_collection_item_path(video.collection, video) do %>
+      <%= video.collection.title %>
+      <% end %>
+    </h3>
+  </div>
+  <div class="card-body text-center">
+    <%= video_tag video.video, controls: true, autobuffer: true, oncontextmenu:"return false;",  controlsList:"nodownload", class: 'img-responsive', style: 'max-height: 400px;' unless CollectionItem.where(id:activity.object_id).first.nil? %> <br>
+  </div>
+</div>
+ <% end %>
