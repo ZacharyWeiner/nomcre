@@ -1,0 +1,51 @@
+
+<div class="card card-subcategories card-plain">
+  <div class="card-body">
+    <ul class="nav nav-pills nav-pills-primary nav-pills-icons justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#all">
+          <i class="tim-icons"><ion-icon name='ios-cube'></ion-icon></i> All
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#photo">
+          <i class="tim-icons"><ion-icon name='ios-images'></ion-icon></i> Photo
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#video">
+          <i class="tim-icons"><ion-icon name='ios-videocam'></ion-icon></i> Video
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#saved">
+          <i class="tim-icons"><ion-icon name='ios-hammer'></ion-icon></i> Saved
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content tab-space tab-subcategories">
+      <div class="tab-pane active" id="all">
+        <% @proposals.each do |proposal| %>
+          <%= render :partial => 'proposals/partials/black_dashboard/index/proposal', :locals =>{:proposal => proposal} %>
+        <% end %>
+      </div>
+      <div class="tab-pane" id="photo">
+        Efficiently unleash cross-media information without cross-media value. Quickly maximize timely deliverables for real-time schemas.
+        <br>
+        <br>Dramatically maintain clicks-and-mortar solutions without functional solutions.
+      </div>
+      <div class="tab-pane" id="video">
+        Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+        <br>
+        <br>Dynamically innovate resource-leveling customer service for state of the art customer service.
+      </div>
+      <div class="tab-pane" id="saved">
+        Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+

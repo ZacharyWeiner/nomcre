@@ -108,7 +108,7 @@
           </button> -->
           <div class='pull-right'>
             <div class='pull-right'>
-            <% if proposal.paid %>
+            <% if @proposal.paid %>
               <%= link_to "<i class='fa fa-dollar'></i> Paid".html_safe, proposal_payment_path(@proposal), class: 'btn btn-success disabled' %>
             <% else %>
               <%= link_to "<i class='fa fa-dollar'></i> Pay Now".html_safe, proposal_payment_path(@proposal), class: 'btn btn-success' %>

@@ -1,0 +1,67 @@
+<style type="text/css">
+  .nested-card{
+    background: #d3d7e9;
+  }
+</style>
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-category">
+      <%= link_to proposal.title, proposal, style: 'font-size: 20px' %>
+      <span class='pull-right' >
+        <i class='tim-icons'><ion-icon name='calendar'></ion-icon></i> <%= proposal.deadline.strftime('%A %m %d, %Y') %>
+      </span>
+    </h3>
+    <hr >
+  </div>
+  <div class="card-body">
+    <div class='row'>
+      <div class='col-sm-4'>
+        <div class="card card-user">
+            <div class="card-body">
+              <p class="card-text">
+              </p>
+              <div class="author">
+                <div class="block block-one"></div>
+                <div class="block block-two"></div>
+                <div class="block block-three"></div>
+                <div class="block block-four"></div>
+                <a href="javascript:void(0)">
+                  <% if proposal.user %>
+                    <%= image_tag proposal.user.user_profile.safe_profile_image_url, class: 'avatar'%>
+                  <% else %>
+                    <%= image_tag 'https://s3-us-west-2.amazonaws.com/nomcre/assets/Dummy-profile-picture.png', class: 'avatar'%>
+                  <% end %>
+                  <!-- <h5 class="title">Mike Andrew</h5> -->
+                </a>
+                <p class="description">
+                  <%= proposal.user == nil ? "Unassigned" :  proposal.user.name %>
+                </p>
+              </div>
+              <p></p>
+              <div class="card-description">
+                <%= render :partial => 'proposals/partials/black_dashboard/index/progress', :locals => {:proposal => proposal} %>
+                <hr>
+                <span>
+                  <i class='tim-icons'><ion-icon name='pin'> </ion-icon></i>
+                  Location:
+                  <span class='pull-right'>
+                    <%= proposal.location != nil ? proposal.location.name : "Not Assigned" %>
+                  </span>
+                </span>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class='col-sm-8'>
+        <div class='row'>
+         <%= simple_format(proposal.content.first(300)) unless proposal.content.nil? %>...
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<% image_tag proposal.user.user_profile.safe_profile_image_url, class: 'avatar' unless proposal.user == nil %>
+<% proposal.user.name  unless proposal.user == nil %>

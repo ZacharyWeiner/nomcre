@@ -76,3 +76,18 @@
 }
 
 hr{border-top: 1px solid gray}
+.white-content  hr {
+  border-top: 1px solid #d3dded
+}
+
+@media (min-width: 1200px) {
+  .navbar-expand-xl>.container,
+  .navbar-expand-xl>.container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.white-content .navbar.navbar-transparent .navbar-nav li a:not(.dropdown-item){
+  color: #ba54f5;
+}
