@@ -1,0 +1,14 @@
+<% if @requests.count == 0 %>
+  <div class="alert alert-warning alert-dismissible">
+    <h4><i class="icon fa fa-warning"></i> Wo0ps!</h4>
+    You Haven't Been Requested Yet!
+  </div>
+<% else %>
+<div class='row'>
+  <% @requests.each do |pr| %>
+    <div class="col-sm-12 col-md-4 col-lg-4">
+      <%= render :partial => 'proposals/partials/black_dashboard/shared/cards/proposal_details', :locals =>{:proposal => pr.proposal, :show_butttons => false, :show_accept_buttons => true, :show_header => true} %>
+    </div>
+  <% end %>
+</div>
+<% end %>

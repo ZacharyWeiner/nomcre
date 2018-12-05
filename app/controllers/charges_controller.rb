@@ -77,15 +77,16 @@ class ChargesController < ApplicationController
     if charge['paid'] == true
       @proposal.paid = true
       @proposal.charge_id = charge['id']
+      @proposal.balance_paid_on = Date.today
       @proposal.save
       respond_to do |format|
         ProposalMailer.balance_received(@proposal).deliver_now
-        format.html { redirect_to @proposal, notice: 'Proposal Deposit Successfully Paid.' }
+        format.html { redirect_to @proposal, notice: 'Proposal Balance Successfully Paid.' }
         format.json { head :no_content }
       end
     else
       respond_to do |format|
-        format.html { redirect_to proposal_deposit_path(@proposal), notice: 'There was an Error Paying the Deposit' }
+        format.html { redirect_to proposal_deposit_path(@proposal), notice: 'There was an Error Paying the Balance' }
         format.json { head :no_content }
       end
     end

@@ -1,5 +1,5 @@
 class ProposalRequestsController < ApplicationController
-  layout 'adminlte'
+  layout 'black_dashboard'
   before_action :authenticate_user!
 
   def requests

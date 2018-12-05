@@ -86,8 +86,8 @@
             <%= render :partial => 'assistants/form', :locals => {:assistant => Assistant.new }%>
             <%= render :partial => 'assistants/partials/black_dashboard/index', :locals => {:assistants => @proposal.assistants }%>
           </div>
-          <div class="tab-pane" id="invoices">
-            ------ View Invoices  -------
+          <div class="tab-pane" id="invoices" style="background: #f5f6fa">
+           <%= render :partial => 'proposals/partials/black_dashboard/payments/invoices', :locals => {:proposal => proposal} %>
           </div>
         </div>
       </div>

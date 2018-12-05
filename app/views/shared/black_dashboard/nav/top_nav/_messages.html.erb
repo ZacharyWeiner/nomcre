@@ -1,0 +1,34 @@
+<li class="dropdown nav-item">
+  <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
+    <div class="<%= messages.count > 0 ? 'notification': 'none' %> d-none d-lg-block d-xl-block"></div>
+    <ion-icon name="mail-open" class='tim-icons top-nav-icon <%= messages.count > 0 ? 'text-primary': 'none' %>'></ion-icon>
+
+    <p class="d-lg-none">
+      Messages
+    </p>
+  </a>
+  <% if messages.count == 0 %>
+  <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
+    <li class='nav-link'>
+         0 New Messages
+    </li>
+  </ul>
+  <% else %>
+    <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
+      <% messages.each do |message| %>
+        <% @chatroom = Chatroom.find(message.notification_object_id) %>
+        <li class='nav-link'>
+          <%= link_to chatroom_path(@chatroom), class: 'nav-item dropdown-item' do %>
+            New Message in <%= @chatroom.topic %>
+          <% end %>
+        </li>
+      <% end %>
+      <li class="separator d-lg-none"></li>
+      <li class="nav-link">
+        <%= link_to chatrooms_path, class: 'nav-item dropdown-item text-center' do %>
+          <ion-icon name='chatbubbles'></ion-icon> View All
+        <% end %>
+      </li>
+    </ul>
+  <% end %>
+</li>

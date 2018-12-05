@@ -1,0 +1,34 @@
+<li class="dropdown nav-item">
+  <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
+    <div class="<%= tasks.count > 0 ? 'notification': 'none' %> d-none d-lg-block d-xl-block"></div>
+    <ion-icon name="flag" class='tim-icons top-nav-icon <%= tasks.count > 0 ? 'text-primary': 'none' %>'></ion-icon>
+
+    <p class="d-lg-none">
+      Tasks
+    </p>
+  </a>
+  <% if tasks.count == 0 %>
+  <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
+    <li class='nav-link'>
+         0 New Tasks
+    </li>
+  </ul>
+  <% else %>
+    <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
+      <% tasks.each do |task| %>
+        <li class='nav-link'>
+          <%= link_to task, class: 'nav-item dropdown-item' do %>
+            <%= task.description %>
+          <% end %>
+        </li>
+      <% end %>
+      <li class="separator d-lg-none"></li>
+      <li class="nav-link">
+        <%= link_to tasks_path, class: 'nav-item dropdown-item text-center' do %>
+          <ion-icon name='flag'></ion-icon> View All
+        <% end %>
+      </li>
+    </ul>
+  <% end %>
+</li>
+

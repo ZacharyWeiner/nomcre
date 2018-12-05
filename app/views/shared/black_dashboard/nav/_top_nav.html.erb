@@ -3,8 +3,9 @@
     font-size: 24px;
   }
 </style>
-<% @notifications = Notification.where(user: current_user).where(read:false).where.not(notification_type: "New Message").where.not(notification_type: "Task") %>
-<% @messages = Notification.where(user: current_user, notification_type:  "New Message").where(read:false) %>
+<% notifications = Notification.where(user: current_user).where(read:false).where.not(notification_type: "New Message").where.not(notification_type: "Task") %>
+<% messages = Notification.where(user: current_user, notification_type:  "New Message").where(read:false) %>
+<% tasks = Task.where(user: current_user).where.not(completed: true).order(:deadline).take(10) %>
 <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent">
         <div class="container-fluid">
@@ -37,78 +38,10 @@
                   <span class="d-lg-none d-md-block">Search</span>
                 </button>
               </li> -->
-              <li class="dropdown nav-item ">
-                <a href="javascript:void(0)" class="dropdown-toggle nav-link " data-toggle="dropdown">
-                  <div class="<%= @notifications.count > 0 ? 'notification': 'none' %> d-none d-lg-block d-xl-block"></div>
-                  <ion-icon name="pulse" class='tim-icons top-nav-icon <%= @notifications.count > 0 ? 'text-primary': 'none' %>'></ion-icon>
+              <%= render :partial => 'shared/black_dashboard/nav/top_nav/notifications', :locals => {:notifications => notifications} %>
+              <%= render :partial => 'shared/black_dashboard/nav/top_nav/messages', :locals => {:messages => messages} %>
+              <%= render :partial => 'shared/black_dashboard/nav/top_nav/tasks', :locals => {:tasks => tasks} %>
 
-                  <p class="d-lg-none">
-                    Notifications
-                  </p>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
-                  <%if @notifications.count > 0 %>
-                  <% @notifications.each do |notification| %>
-                    <li class='nav-link'>
-                      <% if notification.notification_type == "New Request" %>
-                        <%= link_to "New Work Request", proposal_requests_path, class: 'nav-item dropdown-item' %>
-                      <% elsif notification.notification_type == "Request Accepted" %>
-                        <%= link_to "Your Request Has Been Accepted", proposal_path(notification.notification_object_id), class: 'nav-item dropdown-item' %>
-                      <% elsif notification.notification_type == "Proposal Assigned" %>
-                        <%= link_to "You have a new job", proposal_path(notification.notification_object_id), class: 'nav-item dropdown-item' %>
-                      <% end %>
-                    </li>
-
-
-                    <% end %>
-                  <% elsif %>
-                  <li class='nav-link'>
-                       0 New Notifications
-                  </li>
-                  <% end %>
-                    <li class="separator d-lg-none"></li>
-                    <li class="nav-link">
-                      <%= link_to notifications_path, class: 'nav-item dropdown-item text-center' do %>
-                      <hr>
-                        <ion-icon name='eye'></ion-icon> View All
-                        <% end %>
-                    </li>
-                </ul>
-              </li>
-              <li class="dropdown nav-item">
-                <a href="javascript:void(0)" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                  <div class="<%= @messages.count > 0 ? 'notification': 'none' %> d-none d-lg-block d-xl-block"></div>
-                  <ion-icon name="mail-open" class='tim-icons top-nav-icon <%= @messages.count > 0 ? 'text-primary': 'none' %>'></ion-icon>
-
-                  <p class="d-lg-none">
-                    Messages
-                  </p>
-                </a>
-                <% if @messages.count == 0 %>
-                <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
-                  <li class='nav-link'>
-                       0 New Messages
-                  </li>
-                </ul>
-                <% else %>
-                  <ul class="dropdown-menu dropdown-menu-right dropdown-navbar">
-                    <% @messages.each do |message| %>
-                      <% @chatroom = Chatroom.find(message.notification_object_id) %>
-                      <li class='nav-link'>
-                        <%= link_to chatroom_path(@chatroom), class: 'nav-item dropdown-item' do %>
-                          New Message in <%= @chatroom.topic %>
-                        <% end %>
-                      </li>
-                    <% end %>
-                    <li class="separator d-lg-none"></li>
-                    <li class="nav-link">
-                      <%= link_to chatrooms_path, class: 'nav-item dropdown-item text-center' do %>
-                        <ion-icon name='chatbubbles'></ion-icon> View All
-                      <% end %>
-                    </li>
-                  </ul>
-                <% end %>
-              </li>
               <li class="dropdown nav-item">
                 <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
                   <div class="photo">
