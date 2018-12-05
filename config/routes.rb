@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     get 'accepted', to: 'proposals#accepted_requests', as: "accepted_requests"
     get 'invoice', to: 'proposals#invoice', as: 'invoice'
     get 'wizard', to: 'proposals#wizard', as: 'wizard'
+    resources :assistants
     resources :shot_list_items
   end
 

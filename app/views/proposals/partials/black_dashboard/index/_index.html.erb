@@ -17,11 +17,13 @@
           <i class="tim-icons"><ion-icon name='ios-videocam'></ion-icon></i> Video
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#saved">
-          <i class="tim-icons"><ion-icon name='ios-hammer'></ion-icon></i> Saved
-        </a>
-      </li>
+      <% if current_user && (current_user.user_type == 'company' || current_user.role == 0) %>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="tab" href="#saved">
+            <i class="tim-icons"><ion-icon name='ios-hammer'></ion-icon></i> Saved
+          </a>
+        </li>
+      <% end %>
     </ul>
     <div class="tab-content tab-space tab-subcategories">
       <div class="tab-pane active" id="all">
@@ -35,22 +37,33 @@
       </div>
       <div class="tab-pane" id="photo">
         <div class='row'>
-        <% @proposals.where(proposal_type: 'photo').each do |proposal| %>
-          <div class="col-sm-12 col-md-4 col-lg-4">
-            <%= render :partial => 'proposals/partials/black_dashboard/index/proposal', :locals =>{:proposal => proposal} %>
-          </div>
-        <% end %>
+          <% @proposals.where(proposal_type: 'photo').each do |proposal| %>
+            <div class="col-sm-12 col-md-4 col-lg-4">
+              <%= render :partial => 'proposals/partials/black_dashboard/index/proposal', :locals =>{:proposal => proposal} %>
+            </div>
+          <% end %>
+        </div>
       </div>
       <div class="tab-pane" id="video">
-       <% @proposals.where(proposal_type: 'video').each do |proposal| %>
-          <%= render :partial => 'proposals/partials/black_dashboard/index/proposal', :locals =>{:proposal => proposal} %>
-        <% end %>
+        <div class='row'>
+         <% @proposals.where(proposal_type: 'video').each do |proposal| %>
+           <div class="col-sm-12 col-md-4 col-lg-4">
+              <%= render :partial => 'proposals/partials/black_dashboard/index/proposal', :locals =>{:proposal => proposal} %>
+            </div>
+          <% end %>
+        </div>
       </div>
-      <div class="tab-pane" id="saved">
-        <% @proposals.where(user: nil).each do |proposal| %>
-          <%= render :partial => 'proposals/partials/black_dashboard/index/proposal', :locals =>{:proposal => proposal} %>
-        <% end %>
-      </div>
+      <% if current_user && (current_user.user_type == 'company' || current_user.role == 0) %>
+        <div class="tab-pane" id="saved">
+          <div class='row'>
+            <% @proposals.where(user: nil).each do |proposal| %>
+              <div class='col-sm-12 col-md-4 col-lg-4'>
+                <%= render :partial => 'proposals/partials/black_dashboard/index/proposal', :locals =>{:proposal => proposal} %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

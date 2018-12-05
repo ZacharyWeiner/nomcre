@@ -14,10 +14,20 @@
       <% end %>
       </td>
       <td class="td-actions text-right">
-        <% task_able =  task.approver == current_user ? '' : 'disabled grey' %>
-        <% task_icon =  task.completed  ? 'checkmark' : 'close' %>
-        <%= link_to task_task_complete_path(task), class: "btn btn-link btn-primary #{task_able}", title: "Complete", :data => { :original_title => 'Click to indicate teh task is complete'}  do  %>
-          <i class="tim-icons btn-link btn-primary"><ion-icon name="<%= task_icon %>" size='large'></ion-icon></i>
+
+        <% if task.completed %>
+          <% task_icon =  'checkmark-circle-icon' %>
+          <% task_able =  'disabled btn-success' %>
+        <% else %>
+          <% task_icon =  'checkmark' %>
+          <% task_able =  'btn-primary' %>
+          <% if current_user != task.approver %>
+            <% task_able +=  ' disabled' %>
+          <% end %>
+        <% end %>
+        <% task_icon =  task.completed  ? 'done-all' : 'checkmark' %>
+        <%= link_to task_task_complete_path(task), class: "btn btn-link #{task_able}", title: "Complete", :data => { :original_title => 'Click to indicate the task is complete'}  do  %>
+          <i class="tim-icons btn-link <%= task_able %>"><ion-icon name="<%= task_icon %>" size='large'></ion-icon></i>
         <% end %>
       </td>
     </tr>

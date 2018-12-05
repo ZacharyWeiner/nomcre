@@ -1,0 +1,17 @@
+<% render :partial => 'proposals/partials/search_results/deposit_check', :locals => {proposal: proposal} %>
+<% @creatives = proposal.find_creatives %>
+<% @proposal.find_creatives.each do |sr| %>
+  <%= render :partial => 'proposals/partials/black_dashboard/shared/creative', :locals => {:proposal => proposal, :sr => sr  } %>
+<% end %>
+<% if @creatives.count == 0 %>
+  <% @creatives = User.where(user_type: 'creative').take(10) %>
+  <% @creatives.each do |cr| %>
+    <%= render :partial => 'proposals/partials/black_dashboard/shared/creative', :locals => {:proposal => proposal, :sr => cr  } %>
+  <% end %>
+<% end %>
+
+
+
+
+
+

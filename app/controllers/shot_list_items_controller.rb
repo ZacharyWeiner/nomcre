@@ -39,7 +39,7 @@ class ShotListItemsController < ApplicationController
       if @shot_list_item.description.nil? || @shot_list_item.description == ""
         format.html { redirect_to proposal_shot_list_items_path(@shot_list_item.proposal), error: 'Description is required'}
       elsif@shot_list_item.save
-        format.html { redirect_to proposal_shot_list_items_path(@shot_list_item.proposal), notice: 'Shot list item was successfully created.' }
+        format.html { redirect_to proposal_path(@shot_list_item.proposal, :active => 'shotlist'), notice: 'Shot list item was successfully created.' }
         format.json { render :show, status: :created, location: @shot_list_item }
       else
         format.html { render :new }

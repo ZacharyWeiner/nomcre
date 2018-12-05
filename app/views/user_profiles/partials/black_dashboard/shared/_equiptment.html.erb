@@ -1,0 +1,13 @@
+<% user_profile.content_type.each do |type|%>
+  <% if type.downcase == 'photography' %>
+    <span class="badge badge-info"><%= type %></span>
+  <% elsif  type.downcase == 'videography' %>
+    <span class="badge badge-success"><%= type %></span>
+  <% elsif  type.downcase == 'aerial' %>
+    <span class="badge badge-primary"><%= type %></span>
+  <% elsif  type.downcase == '360 - video' %>
+    <span class="badge badge-success"><%= type %></span>
+   <% elsif  type.downcase == '360 - photo' %>
+    <span class="badge badge-info"><%= type %></span>
+  <%end %>
+<% end %>

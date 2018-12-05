@@ -1,6 +1,13 @@
 <% url = request.url %>
 <% uri = URI.parse(url) %>
 <% query_params = CGI.parse(uri.query) unless uri.query == nil %>
+<% basic_style = query_params == nil || query_params["active"] == ["basic"] ? 'active' : ''  %>
+<% shotlist_style = query_params != nil && query_params["active"] == ["shotlist"] ? 'active' : ''  %>
+<% available_style = query_params != nil && query_params["active"] == ["available"] ? 'active' : ''  %>
+<% tasks_style = query_params != nil && query_params["active"] == ["tasks"] ? 'active' : ''  %>
+<% disclosure_style = query_params != nil && query_params["active"] == ["disclosures"] ? 'active' : ''  %>
+<% assistants_style = query_params != nil && query_params["active"] == ["assistants"] ? 'active' : ''  %>
+<% invoices_style = query_params != nil && query_params["active"] == ["invoices"] ? 'active' : ''  %>
 <div class="card">
   <div class="card-header">
     <div class='card-category pull-right'>
@@ -13,49 +20,11 @@
   <div class="card-body">
     <div class="row">
       <div class="col-md-4">
-        <ul class="nav nav-pills nav-pills-primary flex-column">
-          <li class="nav-item">
-
-            <%basic_style = query_params == nil || query_params["active"] == ["basic"] ? 'active' : ''  %>
-            <a class="nav-link nav-link-sub <%= basic_style %>" data-toggle="tab" href="#basic">
-              Basic
-            </a>
-          </li>
-          <li class="nav-item">
-            <%shotlist_style = query_params != nil && query_params["active"] == ["shotlist"] ? 'active' : ''  %>
-            <a class="nav-link nav-link-sub <%= shotlist_style %>" data-toggle="tab" href="#shotlist">
-              Shot List
-            </a>
-          </li>
-          <li class="nav-item">
-            <% tasks_style = query_params != nil && query_params["active"] == ["tasks"] ? 'active' : ''  %>
-            <a class="nav-link nav-link-sub <%= tasks_style %>" data-toggle="tab" href="#tasks">
-              Tasks
-            </a>
-          </li>
-          <li class="nav-item">
-            <% disclosure_style = query_params != nil && query_params["active"] == ["disclosures"] ? 'active' : ''  %>
-            <a class="nav-link nav-link-sub <%= disclosure_style %>" data-toggle="tab" href="#disclosures">
-              Disclosures
-            </a>
-          </li>
-          <li class="nav-item">
-            <% assistants_style = query_params != nil && query_params["active"] == ["assistants"] ? 'active' : ''  %>
-            <a class="nav-link nav-link-sub <%= assistants_style %>" data-toggle="tab" href="#assistants">
-              Assistants
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link nav-link-sub" data-toggle="tab" href="#invoices">
-              Invoices
-            </a>
-          </li>
-        </ul>
+        <%= render :partial =>'proposals/partials/black_dashboard/show/tabs/buttons', :locals => {:proposal => proposal, :basic_style => basic_style, :shotlist_style => shotlist_style, :available_style => available_style, :tasks_style => tasks_style, :disclosure_style => disclosure_style, :assistants_style => assistants_style, :invoices_style => invoices_style} %>
       </div>
       <div class="col-md-8">
         <div class="tab-content">
           <div class="tab-pane <%= basic_style %>" id="basic">
-
             <div class='row'>
               <div class='col-sm-6 col-md-6 col-lg-6'>
                 <div class="card card-stats">
@@ -107,12 +76,15 @@
           <div class="tab-pane <%= tasks_style %>" id="tasks">
             <%= render :partial => 'tasks/partials/black_dashboard/task_list', :locals => {:tasks => proposal.tasks} %>
           </div>
+          <div class="tab-pane <%= available_style %>" id="available">
+            <%= render :partial => 'proposals/partials/black_dashboard/show/available_creatives', :locals => {:proposal => proposal} %>
+          </div>
           <div class="tab-pane <%= disclosure_style %>" id="disclosures">
            <%= render 'proposals/partials/black_dashboard/shared/disclosure' %>
           </div>
           <div class="tab-pane <%= assistants_style %>" id="assistants">
-            <% render :partial => 'proposals/partials/assistant_list', :locals => {:proposal => @proposal}%>
-            <%= render :partial => 'proposals/partials/assistants_form', :locals => {:proposal => @proposal}%>
+            <%= render :partial => 'assistants/form', :locals => {:assistant => Assistant.new }%>
+            <%= render :partial => 'assistants/partials/black_dashboard/index', :locals => {:assistants => @proposal.assistants }%>
           </div>
           <div class="tab-pane" id="invoices">
             ------ View Invoices  -------

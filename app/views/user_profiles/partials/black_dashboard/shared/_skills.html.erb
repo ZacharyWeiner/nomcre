@@ -1,0 +1,13 @@
+<% user_profile.shot_preference.each do |type|%>
+  <% if type.downcase == 'editorial' %>
+    <span class="badge badge-info"><%= type %></span>
+  <% elsif  type.downcase == 'story' %>
+    <span class="badge badge-success"><%= type %></span>
+  <% elsif  type.downcase == 'lifestyle' %>
+    <span class="badge badge-primary"><%= type %></span>
+  <% elsif  type.downcase == 'lookbook' %>
+    <span class="badge badge-success"><%= type %></span>
+   <% elsif  type.downcase == 'action' %>
+    <span class="badge badge-info"><%= type %></span>
+  <%end %>
+<% end %>

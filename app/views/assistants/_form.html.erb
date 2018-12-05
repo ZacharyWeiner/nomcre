@@ -1,3 +1,4 @@
+<dic class='card' style='padding:12px'>
 <%= form_with(model: assistant, local: true) do |form| %>
   <% if assistant.errors.any? %>
     <div id="error_explanation">
@@ -10,38 +11,46 @@
       </ul>
     </div>
   <% end %>
+  <div class='row'>
+    <div class='col-sm-12 col-md-6 col-lg-6'>
+       <div class="form-group">
+        <%= form.label :name %>
+        <%= form.text_field :name, id: :assistant_name, class: 'form-control' %>
+      </div>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :assistant_name %>
+      <div class="form-group">
+        <%= form.label :paypal_email %>
+        <%= form.text_field :paypal_email, id: :assistant_paypal_email, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :phone %>
+        <%= form.text_field :phone, id: :assistant_phone, class: 'form-control' %>
+      </div>
+    </div>
+    <div class='col-sm-12 col-md-6 col-lg-6'>
+      <div class="form-group">
+        <%= form.label :rate %>
+        <%= form.number_field :rate, id: :assistant_rate, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :assistant_type %>
+        <%= form.select :assistant_type, options_for_select([['General', 'General'], ['HMU', 'HMU'], ['Model','Model']]), {}, {class: 'form-control '}  %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :paypal_email %>
-    <%= form.text_field :paypal_email, id: :assistant_paypal_email %>
-  </div>
 
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone, id: :assistant_phone %>
-  </div>
 
-  <div class="field">
-    <%= form.label :rate %>
-    <%= form.number_field :rate, id: :assistant_rate %>
-  </div>
 
-  <div class="field">
-    <%= form.label :assistant_type %>
-    <%= form.text_field :assistant_type, id: :assistant_assistant_type %>
-  </div>
 
-  <div class="field">
-    <%= form.label :location_id %>
-    <%= form.text_field :location_id, id: :assistant_location_id %>
-  </div>
+  <% if defined? @proposal %>
+    <%= form.hidden_field :proposal_id, :value => @proposal.id %>
+  <% end %>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Save", class: 'btn btn-primary' %>
   </div>
 <% end %>
+</dic>

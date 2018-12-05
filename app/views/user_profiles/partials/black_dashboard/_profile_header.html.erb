@@ -78,19 +78,7 @@
           <br>
           </div>
           <div class='col-sm-12 clear' style="font-size:12px;">
-             <% @user_profile.content_type.each do |type|%>
-              <% if type.downcase == 'photography' %>
-                <span class="badge badge-info"><%= type %></span>
-              <% elsif  type.downcase == 'videography' %>
-                <span class="badge badge-success"><%= type %></span>
-              <% elsif  type.downcase == 'aerial' %>
-                <span class="badge badge-primary"><%= type %></span>
-              <% elsif  type.downcase == '360 - video' %>
-                <span class="badge badge-success"><%= type %></span>
-               <% elsif  type.downcase == '360 - photo' %>
-                <span class="badge badge-info"><%= type %></span>
-              <%end %>
-            <% end %>
+             <%= render :partial => 'user_profiles/partials/black_dashboard/shared/equiptment', :locals => {:user_profile => @user_profile} %>
           </div>
         </div>
         <br>
@@ -101,19 +89,7 @@
             <br>
           </div>
           <div class='col-sm-12 clear' style="font-size:12px;">
-             <<% @user_profile.shot_preference.each do |type|%>
-              <% if type.downcase == 'editorial' %>
-                <span class="badge badge-info"><%= type %></span>
-              <% elsif  type.downcase == 'story' %>
-                <span class="badge badge-success"><%= type %></span>
-              <% elsif  type.downcase == 'lifestyle' %>
-                <span class="badge badge-primary"><%= type %></span>
-              <% elsif  type.downcase == 'lookbook' %>
-                <span class="badge badge-success"><%= type %></span>
-               <% elsif  type.downcase == 'action' %>
-                <span class="badge badge-info"><%= type %></span>
-              <%end %>
-            <% end %>
+             <%= render :partial => 'user_profiles/partials/black_dashboard/shared/skills', :locals => {:user_profile => @user_profile} %>
           </div>
         </div>
       </div>

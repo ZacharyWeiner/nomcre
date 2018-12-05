@@ -15,7 +15,7 @@ class Proposal < ApplicationRecord
   validates :proposal_type, presence: true
   def find_creatives
     creatives =[]
-    search_date = Date.today
+    search_date = self.deadline
     creatives = ScheduleItem.where(location: self.location).where("end_date > ?", search_date).map{|si|
 
       ProposalSearchResult.new(user_id: si.user.id, rank: 3, schedule_item_id: si.id)
