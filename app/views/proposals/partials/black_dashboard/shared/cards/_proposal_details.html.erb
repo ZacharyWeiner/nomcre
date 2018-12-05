@@ -1,5 +1,22 @@
+<% if !defined? show_header  %>
+  <% show_header = false %>
+<% end %>
+
+<% if !defined? show_footer %>
+  <% show_footer = false %>
+<% end %>
+
+<% if !defined? show_content %>
+  <% show_content = false %>
+<% end %>
+
+<% if !defined? show_next_step %>
+  <% show_next_step = false %>
+<% end %>
+
 <div class="card">
-  <div class="card-header">
+  <% if show_header == true %>
+  <div class="card-header" style='padding-top:6px;'>
     <h3 class="card-category">
       <span>
         <% if proposal.proposal_type == 'photo' %>
@@ -9,12 +26,13 @@
         <% end %>
         <%= link_to proposal.title, proposal, style: 'font-size: 18px' %>
       </span>
-      <span class='pull-right' >
+      <span class='pull-right baseline' >
         <i class='tim-icons'><ion-icon name='calendar'></ion-icon></i> <%= proposal.deadline.strftime('%a %b %d, %Y') %>
       </span>
     </h3>
-    <hr >
+
   </div>
+  <% end %>
   <div class="card-body">
     <div class='row'>
       <!-- <div class='col-sm-4'> -->
@@ -33,15 +51,26 @@
                   <% else %>
                     <%= image_tag 'https://s3-us-west-2.amazonaws.com/nomcre/assets/Dummy-profile-picture.png', class: 'avatar'%>
                   <% end %>
-                  <!-- <h5 class="title">Mike Andrew</h5> -->
+                  <h5 class="title"><%= proposal.status %></h5>
                 </a>
                 <p class="description">
                   <%= proposal.user == nil ? "Unassigned" :  proposal.user.name %>
+                  <% if show_next_step %>
+                  <br> <br>
+                    <h5>
+                    <i class='tim-icons text-primary'><ion-icon name='fastforward'> </ion-icon></i>
+                    Next Step: <br>
+                    <span class=''>
+                      <%= proposal.next_step(proposal.status) %>
+                    </span>
+                  <h5>
+                <% end %>
                 </p>
               </div>
               <p></p>
               <div class="card-description">
                 <%= render :partial => 'proposals/partials/black_dashboard/index/progress', :locals => {:proposal => proposal} %>
+
                 <span>
                   <i class='tim-icons text-primary'><ion-icon name='ios-pin'> </ion-icon></i>
                   Location:
@@ -65,42 +94,62 @@
                     <%= proposal.shot_count != nil ? proposal.shot_count : "Not Assigned" %>
                   </span>
                 </span>
-                <hr>
-                <span>
-                  <i class='tim-icons text-warning'><ion-icon name='ios-photos'> </ion-icon></i>
-                  Background:
-                  <span class='pull-right'>
-                    <%= proposal.background != nil ? proposal.background : "Not Assigned" %>
+                <% if show_content == true %>
+                  <hr>
+                  <span>
+                    <i class='tim-icons text-warning'><ion-icon name='ios-photos'> </ion-icon></i>
+                    Background:
+                    <span class='pull-right'>
+                      <%= proposal.background != nil ? proposal.background : "Not Assigned" %>
+                    </span>
                   </span>
-                </span>
+                <% end %>
               </div>
             </div>
-            <div style="margin: 6px;">
-              <span><%= simple_format(proposal.content.first(150)) unless proposal.content.nil? %>...</span>
-            </div>
+            <% if show_content %>
+              <div style="margin: 6px;">
+                <span><%= simple_format(proposal.content.first(150)) unless proposal.content.nil? %>...</span>
+              </div>
+            <% end %>
           </div>
     </div>
   </div>
+  <% if show_footer == true %>
    <div class="card-footer text-center">
-    <hr>
-     <div class='row'>
-       <div class='col-xs-3 col-sm-4 col-md-4'>
-         <%= link_to proposal, class: 'btn btn-link btn-primary' do %>
-          <span><i class="tim-icon"><ion-icon name='ios-eye' size='' style='font-size: 20px'></ion-icon></i><br>View</span>
-        <% end %>
-       </div>
-       <div class='col-xs-3 col-sm-4 col-md-4'>
-         <%= link_to edit_proposal_path(proposal), class: 'btn btn-link btn-danger' do %>
-          <span><i class="tim-icon"><ion-icon name='ios-paper' size='' style='font-size: 20px'></ion-icon></i><br>Edit</span>
-        <% end %>
-       </div>
-       <div class='col-xs-3 col-sm-4 col-md-4'>
-         <%= link_to edit_proposal_path(proposal), class: 'btn btn-link btn-primary' do %>
-          <span><i class="tim-icon"><ion-icon name='ios-chatbubbles' size='' style='font-size: 20px'></ion-icon></i><br>Chat</span>
-        <% end %>
-       </div>
-     </div>
-   </div>
+      <hr>
+      <div class='row'>
+        <div class='col-xs-3 col-sm-4 col-md-4'>
+          <%= link_to proposal, class: 'btn btn-link btn-primary' do %>
+            <span>
+              <i class="tim-icon"><ion-icon name='ios-eye' size='' style='font-size: 20px'></ion-icon></i>
+              <br>
+              View
+            </span>
+          <% end %>
+        </div>
+        <div class='col-xs-3 col-sm-4 col-md-4'>
+          <%= link_to edit_proposal_path(proposal), class: 'btn btn-link btn-danger' do %>
+            <span>
+              <i class="tim-icon"><ion-icon name='ios-paper' size='' style='font-size: 20px'></ion-icon></i>
+              <br>
+              Edit
+            </span>
+          <% end %>
+        </div>
+        <div class='col-xs-3 col-sm-4 col-md-4'>
+          <%= link_to edit_proposal_path(proposal), class: 'btn btn-link btn-primary' do %>
+            <span>
+              <i class="tim-icon">
+                <ion-icon name='ios-chatbubbles' size='' style='font-size: 20px'></ion-icon>
+              </i>
+              <br>
+              Chat
+            </span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
 
 

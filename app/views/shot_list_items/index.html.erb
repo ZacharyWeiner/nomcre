@@ -1,2 +1,1 @@
-
-<%= render :partial => 'shot_list_items/partials/black_dashboard/index', :locals => {:proposal => Proposal.where(id: params[:proposal_id]).first}%>
+<%= render :partial => 'shot_list_items/partials/black_dashboard/index', :locals => {:proposal => Proposal.where(id: params[:proposal_id]).first, :shot_list_items => @shot_list_items}%>

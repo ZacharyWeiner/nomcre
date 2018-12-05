@@ -1,3 +1,4 @@
+
 <section class="content">
   <div class="row">
     <div class="col-md-3">
@@ -13,7 +14,7 @@
     <!-- /.col -->
     <div class="col-md-9">
       <div class="nav-tabs-custom">
-        <%= render :partial => 'proposals/partials/show/tabs/company', :locals => { proposal: proposal } %>
+        <%= render :partial => 'proposals/partials/adminlte/show/tabs/company', :locals => { proposal: proposal } %>
         <div class="tab-content">
           <div class="active tab-pane" id="basic_info">
             <%= render 'proposals/partials/proposal_basic_info'%>
@@ -23,7 +24,7 @@
           </div>
           <% unless @proposal.tasks.count == 0 %>
           <div class="tab-pane" id="tasks">
-            <%= render 'proposals/partials/show/tab_body/shared/tasks'%>
+            <%= render 'proposals/partials/adminlte/show/tab_body/shared/tasks'%>
           </div>
           <% end %>
           <div class="tab-pane" id="creatives">

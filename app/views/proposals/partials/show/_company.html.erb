@@ -1,9 +1,0 @@
-<%= render :partial => 'proposals/partials/widgets/widgets_all', :locals => { proposal: proposal }%>
-<section class="content">
-  <div class='nav-tabs-custom'>
-    <% if proposal.is_editable %>
-      <%= render :partial => 'proposals/partials/show/tabs/company', :locals => { proposal: proposal } %>
-    <% end %>
-    <%= render :partial => 'proposals/partials/show/tab_body/company', :locals => { proposal: proposal } %>
-  </div>
-</section>

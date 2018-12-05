@@ -1,0 +1,26 @@
+<table class="table">
+  <tbody>
+    <% tasks.each do |task| %>
+    <tr>
+      <td>
+        <p class="title"> <%= task.proposal.title %></p>
+        <p class="text-info"><%= task.description %></p>
+      </td>
+      <td>
+        <% if task.deadline > Date.today %>
+        <p class="text-success"><i class="fa fa-clock-o"></i>  <%= (task.deadline - Date.today).to_int %> days</p>
+      <% else %>
+        <p class="text-danger"><i class="fa fa-clock-o"></i>  <%= time_ago_in_words(task.deadline - Date.today) %> days</p>
+      <% end %>
+      </td>
+      <td class="td-actions text-right">
+        <% task_able =  task.approver == current_user ? '' : 'disabled grey' %>
+        <% task_icon =  task.completed  ? 'checkmark' : 'close' %>
+        <%= link_to task_task_complete_path(task), class: "btn btn-link btn-primary #{task_able}", title: "Complete", :data => { :original_title => 'Click to indicate teh task is complete'}  do  %>
+          <i class="tim-icons btn-link btn-primary"><ion-icon name="<%= task_icon %>" size='large'></ion-icon></i>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

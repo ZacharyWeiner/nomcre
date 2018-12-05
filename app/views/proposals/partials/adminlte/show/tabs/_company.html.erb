@@ -1,0 +1,8 @@
+<style type="text/css">
+  hr { margin-bottom: -1px; margin-top: -2px}
+</style>
+<% if proposal.is_editable %>
+  <%= render :partial => 'proposals/partials/adminlte/show/tabs/editable', :locals => {proposal: proposal} %>
+<% else %>
+  <%= render :partial => 'proposals/partials/adminlte/show/tabs/display_only', :locals => {proposal: proposal} %>
+<% end %>

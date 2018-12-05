@@ -30,7 +30,7 @@
           </tr>
         </thead>
         <tbody>
-          <% @shot_list_items.each do |si| %>
+          <% shot_list_items.each do |si| %>
             <tr>
               <td>
                 <div class="img-container">
@@ -47,6 +47,7 @@
               </td>
               <td class="text-center">
                 <% if si.upload.file == nil %>
+                  <i class='tim-icons text-danger'><ion-icon name='close' size='large'></ion-icon></i>
                 <% else %>
                   <i class='tim-icons text-success'><ion-icon name='checkmark' size='large'></ion-icon></i>
                 <% end %>

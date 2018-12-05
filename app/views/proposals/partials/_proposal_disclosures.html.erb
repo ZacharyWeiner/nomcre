@@ -1,7 +1,8 @@
 <%= form_for(@proposal) do |f| %>
-  <div class="form-group has-feedback">
+  <div class="has-feedback">
     <%= f.label :model_release %>
-    <%= f.file_field :model_release, class: 'form-control' %>
+    <ion-icon name='paperclip' ></ion-icon><br>click to select*
+    <%= f.file_field :model_release, class: '' %>
     <span class='fa fa-picture-o form-control-feedback'></span>
   </div>
   <%= f.submit %>

@@ -1,0 +1,7 @@
+<% if current_user.user_type == 'company' %>
+  <%= render :partial => 'proposals/partials/adminlte/show/company', :locals => {proposal: proposal} %>
+<% else %>
+  <%= render :partial => 'proposals/partials/adminlte/show/creative', :locals => {proposal: proposal} %>
+<% end %>
+
+
