@@ -1,0 +1,35 @@
+<div class="card card-subcategories">
+  <div class="card-body">
+    <ul class="nav nav-pills nav-pills-primary ">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#activities">
+          <i class="tim-icons"><ion-icon name="funnel"></ion-icon></i> Activities
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#travelplans">
+          <span><i class="tim-icons"><ion-icon name="paper-plane"></ion-icon></i> Travel Plans</span>
+        </a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#settings">
+          <i class="tim-icons"></i> Edit Profile
+        </a>
+      </li> -->
+    </ul>
+
+  </div>
+</div>
+<div class="tab-content tab-space tab-subcategories">
+      <div class="tab-pane active" id="activities">
+       <%= render 'user_profiles/partials/black_dashboard/user_activities' %>
+      </div>
+      <div class="tab-pane" id="travelplans">
+       <%= render 'user_profiles/partials/black_dashboard/travel_plans' %>
+      </div>
+      <!-- <div class="tab-pane" id="settings">
+        Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
+        <br>
+        <br>Dynamically innovate resource-leveling customer service for state of the art customer service.
+      </div> -->
+    </div>

@@ -1,0 +1,12 @@
+<% collection = Collection.find(activity.object_id)  %>
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-category">
+      <%= image_tag activity.user.user_profile.safe_profile_image_url, class: 'avatar'%> <span class='pull-right' style='padding-top: 12px;'><%= activity.user.name  %> Added A Collection<br></span>
+      </h3>
+    <h3 class="card-title"> <%= collection.title %> </h3>
+  </div>
+  <div class="card-body">
+    <%= image_tag Collection.get_jumbotron_url(collection) %>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<% si = ScheduleItem.where(id: activity.object_id).first  %>
+<% unless si == nil %>
+<div class="card">
+  <div class="card-header" >
+    <h3 class="card-category">
+      <%= image_tag activity.user.user_profile.safe_profile_image_url, class: 'avatar'%>
+      <span class='pull-right' style='padding-top: 12px;'>
+        <%= activity.user.name  %> Added To Their Travel Plans
+      </span>
+      <hr>
+    </h3>
+  </div>
+
+  <div class="card-body">
+    <div class="card card-user">
+    <div class="card-body">
+      <p class="card-text">
+        <div class="author">
+          <div class="block block-one"></div>
+          <div class="block block-two"></div>
+          <div class="block block-three"></div>
+          <div class="block block-four"></div>
+           <%= link_to schedule_item_path(si) do %>
+            <h3 class="card-title"> <%= si.location.name %> </h3>
+            <% end %>
+            <ion-icon name='pin' size='large'></ion-icon>
+            <!-- <h5 class="title"></h5> -->
+          <p class="description">
+
+            <br>
+          </p>
+        </div>
+      </p>
+      <div class="card-description text-center">
+        <span><i class='tim-icons'><ion-icon name="calendar"></ion-icon></i> From: <%= si.start_date %></span>
+            -
+            <span><i class='tim-icons'><ion-icon name="calendar"></ion-icon></i> To: <%= si.end_date %></span>
+     </div>
+    </div>
+    <div class="card-footer text-primary text-center">
+      <%= si.notes %>
+    </div>
+  </div>
+  </div>
+</div>
+<% end %>

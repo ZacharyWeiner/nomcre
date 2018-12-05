@@ -1,0 +1,73 @@
+<div class="card">
+  <div class="card-header">
+    <!-- <div class="tools float-right">
+      <div class="dropdown">
+        <button type="button" class="btn btn-default dropdown-toggle btn-link btn-icon" data-toggle="dropdown">
+          <i class="tim-icons icon-settings-gear-63"></i>
+        </button>
+        <div class="dropdown-menu dropdown-menu-right">
+          <a class="dropdown-item" href="javascript:void(0)">Action</a>
+          <a class="dropdown-item" href="javascript:void(0)">Another action</a>
+          <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
+          <a class="dropdown-item text-danger" href="javascript:void(0)">Remove Data</a>
+        </div>
+      </div>
+    </div> -->
+    <h4 class="card-title">Shot List </h4>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table table-shopping">
+        <thead class="">
+          <tr>
+            <th class="text-center">
+              Reference
+            </th>
+            <th class="">Type</th>
+            <th class="">Background</th>
+            <th class="text-center">Uploaded</th>
+            <th class="">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% shot_list_items.each do |si| %>
+            <tr>
+              <td>
+                <div class="img-container">
+                  <%= image_tag si.reference_image, class: 'img-fluid' unless si.reference_image == nil %>
+                </div>
+              </td>
+              <td class="td-name">
+                <%= link_to si.item_type, proposal_path(si.proposal, :active => 'shotlist') %>
+                <br>
+                <small><%= si.aspect_ratio%></small>
+              </td>
+              <td class="">
+                <%= si.background%>
+              </td>
+              <td class="text-center">
+                <% if si.upload.file == nil %>
+                  <i class='tim-icons text-danger'><ion-icon name='close' size='large'></ion-icon></i>
+                <% else %>
+                  <i class='tim-icons text-success'><ion-icon name='checkmark' size='large'></ion-icon></i>
+                <% end %>
+              </td>
+              <td class="td-actions">
+                <%= link_to si do %>
+                  <i class="fa fa-eye"></i>
+                <% end %>
+                <%= link_to edit_proposal_shot_list_item_path(si.proposal, si) do %>
+                  <i class="fa fa-edit"></i>
+                <% end %>
+                <%= link_to si, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <i class="fa fa-trash"></i>
+                <% end %>
+              </td>
+            </tr>
+         <% end %>
+        </tbody>
+      </table>
+      <%= link_to "<ion-icon name='add' ></ion-icon> Add New".html_safe, new_proposal_shot_list_item_path(proposal.id), class:'btn btn-success btn-round float-right mr-5'  %>
+    </div>
+  </div>
+</div>

@@ -75,7 +75,7 @@
                       <span class="icon"><i class="fa fa-eye"></i></span>
                     <%end%>
                   <% if collection.user == current_user %>
-                  <%= link_to edit_collection_path(collection), class: "nk-btn nk-btn-sm nk-btn-effect-2-right nk-btn-circle nk-btn-outline nk-btn-color-dark-4" do %>
+                  <%= link_to new_collection_collection_item_path(collection), class: "nk-btn nk-btn-sm nk-btn-effect-2-right nk-btn-circle nk-btn-outline nk-btn-color-dark-4" do %>
                       <span>Edit</span>
                       <span class="icon"><i class="fa fa-edit"></i></span>
                     <%end%>
@@ -102,4 +102,6 @@
 <% if @collections.count > 0 %>
   <%= paginate @collections, window: 2 %>
 <% end %>
+
+
 

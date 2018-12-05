@@ -8,7 +8,7 @@
 }
 </style> -->
 <%= form_for([@collection, collection_item], :html => { :multipart => true }) do |f| %>
-  <% if collection_item.errors.any? %>
+ <!--  <% if collection_item.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(collection_item.errors.count, "error") %> prohibited this collection_item from being saved:</h2>
 
@@ -18,7 +18,7 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
+  <% end %> -->
 <!--
      <div class="image-upload text-center">
          <label for="file-input">
@@ -30,16 +30,25 @@
       <div class='row'>
         <div class='col-md-4'></div>
         <div class='text-center col-md-4'>
-          <i class='fa fa-image fa-4x'></i>
+          <ion-icon name='images' size='large'></ion-icon>
           <br><br>
-          <%= f.file_field :file, onchange: "validateImage(this);",
+          <%= f.file_field :file, :class => "btn btn-primary btn-block",  onchange: "validateImage(this);",
               data: { max_file_size: 15.megabytes, disable_with: "<i class='fa fa-spinner fa-spin'></i> Uploading Image..." }
              %>
+            <!--  <label class="btn btn-primary btn-change-avatar">
+              Select An Image
+              <span style="display:none;">
+                <%= f.file_field :avatar, id: "fileUploader",  onchange: "validateImage(this);",
+              data: { max_file_size: 15.megabytes, disable_with: "<i class='fa fa-spinner fa-spin'></i> Uploading Image..." }
+             %>
+              </span>
+            </label> -->
+             <%= f.submit "Upload Image", id: 'uploadImageBtn',  class: 'btn btn-success btn-block' %>
         </div>
         <div class='col-md-4'></div>
       </div>
       <br>
-      <%= f.submit "Upload Image", id: 'uploadImageBtn',  class: 'btn btn-primary  btn-block' %>
+
 
   <% if params[:collection_id]%>
   <%= f.hidden_field :collection_id, :value => params[:collection_id]%>

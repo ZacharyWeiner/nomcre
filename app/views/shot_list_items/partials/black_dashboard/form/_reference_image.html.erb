@@ -1,0 +1,5 @@
+<div class="">
+  <%= form.label :reference_image %><br>
+  <%= form.file_field :reference_image, id: :shot_list_item_reference_image, class: 'form-control', onchange: "validateImage(this);", data: { max_file_size: 15.megabytes, disable_with: "<i class='fa fa-spinner fa-spin'></i> Signing In..." } %>
+</div>
+

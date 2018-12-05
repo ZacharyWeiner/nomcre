@@ -1,0 +1,124 @@
+<div class="card" style="border: 4px solid white">
+
+  <div class="card-header">
+    <div class='card-category'>
+      <h2>
+        <i class="fa fa-globe"></i> <strong>NOM</strong>ADIC <strong>CRE</strong>ATIVE
+        <span class="card-title pull-right">Date: <%= Date.today %></span>
+      </h2>
+    </div>
+    <div class="row invoice-info">
+      <div class="col-sm-4 invoice-col">
+        From
+        <address>
+          <strong>NOM</strong>ADIC <strong>CRE</strong>ATIVE<br>
+          Phone: (312) 493 - 5523<br>
+          Email: finance@nomcre.com
+        </address>
+      </div>
+
+      <div class="col-sm-4 invoice-col">
+        To
+        <address>
+        <strong><%= @proposal.company.name %></strong><br>
+        Phone: <%= @proposal.company.phone %><br>
+        Email: <%= @proposal.company.users.first.email %>
+        </address>
+      </div>
+
+      <div class="col-sm-4 invoice-col">
+        <b>Invoice - #D0<%= @proposal.id %></b><br>
+        <b>Proposal ID:</b> <%= @proposal.id %> <br>
+        <b>Paid On:</b> <%= @proposal.deposit_paid_on %><br>
+      </div>
+    </div>
+  </div>
+
+  <!-- /.row -->
+  <div class='card-body'>
+    <!-- Table row -->
+    <div class="row">
+      <div class="col-xs-12 table-responsive">
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th>Title</th>
+            <th>Deadline</th>
+            <th>Type</th>
+            <th>Location</th>
+            <th>Subtotal</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><%= @proposal.title %></td>
+              <td><%= @proposal.deadline %></td>
+              <td><%= @proposal.proposal_type %></td>
+              <td><%= @proposal.location.name %></td>
+              <td><%= number_to_currency(@proposal.price * Proposal.deposit_percent) %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row">
+      <!-- accepted payments column -->
+      <div class="col-xs-6">
+        <p class="lead">Payment Methods:</p>
+        <i class='fab fa-cc-visa fa-3x'></i>
+        <i class='fab fa-cc-mastercard fa-3x'></i>
+        <i class='fab fa-cc-amex fa-3x'></i>
+
+
+        <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
+        Nomcre uses Stripe to process online payments. <br> To make an ACH Payment please contact <strong>finance@nomcre.com</strong>
+        </p>
+      </div>
+
+      <div class="col-xs-6">
+        <p class="lead">Amount Due <%= Date.today.strftime('%b, %d  %Y') %></p>
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <th style="width:50%">Subtotal:</th>
+                <td><%= number_to_currency(@proposal.price * Proposal.deposit_percent) %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- this row will not appear when printing -->
+    <div class="row no-print">
+      <div class="col-xs-12">
+        <div class='pull-right'>
+          <% if @proposal.deposit_paid == false || @proposal.deposit_paid == nil%>
+            <%= form_tag proposal_deposit_path(@proposal) do %>
+              <article>
+                <% if flash[:error].present? %>
+                  <div id="error_explanation">
+                    <p><%= flash[:error] %></p>
+                  </div>
+                <% end %>
+              </article>
+              <% @stripe_price = (@proposal.price * Proposal.deposit_percent) * 100 %>
+              <form action="/charge" method="POST">
+                <%= hidden_field_tag 'proposal_id', @proposal.id %>
+                  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button pull-right"
+                    Stripe.setPublishableKey('PUBLISHABLE_KEY');
+                    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                    data-description="Proposal Payment"
+                    data-amount="<%= @stripe_price %>"
+                    data-locale="auto">
+                  </script>
+              </form>
+            <% end %>
+          <% else %>
+            <%= link_to 'Paid', root_path, class: 'btn btn-success disabled'%>
+          <% end %>
+        </div>
+    </div>
+  </div>
+</div>
+

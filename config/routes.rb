@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     get 'accepted', to: 'proposals#accepted_requests', as: "accepted_requests"
     get 'invoice', to: 'proposals#invoice', as: 'invoice'
     get 'wizard', to: 'proposals#wizard', as: 'wizard'
+    resources :assistants
     resources :shot_list_items
   end
 
@@ -132,6 +133,30 @@ Rails.application.routes.draw do
 
 
   get 'black_dashboard/dashboard', to: 'black_dashboard#dashboard', as: 'black_dashboard_dashboard'
+  get 'black_dashboard/pricing', to: 'black_dashboard#pricing', as: 'black_dashboard_pricing'
+  get 'black_dashboard/timeline', to: 'black_dashboard#timeline', as: 'black_dashboard_timeline'
+  get 'black_dashboard/login', to: 'black_dashboard#login', as: 'black_dashboard_login'
+  get 'black_dashboard/profile', to: 'black_dashboard#profile', as: 'black_dashboard_profile'
+  get 'black_dashboard/buttons', to: 'black_dashboard#buttons', as: 'black_dashboard_buttons'
+  get 'black_dashboard/grid', to: 'black_dashboard#grid', as: 'black_dashboard_grid'
+  get 'black_dashboard/panels', to: 'black_dashboard#panels', as: 'black_dashboard_panels'
+  get 'black_dashboard/alerts', to: 'black_dashboard#alerts', as: 'black_dashboard_alerts'
+  get 'black_dashboard/notifications', to: 'black_dashboard#notifications', as: 'black_dashboard_notifications'
+  get 'black_dashboard/typography', to: 'black_dashboard#typography', as: 'black_dashboard_typography'
+  get 'black_dashboard/forms_extended', to: 'black_dashboard#forms_extended', as: 'black_dashboard_forms_extended'
+  get 'black_dashboard/forms_regular', to: 'black_dashboard#forms_regular', as: 'black_dashboard_forms_regular'
+  get 'black_dashboard/forms_validation', to: 'black_dashboard#forms_validation', as: 'black_dashboard_forms_validation'
+  get 'black_dashboard/forms_wizard', to: 'black_dashboard#forms_wizard', as: 'black_dashboard_forms_wizard'
+  get 'black_dashboard/tables_regular', to: 'black_dashboard#tables_regular', as: 'black_dashboard_tables_regular'
+  get 'black_dashboard/tables_extended', to: 'black_dashboard#tables_extended', as: 'black_dashboard_tables_extended'
+  get 'black_dashboard/tables_datatables', to: 'black_dashboard#tables_datatables', as: 'black_dashboard_tables_datatables'
+  get 'black_dashboard/maps_google', to: 'black_dashboard#maps_google', as: 'black_dashboard_maps_google'
+  get 'black_dashboard/maps_full_screen', to: 'black_dashboard#maps_full_screen', as: 'black_dashboard_maps_full_screen'
+  get 'black_dashboard/maps_vector', to: 'black_dashboard#maps_vector', as: 'black_dashboard_maps_vector'
+  get 'black_dashboard/widgets', to: 'black_dashboard#widgets', as: 'black_dashboard_widgets'
+  get 'black_dashboard/charts', to: 'black_dashboard#charts', as: 'black_dashboard_charts'
+  get 'black_dashboard/calendar', to: 'black_dashboard#calendar', as: 'black_dashboard_calendar'
+  get 'black_dashboard/nomcre_login', to: 'black_dashboard#nomcre_login', as: 'black_dashboard_nomcre_login'
 
   #root 'khaki#nomcre_home'
   root 'application#home'

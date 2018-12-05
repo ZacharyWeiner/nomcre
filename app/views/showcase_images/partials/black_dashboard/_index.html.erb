@@ -1,0 +1,103 @@
+<div class="col-md-8 ml-auto mr-auto">
+  <h2 class="text-center">Showcase Videos</h2>
+  <p class="text-center">
+  </p>
+</div>
+<div class="row mt-5">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="toolbar">
+          <!--        Here you can write extra buttons/actions for the toolbar              -->
+        </div>
+        <table id="datatable" class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Showcase</th>
+              <th>Show</th>
+              <th>Order</th>
+              <th>View</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @showcase_images.each do |showcase_image| %>
+              <tr>
+                <td><%= image_tag showcase_image.file.thumb %></td>
+                <td><%= showcase_image.name %></td>
+                <td><%= showcase_image.showcase_type %></td>
+                <td><%= showcase_image.show %></td>
+                <td><%= showcase_image.order %></td>
+
+                <td><%= link_to 'Show', showcase_image %></td>
+                <td><%= link_to 'Edit', edit_showcase_image_path(showcase_image) %></td>
+                <td><%= link_to 'Destroy', showcase_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+         </tbody>
+         <tfoot>
+          <tr>
+              <th>Name</th>
+              <th>Showcase</th>
+              <th>Show</th>
+              <th>Order</th>
+              <th>View</th>
+              <th>Edit</th>
+              <th>Delete</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <!-- end content-->
+  </div>
+  <!--  end card  -->
+</div>
+<!-- end col-md-12 -->
+</div>
+<div class='pull-right'>
+  <%= link_to "Add A Video", new_showcase_video_path, class: 'btn btn-success' %>
+</div>
+<% content_for :added_scripts do %>
+  <script>
+    $(document).ready(function() {
+      $('#datatable').DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"]
+        ],
+        responsive: true,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search records",
+        }
+
+      });
+
+      var table = $('#datatable').DataTable();
+
+      // Edit record
+      table.on('click', '.edit', function() {
+        $tr = $(this).closest('tr');
+
+        var data = table.row($tr).data();
+        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+      });
+
+      // Delete a record
+      table.on('click', '.remove', function(e) {
+        $tr = $(this).closest('tr');
+        table.row($tr).remove().draw();
+        e.preventDefault();
+      });
+
+      //Like record
+      table.on('click', '.like', function() {
+        alert('You clicked on Like button');
+      });
+    });
+  </script>
+  <% end %>
+

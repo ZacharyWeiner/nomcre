@@ -1,37 +1,100 @@
-<div class="box">
-  <div class="box-header">
-    <h3 class="box-title">All Notifications</h3>
+<div class="content">
+  <div class="col-md-8 ml-auto mr-auto">
+    <h2 class="text-center">Your Notifications</h2>
+    <p class="text-center"> A List Of All The Notifications That Have Been Sent To Your Account
+    </p>
   </div>
-  <!-- /.box-header -->
-  <div class="box-body no-padding">
-    <table class="table table-striped">
-      <tbody>
-        <tr>
-          <th>Type</th>
-          <th>Sent On</th>
-          <th>View</th>
-        </tr>
-        <% @notifications.each do |note|%>
-        <tr>
-          <td><%= note.notification_type %> </td>
-          <td><%= note.created_at %></td>
-          <td>
-            <% if note.notification_type == "New Request" %>
-              <%= link_to "View", proposal_requests_path, class: 'btn btn-primary'%>
-            <% elsif note.notification_type == "Request Accepted" %>
-              <%= link_to "View", proposal_path(note.notification_object_id), class: 'btn btn-primary'%>
-            <% elsif note.notification_type == "Proposal Assigned" %>
-              <%= link_to "View", proposal_path(note.notification_object_id), class: 'btn btn-primary'%>
-            <% elsif note.notification_type == "New Message" %>
-              <%= link_to "View", chatroom_path(Chatroom.find(note.notification_object_id)), class: 'btn btn-primary'%>
+  <div class="row mt-5">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="toolbar">
+            <!--        Here you can write extra buttons/actions for the toolbar              -->
+          </div>
+          <table id="datatable" class="table table-striped">
+            <thead>
+              <tr>
+               <th>Type</th>
+                <th>Sent</th>
+                <th>View</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @notifications.each do |note|%>
+              <tr>
+                <td><%= note.notification_type %> </td>
+                <td><%= time_ago_in_words(note.created_at) %> ago</td>
+                <td>
+                  <% if note.notification_type == "New Request" %>
+                    <%= link_to "View", proposal_requests_path, class: 'btn btn-primary'%>
+                  <% elsif note.notification_type == "Request Accepted" %>
+                    <%= link_to "View", proposal_path(note.notification_object_id), class: 'btn btn-primary'%>
+                  <% elsif note.notification_type == "Proposal Assigned" %>
+                    <%= link_to "View", proposal_path(note.notification_object_id), class: 'btn btn-primary'%>
+                  <% elsif note.notification_type == "New Message" %>
+                    <%= link_to "View", chatroom_path(Chatroom.find(note.notification_object_id)), class: 'btn btn-primary'%>
+                  <% end %>
+                </td>
+              </tr>
             <% end %>
-          </td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+            </tbody>
+            <tfoot>
+              <tr>
+               <th>Type</th>
+                <th>Sent</th>
+                <th>View</th>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!-- end content-->
+      </div>
+      <!--  end card  -->
+    </div>
+    <!-- end col-md-12 -->
   </div>
-  <!-- /.box-body -->
+  <!-- end row -->
 </div>
 
+  <% content_for :added_scripts do %>
+  <script>
+    $(document).ready(function() {
+      $('#datatable').DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"]
+        ],
+        responsive: true,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search records",
+        }
+
+      });
+
+      var table = $('#datatable').DataTable();
+
+      // Edit record
+      table.on('click', '.edit', function() {
+        $tr = $(this).closest('tr');
+
+        var data = table.row($tr).data();
+        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+      });
+
+      // Delete a record
+      table.on('click', '.remove', function(e) {
+        $tr = $(this).closest('tr');
+        table.row($tr).remove().draw();
+        e.preventDefault();
+      });
+
+      //Like record
+      table.on('click', '.like', function() {
+        alert('You clicked on Like button');
+      });
+    });
+  </script>
+  <% end %>
 

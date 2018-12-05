@@ -1122,6 +1122,14 @@ demo = {
         confirmButtonClass: "btn btn-info"
       }).catch(swal.noop);
 
+    }else if (type == 'file-upload') {
+      swal({
+        title: "Your file is uploading",
+        text: "The Page will refresh when upload is complete",
+        buttonsStyling: false,
+        confirmButtonClass: "btn btn-info"
+      }).catch(swal.noop);
+
     } else if (type == 'success-message') {
       swal({
         title: "Good job!",

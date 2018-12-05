@@ -1,0 +1,56 @@
+
+<div class="row">
+  <div class="card card-user">
+    <div class="card-body">
+      <p class="card-text">
+        <div class="author">
+          <div class="block block-one"></div>
+          <div class="block block-two"></div>
+          <div class="block block-three"></div>
+          <div class="block block-four"></div>
+          <a href="javascript:void(0)">
+            <%= image_tag @company.logo, class: 'avatar' %>
+            <h5 class="title"><%= @company.name %></h5>
+          </a>
+          <p class="description">
+          <%= @company.users.first.name%>
+          </p>
+        </div>
+      </p>
+      <div class="card-description">
+       <div class='row'>
+         <div class='col-sm-6 text-right'>
+           <b>Open Requests</b> <a class=""><%= @company.proposals.where(completed: false).count%></a>
+         </div>
+         <div class='col-sm-6 text-left'>
+           <b>Completed Jobs</b> <a class=""><%= @company.proposals.where(completed: true).count%></a>
+         </div>
+       </div>
+     </div>
+   </div>
+   <div class="card-footer text-center">
+    <ul class="nav nav-pills nav-pills-primary nav-pills-icons justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link active" href="tel:<%= @company.phone %>">
+          <i class="tim-icons"><ion-icon name='call'></ion-icon></i> Call
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" target="_blank" href="http://<%= @company.website.gsub('http://', '') %>">
+          <i class="tim-icons"><ion-icon name='globe'></ion-icon></i> Website
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" target="_blank" href="https://instagram.com/<%= @company.instagram.gsub('@', "") %>">
+          <i class="tim-icons"><ion-icon name='logo-instagram'></ion-icon></i> Instagram
+        </a>
+      </li>
+    </ul>
+    <% if current_user.company == @company %>
+      <br><br>
+      <%= link_to "Edit", edit_company_path(@company), class: 'btn btn-warning ' %>
+    <% end %>
+  </div>
+</div>
+</div>
+

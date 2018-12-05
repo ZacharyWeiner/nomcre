@@ -1,0 +1,98 @@
+ <div class="row">
+  <div class="card card-user">
+    <div class="card-body">
+      <p class="card-text">
+        <div class="author">
+          <div class="block block-one"></div>
+          <div class="block block-two"></div>
+          <div class="block block-three"></div>
+          <div class="block block-four"></div>
+          <a href="javascript:void(0)">
+            <%= image_tag @user_profile.safe_profile_image_url, class: 'avatar'%>
+            <h5 class="title"><%= @user_profile.user.name %></h5>
+          </a>
+          <p class="description">
+            <% location = "Somewhere Cool" %>
+            <% if @user_profile.user.schedule_items.count > 0 %>
+              <% schedule_item_now = @user_profile.user.schedule_items.where('start_date < ?', Date.today).where('end_date > ?', Date.today)%>
+              <% if schedule_item_now.count > 0 %>
+                <% location = schedule_item_now.first.location.name %>
+              <% end %>
+            <% end %>
+            <span><i class='tim-icons'><ion-icon name="pin"></ion-icon></i> <%= location %></span>
+            <br>
+          </p>
+        </div>
+      </p>
+      <div class='row text-primary'>
+        <div class='col-md-4'></div>
+          <div class='col-md-4'>
+            <br>
+            <div class="row text-center">
+              <div class="col-sm-4 ">
+                <div class="description-block">
+                  <h5 class="description-header"><%= @user_profile.user.collection_items.count  %></h5>
+                  <span class="description-text"><i class='fa fa-camera fa'></i></span>
+                </div>
+              </div>
+              <div class="col-sm-4 ">
+                <div class="description-block">
+                  <h5 class="description-header">
+                    <%= @user_profile.user.proposals.where.not(completed: true).count %>
+                  </h5>
+                  <span class="description-text"><i class='fa fa-briefcase'></i></span>
+                </div>
+              </div>
+              <div class="col-sm-4">
+                <div class="description-block">
+                  <h5 class="description-header">
+                    <%= @user_profile.user.proposals.where(completed: true).count %>
+                  </h5>
+                  <span class="description-text"><i class='fa fa-trophy'></i></span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='col-md-4'></div>
+      </div>
+      <div class="card-description">
+       <%= @user_profile.description %>
+     </div>
+    </div>
+    <div class="card-footer text-primary text-center">
+      <% if current_user && current_user.user_profile.id == @user_profile.id %>
+      <%= link_to edit_user_profile_path(@user_profile) do %>
+         <span><i class='tim-icons'><ion-icon name="paper"></ion-icon></i> Edit</span>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+  <div class='card '>
+    <div class='card-body'>
+      <div class='card-text'>
+
+        <br>
+        <div class='row text-center' style="font-size:18px;">
+          <div class='col-sm-12'>
+            <p><span class=''><i class='tim-icons text-primary'><ion-icon name='flask'></ion-icon></i> Skills</span></p>
+          <br>
+          </div>
+          <div class='col-sm-12 clear' style="font-size:12px;">
+             <%= render :partial => 'user_profiles/partials/black_dashboard/shared/equiptment', :locals => {:user_profile => @user_profile} %>
+          </div>
+        </div>
+        <br>
+        <hr>
+        <div class='row text-center' style="font-size:18px;">
+          <div class='col-sm-12'>
+            <p><span class=''><i class='tim-icons text-primary'><ion-icon name='camera'></ion-icon></i> Preferences</span></p>
+            <br>
+          </div>
+          <div class='col-sm-12 clear' style="font-size:12px;">
+             <%= render :partial => 'user_profiles/partials/black_dashboard/shared/skills', :locals => {:user_profile => @user_profile} %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+<%= form_for(showcase_image) do |form| %>
+<div class="card card-user text-center">
+  <div class="card-body">
+    <p class="card-text">
+    </p>
+    <div class="author">
+      <div class="block block-one"></div>
+      <div class="block block-two"></div>
+      <div class="block block-three"></div>
+      <div class="block block-four"></div>
+      <a href="javascript:void(0)">
+        <ion-icon name='checkmark-circle-outline' size='large' ></ion-icon>
+        <h5 class="title">New Showcase Video</h5>
+      </a>
+      <p class="description">
+        <% if showcase_image.errors.any? %>
+          <div id="error_explanation">
+            <h2>
+              <%= pluralize(showcase_image.errors.count, "error") %> prohibited this showcase_image from being saved:
+            </h2>
+            <ul>
+              <% showcase_image.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </p>
+    </div>
+    <p>
+      <div class=''>
+        <div class="">
+          <%if showcase_image.file != nil %>
+            <%= image_tag showcase_image.file, class: 'img-fluid' %>
+            <br>
+          <% end %>
+          <%= form.label :file %>
+          <%= form.file_field :file, id: :showcase_image_file, class: 'form-control' %>
+        </div>
+        <br>
+        <div class="form-group">
+          <%= form.label :showcase_type %>
+          <select name="showcase_image[showcase_type]" id="showcase_image_shwcase_type" class='form-control'>
+            <option value="main">main</option>
+      <!--       <option value="joke">joke</option>
+            <option value="poem">poem</option> -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :show %>
+          <%= form.check_box :show, id: :showcase_image_show, checked: true %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :order %>
+          <%= form.number_field :order, id: :showcase_image_order, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :name %>
+          <%= form.text_field :name, id: :showcase_image_name, class: 'form-control' %>
+        </div>
+      </div>
+    </p>
+    <div class="card-description">
+
+    </div>
+    <div class="card-footer">
+      <div class="actions text-center">
+        <%= button_tag( :class => "btn btn-success") do %>
+        <ion-icon name='checkmark'></ion-icon> Add
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

@@ -1,0 +1,43 @@
+<% deposit_state_class = proposal.deposit_paid == true ? 'disabled' : 'text-success' %>
+<% balance_state_class = proposal.paid == true ? 'disabled' : 'text-info' %>
+
+  <div class='row'>
+    <div class='col-sm-4 col-md-4 text-center'>
+      <%= link_to proposal_payment_path(@proposal), class: "btn btn-link #{deposit_state_class}" do %>
+          <span>
+            <i class="tim-icon">
+              <% deposit_icon = deposit_state_class == 'disabled' ? "done-all" : "cash" %>
+              <ion-icon name="<%= deposit_icon %>" size='' style='font-size: 20px'></ion-icon>
+            </i>
+            <br>
+            Deposit <%= proposal.deposit_paid == true ? 'Paid' : '' %>
+          </span>
+      <% end %>
+    </div>
+    <div class='col-sm-4 col-md-4 text-center'>
+      <%= link_to proposal_payment_path(@proposal), class: "btn btn-link #{balance_state_class}" do %>
+        <span>
+          <i class="tim-icon">
+            <% balance_icon = balance_state_class == 'disabled' ? "done-all" : "cash" %>
+            <ion-icon name="<%= balance_icon %>" size='' style='font-size: 20px'></ion-icon>
+          </i>
+          <br>
+          <%= proposal.paid == true ? 'Balance Paid' : 'Pay Balance' %>
+        </span>
+      <% end %>
+    </div>
+    <div class='col-sm-4 col-md-4 text-center'>
+      <%= link_to chatroom_path(@proposal.chatroom), class: "btn btn-link text-primary" do %>
+        <span>
+          <i class="tim-icon">
+            <ion-icon name="chatbubbles" size='' style='font-size: 20px'></ion-icon>
+          </i>
+          <br>
+         Chat
+        </span>
+      <% end %>
+    </div>
+  </div>
+
+
+

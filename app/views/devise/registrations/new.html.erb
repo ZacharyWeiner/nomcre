@@ -1,43 +1,122 @@
-<p class="login-box-msg">
+<h4 class="login-box-msg">
   <% if session[:user_type] == 'creative' %>
   Creator Sign up
   <% elsif session[:user_type] == 'company'%>
   Company Sign Up
   <% end %>
-</p>
+</h4>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<style type="text/css">
+  .info-title{padding-top: 24px;}
+</style>
 
-  <div class="form-group has-feedback">
-    <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Your Name' %>
-    <span class='fa fa-user form-control-feedback'></span>
-  </div>
-
-  <div class="form-group has-feedback">
-    <%= f.email_field :email, autofocus: false, class: 'form-control', placeholder: 'Your Email' %>
-    <span class='fa fa-envelope form-control-feedback'></span>
-  </div>
-
-  <div class="form-group has-feedback">
-    <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password' %>
-    <span class='fa fa-lock form-control-feedback'></span>
-  </div>
-
-  <div class="form-group has-feedback">
-    <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Password Confirmation' %>
-    <span class='fa fa-lock form-control-feedback'></span>
-  </div>
-  <% session[:user_type] %>
-  <%if request.query_parameters[:user_type]%>
-    <% session[:user_type] = request.query_parameters[:user_type] %>
-  <% end %>
+<div class="container">
   <div class="row">
-    <div class="col-xs-4">
-      <%= f.submit "Sign up", class: 'btn btn-success btn-block btn-flat' %>
+    <div class="col-md-5 ml-auto">
+      <div class="info-area info-horizontal mt-5">
+        <div class="icon icon-warning">
+          <i class="tim-icons"><ion-icon name='photos'></ion-icon></i>
+        </div>
+        <div class="description">
+          <h3 class="info-title">Asset Library</h3>
+          <p class="description">
+            With a single day of shooting Nomadic Creative creates an asset library with enough assets to last your marketing efforts an entire year!
+          </p>
+        </div>
+      </div>
+      <div class="info-area info-horizontal">
+        <div class="icon icon-primary">
+          <i class="tim-icons"><ion-icon name="stopwatch"></ion-icon></i>
+        </div>
+        <div class="description">
+          <h3 class="info-title">Super Fast</h3>
+          <p class="description">
+            Nomadic Creative's distributed team of talent can start working on your project as soon as tomorrow!
+          </p>
+        </div>
+      </div>
+      <div class="info-area info-horizontal">
+        <div class="icon icon-info">
+          <i class="tim-icons"><ion-icon name="funnel"></ion-icon></i>
+        </div>
+        <div class="description">
+          <h3 class="info-title">Built For Channels</h3>
+          <p class="description">
+            Nomadic Creative creates your content for your specific marketing channels. For instance, email banners and InstaStories are shot and endited to fit their specifc uses.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-7 mr-auto">
+      <div class="card card-register card-white">
+        <div class="card-header">
+          <img class="card-img" src="https://s3-us-west-2.amazonaws.com/nomcre-rails/assets/black-dashboard/assets/img/card-primary.png" alt="Card image">
+          <h4 class="card-title">Register</h4>
+        </div>
+        <div class="card-body">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => "form"}) do |f| %>
+            <%= devise_error_messages! %>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="tim-icons"><ion-icon name='contact'></ion-icon></i>
+                </div>
+              </div>
+              <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Your Name' %>
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="tim-icons"><ion-icon name='mail'></ion-icon></i>
+                </div>
+              </div>
+              <%= f.email_field :email, autofocus: false, class: 'form-control', placeholder: 'Your Email' %>
+              <!-- <input type="text" placeholder="Email" class="form-control"> -->
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="tim-icons"><ion-icon name='lock'></ion-icon></i>
+                </div>
+              </div>
+              <%= f.password_field :password, autocomplete: "off", class: 'form-control', placeholder: 'Password' %>
+
+            </div>
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  <i class="tim-icons"><ion-icon name='lock'></ion-icon></i>
+                </div>
+              </div>
+               <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Password Confirmation' %>
+              <!-- <input type="text" class="form-control" placeholder="Password"> -->
+            </div>
+            <% session[:user_type] %>
+            <%if request.query_parameters[:user_type]%>
+              <% session[:user_type] = request.query_parameters[:user_type] %>
+            <% end %>
+            <div class="form-check text-left">
+              <label class="form-check-label">
+                <input class="form-check-input" type="checkbox">
+                <span class="form-check-sign"></span>
+                I agree to the
+                <a href="javascript:void(0)">terms and conditions</a>.
+              </label>
+            </div>
+            <%= f.submit "Sign up", class: 'btn btn-primary btn-round btn-lg' %>
+          <% end %>
+        </div>
+        <div class="card-footer">
+
+
+        </div>
+      </div>
     </div>
   </div>
-<% end %>
+</div>
 
 
-<%= render "devise/shared/links" %>
+
+
+
+

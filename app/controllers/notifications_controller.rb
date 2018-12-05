@@ -1,5 +1,5 @@
 class NotificationsController < ApplicationController
-  layout 'adminlte'
+  layout 'black_dashboard'
   def index
     @notifications = Notification.where(user: current_user).order(:created_at).reverse
     unread = Notification.where(user: current_user).where(read: false)

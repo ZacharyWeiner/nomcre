@@ -1,6 +1,6 @@
 class PageSectionsController < ApplicationController
   before_action :set_page_section, only: [:show, :edit, :update, :destroy]
-  layout 'adminlte'
+  layout 'black_dashboard'
   # GET /page_sections
   # GET /page_sections.json
   def index

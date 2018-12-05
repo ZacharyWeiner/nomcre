@@ -1,45 +1,103 @@
-<p id="notice"><%= notice %></p>
+<div class="col-md-8 ml-auto mr-auto">
+  <h2 class="text-center">Package Types</h2>
+  <p class="text-center">These are the packages from which a project can be created. They can show in the main menu, and have a display page for logged out users.
+  </p>
+</div>
+<div class="row mt-5">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="toolbar">
+          <!--        Here you can write extra buttons/actions for the toolbar              -->
+        </div>
+        <table id="datatable" class="table table-striped">
+          <tbody>
+            <tr>
+              <th>Title</th>
+              <th>Minimum images</th>
+              <th>Minimum videos</th>
+              <th>Max models</th>
+              <th>Base price</th>
+              <th>View</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+            <% @package_types.each do |package_type| %>
+              <tr>
+               <td><%= package_type.title %></td>
+               <td><%= package_type.minimum_images %></td>
+               <td><%= package_type.minimum_videos %></td>
+               <td><%= package_type.max_models %></td>
+               <td><%= package_type.base_price %></td>
+               <td><%= link_to 'Show', package_type %></td>
+               <td><%= link_to 'Edit', edit_package_type_path(package_type) %></td>
+               <td><%= link_to 'Destroy', package_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>Title</th>
+              <th>Minimum images</th>
+              <th>Minimum videos</th>
+              <th>Max models</th>
+              <th>Base price</th>
+              <th>View</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <!-- end content-->
+    </div>
+    <!--  end card  -->
+  </div>
+  <!-- end col-md-12 -->
+</div>
+<!-- end row -->
 
-<h1>Package Types</h1>
 
 
-
-
-
-<div class="box">
-            <div class="box-header with-border">
-              <h3 class="box-title">Package Types</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table class="table table-bordered">
-                <tbody><tr>
-                  <th>Title</th>
-                  <th>Minimum images</th>
-                  <th>Minimum videos</th>
-                 <th>Max models</th>
-                  <th>Base price</th>
-                  <th colspan="3"></th>
-                </tr>
-                <% @package_types.each do |package_type| %>
-                <tr>
-                 <td><%= package_type.title %></td>
-                <td><%= package_type.minimum_images %></td>
-                <td><%= package_type.minimum_videos %></td>
-                <td><%= package_type.max_models %></td>
-                <td><%= package_type.base_price %></td>
-                <td><%= link_to 'Show', package_type %></td>
-                <td><%= link_to 'Edit', edit_package_type_path(package_type) %></td>
-                <td><%= link_to 'Destroy', package_type, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                </tr>
-                <% end %>
-              </tbody></table>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer clearfix">
-              <ul class="pagination pagination-sm no-margin pull-right">
-
-              </ul>
-            </div>
-          </div>
 <%= link_to 'New Package Type', new_package_type_path, class: 'btn btn-primary' %>
+<% content_for :added_scripts do %>
+  <script>
+    $(document).ready(function() {
+      $('#datatable').DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"]
+        ],
+        responsive: true,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search records",
+        }
+
+      });
+
+      var table = $('#datatable').DataTable();
+
+      // Edit record
+      table.on('click', '.edit', function() {
+        $tr = $(this).closest('tr');
+
+        var data = table.row($tr).data();
+        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+      });
+
+      // Delete a record
+      table.on('click', '.remove', function(e) {
+        $tr = $(this).closest('tr');
+        table.row($tr).remove().draw();
+        e.preventDefault();
+      });
+
+      //Like record
+      table.on('click', '.like', function() {
+        alert('You clicked on Like button');
+      });
+    });
+  </script>
+  <% end %>

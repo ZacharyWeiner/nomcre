@@ -15,7 +15,7 @@ class Proposal < ApplicationRecord
   validates :proposal_type, presence: true
   def find_creatives
     creatives =[]
-    search_date = Date.today
+    search_date = self.deadline
     creatives = ScheduleItem.where(location: self.location).where("end_date > ?", search_date).map{|si|
 
       ProposalSearchResult.new(user_id: si.user.id, rank: 3, schedule_item_id: si.id)
@@ -91,6 +91,49 @@ class Proposal < ApplicationRecord
       is_editable = false
     end
     is_editable
+  end
+
+  def status
+    status = 'More Info Needed'
+    if self.is_info_complete
+      status = 'Ready To Begin'
+    end
+     if self.shot_list_items.count > 0 && self.shot_list_items.count < self.shot_count
+      status = "Edit Shot List"
+    end
+    if self.deposit_paid == true
+      status = 'Deposit Paid'
+    end
+    if self.user != nil
+      status = "In Process"
+    end
+    if self.paid
+      status = "Balance Paid"
+    end
+    if self.completed
+      status = "Complete"
+    end
+    status
+  end
+
+  def next_step status
+    next_step = ''
+    if status == 'More Info Needed'
+      next_step = "Complete The Brief"
+    elsif status == 'Ready To Begin'
+      next_step = 'Create Your Shot List'
+    elsif status == 'Edit Shot List'
+      next_step = 'Add To Your Shot List'
+    elsif status == 'Deposit Paid'
+      next_step = 'Select A Creative'
+    elsif status == 'In Process'
+      next_step = "Pay Balance"
+    elsif status == 'Balance Paid'
+      next_step = 'Receive Your Asset Library'
+    elsif status == 'Complete'
+      next_step = ''
+    end
+    next_step
   end
 
   def create_tasks

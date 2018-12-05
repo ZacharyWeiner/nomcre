@@ -1,0 +1,110 @@
+
+
+<%= form_for(showcase_video) do |form| %>
+
+<div class="card card-user text-center">
+  <div class="card-body">
+    <p class="card-text">
+      </p><div class="author">
+        <div class="block block-one"></div>
+        <div class="block block-two"></div>
+        <div class="block block-three"></div>
+        <div class="block block-four"></div>
+        <a href="javascript:void(0)">
+          <ion-icon name='checkmark-circle-outline' size='large' ></ion-icon>
+          <h5 class="title">New Showcase Video</h5>
+        </a>
+        <p class="description">
+            <% if showcase_video.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(showcase_video.errors.count, "error") %> prohibited this showcase_video from being saved:</h2>
+
+                <ul>
+                <% showcase_video.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+
+        </p>
+      </div>
+    <p>
+      <div class='row'>
+        <!--  <div class='col-md-2 text-left'></div> -->
+        <div class='col-md-6 text-center'>
+
+          <div class="form-group">
+            <% if showcase_video.file.url != nil %>
+              <%= video_tag showcase_video.file, controls: 'controls', class: 'img-fluid' %>
+            <% end %>
+           <ion-icon name='videocam'  size='large' class= 'btn btn-rose btn-round btn-file'> </ion-icon>
+            <%= form.label :select_a_video %>
+            <%= form.file_field :file, id: :showcase_image_file %>
+          </div>
+          <div class="form-group">
+            <%= form.label :showcase_type %>
+            <select name="showcase_image[showcase_type]" id="showcase_image_shwcase_type">
+              <option value="main">main</option>
+        <!--       <option value="joke">joke</option>
+              <option value="poem">poem</option> -->
+            </select>
+          </div>
+          <div class="">
+            <%= form.label :show %>
+            <%= form.check_box :show, id: :showcase_video_show, class: '' %>
+          </div>
+
+
+        </div>
+        <div class='col-md-6'>
+         <div class="form-group">
+            <% if showcase_video.file != nil %>
+              <%= image_tag showcase_video.thumbnail, class: 'img-fluid' %>
+            <% end %>
+            <ion-icon name='camera'  size='large' class= 'btn btn-rose btn-round btn-file'> </ion-icon>
+            <%= form.label :select_a_thumbnail %>
+            <%= form.file_field :thumbnail, id: :showcase_video_thumbnail, class: 'form-control' %>
+          </div>
+      <div class="form-group">
+        <%= form.label :order %>
+        <%= form.number_field :order, id: :showcase_video_order, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :title %>
+        <%= form.text_field :title, id: :showcase_video_title, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :description %>
+        <%= form.text_area :description, id: :showcase_video_description, class: 'form-control' %>
+      </div>
+
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    </p>
+    <div class="card-description">
+
+  </div>
+  <div class="card-footer">
+    <div class="actions text-center">
+      <%= button_tag( :class => "btn btn-success") do %>
+        <ion-icon name='checkmark'></ion-icon> Add
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

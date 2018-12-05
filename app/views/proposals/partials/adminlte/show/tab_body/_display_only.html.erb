@@ -1,0 +1,52 @@
+
+<section class="content">
+  <div class="row">
+    <div class="col-md-3">
+
+      <!-- Profile Image -->
+      <%= render 'proposals/partials/proposal_info_top' %>
+      <!-- /.box -->
+
+      <!-- About Me Box -->
+      <%= render 'proposals/partials/proposal_info_bottom' %>
+      <!-- /.box -->
+    </div>
+    <!-- /.col -->
+    <div class="col-md-9">
+      <div class="nav-tabs-custom">
+        <%= render :partial => 'proposals/partials/adminlte/show/tabs/company', :locals => { proposal: proposal } %>
+        <div class="tab-content">
+          <div class="active tab-pane" id="basic_info">
+            <%= render 'proposals/partials/proposal_basic_info'%>
+          </div>
+          <div class="tab-pane" id="shot_list">
+            <%= render :partial => 'shot_list_items/shot_list', :locals => {:shot_list_items => proposal.shot_list_items} %>
+          </div>
+          <% unless @proposal.tasks.count == 0 %>
+          <div class="tab-pane" id="tasks">
+            <%= render 'proposals/partials/adminlte/show/tab_body/shared/tasks'%>
+          </div>
+          <% end %>
+          <div class="tab-pane" id="creatives">
+
+          </div>
+          <div class="tab-pane" id="disclosures">
+            <%= render 'proposals/partials/proposal_disclosures' %>
+          </div>
+           <div class="tab-pane" id="invoice">
+            <h3> Deposit </h3>
+              <%= render :partial => 'proposals/partials/invoices/deposit_invoice', :locals => {proposal: proposal} %>
+            <br><hr><br>
+            <h3> Balance </h3>
+              <%= render :partial => 'proposals/partials/invoices/balance_invoice', :locals => {proposal: proposal} %>
+          </div>
+          <!-- /.tab-pane -->
+        </div>
+        <!-- /.tab-content -->
+      </div>
+      <!-- /.nav-tabs-custom -->
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</section>

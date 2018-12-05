@@ -1,0 +1,66 @@
+<p id="notice"><%= notice %></p>
+<div class="box box">
+  <div class="box-header ui-sortable-handle" style="cursor: move;">
+    <i class="fa fa-clipboard"></i>
+
+    <h3 class="box-title">Shot List</h3>
+
+    <div class="box-tools pull-right">
+    </div>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+    <ul class="todo-list ui-sortable">
+      <% @shot_list_items.each do |shot_list_item| %>
+      <li>
+        <!-- drag handle -->
+        <span class="handle ui-sortable-handle">
+          <i class="fa fa-ellipsis-v"></i>
+          <i class="fa fa-ellipsis-v"></i>
+        </span>
+        <!-- checkbox -->
+        <input type="checkbox" value="">
+        <!-- todo text -->
+        <span class="text"><small> <%= shot_list_item.item_type %> </small> - <%= shot_list_item.aspect_ratio %> - <%= shot_list_item.description %> </span>
+        <!-- Emphasis label -->
+        <small class="label label-success"><i class="fa fa-image"></i> <%= shot_list_item.background %></small>
+
+        <!-- General tools such as edit or delete-->
+        <div class="tools">
+          <%if shot_list_item.upload.file %>
+            <i class='fa fa-check label-success'></i>
+          <% else %>
+            <i class='fa fa-times-circle error'></i>
+          <% end %>
+          <%= link_to shot_list_item do %>
+            <i class="fa fa-eye"></i>
+          <% end %>
+          <%= link_to edit_proposal_shot_list_item_path(shot_list_item.proposal, shot_list_item) do %>
+            <i class="fa fa-edit"></i>
+          <% end %>
+          <%= link_to shot_list_item, method: :delete, data: { confirm: 'Are you sure?' } do %>
+          <i class="fa fa-trash-o"></i>
+          <% end %>
+        </div>
+        <% if shot_list_item.reference_image.url %>
+          <%= image_tag shot_list_item.reference_image.url, class: 'img-responsive', style: 'max-height: 300px;'%>
+        <% end %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+  <!-- /.box-body -->
+  <div class="box-footer clearfix no-border">
+    <% proposal = Proposal.find(params[:proposal_id]) %>
+    <%= link_to proposal, class: "btn btn-default pull-right" do %>
+      <i class='fa fa-eye'></i> View Proposal
+    <% end %>
+    <% if @shot_list_items.count < proposal.shot_count %>
+      <%= link_to new_proposal_shot_list_item_path(proposal), class: 'btn btn-success pull-left' do %>
+        <i class="fa fa-plus"></i> Add To Shot List
+      <% end %>
+    <% end %>
+  </div>
+</div>
+

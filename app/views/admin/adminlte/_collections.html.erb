@@ -1,0 +1,52 @@
+_collections.html.erb
+<div class="box">
+  <div class="box-header with-border">
+    <h3 class="box-title">Collections</h3>
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <table class="table table-bordered">
+      <tbody><tr>
+        <th>Title </th>
+        <th>Owner</th>
+        <th>Item Count</th>
+        <th>Featured</th>
+        <th>View</th>
+        <th>Featured</th>
+      </tr>
+      <% @collections.each do |c| %>
+      <tr>
+        <td><%= c.title %></td>
+        <td><%= c.user.name %></td>
+        <td><%= c.collection_items.count  %></td>
+        <td><%= c.featured? %></td>
+        <td>
+          <%= link_to "View", collection_path(c) %>
+        </td>
+        <td>
+          <%if c.featured %>
+            <%= link_to "Remove Feature", collection_remove_featured_path(c) %>
+          <% else %>
+            <%= link_to "Feature", collection_make_featured_path(c) %>
+          <% end %>
+        </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  </div>
+  <div class='container pull-right'>
+  <%= paginate @collections %>
+</div>
+
+ <!--  <div class="box-footer clearfix">
+    <ul class="pagination pagination-sm no-margin pull-right">
+      <li><a href="#">«</a></li>
+      <li><a href="#">1</a></li>
+      <li><a href="#">2</a></li>
+      <li><a href="#">3</a></li>
+      <li><a href="#">»</a></li>
+    </ul>
+  </div> -->
+</div>
+

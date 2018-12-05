@@ -1,14 +1,16 @@
-<section class="invoice">
-      <!-- title row -->
-      <div class="row">
-        <div class="col-xs-12">
-          <h2 class="page-header">
+<div class="card" style="border: 4px solid white">
+
+<div class="card-header">
+  <div class='card-category'>
+
+          <h2>
             <i class="fa fa-globe"></i> <strong>NOM</strong>ADIC <strong>CRE</strong>ATIVE
-            <small class="pull-right">Date: <%= Date.today %></small>
+            <span class="card-title pull-right">Date: <%= Date.today %></span>
           </h2>
         </div>
         <!-- /.col -->
-      </div>
+
+
       <!-- info row -->
       <div class="row invoice-info">
         <div class="col-sm-4 invoice-col">
@@ -36,8 +38,10 @@
         </div>
         <!-- /.col -->
       </div>
-      <!-- /.row -->
+    </div>
 
+      <!-- /.row -->
+    <div class='card-body'>
       <!-- Table row -->
       <div class="row">
         <div class="col-xs-12 table-responsive">
@@ -72,9 +76,9 @@
         <!-- accepted payments column -->
         <div class="col-xs-6">
           <p class="lead">Payment Methods:</p>
-          <i class='fa fa-cc-visa fa-3x'></i>
-          <i class='fa fa-cc-mastercard fa-3x'></i>
-          <i class='fa fa-cc-amex fa-3x'></i>
+          <i class='fab fa-cc-visa fa-3x'></i>
+          <i class='fab fa-cc-mastercard fa-3x'></i>
+          <i class='fab fa-cc-amex fa-3x'></i>
 
 
           <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
@@ -134,4 +138,5 @@
           </button> -->
         </div>
       </div>
-    </section>
+    <div>
+  </div>

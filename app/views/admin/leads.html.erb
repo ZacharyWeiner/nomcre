@@ -1,4 +1,4 @@
-<div class='pull-right'>
+<!-- <div class='pull-right'>
   <%= link_to "Add A Lead", new_lead_path, class: 'btn btn-success' %>
 </div>
 <br><br>
@@ -6,7 +6,7 @@
   <div class="box-header with-border">
     <h3 class="box-title">Leads</h3>
   </div>
-  <!-- /.box-header -->
+
   <div class="box-body">
     <table class="table table-bordered">
       <thead>
@@ -44,14 +44,7 @@
   <%= paginate @leads %>
 </div>
 
- <!--  <div class="box-footer clearfix">
-    <ul class="pagination pagination-sm no-margin pull-right">
-      <li><a href="#">«</a></li>
-      <li><a href="#">1</a></li>
-      <li><a href="#">2</a></li>
-      <li><a href="#">3</a></li>
-      <li><a href="#">»</a></li>
-    </ul>
-  </div> -->
 </div>
 
+ -->
+ <%= render 'admin/black_dashboard/leads' %>

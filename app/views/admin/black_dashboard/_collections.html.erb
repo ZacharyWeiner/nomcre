@@ -1,0 +1,121 @@
+
+
+
+<div class="col-md-8 ml-auto mr-auto">
+  <h2 class="text-center">User Collections</h2>
+  <p class="text-center">This is a list of creatives waiting to be activated for work!</a>
+  </p>
+</div>
+<div class="row mt-5">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="toolbar">
+          <!--        Here you can write extra buttons/actions for the toolbar              -->
+        </div>
+        <table id="datatable" class="table table-striped">
+          <thead>
+            <tr>
+               <th>Title </th>
+              <th>Owner</th>
+              <th>Item Count</th>
+              <th>Is Featured?</th>
+              <th>View</th>
+              <th>Featured</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+             <% @collections.each do |c| %>
+             <tr>
+             <td><%= c.title %></td>
+              <td><%= c.user.name %></td>
+              <td><%= c.collection_items.count  %></td>
+              <td><%= c.featured? %></td>
+              <td>
+                <%= link_to "View", collection_path(c) %>
+              </td>
+              <td>
+                <%if c.featured %>
+                  <%= link_to "Remove Feature", collection_remove_featured_path(c) %>
+                <% else %>
+                  <%= link_to "Feature", collection_make_featured_path(c) %>
+                <% end %>
+              </td>
+
+            <td><%= link_to 'Edit', edit_collection_path(c) %></td>
+            <td>Delete</td>
+            </tr>
+            <% end %>
+
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>Title </th>
+              <th>Owner</th>
+              <th>Item Count</th>
+              <th>Is Featured?</th>
+              <th>View</th>
+              <th>Featured</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <!-- end content-->
+    </div>
+    <!--  end card  -->
+  </div>
+  <!-- end col-md-12 -->
+</div>
+<!-- end row -->
+
+
+<% link_to 'New Collection', new_waitlist_path, class: 'btn btn-primary' %>
+
+<% content_for :added_scripts do %>
+  <script>
+    $(document).ready(function() {
+      $('#datatable').DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"]
+        ],
+        responsive: true,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search records",
+        }
+
+      });
+
+      var table = $('#datatable').DataTable();
+
+      // Edit record
+      table.on('click', '.edit', function() {
+        $tr = $(this).closest('tr');
+
+        var data = table.row($tr).data();
+        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+      });
+
+      // Delete a record
+      table.on('click', '.remove', function(e) {
+        $tr = $(this).closest('tr');
+        table.row($tr).remove().draw();
+        e.preventDefault();
+      });
+
+      //Like record
+      table.on('click', '.like', function() {
+        alert('You clicked on Like button');
+      });
+    });
+  </script>
+  <% end %>
+
+
+

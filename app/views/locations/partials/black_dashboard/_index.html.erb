@@ -1,0 +1,121 @@
+<% parent = nil %>
+<div class="col-md-8 ml-auto mr-auto">
+  <h2 class="text-center">Locations </h2>
+  <p class="text-center">All the places we can shoot!</a>
+  </p>
+</div>
+<div class="row mt-5">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="toolbar">
+          <!--        Here you can write extra buttons/actions for the toolbar              -->
+        </div>
+        <table id="datatable" class="table table-striped">
+          <thead>
+            <tr>
+              <th >Name</th>
+              <th>Country</th>
+              <th>Region</th>
+
+              <th>Edit</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <% @locations.each do |loc|%>
+              <tr>
+                <td><%= loc.name %></td>
+                <td>
+                  <% if loc.parent_id %>
+                    <% parent = Location.find(loc.parent_id) %>
+                    <% if parent.location_type == "Country" %>
+                      <%= parent.name %>
+                      <% if parent.parent_id %>
+                        <% parent = Location.find(parent.parent_id)%>
+                      <%end%>
+                    <% end %>
+                  <% end %>
+                </td>
+                <td>
+                  <% if parent %>
+                   <% if parent.location_type == "Region" %>
+                    <%= parent.name %>
+                   <% end %>
+                   <%end %>
+                </td>
+                <td>
+                  <%= link_to "Edit", edit_location_path(loc) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th >Name</th>
+              <th>Country</th>
+              <th>Region</th>
+
+              <th>Edit</th>
+
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <!-- end content-->
+    </div>
+    <!--  end card  -->
+  </div>
+  <!-- end col-md-12 -->
+</div>
+<!-- end row -->
+
+
+<%= link_to 'New Locations', new_location_path, class: 'btn btn-primary' %>
+
+<% content_for :added_scripts do %>
+  <script>
+    $(document).ready(function() {
+      $('#datatable').DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"]
+        ],
+        responsive: true,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search records",
+        }
+
+      });
+
+      var table = $('#datatable').DataTable();
+
+      // Edit record
+      table.on('click', '.edit', function() {
+        $tr = $(this).closest('tr');
+
+        var data = table.row($tr).data();
+        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+      });
+
+      // Delete a record
+      table.on('click', '.remove', function(e) {
+        $tr = $(this).closest('tr');
+        table.row($tr).remove().draw();
+        e.preventDefault();
+      });
+
+      //Like record
+      table.on('click', '.like', function() {
+        alert('You clicked on Like button');
+      });
+    });
+  </script>
+  <% end %>
+
+
+
+
+

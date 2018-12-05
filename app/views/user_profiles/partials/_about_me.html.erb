@@ -20,7 +20,9 @@
         <% location = schedule_item_now.first.location.name %>
       <% end %>
     <% end %>
-    <p class="text-muted"><%= location %></p>
+    <p class="text-muted">
+      <span><i class='tim-icons'><ion-icon name="pin"></ion-icon></i> <%= location %></span>
+    </p>
 
     <hr>
 

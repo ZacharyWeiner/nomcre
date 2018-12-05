@@ -1,0 +1,14 @@
+<% first = CollectionItem.where(id: activity.object_id).first %>
+<% unless first.nil? %>
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-category">
+      <%= image_tag activity.user.user_profile.safe_profile_image_url, class: 'avatar'%> <span class='pull-right' style='padding-top: 12px;'><%= activity.user.name  %> Added A Photo<br></span>
+      </h3>
+    <h3 class="card-title"> <%= first.collection.title %> </h3>
+  </div>
+  <div class="card-body">
+    <%= image_tag first.file %>
+  </div>
+</div>
+<% end %>

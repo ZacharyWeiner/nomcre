@@ -1,24 +1,38 @@
+
 <p id="notice"><%= notice %></p>
-<%= link_to "View Page", page_path(@page_section.page), class: 'btn btn-priamry' %>
-<p>
-  <strong>Page:</strong>
-  <%= @page_section.page %>
-</p>
+<div class="card text-center">
+  <div class="card-header">
+    <h5 class="card-category">Page Sections </h5>
+    <h3 class="card-title"> Section Details </h3>
+  </div>
+  <div class="card-body">
+    <div class="tab-content tab-space">
+      <div class="tab-pane active" id="link1">
+        <p>
+          <strong>Page:</strong>
+          <%= @page_section.page.title %>
+        </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @page_section.title %>
-</p>
+        <p>
+          <strong>Title:</strong>
+          <%= @page_section.title %>
+        </p>
 
-<p>
-  <strong>Content:</strong>
-  <%= @page_section.content.html_safe %>
-</p>
+        <p>
+          <strong>Content:</strong>
+          <%= @page_section.content.html_safe %>
+        </p>
 
-<p>
-  <strong>Order:</strong>
-  <%= @page_section.order %>
-</p>
-
-<%= link_to 'Edit', edit_page_path(@page_section.page) %> |
-<%= link_to 'Back', page_sections_path %>
+        <p>
+          <strong>Order:</strong>
+          <%= @page_section.order %>
+        </p>
+        <br>
+        <%= link_to "View Page", page_path(@page_section.page), class: 'btn btn-priamry' %>
+        <br>
+        <%= link_to 'Edit', edit_page_path(@page_section.page) %> |
+        <%= link_to 'Back', page_sections_path %>
+      </div>
+    </div>
+  </div>
+</div>

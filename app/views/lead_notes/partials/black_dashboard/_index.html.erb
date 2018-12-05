@@ -1,0 +1,95 @@
+<div class="col-md-8 ml-auto mr-auto">
+  <h2 class="text-center">Lead Notes</h2>
+  <p class="text-center">
+  </p>
+</div>
+<div class="row mt-5">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="toolbar">
+          <!--        Here you can write extra buttons/actions for the toolbar              -->
+        </div>
+        <table id="datatable" class="table table-striped">
+          <thead>
+            <tr>
+              <th>Note</th>
+              <th>Lead</th>
+              <th>View</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+             <% @lead_notes.each do |lead_note| %>
+              <tr>
+                <td><%= lead_note.note %></td>
+                <td><%= lead_note.lead.name %></td>
+                <td><%= link_to 'Show', lead_note %></td>
+                <td><%= link_to 'Edit', edit_lead_note_path(lead_note) %></td>
+                <td><%= link_to 'Destroy', lead_note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+         </tbody>
+         <tfoot>
+          <tr>
+             <<th>Note</th>
+              <th>Lead</th>
+              <th>View</th>
+              <th>Edit</th>
+              <th>Delete</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <!-- end content-->
+  </div>
+  <!--  end card  -->
+</div>
+<!-- end col-md-12 -->
+</div>
+<div class='pull-right'>
+  <%= link_to "Add A Lead", new_lead_path, class: 'btn btn-success' %>
+</div>
+<% content_for :added_scripts do %>
+  <script>
+    $(document).ready(function() {
+      $('#datatable').DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"]
+        ],
+        responsive: true,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search records",
+        }
+
+      });
+
+      var table = $('#datatable').DataTable();
+
+      // Edit record
+      table.on('click', '.edit', function() {
+        $tr = $(this).closest('tr');
+
+        var data = table.row($tr).data();
+        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+      });
+
+      // Delete a record
+      table.on('click', '.remove', function(e) {
+        $tr = $(this).closest('tr');
+        table.row($tr).remove().draw();
+        e.preventDefault();
+      });
+
+      //Like record
+      table.on('click', '.like', function() {
+        alert('You clicked on Like button');
+      });
+    });
+  </script>
+  <% end %>
+

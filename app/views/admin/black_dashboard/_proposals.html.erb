@@ -1,0 +1,100 @@
+<div class="col-md-8 ml-auto mr-auto">
+  <h2 class="text-center">Proposals</h2>
+  <p class="text-center">
+  </p>
+</div>
+<div class="row mt-5">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="toolbar">
+          <!--        Here you can write extra buttons/actions for the toolbar              -->
+        </div>
+        <table id="datatable" class="table table-striped">
+          <thead>
+            <tr>
+              <th>Title </th>
+              <th>Deadline</th>
+              <th>Deposit</th>
+              <th>Paid</th>
+              <th>View</th>
+              <th>Change Price</th>
+              <th>Mark Deposit Paid</th>
+              <th>Mark Paid</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @proposals.each do |p| %>
+            <tr>
+             <td><%= p.title %></td>
+             <td><%= p.deadline.strftime("%a %b %y") %></td>
+             <td><%= p.deposit_paid %></td>
+             <td><%= p.paid %></td>
+             <td><%= link_to "View", proposal_path(p) %></td>
+             <td><%= link_to "Change $", admin_proposal_price_path(p) %></td>
+             <td><%= link_to "Deposit Paid", admin_proposal_mark_deposit_paid_path(p) %></td>
+             <td><%= link_to "Balance Paid", admin_proposal_mark_balance_paid_path(p) %></td>
+           </tr>
+           <% end %>
+         </tbody>
+         <tfoot>
+          <tr>
+             <th>Title </th>
+              <th>Deadline</th>
+              <th>Deposit</th>
+              <th>Paid</th>
+              <th>View</th>
+              <th>Change Price</th>
+              <th>Mark Deposit Paid</th>
+              <th>Mark Paid</th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <!-- end content-->
+  </div>
+  <!--  end card  -->
+</div>
+<!-- end col-md-12 -->
+</div>
+<% content_for :added_scripts do %>
+  <script>
+    $(document).ready(function() {
+      $('#datatable').DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"]
+        ],
+        responsive: true,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search records",
+        }
+
+      });
+
+      var table = $('#datatable').DataTable();
+
+      // Edit record
+      table.on('click', '.edit', function() {
+        $tr = $(this).closest('tr');
+
+        var data = table.row($tr).data();
+        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+      });
+
+      // Delete a record
+      table.on('click', '.remove', function(e) {
+        $tr = $(this).closest('tr');
+        table.row($tr).remove().draw();
+        e.preventDefault();
+      });
+
+      //Like record
+      table.on('click', '.like', function() {
+        alert('You clicked on Like button');
+      });
+    });
+  </script>
+  <% end %>

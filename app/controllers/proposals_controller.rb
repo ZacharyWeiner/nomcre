@@ -1,7 +1,8 @@
 class ProposalsController < ApplicationController
   before_action :set_proposal, only: [:show, :edit, :edit_details, :payment, :update, :destroy, :wizard]
   before_action :authenticate_user!
-  layout 'adminlte'
+  #layout 'adminlte'
+  layout 'black_dashboard'
 
   # GET /proposals
   # GET /proposals.json

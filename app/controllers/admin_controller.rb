@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   before_action :is_admin
-  layout 'adminlte'
+  layout 'black_dashboard'
   def users
     @users = User.all.page params[:page]
   end

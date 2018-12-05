@@ -5,6 +5,10 @@
  *= require_self
  */
 
+ body{
+  color: #848a9a;
+ }
+
 .tim-row {
   margin-bottom: 20px;
 }
@@ -64,4 +68,26 @@
   position: relative;
   width: 100%;
   height: 100vh;
+}
+
+.sidebar .nav li>a>span,
+.off-canvas-sidebar .nav li>a>span{
+  font-size: 0.72475rem;
+}
+
+hr{border-top: 1px solid gray}
+.white-content  hr {
+  border-top: 1px solid #d3dded
+}
+
+@media (min-width: 1200px) {
+  .navbar-expand-xl>.container,
+  .navbar-expand-xl>.container-fluid {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+.white-content .navbar.navbar-transparent .navbar-nav li a:not(.dropdown-item){
+  color: #ba54f5;
 }

@@ -1,26 +1,55 @@
-<h2>Log in</h2>
+<div class="col-lg-4 col-md-6 ml-auto mr-auto">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => "form"}) do |f| %>
+  <%= devise_error_messages! %>
+  <div class="card card-login card-white">
+    <div class="card-header">
+      <img src="https://s3-us-west-2.amazonaws.com/nomcre-rails/assets/black-dashboard/assets/img/card-primary.png" alt="">
+      <h1 class="card-title">Log in</h1>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <div class="card-body">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="tim-icons"><ion-icon name="mail"></ion-icon></i>
+          </div>
+        </div>
+        <!-- <input type="text" class="form-control" placeholder="Email"> -->
+        <%= f.email_field :email, autofocus: true, class: 'form-control', :placeholder => 'Email' %>
+      </div>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">
+            <i class="tim-icons"><ion-icon name="lock"></ion-icon></i>
+          </div>
+        </div>
+        <!-- <input type="text" placeholder="Password" class="form-control"> -->
+        <%= f.password_field :password, class: 'form-control', autocomplete: "off", :placeholder => 'Password' %>
+      </div>
+    </div>
+    <div class="card-footer">
+       <%= f.submit "Log in", class: "btn btn-primary btn-lg btn-block mb-3" %>
+      <div class="pull-left">
+        <h6>
+          <!-- <a href="javascript:void(0)" class="link footer-link">Create Account</a> -->
+          <%= link_to "Sign up", set_user_type_path %>
+        </h6>
+      </div>
+      <div class="pull-right">
+        <h6>
+          <%= link_to "Forgot your password?", new_password_path(resource_name) %>
+        </h6>
+      </div>
+    </div>
   </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+<% end %>
+</div>
+
+<% render "devise/shared/links" %>
+
+
+
+
+
+

@@ -1,0 +1,49 @@
+  <nav class="navbar navbar-expand-lg navbar-absolute navbar-transparent fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-wrapper">
+        <div class="navbar-toggle d-inline">
+          <button type="button" class="navbar-toggler">
+            <span class="navbar-toggler-bar bar1"></span>
+            <span class="navbar-toggler-bar bar2"></span>
+            <span class="navbar-toggler-bar bar3"></span>
+          </button>
+        </div>
+        <a class="navbar-brand" href="javascript:void(0)">Nomadic Creative</a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-bar navbar-kebab"></span>
+        <span class="navbar-toggler-bar navbar-kebab"></span>
+        <span class="navbar-toggler-bar navbar-kebab"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navigation">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <%= link_to  root_path, class: "nav-link" do %>
+              <i class="tim-icons"><ion-icon name="return-left"></ion-icon> </i> Back To Home
+            <% end %>
+          </li>
+          <li class="nav-item ">
+            <%= link_to  set_user_type_path, class: "nav-link" do %>
+              <i class="tim-icons"><ion-icon name="contact"></ion-icon></i> Register
+            <% end %>
+          </li>
+          <li class="nav-item ">
+            <%= link_to new_session_path(resource_name), class: 'nav-link text-primary' do %>
+              <i class="tim-icons"><ion-icon name="log-in"></ion-icon></i> Login
+            <% end %>
+          </li>
+          <!-- <li class="nav-item  active ">
+            <a href="pricing.html" class="nav-link">
+              <i class="tim-icons"><ion-icon name="pricetags"></ion-icon></i> Pricing
+            </a>
+          </li>
+          <li class="nav-item ">
+            <a href="lock.html" class="nav-link">
+              <i class="tim-icons"><ion-icon name="lock"></ion-icon></i> Lock
+            </a>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+

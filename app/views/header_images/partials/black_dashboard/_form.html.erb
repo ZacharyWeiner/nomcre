@@ -1,0 +1,59 @@
+<style type="text/css">
+  span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+</style>
+<%= form_with(model: header_image, local: true) do |form| %>
+  <% if header_image.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(header_image.errors.count, "error") %> prohibited this header_image from being saved:</h2>
+
+      <ul>
+      <% header_image.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<div class='row'>
+  <div class="col-md-6">
+    <% if header_image.file %>
+      <%= image_tag header_image.file %>
+    <% end %>
+    <div class="form-group">
+      <%= form.label :title %>
+      <%= form.text_field :title, id: :header_image_title, class: 'form-control' %>
+    </div>
+
+    <div class="form-group btn btn-primary btn-block">
+      <% form.label :file %>
+      <ion-icon name='image' size='large'></ion-icon><span style=""> Set Image</span>
+      <%= form.file_field :file, id: :header_image_file, class: 'form-control' %>
+    </div>
+  </div>
+  <div class="col-md-6">
+      <div class="form-group">
+        <%= form.label :homepage %>
+        <%= form.check_box :homepage, id: :header_image_homepage %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :showcase %>
+        <%= form.check_box :showcase, id: :header_image_showcase %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :creators %>
+        <%= form.check_box :creators, id: :header_image_creators %>
+      </div>
+      <div class="actions">
+        <%= form.submit "Save", class: 'btn btn-primary'%>
+      </div>
+  </div>
+</div>
+
+<% end %>
+<hr>
