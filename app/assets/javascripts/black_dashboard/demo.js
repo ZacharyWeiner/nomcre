@@ -1233,32 +1233,32 @@ demo = {
 
   initNowUiWizard: function() {
     // Code for the Validator
-    var $validator = $('.card-wizard form').validate({
-      rules: {
-        firstname: {
-          required: true,
-          minlength: 3
-        },
-        lastname: {
-          required: true,
-          minlength: 3
-        },
-        email: {
-          required: true,
-          minlength: 3,
-        },
-        number: {
-          required: true,
-          minlength: 3,
-        }
+     var $validator = $('.card-wizard form').validate({
+    //   rules: {
+    //     firstname: {
+    //       required: true,
+    //       minlength: 3
+    //     },
+    //     lastname: {
+    //       required: true,
+    //       minlength: 3
+    //     },
+    //     email: {
+    //       required: true,
+    //       minlength: 3,
+    //     },
+    //     number: {
+    //       required: true,
+    //       minlength: 3,
+    //     }
 
-      },
-      highlight: function(element) {
-        $(element).closest('.input-group').removeClass('has-success').addClass('has-danger');
-      },
-      success: function(element) {
-        $(element).closest('.input-group').removeClass('has-danger').addClass('has-success');
-      }
+    //   },
+    //   highlight: function(element) {
+    //     $(element).closest('.input-group').removeClass('has-success').addClass('has-danger');
+    //   },
+    //   success: function(element) {
+    //     $(element).closest('.input-group').removeClass('has-danger').addClass('has-success');
+    //   }
     });
 
     // Wizard Initialization
@@ -1268,7 +1268,8 @@ demo = {
       'previousSelector': '.btn-previous',
 
       onNext: function(tab, navigation, index) {
-        var $valid = $('.card-wizard form').valid();
+        var $valid = true;//$('.card-wizard form').valid();
+        alert('got here');
         if (!$valid) {
           $validator.focusInvalid();
           return false;
@@ -1285,8 +1286,8 @@ demo = {
       },
 
       onTabClick: function(tab, navigation, index) {
-        var $valid = $('.card-wizard form').valid();
-
+        var $valid = true; // $('.card-wizard form').valid();
+        alert('got here2');
         if (!$valid) {
           return false;
         } else {

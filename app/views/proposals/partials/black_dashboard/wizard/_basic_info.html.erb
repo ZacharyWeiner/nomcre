@@ -1,0 +1,40 @@
+ <div class='form-group'>
+
+</div>
+
+
+<div class="col-sm-5">
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+        <i class="tim-icons"><ion-icon name="compass"></ion-icon></i>
+      </div>
+    </div>
+    <%= form.text_field :title, class: 'form-control', placeholder: "Give your project a cool name ... ", required: true%>
+  </div>
+</div>
+
+<br>
+<div class='form-group'>
+Is Photo
+ <%= form.radio_button :proposal_type, "photo", class: 'form-control form-check-input' %>
+</div>
+
+<div class='form-group'>
+Is Video
+<%= form.radio_button(:proposal_type, "video", class: 'form-control form-check-input') %>
+</div>
+
+<br>
+
+<div class='form-group'>
+
+Deadline:
+<%= form.text_field :deadline,  class: 'form-control datetimepicker' %>
+</div>
+
+<div class='form-group'>
+Location:
+<%= form.select(:location_id, options_for_select(Location.locations_for_select), {}, {class: 'form-control select2'}) %>
+</div>
+

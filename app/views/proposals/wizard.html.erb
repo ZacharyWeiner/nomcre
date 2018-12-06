@@ -1,11 +1,1 @@
-<% if @proposal.title.nil? || @proposal.deadline.nil? %>
-  <%= render :partial => 'proposals/partials/wizard/title_and_type', :locals => {:proposal => @proposal } %>
-<% elsif @proposal.content.nil? || @proposal.content == "" %>
-  <%= render :partial => 'proposals/partials/wizard/brief', :locals => {:proposal => @proposal  } %>
-<% elsif @proposal.time_of_day.nil? || @proposal.background.nil? || @proposal.shoot_type.nil? %>
-  <%= render :partial => 'proposals/partials/wizard/style_and_background', :locals => {:proposal => @proposal  } %>
-<%elsif @proposal.instagram_1.nil? || @proposal.instagram_1 == ""  %>
-  <%= render :partial => 'proposals/partials/wizard/inspiration', :locals => {:proposal => @proposal  } %>
-<% else %>
-  <%= render :partial => 'shot_list_items/shot_list', :locals => {:proposal => @proposal, :shot_list_items => @proposal.shot_list_items  } %>
-<% end %>
+<%= render :partial => 'proposals/partials/black_dashboard/wizard/wizard', :locals => {:proposal => @proposal} %>

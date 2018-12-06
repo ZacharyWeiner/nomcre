@@ -1,7 +1,40 @@
 <% if @proposal.title.nil? %>
-  <%= render :partial => 'proposals/partials/wizard/title_and_type', :locals => {:proposal => @proposal } %>
+  <% render :partial => 'proposals/partials/wizard/title_and_type', :locals => {:proposal => @proposal } %>
 <% end %>
 
 <% render 'form', proposal: @proposal %>
 
 <%= link_to 'Back', proposals_path %>
+
+<%= render :partial => 'proposals/partials/black_dashboard/wizard', :locals => {:proposal => @proposal} %>
+ <% content_for :added_scripts do %>
+   <script>
+    $(document).ready(function() {
+      // Initialise the wizard
+      demo.initNowUiWizard();
+      setTimeout(function() {
+        $('.card.card-wizard').addClass('active');
+      }, 600);
+    });
+
+    $(function () {
+            $('.datetimepicker').datetimepicker({
+                format: 'LD',
+                icons: {
+                    time: "far fa-alarm-clock",
+                    date: "fa fa-calendar",
+                    up: "fas fa-arrow-up",
+                    down: "fas fa-arrow-down",
+                    previous: 'fas fa-arrow-left',
+                    next: 'fas fa-arrow-right',
+                    today: 'far fa-clock',
+                    clear: 'far fa-trash-alt',
+                    close: 'far fa-calendar-times'
+                }
+            });
+        });
+
+  </script>
+   <% end %>
+
+
