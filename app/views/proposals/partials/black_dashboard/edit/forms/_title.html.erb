@@ -1,0 +1,11 @@
+<%= form_for proposal, class: 'form-horizontal' do |form| %>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <div class="input-group-text">
+        <i class="tim-icons"><ion-icon name="compass" class='text-primary center' size='large'></ion-icon></i>
+      </div>
+    </div>
+    <%= form.text_field :title, class: 'form-control', placeholder: "Give your project a cool name ... ", required: true%>
+  </div>
+  <%= form.submit "Save", class: 'btn btn-primary pull-right' %>
+<% end %>

@@ -6,7 +6,10 @@
 <% if @creatives.count == 0 %>
   <% @creatives = User.where(user_type: 'creative').take(10) %>
   <% @creatives.each do |cr| %>
-    <%= render :partial => 'proposals/partials/black_dashboard/shared/creative', :locals => {:proposal => proposal, :sr => cr  } %>
+    <% unless cr.schedule_items.first == nil %>
+    <% sr = ProposalSearchResult.new(user_id: cr.id, rank: 3, schedule_item_id: cr.schedule_items.first.id) %>
+    <%= render :partial => 'proposals/partials/black_dashboard/shared/creative', :locals => {:proposal => proposal, :sr => sr  } %>
+    <% end %>
   <% end %>
 <% end %>
 

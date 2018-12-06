@@ -1,0 +1,12 @@
+<%= form_for proposal, class: 'form-horizontal' do |form| %>
+<div class="input-group">
+  <div class="input-group-prepend">
+    <div class="input-group-text">
+      <i class="tim-icons"><ion-icon name="pin" class='text-primary center' size='large'></ion-icon></i>
+    </div>
+  </div>
+  <%= form.select(:location_id, options_for_select(Location.locations_for_select), {}, {class: 'form-control'}) %>
+</div>
+  <br>
+  <%= form.submit "Save", class: 'btn btn-primary pull-right' %>
+<% end %>

@@ -1,0 +1,7 @@
+<%= form_for proposal, class: 'form-horizontal' do |form| %>
+  <div class="input-group">
+    <%= form.text_area :content, id: :proposal_content_id, style:'min-height: 400px; rows: 10', class: 'form-control', :placeholder => "If you have a Creative Brief you can copy & paste it in here." %>
+  </div>
+  <%= form.submit "Save", class: 'btn btn-primary pull-right' %>
+<% end %>
+

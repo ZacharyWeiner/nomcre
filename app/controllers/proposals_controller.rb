@@ -81,16 +81,9 @@ class ProposalsController < ApplicationController
       @proposal.shot_count = 25
     end
 
-    date_string = params[:proposal][:deadline]
-    split_string = date_string.split(' ')
-    format_string = "day-month-year"
-    date_split = split_string[0].split('/')
-    #new_date_obj = Date.new( date_split[1].to_i, date_split[0].to_i,  date_split[2].to_i)
-    byebug
-    #@proposal.deadline = Date.new(split_string[0])
-    new_date_string = format_string.gsub('day', date_split[1]).gsub('month', date_split[0]).gsub('year', date_split[2])
-    new_date = Date::strptime(new_date_string, "%d-%m-%Y")
-    @proposal.deadline = new_date
+    if params[:proposal][:deadline]
+      @proposal.deadline = parse_date(params[:proposal][:deadline])
+    end
     respond_to do |format|
       if @proposal.save!
         set_price(@proposal)
@@ -117,6 +110,7 @@ class ProposalsController < ApplicationController
   # PATCH/PUT /proposals/1
   # PATCH/PUT /proposals/1.json
   def update
+
     respond_to do |format|
       if (params[:proposal][:source] && params[:proposal][:source] == 'brief') && (params[:proposal][:content].nil? || params[:proposal][:content] == "")
         return redirect_to proposal_wizard_path(@proposal)
@@ -158,6 +152,11 @@ class ProposalsController < ApplicationController
       end
 
       if @proposal.update!(proposal_params)
+        if proposal_params[:deadline]
+          new_deadline = parse_date(proposal_params[:deadline])
+          @proposal.deadline = new_deadline
+          @proposal.save
+        end
         if proposal_params[:price]
           @proposal.price = proposal_params[:price]
         else
@@ -167,12 +166,12 @@ class ProposalsController < ApplicationController
             end
           end
         end
-        if @proposal.is_info_complete
+        #if @proposal.is_info_complete
           format.html { redirect_to @proposal, notice: 'Proposal was successfully updated.' }
           format.json { render :show, status: :ok, location: @proposal }
-        else
-          format.html { redirect_to proposal_wizard_path(@proposal) }
-        end
+        #else
+          #format.html { redirect_to proposal_wizard_path(@proposal) }
+        #end
       else
         format.html { render :edit }
         format.json { render json: @proposal.errors, status: :unprocessable_entity }
@@ -336,6 +335,18 @@ class ProposalsController < ApplicationController
       else
         @proposal = Proposal.find(params[:proposal_id])
       end
+    end
+
+    def parse_date params_string
+
+      date_string = params_string
+      split_string = date_string.split(' ')
+      format_string = "day-month-year"
+      date_split = split_string[0].split('/')
+      #new_date_obj = Date.new( date_split[1].to_i, date_split[0].to_i,  date_split[2].to_i)
+      #@proposal.deadline = Date.new(split_string[0])
+      new_date_string = format_string.gsub('day', date_split[1]).gsub('month', date_split[0]).gsub('year', date_split[2])
+      new_date = Date::strptime(new_date_string, "%d-%m-%Y")
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
