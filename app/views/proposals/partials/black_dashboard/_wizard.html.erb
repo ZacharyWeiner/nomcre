@@ -32,54 +32,69 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="#background" data-toggle="tab">
+                <i class="tim-icons"><ion-icon name="business"></ion-icon></i>
+                <p>Background</p>
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="#inspiration" data-toggle="tab">
                 <i class="tim-icons"><ion-icon name="logo-instagram"></ion-icon></i>
                 <p>Inspiration</p>
               </a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="#shot_list" data-toggle="tab">
-                <i class="tim-icons"><ion-icon name="images"></ion-icon></i>
-                <p>Shot List</p>
-              </a>
-            </li> -->
           </ul>
         </div>
       </div>
       <div class="card-body">
         <div class="tab-content">
           <div class="tab-pane show active" id="basic">
-            <h5 class="info-text"> Let's start with the basic information (with validation)</h5>
+            <h5 class="info-text"> Let's start with the basics </h5>
             <div class="row justify-content-center mt-5">
+              <div class="col-lg-10 center">
                 <%= render :partial => 'proposals/partials/black_dashboard/wizard/basic_info', :locals => {:proposal => proposal, :form => form} %>
+              </div>
             </div>
           </div>
           <div class="tab-pane" id="brief">
-            <h5 class="info-text"> Who are you? (Fileinput)</h5>
+            <h5 class="info-text"> Add Your Creative Brief</h5>
             <div class="row justify-content-center">
               <div class="col-lg-10 text-center">
-                Brief
+                <%= form.text_area :content, id: :proposal_content_id, style:'min-height: 400px; rows: 10', class: 'form-control' %>
               </div>
             </div>
           </div>
           <div class="tab-pane" id="style">
-            Style
+            <h4 class="info-text">Tell Use About The Style Our Creative Should Use</h5>
+            <div class="row justify-content-center">
+                <%= render :partial => 'proposals/partials/black_dashboard/wizard/style', :locals => {:proposal => proposal, :form => form} %>
+            </div>
+          </div>
+          <div class="tab-pane" id="background">
+            <h4 class="info-text" style="padding-top:48px;">Tell Use About The Style Our Creative Should Use</h5>
+            <div class="row justify-content-center text-center">
+               <%= render :partial => 'proposals/partials/black_dashboard/wizard/background', :locals => {:proposal => proposal, :form => form} %>
+
+            </div>
+            <div class='form-group' style="margin:12px; padding-bottom: 12px;">
+                <%= form.text_field :background_note, class: 'form-control', placeholder: 'Background details...' %>
+              </div>
           </div>
           <div class="tab-pane" id="inspiration">
-            <h5 class="info-text"> Who are you? (Fileinput)</h5>
+            <h4 class="info-text"> What Accounts or Sites Do You Want To Look Like?</h4>
             <div class="row justify-content-center">
-              <div class="col-lg-10 text-center">
-                Inspiration
+              <div class="col-lg-10 ">
+                <%= render :partial => 'proposals/partials/black_dashboard/wizard/inspiration', :locals => {:proposal => proposal, :form => form} %>
               </div>
             </div>
           </div>
-
         </div>
       </div>
       <div class="card-footer">
         <div class="pull-right">
           <input type='button' class='btn btn-next btn-fill btn-primary btn-wd' name='next' value='Next' />
-          <input type='button' class='btn btn-finish btn-fill btn-primary btn-wd' name='finish' value='Finish' />
+          <!-- <input type='button' class='btn btn-finish btn-fill btn-primary btn-wd' name='finish' value='Finish' /> -->
+          <%= form.submit "Save", class: 'btn btn-finish btn-fill btn-primary btn-wd', name: 'finish', value:'Finish' %>
         </div>
         <div class="pull-left">
           <input type='button' class='btn btn-previous btn-fill btn-default btn-wd' name='previous' value='Previous' />
