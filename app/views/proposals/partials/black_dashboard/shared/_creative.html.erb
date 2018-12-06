@@ -1,6 +1,6 @@
 <div class="card" style="background: #f5f6fa">
   <div class="card-header">
-    <h5 class="card-category">Available Until:  <%= sr.schedule_item.end_date %></h5>
+    <h5 class="card-category"><%= sr.schedule_item.location.name %> <span class='pull-right'>Available Until:  <%= sr.schedule_item.end_date %></span></h5>
     <h3 class="card-title"><%= image_tag sr.user.user_profile.safe_profile_image_url, class: 'avatar' %> <%= sr.user.name %> <span class='pull-right'><%= render :partial =>  'proposals/partials/search_results/request_buttons', :locals => {proposal: proposal, :user => sr.user} %></span></h3>
     <div>
         <%= render :partial => 'user_profiles/partials/black_dashboard/shared/skills', :locals => {:user_profile => sr.user.user_profile} %>

@@ -35,7 +35,8 @@
         <%= link_to proposal.title, proposal, style: 'font-size: 18px' %>
       </span>
       <span class='pull-right baseline' >
-        <i class='tim-icons'><ion-icon name='calendar'></ion-icon></i> <%= proposal.deadline.strftime('%a %b %d, %Y') %>
+        <i class='tim-icons'><ion-icon name='calendar'></ion-icon></i>
+        <%= proposal.deadline.strftime('%a %b %d, %Y') unless proposal.deadline.nil?%>
       </span>
     </h3>
 

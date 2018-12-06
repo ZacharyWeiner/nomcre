@@ -1,0 +1,121 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-category">Edit</h5>
+    <h3 class="card-title"><%= @proposal.title %></h3>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-4">
+        <ul class="nav nav-pills nav-pills-primary flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#title">
+              Title
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#date">
+              Date
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#location">
+              Location
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#brief">
+              Brief
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#style">
+              Style
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#background">
+              Background
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#photo_video">
+              Photo / Video
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#inspiration">
+              Inspiration
+            </a>
+          </li>
+          <!-- <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tod">
+              Time Of Day
+            </a>
+          </li> -->
+        </ul>
+      </div>
+      <div class="col-md-8">
+        <div class="tab-content">
+          <div class="tab-pane active" id="title">
+             <h4 class="info-text">What will your project be called?</h5>
+            <div class="justify-content-center">
+              <%= render :partial => 'proposals/partials/black_dashboard/edit/forms/title', :locals => {:proposal => proposal} %>
+            </div>
+          </div>
+          <div class="tab-pane" id="date">
+            <h4 class="info-text">What is the project deadline?</h5>
+            <div class="justify-content-center">
+              <%= render :partial => 'proposals/partials/black_dashboard/edit/forms/date', :locals => {:proposal => proposal} %>
+            </div>
+          </div>
+           <div class="tab-pane" id="location">
+            <h4 class="info-text">Where will we be shooting?</h5>
+            <div class="justify-content-center">
+              <br>
+                <%= render :partial => 'proposals/partials/black_dashboard/edit/forms/location', :locals => {:proposal => proposal} %>
+            </div>
+          </div>
+           <div class="tab-pane" id="brief">
+            <h4 class="info-text">Tell Us About Your Project</h5>
+              <label>The more details the better*</label>
+            <div class="justify-content-center">
+              <br>
+                <%= render :partial => 'proposals/partials/black_dashboard/edit/forms/brief', :locals => {:proposal => proposal} %>
+            </div>
+          </div>
+          <div class="tab-pane" id="style">
+            <h4 class="info-text">Tell Use About The Style Our Creative Should Use</h5>
+            <div class="justify-content-center">
+              <br>
+                <%= render :partial => 'proposals/partials/black_dashboard/edit/forms/style', :locals => {:proposal => proposal} %>
+            </div>
+          </div>
+          <div class="tab-pane" id="background">
+            <h4 class="info-text">Do you have a preference for the setting of the shoot?</h5>
+            <div class="justify-content-center">
+              <br>
+                <%= render :partial => 'proposals/partials/black_dashboard/edit/forms/background', :locals => {:proposal => proposal} %>
+            </div>
+          </div>
+          <div class="tab-pane" id="photo_video">
+            <h4 class="info-text">What type of content are we shooting?</h5>
+            <div class="justify-content-center">
+              <br>
+                <%= render :partial => 'proposals/partials/black_dashboard/edit/forms/photo_video', :locals => {:proposal => proposal} %>
+            </div>
+          </div>
+           <div class="tab-pane" id="inspiration">
+            <h4 class="info-text">Do You Have Moodboards or Instagram Accounts Your Like?</h5>
+            <div class="justify-content-center">
+              <br>
+                <%= render :partial => 'proposals/partials/black_dashboard/edit/forms/inspiration', :locals => {:proposal => proposal} %>
+            </div>
+          </div>
+          <!--  <div class="tab-pane" id="tod">
+            TOD
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

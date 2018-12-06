@@ -1,0 +1,28 @@
+<%= form_for proposal, class: 'form-horizontal' do |form| %>
+<div class='row input-group'>
+    <div class='col-md-6'>
+      <div class="form-check form-check-radio">
+        <label class="form-check-label center">
+          <%= form.radio_button :proposal_type, "photo", class: 'form-check-input center', :checked => true%>
+          <span class="form-check-sign"></span>
+         <i class='fa fa-camera text-primary' style="font-size: 36px; margin-top: -24px;"> </i><br>
+          Photo
+        </label>
+      </div>
+      <br>
+    </div>
+    <div class='col-md-6'>
+      <div class="form-check form-check-radio">
+        <label class="form-check-label center">
+          <%= form.radio_button :proposal_type, "video", class: 'form-check-input center'%>
+          <span class="form-check-sign"></span>
+          <i class='fa fa-video text-primary' style="font-size: 36px; margin-top: -24px;"> </i><br>
+          Video
+        </label>
+      </div>
+    </div>
+    <br>
+  </div>
+  <%= form.submit "Save", class: 'btn btn-primary pull-right' %>
+<% end %>
+
