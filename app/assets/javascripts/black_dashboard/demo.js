@@ -1,4 +1,3 @@
-
 type = ['', 'info', 'success', 'warning', 'danger'];
 
 demo = {
@@ -1122,14 +1121,6 @@ demo = {
         confirmButtonClass: "btn btn-info"
       }).catch(swal.noop);
 
-    }else if (type == 'file-upload') {
-      swal({
-        title: "Your file is uploading",
-        text: "The Page will refresh when upload is complete",
-        buttonsStyling: false,
-        confirmButtonClass: "btn btn-info"
-      }).catch(swal.noop);
-
     } else if (type == 'success-message') {
       swal({
         title: "Good job!",
@@ -1233,32 +1224,32 @@ demo = {
 
   initNowUiWizard: function() {
     // Code for the Validator
-     var $validator = $('.card-wizard form').validate({
-    //   rules: {
-    //     firstname: {
-    //       required: true,
-    //       minlength: 3
-    //     },
-    //     lastname: {
-    //       required: true,
-    //       minlength: 3
-    //     },
-    //     email: {
-    //       required: true,
-    //       minlength: 3,
-    //     },
-    //     number: {
-    //       required: true,
-    //       minlength: 3,
-    //     }
+    var $validator = $('.card-wizard form').validate({
+      rules: {
+        firstname: {
+          required: true,
+          minlength: 3
+        },
+        lastname: {
+          required: true,
+          minlength: 3
+        },
+        email: {
+          required: true,
+          minlength: 3,
+        },
+        number: {
+          required: true,
+          minlength: 3,
+        }
 
-    //   },
-    //   highlight: function(element) {
-    //     $(element).closest('.input-group').removeClass('has-success').addClass('has-danger');
-    //   },
-    //   success: function(element) {
-    //     $(element).closest('.input-group').removeClass('has-danger').addClass('has-success');
-    //   }
+      },
+      highlight: function(element) {
+        $(element).closest('.input-group').removeClass('has-success').addClass('has-danger');
+      },
+      success: function(element) {
+        $(element).closest('.input-group').removeClass('has-danger').addClass('has-success');
+      }
     });
 
     // Wizard Initialization
@@ -1268,8 +1259,7 @@ demo = {
       'previousSelector': '.btn-previous',
 
       onNext: function(tab, navigation, index) {
-        var $valid = true;//$('.card-wizard form').valid();
-        alert('got here');
+        var $valid = $('.card-wizard form').valid();
         if (!$valid) {
           $validator.focusInvalid();
           return false;
@@ -1286,8 +1276,8 @@ demo = {
       },
 
       onTabClick: function(tab, navigation, index) {
-        var $valid = true; // $('.card-wizard form').valid();
-        alert('got here2');
+        var $valid = $('.card-wizard form').valid();
+
         if (!$valid) {
           return false;
         } else {
@@ -1803,4 +1793,3 @@ demo = {
   }
 
 };
-

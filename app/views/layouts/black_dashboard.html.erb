@@ -76,10 +76,10 @@
   <!--  Notifications Plugin    -->
   <script src="https://s3-us-west-2.amazonaws.com/nomcre-rails/assets/black-dashboard/assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-  <script src="https://s3-us-west-2.amazonaws.com/nomcre-rails/assets/black-dashboard/assets/js/black-dashboard.min.js"></script>
-  <!-- <% javascript_include_tag 'black_dashboard' %> -->
+  <!-- <script src="https://s3-us-west-2.amazonaws.com/nomcre-rails/assets/black-dashboard/assets/js/black-dashboard.min.js"></script> -->
+  <%= javascript_include_tag 'black_dashboard' %>
   <!-- Black Dashboard DEMO methods, don't include it in your project! -->
-  <script src="https://s3-us-west-2.amazonaws.com/nomcre-rails/assets/black-dashboard/assets/demo/demo.js"></script>
+  <!-- <script src="https://s3-us-west-2.amazonaws.com/nomcre-rails/assets/black-dashboard/assets/demo/demo.js"></script> -->
   <script>
     $(document).ready(function() {
       $().ready(function() {
@@ -138,7 +138,7 @@
           if (sidebar_mini_active == true) {
             $('body').removeClass('sidebar-mini');
             sidebar_mini_active = false;
-            blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
+            /*blackDashboard.showSidebarMessage('Sidebar mini deactivated...');*/
           } else {
             $('body').addClass('sidebar-mini');
             sidebar_mini_active = true;
