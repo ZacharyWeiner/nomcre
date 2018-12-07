@@ -1,15 +1,15 @@
 <section class="invoice">
+  <div class='card'>
       <!-- title row -->
-      <div class="row">
-        <div class="col-xs-12">
-          <h2 class="page-header">
-            <i class="fa fa-globe"></i> <strong>NOM</strong>ADIC <strong>CRE</strong>ATIVE
-            <small class="pull-right">Date: <%= Date.today %></small>
-          </h2>
+    <div class="'card-header">
+      <h2 class="card-title" style='margin: 12px;'>
+        <div class='' >
+          <i class="fa fa-globe"></i> <strong>NOM</strong>ADIC <strong>CRE</strong>ATIVE
         </div>
-        <!-- /.col -->
-      </div>
-      <!-- info row -->
+      </h2>
+    </div>
+    <hr>
+    <div class='card-body' style='margin: 12px;'>
       <div class="row invoice-info">
         <div class="col-sm-4 invoice-col">
           From
@@ -71,11 +71,11 @@
 
       <div class="row">
         <!-- accepted payments column -->
-        <div class="col-xs-6">
+        <div class="col-md-6" >
           <p class="lead">Payment Methods:</p>
-          <i class='fa fa-cc-visa fa-3x'></i>
-          <i class='fa fa-cc-mastercard fa-3x'></i>
-          <i class='fa fa-cc-amex fa-3x'></i>
+          <i class='fab fa-cc-visa fa-3x'></i>
+          <i class='fab fa-cc-mastercard fa-3x'></i>
+          <i class='fab fa-cc-amex fa-3x'></i>
 
 
           <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
@@ -84,22 +84,27 @@
           </p>
         </div>
         <!-- /.col -->
-        <div class="col-xs-6">
-          <p class="lead"><%= @proposal.deposit_paid_on %></p>
+        <div class="col-md-6 text-right ">
+          <div class='pull-right'>
+            <p class="lead"><%= @proposal.deposit_paid_on %></p>
 
-          <div class="table-responsive">
-            <table class="table">
-              <tbody><tr>
-                <th style="width:50%">Subtotal:</th>
-                <td><%= number_to_currency(@proposal.price * Proposal.deposit_percent) %> USD</td>
-              </tr>
-            </tbody></table>
+            <div class="table-responsive">
+              <table class="table">
+                <tbody>
+                  <tr>
+                    <th style="width:50%">Subtotal:</th>
+                    <td><%= number_to_currency(@proposal.price * Proposal.deposit_percent) %> USD</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
         <!-- /.col -->
       </div>
       <!-- /.row -->
-
+    </div>
+    <div class="card-footer" style='margin: 12px;'>
       <!-- this row will not appear when printing -->
       <div class="row no-print">
         <div class="col-xs-12">
@@ -118,6 +123,8 @@
           </button> -->
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
 

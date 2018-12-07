@@ -90,7 +90,6 @@ class ProposalsController < ApplicationController
         @chatroom = Chatroom.create!(topic: "#{@proposal.title} - #{@proposal.company.name}", proposal: @proposal)
         @chatroom.messages.create!(user: current_user, content: "#{@proposal.company.name}' - '#{@proposal.title} Chat Was Created")
         admin = User.where(email: 'justin@nomcre.com').first
-        @chatroom.messages.create!(user: current_user, content: "#{@proposal.company.name}' - '#{@proposal.title} Chat Was Created")
         unless admin.nil?
           @chatroom.messages.create!(user: current_user, content: "Justin has joined the chat")
         end

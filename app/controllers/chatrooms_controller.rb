@@ -1,6 +1,13 @@
 class ChatroomsController < ApplicationController
   layout 'chatroom'
   def show
+    if current_user.user_type == 'creative'
+      @chatrooms = Proposal.where(user: current_user).where(completed: false)
+    else
+      proposals = Proposal.where({company_id: current_user.company.id, accepted: true, completed: nil})
+      @chatrooms = proposals.map{|p| p.chatroom}
+
+    end
     @chatroom = Chatroom.find(params[:id])
     @message = Message.new
     if current_user.user_type == "creative"

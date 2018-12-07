@@ -42,15 +42,15 @@
   <% end %>
 </li>
 <li>
-  <%= link_to schedule_items_path do %>
-    <i class="tim-icons "><ion-icon name="calendar"></ion-icon></i>
-    <p>Schedule</p>
+  <%= link_to invoices_path do %>
+    <i class="tim-icons "><ion-icon name="filing"></ion-icon></i>
+    <p>Invoices</p>
   <% end %>
 </li>
 <li>
-  <%= link_to collections_path do %>
-    <i class="tim-icons "><ion-icon name="images"></ion-icon></i>
-    <p>Portfolio</p>
+  <%= link_to chatroom_path(Proposal.where(company: current_user.company).last.chatroom) do %>
+    <i class="tim-icons "><ion-icon name="chatbubbles"></ion-icon></i>
+    <p>Communiation</p>
   <% end %>
 </li>
 
