@@ -1,0 +1,25 @@
+<div class='row'>
+  <div class='col-xs-12 col-sm-6 col-md-6'>
+    <% is_accepted_style = proposal_request.accepted ? 'disabled' : '' %>
+    <%= link_to proposal_accept_request_path(proposal), class: "btn btn-link btn-primary #{is_accepted_style}" do %>
+      <span>
+        <i class="tim-icon">
+          <ion-icon name='checkmark' size='' style='font-size: 20px'></ion-icon>
+        </i>
+        <br>
+        <%= proposal_request.accepted ? 'Accepted' : "Accept" %>
+      </span>
+    <% end %>
+  </div>
+  <div class='col-xs-6 col-sm-6 col-md-6'>
+    <%= link_to decline_proposal_request_path(proposal), class: 'btn btn-link btn-primary' do %>
+      <span>
+        <i class="tim-icon">
+          <ion-icon name='close' size='' style='font-size: 20px'></ion-icon>
+        </i>
+        <br>
+        Decline
+      </span>
+    <% end %>
+  </div>
+</div>

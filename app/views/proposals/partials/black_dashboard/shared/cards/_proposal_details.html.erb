@@ -164,30 +164,7 @@
   <% if show_accept_buttons == true %>
     <div class="card-footer text-center">
       <hr>
-      <div class='row'>
-        <div class='col-xs-12 col-sm-6 col-md-6'>
-          <%= link_to proposal_accept_request_path(proposal), class: 'btn btn-link btn-primary' do %>
-            <span>
-              <i class="tim-icon">
-                <ion-icon name='checkmark' size='' style='font-size: 20px'></ion-icon>
-              </i>
-              <br>
-              Accept
-            </span>
-          <% end %>
-        </div>
-        <div class='col-xs-6 col-sm-6 col-md-6'>
-          <%= link_to decline_proposal_request_path(proposal), class: 'btn btn-link btn-primary' do %>
-            <span>
-              <i class="tim-icon">
-                <ion-icon name='close' size='' style='font-size: 20px'></ion-icon>
-              </i>
-              <br>
-              Decline
-            </span>
-          <% end %>
-        </div>
-      </div>
+      <%= render :partial => 'proposals/partials/black_dashboard/shared/buttons/accept_buttons', :locals => {:proposal => proposal, :proposal_request => proposal_request} %>
     </div>
   <% end %>
 </div>

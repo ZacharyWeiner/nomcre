@@ -1,6 +1,6 @@
 <% render :partial => 'proposals/partials/search_results/deposit_check', :locals => {proposal: proposal} %>
-<% @creatives = proposal.find_creatives %>
-<% @proposal.find_creatives.each do |sr| %>
+<% @creatives = proposal.find_creatives.uniq{|c| c.user_id } %>
+<% @proposal.find_creatives.uniq{|c| c.user_id }.each do |sr| %>
   <%= render :partial => 'proposals/partials/black_dashboard/shared/creative', :locals => {:proposal => proposal, :sr => sr  } %>
 <% end %>
 <% if @creatives.count == 0 %>

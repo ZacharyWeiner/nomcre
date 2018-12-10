@@ -251,7 +251,7 @@ class ProposalsController < ApplicationController
     @requested = User.find(params[:user_id])
     @proposal_request = ProposalRequest.where(requested: @requested.id, proposal_id: @proposal.id ).first
     if @proposal_request.nil?
-      @proposal_request = ProposalRequest.create(requested_by: current_user.id, requested: @requested.id, proposal_id: @proposal.id )
+      @proposal_request = ProposalRequest.create(requested_by: current_user.id, requested: @requested.id, proposal_id: @proposal.id, accepted: false )
     end
     send_notification(@requested.id, "New Request", @proposal_request.id)
     ProposalMailer.request_created(@proposal_request).deliver_now

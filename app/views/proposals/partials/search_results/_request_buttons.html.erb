@@ -2,6 +2,23 @@
 <% if proposal.accepted == true  %>
   <%= render :partial => 'proposals/partials/search_results/buttons/approved', :locals => {proposal: proposal, user: user }%>
 <% else %>
-  <%= render :partial =>  'proposals/partials/search_results/buttons/request_button', :locals => {proposal: proposal, user: user } %>
+  <% request = ProposalRequest.where(requested: user.id).where(proposal: proposal).where(accepted: false).first %>
+  <% if request.nil? %>
+    <!-- There is no accepted request yet -->
+    <%= render :partial =>  'proposals/partials/search_results/buttons/request_button', :locals => {proposal: proposal, user: user } %>
+  <% else %>
+      <% if proposal.deposit_paid == true  %>
+        <%= link_to "<i class='fa fa-check'> </i> Approve".html_safe, assign_proposal_path(request), class: 'btn btn-primary btn-block' %>
+      <% else %>
+        <small class='text-danger'> Deposit Must Be Paid to Assign Creative </small>
+        <%= link_to 'Assign', '#', class: 'btn btn-success disabled pull-right' %>
+      <% end %>
+  <% end %>
 <% end %>
+
+
+
+
+
+
 

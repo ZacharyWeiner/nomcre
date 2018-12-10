@@ -67,7 +67,9 @@
          <% end %>
         </tbody>
       </table>
+      <% if (current_user.user_type == 'company' && current_user.company == proposal.company) || current_user == proposal.user %>
       <%= link_to "<ion-icon name='add' ></ion-icon> Add New".html_safe, new_proposal_shot_list_item_path(proposal.id), class:'btn btn-success btn-round float-right mr-5'  %>
+      <% end %>
     </div>
   </div>
 </div>

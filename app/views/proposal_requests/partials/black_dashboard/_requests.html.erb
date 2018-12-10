@@ -7,7 +7,7 @@
 <div class='row'>
   <% @requests.each do |pr| %>
     <div class="col-sm-12 col-md-4 col-lg-4">
-      <%= render :partial => 'proposals/partials/black_dashboard/shared/cards/proposal_details', :locals =>{:proposal => pr.proposal, :show_butttons => false, :show_accept_buttons => true, :show_header => true} %>
+      <%= render :partial => 'proposals/partials/black_dashboard/shared/cards/proposal_details', :locals =>{:proposal => pr.proposal, :show_butttons => false, :show_accept_buttons => true, :show_header => true, :proposal_request => pr} %>
     </div>
   <% end %>
 </div>
