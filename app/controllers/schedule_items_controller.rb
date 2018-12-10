@@ -26,6 +26,12 @@ class ScheduleItemsController < ApplicationController
   def create
     @schedule_item = ScheduleItem.new(schedule_item_params)
     @schedule_item.user = current_user
+    if schedule_item_params[:start_date]
+      @schedule_item.start_date = parse_date(schedule_item_params[:start_date])
+    end
+    if schedule_item_params[:end_date]
+      @schedule_item.end_date = parse_date(schedule_item_params[:end_date])
+    end
     respond_to do |format|
       if @schedule_item.save
         UserActivity.create!(activity_type: UserActivityType.travel_plan_created, user_id: current_user.id, object_id: @schedule_item.id)
@@ -71,5 +77,18 @@ class ScheduleItemsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_item_params
       params.require(:schedule_item).permit(:start_date, :end_date, :location_id, :user_id, :notes)
+    end
+
+    def parse_date params_string
+
+      date_string = params_string
+      split_string = date_string.split(' ')
+      format_string = "day-month-year"
+      date_split = split_string[0].split('/')
+      #new_date_obj = Date.new( date_split[1].to_i, date_split[0].to_i,  date_split[2].to_i)
+      #@proposal.deadline = Date.new(split_string[0])
+      new_date_string = format_string.gsub('day', date_split[1]).gsub('month', date_split[0]).gsub('year', date_split[2])
+      new_date = Date::strptime(new_date_string, "%d-%m-%Y")
+
     end
 end

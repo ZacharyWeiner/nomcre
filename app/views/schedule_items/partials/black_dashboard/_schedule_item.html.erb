@@ -14,8 +14,8 @@
           <%= link_to 'Destroy', schedule_item, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger pull-right' %>
         <% end %>
     </div>
-    <h6>
-      <i class="fa fa-time"></i> <%= schedule_item.start_date.strftime("%a %b %d, %Y") %> <span>Until</span>  <%= schedule_item.end_date.strftime("%a %b %d, %Y") %>
-    </h6>
+    <h5>
+      <i class="fa fa-time"></i> <%= schedule_item.start_date.strftime("%a %b %d, %Y") unless schedule_item.start_date.nil?%> <span>Until</span>  <%= schedule_item.end_date.strftime("%a %b %d, %Y") unless schedule_item.end_date.nil?%>
+    </h5>
   </div>
 </li>

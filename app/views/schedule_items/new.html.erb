@@ -3,3 +3,24 @@
 <%= render 'form', schedule_item: @schedule_item %>
 
 <%= link_to 'Back', schedule_items_path %>
+
+<% content_for :added_scripts do %>
+  <script type="text/javascript">
+   $(function () {
+              $('.datepicker').datetimepicker({
+                  icons: {
+                      time: "far fa-alarm-clock",
+                      date: "fa fa-calendar",
+                      up: "fas fa-arrow-up",
+                      down: "fas fa-arrow-down",
+                      previous: 'fas fa-arrow-left',
+                      next: 'fas fa-arrow-right',
+                      today: 'far fa-clock',
+                      clear: 'far fa-trash-alt',
+                      close: 'far fa-calendar-times'
+                  }
+              });
+          });
+
+    </script>
+  <% end %>

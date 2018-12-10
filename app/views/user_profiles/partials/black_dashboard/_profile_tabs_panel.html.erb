@@ -25,7 +25,7 @@
        <%= render 'user_profiles/partials/black_dashboard/user_activities' %>
       </div>
       <div class="tab-pane" id="travelplans">
-       <%= render 'user_profiles/partials/black_dashboard/travel_plans' %>
+       <%= render :partial => 'user_profiles/partials/black_dashboard/travel_plans', :locals => {:schedule_items => @user_profile.user.schedule_items} %>
       </div>
       <!-- <div class="tab-pane" id="settings">
         Completely synergize resource taxing relationships via premier niche markets. Professionally cultivate one-to-one customer service with robust ideas.
