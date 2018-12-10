@@ -1,15 +1,38 @@
 <h4>Aspect Ratio </h4>
-<div class='row' style="margin:12px;">
+<div class='row text-center' style="margin:12px;">
   <div class='col-md-4 col-sm-4 col-xs-4'>
-    <%= form.radio_button :aspect_ratio, "Portrait", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
-    <%= form.label :portrait %>
+    <div class="form-check form-check-radio radio-icons">
+      <label class="form-check-label ">
+        <%= form.radio_button :aspect_ratio, 'Portrait', class: 'form-check-input center'%>
+        <span class="form-check-sign"></span>
+        <i class='far fa-user text-primary' style="font-size: 36px; margin-top: -24px;"> </i><br>
+        Portrait
+      </label>
+    </div>
+    <br>
   </div>
   <div class='col-md-4 col-sm-4 col-xs-4 '>
-    <%= form.radio_button :aspect_ratio, "Landscape", class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
-    <%= form.label :landscape %>
+    <div class="form-check form-check-radio radio-icons">
+      <label class="form-check-label ">
+        <%= form.radio_button :aspect_ratio, 'Landscape', class: 'form-check-input center'%>
+        <span class="form-check-sign"></span>
+        <i class='far fa-image text-primary' style="font-size: 36px; margin-top: -24px;"> </i><br>
+        Landscape
+      </label>
+    </div>
+    <br>
   </div>
   <div class='col-md-4 col-sm-4 col-xs-4 '>
-    <%= form.radio_button :aspect_ratio, "Square" , class:'icheck-me', :data => {:skin => 'square', :color => 'green'}%>
-    <%= form.label :square  %>
+    <div class="form-check form-check-radio radio-icons">
+      <label class="form-check-label ">
+        <%= form.radio_button :aspect_ratio, 'Square', class: 'form-check-input center'%>
+        <span class="form-check-sign"></span>
+        <i class='far fa-square text-primary' style="font-size: 36px; margin-top: -24px;"> </i><br>
+        Square
+      </label>
+    </div>
+    <br>
   </div>
 </div>
+
+
