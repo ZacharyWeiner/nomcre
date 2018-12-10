@@ -27,7 +27,7 @@
             <% @proposals.each do |p| %>
             <tr>
              <td><%= p.title %></td>
-             <td><%= p.deadline.strftime("%a %b %y") %></td>
+             <td><%= p.deadline != nil ? p.deadline.strftime("%b %d %Y") : '' %></td>
              <td><%= p.deposit_paid %></td>
              <td><%= p.paid %></td>
              <td><%= link_to "View", proposal_path(p) %></td>

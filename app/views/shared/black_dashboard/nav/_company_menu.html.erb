@@ -48,9 +48,16 @@
   <% end %>
 </li>
 <li>
-  <%= link_to chatroom_path(Proposal.where(company: current_user.company).last.chatroom) do %>
-    <i class="tim-icons "><ion-icon name="chatbubbles"></ion-icon></i>
-    <p>Communiation</p>
+  <% if current_user.role == 0 %>
+   <%= link_to chatrooms_path do %>
+      <i class="tim-icons "><ion-icon name="chatbubbles"></ion-icon></i>
+      <p>Communiation</p>
+    <% end %>
+  <% else %>
+    <%= link_to chatroom_path(Proposal.where(company: current_user.company).last.chatroom) do %>
+      <i class="tim-icons "><ion-icon name="chatbubbles"></ion-icon></i>
+      <p>Communiation</p>
+    <% end %>
   <% end %>
 </li>
 

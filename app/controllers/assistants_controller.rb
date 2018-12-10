@@ -88,7 +88,6 @@ class AssistantsController < ApplicationController
     end
 
     def authorize
-      byebug
       allow = false
       if current_user
         if params[:proposal_id] || params[:assistant][:proposal_id]
