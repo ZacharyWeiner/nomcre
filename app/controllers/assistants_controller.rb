@@ -1,7 +1,7 @@
 class AssistantsController < ApplicationController
   before_action :set_assistant, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
-  before_action :authorize, only: [:create]
+  before_action :authorize, except: [:create]
   layout 'black_dashboard'
   # GET /assistants
   # GET /assistants.json
@@ -84,13 +84,13 @@ class AssistantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def assistant_params
-      params.require(:assistant).permit(:name, :paypal_email, :phone, :rate, :assistant_type, :location_id, :proposal_id)
+      params.require(:assistant).permit(:name, :paypal_email, :phone, :rate, :assistant_type, :location_id, :proposal_id, :facebook, :instagram, :notes)
     end
 
     def authorize
       allow = false
       if current_user
-        if params[:proposal_id] || params[:assistant][:proposal_id]
+        if params[:proposal_id] || (params[:assistants] && params[:assistant][:proposal_id])
           proposal = params[:proposal_id] != nil ?
             Proposal.find(params[:proposal_id]) : Proposal.find(params[:assistant][:proposal_id])
           if current_user == proposal.user || current_user.company == proposal.company

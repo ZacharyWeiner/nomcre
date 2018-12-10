@@ -23,6 +23,12 @@
               Type
             </th>
             <th class="">
+              Facebook
+            </th>
+            <th class="">
+              Instagram
+            </th>
+            <th class="">
               Location
             </th>
             <th class="">
@@ -49,10 +55,16 @@
                 <%= assistant.assistant_type %>
               </td>
               <td class="">
+                <%= assistant.facebook %>
+              </td>
+              <td class="">
+                <%= assistant.instagram %>
+              </td>
+              <td class="">
                 <%= assistant.location %>
               </td>
               <td class="">
-                <%= link_to "Controls", root_path %>
+                <%= link_to "View", assistant_path(assistant) %>
               </td>
             </tr>
           <% end %>

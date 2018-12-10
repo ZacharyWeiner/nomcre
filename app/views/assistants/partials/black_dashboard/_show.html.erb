@@ -1,0 +1,66 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class='card-title' >Assistant</h4>
+    <p id="notice"><%= notice %></p>
+  </div>
+  <div class="card-body">
+    <div class='row'>
+      <div class='col-md-6'>
+         <p>
+          <strong>Name:</strong>
+          <%= assistant.name %>
+        </p>
+
+        <p>
+          <strong>Paypal email:</strong>
+          <%= assistant.paypal_email %>
+        </p>
+
+        <p>
+          <strong>Phone:</strong>
+          <%= assistant.phone %>
+        </p>
+
+        <p>
+          <strong>Rate:</strong>
+          <%= assistant.rate %>
+        </p>
+      </div>
+      <div class='col-md-6'>
+        <p>
+          <strong>Assistant type:</strong>
+          <%= assistant.assistant_type %>
+        </p>
+
+        <p>
+          <strong>Location:</strong>
+          <%= assistant.location %>
+        </p>
+        <p>
+          <strong>Facebook:</strong>
+          <%= assistant.facebook %>
+        </p>
+        <p>
+          <strong>Instagram:</strong>
+          <%= assistant.instagram %>
+        </p>
+      </div>
+      <div class="col-md-12">
+        <p>
+         <strong>Notes:</strong>
+          <%= assistant.notes %>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <%= link_to 'Edit', edit_assistant_path(assistant) %> |
+    <%= link_to 'Back', assistants_path %>
+  </div>
+</div>
+
+
+
+
+
+
