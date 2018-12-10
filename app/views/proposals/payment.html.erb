@@ -1,5 +1,5 @@
 <% if @proposal.deposit_paid == true %>
-  <%= render 'proposals/partials/balance_payment' %>
+  <%= render 'proposals/partials/black_dashboard/payments/balance', :locals => {:proposal => @proposal} %>
 <% else %>
-  <%= render 'proposals/partials/black_dashboard/payments/deposit' %>
+  <%= render 'proposals/partials/black_dashboard/payments/deposit', :locals => {:proposal => @proposal} %>
 <% end %>
