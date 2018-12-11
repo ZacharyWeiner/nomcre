@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181210083602) do
+ActiveRecord::Schema.define(version: 20181211200233) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,24 @@ ActiveRecord::Schema.define(version: 20181210083602) do
     t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "documents", force: :cascade do |t|
+    t.bigint "proposal_id"
+    t.bigint "user_id"
+    t.bigint "company_id"
+    t.bigint "assistant_id"
+    t.string "title"
+    t.string "file"
+    t.string "media"
+    t.string "document_type"
+    t.boolean "is_template"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["assistant_id"], name: "index_documents_on_assistant_id"
+    t.index ["company_id"], name: "index_documents_on_company_id"
+    t.index ["proposal_id"], name: "index_documents_on_proposal_id"
+    t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
   create_table "header_images", force: :cascade do |t|
@@ -424,6 +442,10 @@ ActiveRecord::Schema.define(version: 20181210083602) do
   add_foreign_key "collections", "users"
   add_foreign_key "collections_tags", "collections"
   add_foreign_key "collections_tags", "tags"
+  add_foreign_key "documents", "assistants"
+  add_foreign_key "documents", "companies"
+  add_foreign_key "documents", "proposals"
+  add_foreign_key "documents", "users"
   add_foreign_key "lead_notes", "leads"
   add_foreign_key "locations_tags", "locations"
   add_foreign_key "locations_tags", "tags"

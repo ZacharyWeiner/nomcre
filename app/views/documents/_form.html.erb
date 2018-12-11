@@ -1,0 +1,83 @@
+<div class='card'>
+  <div class='card-header'>
+    <div class='card-title'>Document </div>
+  </div>
+  <div class='card-body'>
+    <%= form_with(model: document, local: true) do |form| %>
+  <% if document.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
+
+      <ul>
+      <% document.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :document_title, class: 'form-control' %>
+  </div>
+  <div class='row text-center'>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <%= form.file_field :file, id: :document_file, class: 'form-control' %>
+        <p><span class='tim-icons '> <i class='fas fa-file-signature fa-3x text-primary'> </i><br><br>Add Signed Doc</span></p>
+
+      </div>
+    </div>
+    <div class='col-md-6'>
+      <div class="form-group">
+        <%= form.file_field :media, id: :document_media, class: 'form-control' %>
+        <p><span class='tim-icons '> <i class="far fa-file-video fa-3x text-primary"></i><br><br>Add Video Proof</span></p>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <%= form.label :document_type %>
+    <%= form.select :document_type, options_for_select([['Model Release', 'Model Release'], ['Location Permit', 'Location Permit'], ['Child Release','Child Release']]), {}, {class: 'form-control '}  %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :is_template %>
+    <%= form.check_box :is_template, id: :document_is_template %>
+  </div>
+  <% if params[:proposal_id] %>
+    <%= form.hidden_field :proposal_id, :value => params[:proposal_id] %>
+  <% elsif defined? proposal %>
+    <%= form.hidden_field :proposal_id, :value => proposal.id %>
+  <% elsif defined? @proposal %>
+    <%= form.hidden_field :proposal_id, :value => @proposal.id %>
+  <% end %>
+
+  <% if params[:company_id] %>
+    <%= form.hidden_field :company_id, :value => params[:company_id] %>
+  <% elsif defined? company%>
+    <%= form.hidden_field :company_id, :value => company.id %>
+  <% elsif defined? company %>
+    <%= form.hidden_field :company_id, :value => @company.id %>
+  <% end %>
+
+  <% if params[:assistant_id] %>
+    <%= form.hidden_field :assistant_id, :value => params[:assistant_id] %>
+  <% elsif defined? assisant %>
+    <%= form.hidden_field :assistant_id, :value => assistant.id %>
+  <% elsif defined? @assisant %>
+    <%= form.hidden_field :assistant_id, :value => @assistant.id %>
+  <% end %>
+  <%= form.hidden_field :user_id, :value => current_user.id %>
+  <div class="actions">
+    <%= form.submit "Save", class: 'btn btn-primary' %>
+  </div>
+<% end %>
+
+  </div>
+  <div class='card-footer'></div>
+</div>

@@ -1,0 +1,57 @@
+
+<div class='card'>
+  <p id="notice"><%= notice %></p>
+  <div class='card-header'>
+    <div class='card-category'><%= @document.document_type %></div>
+    <div class='card-title'><%= @document.title %></div>
+  </div>
+  <div class='card-body'>
+    <div class='row'>
+      <div class='col-md-6'>
+        <p>
+          <%=link_to "Download File", @document.file.url, class: 'btn btn-primary' %>
+          <br>
+          <%=link_to "Download Video", @document.media.url, class: 'btn btn-primary' %>
+        </p>
+      </div>
+      <div class='col-md-6'>
+        <div class='title'>
+          Owned By:
+        </div>
+        <% if !@document.proposal.nil? %>
+          <p>
+            <strong>Proposal:</strong>
+            <%= @document.proposal.title %>
+          </p>
+        <% end %>
+        <% if !@document.user.nil? %>
+          <p>
+            <strong>User:</strong>
+            <%= @document.user.email %>
+          </p>
+        <% end %>
+        <% if !@document.company.nil? %>
+          <p>
+            <strong>Company:</strong>
+            <%= @document.company.name %>
+          </p>
+        <% end %>
+        <% if !@document.assistant.nil? %>
+          <p>
+            <strong>Assistant:</strong>
+            <%= @document.assistant.name %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class='card-footer'></div>
+</div>
+
+<p>
+  <strong>Is template:</strong>
+  <%= @document.is_template %>
+</p>
+
+<%= link_to 'Edit', edit_document_path(@document) %> |
+<%= link_to 'Back', documents_path %>

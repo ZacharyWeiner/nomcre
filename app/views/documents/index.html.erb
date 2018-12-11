@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-category"> </h5>
+    <h3 class="card-title">Documents</h3>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-lg-3 col-md-6">
+        <!--
+                            color-classes: "nav-pills-primary", "nav-pills-info", "nav-pills-success", "nav-pills-warning","nav-pills-danger"
+                        -->
+        <ul class="nav nav-pills nav-pills-primary nav-pills-icons flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#user-uploaded">
+              <i class="tim-icons"><ion-icon name="contact" size='large'></ion-icon></i> User Uploaded
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#template">
+              <i class="tim-icons"><ion-icon name="paper"></ion-icon></i> Templates
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-8">
+        <div class="tab-content">
+          <div class="tab-pane active" id="user-uploaded">
+            <%= render :partial => 'documents/partials/black_dashboard/user_uploaded', :locals => {:documents => @documents} %>
+          </div>
+          <div class="tab-pane" id="template">
+            <%= render :partial => 'documents/partials/black_dashboard/templates', :locals => {:documents => Document.where(is_template: true)} %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
+<%= link_to 'New Document', new_document_path %>

@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :notifications
   has_many :schedule_items
   mount_uploader :profile_image, FileUploader
+  has_many :documents
   has_one :user_profile, dependent: :destroy
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -50,6 +51,16 @@ def reset_user_info
     self.save
   end
 
+  def is_admin
+    admin = false
+    if !self.role.nil?
+      if self.role < 2
+        admin = true
+      end
+    end
+    return admin
+  end
+
   private
   def check_company_intro_complete
     if self.intro_complete
@@ -77,6 +88,7 @@ def reset_user_info
       self.save
     end
   end
+
 
 
 end

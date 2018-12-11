@@ -1,0 +1,87 @@
+
+<div class="card">
+  <div class='card-header'>
+    <div class='card-title'>
+      <h5> Document Templates </h5>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="toolbar">
+      <!--        Here you can write extra buttons/actions for the toolbar              -->
+    </div>
+    <table id="templates" class="table table-striped">
+      <thead>
+        <tr>
+         <!-- <th>Proposal</th>
+          <th>User</th>
+          <th>Company</th>
+          <th>Assistant</th> -->
+          <th>Title</th>
+          <th>File</th>
+          <th>Document type</th>
+          <th class="sorting_desc_disabled sorting_asc_disabled text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% documents.each do |document| %>
+        <tr>
+          <!-- <td><% document.proposal %></td>
+          <td><% document.user %></td>
+          <td><% document.company %></td>
+          <td><% document.assistant %></td> -->
+          <td><%= document.title %></td>
+          <td><%= link_to "File", document.file.url unless document.file.url.nil? %></td>
+          <td><%= document.document_type %></td>
+          <td class="text-right">
+            <%= link_to 'Show', document %>
+            <%= link_to 'Edit', edit_document_path(document) %>
+            <%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+         <!--  <th>Proposal</th>
+          <th>User</th>
+          <th>Company</th>
+          <th>Assistant</th> -->
+          <th>Title</th>
+          <th>File</th>
+          <th>Document type</th>
+          <th class="disabled-sorting text-right">Actions</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <!-- end content-->
+</div>
+<% content_for :added_scripts do %>
+  <script>
+    $(document).ready(function() {
+
+      var table = $('#templates').DataTable();
+
+      // Edit record
+      table.on('click', '.edit', function() {
+        $tr = $(this).closest('tr');
+
+        var data = table.row($tr).data();
+        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+      });
+
+      // Delete a record
+      table.on('click', '.remove', function(e) {
+        $tr = $(this).closest('tr');
+        table.row($tr).remove().draw();
+        e.preventDefault();
+      });
+
+      //Like record
+      table.on('click', '.like', function() {
+        alert('You clicked on Like button');
+      });
+    });
+  </script>
+  <% end %>
+
