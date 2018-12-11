@@ -89,36 +89,6 @@
         </div>
       </div>
     </div>
-    <!-- this row will not appear when printing -->
-    <div class="row no-print">
-      <div class="col-xs-12">
-        <div class='pull-right'>
-          <% if @proposal.deposit_paid == false || @proposal.deposit_paid == nil%>
-            <%= form_tag proposal_deposit_path(@proposal) do %>
-              <article>
-                <% if flash[:error].present? %>
-                  <div id="error_explanation">
-                    <p><%= flash[:error] %></p>
-                  </div>
-                <% end %>
-              </article>
-              <% @stripe_price = (@proposal.price * Proposal.deposit_percent) * 100 %>
-              <form action="/charge" method="POST">
-                <%= hidden_field_tag 'proposal_id', @proposal.id %>
-                  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button pull-right"
-                    Stripe.setPublishableKey('PUBLISHABLE_KEY');
-                    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                    data-description="Proposal Payment"
-                    data-amount="<%= @stripe_price %>"
-                    data-locale="auto">
-                  </script>
-              </form>
-            <% end %>
-          <% else %>
-            <%= link_to 'Paid', root_path, class: 'btn btn-success disabled'%>
-          <% end %>
-        </div>
-    </div>
   </div>
 </div>
 
