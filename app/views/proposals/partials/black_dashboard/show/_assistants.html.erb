@@ -1,0 +1,16 @@
+<div class="card card-plain">
+  <div class="card-header" id="headingTwo">
+    <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+      Add Assistant
+      <i class="tim-icons text-primary"><ion-icon name='arrow-dropdown-circle' size='large' ></ion-icon></i>
+    </a>
+  </div>
+  <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+    <div class="card-body">
+      <%= render :partial => 'assistants/form', :locals => {:assistant => Assistant.new }%>
+    </div>
+  </div>
+</div>
+
+
+
