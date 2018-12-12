@@ -1,1 +1,10 @@
 <%= render :partial => 'proposals/partials/black_dashboard/show/show', :locals => {proposal: @proposal} %>
+<%= render :partial => 'documents/partials/black_dashboard/form_modal', :locals => {:proposal => @proposal, :company => @proposal.company} %>
+
+<% content_for :added_scripts do %>
+<script type="text/javascript">
+  $('#documentButton').click(function(){
+          $('#documentFormModal').modal('toggle');
+       });
+  </script>
+<% end %>

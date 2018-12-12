@@ -101,7 +101,7 @@
             <%= render :partial => 'proposals/partials/black_dashboard/show/available_creatives', :locals => {:proposal => proposal} %>
           </div>
           <div class="tab-pane <%= disclosure_style %>" id="disclosures">
-           <%= render 'proposals/partials/black_dashboard/shared/disclosure' %>
+           <%= render 'proposals/partials/black_dashboard/shared/disclosure', :locals =>{:proposal =>      @proposal} %>
           </div>
           <div class="tab-pane <%= assistants_style %>" id="assistants">
             <%= render :partial => 'assistants/form', :locals => {:assistant => Assistant.new }%>

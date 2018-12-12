@@ -1,4 +1,6 @@
-
+<% if !defined? show_all %>
+  <% show_all = true %>
+<% end %>
 <div class="card">
   <div class='card-header'>
     <div class='card-title'>
@@ -12,50 +14,46 @@
     <table id="uploaded" class="table table-striped">
       <thead>
         <tr>
-         <!-- <th>Proposal</th>
-          <th>User</th>
-          <th>Company</th>
-          <th>Assistant</th> -->
           <th>Title</th>
           <th>File</th>
           <th>Media</th>
           <th>Document type</th>
-          <th>Is template</th>
-          <th class="sorting_desc_disabled sorting_asc_disabled text-right">Actions</th>
+          <% if show_all %>
+            <th>Is template</th>
+            <th class="sorting_desc_disabled sorting_asc_disabled text-right">Actions</th>
+          <% end %>
         </tr>
       </thead>
       <tbody>
-        <% documents.each do |document| %>
+        <% documents.where.not(is_template: true).each do |document| %>
         <tr>
-          <!-- <td><% document.proposal %></td>
-          <td><% document.user %></td>
-          <td><% document.company %></td>
-          <td><% document.assistant %></td> -->
+
           <td><%= document.title %></td>
           <td><%= link_to "File", document.file.url unless document.file.url.nil? %></td>
           <td><%= link_to "Video", document.media.url unless document.media.url.nil?  %></td>
           <td><%= document.document_type %></td>
-          <td><%= document.is_template %></td>
-          <td class="text-right">
-            <%= link_to 'Show', document %>
-            <%= link_to 'Edit', edit_document_path(document) %>
-            <%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %>
-          </td>
+          <% if show_all %>
+            <td><%= document.is_template %></td>
+            <td class="text-right">
+              <%= link_to 'Show', document %>
+              <%= link_to 'Edit', edit_document_path(document) %>
+              <%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %>
+            </td>
+          <% end %>
         </tr>
         <% end %>
       </tbody>
       <tfoot>
         <tr>
-         <!--  <th>Proposal</th>
-          <th>User</th>
-          <th>Company</th>
-          <th>Assistant</th> -->
+
           <th>Title</th>
           <th>File</th>
           <th>Media</th>
           <th>Document type</th>
-          <th>Is template</th>
-          <th class="disabled-sorting text-right">Actions</th>
+          <% if show_all %>
+            <th>Is template</th>
+            <th class="disabled-sorting text-right">Actions</th>
+          <% end %>
         </tr>
       </tfoot>
     </table>

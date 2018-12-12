@@ -44,11 +44,13 @@
     <%= form.label :document_type %>
     <%= form.select :document_type, options_for_select([['Model Release', 'Model Release'], ['Location Permit', 'Location Permit'], ['Child Release','Child Release']]), {}, {class: 'form-control '}  %>
   </div>
-
-  <div class="form-group">
-    <%= form.label :is_template %>
-    <%= form.check_box :is_template, id: :document_is_template %>
-  </div>
+  <% if defined? proposal && defined? @proposal %>
+  <% else %>
+    <div class="form-group">
+      <%= form.label :is_template %>
+      <%= form.check_box :is_template, id: :document_is_template %>
+    </div>
+  <% end %>
   <% if params[:proposal_id] %>
     <%= form.hidden_field :proposal_id, :value => params[:proposal_id] %>
   <% elsif defined? proposal %>
