@@ -31,8 +31,13 @@ class DocumentsController < ApplicationController
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to @document, notice: 'Document was successfully created.' }
-        format.json { render :show, status: :created, location: @document }
+        if @document.proposal
+          format.html { redirect_to proposal_path(@document.proposal, :active => 'disclosures'), notice: 'Document was successfully created.' }
+          format.json { render :show, status: :created, location: @document }
+        else
+          format.html { redirect_to @document, notice: 'Document was successfully created.' }
+          format.json { render :show, status: :created, location: @document }
+        end
       else
         format.html { render :new }
         format.json { render json: @document.errors, status: :unprocessable_entity }
