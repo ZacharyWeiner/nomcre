@@ -1,0 +1,97 @@
+<%= form_with(model: shoot, local: true) do |form| %>
+  <% if shoot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(shoot.errors.count, "error") %> prohibited this shoot from being saved:</h2>
+
+      <ul>
+      <% shoot.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :creative_id %>
+    <%= form.text_field :creative_id, id: :shoot_creative_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :project_id %>
+    <%= form.text_field :project_id, id: :shoot_project_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company_id %>
+    <%= form.text_field :company_id, id: :shoot_company_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location_id %>
+    <%= form.text_field :location_id, id: :shoot_location_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :content_type %>
+    <%= form.text_field :content_type, id: :shoot_content_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :brief %>
+    <%= form.text_area :brief, id: :shoot_brief %>
+  </div>
+
+  <div class="field">
+    <%= form.label :time_of_day %>
+    <%= form.text_field :time_of_day, id: :shoot_time_of_day %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bts %>
+    <%= form.text_field :bts, id: :shoot_bts %>
+  </div>
+
+  <div class="field">
+    <%= form.label :focus_points %>
+    <%= form.text_field :focus_points, id: :shoot_focus_points %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :shoot_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :background %>
+    <%= form.text_field :background, id: :shoot_background %>
+  </div>
+
+  <div class="field">
+    <%= form.label :background_note %>
+    <%= form.text_field :background_note, id: :shoot_background_note %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shoot_style %>
+    <%= form.text_field :shoot_style, id: :shoot_shoot_style %>
+  </div>
+
+  <div class="field">
+    <%= form.label :shoot_raw %>
+    <%= form.check_box :shoot_raw, id: :shoot_shoot_raw %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_added_shot_count %>
+    <%= form.number_field :user_added_shot_count, id: :shoot_user_added_shot_count %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_added_shot_count_max %>
+    <%= form.number_field :user_added_shot_count_max, id: :shoot_user_added_shot_count_max %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

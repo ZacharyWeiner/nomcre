@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181211200233) do
+ActiveRecord::Schema.define(version: 20181217205733) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,8 +28,10 @@ ActiveRecord::Schema.define(version: 20181211200233) do
     t.string "facebook"
     t.string "instagram"
     t.text "notes"
+    t.bigint "shoot_id"
     t.index ["location_id"], name: "index_assistants_on_location_id"
     t.index ["proposal_id"], name: "index_assistants_on_proposal_id"
+    t.index ["shoot_id"], name: "index_assistants_on_shoot_id"
   end
 
   create_table "chatrooms", force: :cascade do |t|
@@ -37,7 +39,9 @@ ActiveRecord::Schema.define(version: 20181211200233) do
     t.bigint "proposal_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "shoot_id"
     t.index ["proposal_id"], name: "index_chatrooms_on_proposal_id"
+    t.index ["shoot_id"], name: "index_chatrooms_on_shoot_id"
   end
 
   create_table "collection_items", force: :cascade do |t|
@@ -91,6 +95,24 @@ ActiveRecord::Schema.define(version: 20181211200233) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "discount_codes", force: :cascade do |t|
+    t.string "code"
+    t.string "discount_type"
+    t.date "expiration_date"
+    t.integer "max_uses"
+    t.integer "discount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "stackable"
+  end
+
+  create_table "discount_codes_projects", id: false, force: :cascade do |t|
+    t.bigint "project_id"
+    t.bigint "discount_code_id"
+    t.index ["discount_code_id"], name: "index_discount_codes_projects_on_discount_code_id"
+    t.index ["project_id"], name: "index_discount_codes_projects_on_project_id"
+  end
+
   create_table "documents", force: :cascade do |t|
     t.bigint "proposal_id"
     t.bigint "user_id"
@@ -103,9 +125,11 @@ ActiveRecord::Schema.define(version: 20181211200233) do
     t.boolean "is_template"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "shoot_id"
     t.index ["assistant_id"], name: "index_documents_on_assistant_id"
     t.index ["company_id"], name: "index_documents_on_company_id"
     t.index ["proposal_id"], name: "index_documents_on_proposal_id"
+    t.index ["shoot_id"], name: "index_documents_on_shoot_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
@@ -117,6 +141,20 @@ ActiveRecord::Schema.define(version: 20181211200233) do
     t.boolean "creators"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.bigint "project_id"
+    t.bigint "company_id"
+    t.bigint "payment_id"
+    t.decimal "amount"
+    t.date "due_date"
+    t.string "invoice_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_invoices_on_company_id"
+    t.index ["payment_id"], name: "index_invoices_on_payment_id"
+    t.index ["project_id"], name: "index_invoices_on_project_id"
   end
 
   create_table "lead_notes", force: :cascade do |t|
@@ -227,6 +265,38 @@ ActiveRecord::Schema.define(version: 20181211200233) do
     t.string "keywords"
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "project_id"
+    t.string "payment_type"
+    t.string "category"
+    t.string "payment_method"
+    t.string "external_id"
+    t.date "paid_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_payments_on_project_id"
+    t.index ["user_id"], name: "index_payments_on_user_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.bigint "package_type_id"
+    t.bigint "company_id"
+    t.string "title"
+    t.text "brief"
+    t.date "deadline"
+    t.decimal "price"
+    t.decimal "deposit"
+    t.decimal "balance"
+    t.boolean "is_complete"
+    t.date "completed_on"
+    t.integer "max_user_shot_list"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_projects_on_company_id"
+    t.index ["package_type_id"], name: "index_projects_on_package_type_id"
+  end
+
   create_table "proposal_requests", force: :cascade do |t|
     t.bigint "requested_by"
     t.bigint "requested"
@@ -293,6 +363,30 @@ ActiveRecord::Schema.define(version: 20181211200233) do
     t.index ["user_id"], name: "index_schedule_items_on_user_id"
   end
 
+  create_table "shoots", force: :cascade do |t|
+    t.bigint "creative_id"
+    t.bigint "project_id"
+    t.bigint "company_id"
+    t.bigint "location_id"
+    t.string "content_type"
+    t.text "brief"
+    t.string "time_of_day"
+    t.string "bts"
+    t.string "focus_points"
+    t.decimal "price"
+    t.string "background"
+    t.string "background_note"
+    t.string "shoot_style"
+    t.boolean "shoot_raw"
+    t.integer "user_added_shot_count"
+    t.integer "user_added_shot_count_max"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_shoots_on_company_id"
+    t.index ["location_id"], name: "index_shoots_on_location_id"
+    t.index ["project_id"], name: "index_shoots_on_project_id"
+  end
+
   create_table "shot_list_items", force: :cascade do |t|
     t.bigint "proposal_id"
     t.string "description"
@@ -305,7 +399,10 @@ ActiveRecord::Schema.define(version: 20181211200233) do
     t.string "focus_point"
     t.string "reference_image"
     t.string "aspect_ratio"
+    t.bigint "shoot_id"
+    t.bigint "added_by_id"
     t.index ["proposal_id"], name: "index_shot_list_items_on_proposal_id"
+    t.index ["shoot_id"], name: "index_shot_list_items_on_shoot_id"
     t.index ["task_id"], name: "index_shot_list_items_on_task_id"
   end
 
@@ -360,8 +457,13 @@ ActiveRecord::Schema.define(version: 20181211200233) do
     t.datetime "updated_at", null: false
     t.string "can_accept"
     t.string "task_type"
+    t.bigint "shoot_id"
+    t.bigint "project_id"
+    t.boolean "is_template"
     t.index ["company_id"], name: "index_tasks_on_company_id"
+    t.index ["project_id"], name: "index_tasks_on_project_id"
     t.index ["proposal_id"], name: "index_tasks_on_proposal_id"
+    t.index ["shoot_id"], name: "index_tasks_on_shoot_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
@@ -436,16 +538,24 @@ ActiveRecord::Schema.define(version: 20181211200233) do
 
   add_foreign_key "assistants", "locations"
   add_foreign_key "assistants", "proposals"
+  add_foreign_key "assistants", "shoots"
   add_foreign_key "chatrooms", "proposals"
+  add_foreign_key "chatrooms", "shoots"
   add_foreign_key "collection_items", "collections"
   add_foreign_key "collection_items", "users"
   add_foreign_key "collections", "users"
   add_foreign_key "collections_tags", "collections"
   add_foreign_key "collections_tags", "tags"
+  add_foreign_key "discount_codes_projects", "discount_codes"
+  add_foreign_key "discount_codes_projects", "projects"
   add_foreign_key "documents", "assistants"
   add_foreign_key "documents", "companies"
   add_foreign_key "documents", "proposals"
+  add_foreign_key "documents", "shoots"
   add_foreign_key "documents", "users"
+  add_foreign_key "invoices", "companies"
+  add_foreign_key "invoices", "payments"
+  add_foreign_key "invoices", "projects"
   add_foreign_key "lead_notes", "leads"
   add_foreign_key "locations_tags", "locations"
   add_foreign_key "locations_tags", "tags"
@@ -454,18 +564,28 @@ ActiveRecord::Schema.define(version: 20181211200233) do
   add_foreign_key "notifications", "users"
   add_foreign_key "package_types", "header_images"
   add_foreign_key "page_sections", "pages"
+  add_foreign_key "payments", "projects"
+  add_foreign_key "payments", "users"
+  add_foreign_key "projects", "companies"
+  add_foreign_key "projects", "package_types"
   add_foreign_key "proposal_requests", "proposals"
   add_foreign_key "proposals", "companies"
   add_foreign_key "proposals", "locations"
   add_foreign_key "proposals", "users"
   add_foreign_key "schedule_items", "locations"
   add_foreign_key "schedule_items", "users"
+  add_foreign_key "shoots", "companies"
+  add_foreign_key "shoots", "locations"
+  add_foreign_key "shoots", "projects"
   add_foreign_key "shot_list_items", "proposals"
+  add_foreign_key "shot_list_items", "shoots"
   add_foreign_key "shot_list_items", "tasks"
   add_foreign_key "tags_users", "tags"
   add_foreign_key "tags_users", "users"
   add_foreign_key "tasks", "companies"
+  add_foreign_key "tasks", "projects"
   add_foreign_key "tasks", "proposals"
+  add_foreign_key "tasks", "shoots"
   add_foreign_key "tasks", "users"
   add_foreign_key "user_activities", "users"
   add_foreign_key "user_profiles", "users"

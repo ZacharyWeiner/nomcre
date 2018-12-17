@@ -1,0 +1,231 @@
+.new-object-model.txt
+
+ProjectTemplate - all default details of a specific type of project
+
+Package Type - Has_many Project Templates
+
+
+Package Type
+  title
+  subtitle
+  description
+  max_models
+  base_price
+  "description_image"
+  "example_image"
+  "example_video"
+  "header_image_id"
+  "show_in_menu"
+  "menu_link_text"
+  "minimum_images"
+  "minimum_videos"
+  "max_models"
+  "base_price"
+  "created_at", null: false
+  "updated_at", null: false
+  "order"
+  "example_image_description"
+  "example_video_description"
+  "example_video_thumbnail"
+  "show_on_index"
+
+  Class Methods
+
+    create_project
+      for each self.project_template
+        copy_project_template
+
+  Controller Methods
+
+
+
+
+Project
+  √ belongs_to package_type
+  √ belongs_to company
+  √ has_many owners through company.users
+  √ has_many payments
+  √ has_many shoots
+  √ has_many creatives :through shoots
+  √ has_many chatrooms, :through shoots
+  √ has_many messages, :through chatrooms
+  √ has_many documents :through shoots
+  √ has_many tasks - some on project, some aggregated from shoot
+  √ has_many assistants :through shoots
+  √ has_many shot_list_items
+  √ habtm discount_codes
+  has_many add_ons :through shoots
+  has_one :deposit_payment, class_name: Payment, foreign_key :deposit_id
+  has_one :balance_payment, class_name: Payment, foreign_key :balance_id
+  has_one :deposit_invoice, class_name: Payment, foreign_key :deposit_id
+  has_one :balance_invoice, class_name: Payment, foreign_key :balance_id
+
+
+  √ title
+  √ brief
+  √ deadline
+  √ price
+  √ deposit
+  √ balance
+  √ is_complete
+  √ completed_on
+  ??Insta / Image Boards??
+  √ max_user_added_shot_list_items
+
+  Class Methods -
+    paid
+    deposit_paid
+    deposit_paid_on
+    balance_paid_on
+    update_invoices
+    update_price
+
+  Controller Methods
+    payment
+    payments
+    invoices
+
+
+
+
+
+Payment
+  √ belongs_to project
+  √ belongs_to user
+  √ has_a company through: user
+  √ payment_type (:debit, :credit)
+  √ category (:deposit, :balance, :refund, :photography, :videography, :model)
+  √ payment_method (:ach, :cc, :check, :venmo, :paypal)
+  √ external_id
+  √ payment_date
+
+  Class Methods
+
+  Controller Methods
+
+
+
+
+Shoot
+  √ belongs_to creative
+  √ belongs_to project
+  √ belongs_to company
+  √ belongs_to location
+  √ has_a chatroom
+  √ has_many assistants
+  √ has_many documents
+  √ has_many tasks
+  √ has_many shot_list_items
+  has_many creative_requests
+  has_many add_ons
+
+
+  √ content_type   (:photo, :video)
+  √ time_of_day
+  √ bts - array
+  √ focus_points
+  √ price
+  √ background
+  √ background_note
+  √ shoot_style
+  ??Insta / Image Boards??
+  √ max_user_added_shot_list_items
+  √ raw?
+  √ user_added_shot_count
+  √ completed?
+
+
+
+  Class Methods -
+    √ owner_added_shot_list_count
+    Find_Creatives
+    complete_shoot
+    editable?
+    show_wizard (is_info_complete)
+    next_step
+    status
+    initalize_tasks
+    intialize_shot_list
+    assign_creative
+    SetPrice
+    create_chatroom
+
+
+
+
+  Controller Methods
+    Create
+    Update
+    Copy
+    CreateRequest
+    AcceptRequest
+    ApproveRequest
+    CompletedProjects
+    SendEmail
+    SendCreativeAssignedEmail
+
+
+CreativeRequests
+  belongs_to :shoot
+  belongs_to :requested_by  class: user
+  belongs_to :creative
+  has_one :company, through requested_by
+  accepted
+  accepted_on
+  deadline
+  approved
+  declined
+
+
+
+AddOn
+  belongs_to shoot
+  addon_type
+  price
+
+User
+  √ has_many :shoots (creative)
+  √ has_many projects, through :shoots
+  has_many creative_requests
+
+Company
+  √ has_many :projects
+  √ has_many :shoots
+  has_many :creative_requests
+
+Assistant
+  √ belongs_to shoot
+
+Task
+  √ is_template
+  √ belongs_to shoot
+  √ has_one project
+
+  Class methods
+    Send_Notification
+
+ShotListItem
+  added_by (user_id)
+  √ belongs_to shoot
+  √ has_one :project
+
+Notifications
+  SendNotification
+
+
+DateHelper
+  parse_date from jqueryUI datepicker
+
+Email Helper
+  SendEmail
+  send_creative_assigned_email
+
+
+Discount Codes
+  √ code
+  √ discount_type :percentage, :fixed
+  √ discount :integer
+  √ max_uses :integer
+
+  habtm :projects
+

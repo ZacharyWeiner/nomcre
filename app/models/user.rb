@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :chatrooms, through: :messages
   has_many :notifications
   has_many :schedule_items
+  has_many :shoots, foreign_key: 'creative_id'
+  has_many :projects, through: :shoots
   mount_uploader :profile_image, FileUploader
   has_many :documents
   has_one :user_profile, dependent: :destroy

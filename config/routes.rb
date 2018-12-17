@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+
+  resources :discount_codes
+  resources :shoots
+  resources :payments
+  resources :projects
   resources :documents
   get 'hello_world', to: 'hello_world#index'
   resources :package_types
@@ -72,7 +77,8 @@ Rails.application.routes.draw do
     get 'send_welcome_email', to:'companies#send_welcome_email'
 
   end
-  get 'invoices', to:'companies#invoices', as: 'invoices'
+  resources :invoices
+  #get 'invoices', to:'companies#invoices', as: 'invoices'
   devise_for :users
   get 'user/:id', to: "users#show", as: 'user_show'
   get 'users/:user_id/collections', to: "collections#index", as: 'user_collection'
