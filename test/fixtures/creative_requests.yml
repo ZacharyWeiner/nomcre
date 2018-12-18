@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  shoot: one
+  requested_by_id: 
+  creative_id: 
+  company: one
+  accepted: false
+  accepted_on: 2018-12-18
+  deadline: 2018-12-18
+  approved: false
+  declined: false
+
+two:
+  shoot: two
+  requested_by_id: 
+  creative_id: 
+  company: two
+  accepted: false
+  accepted_on: 2018-12-18
+  deadline: 2018-12-18
+  approved: false
+  declined: false

@@ -11,9 +11,19 @@ class Company < ApplicationRecord
   has_many :projects
   has_many :shoots
   has_many :invoices
+  has_many :creative_requests
 
   #mount
   mount_uploader :logo, LogoUploader
+
+  #collections
+  def pending_requests
+    CreativeRequest.where(company: self).where(accepted: nil).where(declined: nil)
+  end
+  def accepted_requests
+    CreativeRequest.where(company: self).where(accepted: true)
+  end
+
 
   #public methods
   def payments

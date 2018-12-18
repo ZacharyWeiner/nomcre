@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Creative Requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Shoot</th>
+      <th>Requested by</th>
+      <th>Creative</th>
+      <th>Company</th>
+      <th>Accepted</th>
+      <th>Accepted on</th>
+      <th>Deadline</th>
+      <th>Approved</th>
+      <th>Declined</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @creative_requests.each do |creative_request| %>
+      <tr>
+        <td><%= creative_request.shoot %></td>
+        <td><%= creative_request.requested_by_id %></td>
+        <td><%= creative_request.creative_id %></td>
+        <td><%= creative_request.company %></td>
+        <td><%= creative_request.accepted %></td>
+        <td><%= creative_request.accepted_on %></td>
+        <td><%= creative_request.deadline %></td>
+        <td><%= creative_request.approved %></td>
+        <td><%= creative_request.declined %></td>
+        <td><%= link_to 'Show', creative_request %></td>
+        <td><%= link_to 'Edit', edit_creative_request_path(creative_request) %></td>
+        <td><%= link_to 'Destroy', creative_request, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Creative Request', new_creative_request_path %>

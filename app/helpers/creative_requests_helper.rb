@@ -1,0 +1,2 @@
+module CreativeRequestsHelper
+end

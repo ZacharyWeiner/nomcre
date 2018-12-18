@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181217205733) do
+ActiveRecord::Schema.define(version: 20181218201419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,22 @@ ActiveRecord::Schema.define(version: 20181217205733) do
     t.text "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "creative_requests", force: :cascade do |t|
+    t.bigint "shoot_id"
+    t.bigint "requested_by_id"
+    t.bigint "creative_id"
+    t.bigint "company_id"
+    t.boolean "accepted"
+    t.date "accepted_on"
+    t.date "deadline"
+    t.boolean "approved"
+    t.boolean "declined"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_creative_requests_on_company_id"
+    t.index ["shoot_id"], name: "index_creative_requests_on_shoot_id"
   end
 
   create_table "discount_codes", force: :cascade do |t|
@@ -546,6 +562,8 @@ ActiveRecord::Schema.define(version: 20181217205733) do
   add_foreign_key "collections", "users"
   add_foreign_key "collections_tags", "collections"
   add_foreign_key "collections_tags", "tags"
+  add_foreign_key "creative_requests", "companies"
+  add_foreign_key "creative_requests", "shoots"
   add_foreign_key "discount_codes_projects", "discount_codes"
   add_foreign_key "discount_codes_projects", "projects"
   add_foreign_key "documents", "assistants"

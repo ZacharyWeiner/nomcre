@@ -1,0 +1,62 @@
+<%= form_with(model: creative_request, local: true) do |form| %>
+  <% if creative_request.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(creative_request.errors.count, "error") %> prohibited this creative_request from being saved:</h2>
+
+      <ul>
+      <% creative_request.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :shoot_id %>
+    <%= form.text_field :shoot_id, id: :creative_request_shoot_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :requested_by_id %>
+    <%= form.text_field :requested_by_id, id: :creative_request_requested_by_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :creative_id %>
+    <%= form.text_field :creative_id, id: :creative_request_creative_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company_id %>
+    <%= form.text_field :company_id, id: :creative_request_company_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :accepted %>
+    <%= form.check_box :accepted, id: :creative_request_accepted %>
+  </div>
+
+  <div class="field">
+    <%= form.label :accepted_on %>
+    <%= form.date_select :accepted_on, id: :creative_request_accepted_on %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deadline %>
+    <%= form.date_select :deadline, id: :creative_request_deadline %>
+  </div>
+
+  <div class="field">
+    <%= form.label :approved %>
+    <%= form.check_box :approved, id: :creative_request_approved %>
+  </div>
+
+  <div class="field">
+    <%= form.label :declined %>
+    <%= form.check_box :declined, id: :creative_request_declined %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

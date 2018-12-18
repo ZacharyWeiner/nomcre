@@ -27,11 +27,43 @@ class Project < ApplicationRecord
     Task.where(shoot_id: shoot_ids).or(Task.where(project_id: self.id))
   end
 
+
+  #instance methods
+
+  #tasks
+  def all_tasks_complete
+    self.tasks.where(completed: nil).count == 0
+  end
+
+  def try_complete
+    if self.all_tasks_complete && self.balance_is_paid
+      self.completed = true
+      self.save
+    end
+  end
+
+  def complete_project
+    #TODO: Complete Project Mrthod
+    p 'TODO: Complete Project Method'
+    throw err;
+  end
+
+  ##Finance
+  def udpdate_price
+    #TODO - Update Price
+    p 'TODO: Project Update Price Method'
+    throw err;
+  end
+
+  def is_paid_in_full
+    (self.deposit_is_paid && self.balance_is_paid) ? true : false
+  end
+
   def deposit_payment
     self.payments.where(payment_type: 'deposit').first
   end
 
-  def deposit_paid
+  def deposit_is_paid
     !self.payments.where(payment_type: 'deposit').first.nil?
   end
 
@@ -39,7 +71,15 @@ class Project < ApplicationRecord
     self.payments.where(payment_type: 'balance').first
   end
 
-  def balance_paid
+  def balance_is_paid
     !self.payments.where(payment_type: 'deposit').first.nil?
+  end
+
+  def deposit_invoice
+    self.invoices.where(invoice_type: 'deposit').first
+  end
+
+  def balance_invoice
+    self.invoices.where(invoice_type: 'balance').first
   end
 end

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :creative_requests
   resources :discount_codes
   resources :shoots
   resources :payments

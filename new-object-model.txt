@@ -54,11 +54,11 @@ Project
   √ has_many assistants :through shoots
   √ has_many shot_list_items
   √ habtm discount_codes
+  √ scope :deposit_payment
+  √ scope :balance_payment
+  √ scope :deposit_invoice
+  √ scope :balance_invoice
   has_many add_ons :through shoots
-  has_one :deposit_payment, class_name: Payment, foreign_key :deposit_id
-  has_one :balance_payment, class_name: Payment, foreign_key :balance_id
-  has_one :deposit_invoice, class_name: Payment, foreign_key :deposit_id
-  has_one :balance_invoice, class_name: Payment, foreign_key :balance_id
 
 
   √ title
@@ -73,12 +73,14 @@ Project
   √ max_user_added_shot_list_items
 
   Class Methods -
-    paid
-    deposit_paid
+    √ paid
+    √ deposit_paid
     deposit_paid_on
     balance_paid_on
     update_invoices
-    update_price
+    √ update_price
+    √ all_tasks_complete
+    √ complete_project
 
   Controller Methods
     payment
@@ -138,9 +140,9 @@ Shoot
 
   Class Methods -
     √ owner_added_shot_list_count
-    Find_Creatives
-    complete_shoot
-    editable?
+    √ Find_Creatives
+    √ complete_shoot
+    √ editable?
     show_wizard (is_info_complete)
     next_step
     status
@@ -149,6 +151,8 @@ Shoot
     assign_creative
     SetPrice
     create_chatroom
+    √ accepted_requests
+    √ pending_requests
 
 
 
@@ -166,15 +170,15 @@ Shoot
 
 
 CreativeRequests
-  belongs_to :shoot
-  belongs_to :requested_by  class: user
-  belongs_to :creative
-  has_one :company, through requested_by
-  accepted
-  accepted_on
-  deadline
-  approved
-  declined
+  √ belongs_to :shoot
+  √ belongs_to :requested_by  class: user
+  √ belongs_to :creative
+  √ has_one :company, through requested_by
+  √ accepted
+  √ accepted_on
+  √ deadline
+  √ approved
+  √ declined
 
 
 
@@ -191,7 +195,11 @@ User
 Company
   √ has_many :projects
   √ has_many :shoots
-  has_many :creative_requests
+  √ has_many :creative_requests
+
+
+  √ accepted_requests
+  √ pending_requests
 
 Assistant
   √ belongs_to shoot
@@ -200,6 +208,8 @@ Task
   √ is_template
   √ belongs_to shoot
   √ has_one project
+  √ try_complete_shoot
+  √ try_complete_project
 
   Class methods
     Send_Notification
@@ -228,4 +238,15 @@ Discount Codes
   √ max_uses :integer
 
   habtm :projects
+
+Invoices
+  √ belongs_to Project
+  √ belongs_to Company
+  √ belongs_to Payment
+  √ price
+  √ due_date
+  √ invoice_type :deposit, :balance
+
+  is_paid
+
 

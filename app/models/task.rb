@@ -10,6 +10,10 @@ class Task < ApplicationRecord
 
   #has_many
 
+  #hooks
+  before_save :update_project
+  after_save  :try_complete
+
   #scopes
   def project
     proj = nil
@@ -22,9 +26,19 @@ class Task < ApplicationRecord
     proj
   end
 
-  #-class methods
+  #ActiveRecord Callbacks
+  def  update_project
+    if self.project_id.nil? && !self.shoot.nil?
+      self.project_id = self.shoot.project_id
+    end
+  end
 
-  #-instance methods
+  def try_complete
+    self.try_complete_shoot
+    self.try_complete_project
+  end
+
+  #instance methods
   def approver
     if self.can_accept == 'creative'
       return user
@@ -33,10 +47,19 @@ class Task < ApplicationRecord
     end
   end
 
+  def try_complete_shoot
+    unless self.shoot.nil?
+      self.shoot.try_complete
+    end
+  end
 
+  def try_complete_project
+     unless self.project.nil?
+      self.project.try_complete
+    end
+  end
 
-  #-helper methods
-
+  #helper methods
   def self.create_for_shoot shoot_id
     tasks_count = Task.all.count
     shoot = Shoot.find(shoot_id)
@@ -50,7 +73,8 @@ class Task < ApplicationRecord
                       deadline: task_deadline,
                       company: task_company,
                       can_accept: task_accept,
-                      shoot: shoot)
+                      shoot: shoot,
+                      project: shoot.project)
   end
 
   def self.create_for_project project_id

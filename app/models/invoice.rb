@@ -8,6 +8,9 @@ class Invoice < ApplicationRecord
   #has_many
 
   #instance_methods
+  def is_paid
+    self.payment.nil? ? false : true
+  end
   #class_methods
 
   #helpers

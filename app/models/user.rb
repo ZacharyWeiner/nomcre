@@ -1,9 +1,12 @@
 class User < ApplicationRecord
-  validates :name, presence: true
-  validates :email, uniqueness: true
+  #belongs_to
   belongs_to :company, optional: true
+
+  #has_one
+  has_one :user_profile, dependent: :destroy
+
+  #has_many
   has_many :proposals
-  accepts_nested_attributes_for :company
   has_many :collections
   has_many :collection_items
   has_many :tasks
@@ -15,13 +18,35 @@ class User < ApplicationRecord
   has_many :projects, through: :shoots
   mount_uploader :profile_image, FileUploader
   has_many :documents
-  has_one :user_profile, dependent: :destroy
+  has_many :creative_requests, foreign_key: 'creative_id'
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  #validation
+  validates :name, presence: true
+  validates :email, uniqueness: true
+
+  #attributes
+  accepts_nested_attributes_for :company
   paginates_per 10
+
+
+  #instance_methods
+
+  def pending_requests
+    self.creative_requests.where(accepted: nil).where(declined: nil)
+  end
+
+  def accepted_requests
+   self.creative_requests.where(accepted: true)
+  end
+
+  def assigned_requests
+    self.creative_requests.where(approved: true)
+  end
 
   def has_request(proposal_id)
     ProposalRequest.where(requested: self.id, proposal_id: proposal_id).count > 0
@@ -92,5 +117,5 @@ def reset_user_info
   end
 
 
-
+  #class_methods
 end

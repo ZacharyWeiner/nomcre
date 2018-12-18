@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Shoot:</strong>
+  <%= @creative_request.shoot %>
+</p>
+
+<p>
+  <strong>Requested by:</strong>
+  <%= @creative_request.requested_by_id %>
+</p>
+
+<p>
+  <strong>Creative:</strong>
+  <%= @creative_request.creative_id %>
+</p>
+
+<p>
+  <strong>Company:</strong>
+  <%= @creative_request.company %>
+</p>
+
+<p>
+  <strong>Accepted:</strong>
+  <%= @creative_request.accepted %>
+</p>
+
+<p>
+  <strong>Accepted on:</strong>
+  <%= @creative_request.accepted_on %>
+</p>
+
+<p>
+  <strong>Deadline:</strong>
+  <%= @creative_request.deadline %>
+</p>
+
+<p>
+  <strong>Approved:</strong>
+  <%= @creative_request.approved %>
+</p>
+
+<p>
+  <strong>Declined:</strong>
+  <%= @creative_request.declined %>
+</p>
+
+<%= link_to 'Edit', edit_creative_request_path(@creative_request) %> |
+<%= link_to 'Back', creative_requests_path %>
