@@ -18,6 +18,9 @@ class Project < ApplicationRecord
   has_and_belongs_to_many :discount_codes
 
   #scopes
+  scope :templates, -> {where(is_template:true)}
+
+
   def owners
     self.company.users
   end
@@ -82,4 +85,64 @@ class Project < ApplicationRecord
   def balance_invoice
     self.invoices.where(invoice_type: 'balance').first
   end
+
+
+  #class_methods
+  def self.create_from_template company_id, package_type_id, deadline
+    package = PackageType.find(package_type_id)
+    company = Company.find(company_id)
+
+    template = package.default_template
+    project = Project.new
+
+    project.package_type = package
+    project.is_template = false
+    project.is_default_template = false
+    project.company = company
+    project.title = "#{package.title} - #{deadline}"
+    project.price = 15000
+    project.save!
+    project
+
+    Shoot.create_shoots_from_template template.id, project.id
+  end
+
+
+  #helpers
+  def self.create_template_for_type package_type_id
+    package = PackageType.find(package_type_id)
+    project = Project.new
+    project.package_type = package
+    project.is_template = true
+    project.is_default_template = true
+    project.company_id = 1
+    project.title = "Default #{package.title} Project Template"
+    project.price = 15000
+    project.save!
+    project
+  end
+
+  def create_shoots_for_template
+    shoot = Shoot.new
+    shoot.project = self
+    shoot.company_id = 1
+    shoot.location_id = 111
+    shoot.content_type = 'photo'
+    shoot.brief = 'An explanation of what this photo shoot and brief should entail'
+    shoot.price = 5000
+    shoot.user_added_shot_count_max = 100
+    shoot.save!
+
+
+    shoot = Shoot.new
+    shoot.project = self
+    shoot.location_id = 111
+    shoot.company_id = 1
+    shoot.content_type = 'video'
+    shoot.brief = 'An explanation of what this video shoot and brief should entail'
+    shoot.price = 5000
+    shoot.user_added_shot_count_max = 100
+    shoot.save!
+  end
+
 end

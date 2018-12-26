@@ -32,8 +32,11 @@ Package Type
   Class Methods
 
     create_project
-      for each self.project_template
-        copy_project_template
+      project = new Project
+      for each self.project.shoot_templates
+        project.shoots << copy_shoot_template
+
+
 
   Controller Methods
 
@@ -88,6 +91,9 @@ Project
     invoices
 
 
+    is_template
+      Add template
+      ManagePackageTemplates
 
 
 
@@ -248,5 +254,28 @@ Invoices
   √ invoice_type :deposit, :balance
 
   is_paid
+
+
+
+Shoot_Template
+
+  belongs_to project_type
+  has_many assistants
+  has_many documents
+  has_many tasks
+  has_many shot_list_items
+  has_many add_ons
+
+
+   content_type   (:photo, :video)
+   time_of_day
+   bts - array
+   focus_points
+   background
+   background_note
+   shoot_style
+   max_user_added_shot_list_items
+
+
 
 

@@ -74,4 +74,22 @@ class Shoot < ApplicationRecord
   end
 
   #class methods
+  def self.create_shoots_from_template template_project_id, parent_project_id
+    template_project = Project.find(template_project_id)
+    project = Project.find(parent_project_id)
+    template_project.shoots.each do |shoot_template|
+      shoot = Shoot.new
+      shoot.project = project
+      shoot.company = project.company
+      shoot.location_id = 111
+      shoot.content_type = shoot_template.content_type
+      shoot.brief = shoot_template.brief
+      shoot.price = shoot_template.price
+      shoot.shoot_style = shoot_template.shoot_style
+      shoot.user_added_shot_count_max = shoot_template.user_added_shot_count_max
+      shoot.save!
+
+      #TODO: Add Shot List Items From Template Shoot to Active Shoot
+    end
+  end
 end
