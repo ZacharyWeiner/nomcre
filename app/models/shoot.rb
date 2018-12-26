@@ -73,6 +73,11 @@ class Shoot < ApplicationRecord
     self.shot_list_items.where(added_by: company_ids).count
   end
 
+  def owner_added_shot_list
+    company_ids = self.project.owners.map{|u| u.id}
+    self.shot_list_items.where(added_by: company_ids)
+  end
+
   #class methods
   def self.create_shoots_from_template template_project_id, parent_project_id
     template_project = Project.find(template_project_id)

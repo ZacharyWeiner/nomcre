@@ -23,4 +23,20 @@ class PackageType < ApplicationRecord
     default_template
   end
 
+
+  def create_project user, deadline
+    project_template = self.projects.where(is_default_template: true).first
+    if project_template.nil?
+      project_template = self.projects.where(is_template: true).first
+    end
+    p "Project Template is nil? #{project_template.nil?}"
+    # begin
+     new_project = Project.create_from_template user.company.id, self.id, deadline
+    # rescue
+    #   new_project = Project.new
+    # ensure
+    #   p "This is for clean up on create_project"
+    # end
+  end
+
 end

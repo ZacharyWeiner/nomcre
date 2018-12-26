@@ -20,6 +20,9 @@ class Project < ApplicationRecord
   #scopes
   scope :templates, -> {where(is_template:true)}
 
+  #callbacks
+  after_create :initalize_project
+
 
   def owners
     self.company.users
@@ -101,14 +104,25 @@ class Project < ApplicationRecord
     project.company = company
     project.title = "#{package.title} - #{deadline}"
     project.price = 15000
+    project.deadline = deadline
     project.save!
-    project
-
     Shoot.create_shoots_from_template template.id, project.id
+    self.initalize_project
+    project
   end
 
 
   #helpers
+  def initalize_project
+    #TODO: Init the project after user enters the
+    p "TODO: Init the project after user enters the"
+    #create inital shot list items
+    #create additional tasks
+    #create a chatroom
+    #set price
+  end
+
+
   def self.create_template_for_type package_type_id
     package = PackageType.find(package_type_id)
     project = Project.new

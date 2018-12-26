@@ -35,6 +35,7 @@ class ShotListItemsController < ApplicationController
   # POST /shot_list_items.json
   def create
     @shot_list_item = ShotListItem.new(shot_list_item_params)
+    @shot_list_item.added_by = current_user
     respond_to do |format|
       if @shot_list_item.description.nil? || @shot_list_item.description == ""
         format.html { redirect_to proposal_shot_list_items_path(@shot_list_item.proposal), error: 'Description is required'}
