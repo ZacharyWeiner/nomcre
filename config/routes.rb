@@ -5,7 +5,9 @@ Rails.application.routes.draw do
   resources :discount_codes
   resources :shoots
   resources :payments
-  resources :projects
+  resources :projects do
+    get 'payment', to: 'projects#payment', as: 'payment'
+  end
   resources :documents
   get 'hello_world', to: 'hello_world#index'
   resources :package_types

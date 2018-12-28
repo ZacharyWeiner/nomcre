@@ -1,0 +1,30 @@
+<% if params[:q] == 'list' %>
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">
+      Projects
+      <%= render 'shared/black_dashboard/buttons/list_card_toggle' %>
+    </h4>
+  </div>
+  <div >
+    <br>
+    <%= render :partial => 'projects/partials/black_dashboard/index/list', :locals => {:projects => projects} %>
+  </div>
+</div>
+
+<% else %>
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">
+    Projects
+    <%= render 'shared/black_dashboard/buttons/list_card_toggle' %>
+  </h4>
+  </div>
+  <div style="background: #F5F6FA">
+    <br>
+    <%= render :partial => 'projects/partials/black_dashboard/index/cards', :locals => {:projects => projects} %>
+  </div>
+</div>
+<% end %>
+
+

@@ -1,0 +1,28 @@
+<% deposit_state_class = project.deposit_is_paid == true ? 'disabled' : 'btn-primary text-primary' %>
+<% balance_state_class = project.balance_is_paid == true ? 'disabled' : 'btn-info text-info' %>
+
+<div class='row'>
+  <div class='col-sm-6 col-md-6 text-center'>
+    <%= link_to project_payment_path(project), class: "btn btn-block btn-simple #{deposit_state_class}" do %>
+
+          <i class="tim-icon">
+            <% deposit_icon = deposit_state_class == 'disabled' ? "done-all" : "cash" %>
+            <ion-icon name="<%= deposit_icon %>" size='' style='font-size: 20px'></ion-icon>
+          </i>
+          <br>
+          Deposit <%= project.deposit_is_paid == true ? 'Paid' : '' %>
+
+    <% end %>
+  </div>
+  <div class='col-sm-6 col-md-6 text-center '>
+    <%= link_to project_payment_path(project), class: "btn  btn-block btn-simple #{balance_state_class}" do %>
+
+        <i class="tim-icon">
+          <% balance_icon = balance_state_class == 'disabled' ? "done-all" : "cash" %>
+          <ion-icon name="<%= balance_icon %>" size='' style='font-size: 20px'></ion-icon>
+        </i>
+        <br>
+        <%= project.balance_is_paid == true ? 'Balance Paid' : 'Pay Balance' %>
+    <% end %>
+  </div>
+</div>

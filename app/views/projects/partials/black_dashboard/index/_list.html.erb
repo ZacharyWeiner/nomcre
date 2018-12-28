@@ -1,0 +1,56 @@
+
+  <div class="card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="text-primary" class='text-center'>
+          <tr>
+            <th></th>
+            <th>
+              Title
+            </th>
+            <th class="text-center">
+              Shoots
+            </th>
+            <th class="text-center">
+              Deadline
+            </th>
+            <th class="text-center">
+              Incomplete Tasks
+            </th>
+            <th class="text-right">
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% projects.each do |project| %>
+          <tr>
+            <td class="text-center">
+              <div class="photo">
+                <img src="../../assets/img/tania.jpg" alt="Table image">
+              </div>
+            </td>
+            <td>
+              <%= project.title %>
+            </td>
+            <td class='text-center'>
+              <%= project.shoots.count %>
+            </td>
+            <td class="text-center">
+              <%= project.deadline.strftime('%A %m %d %Y') unless project.deadline.nil? %>
+            </td>
+            <td class='text-center'>
+              <%= project.tasks.where.not(completed: true).count %>
+            </td>
+            <td class="text-right">
+              <%= link_to "<i class='far fa-edit'> </i>".html_safe, edit_project_path(project), class: 'text-primary' %>
+
+              <%= link_to "<i class='far fa-trash-alt'> </i>".html_safe, project_path(project), method: :destroy, class: 'text-danger', style: 'padding-left:6px;' %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+

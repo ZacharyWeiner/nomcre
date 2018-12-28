@@ -93,7 +93,8 @@ class Shoot < ApplicationRecord
       shoot.shoot_style = shoot_template.shoot_style
       shoot.user_added_shot_count_max = shoot_template.user_added_shot_count_max
       shoot.save!
-
+      p 'saved new shoot'
+      ShotListItem.create_all_from_shoot_template shoot_template.id, shoot.id
       #TODO: Add Shot List Items From Template Shoot to Active Shoot
     end
   end

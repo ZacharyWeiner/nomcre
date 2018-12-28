@@ -1,0 +1,27 @@
+
+<div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
+  <% project.shoots.each do  |shoot|%>
+    <div class="card card-plain">
+      <div class="card-header" id="shoot-<%= shoot.id %>" style="padding:0px">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= shoot.id %>" aria-expanded="false" aria-controls="collapse<%= shoot.id %>" >
+          <% if shoot.creative.nil? %>
+            <%= image_tag UserProfile.default_profile_image, class: 'avatar' %>
+          <% else %>
+            <%= image_tag shoot.creative.user_profile.safe_profile_image_url, class: 'avatar' %>
+          <% end %>
+          <span><%= shoot.content_type.capitalize unless shoot.content_type.nil? %> Shoot </span>
+          <i class="tim-icons"><i class='fas fa-caret-down'></i> </i>
+        </a>
+      </div>
+      <div id="collapse<%= shoot.id %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= shoot.id %>">
+        <div class="card-body" style="padding:0px">
+          <%= render :partial => 'shoots/partials/black_dashboard/shoot_details_card', :locals => {shoot: shoot,show_accept_buttons: false} %>
+        </div>
+      </div>
+      <hr>
+    </div>
+  <% end %>
+  <%= render :partial => 'projects/partials/black_dashboard/shared/payment_buttons', :locals => {project: project} %>
+</div>
+
+

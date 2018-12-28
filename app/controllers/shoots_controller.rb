@@ -1,5 +1,6 @@
 class ShootsController < ApplicationController
   before_action :set_shoot, only: [:show, :edit, :update, :destroy]
+  layout 'black_dashboard'
 
   # GET /shoots
   # GET /shoots.json

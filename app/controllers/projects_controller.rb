@@ -1,10 +1,16 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  layout 'black_dashboard'
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    if current_user.company.nil?
+      @projects = Project.where(company: current_user.company)
+    else
+      @projects = Project.all
+    end
   end
 
   # GET /projects/1
@@ -59,6 +65,9 @@ class ProjectsController < ApplicationController
       format.html { redirect_to projects_url, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def payment
   end
 
   private

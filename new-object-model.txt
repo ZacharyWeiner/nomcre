@@ -2,7 +2,6 @@
 
 ProjectTemplate - all default details of a specific type of project
 
-Package Type - Has_many Project Templates
 
 
 Package Type
@@ -31,10 +30,10 @@ Package Type
 
   Class Methods
 
-    create_project
-      project = new Project
-      for each self.project.shoot_templates
-        project.shoots << copy_shoot_template
+    √ create_project
+      √ project = new Project
+      √ for each self.project.shoot_templates
+        √ project.shoots << copy_shoot_template
 
 
 
@@ -78,12 +77,12 @@ Project
   Class Methods -
     √ paid
     √ deposit_paid
-    deposit_paid_on
-    balance_paid_on
-    update_invoices
+    √ deposit_paid_on
+    √ balance_paid_on
     √ update_price
     √ all_tasks_complete
     √ complete_project
+    update_invoices
 
   Controller Methods
     payment
@@ -91,7 +90,7 @@ Project
     invoices
 
 
-    is_template
+    √ is_template
       Add template
       ManagePackageTemplates
 
@@ -124,7 +123,7 @@ Shoot
   √ has_many documents
   √ has_many tasks
   √ has_many shot_list_items
-  has_many creative_requests
+  √ has_many creative_requests
   has_many add_ons
 
 
@@ -221,7 +220,7 @@ Task
     Send_Notification
 
 ShotListItem
-  added_by (user_id)
+  √ added_by (user_id)
   √ belongs_to shoot
   √ has_one :project
 

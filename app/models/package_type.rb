@@ -30,6 +30,7 @@ class PackageType < ApplicationRecord
       project_template = self.projects.where(is_template: true).first
     end
     p "Project Template is nil? #{project_template.nil?}"
+    p "Project Template is  #{project_template.id}"
     # begin
      new_project = Project.create_from_template user.company.id, self.id, deadline
     # rescue

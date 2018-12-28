@@ -1,0 +1,5 @@
+<% shoots.each do |shoot| %>
+<div class='col-md-4'>
+  <%= render :partial => 'shoots/partials/black_dashboard/shoot_details_card', :locals => {shoot: shoot} %>
+</div>
+<% end %>

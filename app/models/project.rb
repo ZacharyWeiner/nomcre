@@ -73,12 +73,28 @@ class Project < ApplicationRecord
     !self.payments.where(payment_type: 'deposit').first.nil?
   end
 
+  def deposit_paid_on
+    date = nil
+    if self.desposit_is_paid
+      date = self.deposit_payment.paid_on
+    end
+    date
+  end
+
   def balance_payment
     self.payments.where(payment_type: 'balance').first
   end
 
   def balance_is_paid
     !self.payments.where(payment_type: 'deposit').first.nil?
+  end
+
+  def balance_paid_on
+    date = nil
+    if self.balance_is_paid
+      date = self.balance_payment.paid_on
+    end
+    date
   end
 
   def deposit_invoice
@@ -94,10 +110,9 @@ class Project < ApplicationRecord
   def self.create_from_template company_id, package_type_id, deadline
     package = PackageType.find(package_type_id)
     company = Company.find(company_id)
-
     template = package.default_template
-    project = Project.new
 
+    project = Project.new
     project.package_type = package
     project.is_template = false
     project.is_default_template = false
@@ -107,7 +122,6 @@ class Project < ApplicationRecord
     project.deadline = deadline
     project.save!
     Shoot.create_shoots_from_template template.id, project.id
-    self.initalize_project
     project
   end
 

@@ -5,6 +5,7 @@ class Task < ApplicationRecord
   belongs_to :proposal, optional: true
   belongs_to :shoot, optional: true
   belongs_to :project, optional: true
+  belongs_to :shot_list_item, optional: true
 
   #has_one
 

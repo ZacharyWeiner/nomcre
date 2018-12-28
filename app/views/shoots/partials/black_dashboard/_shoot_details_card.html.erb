@@ -1,0 +1,126 @@
+<% if !defined? show_header  %>
+  <% show_header = false %>
+<% end %>
+
+<% if !defined? show_footer %>
+  <% show_footer = false %>
+<% end %>
+
+<% if !defined? show_content %>
+  <% show_content = false %>
+<% end %>
+
+<% if !defined? show_next_step %>
+  <% show_next_step = false %>
+<% end %>
+
+<% if !defined? show_accept_buttons %>
+  <% show_accept_buttons = false %>
+<% end %>
+
+<% if !defined? show_payment_buttons %>
+  <% show_payment_buttons = false %>
+<% end %>
+
+<% if !defined? show_company %>
+  <% show_company = false %>
+<% end %>
+
+
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-category">
+      <span>
+        <% if shoot.content_type == 'photo' %>
+          <i class="tim-icons text-primary"><ion-icon name='camera' size='large'></ion-icon></i>
+        <% else %>
+          <i class="tim-icons text-primary"><ion-icon name='videocam' size='large'></ion-icon></i>
+        <% end %>
+        <%= link_to 'Go', shoot, style: 'font-size: 18px' %>
+      </span>
+      <span class='pull-right'>
+        <i class='tim-icons'><ion-icon name='calendar'></ion-icon></i> <%= shoot.deadline.strftime('%a %b %d, %Y') unless shoot.deadline == nil %>
+      </span>
+    </h3>
+    <hr >
+  </div>
+  <div class="card-body">
+    <div class='row'>
+      <!-- <div class='col-sm-4'> -->
+        <div class="card card-user">
+            <div class="card-body">
+              <p class="card-text">
+              </p>
+              <div class="author">
+                <div class="block block-one"></div>
+                <div class="block block-two"></div>
+                <div class="block block-three"></div>
+                <div class="block block-four"></div>
+                <a href="javascript:void(0)">
+                  <% if shoot.creative  %>
+                    <%= image_tag shoot.creative.user_profile.safe_profile_image_url, class: 'avatar'%>
+                  <% else %>
+                    <%= image_tag 'https://s3-us-west-2.amazonaws.com/nomcre/assets/Dummy-profile-picture.png', class: 'avatar'%>
+                  <% end %>
+                  <!-- <h5 class="title">Mike Andrew</h5> -->
+                </a>
+                <p class="description">
+                  <%= shoot.creative == nil ? "Unassigned" :  shoot.creative.name %>
+                </p>
+              </div>
+              <p></p>
+              <div class="card-description">
+
+                <span>
+                  <i class='tim-icons text-primary'><ion-icon name='ios-pin'> </ion-icon></i>
+                  Location:
+                  <span class='pull-right'>
+                    <%= shoot.location != nil ? shoot.location.name : "Not Assigned" %>
+                  </span>
+                </span>
+                <hr>
+                <span>
+                  <i class='tim-icons text-danger'><ion-icon name='ios-camera'> </ion-icon></i>
+                  Shoot Type:
+                  <span class='pull-right'>
+                    <%= shoot.shoot_style != nil ? shoot.shoot_style : "Not Assigned" %>
+                  </span>
+                </span>
+                 <hr>
+                 <span>
+                  <i class='tim-icons text-info'><ion-icon name='ios-photos'> </ion-icon></i>
+                  Shot Count:
+                  <span class='pull-right'>
+                    <%= shoot.user_added_shot_count != nil ? shoot.user_added_shot_count : "Not Assigned" %>
+                  </span>
+                </span>
+                <hr>
+                <span>
+                  <i class='tim-icons text-warning'><ion-icon name='ios-photos'> </ion-icon></i>
+                  Background:
+                  <span class='pull-right'>
+                    <%= shoot.background != nil ? shoot.background : "Not Assigned" %>
+                  </span>
+                </span>
+              </div>
+            </div>
+            <div style="margin: 6px;">
+              <span><%= simple_format(shoot.brief.first(150)) unless shoot.brief.nil? %>...</span>
+            </div>
+          </div>
+    </div>
+  </div>
+  <% if show_accept_buttons == true %>
+    <div class="card-footer text-center">
+      <hr>
+      <% if show_accept_buttons %>
+      <%= render :partial => 'projects/partials/black_dashboard/shared/buttons/accept_buttons', :locals => {:proposal => proposal, :proposal_request => proposal_request} %>
+      <% end %>
+      <% if show_payment_buttons %>
+      <%= render :partial => 'projects/partials/black_dashboard/shared/buttons/accept_buttons', :locals => {:proposal => proposal, :proposal_request => proposal_request} %>
+      <% end %>
+
+    </div>
+  <% end %>
+</div>
+
