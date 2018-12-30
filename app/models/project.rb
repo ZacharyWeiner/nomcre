@@ -15,6 +15,7 @@ class Project < ApplicationRecord
   has_many :documents, through: :shoots
   has_many :assistants, through: :shoots
   has_many :shot_list_items, through: :shoots
+  has_many :locations, through: :shoots
   has_and_belongs_to_many :discount_codes
 
   #scopes

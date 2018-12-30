@@ -1,5 +1,5 @@
 class PackageTypesController < ApplicationController
-  before_action :set_package_type, only: [:show, :edit, :update, :destroy]
+  before_action :set_package_type, only: [:show, :edit, :update, :destroy, :new_from_template]
   before_action :authenticate_user!, except: [:show, :index]
   layout :set_layout
 
@@ -69,10 +69,19 @@ class PackageTypesController < ApplicationController
     end
   end
 
+  def new_from_template
+    @project = @package_type.create_project current_user, Date.today + 60.days
+    redirect_to edit_project_path(@project)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_package_type
-      @package_type = PackageType.find(params[:id])
+      if params[:package_type_id]
+        @package_type = PackageType.find(params[:package_type_id])
+      else
+        @package_type = PackageType.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

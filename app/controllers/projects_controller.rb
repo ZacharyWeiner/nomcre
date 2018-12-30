@@ -21,6 +21,7 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
+    @package_types = PackageType.where(show_in_menu: true)
   end
 
   # GET /projects/1/edit

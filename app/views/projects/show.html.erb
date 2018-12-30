@@ -1,59 +1,72 @@
-<p id="notice"><%= notice %></p>
+<%= render :partial =>  'projects/partials/black_dashboard/show', :locals => {project: @project} %>
+
+
+
+
+
+
+
+
+
+
+
+
+<p id="notice"><% notice %></p>
 
 <p>
   <strong>Package type:</strong>
-  <%= @project.package_type %>
+  <% @project.package_type %>
 </p>
 
 <p>
   <strong>Company:</strong>
-  <%= @project.company %>
+  <% @project.company %>
 </p>
 
 <p>
   <strong>Title:</strong>
-  <%= @project.title %>
+  <% @project.title %>
 </p>
 
 <p>
   <strong>Brief:</strong>
-  <%= @project.brief %>
+  <% @project.brief %>
 </p>
 
 <p>
   <strong>Deadline:</strong>
-  <%= @project.deadline %>
+  <% @project.deadline %>
 </p>
 
 <p>
   <strong>Price:</strong>
-  <%= @project.price %>
+  <% @project.price %>
 </p>
 
 <p>
   <strong>Deposit:</strong>
-  <%= @project.deposit %>
+  <% @project.deposit %>
 </p>
 
 <p>
   <strong>Balance:</strong>
-  <%= @project.balance %>
+  <% @project.balance %>
 </p>
 
 <p>
   <strong>Is complete:</strong>
-  <%= @project.is_complete %>
+  <% @project.is_complete %>
 </p>
 
 <p>
   <strong>Completed on:</strong>
-  <%= @project.completed_on %>
+  <% @project.completed_on %>
 </p>
 
 <p>
   <strong>Max user shot list:</strong>
-  <%= @project.max_user_shot_list %>
+  <% @project.max_user_shot_list %>
 </p>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<% link_to 'Edit', edit_project_path(@project) %> |
+<% link_to 'Back', projects_path %>

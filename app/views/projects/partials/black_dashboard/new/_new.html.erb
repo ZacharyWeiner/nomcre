@@ -1,0 +1,5 @@
+<% if params[:package].nil? %>
+  <%= render :partial => 'projects/partials/black_dashboard/new/selector', :locals => {package_types: package_types} %>
+<% else %>
+  Put Form Here with hidden field for type.
+<% end %>

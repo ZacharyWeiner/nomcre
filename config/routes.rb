@@ -8,9 +8,12 @@ Rails.application.routes.draw do
   resources :projects do
     get 'payment', to: 'projects#payment', as: 'payment'
   end
+
   resources :documents
   get 'hello_world', to: 'hello_world#index'
-  resources :package_types
+  resources :package_types do
+    get 'new-from-template', to:'package_types#new_from_template', as:'new_project_from_template'
+  end
   get '/pages/Entrepreneur-Magazine', to: 'landing_pages#marketing', as: 'entrepreneur_marketing'
   resources :header_images
   resources :lead_notes

@@ -1,0 +1,61 @@
+ <div class="card-body">
+    <div class="table-responsive">
+      <table class="table">
+        <thead class="text-primary" class='text-center'>
+          <tr>
+            <th></th>
+            <th>
+              Creative
+            </th>
+            <th class="text-center">
+              Project
+            </th>
+            <th class="text-center">
+              Content Type
+            </th>
+            <th class="text-center">
+              Deadline
+            </th>
+            <th class="text-center">
+              Incomplete Tasks
+            </th>
+            <th class="text-right">
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% shoots.each do |shoot| %>
+          <tr>
+            <td class="text-center">
+              <div class="photo">
+                <% if shoot.creative.nil?  %>
+                  <%= image_tag UserProfile.default_profile_image , class: 'avatar' %>
+                <% else %>
+                  <%= image_tag shoot.creative.user_profile.safe_profile_image_url, class: 'avatar' %>
+                <% end %>
+              </div>
+            </td>
+            <td>
+              <%= shoot.project.title %>
+            </td>
+            <td class='text-center'>
+              <%= shoot.content_type %>
+            </td>
+            <td class="text-center">
+              <%= shoot.deadline.strftime('%A %m %d %Y') unless shoot.deadline.nil? %>
+            </td>
+            <td class='text-center'>
+              <%= shoot.tasks.where.not(completed: true).count %>
+            </td>
+            <td class="text-right">
+              <%= link_to "<i class='far fa-edit'> </i>".html_safe, edit_shoot_path(shoot), class: 'text-primary' %>
+
+              <%= link_to "<i class='far fa-trash-alt'> </i>".html_safe, shoot_path(shoot), method: :destroy, class: 'text-danger', style: 'padding-left:6px;' %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>

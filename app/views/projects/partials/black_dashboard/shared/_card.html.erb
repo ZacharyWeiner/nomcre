@@ -1,0 +1,42 @@
+<% if !defined? show_view_link %>
+  <% show_view_link = false %>
+<% end %>
+<% if !defined? show_payment_buttons %>
+  <% show_payment_buttons = false %>
+<% end %>
+<% if !defined? show_shoots_accordion %>
+  <% show_shoots_accordion = true %>
+<% end %>
+
+<div class='col-md-6'>
+  <div class='card card-contributions'>
+    <div class='card-body'>
+      <div class="card-category pull-right"  style='padding-top: 12px;'>
+        Deadline: <%= project.deadline %>
+      </div>
+      <div class='card-title text-primary' style="padding-top: 12px;">
+        <h4>
+          <%= link_to project_path(project) do %>
+            <%= project.title %>
+          <% end %>
+        </h4>
+      </div>
+      <hr style='margin: 0'>
+      <p class='card-description'>
+
+        <% if show_shoots_accordion %>
+        <%= render :partial => 'projects/partials/black_dashboard/shoots_accordion', :locals => {:project => project} %>
+        <% end %>
+
+        <% if show_payment_buttons %>
+          <%= render :partial => 'projects/partials/black_dashboard/shared/payment_buttons', :locals => {project: project} %>
+        <% end %>
+
+        <% if show_view_link %>
+          <%= link_to 'View', project_path(project), class: 'btn btn-primary btn-block' %>
+        <% end %>
+
+      </p>
+    </div>
+  </div>
+</div>

@@ -17,6 +17,12 @@
             <th class="text-center">
               Incomplete Tasks
             </th>
+            <th class="text-center">
+              Deposit
+            </th>
+            <th class="text-center">
+              Balance
+            </th>
             <th class="text-right">
               Actions
             </th>
@@ -27,23 +33,50 @@
           <tr>
             <td class="text-center">
               <div class="photo">
-                <img src="../../assets/img/tania.jpg" alt="Table image">
+                <% if !project.shoots.first.nil? && !project.shoots.first.creative.nil? %>
+                  <%= image_tag project.shoots.first.creative.user_profile.safe_profile_image_url %>
+                <% else %>
+                  <%= image_tag UserProfile.default_profile_image %>
+                <% end %>
               </div>
             </td>
             <td>
-              <%= project.title %>
+              <%= link_to project.title, project_path(project), class: 'btn btn-link btn-primary' %>
             </td>
             <td class='text-center'>
               <%= project.shoots.count %>
             </td>
             <td class="text-center">
-              <%= project.deadline.strftime('%A %m %d %Y') unless project.deadline.nil? %>
+              <%= project.deadline.strftime('%a, %b %d %Y') unless project.deadline.nil? %>
             </td>
             <td class='text-center'>
               <%= project.tasks.where.not(completed: true).count %>
             </td>
+            <td class='text-center'>
+              <% if !project.deposit_is_paid %>
+                <!-- TODO: Hook this link up -->
+                <%= link_to "#", class: 'btn btn-simple btn-success' do %>
+                  <i class="fas fa-dollar-sign"></i> Pay Deposit
+                <% end %>
+              <% else %>
+                Paid
+              <% end %>
+            </td>
+            <td class='text-center'>
+              <% if !project.deposit_is_paid %>
+                Deposit Required
+              <% elsif !project.balance_is_paid %>
+                <!-- TODO: Hook this link up -->
+                <%= link_to "#", class: 'btn btn-link text-primary' do %>
+                  <i class="fas fa-dollar-sign"></i> Pay Balance
+                <% end %>
+              <% else %>
+                Paid
+              <% end %>
+            </td>
             <td class="text-right">
-              <%= link_to "<i class='far fa-edit'> </i>".html_safe, edit_project_path(project), class: 'text-primary' %>
+              <%= link_to "<i class='far fa-eye'> </i>".html_safe, project_path(project), class: 'text-primary' %>
+              <%= link_to "<i class='far fa-edit'> </i>".html_safe, edit_project_path(project), class: 'text-primary', style: 'padding-left:6px;' %>
 
               <%= link_to "<i class='far fa-trash-alt'> </i>".html_safe, project_path(project), method: :destroy, class: 'text-danger', style: 'padding-left:6px;' %>
             </td>

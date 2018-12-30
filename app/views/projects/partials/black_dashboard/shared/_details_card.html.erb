@@ -1,0 +1,205 @@
+<% if !defined? show_header  %>
+  <% show_header = true %>
+<% end %>
+
+<% if !defined? show_footer %>
+  <% show_footer = false %>
+<% end %>
+
+<% if !defined? show_content %>
+  <% show_content = false %>
+<% end %>
+
+<% if !defined? show_next_step %>
+  <% show_next_step = false %>
+<% end %>
+
+<% if !defined? show_accept_buttons %>
+  <% show_accept_buttons = false %>
+<% end %>
+
+<% if !defined? show_payment_buttons %>
+  <% show_payment_buttons = false %>
+<% end %>
+
+<% if !defined? show_company %>
+  <% show_company = false %>
+<% end %>
+
+<div class="card">
+  <% if show_header %>
+  <div class="card-header" style='padding-top:6px;'>
+    <h3 class="card-category">
+      <span>
+        <%= link_to project.title, project, style: 'font-size: 18px' %>
+      </span>
+      <span class='pull-right baseline' >
+        <i class='tim-icons'><ion-icon name='calendar'></ion-icon></i>
+        <%= project.deadline.strftime('%a %b %d, %Y') unless project.deadline.nil?%>
+      </span>
+    </h3>
+
+  </div>
+  <% end %>
+  <div class="card-body">
+    <div class='row'>
+      <!-- <div class='col-sm-4'> -->
+        <div class="card card-user">
+            <div class="card-body">
+              <p class="card-text">
+              </p>
+              <div class="author">
+                <div class="block block-one"></div>
+                <div class="block block-two"></div>
+                <div class="block block-three"></div>
+                <div class="block block-four"></div>
+                <a href="javascript:void(0)">
+                  <% if !project.company.nil? %>
+                    <%= image_tag project.company.logo , class: 'avatar'%>
+                  <% else %>
+                    <%= image_tag 'https://s3-us-west-2.amazonaws.com/nomcre/assets/Dummy-profile-picture.png', class: 'avatar'%>
+                  <% end %>
+                  <br>
+
+                  <% if !show_header %>
+                   <%= link_to project.title, project, style: 'font-size: 18px' %>
+                   <br>
+                   <i class='tim-icons'><ion-icon name='calendar'></ion-icon></i>
+                  <%= project.deadline.strftime('%a %b %d, %Y') unless project.deadline.nil?%>
+                  <% end %>
+
+                  <% if show_next_step  %>
+                    <h5 class="title">
+                      <% project.status %>
+                      TODO: Update Project Status
+                    </h5>
+                  <% end %>
+                </a>
+                <p class="description">
+                  <% if project.creatives.count > 0 %>
+                    <% project.creatives.each do |creative| %>
+                      <%= creative.user_profile.display_name %>
+                      <br>
+                    <% end %>
+                  <% end %>
+
+                  <% if show_next_step  %>
+                  <br> <br>
+                    <h5>
+                    <i class='tim-icons text-primary'><ion-icon name='fastforward'> </ion-icon></i>
+                    Next Step: <br>
+                    <span class=''>
+                      <% proposal.next_step(proposal.status) %>
+                      TODO: Create Next Step For Project
+                    </span>
+                  <h5>
+                <% end %>
+                </p>
+              </div>
+              <p></p>
+              <div class="card-description">
+                TODO: Crete a Project Progress Bar <br>
+               <!--  < render :partial => 'proposals/partials/black_dashboard/index/progress', :locals => {:proposal => proposal} > -->
+
+                 <% project.locations.each do |location| %>
+                  <span>
+                    <i class='tim-icons text-primary'><ion-icon name='ios-pin'> </ion-icon></i>
+                    Location:
+                    <span class='pull-right'>
+                     <%= location.name %>
+                    </span>
+                  </span>
+                  <br>
+                <% end %>
+                <hr>
+                <span>
+                  <% project.shoots.each do |shoot| %>
+                    <i class='tim-icons text-danger'><ion-icon name='ios-camera'> </ion-icon></i>
+                    Shoot Types:
+                    <span class='pull-right'>
+                      <%= shoot.shoot_style != nil ? shoot.shoot_style : "Not Assigned" %>
+                    </span>
+                    <br>
+                  <% end %>
+                </span>
+                 <hr>
+                 <span>
+                  <i class='tim-icons text-info'><ion-icon name='ios-photos'> </ion-icon></i>
+                  Shot Count:
+                  <span class='pull-right'>
+                    <%= project.max_user_shot_list != nil ? project.max_user_shot_list : "Not Assigned" %>
+                  </span>
+                </span>
+                <% if show_content == true %>
+                  <hr>
+                  <span>
+                    <i class='tim-icons text-warning'><ion-icon name='ios-photos'> </ion-icon></i>
+                    Background:
+                    <span class='pull-right'>
+                      <% project != nil ? project : "Not Assigned" %>
+                    </span>
+                  </span>
+                <% end %>
+              </div>
+            </div>
+            <% if show_content %>
+              <div style="margin: 6px;">
+                <span><%= simple_format(project.brief.first(150)) unless project.brief.nil? %>...</span>
+              </div>
+            <% end %>
+          </div>
+    </div>
+  </div>
+  <% if show_footer == true %>
+   <div class="card-footer text-center">
+
+        <div class='col-xs-3 col-sm-4 col-md-4'>
+          <%= link_to project, class: 'btn btn-link btn-primary' do %>
+            <span>
+              <i class="tim-icon"><ion-icon name='ios-eye' size='' style='font-size: 20px'></ion-icon></i>
+              <br>
+              View
+            </span>
+          <% end %>
+        </div>
+        <div class='col-xs-3 col-sm-4 col-md-4'>
+          <%= link_to edit_project_path(project), class: 'btn btn-link btn-danger' do %>
+            <span>
+              <i class="tim-icon"><ion-icon name='ios-paper' size='' style='font-size: 20px'></ion-icon></i>
+              <br>
+              Edit
+            </span>
+          <% end %>
+        </div>
+        <div class='col-xs-3 col-sm-4 col-md-4'>
+          <%= link_to edit_project_path(project), class: 'btn btn-link btn-primary' do %>
+            <span>
+              <i class="tim-icon">
+                <ion-icon name='ios-chatbubbles' size='' style='font-size: 20px'></ion-icon>
+              </i>
+              <br>
+              Chat
+            </span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <% if show_accept_buttons == true %>
+    <div class="card-footer text-center">
+      <hr>
+      <% render :partial => 'proposals/partials/black_dashboard/shared/buttons/accept_buttons', :locals => {:proposal => proposal, :proposal_request => proposal_request} %>
+      TODO: Show Project Accept Buttons
+    </div>
+  <% end %>
+  <% if show_payment_buttons == true %>
+    <div class="card-footer text-center">
+      <hr>
+      <%= render :partial => 'projects/partials/black_dashboard/shared/payment_buttons', :locals => {project: project} %>
+    </div>
+  <% end %>
+</div>
+
+
+
+

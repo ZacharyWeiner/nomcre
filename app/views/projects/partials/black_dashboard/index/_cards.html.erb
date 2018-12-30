@@ -1,25 +1,12 @@
+<% if !defined? show_view_link %>
+  <% show_view_link = false %>
+<% end %>
+<% if !defined? show_payment_buttons %>
+  <% show_payment_buttons = false %>
+<% end %>
+
 <div class='row'>
   <% projects.each do |project| %>
-    <div class='col-md-6'>
-      <div class='card card-contributions'>
-        <div class='card-body'>
-          <div class="card-category pull-right"  style='padding-top: 12px;'>
-            Deadline: <%= project.deadline %>
-          </div>
-          <div class='card-title text-primary' style="padding-top: 12px;">
-            <h4>
-              <%= link_to project_path(project) do %>
-                <%= project.title %>
-              <% end %>
-            </h4>
-          </div>
-          <hr style='margin: 0'>
-          <p class='card-description'>
-            <%= render :partial => 'projects/partials/black_dashboard/shoots_accordion', :locals => {:project => project} %>
-
-          </p>
-        </div>
-      </div>
-    </div>
+   <%= render :partial => 'projects/partials/black_dashboard/shared/card', :locals => {:project => project, show_view_link: show_view_link, show_payment_buttons: show_payment_buttons} %>
   <% end %>
 </div>

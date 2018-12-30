@@ -1,5 +1,16 @@
-<% shoots.each do |shoot| %>
-<div class='col-md-4'>
-  <%= render :partial => 'shoots/partials/black_dashboard/shoot_details_card', :locals => {shoot: shoot} %>
-</div>
+<div class='card'>
+  <div class='card-header'>
+    <div class='card-title'>
+      Shoots
+      <span class='pull-right'>
+        <%= render 'shared/black_dashboard/buttons/list_card_toggle' %>
+      </span>
+    </div>
+  </div>
+<% if params[:q] == 'list'%>
+  <%= render :partial => 'shoots/partials/black_dashboard/shared/list', :locals => {:shoots => shoots}%>
+  </div>
+<% else %>
+  </div>
+  <%= render :partial => 'shoots/partials/black_dashboard/shared/cards', :locals => {:shoots => shoots}%>
 <% end %>
