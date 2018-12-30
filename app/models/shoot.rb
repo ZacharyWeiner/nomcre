@@ -67,6 +67,10 @@ class Shoot < ApplicationRecord
     return creatives.sort! { |a, b|  b.rank <=> a.rank }
   end
 
+  def has_request_for_user user_id
+    request = self.creative_requests.where(creative_id: user_id).first != nil
+  end
+
   #rules
   def owner_added_shot_list_count
     company_ids = self.project.owners.map{|u| u.id}

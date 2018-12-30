@@ -1,0 +1,120 @@
+<% url = request.url %>
+<% uri = URI.parse(url) %>
+<% query_params = CGI.parse(uri.query) unless uri.query == nil %>
+<% basic_style = query_params == nil || query_params["active"] == ["basic"] ? 'active' : ''  %>
+<% shotlist_style = query_params != nil && query_params["active"] == ["shotlist"] ? 'active' : ''  %>
+<% available_style = query_params != nil && query_params["active"] == ["available"] ? 'active' : ''  %>
+<% tasks_style = query_params != nil && query_params["active"] == ["tasks"] ? 'active' : ''  %>
+<% disclosure_style = query_params != nil && query_params["active"] == ["disclosures"] ? 'active' : ''  %>
+<% assistants_style = query_params != nil && query_params["active"] == ["assistants"] ? 'active' : ''  %>
+<% invoices_style = query_params != nil && query_params["active"] == ["invoices"] ? 'active' : ''  %>
+<div class="card">
+  <div class="card-header">
+    <div class='card-category pull-right'>
+      <% if current_user && current_user.company == shoot.project.company  %>
+        <%= link_to "<ion-icon name='create'></ion-icon> Edit".html_safe, edit_shoot_path(shoot), class: 'btn btn-simple btn-danger' %>
+      <% end %>
+    </div>
+    <h3 class="card-title">Details</h3>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-4">
+        <%= render :partial =>'shoots/partials/black_dashboard/show/tabs/buttons', :locals => {:shoot => shoot, :basic_style => basic_style, :shotlist_style => shotlist_style, :available_style => available_style, :tasks_style => tasks_style, :disclosure_style => disclosure_style, :assistants_style => assistants_style, :invoices_style => invoices_style} %>
+      </div>
+      <div class="col-md-8">
+        <div class="tab-content">
+          <div class="tab-pane <%= basic_style %>" id="basic">
+            <div class='row'>
+              <div class='col-sm-6 col-md-6 col-lg-6'>
+                <div class="card card-stats">
+                  <div class="card-body  white-content rounded">
+                    <div class="row">
+                      <div class="col-3">
+                        <div class="info-icon text-center icon-primary">
+                          <i class="tim-icons"><ion-icon name='time'></ion-icon></i>
+                        </div>
+                      </div>
+                      <div class="col-9">
+                        <div class="numbers">
+                          <p class="card-category">Time Of Day </p>
+                          <h4 class="card-title"><%= shoot.time_of_day %></h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class='col-sm-6 col-md-6 col-lg-6'>
+                <div class="card card-stats">
+                  <div class="card-body white-content rounded">
+                    <div class="row">
+                      <div class="col-3">
+                        <div class="info-icon text-center icon-primary">
+                          <i class="tim-icons"><ion-icon name='bonfire'></ion-icon></i>
+                        </div>
+                      </div>
+                      <div class="col-9">
+                        <div class="numbers">
+                          <p class="card-category">Background </p>
+                          <h4 class="card-title"><%= shoot.background %></h4>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class='col-sm-12 col-md-12 col-lg-12'>
+                <div class='row'>
+                  <div class='col-md-6'>
+                    <%= render :partial => 'shared/black_dashboard/buttons/instagram_inspiration_small', :locals => {:shoot => shoot} %>
+                  </div>
+                  <div class='col-md-6'>
+                    <%= render :partial => 'shared/black_dashboard/buttons/image_boards_small', :locals => {:shoot => shoot} %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <h4> Creative Brief </h4>
+            <hr>
+             <%= simple_format(shoot.brief) %>
+          </div>
+          <div class="tab-pane <%= shotlist_style %>" id="shotlist">
+            <%= render :partial => 'shared/black_dashboard/shot_list_items/shoots/list', :locals => {:shoot => shoot, :shot_list_items => shoot.shot_list_items} %>
+          </div>
+          <div class="tab-pane <%= tasks_style %>" id="tasks">
+            <%if shoot.creative != nil %>
+              <%= render :partial => 'tasks/partials/black_dashboard/task_list', :locals => {:tasks => shoot.tasks} %>
+            <% else %>
+            <br>
+              <div class="alert alert-info">
+                <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                  <i class="tim-icons "></i>
+                </button>
+                <span>
+                  <b> Uh Oh! </b> <br> The tasks for this project will be created as soon as you pick a creative.</span>
+              </div>
+            <% end %>
+          </div>
+          <div class="tab-pane <%= available_style %>" id="available">
+            <%= render :partial => 'shoots/partials/black_dashboard/show/creatives/available', :locals => {:shoot => shoot} %>
+          </div>
+          <div class="tab-pane <%= disclosure_style %>" id="disclosures">
+            <button id='documentButton' class='btn btn-primary'> New Disclosure </button>
+            <%= render :partial => 'documents/partials/black_dashboard/form_modal', :locals =>{ shoot: shoot} %>
+            <br>
+           <%= render :partial => 'shared/black_dashboard/disclosures/list', :locals =>{ collector: shoot} %>
+          </div>
+          <div class="tab-pane <%= assistants_style %>" id="assistants">
+            <%= render :partial => 'assistants/partials/black_dashboard/index', :locals => {:assistants => @shoot.assistants }%>
+          </div>
+          <div class="tab-pane" id="invoices" style="background: #f5f6fa">
+            <!-- TODO: Get Invoices Working and Created to Show Here -->
+           <!-- < render :partial => 'proposals/partials/black_dashboard/payments/invoices', :locals => {:proposal => proposal} > -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

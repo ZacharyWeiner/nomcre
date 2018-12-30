@@ -1,0 +1,47 @@
+<ul class="nav nav-pills nav-pills-primary flex-column">
+  <li class="nav-item">
+    <a class="nav-link nav-link-sub <%= basic_style %>" data-toggle="tab" href="#basic">
+      Basic
+    </a>
+  </li>
+    <li class="nav-item">
+      <a class="nav-link nav-link-sub <%= shotlist_style %>" data-toggle="tab" href="#shotlist">
+        Shot List
+      </a>
+    </li>
+  <% if current_user.user_type == 'company' && shoot.creative == nil %>
+    <li class="nav-item">
+      <a class="nav-link nav-link-sub <%= available_style %>" data-toggle="tab" href="#available">
+        Creatives
+      </a>
+    </li>
+  <% end %>
+  <% if current_user.user_type == 'company' || current_user == shoot.creative %>
+  <li class="nav-item">
+    <a class="nav-link nav-link-sub <%= tasks_style %>" data-toggle="tab" href="#tasks">
+      Tasks
+    </a>
+  </li>
+  <% end %>
+  <% if current_user.user_type == 'company' || current_user == project.creative %>
+  <li class="nav-item">
+    <a class="nav-link nav-link-sub <%= disclosure_style %>" data-toggle="tab" href="#disclosures">
+      Disclosures
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link nav-link-sub <%= assistants_style %>" data-toggle="tab" href="#assistants">
+      Assistants
+    </a>
+  </li>
+  <% end %>
+  <% if current_user.user_type == 'company' %>
+    <li class="nav-item">
+      <a class="nav-link nav-link-sub <%= invoices_style %>" data-toggle="tab" href="#invoices">
+        Invoices
+      </a>
+    </li>
+  <% end %>
+</ul>
+
+

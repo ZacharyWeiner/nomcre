@@ -3,7 +3,12 @@ Rails.application.routes.draw do
 
   resources :creative_requests
   resources :discount_codes
-  resources :shoots
+  resources :shoots do
+    resources :shot_list_items
+    resources :creative_requests
+    resources :disclosures
+  end
+
   resources :payments
   resources :projects do
     get 'payment', to: 'projects#payment', as: 'payment'

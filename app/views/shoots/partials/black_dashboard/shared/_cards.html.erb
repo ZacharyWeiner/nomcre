@@ -1,6 +1,9 @@
-<% shoots.each do |shoot| %>
-<div class='col-md-4'>
-  <%= render :partial => 'shoots/partials/black_dashboard/shoot_details_card', :locals => {shoot: shoot} %>
+<% show_edit_button = current_user.company == shoots.first.project.company ? true : false %>
+<div class='col-md-12'>
+  <%= render :partial => 'shared/black_dashboard/buttons/list_card_toggle' %>
 </div>
-<% end %>
+<%= render :partial => 'shoots/partials/black_dashboard/shared/filter_buttons_list' %>
+<br>
+<%= render :partial => 'shoots/partials/black_dashboard/shared/filtered_panels', :locals => {shoots: shoots, show_edit_button: show_edit_button} %>
+
 

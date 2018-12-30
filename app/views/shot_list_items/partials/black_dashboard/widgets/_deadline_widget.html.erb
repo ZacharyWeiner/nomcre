@@ -1,1 +1,31 @@
-_deadline_widget.html.erb
+
+<div class="alert alert-primary">
+  <div class='row text-center'>
+    <div class='col-sm-12'>
+      <h3> <i class="fa fa-calendar fa-2x" style='font-size: 32px;'></i>   Deadline</h3>
+       <p>
+          <%= proposal.deadline.strftime("%A %b %d, %Y") unless proposal.nil? || proposal.deadline.nil? %>
+          <%= shoot.deadline.strftime("%A %b %d, %Y") unless shoot.nil? || shoot.deadline.nil? %>
+      </p>
+      <small>[25 day minimum for best results]</small>
+    </div>
+  </div>
+  <% unless defined? proposal && (proposal.company.users.include?(current_user) == false || proposal.paid == true) %>
+    <div class='row'>
+      <div class='col-sm-12' style="padding-top:15%">
+          <%= link_to edit_proposal_path(proposal), class: 'small-box-footer'  do %>
+             Edit <i class="fa fa-arrow-circle-right"></i>
+          <% end %>
+      </div>
+    </div>
+  <% end %>
+    <% unless defined? shoot && (shoot.project.company.users.include?(current_user) == false || shoot.deposit_is_paid == true) %>
+  <div class='row'>
+    <div class='col-sm-12' style="padding-top:15%">
+        <%= link_to edit_shoot_path(shoot), class: 'small-box-footer'  do %>
+           Edit <i class="fa fa-arrow-circle-right"></i>
+        <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>

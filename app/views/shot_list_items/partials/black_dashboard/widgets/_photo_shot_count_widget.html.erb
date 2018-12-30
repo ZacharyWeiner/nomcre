@@ -1,0 +1,54 @@
+<div class="alert alert-success">
+  <div class='row text-center'>
+    <div class='col-sm-12'>
+      <h3> <i class="fa fa-list fa-2x" style='font-size: 30px;'></i>  Shot Count</h3>
+       <h4 style="margin-top:-30px">
+        <% if  !defined? proposal || proposal.nil? != false %>
+          <%= proposal.shot_list_items.count%> of <%= proposal.shot_count %>
+        <% end %>
+        <% if defined? shoot %>
+          <%= shoot.user_added_shot_count %> of <%= shoot.user_added_shot_count_max %>
+        <% end %>
+      </h4>
+        <p style='margin-top: -6px;'>Available Shots  </p>
+        <small>[We will deliver much more!]</small>
+    </div>
+  </div>
+  <% unless defined? proposal &&  !proposal.nil? &&   (proposal.company.users.include?(current_user) == false || proposal.paid == true) %>
+  <div class='row'>
+    <div class='col-sm-12' style="padding-top:15%">
+        <% if  proposal.company.users.include?(current_user) == true && proposal.is_editable == true %>
+          <% if (proposal.shot_list_items.count < proposal.shot_count) %>
+            <%= link_to new_proposal_shot_list_item_path(@proposal), class: 'small-box-footer' do %>
+              <i class="fa fa-plus"></i> Add To Shot List
+            <% end %>
+           <% else %>
+            <span class='small-box-footer'> <i class="fa fa-ban"></i> Shot List Limit Reached </span>
+          <% end %>
+        <% else %>
+            <span class='small-box-footer'> <i class="fa fa-ban"></i> Not Authorized To Add </span>
+        <% end %>
+    </div>
+  </div>
+  <% end %>
+
+
+  <% unless !shoot.nil? && (shoot.project.company.users.include?(current_user) == false || shoot.project.deposit_is_paid == true) %>
+  <div class='row'>
+    <div class='col-sm-12' style="padding-top:15%">
+        <% if  shoot.project.company.users.include?(current_user) == true && shoot.is_editable == true %>
+          <% if (shoot.shot_list_items.count < shoot.user_added_shot_count_max) %>
+            <%= link_to new_shoot_shot_list_item_path(shoot), class: 'small-box-footer' do %>
+              <i class="fa fa-plus"></i> Add To Shot List
+            <% end %>
+           <% else %>
+            <span class='small-box-footer'> <i class="fa fa-ban"></i> Shot List Limit Reached </span>
+          <% end %>
+        <% else %>
+            <span class='small-box-footer'> <i class="fa fa-ban"></i> Not Authorized To Add </span>
+        <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>
+

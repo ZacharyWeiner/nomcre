@@ -1,0 +1,46 @@
+<div class="card" style="background: #f5f6fa">
+  <div class="card-header">
+    <h5 class="card-category">
+      <%= sr.schedule_item.location.name %>
+      <span class='pull-right'>Available Until:  <%= sr.schedule_item.end_date %></span>
+    </h5>
+    <h3 class="card-title">
+      <%= image_tag sr.user.user_profile.safe_profile_image_url, class: 'avatar' %>
+      <%= sr.user.name %>
+      <span class='pull-right'>
+        <%= render :partial =>  'shared/black_dashboard/search/buttons/request_buttons', :locals => {shoot: shoot, :user => sr.user} %>
+      </span>
+    </h3>
+    <div>
+      <%= render :partial => 'user_profiles/partials/black_dashboard/shared/skills', :locals => {:user_profile => sr.user.user_profile} %>
+      <%= render :partial => 'user_profiles/partials/black_dashboard/shared/equiptment', :locals => {:user_profile => sr.user.user_profile} %>
+    </div>
+  </div>
+  <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
+    <% sr.user.collections.take(3).each do |collection| %>
+      <div class="card card-plain">
+        <div class="card-header" id="heading<%= collection.id %>">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= collection.id%>" aria-expanded="fasle" aria-controls="collapse<%= collection.id %>">
+            <span class="text-info"><%= collection.title %> Collection </span>
+            <i class="tim-icons"><ion-icon name='arrow-dropdown' > </ion-icon></i>
+          </a>
+        </div>
+        <div id="collapse<%= collection.id %>" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+          <div class="card-body">
+           <div class='row'>
+             <% collection.collection_items.take(4).each do |ci| %>
+                <div class='col-sm-12 col-md-3 col-lg-3'>
+                  <%= image_tag ci.file, class: 'img-fluid' %>
+                </div>
+             <% end %>
+           </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= link_to "<ion-icon name='eye'></ion-icon> View Profile".html_safe, sr.user.user_profile, class: 'btn btn-link text-primary text-right' %>
+</div>
+
+

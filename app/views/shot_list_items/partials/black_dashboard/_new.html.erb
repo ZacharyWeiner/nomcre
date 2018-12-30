@@ -3,20 +3,20 @@
   <div class="row">
     <div class="col-lg-3 col-xs-6">
 
-      <% render :partial => 'proposals/partials/black_dashboard/widgets/deadline_widget', :locals =>{:proposal => @proposal} %>
+      < render :partial => 'proposals/partials/black_dashboard/widgets/deadline_widget', :locals =>{:proposal => @proposal} >
     </div>
     <div class="col-lg-3 col-xs-6">
-      <% if @proposal.proposal_type == 'photo' %>
-        <% render :partial => 'proposals/partials/black_dashboard/widgets/photo_shot_count_widget', :locals =>{:proposal => @proposal} %>
-      <% else %>
-        <% render :partial => 'proposals/partials/black_dashboard/widgets/photo_shot_count_widget', :locals =>{:proposal => @proposal} %>
-      <% end %>
+      < if @proposal.proposal_type == 'photo' %>
+        < render :partial => 'proposals/partials/black_dashboard/widgets/photo_shot_count_widget', :locals =>{:proposal => @proposal} >
+      < else >
+        < render :partial => 'proposals/partials/black_dashboard/widgets/photo_shot_count_widget', :locals =>{:proposal => @proposal} >
+      < end >
     </div>
     <div class="col-lg-3 col-xs-6">
-      <% render :partial => 'proposals/partials/black_dashboard/widgets/shoot_background_widget', :locals =>{:proposal => @proposal} %>
+      < render :partial => 'proposals/partials/black_dashboard/widgets/shoot_background_widget', :locals =>{:proposal => @proposal} >
     </div>
     <div class="col-lg-3 col-xs-6">
-      <% render :partial => 'proposals/partials/black_dashboard/widgets/shoot_type_widget', :locals =>{:proposal => @proposal} %>
+      < render :partial => 'proposals/partials/black_dashboard/widgets/shoot_type_widget', :locals =>{:proposal => @proposal} >
     </div>
   </div>
 </div>
@@ -27,14 +27,16 @@
       <% if params[:proposal_id] %>
         <% proposal = Proposal.find(params[:proposal_id]) %>
       <% end %>
-      <%= render :partial => 'proposals/partials/black_dashboard/show/left_panel', :locals => {:proposal => proposal} %>
+      <% if params[:shoot_id] %>
+        <% shoot = Shoot.find(params[:shoot_id]) %>
+      <% end %>
+      <%= render :partial => 'shoots/partials/black_dashboard/show/left_panel', :locals => {:shoot => shoot, :proposal => proposal} %>
     </div>
 
     <div class='col-sm-12 col-md-8'>
       <h3>Add To Your Shot List </h3>
       <div class='card'>
         <div style="padding:12px;">
-
           <%= render 'form', shot_list_item: @shot_list_item %>
         </div>
       </div>

@@ -40,8 +40,16 @@ class ShotListItemsController < ApplicationController
       if @shot_list_item.description.nil? || @shot_list_item.description == ""
         format.html { redirect_to proposal_shot_list_items_path(@shot_list_item.proposal), error: 'Description is required'}
       elsif@shot_list_item.save
-        format.html { redirect_to proposal_path(@shot_list_item.proposal, :active => 'shotlist'), notice: 'Shot list item was successfully created.' }
-        format.json { render :show, status: :created, location: @shot_list_item }
+        if !@shot_list_item.proposal.nil?
+          format.html { redirect_to proposal_path(@shot_list_item.proposal, :active => 'shotlist'), notice: 'Shot list item was successfully created.' }
+          format.json { render :show, status: :created, location: @shot_list_item }
+        elsif !@shot_list_item.shoot.nil?
+          format.html { redirect_to shoot_path(@shot_list_item.shoot, :active => 'shotlist'), notice: 'Shot list item was successfully created.' }
+          format.json { render :show, status: :created, location: @shot_list_item }
+        else
+          format.html { redirect_to shot_list_item_path(@shot_list_item), notice: 'Shot list item was successfully created.' }
+          format.json { render :show, status: :created, location: @shot_list_item }
+        end
       else
         format.html { render :new }
         format.json { render json: @shot_list_item.errors, status: :unprocessable_entity }

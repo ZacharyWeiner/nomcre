@@ -1,5 +1,8 @@
 <% if params[:proposal_id] %>
-<% proposal = Proposal.find(params[:proposal_id]) %>
+  <% proposal = Proposal.find(params[:proposal_id]) %>
+<% end %>
+<% if params[:shoot_id] %>
+  <% shoot = Shoot.find(params[:shoot_id]) %>
 <% end %>
 <%= form_with(model: shot_list_item, local: true) do |form| %>
   <%= render :partial => 'shot_list_items/partials/black_dashboard/form/errors', :locals => {:shot_list_item => shot_list_item}%>
@@ -10,9 +13,18 @@
   <%= render :partial => 'shot_list_items/partials/black_dashboard/form/focus_point', :locals => {:shot_list_item => shot_list_item, :form => form }%>
   <br>
   <%= render :partial => 'shot_list_items/partials/black_dashboard/form/aspect_ratio', :locals => {:shot_list_item => shot_list_item, :form => form }%>
-  <%= form.hidden_field :item_type, :value => proposal.shoot_type %>
+  <% if !proposal.nil? %>
+    <%= form.hidden_field :item_type, :value => proposal.shoot_type %>
+    <%= form.hidden_field :proposal_id, :value => proposal.id %>
+    <%= form.hidden_field :background, :value => proposal.background %>
+  <% end %>
+  <% if !shoot.nil? %>
+    <%= form.hidden_field :item_type, :value => shoot.shoot_style %>
+    <%= form.hidden_field :shoot_id, :value => shoot.id %>
+    <%= form.hidden_field :background, :value => shoot.background %>
+  <% end %>
 
-  <% if proposal.shoot_type == 'Mixed'%>
+  <% if (!proposal.nil? && proposal.shoot_type == 'Mixed') || (!shoot.nil? && shoot.shoot_style == "Mixed")%>
     <div class='box box-purple'>
       <div class="box-header with-border">
         <h4 class="box-title">Shot Type</h4>
@@ -32,10 +44,6 @@
 
   <% if current_user.user_type =='creative'%>
   <%= render :partial => 'shot_list_items/partials/black_dashboard/form/upload', :locals => {:shot_list_item => shot_list_item, :form => form }%>
-  <% end %>
-  <% if params[:proposal_id] %>
-    <%= form.hidden_field :proposal_id, :value => proposal.id %>
-    <%= form.hidden_field :background, :value => proposal.background %>
   <% end %>
   <br>
   <div class="actions">

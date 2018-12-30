@@ -1,4 +1,10 @@
+<% if !defined? proposal %>
+  <% proposal = Proposal.new %>
+<% end %>
 
+<% if !defined? shoot %>
+  <% shoot = Shoot.new %>
+<% end %>
 <div class="modal fade" id="documentFormModal" tabindex="-1" role="dialog" aria-labelledby="Document Form" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -6,7 +12,11 @@
         <h5 class="modal-title">Add A New Document </h5>
       </div>
       <div class="modal-body text-center">
-        <%= render :partial => 'documents/form', :locals => {:document => Document.new, :proposal => proposal, :company => company} %>
+        <%= render :partial => 'documents/form',
+                   :locals => {:document => Document.new,
+                               :proposal => proposal,
+                               :shoot => shoot
+                             } %>
       </div>
       <div class="modal-footer">
 

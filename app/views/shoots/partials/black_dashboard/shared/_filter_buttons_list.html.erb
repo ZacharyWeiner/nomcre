@@ -1,0 +1,29 @@
+<div class='col-md-2'></div>
+  <div class='col-md-8'>
+  <ul class="nav nav-pills nav-pills-primary nav-pills-icons justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#all">
+      <i class="tim-icons"><ion-icon name='ios-cube'></ion-icon></i> All
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#photo">
+      <i class="tim-icons"><ion-icon name='ios-images'></ion-icon></i> Photo
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#video">
+      <i class="tim-icons"><ion-icon name='ios-videocam'></ion-icon></i> Video
+    </a>
+  </li>
+  <% if current_user && (current_user.user_type == 'company' || current_user.role == 0) %>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#saved">
+        <i class="tim-icons"><ion-icon name='ios-hammer'></ion-icon></i> Saved
+      </a>
+    </li>
+  <% end %>
+  </ul>
+
+</div>
+<div class='col-md-2'></div>

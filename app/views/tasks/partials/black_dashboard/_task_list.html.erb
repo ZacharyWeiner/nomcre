@@ -3,14 +3,24 @@
     <% tasks.each do |task| %>
     <tr>
       <td>
-        <p class="title"> <%= task.proposal.title %></p>
+        <% if !task.proposal.nil? %>
+          <p class="title"> <%= task.proposal.title %></p>
+        <% elsif task.shoot %>
+          <p class="title"> <%= task.shoot.project.title %></p>
+        <% end %>
         <p class="text-info"><%= task.description %></p>
       </td>
       <td>
-        <% if task.deadline > Date.today %>
-        <p class="text-success"><i class="fa fa-clock-o"></i>  <%= (task.deadline - Date.today).to_int %> days</p>
+      <% if !task.deadline.nil? %>
+        <%if task.deadline > Date.today %>
+          <p class="text-success"><i class="fa fa-clock-o"></i>  <%= (task.deadline - Date.today).to_int %> days</p>
+        <% else %>
+          <p class="text-danger"><i class="fa fa-clock-o"></i>
+            <%= time_ago_in_words(task.deadline - Date.today) %> days
+          </p>
+        <% end %>
       <% else %>
-        <p class="text-danger"><i class="fa fa-clock-o"></i>  <%= time_ago_in_words(task.deadline - Date.today) %> days</p>
+        No Deadline Saved
       <% end %>
       </td>
       <td class="td-actions text-right">

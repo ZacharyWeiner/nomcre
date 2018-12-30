@@ -1,0 +1,40 @@
+<div class="tab-content tab-space tab-subcategories">
+  <div class="tab-pane active" id="all">
+    <div class='row'>
+      <% shoots.each do |shoot| %>
+        <div class='col-md-4'>
+          <%= render :partial => 'shoots/partials/black_dashboard/shoot_details_card', :locals => {shoot: shoot, show_view_button: true, show_edit_button: true } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="tab-pane" id="photo">
+    <div class='row'>
+      <% shoots.where(content_type: 'photo').each do |shoot| %>
+        <div class='col-md-4'>
+          <%= render :partial => 'shoots/partials/black_dashboard/shoot_details_card', :locals => {shoot: shoot, show_view_button: true, show_edit_button: true} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="tab-pane" id="video">
+    <div class='row'>
+     <% shoots.where(content_type: 'video').each do |shoot| %>
+        <div class='col-md-4'>
+          <%= render :partial => 'shoots/partials/black_dashboard/shoot_details_card', :locals => {shoot: shoot, show_view_button: true, show_edit_button: true} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <% if current_user && (current_user.user_type == 'company' || current_user.role == 0) %>
+    <div class="tab-pane" id="saved">
+      <div class='row'>
+        <% shoots.where(creative: nil).each do |shoot| %>
+        <div class='col-md-4'>
+          <%= render :partial => 'shoots/partials/black_dashboard/shoot_details_card', :locals => {shoot: shoot, show_view_button: true, show_edit_button: true} %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>

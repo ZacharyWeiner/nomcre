@@ -1,17 +1,26 @@
 
 <div class='card'>
-
-
   <div class='card-header'>
-    <div class='pull-right'>
-      <%= @shot_list_item.proposal.deadline.strftime("%A %b %d, %Y") %>
+    <div class='pull-right text-right'>
+      <% if !@shot_list_item.proposal.nil? && current_user == @shot_list_item.user %>
+        proposal user
+      <% elsif !@shot_list_item.shoot.nil? &&
+                (current_user == @shot_list_item.shoot.creative || @shot_list_item.shoot.project.company.users.where(id: current_user.id ).count > 0)  %>
+        <%= link_to "<i class='far fa-edit'></i> Edit ".html_safe, edit_shoot_shot_list_item_path(@shot_list_item.shoot, @shot_list_item), class: 'btn btn-primary btn-simple' %>
+        <br>
+      <% end %>
+
+      <% if !@shot_list_item.proposal.nil? %>
+        Deadline: <%= @shot_list_item.proposal.deadline.strftime("%A %b %d, %Y") %>
+      <% elsif !@shot_list_item.shoot.nil? && !shot_list_item.shoot.deadline.nil?%>
+        Deadline: <%= @shot_list_item.shoot.deadline.strftime("%A %b %d, %Y") %>
+      <% end %>
     </div>
-    <h3 class='text-primary'><%= link_to @shot_list_item.proposal.title, proposal_path(@shot_list_item.proposal, :active => 'shotlist') %></h3>
+    <h3 class='text-primary'>
+      <%= link_to @shot_list_item.shoot.project.title, shoot_path(@shot_list_item.shoot, :active => 'shotlist') unless  @shot_list_item.shoot.nil? %>
+      <%= link_to @shot_list_item.proposal.title, proposal_path(@shot_list_item.proposal, :active => 'shotlist') unless  @shot_list_item.proposal.nil? %>
+      </h3>
   </div>
-</div>
-
-
-
   <div class='row'>
     <div class='col-md-1'></div>
     <div class='col-md-5 card'  style="border-right: 1px solid #d3dded">
@@ -20,7 +29,11 @@
           </div>
            <div style='padding:6px;'>
             Reference Image <br>
-            <%= image_tag @shot_list_item.reference_image %>
+            <% if @shot_list_item.reference_image.nil? || @shot_list_item.reference_image = '' %>
+              <i class='far fa-image fa-3x'></i>
+            <% else %>
+              <%= image_tag @shot_list_item.reference_image %>
+            <% end %>
           </div>
           <div style='padding:6px;'>
             <span><i class='tim-icons text-primary'><ion-icon name='camera'></ion-icon></i> Shoot Type:</span>
@@ -73,7 +86,7 @@
 </div>
 
 
-
+</div>
 
 
 

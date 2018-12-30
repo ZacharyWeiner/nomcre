@@ -1,0 +1,33 @@
+<p> Image Boards </p>
+<div class='row'>
+  <% unless defined? shoot.image_board_1 && (shoot.image_board_1.nil? || shoot.image_board_1 == '')%>
+    <div class='col-md-3'>
+      <%= link_to "http://www.image_board.com/#{shoot.image_board_1}", target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
+        <i class='fas fa-globe'></i>
+      <% end %>
+    </div>
+  <% end %>
+  <% unless defined? shoot.image_board_2 && (shoot.image_board_2.nil? || shoot.image_board_2 == '')%>
+    <div class='col-md-3'>
+      <%= link_to "http://www.image_board.com/#{shoot.image_board_2}", target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
+        <i class='fas fa-globe'></i>
+      <% end %>
+    </div>
+  <% end %>
+  <% unless defined? shoot.image_board_3 && (shoot.image_board_3.nil? || shoot.image_board_3 == '')%>
+    <div class='col-md-3'>
+      <%= link_to "http://www.image_board.com/#{shoot.image_board_3}", target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
+        <i class='fas fa-globe'></i>
+      <% end %>
+    </div>
+  <% end %>
+  <% unless defined? shoot.image_board_4 && (shoot.image_board_4.nil? || shoot.image_board_4 == '') %>
+    <div class='col-md-3'>
+      <%= link_to "http://www.image_board.com/#{shoot.image_board_4}", target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
+        <i class='fas fa-globe'></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+

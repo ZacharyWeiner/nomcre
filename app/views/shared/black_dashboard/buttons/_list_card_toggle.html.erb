@@ -1,6 +1,9 @@
+<% if !defined? align %>
+  <% align = 'pull-right' %>
+<% end %>
 
 
-<span class='pull-right'>
+<span class="<%= align %>">
   <%= link_to "<i class='fas fa-list-ul'></i>".html_safe, url_for(:q => 'list'), class: 'btn btn-sm btn-primary' %>
   <%= link_to "<i class='fas fa-th-large'></i>".html_safe, url_for(:q => ''), class: 'btn btn-sm btn-primary' %>
 </span>

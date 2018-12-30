@@ -1,0 +1,6 @@
+<% if shoot.creative == user %>
+  <%= link_to "Assigned", shoot_path(shoot), class: 'btn btn-success' %>
+<% else %>
+  <%= link_to "Not Selected", shoot_path(shoot), class: 'btn btn-danger disabled' %>
+<% end %>
+

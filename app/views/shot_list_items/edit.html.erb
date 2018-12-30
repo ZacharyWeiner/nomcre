@@ -1,7 +1,7 @@
 <style type="text/css">
   .alert{min-height: 141px;}
 </style>
-<%= render :partial => 'shot_list_items/partials/black_dashboard/widgets/shot_list_widgets_row', :locals => {:proposal => @proposal} %>
+<%= render :partial => 'shot_list_items/partials/black_dashboard/widgets/shot_list_widgets_row', :locals => {:proposal => @proposal, shoot: @shot_list_item.shoot} %>
 <h1>Editing Shot List Item</h1>
 
 <%= render 'form', shot_list_item: @shot_list_item %>

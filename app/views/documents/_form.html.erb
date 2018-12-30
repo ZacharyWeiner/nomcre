@@ -59,6 +59,14 @@
     <%= form.hidden_field :proposal_id, :value => @proposal.id %>
   <% end %>
 
+  <% if params[:shoot] %>
+    <%= form.hidden_field :shoot, :value => params[:shoot] %>
+  <% elsif defined? proposal %>
+    <%= form.hidden_field :shoot, :value => shoot %>
+  <% elsif defined? @shoot %>
+    <%= form.hidden_field :shoot, :value => @shoot%>
+  <% end %>
+
   <% if params[:company_id] %>
     <%= form.hidden_field :company_id, :value => params[:company_id] %>
   <% elsif defined? company%>

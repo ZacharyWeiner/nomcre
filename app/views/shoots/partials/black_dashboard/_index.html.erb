@@ -1,16 +1,10 @@
-<div class='card'>
-  <div class='card-header'>
-    <div class='card-title'>
-      Shoots
-      <span class='pull-right'>
-        <%= render 'shared/black_dashboard/buttons/list_card_toggle' %>
-      </span>
-    </div>
-  </div>
+<div class='col-md-12'><h1 class="text-primary text-center">Shoots</h1></div>
+<br>
 <% if params[:q] == 'list'%>
   <%= render :partial => 'shoots/partials/black_dashboard/shared/list', :locals => {:shoots => shoots}%>
-  </div>
+
 <% else %>
-  </div>
+
   <%= render :partial => 'shoots/partials/black_dashboard/shared/cards', :locals => {:shoots => shoots}%>
 <% end %>
+

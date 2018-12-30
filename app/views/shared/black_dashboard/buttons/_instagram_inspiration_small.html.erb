@@ -1,0 +1,37 @@
+<style type="text/css">
+  .fa-instagram{
+    padding-top: 12px;
+  }
+</style>
+<p> Instagram Inspiration </p>
+<div class='row'>
+  <% unless defined? shoot.instagram_1 && (shoot.instagram_1.nil? || shoot.instagram_1 != '')%>
+    <div class='col-md-3'>
+      <%= link_to "http://www.instagram.com/#{@proposal.instagram_1}", target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
+        <i class='fab fa-instagram'></i>
+      <% end %>
+    </div>
+  <% end %>
+  <% unless defined? shoot.instagram_2 && (shoot.instagram_2.nil? || shoot.instagram_2 != '')%>
+    <div class='col-md-3'>
+      <%= link_to "http://www.instagram.com/#{@proposal.instagram_2}", target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
+        <i class='fab fa-instagram'></i>
+      <% end %>
+    </div>
+  <% end %>
+  <% unless defined? shoot.instagram_3 && (shoot.instagram_3.nil? || shoot.instagram_3 != '')%>
+    <div class='col-md-3'>
+      <%= link_to "http://www.instagram.com/#{@proposal.instagram_3}", target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
+        <i class='fab fa-instagram'></i>
+      <% end %>
+    </div>
+  <% end %>
+  <% unless defined? shoot.instagram_4 && (shoot.instagram_4.nil? || shoot.instagram_4 != '') %>
+    <div class='col-md-3'>
+      <%= link_to "http://www.instagram.com/#{@proposal.instagram_4}", target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
+        <i class='fab fa-instagram'></i>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
