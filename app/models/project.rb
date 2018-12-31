@@ -34,8 +34,39 @@ class Project < ApplicationRecord
     Task.where(shoot_id: shoot_ids).or(Task.where(project_id: self.id))
   end
 
+  def is_editable user
+    if user.role == 0
+      return true
+    end
+
+    can_edit = false
+    if self.company.users.where(id: user.id).count > 0
+      if !self.deposit_is_paid
+        can_edit = true
+      end
+    end
+    can_edit
+  end
+
 
   #instance methods
+  def user_added_shot_list_items_count
+    count = 0
+    self.shoots.each do |s|
+      count = count + s.owner_added_shot_list_count
+    end
+    count
+  end
+
+  def user_added_shot_list_items_max
+    count = 0
+    self.shoots.each do |s|
+      if !s.nil? && s.user_added_shot_count_max.to_i != nil
+      count = count + s.user_added_shot_count_max.to_i
+      end
+    end
+    count
+  end
 
   #tasks
   def all_tasks_complete

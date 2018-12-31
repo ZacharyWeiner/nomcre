@@ -1,7 +1,9 @@
 <% if !defined? show_header  %>
   <% show_header = false %>
 <% end %>
-
+<% if !defined? show_title  %>
+  <% show_title = false %>
+<% end %>
 <% if !defined? show_footer %>
   <% show_footer = false %>
 <% end %>
@@ -41,7 +43,9 @@
         <% else %>
           <i class="tim-icons text-primary"><ion-icon name='videocam' size='large'></ion-icon></i>
         <% end %>
-        <%= link_to 'Go', shoot, style: 'font-size: 18px' %>
+        <% if show_title %>
+          <%= link_to shoot.project.title.first(30), shoot, style: 'font-size: 18px' %>
+        <% end %>
       </span>
       <span class='pull-right'>
         <i class='tim-icons'><ion-icon name='calendar'></ion-icon></i> <%= shoot.deadline.strftime('%a %b %d, %Y') unless shoot.deadline == nil %>

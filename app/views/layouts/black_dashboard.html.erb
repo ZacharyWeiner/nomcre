@@ -29,6 +29,16 @@
     <div class="main-panel">
       <%= render 'shared/black_dashboard/nav/top_nav' %>
       <div class="content">
+        <% flash.each do |key, value| %>
+          <div class="alert alert-primary">
+            <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+              <i class="tim-icons"><i class='fas fa-times' ></i></i>
+            </button>
+            <span>
+              <b> <%= value %>
+            </span>
+          </div>
+        <% end %>
 
         <%= yield %>
       </div>

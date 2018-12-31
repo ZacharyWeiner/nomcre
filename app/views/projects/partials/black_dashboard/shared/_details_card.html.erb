@@ -5,6 +5,9 @@
 <% if !defined? show_footer %>
   <% show_footer = false %>
 <% end %>
+<% if !defined? show_edit_button %>
+  <% show_edit_button = false %>
+<% end %>
 
 <% if !defined? show_content %>
   <% show_content = false %>
@@ -127,19 +130,9 @@
                   <i class='tim-icons text-info'><ion-icon name='ios-photos'> </ion-icon></i>
                   Shot Count:
                   <span class='pull-right'>
-                    <%= project.max_user_shot_list != nil ? project.max_user_shot_list : "Not Assigned" %>
+                    <%= "#{project.user_added_shot_list_items_count} of #{project.user_added_shot_list_items_max}" %>
                   </span>
                 </span>
-                <% if show_content == true %>
-                  <hr>
-                  <span>
-                    <i class='tim-icons text-warning'><ion-icon name='ios-photos'> </ion-icon></i>
-                    Background:
-                    <span class='pull-right'>
-                      <% project != nil ? project : "Not Assigned" %>
-                    </span>
-                  </span>
-                <% end %>
               </div>
             </div>
             <% if show_content %>
@@ -197,6 +190,13 @@
       <hr>
       <%= render :partial => 'projects/partials/black_dashboard/shared/payment_buttons', :locals => {project: project} %>
     </div>
+  <% end %>
+  <% if show_edit_button %>
+   <div class='card-footer text-center'>
+        <%if current_user.company == project.company && project.is_editable(current_user) %>
+          <%= link_to "<i class='far fa-edit'></i> Edit".html_safe, edit_project_path(project), class: 'btn btn-danger btn-simple btn-block' %>
+        <% end %>
+      </div>
   <% end %>
 </div>
 

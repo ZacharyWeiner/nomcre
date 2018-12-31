@@ -2,7 +2,7 @@ class Shoot < ApplicationRecord
   #belongs_to
   belongs_to :project
   belongs_to :company
-  belongs_to :location
+  belongs_to :location, optional: true
   belongs_to :creative, foreign_key: 'creative_id', class_name: 'User', optional: true
 
   #has_one

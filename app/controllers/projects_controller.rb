@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :wizard]
   before_action :authenticate_user!
   layout 'black_dashboard'
 
@@ -71,10 +71,17 @@ class ProjectsController < ApplicationController
   def payment
   end
 
+  def wizard
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.find(params[:id])
+      if params[:project_id ]
+        @project = Project.find(params[:project_id])
+      else
+        @project = Project.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -26,7 +26,7 @@ class ShootsController < ApplicationController
   # POST /shoots.json
   def create
     @shoot = Shoot.new(shoot_params)
-
+    @shoot.user_saved = true
     respond_to do |format|
       if @shoot.save
         format.html { redirect_to @shoot, notice: 'Shoot was successfully created.' }
@@ -41,8 +41,10 @@ class ShootsController < ApplicationController
   # PATCH/PUT /shoots/1
   # PATCH/PUT /shoots/1.json
   def update
+    attributes = shoot_params.clone
+    attributes[:user_saved] = true
     respond_to do |format|
-      if @shoot.update(shoot_params)
+      if @shoot.update(attributes)
         format.html { redirect_to @shoot, notice: 'Shoot was successfully updated.' }
         format.json { render :show, status: :ok, location: @shoot }
       else
@@ -70,6 +72,6 @@ class ShootsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shoot_params
-      params.require(:shoot).permit(:creative_id, :project_id, :company_id, :location_id, :content_type, :brief, :time_of_day, :bts, :focus_points, :price, :background, :background_note, :shoot_style, :shoot_raw, :user_added_shot_count, :user_added_shot_count_max)
+      params.require(:shoot).permit(:creative_id, :project_id, :company_id, :location_id, :content_type, :brief, :time_of_day, :bts, :focus_points, :price, :background, :background_note, :shoot_style, :shoot_raw, :user_added_shot_count, :user_added_shot_count_max, :user_saved)
     end
 end

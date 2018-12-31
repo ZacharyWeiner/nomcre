@@ -15,7 +15,7 @@
       </div>
       <div id="collapse<%= shoot.id %>" class="collapse" role="tabpanel" aria-labelledby="heading<%= shoot.id %>">
         <div class="card-body" style="padding:0px">
-          <%= render :partial => 'shoots/partials/black_dashboard/shoot_details_card', :locals => {shoot: shoot,show_accept_buttons: false} %>
+          <%= render :partial => 'shoots/partials/black_dashboard/shoot_details_card', :locals => {shoot: shoot,show_accept_buttons: false, show_title: false} %>
         </div>
       </div>
       <hr>
