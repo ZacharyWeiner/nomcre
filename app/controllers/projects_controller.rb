@@ -6,10 +6,15 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    if current_user.company.nil?
-      @projects = Project.where(company: current_user.company)
+    if !current_user.company.nil?
+      @projects = Project.where(company: current_user.company).where(is_template: false)
     else
-      @projects = Project.all
+      @projects = Project.all.where(is_template: false)
+    end
+    if @projects.count == 0
+      respond_to do |format|
+        format.html { redirect_to new_project_path, notice: "Create Your First Project ... Let's Get Started" }
+      end
     end
   end
 
@@ -32,7 +37,6 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
-
     respond_to do |format|
       if @project.save
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
@@ -49,6 +53,9 @@ class ProjectsController < ApplicationController
   def update
     respond_to do |format|
       if @project.update(project_params)
+        if params[:location_id]
+          @project.update_shoot_location params[:location_id]
+        end
         format.html { redirect_to @project, notice: 'Project was successfully updated.' }
         format.json { render :show, status: :ok, location: @project }
       else

@@ -1,4 +1,13 @@
-<h1>New Project</h1>
-
-<%= render :partial => 'projects/partials/black_dashboard/new/new',
-          :locals => {project: @project, package_types: @package_types} %>
+<h1>Let's Start A Project</h1>
+<div class='card'>
+  <div class='card-header'>
+    <div class='card-title text-center'>
+      <h4>Would You Like To Start From One Of Our Packages?</h4>
+    </div>
+  </div>
+  <div class="card-body">
+    <%= render :partial => 'projects/partials/black_dashboard/new/new',
+               :locals => {project: @project, package_types: @package_types} %>
+  </div>
+  <div class="card-footer"></div>
+</div>

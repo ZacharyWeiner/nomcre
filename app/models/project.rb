@@ -8,7 +8,7 @@ class Project < ApplicationRecord
   #has_many
   has_many :payments
   has_many :invoices
-  has_many :shoots
+  has_many :shoots, :dependent => :destroy
   has_many :creatives, through: :shoots
   has_many :chatrooms, through: :shoots
   has_many :messages, through: :chatrooms
@@ -153,6 +153,7 @@ class Project < ApplicationRecord
     project.title = "#{package.title} - #{deadline}"
     project.price = 15000
     project.deadline = deadline
+    project.brief = template.brief
     project.save!
     Shoot.create_shoots_from_template template.id, project.id
     project
@@ -167,6 +168,15 @@ class Project < ApplicationRecord
     #create additional tasks
     #create a chatroom
     #set price
+  end
+
+  def update_shoot_location location_id
+    self.shoots.each do |s|
+      if !s.user_saved
+        s.location_id = location_id
+        s.save
+      end
+    end
   end
 
   def update_shoots

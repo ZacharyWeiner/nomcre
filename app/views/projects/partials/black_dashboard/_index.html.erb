@@ -11,7 +11,6 @@
     <%= render :partial => 'projects/partials/black_dashboard/index/list', :locals => {:projects => projects} %>
   </div>
 </div>
-
 <% else %>
 <div class="card">
   <div class="card-header">
@@ -22,8 +21,10 @@
   </div>
   <div style="background: #F5F6FA">
     <br>
-    <% show_payment_buttons = current_user.company == projects.first.company ? true : false %>
-    <%= render :partial => 'projects/partials/black_dashboard/index/cards', :locals => {:projects => projects, show_view_link: true, show_payment_buttons: show_payment_buttons} %>
+    <% unless projects.first.nil? %>
+      <% show_payment_buttons = current_user.company == projects.first.company ? true : false  %>
+    <% end %>
+    <%= render :partial => 'projects/partials/black_dashboard/index/cards', :locals => {:projects => projects, show_view_link: true, show_payment_buttons: true} %>
   </div>
 </div>
 <% end %>

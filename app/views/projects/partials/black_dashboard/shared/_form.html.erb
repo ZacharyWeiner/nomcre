@@ -19,6 +19,10 @@
         <div class="form-group">
           <%= form.text_field :title, id: :project_title, class: 'form-control' %>
         </div>
+        <label>Location</label>
+        <div class="form-group">
+          <%= select_tag(:location_id, options_for_select(Location.locations_for_select),  {class: 'form-control'}) %>
+        </div>
         <label>Brief</label>
         <div class="form-group">
           <%= form.text_area :brief, id: :project_brief, class: 'form-control', style: 'border-radius: 1em' %>
