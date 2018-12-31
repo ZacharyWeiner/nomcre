@@ -31,11 +31,18 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
-
     respond_to do |format|
       if @task.save
+        if @task.proposal.nil? == false
+          format.html { redirect_to proposal_path(@task.proposal, :active => 'tasks'), notice: 'The Task was successfully created.' }
+          format.json { render :show, status: :created, location: @task }
+        elsif @task.shoot.nil? == false
+          format.html { redirect_to shoot_path(@task.shoot, :active => 'tasks'), notice: 'The Task was successfully created.' }
+          format.json { render :show, status: :created, location: @task }
+        else
         format.html { redirect_to tasks_path, notice: 'Task was successfully created.' }
         format.json { render :show, status: :created, location: @task }
+       end
       else
         format.html { render :new }
         format.json { render json: @task.errors, status: :unprocessable_entity }
@@ -97,6 +104,6 @@ class TasksController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
-      params.require(:task).permit(:user_id, :description, :deadline, :completed)
+      params.require(:task).permit(:user_id, :description, :deadline, :completed, :company_id, :shoot_id)
     end
 end

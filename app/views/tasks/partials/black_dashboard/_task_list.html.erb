@@ -13,10 +13,10 @@
       <td>
       <% if !task.deadline.nil? %>
         <%if task.deadline > Date.today %>
-          <p class="text-success"><i class="fa fa-clock-o"></i>  <%= (task.deadline - Date.today).to_int %> days</p>
+          <p class="text-info"><i class="fa fa-clock-o"></i>  <%= (task.deadline - Date.today).to_int %> days</p>
         <% else %>
           <p class="text-danger"><i class="fa fa-clock-o"></i>
-            <%= time_ago_in_words(task.deadline - Date.today) %> days
+            <%= time_ago_in_words(task.deadline) %> ago
           </p>
         <% end %>
       <% else %>

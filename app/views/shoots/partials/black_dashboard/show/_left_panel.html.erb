@@ -1,1 +1,8 @@
-<%= render :partial => 'shoots/partials/black_dashboard/shoot_details_card', :locals => {shoot: shoot} %>
+<% show_accept_buttons = false %>
+<% if shoot.creative.nil?   %>
+  <% show_accept_buttons = true %>
+<% end %>
+<%= render :partial => 'shoots/partials/black_dashboard/shoot_details_card',
+          :locals => {shoot: shoot,
+                      show_accept_buttons: show_accept_buttons,
+                      show_content: true} %>

@@ -1,3 +1,4 @@
+<% if (defined? creative_request) && (!creative_request.nil?) %>
 <div class='row'>
   <div class='col-xs-12 col-sm-6 col-md-6'>
     <% is_accepted_style = creative_request.accepted ? 'disabled' : '' %>
@@ -23,4 +24,4 @@
     <% end %>
   </div>
 </div>
-
+<% end %>

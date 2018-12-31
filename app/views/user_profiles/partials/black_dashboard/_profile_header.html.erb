@@ -38,7 +38,7 @@
               <div class="col-sm-4 ">
                 <div class="description-block">
                   <h5 class="description-header">
-                    <%= @user_profile.user.proposals.where.not(completed: true).count %>
+                    <%= @user_profile.user.projects.where.not(is_complete: true).count %>
                   </h5>
                   <span class="description-text"><i class='fa fa-briefcase'></i></span>
                 </div>
@@ -46,7 +46,7 @@
               <div class="col-sm-4">
                 <div class="description-block">
                   <h5 class="description-header">
-                    <%= @user_profile.user.proposals.where(completed: true).count %>
+                    <%= @user_profile.user.projects.where(is_complete: true).count %>
                   </h5>
                   <span class="description-text"><i class='fa fa-trophy'></i></span>
                 </div>

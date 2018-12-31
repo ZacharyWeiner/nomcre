@@ -1,14 +1,4 @@
 <%= render :partial => 'shoots/partials/black_dashboard/show', :locals => {shoot: @shoot} %>
-
-
-
-
-
-
-
-
-<p id="notice"><% notice %></p>
-
 <p>
   <strong>Creative:</strong>
   <% @shoot.creative_id %>
@@ -91,3 +81,18 @@
 
 <% link_to 'Edit', edit_shoot_path(@shoot) %> |
 <% link_to 'Back', shoots_path %>
+
+
+<% content_for :added_scripts do %>
+<script type="text/javascript">
+  $('#documentButton').click(function(){
+          $('#documentFormModal').modal('toggle');
+       });
+  $('#assistantButton').click(function(){
+          $('#assistantFormModal').modal('toggle');
+       });
+  $('#taskButton').click(function(){
+          $('#taskFormModal').modal('toggle');
+       });
+  </script>
+<% end %>

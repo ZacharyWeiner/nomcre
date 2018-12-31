@@ -85,6 +85,10 @@
           </div>
           <div class="tab-pane <%= tasks_style %>" id="tasks">
             <%if shoot.creative != nil %>
+              <% if shoot.is_editable %>
+                <button id='taskButton' class='btn btn-primary'> New Task </button>
+                <%= render :partial => 'tasks/partials/black_dashboard/shared/form_modal', :locals => {:shoot => shoot} %>
+              <% end %>
               <%= render :partial => 'tasks/partials/black_dashboard/task_list', :locals => {:tasks => shoot.tasks} %>
             <% else %>
             <br>
@@ -107,6 +111,9 @@
            <%= render :partial => 'shared/black_dashboard/disclosures/list', :locals =>{ collector: shoot} %>
           </div>
           <div class="tab-pane <%= assistants_style %>" id="assistants">
+            <button id='assistantButton' class='btn btn-primary'> New Assistant </button>
+            <%= render :partial => 'assistants/partials/black_dashboard/form_modal', :locals =>{ shoot: shoot} %>
+            <br>
             <%= render :partial => 'assistants/partials/black_dashboard/index', :locals => {:assistants => @shoot.assistants }%>
           </div>
           <div class="tab-pane" id="invoices" style="background: #f5f6fa">

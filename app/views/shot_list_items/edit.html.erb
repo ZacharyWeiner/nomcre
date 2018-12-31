@@ -1,10 +1,1 @@
-<style type="text/css">
-  .alert{min-height: 141px;}
-</style>
-<%= render :partial => 'shot_list_items/partials/black_dashboard/widgets/shot_list_widgets_row', :locals => {:proposal => @proposal, shoot: @shot_list_item.shoot} %>
-<h1>Editing Shot List Item</h1>
-
-<%= render 'form', shot_list_item: @shot_list_item %>
-
-<%= link_to 'Show', @shot_list_item %> |
-<%= link_to 'Back', shot_list_items_path %>
+<%= render :partial => 'shot_list_items/partials/black_dashboard/edit', :locals => {:shot_list_item => @shot_list_item} %>

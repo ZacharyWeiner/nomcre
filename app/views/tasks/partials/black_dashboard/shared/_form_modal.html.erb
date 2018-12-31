@@ -1,0 +1,36 @@
+<% if !defined? proposal %>
+  <% proposal = Proposal.new %>
+<% end %>
+
+<% if !defined? shot_list_item %>
+  <% shot_list_item = ShotListItem.new %>
+<% end %>
+
+<% if !defined? shoot %>
+  <% shoot = Shoot.new %>
+<% end %>
+
+
+
+<div class="modal fade" id="taskFormModal" tabindex="-1" role="dialog" aria-labelledby="Tasks Form" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add A New Task </h5>
+      </div>
+      <% company =  proposal.id.to_i > 0 ? proposal.company : shoot.company %>
+      <div class="modal-body text-center">
+        <%= render :partial => 'tasks/form',
+                   :locals => {:task => Task.new,
+                               :proposal => proposal,
+                               :shoot => shoot,
+                               :shot_list_item => shot_list_item,
+                               :company => company
+                             } %>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>

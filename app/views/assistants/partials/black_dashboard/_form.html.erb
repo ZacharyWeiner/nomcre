@@ -1,0 +1,72 @@
+<div class='card' style='padding:12px'>
+<%= form_with(model: assistant, local: true) do |form| %>
+  <% if assistant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(assistant.errors.count, "error") %> prohibited this assistant from being saved:</h2>
+
+      <ul>
+      <% assistant.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+ <div class="form-group">
+  <%= form.label :name %>
+  <%= form.text_field :name, id: :assistant_name, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= form.label :payment_email_or_phone %>
+  <%= form.text_field :paypal_email, id: :assistant_paypal_email, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= form.label :phone %>
+  <%= form.text_field :phone, id: :assistant_phone, class: 'form-control' %>
+</div>
+<div class="form-group">
+  <%= form.label :facebook %>
+  <%= form.text_field :facebook, id: :assistant_facebook, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= form.label :rate %>
+  <%= form.number_field :rate, id: :assistant_rate, class: 'form-control' %>
+</div>
+
+<div class="form-group">
+  <%= form.label :assistant_type %>
+  <%= form.select :assistant_type, options_for_select([['General', 'General'], ['HMU', 'HMU'], ['Model','Model']]), {}, {class: 'form-control '}  %>
+</div>
+<div class="form-group">
+  <%= form.label :instagram %>
+  <%= form.text_field :instagram, id: :assistant_instagram, class: 'form-control' %>
+</div>
+
+
+<div class="form-group">
+  <%= form.label :notes %>
+  <%= form.text_area :notes, id: :assistant_notes, class: 'form-control' %>
+</div>
+
+
+
+
+
+
+
+  <% if defined? @proposal %>
+    <%= form.hidden_field :proposal_id, :value => @proposal.id %>
+  <% end %>
+
+  <% if defined? shoot %>
+    <%= form.hidden_field :shoot_id, :value => shoot.id %>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit "Save", class: 'btn btn-primary' %>
+  </div>
+<% end %>
+</div>

@@ -35,7 +35,6 @@ class ShotListItemsController < ApplicationController
   # POST /shot_list_items.json
   def create
     @shot_list_item = ShotListItem.new(shot_list_item_params)
-    @shot_list_item.added_by = current_user
     respond_to do |format|
       if @shot_list_item.description.nil? || @shot_list_item.description == ""
         format.html { redirect_to proposal_shot_list_items_path(@shot_list_item.proposal), error: 'Description is required'}
@@ -62,8 +61,16 @@ class ShotListItemsController < ApplicationController
   def update
     respond_to do |format|
       if @shot_list_item.update(shot_list_item_params)
-        format.html { redirect_to proposal_shot_list_items_path(@shot_list_item.proposal), notice: 'Shot list item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @shot_list_item }
+         if !@shot_list_item.proposal.nil?
+          format.html { redirect_to proposal_path(@shot_list_item.proposal, :active => 'shotlist'), notice: 'Shot list item was successfully updated.' }
+          format.json { render :show, status: :created, location: @shot_list_item }
+        elsif !@shot_list_item.shoot.nil?
+          format.html { redirect_to shoot_path(@shot_list_item.shoot, :active => 'shotlist'), notice: 'Shot list item was successfully updated.' }
+          format.json { render :show, status: :created, location: @shot_list_item }
+        else
+          format.html { redirect_to shot_list_item_path(@shot_list_item), notice: 'Shot list item was successfully updated.' }
+          format.json { render :show, status: :created, location: @shot_list_item }
+        end
       else
         format.html { render :edit }
         format.json { render json: @shot_list_item.errors, status: :unprocessable_entity }
@@ -90,7 +97,7 @@ class ShotListItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shot_list_item_params
-      params.require(:shot_list_item).permit(:proposal_id, :description, :background, :upload, :item_type, :task_id, :focus_point, :aspect_ratio, :reference_image)
+      params.require(:shot_list_item).permit(:proposal_id, :description, :background, :upload, :item_type, :task_id, :focus_point, :aspect_ratio, :reference_image, :shoot_id, :added_by_id)
     end
 
 end

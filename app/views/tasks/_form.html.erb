@@ -20,6 +20,12 @@
     <%= f.date_select :deadline, class: 'form-control' %>
   </div>
   <%= f.hidden_field :user_id, :value => current_user.id%>
+  <% if defined? company %>
+    <%= f.hidden_field :company_id, :value => company.id%>
+  <% end %>
+  <% if defined? shoot %>
+    <%= f.hidden_field :shoot_id, :value => shoot.id%>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

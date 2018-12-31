@@ -36,6 +36,9 @@ class AssistantsController < ApplicationController
         if @assistant.proposal != nil
           format.html { redirect_to proposal_path(@assistant.proposal, :active => 'assistants'), notice: 'Assistant was successfully created.' }
           format.json { render :show, status: :created, location: @assistant }
+        elsif @assistant.shoot != nil
+          format.html { redirect_to shoot_path(@assistant.shoot, :active => 'assistants'), notice: 'Assistant was successfully created.' }
+          format.json { render :show, status: :created, location: @assistant }
         else
           format.html { redirect_to @assistant, notice: 'Assistant was successfully created.' }
           format.json { render :show, status: :created, location: @assistant }
@@ -76,6 +79,30 @@ class AssistantsController < ApplicationController
     end
   end
 
+  def try_authorize_proposal
+      allow = false
+      if params[:proposal_id] || (params[:assistants] && params[:assistant][:proposal_id])
+        proposal = params[:proposal_id] != nil ?
+          Proposal.find(params[:proposal_id]) : Proposal.find(params[:assistant][:proposal_id])
+        if current_user == proposal.user || current_user.company == proposal.company
+          allow = true
+        end
+      end
+      allow
+    end
+
+    def try_authorize_shoot
+      allow = false
+      if params[:shoot_id] || (params[:assistants] && params[:assistant][:shoot_id])
+        shoot = params[:shoot_id] != nil ?
+          Shoot.find(params[:shoot_id]) : Shoot.find(params[:assistant][:shoot_id])
+        if current_user == shoot.user || current_user.company == shoot.project.company
+          allow = true
+        end
+      end
+      allow
+    end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_assistant
@@ -84,21 +111,19 @@ class AssistantsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def assistant_params
-      params.require(:assistant).permit(:name, :paypal_email, :phone, :rate, :assistant_type, :location_id, :proposal_id, :facebook, :instagram, :notes)
+      params.require(:assistant).permit(:name, :paypal_email, :phone, :rate, :assistant_type, :location_id, :proposal_id, :facebook, :instagram, :notes, :shoot_id)
     end
 
     def authorize
+      if current_user.role == 0
+        return true
+      end
+
       allow = false
       if current_user
-        if params[:proposal_id] || (params[:assistants] && params[:assistant][:proposal_id])
-          proposal = params[:proposal_id] != nil ?
-            Proposal.find(params[:proposal_id]) : Proposal.find(params[:assistant][:proposal_id])
-          if current_user == proposal.user || current_user.company == proposal.company
-            allow = true
-          end
-        end
-        if current_user.role == 0
-          allow = true
+        allow = self.try_authorize_proposal
+        if !allow
+          allow = self.try_authorize_shoot
         end
       end
       if !allow

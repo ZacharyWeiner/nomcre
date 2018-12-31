@@ -63,6 +63,10 @@
     <%= form.hidden_field :proposal_id, :value => @proposal.id %>
   <% end %>
 
+  <% if defined? shoot %>
+    <%= form.hidden_field :shoot_id, :value => shoot.id %>
+  <% end %>
+
   <div class="actions">
     <%= form.submit "Save", class: 'btn btn-primary' %>
   </div>
