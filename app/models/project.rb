@@ -23,6 +23,7 @@ class Project < ApplicationRecord
 
   #callbacks
   after_create :initalize_project
+  after_save :update_shoots
 
 
   def owners
@@ -168,6 +169,14 @@ class Project < ApplicationRecord
     #set price
   end
 
+  def update_shoots
+    self.shoots.each do |s|
+      if !s.user_saved == true
+        s.brief = self.brief
+        s.save
+      end
+    end
+  end
 
   def self.create_template_for_type package_type_id
     package = PackageType.find(package_type_id)

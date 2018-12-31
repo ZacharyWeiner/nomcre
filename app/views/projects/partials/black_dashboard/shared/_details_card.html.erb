@@ -137,7 +137,7 @@
             </div>
             <% if show_content %>
               <div style="margin: 6px;">
-                <span><%= simple_format(project.brief.first(150)) unless project.brief.nil? %>...</span>
+                <p><%= simple_format(project.brief.first(150)) unless project.brief.nil? %>...</p>
               </div>
             <% end %>
           </div>
