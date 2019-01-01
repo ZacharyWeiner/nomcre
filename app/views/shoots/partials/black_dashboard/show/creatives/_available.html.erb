@@ -1,7 +1,6 @@
 <!-- TODO: Make A Partial to show if deposit isnt paid -->
 <% @creatives = shoot.find_creatives.uniq{|c| c.user_id } %>
 <% if @creatives.count == 0 %>
-
   <% @creatives = User.where(user_type: 'creative').take(10) %>
   <% @creatives.each do |cr| %>
     <% unless cr.schedule_items.first == nil %>

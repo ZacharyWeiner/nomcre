@@ -47,15 +47,16 @@ class Shoot < ApplicationRecord
 
   #search
   def find_creatives
-
-    creatives =[]
+    #TODO: Change this to a tag based system so ranking and location based is irrelevant
+    #TODO: Update To Search for Children of a location also. If "China" people in Beijing should be returned also
+    creatives = Hash.new
     search_date = self.deadline
     search_location = self.location
     results  = ScheduleItem.where('location_id = ? and end_date > ? and  start_date < ?', search_location,  search_date, search_date)
     p "Shoot::FindCreatives -- THERE ARE : #{results.count} RESULTS"
 
     results.each do |si|
-      creatives << CreativeSearchResult.new(user_id: si.user.id, rank: 1, schedule_item_id: si.id)
+      creatives[si.user.id] =  CreativeSearchResult.new(user_id: si.user.id, rank: 1, schedule_item_id: si.id)
     end
     if !search_location.parent.nil?
       search_location = self.location.parent
@@ -63,7 +64,9 @@ class Shoot < ApplicationRecord
       results  = ScheduleItem.where('location_id = ? and end_date > ? and  start_date < ?', search_location,  search_date, search_date)
       p "Shoot::FindCreatives -- #{search_location.name} Has #{results.count} Results"
       results.each do |r|
-        creatives << CreativeSearchResult.new(user_id: si.user.id, rank: 2, schedule_item_id: si.id)
+        unless creatives[si.user.id].nil?
+          creatives << CreativeSearchResult.new(user_id: si.user.id, rank: 2, schedule_item_id: si.id)
+        end
       end
     end
     if !search_location.parent.nil?
@@ -72,10 +75,12 @@ class Shoot < ApplicationRecord
       results  = ScheduleItem.where('location_id = ? and end_date > ? and  start_date < ?', search_location,  search_date, search_date)
       p "Shoot::FindCreatives -- #{search_location.name} Has #{results.count} Results"
       results.each do |si|
-        creatives << creatives << CreativeSearchResult.new(user_id: si.user.id, rank: 3, schedule_item_id: si.id)
+         unless creatives[si.user.id].nil?
+          creatives << CreativeSearchResult.new(user_id: si.user.id, rank: 3, schedule_item_id: si.id)
+        end
       end
     end
-    return creatives.sort! { |a, b|  b.rank <=> a.rank }
+    return creatives.sort { |a, b|  b.value.rank <=> a.value.rank }
   end
 
   def assign_from_request request_id
@@ -102,6 +107,10 @@ class Shoot < ApplicationRecord
 
   def has_request_for_user user_id
     request = self.creative_requests.where(creative_id: user_id).first != nil
+  end
+
+  def request_for_user user_id
+    self.creative_requests.where(creative_id: user_id).first
   end
 
   #rules

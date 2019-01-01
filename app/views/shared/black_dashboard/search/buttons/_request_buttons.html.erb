@@ -2,16 +2,16 @@
 <% if shoot.creative == user  %>
   <%= render :partial => 'shared/black_dashboard/search/buttons/approved', :locals => {shoot: shoot, user: user }%>
 <% else %>
-  <% request = CreativeRequest.where(creative: user).where(shoot: shoot).where(accepted: false).first %>
-  <% if request.nil? %>
+  <% if !shoot.has_request_for_user(user.id) %>
     <!-- There is no accepted request yet -->
     <%= render :partial =>  'shared/black_dashboard/search/buttons/request', :locals => {shoot: shoot, user: user } %>
   <% else %>
       <% if shoot.project.deposit_is_paid == true  %>
-        <%= link_to "<i class='fa fa-check'> </i> Approve".html_safe, assign_shoot_path(request), class: 'btn btn-primary btn-block' %>
+        <% request_id = shoot.request_for_user(user.id).id %>
+        <%= link_to "<i class='fa fa-check'> </i> Assign".html_safe, shoot_assign_from_request_path(shoot, request_id), class: 'btn btn-success pull-right' %>
       <% else %>
-        <small class='text-danger'> Deposit Must Be Paid to Assign Creative </small>
-        <%= link_to 'Assign', '#', class: 'btn btn-success disabled pull-right' %>
+        <%= link_to "<i class='fa fa-check'> </i> Assign".html_safe, '#', class: 'btn btn-success disabled pull-right' %><br>
+        <small class='card-category text-danger'> Deposit Must Be Paid to Assign Creative </small>
       <% end %>
   <% end %>
 <% end %>

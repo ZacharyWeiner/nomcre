@@ -1,15 +1,1 @@
-<%if current_user.intro_complete != true%>
-<%= render 'dashboards/partials/company/company_profile_check' %>
-<%= render 'dashboards/partials/company/company_user_profile_check' %>
-<%= render 'dashboards/partials/company/company_proposal_check' %>
-<% else %>
-  <%= render 'dashboards/partials/black_dashboard/widget_row' %>
-  <div class='row'>
-  <div class='col-md-6'>
-    <%= render :partial => 'dashboards/partials/black_dashboard/shoots' %>
-  </div>
-  <div class='col-md-6'>
-    <%= render :partial => 'dashboards/partials/black_dashboard/tasks', :locals => {tasks: @tasks} %>
-  </div>
-</div>
-<% end %>
+<%= render :partial => 'dashboards/partials/default_dashboard', :locals => {tasks: @tasks} %>

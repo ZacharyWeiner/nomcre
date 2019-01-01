@@ -37,7 +37,9 @@
               </div>
             </td>
             <td>
-              <%= shoot.project.title %>
+
+              <%= link_to shoot.project.title, shoot_path(shoot), class: 'text-primary' %>
+
             </td>
             <td class='text-center'>
               <%= shoot.content_type %>
@@ -48,9 +50,8 @@
             <td class='text-center'>
               <%= shoot.tasks.where(completed: nil).count %>
             </td>
-            <td class="text-right">
-              <%= link_to "<i class='far fa-edit'> </i>".html_safe, edit_shoot_path(shoot), class: 'text-primary' %>
-
+            <td class="">
+              <%= link_to "<i class='far fa-edit'> </i>".html_safe, edit_shoot_path(shoot), class: 'text-warning', style: 'padding-left:6px;'%>
               <%= link_to "<i class='far fa-trash-alt'> </i>".html_safe, shoot_path(shoot), method: :destroy, class: 'text-danger', style: 'padding-left:6px;' %>
             </td>
           </tr>

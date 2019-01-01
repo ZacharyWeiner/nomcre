@@ -10,7 +10,7 @@ class CreativeRequest < ApplicationRecord
   def accept
     self.accepted = true
     if self.save!
-      ShootMailer.request_accepted(self).deliver_later!
+      #TODO - ShootMailer.request_accepted(self).deliver_later!
       Notification.create!(user_id: self.requested_by_id, notification_type: NotificationType.request_accepted, notification_object_id: shoot.id, read: false)
       return true
     else
@@ -39,9 +39,9 @@ class CreativeRequest < ApplicationRecord
     #Create Platfrom Notification
     Notification.create!(user: self.creative, notification_type: NotificationType.new_work_request, notification_object_id: shoot.id, read: false)
 
-    #Create Email Notification
+    #TODO - Create Email Notification
     p 'Sending Shoot Request Email Notificaiton'
-    ShootMailer.request_created(self).deliver_later!
+    #ShootMailer.request_created(self).deliver_later!
 
     #TODO: Send an SMS Message to the Creative with Link to Accept
   end

@@ -1,10 +1,11 @@
 class InvoicesController < ApplicationController
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  layout 'black_dashboard'
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.all
+    @invoices = Invoice.where(company: current_user.company)
   end
 
   # GET /invoices/1
@@ -59,6 +60,49 @@ class InvoicesController < ApplicationController
       format.html { redirect_to invoices_url, notice: 'Invoice was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def pay_with_stripe
+    @invoice = Invoice.find(params[:invoice_id])
+
+    customer = Stripe::Customer.create(
+      :email => params[:stripeEmail],
+      :source  => params[:stripeToken]
+    )
+
+    charge = Stripe::Charge.create(
+      :customer    => customer.id,
+      :amount      => (@invoice.amount * 100).to_i,
+      :description => 'Rails Stripe customer',
+      :currency    => 'usd'
+    )
+
+    payment_type = @invoice.invoice_type == InvoiceType.deposit ? PaymentType.deposit : PaymentType.balance
+    if charge['paid'] == true
+      @payment = Payment.create!(user: current_user,
+                                 project: @invoice.project,
+                                 payment_type: payment_type,
+                                 payment_method: PaymentMethod.stripe,
+                                 external_id: charge['id'],
+                                 amount: charge['amount'] / 100,
+                                 paid_on: Date.today)
+      if @payment
+        @project.try_complete
+      end
+      respond_to do |format|
+        #TODO: Create method for ProjectMailer or PaymentMailer
+        format.html { redirect_to @invoice.project, notice: "Project #{@invoice.invoice_type} Successfully Paid." }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to @invoice.project, notice: "There was an Error Paying the #{@invoice.invoice_type}" }
+        format.json { head :no_content }
+      end
+    end
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to @invoice.project
   end
 
   private

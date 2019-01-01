@@ -1,4 +1,5 @@
 class ProjectMailer < ApplicationMailer
+  #TODO: Create UI For this Mailer
   def deposit_received(project)
     @project = project
     @user = project.company.users.first

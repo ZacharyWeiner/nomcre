@@ -1,0 +1,22 @@
+  <div class="card card-chart">
+    <div class="card-header">
+      <h5 class="card-category">Some Relevant Chart</h5>
+      <h3 class="card-title text-primary"><i class="fas fa-check"></i> </h3>
+    </div>
+    <div class="card-body">
+      <div class="chart-area">
+        <canvas id="chartWithNumbersAndGrid"></canvas>
+      </div>
+    </div>
+  </div>
+  <%= render 'dashboards/partials/black_dashboard/widget_row' %>
+  <div class='row'>
+  <div class='col-md-6'>
+    <%= render :partial => 'dashboards/partials/black_dashboard/shoots' %>
+  </div>
+  <div class='col-md-6'>
+    <%= render :partial => 'dashboards/partials/black_dashboard/tasks', :locals => {tasks: tasks} %>
+  </div>
+</div>
+<!-- < end > -->
+<%= render 'dashboards/partials/black_dashboard/charts/company_charts_script' %>

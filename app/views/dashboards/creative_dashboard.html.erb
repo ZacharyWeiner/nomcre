@@ -1,25 +1,4 @@
-<style type="text/css">
-  .details{padding-left: 42px;}
-</style>
-
-<%if current_user.intro_complete != true%>
-<%= render 'dashboards/partials/creative/creative_profile_check' %>
-<br>
-<%= render 'dashboards/partials/creative/creative_itinerary_check' %>
-<br>
-<%= render 'dashboards/partials/creative/creative_collections_check' %>
-<% else %>
-<%= render 'dashboards/partials/creative/creative_dashboard_numeric_widgets' %>
-<div class='row'>
-  <div class='col-md-6'>
-    <%= render 'dashboards/partials/creative/creative_open_proposals_widget' %>
-    <%= render 'dashboards/partials/creative/creative_proposal_requests_widget' %>
-  </div>
-  <div class='col-md-6'>
-    <%= render 'dashboards/partials/creative/creative_dashboard_task_list' %>
-  </div>
-</div>
-<%end%>
+<%= render :partial => 'dashboards/partials/default_dashboard', :locals => {tasks: @tasks} %>
 
 
 

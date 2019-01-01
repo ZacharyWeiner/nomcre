@@ -1,4 +1,5 @@
 class ShootMailer < ApplicationMailer
+  #TODO: Create UI For this Mailer
   def request_accepted(creative_request)
     @creative_request = creative_request
     @creative = User.find(creative_request.requested)

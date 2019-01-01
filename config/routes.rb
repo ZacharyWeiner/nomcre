@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     get '/new_request/:user_id', to: 'shoots#create_creative_request', as: 'create_creative_request'
     get 'request_all', to:'shoots#request_all_available_creatives', as: 'request_all'
     get 'assign_creative/:creative_id', to: 'shoots#assign_creative', as: 'assign_creative'
-    get 'assign_from_request/:request_id', to: 'shoots#assign_from_request', as: 'assign_from_request'
+    get 'assign_from_request/:creative_request_id', to: 'shoots#assign_from_request', as: 'assign_from_request'
   end
   resources :creative_requests do
     get 'accept', to:'creative_requests#accept', as: 'accept'
@@ -96,7 +96,10 @@ Rails.application.routes.draw do
     get 'send_welcome_email', to:'companies#send_welcome_email'
 
   end
-  resources :invoices
+  resources :invoices do
+    post 'pay_with_stripe', to: 'invoices#pay_with_stripe', as: 'pay_with_stripe'
+    resources :payments
+  end
   #get 'invoices', to:'companies#invoices', as: 'invoices'
   devise_for :users
   get 'user/:id', to: "users#show", as: 'user_show'

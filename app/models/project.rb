@@ -75,7 +75,7 @@ class Project < ApplicationRecord
   end
 
   def try_complete
-    if self.all_tasks_complete && self.balance_is_paid
+    if self.all_tasks_complete && self.is_paid_in_full
       self.completed = true
       self.save
     end
@@ -119,7 +119,7 @@ class Project < ApplicationRecord
   end
 
   def balance_is_paid
-    !self.payments.where(payment_type: 'deposit').first.nil?
+    !self.payments.where(payment_type: 'balance').first.nil?
   end
 
   def balance_paid_on

@@ -88,7 +88,7 @@ class ShootsController < ApplicationController
   end
 
   def assign_from_request
-    request = CreativeRequest.find(params[:request_id])
+    request = CreativeRequest.find(params[:creative_request_id])
     assigned = request.shoot.assign_from_request(request.id)
     respond_to do |format|
       if assigned
