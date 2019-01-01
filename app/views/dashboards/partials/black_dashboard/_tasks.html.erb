@@ -6,9 +6,13 @@
   </div>
   <div class='card-body'>
     <% if current_user.user_type == UserType.company %>
-      <%= render :partial => 'dashboards/partials/black_dashboard/company/tasks', :locals => {tasks: tasks} %>
+      <% unless tasks.nil? %>
+        <%= render :partial => 'dashboards/partials/black_dashboard/company/tasks', :locals => {tasks: tasks} %>
+      <% end %>
     <% elsif current_user.user_type == UserType.creative %>
-      <%= render :partial => 'dashboards/partials/black_dashboard/creative/tasks', :locals => {tasks: tasks} %>
+      <% unless tasks.nil? %>
+        <%= render :partial => 'dashboards/partials/black_dashboard/creative/tasks', :locals => {tasks: tasks} %>
+      <% end %>
     <% else %>
       Admin
     <% end %>

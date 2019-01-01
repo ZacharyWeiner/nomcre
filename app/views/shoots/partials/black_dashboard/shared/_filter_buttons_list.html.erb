@@ -16,7 +16,7 @@
       <i class="tim-icons"><ion-icon name='ios-videocam'></ion-icon></i> Video
     </a>
   </li>
-  <% if current_user && (current_user.user_type == 'company' || current_user.role == 0) %>
+  <% if current_user && (current_user.user_type == UserType.company|| current_user.role == 0) %>
     <li class="nav-item">
       <a class="nav-link" data-toggle="tab" href="#saved">
         <i class="tim-icons"><ion-icon name='ios-hammer'></ion-icon></i> Saved

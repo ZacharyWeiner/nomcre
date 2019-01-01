@@ -1,11 +1,16 @@
 class ShootsController < ApplicationController
   before_action :set_shoot, only: [:show, :edit, :update, :destroy, :create_creative_request, :assign_from_request]
+  before_action :authenticate_user!
   layout 'black_dashboard'
 
   # GET /shoots
   # GET /shoots.json
   def index
-    @shoots = Shoot.all
+    if current_user.user_type == UserType.company
+      @shoots = Shoot.where(company: current_user.company)
+    elsif current_user.user_type == UserType.creative
+      @shoots = Shoot.where(creative: current_user)
+    end
   end
 
   # GET /shoots/1

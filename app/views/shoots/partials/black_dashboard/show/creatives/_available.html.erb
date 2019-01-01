@@ -1,16 +1,16 @@
 <!-- TODO: Make A Partial to show if deposit isnt paid -->
-<% @creatives = shoot.find_creatives.uniq{|c| c.user_id } %>
+<% @creatives = @shoot.find_creatives %>
 <% if @creatives.count == 0 %>
   <% @creatives = User.where(user_type: 'creative').take(10) %>
   <% @creatives.each do |cr| %>
     <% unless cr.schedule_items.first == nil %>
-    <% sr = ProposalSearchResult.new(user_id: cr.id, rank: 3, schedule_item_id: cr.schedule_items.first.id) %>
+    <% sr = CreativeSearchResult.new(user_id: cr.id, rank: 3, schedule_item_id: cr.schedule_items.first.id) %>
     <%= render :partial => 'shared/black_dashboard/user/creative', :locals => {shoot: shoot, :sr => sr  } %>
     <% end %>
   <% end %>
 <% else %>
   <%= link_to "Request All", shoot_request_all_path(@shoot), class: 'btn btn-success pull-right' %>
-  <% @shoot.find_creatives.uniq{|c| c.user_id }.each do |sr| %>
+  <% @shoot.find_creatives.each do |sr| %>
     <%= render :partial => 'shared/black_dashboard/user/creative', :locals => {shoot: shoot, :sr => sr  } %>
   <% end %>
 <% end %>

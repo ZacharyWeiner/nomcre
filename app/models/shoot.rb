@@ -80,7 +80,7 @@ class Shoot < ApplicationRecord
         end
       end
     end
-    return creatives.sort { |a, b|  b.value.rank <=> a.value.rank }
+    return creatives.sort_by { |a, b|  b <=> a }
   end
 
   def assign_from_request request_id

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :projects do
     get 'payment', to: 'projects#payment', as: 'payment'
     get 'wizard', to: 'projects#wizard', as: 'wizard'
+    resources :invoices
   end
 
   resources :documents

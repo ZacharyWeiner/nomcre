@@ -1,3 +1,4 @@
+<div class='col-md-12'>
 <div class="tab-content tab-space tab-subcategories">
   <div class="tab-pane active" id="all">
     <div class='row'>
@@ -11,7 +12,7 @@
   <div class="tab-pane" id="photo">
     <div class='row'>
       <% shoots.where(content_type: 'photo').each do |shoot| %>
-        <div class='col-md-4'>
+        <div class='col-md-4 '>
           <%= render :partial => 'shoots/partials/black_dashboard/shoot_details_card', :locals => {shoot: shoot, show_view_button: true, show_edit_button: true} %>
         </div>
       <% end %>
@@ -20,7 +21,7 @@
   <div class="tab-pane" id="video">
     <div class='row'>
      <% shoots.where(content_type: 'video').each do |shoot| %>
-        <div class='col-md-4'>
+        <div class='col-md-4 '>
           <%= render :partial => 'shoots/partials/black_dashboard/shoot_details_card', :locals => {shoot: shoot, show_view_button: true, show_edit_button: true} %>
         </div>
       <% end %>
@@ -30,11 +31,12 @@
     <div class="tab-pane" id="saved">
       <div class='row'>
         <% shoots.where(creative: nil).each do |shoot| %>
-        <div class='col-md-4'>
+        <div class='col-md-4 '>
           <%= render :partial => 'shoots/partials/black_dashboard/shoot_details_card', :locals => {shoot: shoot, show_view_button: true, show_edit_button: true} %>
         </div>
       <% end %>
       </div>
     </div>
   <% end %>
+</div>
 </div>

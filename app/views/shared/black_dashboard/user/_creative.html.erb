@@ -1,25 +1,32 @@
+<% if sr.is_a?(Array) %>
+<% creative = User.find(sr[0]) %>
+<% si = sr[1].schedule_item %>
+<% elsif sr.is_a?(CreativeSearchResult) %>
+<% creative = User.find(sr.user.id) %>
+<% si = sr.schedule_item %>
+<% end %>
 <div class="card" style="background: #f5f6fa">
   <div class="card-header">
     <h5 class="card-category">
-      <%= sr.schedule_item.location.name %>
-      <span class='pull-right'>Available Until:  <%= sr.schedule_item.end_date %></span>
+      <%= si.location.name %>
+      <span class='pull-right'>Available Until:  <%= si.end_date %></span>
     </h5>
     <hr>
     <h3 class="card-title">
-      <%= image_tag sr.user.user_profile.safe_profile_image_url, class: 'avatar' %>
-      <%= sr.user.name %>
+      <%= image_tag creative.user_profile.safe_profile_image_url, class: 'avatar' %>
+      <%= creative.name %>
       <span class=''>
-        <%= render :partial =>  'shared/black_dashboard/search/buttons/request_buttons', :locals => {shoot: shoot, :user => sr.user} %>
+        <%= render :partial =>  'shared/black_dashboard/search/buttons/request_buttons', :locals => {shoot: shoot, :user => creative} %>
       </span>
     </h3>
     <br>
     <div>
-      <%= render :partial => 'user_profiles/partials/black_dashboard/shared/skills', :locals => {:user_profile => sr.user.user_profile} %>
-      <%= render :partial => 'user_profiles/partials/black_dashboard/shared/equiptment', :locals => {:user_profile => sr.user.user_profile} %>
+      <%= render :partial => 'user_profiles/partials/black_dashboard/shared/skills', :locals => {:user_profile => creative.user_profile} %>
+      <%= render :partial => 'user_profiles/partials/black_dashboard/shared/equiptment', :locals => {:user_profile => creative.user_profile} %>
     </div>
   </div>
   <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
-    <% sr.user.collections.take(3).each do |collection| %>
+    <% creative.collections.take(3).each do |collection| %>
       <div class="card card-plain">
         <div class="card-header" id="heading<%= collection.id %>">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= collection.id%>" aria-expanded="fasle" aria-controls="collapse<%= collection.id %>">
@@ -45,7 +52,7 @@
     <% end %>
   </div>
 <hr>
-  <%= link_to "<ion-icon name='eye'></ion-icon> View Profile".html_safe, sr.user.user_profile, class: 'btn btn-link text-primary text-right' %>
+  <%= link_to "<ion-icon name='eye'></ion-icon> View Profile".html_safe, creative.user_profile, class: 'btn btn-link text-primary text-right' %>
 </div>
 
 

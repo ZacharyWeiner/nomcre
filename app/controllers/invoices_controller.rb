@@ -5,7 +5,11 @@ class InvoicesController < ApplicationController
   # GET /invoices
   # GET /invoices.json
   def index
-    @invoices = Invoice.where(company: current_user.company)
+    if params[:project_id]
+      @invoices = Invoice.where(project: params[:project_id])
+    else
+      @invoices = Invoice.where(company: current_user.company)
+    end
   end
 
   # GET /invoices/1
@@ -86,7 +90,7 @@ class InvoicesController < ApplicationController
                                  external_id: charge['id'],
                                  amount: charge['amount'] / 100,
                                  paid_on: Date.today)
-      if @payment
+      if !@payment.nil?
         @project.try_complete
       end
       respond_to do |format|

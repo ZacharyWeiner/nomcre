@@ -37,7 +37,7 @@
   <% end %>
   <% if current_user.user_type == 'company' %>
     <li class="nav-item">
-      <%= link_to "Payments", shoot.project, class: "nav-link nav-link-sub" %>
+      <%= link_to "Payments", project_invoices_path(shoot.project), class: "nav-link nav-link-sub" %>
     </li>
   <% end %>
 </ul>
