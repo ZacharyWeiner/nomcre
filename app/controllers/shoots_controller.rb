@@ -1,5 +1,5 @@
 class ShootsController < ApplicationController
-  before_action :set_shoot, only: [:show, :edit, :update, :destroy]
+  before_action :set_shoot, only: [:show, :edit, :update, :destroy, :create_creative_request, :assign_from_request]
   layout 'black_dashboard'
 
   # GET /shoots
@@ -11,6 +11,7 @@ class ShootsController < ApplicationController
   # GET /shoots/1
   # GET /shoots/1.json
   def show
+    Notification.check_notifications(current_user.id, NotificationType.new_work_request, object_id: @shoot.id)
   end
 
   # GET /shoots/new
@@ -64,10 +65,50 @@ class ShootsController < ApplicationController
     end
   end
 
+  def create_creative_request
+    creative = User.find(params[:user_id])
+    creative_request = CreativeRequest.create_for_shoot(creative_id: creative.id, shoot_id: @shoot.id)
+    respond_to do |format|
+      format.html { redirect_to shoot_path(@shoot, :active => 'available'), notice: "Request to #{creative.user_profile.display_name} was successfully sent." }
+      format.json { head :no_content }
+    end
+  end
+
+  def request_all_available_creatives
+    set_shoot
+    creatives_list = @shoot.find_creatives
+    creatives_list.each do |sr|
+      byebug
+      creative_request = CreativeRequest.create_for_shoot(creative_id: sr.user_id, shoot_id: @shoot.id)
+    end
+    respond_to do |format|
+      format.html { redirect_to shoot_path(@shoot, :active => 'available'), notice: "A Request has been sent to all available creatives" }
+      format.json { head :no_content }
+    end
+  end
+
+  def assign_from_request
+    request = CreativeRequest.find(params[:request_id])
+    assigned = request.shoot.assign_from_request(request.id)
+    respond_to do |format|
+      if assigned
+        format.html { redirect_to shoot_path(@shoot), notice: "#{request.creative.user_profile.display_name} has been assigned to #{request.shoot.project.title}" }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to shoot_path(@shoot), notice: "#{request.creative.user_profile.display_name} could not be assigned to #{request.shoot.project.title}" }
+        format.json { head :no_content }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_shoot
-      @shoot = Shoot.find(params[:id])
+      if params[:shoot_id]
+        @shoot = Shoot.find(params[:shoot_id])
+      else
+        @shoot = Shoot.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,10 +1,20 @@
 class CreativeRequestsController < ApplicationController
-  before_action :set_creative_request, only: [:show, :edit, :update, :destroy]
+  before_action :set_creative_request, only: [:show, :edit, :update, :destroy, :accept, :decline]
+  before_action :authenticate_user!
+  layout 'black_dashboard'
 
   # GET /creative_requests
   # GET /creative_requests.json
   def index
-    @creative_requests = CreativeRequest.all
+    #if the current user is a company, show all the creative requests for the company
+    if current_user.user_type == UserType.company
+      @creative_requests = CreativeRequest.where(company: current_user.company)
+    elsif
+      #if the current user is a  creative show all the requests for the user
+      @creative_requests = CreativeRequest.where(creative: current_user)
+    else
+      @creative_requests = CreativeRequest.all
+    end
   end
 
   # GET /creative_requests/1
@@ -61,10 +71,49 @@ class CreativeRequestsController < ApplicationController
     end
   end
 
+  def accept
+    @creative_request.accept
+    success = @creative_request.accept
+    phrase_for_notify = success == true ? 'successfully' : 'could not be'
+    respond_to do |format|
+      format.html { redirect_to creative_requests_path, notice: "Creative request was #{phrase_for_notify} Accepted." }
+      format.json { head :no_content }
+    end
+  end
+
+  def decline
+    @creative_request.decline
+    success = @creative_request.decline
+    phrase_for_notify = success == true ? 'successfully' : 'could not be'
+    respond_to do |format|
+      format.html { redirect_to creative_requests_path, notice: "Creative request was #{phrase_for_notify} declined." }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_creative_request
-      @creative_request = CreativeRequest.find(params[:id])
+      if params[:creative_request_id]
+        @creative_request = CreativeRequest.find(params[:creative_request_id])
+      else
+        @creative_request = CreativeRequest.find(params[:id])
+      end
+    end
+
+    def authorize
+      if current_user.user_type == UserType.company
+        if @creative_request.company != current_user.company
+          p "User #{current_user.email} is not Authorized to Accept or decline CreativeRequest #{@creative_request.id}"
+          redirect_to creative_requests_path
+        end
+      elsif current_user.user_type == UserType.creative
+        if @creative_request.creative != current_user
+          p "User #{current_user.email} is not Authorized to Accept or decline CreativeRequest #{@creative_request.id}"
+          redirect_to creative_requests_path
+        end
+      else
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

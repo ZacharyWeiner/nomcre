@@ -2,7 +2,7 @@
 <div class='row'>
   <div class='col-xs-12 col-sm-6 col-md-6'>
     <% is_accepted_style = creative_request.accepted ? 'disabled' : '' %>
-    <% link_to accept_creative_request_path(proposal), class: "btn btn-link btn-primary #{is_accepted_style}" do %>
+    <%= link_to creative_request_accept_path(creative_request), class: "btn btn-link btn-primary #{is_accepted_style}" do %>
       <span>
         <i class="tim-icon">
           <ion-icon name='checkmark' size='' style='font-size: 20px'></ion-icon>
@@ -13,7 +13,7 @@
     <% end %>
   </div>
   <div class='col-xs-6 col-sm-6 col-md-6'>
-    <%= link_to decline_creative_request_path(proposal), class: 'btn btn-link btn-primary' do %>
+    <%= link_to creative_request_decline_path(creative_request), class: 'btn btn-link btn-primary' do %>
       <span>
         <i class="tim-icon">
           <ion-icon name='close' size='' style='font-size: 20px'></ion-icon>

@@ -1,0 +1,21 @@
+
+<div class='card'>
+  <div class='card-header'>
+    <div class='card-title'>
+      Shoots
+    </div>
+  </div>
+  <div class='card-body'>
+    <!-- TODO: Figure Out A More Useful Solution %> -->
+    <% if current_user.user_type == UserType.company %>
+      <% shoots = current_user.company.shoots.reverse.take(10) %>
+    <% elsif current_user.user_type == UserType.creative %>
+      <% shoots = current_user.shoots.reverse.take(10) %>
+    <% else %>
+      Admin
+    <% end %>
+  </div>
+  <%= render :partial => 'shoots/partials/black_dashboard/shared/list', :locals => {shoots: shoots} %>
+</div>
+
+

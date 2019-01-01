@@ -1,0 +1,8 @@
+<% if current_user.user_type == UserType.company %>
+  <%= render :partial => 'dashboards/partials/black_dashboard/company/widget_row' %>
+<% elsif current_user.user_type == UserType.creative %>
+  <%= render :partial => 'dashboards/partials/black_dashboard/creative/widget_row' %>
+<% else %>
+  Admin
+<% end %>
+

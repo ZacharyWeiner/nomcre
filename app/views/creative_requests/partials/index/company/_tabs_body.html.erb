@@ -1,0 +1,25 @@
+<div class="tab-pane active" id="accepted">
+  <div class='row'>
+    <% accepted = @creative_requests.where(accepted: true) %>
+    <% if accepted.count == 0 %>
+      <div class="alert alert-info alert-with-icon" style='width:100%'>
+        <span data-notify="icon" class="tim-icons"><ion-icon name="alert"></ion-icon></span>
+        <span data-notify="message">You Don't Have Any Accepted Requests</span>
+      </div>
+    <% else %>
+      <%= render :partial => 'creative_requests/partials/index/company/table', :locals => {creative_requests: accepted} %>
+    <% end %>
+  </div>
+</div>
+<div class="tab-pane" id="pending">
+  <% pending = @creative_requests.where(accepted: nil) %>
+  <% if pending.count == 0 %>
+    <div class="alert alert-info alert-with-icon" style='width:100%'>
+      <span data-notify="icon" class="tim-icons"><ion-icon name="alert"></ion-icon></span>
+      <span data-notify="message">You Don't Have Any Pending Requests</span>
+    </div>
+  <% else %>
+    <%= render :partial => 'creative_requests/partials/index/company/table', :locals => {creative_requests: pending} %>
+  <% end %>
+</div>
+

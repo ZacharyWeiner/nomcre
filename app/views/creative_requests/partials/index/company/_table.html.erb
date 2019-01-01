@@ -1,0 +1,54 @@
+<div class="card">
+  <div class="card-body">
+    <div class="toolbar">
+      <!--        Here you can write extra buttons/actions for the toolbar              -->
+    </div>
+    <table id="datatable" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Project</th>
+          <th>Shoot</th>
+          <th>Location</th>
+          <th>Creative</th>
+          <th>Assign</th>
+          <th class="sorting_desc_disabled sorting_asc_disabled text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% creative_requests.each do |cr| %>
+        <tr>
+          <td><%= cr.shoot.project.title %></td>
+          <td><%= cr.shoot.content_type %></td>
+          <td><%= cr.shoot.location.name %></td>
+          <td><%= link_to cr.creative.user_profile.display_name, user_collection_path(cr.creative), target: '_blank' %></td>
+          <td>
+            <%= link_to "<i class='fas fa-check fa-2x'></i>".html_safe, shoot_assign_from_request_path(cr.shoot, cr), class: 'btn btn-success btn-link' %>
+          </td>
+          <td class="text-right">
+           <%= link_to shoot_path(cr.shoot), class: 'btn btn-link btn-primary'  do %>
+            <i class='far fa-eye'></i>
+           <% end %>
+           <%= link_to edit_shoot_path(cr.shoot), class: 'btn btn-link btn-warning'  do %>
+            <i class='far fa-edit'></i>
+           <% end %>
+           <%= link_to creative_request_path(cr.shoot), method: :destroy, class: 'btn btn-link btn-danger'  do %>
+            <i class='fas fa-trash'></i>
+           <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>Project</th>
+          <th>Shoot</th>
+          <th>Location</th>
+          <th>Creative</th>
+          <th>Assign</th>
+          <th class="disabled-sorting text-right">Actions</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <!-- end content-->
+</div>

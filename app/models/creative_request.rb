@@ -6,16 +6,43 @@ class CreativeRequest < ApplicationRecord
   belongs_to :requested_by, class_name: 'User', foreign_key: 'requested_by_id'
 
 
-  #helpers
-  def self.create_for_shoot shoot_id, creative_id
-    request = CreativeRequest.new
-    shoot = Shoot.find(shoot_id)
-    request.shoot_id = shoot.id
-    request.requested_by_id = shoot.company.users.first.id
-    request.company_id = shoot.company.id
-    request.creative_id = creative_id
-    request.save!
+  #instance methods
+  def accept
+    self.accepted = true
+    if self.save!
+      ShootMailer.request_accepted(self).deliver_later!
+      Notification.create!(user_id: self.requested_by_id, notification_type: NotificationType.request_accepted, notification_object_id: shoot.id, read: false)
+      return true
+    else
+      return false
+    end
   end
 
+  def decline
+    self.accepted = false
+    self.declined = true
+    if self.save!
+      return true
+    else
+      return false
+    end
+  end
 
+  #helpers
+  def self.create_for_shoot( shoot_id: 0, creative_id: 0)
+    shoot = Shoot.find(shoot_id)
+    request = CreativeRequest.create!(shoot_id: shoot.id, requested_by_id: shoot.company.users.first.id, company_id: shoot.company.id, creative_id: creative_id)
+    request.notify_requested_creative
+  end
+
+  def notify_requested_creative
+    #Create Platfrom Notification
+    Notification.create!(user: self.creative, notification_type: NotificationType.new_work_request, notification_object_id: shoot.id, read: false)
+
+    #Create Email Notification
+    p 'Sending Shoot Request Email Notificaiton'
+    ShootMailer.request_created(self).deliver_later!
+
+    #TODO: Send an SMS Message to the Creative with Link to Accept
+  end
 end

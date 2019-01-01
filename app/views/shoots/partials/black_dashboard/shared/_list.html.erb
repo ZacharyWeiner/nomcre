@@ -1,12 +1,9 @@
-<div class='col-md-12' style="padding-left:16px">
-  <%= render :partial => 'shared/black_dashboard/buttons/list_card_toggle' %>
-</div>
+
  <div class=" card card-body">
     <div class="table-responsive">
       <table class="table">
         <thead class="text-primary" class='text-center'>
           <tr>
-            <th></th>
             <th>
               Creative
             </th>
@@ -46,10 +43,10 @@
               <%= shoot.content_type %>
             </td>
             <td class="text-center">
-              <%= shoot.deadline.strftime('%A %m %d %Y') unless shoot.deadline.nil? %>
+              <%= shoot.project.deadline.strftime('%A %m %d %Y') unless shoot.project.deadline.nil? %>
             </td>
             <td class='text-center'>
-              <%= shoot.tasks.where.not(completed: true).count %>
+              <%= shoot.tasks.where(completed: nil).count %>
             </td>
             <td class="text-right">
               <%= link_to "<i class='far fa-edit'> </i>".html_safe, edit_shoot_path(shoot), class: 'text-primary' %>

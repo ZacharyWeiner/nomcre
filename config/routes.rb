@@ -7,8 +7,15 @@ Rails.application.routes.draw do
     resources :shot_list_items
     resources :creative_requests
     resources :disclosures
+    get '/new_request/:user_id', to: 'shoots#create_creative_request', as: 'create_creative_request'
+    get 'request_all', to:'shoots#request_all_available_creatives', as: 'request_all'
+    get 'assign_creative/:creative_id', to: 'shoots#assign_creative', as: 'assign_creative'
+    get 'assign_from_request/:request_id', to: 'shoots#assign_from_request', as: 'assign_from_request'
   end
-
+  resources :creative_requests do
+    get 'accept', to:'creative_requests#accept', as: 'accept'
+    get 'decline', to:'creative_requests#decline', as: 'decline'
+  end
   resources :payments
   resources :projects do
     get 'payment', to: 'projects#payment', as: 'payment'

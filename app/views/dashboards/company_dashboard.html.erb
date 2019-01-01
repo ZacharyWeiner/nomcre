@@ -3,14 +3,13 @@
 <%= render 'dashboards/partials/company/company_user_profile_check' %>
 <%= render 'dashboards/partials/company/company_proposal_check' %>
 <% else %>
-  <%= render 'dashboards/partials/company/company_dashboard_numeric_widgets' %>
+  <%= render 'dashboards/partials/black_dashboard/widget_row' %>
   <div class='row'>
   <div class='col-md-6'>
-    <%= render 'dashboards/partials/company/company_open_proposals_widget' %>
-    <%= render 'dashboards/partials/company/company_proposal_requests_widget' %>
+    <%= render :partial => 'dashboards/partials/black_dashboard/shoots' %>
   </div>
   <div class='col-md-6'>
-    <%= render 'dashboards/partials/company/company_dashboard_task_list' %>
+    <%= render :partial => 'dashboards/partials/black_dashboard/tasks', :locals => {tasks: @tasks} %>
   </div>
 </div>
 <% end %>

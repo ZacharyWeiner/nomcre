@@ -31,7 +31,7 @@
         </thead>
         <tbody>
           <% shot_list_items.each do |si| %>
-            <tr>
+            <tr >
               <td>
                 <div class="img-container">
                   <% if si.reference_image == nil %>
@@ -42,7 +42,7 @@
                 </div>
               </td>
               <td class="td-name">
-                <%= link_to si.item_type, shoot_path(si.shoot, :active => 'shotlist') %>
+                <%= link_to si.item_type, shot_list_item_path(si) %>
                 <br>
                 <small><%= si.aspect_ratio%></small>
               </td>

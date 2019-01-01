@@ -1,0 +1,6 @@
+<% if current_user.user_type == UserType.company %>
+  <%= render :partial => 'creative_requests/partials/index/company/tabs_body', :locals => {creative_requests: creative_requests} %>
+<% elsif current_user.user_type == UserType.creative %>
+  <%= render :partial => 'creative_requests/partials/index/creative/tabs_body', :locals => {creative_requests: creative_requests} %>
+<% elsif current_user.user_type == UserType.admin %>
+<% end %>

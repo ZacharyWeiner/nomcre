@@ -1,0 +1,16 @@
+<div class='card'>
+  <div class='card-header'>
+    <div class='card-category'></div>
+    <div class='card-title'><h2 class='text-primary'> My Requests </h2> </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-3 col-md-6">
+    <%= render :partial => 'creative_requests/partials/index/tab_menu', :locals => {creative_requests: creative_requests} %>
+  </div>
+  <div class="col-md-8">
+    <div class="tab-content">
+      <%= render :partial => 'creative_requests/partials/index/tab_body', :locals => {creative_requests: creative_requests} %>
+    </div>
+  </div>
+</div>
