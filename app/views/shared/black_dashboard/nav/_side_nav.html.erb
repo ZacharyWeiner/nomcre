@@ -23,7 +23,7 @@
       <% end %>
       <!-- End User Type Menu -->
       <!-- admin Menu -->
-      <% if current_user.role == 0 %>
+      <% if current_user.is_admin %>
         <%= render 'shared/black_dashboard/nav/admin_menu' %>
       <% elsif  current_user.role == 1 %>
       <%= render 'shared/adminlte/navigation/left_menu/leads_menu' %>

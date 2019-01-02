@@ -1,6 +1,7 @@
 class ChatroomsController < ApplicationController
   layout 'chatroom'
   def show
+    #TODO: Update to work with projects
     if current_user.user_type == 'creative'
       @chatrooms = Proposal.where(user: current_user).where(completed: false)
     else

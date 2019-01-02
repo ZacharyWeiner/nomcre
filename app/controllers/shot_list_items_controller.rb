@@ -1,5 +1,8 @@
 class ShotListItemsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_shot_list_item, only: [:show, :edit, :update, :destroy]
+  #TODO: Work out authoirzation for this controller
+  #before_action :authorize
   layout 'black_dashboard'
   # GET /shot_list_items
   # GET /shot_list_items.json

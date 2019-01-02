@@ -1,6 +1,7 @@
 class DiscountCodesController < ApplicationController
   before_action :set_discount_code, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
+  before_action :authorize
   # GET /discount_codes
   # GET /discount_codes.json
   def index
@@ -70,5 +71,11 @@ class DiscountCodesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def discount_code_params
       params.require(:discount_code).permit(:code, :discount_type, :expiration_date, :max_uses)
+    end
+
+    def authorize
+      unless current_user.role == 0
+        redirect_to root_path
+      end
     end
 end

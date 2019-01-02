@@ -1,4 +1,7 @@
-<% show_edit_button = current_user.company == shoots.first.project.company ? true : false %>
+<% show_edit_button = false %>
+<% if !shoots.first.nil? && !current_user.company.nil? && current_user.company == shoots.first.project.company %>
+  <% show_edit_button =  true %>
+<% end %>
 
 <%= render :partial => 'shoots/partials/black_dashboard/shared/filter_buttons_list' %>
 <br>

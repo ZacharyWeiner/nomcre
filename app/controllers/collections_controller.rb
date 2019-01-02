@@ -1,6 +1,7 @@
 class CollectionsController < ApplicationController
   before_action :set_collection, only: [:show, :edit, :update, :destroy, :make_featured, :remove_featured]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :authorize, only: [:edit, :update, :destroy]
   layout :set_layout
   # GET /collections
   # GET /collections.json
@@ -139,5 +140,16 @@ class CollectionsController < ApplicationController
       else
         return 'adminlte'
       end
+    end
+
+    def authorize
+      if current_user.role == 0
+        return
+      end
+      if @collection.user == current_user
+        return
+      end
+
+      redirect_to collections_path
     end
 end

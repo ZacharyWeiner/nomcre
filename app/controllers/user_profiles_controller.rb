@@ -1,6 +1,7 @@
 class UserProfilesController < ApplicationController
-  before_action :set_user_profile, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show]
+  before_action :set_user_profile, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, only: [:edit, :update, :destroy]
 
   #layout 'adminlte'
   layout 'black_dashboard'
@@ -89,5 +90,13 @@ class UserProfilesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_profile_params
       params.require(:user_profile).permit(:display_name, :description, :shot_preference, :content_type, :profile_photo, :header_image, :is_featured, :premium, :paypal_or_venmo, :account_name)
+    end
+
+    def authorize
+      byebug
+      if current_user.is_admin || current_user.user_profile == @user_profile
+        return
+      end
+      return redirect_to root_path
     end
 end

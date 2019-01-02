@@ -2,6 +2,7 @@ class CollectionItemsController < ApplicationController
   before_action :set_collection_item, only: [:show, :edit, :update, :destroy, :move_up, :move_down, :make_header]
   before_action :set_collection
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :authorize, only: [:edit, :update, :destroy]
   layout 'black_dashboard'
   # GET /collection_items
   # GET /collection_items.json
@@ -21,6 +22,12 @@ class CollectionItemsController < ApplicationController
 
   # GET /collection_items/new
   def new
+    if params[:collection_id]
+      @collection = Collection.find(params[:collection_id])
+      if @collection.user != current_user
+        return redirect_to collections_path
+      end
+    end
     @collection_item = CollectionItem.new
   end
 
@@ -157,5 +164,16 @@ class CollectionItemsController < ApplicationController
           UserActivity.create!(activity_type: UserActivityType.collection_video_added, user_id: current_user.id, object_id: @collection_item.id)
         end
       end
+    end
+
+    def authorize
+      if current_user.role == 0
+        return
+      end
+      if @collection_item.user == current_user
+        return
+      end
+
+      redirect_to collections_path
     end
 end

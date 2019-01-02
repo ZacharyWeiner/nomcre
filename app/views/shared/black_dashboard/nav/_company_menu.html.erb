@@ -54,9 +54,12 @@
       <p>Communiation</p>
     <% end %>
   <% else %>
-    <%= link_to chatroom_path(Proposal.where(company: current_user.company).last.chatroom) do %>
-      <i class="tim-icons "><ion-icon name="chatbubbles"></ion-icon></i>
-      <p>Communiation</p>
+    <% chatroom = Proposal.where(company: current_user.company).last.chatroom  unless Proposal.where(company: current_user.company).last.nil? %>
+    <% unless chatroom.nil? %>
+      <%= link_to chatroom_path(chatroom) do  %>
+        <i class="tim-icons "><ion-icon name="chatbubbles"></ion-icon></i>
+        <p>Communiation</p>
+      <% end %>
     <% end %>
   <% end %>
 </li>

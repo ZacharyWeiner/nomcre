@@ -1,4 +1,5 @@
 class LeadNotesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_lead_note, only: [:show, :edit, :update, :destroy]
   before_action :authorize
   layout 'black_dashboard'

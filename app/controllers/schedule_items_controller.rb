@@ -1,5 +1,7 @@
 class ScheduleItemsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_schedule_item, only: [:show, :edit, :update, :destroy]
+  before_action :authorize, except: [:index, :new, :show, :create]
   layout 'black_dashboard'
   # GET /schedule_items
   # GET /schedule_items.json
@@ -77,6 +79,12 @@ class ScheduleItemsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def schedule_item_params
       params.require(:schedule_item).permit(:start_date, :end_date, :location_id, :user_id, :notes)
+    end
+
+    def authorize
+      if !current_user.is_admin || @schedule_item.user != current_user
+        redirect_to root_path
+      end
     end
 
     def parse_date params_string

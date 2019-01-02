@@ -1,5 +1,6 @@
 class CompaniesController < ApplicationController
   before_action :set_company, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
   before_action :authorize, except: [:new, :create, :show, :send_welcome_email, :invoices]
   layout 'black_dashboard'
 
@@ -107,6 +108,9 @@ class CompaniesController < ApplicationController
     end
 
     def authorize
+      if current_user.role == 0
+        return
+      end
       unless  current_user && current_user.company == @company
         redirect_to root_path
       end

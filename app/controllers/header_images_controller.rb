@@ -1,5 +1,7 @@
 class HeaderImagesController < ApplicationController
   before_action :set_header_image, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :authorize
   layout 'black_dashboard'
 
   # GET /header_images
@@ -71,5 +73,11 @@ class HeaderImagesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def header_image_params
       params.require(:header_image).permit(:title, :file, :homepage, :showcase, :creators)
+    end
+
+    def authorize
+      unless current_user.is_admin
+        return redirect_to root_path
+      end
     end
 end

@@ -1,6 +1,8 @@
 class MessagesController < ApplicationController
+  before_action :authenticate_user!
+  #TODO: Test this implementation of authorize below
+  #before_action :authorize
   def create
-
     message = Message.new(message_params)
     message.user = current_user
     if message.save
@@ -23,5 +25,12 @@ class MessagesController < ApplicationController
 
     def message_params
       params.require(:message).permit(:content, :chatroom_id, :file)
+    end
+
+    def authorize
+      if Chatroom.find(message_params[chatroom_id:]).users.include?(current_user)
+        return
+      end
+      redirect_to chatrooms_path
     end
 end

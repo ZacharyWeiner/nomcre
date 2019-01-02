@@ -3,10 +3,30 @@
 <div class='col-md-12' style="padding-left:16px">
   <%= render :partial => 'shared/black_dashboard/buttons/list_card_toggle' %>
 </div>
-<% if params[:q] == 'list'%>
-  <%= render :partial => 'shoots/partials/black_dashboard/shared/list', :locals => {:shoots => shoots}%>
+<br>
 
-<% else %>
-  <%= render :partial => 'shoots/partials/black_dashboard/shared/cards', :locals => {:shoots => shoots}%>
-<% end %>
+  <% if shoots.count == 0 %>
+  <div class="col-md-12">
+    <div class="card">
+      <br><br>
+      <div class="alert alert-warning text-center">
+        <span>
+          <b> Uh Oh! </b> Create a Project to get started!</span>
+      </div>
+      <br><br>
+
+    </div>
+    <div class="text-center">
+      <%=link_to "Take Me There <i class='fas fa-arrow-right'></i>".html_safe, new_project_path, class: 'btn btn-success btn-lg' %>
+    </div>
+    </div>
+  <% else %>
+    <% if params[:q] == 'list'%>
+      <%= render :partial => 'shoots/partials/black_dashboard/shared/list', :locals => {:shoots => shoots}%>
+    <% else %>
+      <%= render :partial => 'shoots/partials/black_dashboard/shared/cards', :locals => {:shoots => shoots}%>
+    <% end %>
+  <% end %>
+
+
 

@@ -1,6 +1,7 @@
 class ShootsController < ApplicationController
-  before_action :set_shoot, only: [:show, :edit, :update, :destroy, :create_creative_request, :assign_from_request]
   before_action :authenticate_user!
+  before_action :set_shoot, only: [:show, :edit, :update, :destroy, :create_creative_request, :assign_from_request]
+  before_action :authorize, only: [:edit, :update, :destroy, :assign_from_request]
   layout 'black_dashboard'
 
   # GET /shoots
@@ -119,5 +120,11 @@ class ShootsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def shoot_params
       params.require(:shoot).permit(:creative_id, :project_id, :company_id, :location_id, :content_type, :brief, :time_of_day, :bts, :focus_points, :price, :background, :background_note, :shoot_style, :shoot_raw, :user_added_shot_count, :user_added_shot_count_max, :user_saved)
+    end
+
+    def authorize
+      if !current_user.is_admin || current_user.company.nil? || current_user.company != @shoot.company
+        redirect_to shoots_path
+      end
     end
 end

@@ -1,4 +1,5 @@
 class NotificationsController < ApplicationController
+  before_action :authenticate_user!
   layout 'black_dashboard'
   def index
     @notifications = Notification.where(user: current_user).order(:created_at).reverse

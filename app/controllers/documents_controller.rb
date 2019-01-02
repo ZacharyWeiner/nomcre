@@ -76,7 +76,10 @@ class DocumentsController < ApplicationController
     end
 
     def authorize
-      if current_user && current_user.is_admin
+      if @document.nil?
+        return redirect_to root_path
+      end
+      if (current_user && current_user.is_admin) || current_user == @document.user || current_user.company == @document.company
       else
       redirect_to root_path
       end

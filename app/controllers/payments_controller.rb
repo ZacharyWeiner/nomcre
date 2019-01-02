@@ -1,6 +1,6 @@
 class PaymentsController < ApplicationController
-  before_action :set_payment, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :set_payment, only: [:show, :edit, :update, :destroy]
   layout 'black_dashboard'
   # GET /payments
   # GET /payments.json
@@ -41,15 +41,16 @@ class PaymentsController < ApplicationController
   # PATCH/PUT /payments/1
   # PATCH/PUT /payments/1.json
   def update
-    respond_to do |format|
-      if @payment.update(payment_params)
-        format.html { redirect_to @payment, notice: 'Payment was successfully updated.' }
-        format.json { render :show, status: :ok, location: @payment }
-      else
-        format.html { render :edit }
-        format.json { render json: @payment.errors, status: :unprocessable_entity }
-      end
-    end
+    # respond_to do |format|
+    #   if @payment.update(payment_params)
+    #     format.html { redirect_to @payment, notice: 'Payment was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @payment }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @payment.errors, status: :unprocessable_entity }
+    #   end
+    # end
+    redirect_to @payment
   end
 
   # DELETE /payments/1
@@ -71,6 +72,6 @@ class PaymentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def payment_params
-      params.require(:payment).permit(:user_id, :project_id, :payment_type, :category, :payment_method, :external_id, :paid_on)
+      params.require(:payment).permit(:user_id, :project_id, :payment_type, :category, :payment_method, :external_id, :paid_on, :amount)
     end
 end

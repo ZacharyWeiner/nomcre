@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :edit, :update, :destroy, :wizard]
   before_action :authenticate_user!
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :wizard]
+  before_action :authorize, only: [:edit, :update, :delete]
   layout 'black_dashboard'
 
   # GET /projects
@@ -98,5 +99,16 @@ class ProjectsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
       params.require(:project).permit(:package_type_id, :company_id, :title, :brief, :deadline, :price, :deposit, :balance, :is_complete, :completed_on, :max_user_shot_list)
+    end
+
+    def authorize
+      if current_user.role == 0
+        return
+      end
+      if @project.company == current_user.company
+        return
+      end
+
+      return redirect_to projects_path
     end
 end

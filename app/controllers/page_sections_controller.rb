@@ -1,4 +1,5 @@
 class PageSectionsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_page_section, only: [:show, :edit, :update, :destroy]
   layout 'black_dashboard'
   # GET /page_sections

@@ -1,12 +1,13 @@
 class PackageTypesController < ApplicationController
-  before_action :set_package_type, only: [:show, :edit, :update, :destroy, :new_from_template]
   before_action :authenticate_user!, except: [:show, :index]
+  before_action :set_package_type, only: [:show, :edit, :update, :destroy, :new_from_template]
+  before_action :authorize, only: [:new, :edit, :create, :update, :destroy]
   layout :set_layout
 
   # GET /package_types
   # GET /package_types.json
   def index
-    if current_user && current_user.role = 0
+    if current_user && current_user.role == 0
       @package_types = PackageType.all
     else
       @package_types = PackageType.where(show_on_index: true)
@@ -89,8 +90,14 @@ class PackageTypesController < ApplicationController
       params.require(:package_type).permit(:title, :subtitle, :description, :description_image, :example_image, :example_video, :header_image_id, :show_in_menu, :menu_link_text, :minimum_images, :minimum_videos, :max_models, :base_price, :order, :example_video_description, :example_image_description, :example_video_thumbnail, :show_on_index, :call_to_action_text)
     end
 
+    def authorize
+      if !current_user.is_admin
+        redirect_to package_types_path
+      end
+    end
+
     def set_layout
-      if action_name == "show" || (action_name == 'index' && (!current_user || current_user.role == nil))
+      if action_name == "show" || (action_name == 'index' &&  current_user.role == nil)
         return 'khaki'
       else
         return 'black_dashboard'
