@@ -42,7 +42,9 @@ Rails.application.routes.draw do
   resources :shot_list_items
   mount ActionCable.server => '/cable'
   resources :assistants
-  resources :user_profiles
+  resources :user_profiles do
+    get 'wizard', to: 'user_profiles#wizard', as:'wizard'
+  end
   resources :contacts
   resources :schedule_items
   resources :collections do

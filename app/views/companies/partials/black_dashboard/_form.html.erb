@@ -93,12 +93,14 @@
                   </div>
                   <div class="fileinput-preview fileinput-exists thumbnail"></div>
                   <div>
-                    <span class="btn btn-primary btn-simple btn-file">
-                     <!--  <span class="fileinput-new">Select image</span> -->
-                      <%= f.file_field :logo %> Select Image
-                      <span class="fileinput-exists">Change</span>
-                      <input type="file" name="..." />
-                    </span>
+                     <label class="btn btn-simple btn-primary btn-lg">
+                      <i class='fas fa-camera fa-2x'></i>
+                      Upload new image
+                      <span style="display:none;">
+                        <%= f.file_field :logo, id: :company_logo, onchange: "validateImage(this);",
+                     data: { max_file_size: 15.megabytes }  %>
+                      </span>
+                    </label>
                     <a href="#pablo" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
                   </div>
                 </div>

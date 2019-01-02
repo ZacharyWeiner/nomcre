@@ -18,16 +18,19 @@
 
       </div> -->
       <div class='row'>
-        <div class='col-md-4'></div>
-        <div class='text-center col-md-4'>
-          <ion-icon name='videocam' size='large' ></ion-icon>
-          <br><br>
-          <%= f.file_field :video,  :class => "btn btn-primary btn-block", onchange: "validateVideo(this);",
+        <div class='col-md-3'></div>
+        <div class='text-center col-md-6'>
+         <label class="btn btn-simple btn-primary btn-lg">
+            <i class='fas fa-video fa-2x'></i><br>
+            Select A Video To Add
+            <span style="display:none;">
+           <%= f.file_field :video,  :class => "btn btn-primary btn-block", onchange: "validateVideo(this);",
               data: { max_file_size: 50.megabytes }
               %>
-              <%= f.submit "Upload Video",  id: 'uploadVideoBtn', :class => 'btn btn-success btn-block' %>
+          </label>
+          <%= f.submit "Upload Video",  id: 'uploadVideoBtn', :class => 'btn btn-success btn-block' %>
         </div>
-        <div class='col-md-4'></div>
+        <div class='col-md-3'></div>
       </div>
       <br>
 

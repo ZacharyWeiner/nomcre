@@ -5,7 +5,7 @@ class CollectionsController < ApplicationController
   layout :set_layout
   # GET /collections
   # GET /collections.json
-  layout 'khaki'
+  #layout 'khaki'
   def index
     @collection_ids = []
     #if we are showing a specific user
@@ -23,6 +23,9 @@ class CollectionsController < ApplicationController
         #if the current user is a creative show their stuff
         if current_user.user_type == 'creative'
           @collections = Collection.where(user: current_user).page params[:page]
+          if @collections.count == 0
+            return redirect_to new_collection_path
+          end
           return
         else
           @response_collections = Collection.all
@@ -70,7 +73,7 @@ class CollectionsController < ApplicationController
 
   # GET /collections/1/edit
   def edit
-    render :layout => 'adminlte'
+    render :layout => 'black_dashboard'
   end
 
   # POST /collections
@@ -138,7 +141,7 @@ class CollectionsController < ApplicationController
       if action_name == "show" || action_name == 'index'
         return 'khaki'
       else
-        return 'adminlte'
+        return 'black_dashboard'
       end
     end
 

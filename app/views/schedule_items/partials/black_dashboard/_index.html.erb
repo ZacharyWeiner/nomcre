@@ -1,10 +1,13 @@
 
 <%= link_to "<i class='fa fa-calendar'></i> Add Travel Plan".html_safe, new_schedule_item_path, class: 'btn btn-primary float-right' %>
 <% if schedule_items.count == 0 %>
-  <div class="alert alert-warning alert-dismissible">
-    <h4><i class="icon fa fa-warning"></i> Wo0ps!</h4>
-    You Havent Added Any Travel Plans Yet!
-    </div>
+  <div class="alert alert-warning alert-dismissible text-center">
+    <span><i class="fas fa-exclamation-circle"></i>
+    You Havent Added Any Travel Plans Yet!</span>
+  </div>
+  <br>
+  <br>
+  <%= link_to "Lets Get Started <i class='fas fa-arrow-right'></i>".html_safe, new_schedule_item_path, class: 'btn btn-lg btn-success btn-block' %>
 <% else %>
 <div class="card card-timeline card-plain">
   <div class="card-body">

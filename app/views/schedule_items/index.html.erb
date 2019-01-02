@@ -1,1 +1,14 @@
-<%= render :partial => 'schedule_items/partials/black_dashboard/index', :locals => {:schedule_items => @schedule_items} %>
+<div class="card">
+  <div class="card-header">
+    <div class="card-title">
+      <h2 class='title text-primary'> Your Schedule</h2>
+      <h5 class=''> Adding Your Travel Plans Lets Us Help you Book Work Where You Will Be</h5>
+    </div>
+  </div>
+  <hr>
+  <div class="card-body">
+    <%= render :partial => 'schedule_items/partials/black_dashboard/index', :locals => {:schedule_items => @schedule_items} %>
+  </div>
+  <div class="card-footer"></div>
+</div>
+

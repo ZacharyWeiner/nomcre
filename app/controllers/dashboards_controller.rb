@@ -12,8 +12,17 @@ class DashboardsController < ApplicationController
   end
 
   def creative_dashboard
-    current_user.update_intro_complete
-    @complete = current_user.intro_complete
+    if !current_user.check_profile_complete
+      return redirect_to user_profile_wizard_path(current_user.user_profile)
+    end
+
+    if !current_user.check_collection_added
+      return redirect_to new_collection_path
+    end
+
+    if !current_user.schedule_complete
+      return redirect_to new_schedule_item_path
+    end
   end
 
   def accounting_dashboard

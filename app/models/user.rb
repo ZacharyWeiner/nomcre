@@ -88,6 +88,18 @@ def reset_user_info
     return admin
   end
 
+  def check_profile_complete
+    (self.user_profile.display_name.nil? == false) && (self.user_profile.display_name != "") && (self.user_profile.profile_photo.file.nil? == false) && (self.user_profile.shot_preference.nil? == false)
+  end
+
+  def check_schedule_added
+    self.schedule_items.count > 0
+  end
+
+  def check_collection_added
+    collections_complete = (self.collections.count > 0) && (self.collections.first.collection_items.count > 0)
+  end
+
   private
   def check_company_intro_complete
     if self.intro_complete
@@ -115,6 +127,7 @@ def reset_user_info
       self.save
     end
   end
+
 
 
   #class_methods

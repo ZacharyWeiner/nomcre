@@ -93,6 +93,8 @@
             </div>
             <% session[:user_type] %>
             <%if request.query_parameters[:user_type]%>
+              XXXXX
+              <%= f.hidden_field :user_type, :value => equest.query_parameters[:user_type] %>
               <% session[:user_type] = request.query_parameters[:user_type] %>
             <% end %>
             <div class="form-check text-left">

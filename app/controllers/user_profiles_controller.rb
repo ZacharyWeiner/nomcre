@@ -1,6 +1,6 @@
 class UserProfilesController < ApplicationController
   before_action :authenticate_user!, except: [:show]
-  before_action :set_user_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_user_profile, only: [:show, :edit, :update, :destroy, :wizard]
   before_action :authorize, only: [:edit, :update, :destroy]
 
   #layout 'adminlte'
@@ -62,13 +62,21 @@ class UserProfilesController < ApplicationController
       end
       if @user_profile.update(user_profile_params)
         activity = UserActivity.create!(activity_type: UserActivityType.updated_profile, user_id: current_user.id, object_id: current_user.id)
-        format.html { redirect_to @user_profile, notice: 'User profile was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user_profile }
+        if params[:redirect]
+          format.html { redirect_to new_collection_path, notice: 'User profile was successfully updated.' }
+          format.json { render :show, status: :ok, location: @user_profile }
+        else
+          format.html { redirect_to @user_profile, notice: 'User profile was successfully updated.' }
+          format.json { render :show, status: :ok, location: @user_profile }
+        end
       else
         format.html { render :edit }
         format.json { render json: @user_profile.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def wizard
   end
 
   # DELETE /user_profiles/1
@@ -84,7 +92,11 @@ class UserProfilesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user_profile
-      @user_profile = UserProfile.find(params[:id])
+      if params[:user_profile_id]
+        @user_profile = UserProfile.find(params[:user_profile_id])
+      else
+        @user_profile = UserProfile.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -93,7 +105,6 @@ class UserProfilesController < ApplicationController
     end
 
     def authorize
-      byebug
       if current_user.is_admin || current_user.user_profile == @user_profile
         return
       end

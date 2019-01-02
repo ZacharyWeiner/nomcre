@@ -45,6 +45,8 @@
   }
 </style>
 
+
+<div class="card">
 <div class='row'>
   <div class='col-md-1'></div>
   <div class='col-md-10'>
@@ -63,6 +65,7 @@
   </div>
   <div class='col-md-1'></div>
 </div>
+</div>
 
 
 
@@ -71,8 +74,7 @@
 
 
 
-
-
+<div class="card">
 
 <div class='row'>
 <div class='col-md-1'></div>
@@ -80,8 +82,8 @@
 <div class="box ">
   <div class="box-header ui-sortable-handle" style="cursor: move;">
     <i class="fa fa-gallery"></i>
-    <h3 class="box-title"> <%= @collection.title %></h3>
-     <br><br>
+    <h3 class="box-title"> Name: <%= @collection.title %></h3>
+     <br><hr>
     <div class='row'>
       <% collection_item = CollectionItem.new %>
       <div class='col-md-6 col-sm-6 col-xs-6'>
@@ -144,4 +146,4 @@
 <div class='col-md-1'></div>
 </div>
 
-
+</div>
