@@ -47,40 +47,69 @@ class Shoot < ApplicationRecord
 
   #search
   def find_creatives
-    #TODO: Change this to a tag based system so ranking and location based is irrelevant
-    #TODO: Update To Search for Children of a location also. If "China" people in Beijing should be returned also
-    creatives = Hash.new
-    search_date = self.deadline
-    search_location = self.location
-    results  = ScheduleItem.where('location_id = ? and end_date > ? and  start_date < ?', search_location,  search_date, search_date)
-    p "Shoot::FindCreatives -- THERE ARE : #{results.count} RESULTS"
+    family_tree = [self.location.id]
+    children = []
+    siblings = []
+    newphews = []
+    grand_children = []
 
-    results.each do |si|
-      creatives[si.user.id] =  CreativeSearchResult.new(user_id: si.user.id, rank: 1, schedule_item_id: si.id)
+    unless self.location.parent.nil?
+      family_tree << self.location.parent_id
+
+      #TODO: Figure out how to rank parent
+      siblings << self.location.parent_id
     end
-    if !search_location.parent.nil?
-      search_location = self.location.parent
-      p "Shoot::FindCreatives -- This Location Has A Parent"
-      results  = ScheduleItem.where('location_id = ? and end_date > ? and  start_date < ?', search_location,  search_date, search_date)
-      p "Shoot::FindCreatives -- #{search_location.name} Has #{results.count} Results"
-      results.each do |r|
-        unless creatives[si.user.id].nil?
-          creatives << CreativeSearchResult.new(user_id: si.user.id, rank: 2, schedule_item_id: si.id)
+    if !self.location.parent.nil?
+      self.location.parent.children.map { |e|
+        family_tree << e.id
+        siblings << e.id
+      }
+      self.location.parent.children.each do |sibling|
+        sibling.children.map { |e|
+          family_tree << e.id
+          newphews << e.id
+        }
+      end
+    end
+    self.location.children.map { |e|
+      family_tree << e.id
+      children << e.id
+    }
+    self.location.children.each do |child|
+      child.children.map { |e|
+        family_tree << e.id
+        grand_children << e.id
+      }
+    end
+    p family_tree
+
+    creatives = User.joins(:schedule_items).where(schedule_items: { location_id: family_tree, start_date: (Date.today - 2.years)..self.deadline, end_date: (Date.today)..self.deadline + 1.year  }).uniq
+    creatives_ranked = []
+    creatives.each do |c|
+      #if the location is a match rank 1
+      item = c.schedule_items.where(schedule_items: { location_id: self.location_id, start_date: (Date.today - 2.years)..self.deadline, end_date: (Date.today)..self.deadline + 1.year  }).first
+      if !item.nil?
+        creatives_ranked << CreativeSearchResult.new(user_id: c.id, rank:1, schedule_item_id: item.id)
+      else
+        #if the location is a child rank of  2
+        item = c.schedule_items.where(schedule_items: { location_id: children, start_date: (Date.today - 2.years)..self.deadline, end_date: (Date.today)..self.deadline + 1.year  }).first
+        if !item.nil?
+          creatives_ranked << CreativeSearchResult.new(user_id: c.id, rank:2, schedule_item_id: item.id)
+        else
+          #if the location is a sibling || parent of rank 3
+          item = c.schedule_items.where(schedule_items: { location_id: siblings, start_date: (Date.today - 2.years)..self.deadline, end_date: (Date.today)..self.deadline + 1.year  }).first
+          if !item.nil?
+            creatives_ranked << CreativeSearchResult.new(user_id: c.id, rank:3, schedule_item_id: item.id)
+          else
+            item = c.schedule_items.where(schedule_items: { location_id: newphews, start_date: (Date.today - 2.years)..self.deadline, end_date: (Date.today)..self.deadline + 1.year  }).first
+            if !item.nil?
+              creatives_ranked << CreativeSearchResult.new(user_id: c.id, rank:4, schedule_item_id: item.id)
+            end
+          end
         end
       end
     end
-    if !search_location.parent.nil?
-      search_location = self.location.parent
-      p "Shoot::FindCreatives -- This Location Has A Parent"
-      results  = ScheduleItem.where('location_id = ? and end_date > ? and  start_date < ?', search_location,  search_date, search_date)
-      p "Shoot::FindCreatives -- #{search_location.name} Has #{results.count} Results"
-      results.each do |si|
-         unless creatives[si.user.id].nil?
-          creatives << CreativeSearchResult.new(user_id: si.user.id, rank: 3, schedule_item_id: si.id)
-        end
-      end
-    end
-    return creatives.sort_by { |a, b|  b <=> a }
+    creatives_ranked.sort_by{ |obj| obj.rank }
   end
 
   def assign_from_request request_id
@@ -156,9 +185,7 @@ class Shoot < ApplicationRecord
       shoot.user_added_shot_count_max = shoot_template.user_added_shot_count_max
       shoot.deadline = project.deadline - 5.days
       shoot.save!
-      p 'saved new shoot'
       ShotListItem.create_all_from_shoot_template shoot_template.id, shoot.id
-      #TODO: Add Shot List Items From Template Shoot to Active Shoot
     end
   end
 end
