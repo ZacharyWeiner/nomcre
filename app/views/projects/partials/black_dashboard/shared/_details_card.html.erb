@@ -93,7 +93,7 @@
                     Next Step: <br>
                     <span class=''>
                       <% proposal.next_step(proposal.status) %>
-                      TODO: Create Next Step For Project
+                      <!-- #TODO: Create Next Step For Project -->
                     </span>
                   <h5>
                 <% end %>
@@ -101,8 +101,8 @@
               </div>
               <p></p>
               <div class="card-description">
-                TODO: Crete a Project Progress Bar <br>
-               <!--  < render :partial => 'proposals/partials/black_dashboard/index/progress', :locals => {:proposal => proposal} > -->
+              <br>
+                <%= render :partial => 'projects/partials/black_dashboard/shared/progress', :locals => {:project => project} %>
 
                  <% project.locations.each do |location| %>
                   <span>

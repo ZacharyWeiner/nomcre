@@ -1,0 +1,16 @@
+<% if project.tasks.count == 0 %>
+  <% percent_complete =0 %>
+<% else %>
+  <% task_count = project.tasks.count.to_f %>
+  <% completed_tasks = project.tasks.where(completed: true).count %>
+  <% percent_complete = ((completed_tasks / task_count) * 100).to_i%>
+<% end %>
+<div class="progress-container progress-primary">
+    <span class="progress-badge">Progress</span>
+    <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%= percent_complete %>%;">
+            <span class="progress-value"><%= percent_complete %>%</span>
+        </div>
+    </div>
+</div>
+

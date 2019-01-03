@@ -8,13 +8,13 @@ class ProjectsController < ApplicationController
   # GET /projects.json
   def index
     if !current_user.company.nil? && params[:active]
-      @projects = current_user.company.projects.where(is_complete: true).where(is_template: nil)
+      @projects = current_user.company.projects.where(is_complete: true).where(is_template: nil).uniq
     elsif !current_user.company.nil?
-      @projects = current_user.company.projects.where(is_template: false).where(is_complete: nil)
+      @projects = current_user.company.projects.where(is_template: false).where(is_complete: nil).uniq
     elsif params[:active]
       @projects = current_user.projects.where(is_complete: true)
     else
-      @projects = current_user.projects
+      @projects = current_user.projects.uniq
     end
     if @projects.count == 0
       respond_to do |format|
