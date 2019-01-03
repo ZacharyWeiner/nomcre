@@ -183,6 +183,7 @@ class Project < ApplicationRecord
     self.shoots.each do |s|
       if !s.user_saved == true
         s.brief = self.brief
+        s.deadline = 5.business_days.before(self.deadline)
         s.save
       end
     end

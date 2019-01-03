@@ -46,6 +46,7 @@ gem 'sitemap_generator'
 gem 'fog-aws'
 gem "react_on_rails", "11.1.8" # Update to the current version
 gem "webpacker", "~> 3" # Newer versions might be supported
+gem  "business_time"
 
 
 group :development, :test do

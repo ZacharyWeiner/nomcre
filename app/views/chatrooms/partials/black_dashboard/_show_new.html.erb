@@ -235,20 +235,20 @@
         <div class="table-full-width table-responsive">
           <table class="table">
             <tbody>
-              <% @chatrooms.each do |chat| %>
+              <% @menu_rooms.each do |chat| %>
                 <tr>
                   <td>
                     <div class="form-check" style='min-width: 40px'>
-                      <% if current_user.user_type == 'creative' %>
-                        <%= image_tag chat.proposal.company.logo, class: 'avatar' %>
+                      <% if current_user.user_type == UserType.creative %>
+                        <%= image_tag chat.shoot.company.logo, class: 'avatar' unless chat.shoot.nil? %>
                       <% else %>
-                        <%= image_tag chat.proposal.user.user_profile.safe_profile_image_url, class: 'avatar' %>
+                        <%= image_tag chat.shoot.creative.user_profile.safe_profile_image_url, class: 'avatar' %>
                       <% end %>
                     </div>
                   </td>
                   <td>
                     <%= link_to chatroom_path(chat) do %>
-                    <%= chat.proposal.title %><br>
+                    <%= chat.shoot.project.title unless chat.shoot.nil?%><br>
                     <p class="default"><%= chat.messages.last.content %></p>
                     <% end %>
                   </td>
@@ -267,7 +267,7 @@
               <div class="d-flex bd-highlight">
                 <div class="img_cont">
                   <!-- <img src="https://devilsworkshop.org/files/2013/01/enlarged-facebook-profile-picture.jpg" class="rounded-circle user_img"> -->
-                  <% if current_user.user_type=='creative'%>
+                  <% if current_user.user_type== UserType.creative %>
                     <%if  @chatroom.users.where.not(id:  current_user.id).first != nil %>
                     <%= image_tag @chatroom.users.where.not(id:  current_user.id).first.user_profile.safe_profile_image_url, class: 'rounded-circle avatar' %>
                     <% else %>
@@ -282,8 +282,8 @@
                   <% end %>
                 </div>
                 <div >
-                  <h4 class="title">Chat With <%= @chatroom.proposal.company.name %></h4>
-                  <p clas='text-muted'> <%= @chatroom.proposal.title %></p>
+                  <h4 class="title">Chat With <%= @chatroom.shoot.company.name unless @chatroom.shoot.nil? %></h4>
+                  <p clas='text-muted'> <%= @chatroom.shoot.project.title unless @chatroom.shoot.nil? %></p>
                 </div>
 
                 <!-- <div class="video_cam">

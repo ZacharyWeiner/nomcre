@@ -1,21 +1,19 @@
 class ChatroomsController < ApplicationController
   layout 'chatroom'
   def show
-    #TODO: Update to work with projects
-    if current_user.user_type == 'creative'
-      @chatrooms = Proposal.where(user: current_user).where(completed: false)
-    else
-      proposals = Proposal.where({company_id: current_user.company.id, accepted: true, completed: nil})
-      @chatrooms = proposals.map{|p| p.chatroom}
-
+    #get other chatrooms for menu
+    @menu_rooms = nil
+    if current_user.user_type == UserType.creative
+      @menu_rooms = current_user.chatrooms
+    elsif current_user.user_type == UserType.company
+      @menu_rooms = current_user.company.shoots.where('deadline > ?', Date.today - 30.days).where.not(creative: nil)
     end
+
+    #Set Up This Chatroom
     @chatroom = Chatroom.find(params[:id])
     @message = Message.new
-    if current_user.user_type == "creative"
-      @proposals = current_user.proposals.where('deadline > ?', Date.today - 14.days )
-    else
-      @proposals = current_user.company.proposals.where('deadline > ?', Date.today - 14.days )
-    end
+
+    #clear notifications for room
     notifications = Notification.where(user: current_user, notification_type: "New Message", notification_object_id: params[:id], read:false)
     notifications.each do |note|
       note.read = true
@@ -23,3 +21,4 @@ class ChatroomsController < ApplicationController
     end
   end
 end
+

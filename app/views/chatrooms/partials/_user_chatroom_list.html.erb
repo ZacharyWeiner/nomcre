@@ -2,20 +2,18 @@
 <div class="people-list" id="people-list" style='overflow-y: scroll;'>
   <ul class="list" style="list-style: none;">
     <li>
-            <div class='col-md-2'>
-            <%= link_to proposals_path, class: 'btn btn-primary', style:"color: white" do %>
-              <i class='fa fa-arrow-left'></i> Back
-            <% end %>
-            <hr>
-          </li>
-
-    <% if @proposals.count > 0 %>
-    <% @proposals.each do |proposal| %>
+      <div class='col-md-2'>
+      <%= link_to projects_path, class: 'btn btn-primary', style:"color: white" do %>
+        <i class='fa fa-arrow-left'></i> Back
+      <% end %>
+      <hr>
+    </li>
+    <% if @menu_rooms.count > 0 %>
+    <% @menu_rooms.each do |chatroom| %>
       <li class="clearfix">
-        <% puts proposal.id %>
-        <%= image_tag proposal.chatroom.messages.last.user.profile_image unless proposal.chatroom.messages.last.nil? %>
+        <%= image_tag chatroom.messages.last.user.profile_image unless chatroom.messages.last.nil? %>
         <div class="about">
-          <div class="name"><%= link_to proposal.title, chatroom_path(proposal.chatroom), style: 'color:white; text-decoration: none;' %></div>
+          <div class="name"><%= link_to chatroom.shoot.project.title, chatroom_path(chatroom), style: 'color:white; text-decoration: none;' %></div>
           <div class="status">
           </div>
         </div>

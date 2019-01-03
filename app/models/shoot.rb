@@ -91,15 +91,23 @@ class Shoot < ApplicationRecord
       if self.save!
         assigned_request.approved = true
         assigned_request.save!
+        self.assign_chatroom creative
         self.creative_requests.where.not(creative_id: creative.id).each do |cr|
           cr.approved = false
           cr.save!
         end
+
         return true
       else
         return false
       end
     end
+  end
+
+  def assign_chatroom creative
+    chatroom = Chatroom.create!(topic: self.project.title + "-" + self.content_type, shoot: self)
+    message = chatroom.messages.create!(content: "#{chatroom.shoot.company.name} Joined The Chat", user: chatroom.shoot.company.users.first)
+    message = chatroom.messages.create!(content: "#{creative.user_profile.display_name} Joined The Chat", user: creative)
   end
 
   def creatives_in_location
@@ -146,6 +154,7 @@ class Shoot < ApplicationRecord
       shoot.price = shoot_template.price
       shoot.shoot_style = shoot_template.shoot_style
       shoot.user_added_shot_count_max = shoot_template.user_added_shot_count_max
+      shoot.deadline = project.deadline - 5.days
       shoot.save!
       p 'saved new shoot'
       ShotListItem.create_all_from_shoot_template shoot_template.id, shoot.id

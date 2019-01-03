@@ -63,6 +63,9 @@ GEM
     bindex (0.5.0)
     bootstrap-toggle-rails (2.2.1.0)
     builder (3.2.3)
+    business_time (0.9.3)
+      activesupport (>= 3.2.0)
+      tzinfo
     byebug (10.0.2)
     capybara (2.18.0)
       addressable
@@ -160,6 +163,7 @@ GEM
       activerecord
       kaminari-core (= 1.1.1)
     kaminari-core (1.1.1)
+    libv8 (6.7.288.46.1)
     libv8 (6.7.288.46.1-x86_64-darwin-15)
     listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
@@ -319,6 +323,7 @@ PLATFORMS
 DEPENDENCIES
   auto_html (~> 1.6.4)
   bootstrap-toggle-rails
+  business_time
   byebug
   capybara (~> 2.13)
   carrierwave (~> 1.0)
