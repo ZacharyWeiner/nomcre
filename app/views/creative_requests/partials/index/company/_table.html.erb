@@ -1,4 +1,11 @@
 <div class="card">
+  <div class='card-header'>
+  <div class='card-title'>
+      <b class='text-danger'>
+        <i class='fas fa-exclamation-circle' ></i> A Project Deposit Must Be Paid Before You Can Assign A Creative To A Shoot
+      </b>
+   </div>
+  </div>
   <div class="card-body">
     <div class="toolbar">
       <!--        Here you can write extra buttons/actions for the toolbar              -->
@@ -22,7 +29,11 @@
           <td><%= cr.shoot.location.name %></td>
           <td><%= link_to cr.creative.user_profile.display_name, user_collection_path(cr.creative), target: '_blank' %></td>
           <td>
-            <%= link_to "<i class='fas fa-check fa-2x'></i>".html_safe, shoot_assign_from_request_path(cr.shoot, cr), class: 'btn btn-success btn-link' %>
+            <% disabled = cr.shoot.can_assign_creative == true ? '' : 'disabled' %>
+            <% color = cr.shoot.can_assign_creative == true ? 'btn-success' : 'btn-danger' %>
+            <% icon = cr.shoot.can_assign_creative == true ? 'fas fa-check' : 'fas fa-exclamation-circle' %>
+
+            <%= link_to "<i class='#{icon} fa-2x'></i>".html_safe, shoot_assign_from_request_path(cr.shoot, cr), class: "btn #{color} btn-link #{disabled}", title: 'Deposit Must Be Paid Before A Creatie Can Be Assigned' %>
           </td>
           <td class="text-right">
            <%= link_to shoot_path(cr.shoot), class: 'btn btn-link btn-primary'  do %>

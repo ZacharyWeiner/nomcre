@@ -123,7 +123,10 @@ class ShootsController < ApplicationController
     end
 
     def authorize
-      if !current_user.is_admin || current_user.company.nil? || current_user.company != @shoot.company
+      if current_user.is_admin
+        return
+      end
+      if (current_user.company.nil? || current_user.company != @shoot.company)
         redirect_to shoots_path
       end
     end

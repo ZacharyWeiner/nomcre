@@ -81,14 +81,12 @@ class TasksController < ApplicationController
     @task.completed = true
     if @task.save
       respond_to do |format|
-        tasks = @task.proposal.tasks.where.not(completed: true)
-        if tasks.count == 0
-          @task.proposal.mark_as_complete
-        end
-        if new_path
-           redirect_to creative_dashboard_path and return
-        else
+        if !@task.proposal.nil?
           format.html { redirect_to @task.proposal, notice: 'Task was successfully completed.' }
+        elsif !@task.project.nil?
+          format.html { redirect_to @task.project, notice: 'Task was successfully completed.' }
+        else
+          format.html { redirect_to @task, notice: 'Task was successfully completed.' }
         end
       end
     end

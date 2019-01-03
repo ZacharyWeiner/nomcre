@@ -1,11 +1,59 @@
 <div class='card'>
   <div class='card-header'>
-    <div class='card-title'>
-      <h1>Invoices</h1>
+    <div class='card-title text-primary'>
+      <h1 class='text-primary'>Invoices</h1>
     </div>
   </div>
   <div class='card-body'>
-    <%= render :partial => 'invoices/partials/black_dashboard/shared/table', :locals => {invoices: invoices} %>
+
+
     <br>
   </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-3 col-md-6">
+    <ul class="nav nav-pills nav-pills-primary nav-pills-icons flex-column">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#pending">
+          <i class="tim-icons"><i class='fas fa-dollar-sign'></i></i> Outstanding
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#paid">
+          <i class="tim-icons"><i class="fas fa-check"></i></i> Paid
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-lg-9 col-md-6">
+    <div class="tab-content card">
+      <div class="tab-pane active" id="pending">
+        <div class='row' style='margin:12px'>
+          <% outstanding = @invoices.where(payment: nil) %>
+          <% if outstanding.count == 0 %>
+            <div class="alert alert-info alert-with-icon" style='width:100%'>
+              <span data-notify="icon" class="tim-icons"><ion-icon name="alert"></ion-icon></span>
+              <span data-notify="message">You Don't Have Any Invlices To Be Paid.</span>
+            </div>
+          <% else %>
+              <%= render :partial => 'invoices/partials/black_dashboard/shared/table', :locals => {invoices: outstanding} %>
+          <% end %>
+        </div>
+      </div>
+      <div class="tab-pane" id="paid">
+        <% pending = @invoices.where.not(payment: nil) %>
+        <% if pending.count == 0 %>
+          <div class="alert alert-info alert-with-icon" style='width:100%'>
+            <span data-notify="icon" class="tim-icons"><ion-icon name="alert"></ion-icon></span>
+            <span data-notify="message">You Don't Have Any Pending Requests</span>
+          </div>
+        <% else %>
+          <%= render :partial => 'creative_requests/partials/index/company/table', :locals => {creative_requests: pending} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>

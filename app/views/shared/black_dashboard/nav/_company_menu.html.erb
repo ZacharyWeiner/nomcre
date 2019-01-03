@@ -1,4 +1,4 @@
-<li>
+  <li>
   <%= link_to company_dashboard_path do %>
     <i class="tim-icons "><ion-icon name="speedometer"></ion-icon></i>
     <p>Dashboard</p>
@@ -34,6 +34,18 @@
       </li>
     </ul>
   </div>
+</li>
+<li>
+  <%= link_to shoots_path do %>
+    <i class="tim-icons "><ion-icon name="camera"></ion-icon></i>
+    <p>Shoots</p>
+  <% end %>
+</li>
+<li>
+  <%= link_to creative_requests_path do %>
+    <i class="tim-icons "><ion-icon name="briefcase"></ion-icon></i>
+    <p>Work Requests</p>
+  <% end %>
 </li>
 <li>
   <%= link_to tasks_path do %>

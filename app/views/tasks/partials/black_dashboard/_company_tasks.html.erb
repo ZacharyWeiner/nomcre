@@ -90,7 +90,10 @@
                 <% completed.where(can_accept: 'company' ).each do |task| %>
                 <tr>
                   <td>
-                    <p class="title"> <%= task.proposal.title %></p>
+                    <p class="title">
+                      <%= task.proposal.title unless task.proposal.nil?%>
+                      <%= task.project.title unless task.project.nil?%>
+                      </p>
                     <p class="text-info"><%= task.description %></p>
                   </td>
                   <td>

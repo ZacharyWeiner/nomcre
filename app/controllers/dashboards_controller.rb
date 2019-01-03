@@ -20,7 +20,7 @@ class DashboardsController < ApplicationController
       return redirect_to new_collection_path
     end
 
-    if !current_user.schedule_complete
+    if !current_user.check_schedule_added
       return redirect_to new_schedule_item_path
     end
   end

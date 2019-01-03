@@ -1,0 +1,38 @@
+
+<tr>
+<td>
+<%= link_to collection_item_move_up_path(ci) do %>
+  <i class='fa fa-arrow-up text-info' ></i>
+<%end%>
+<span style='padding-right: 6px;'></span>
+<%= link_to collection_item_move_down_path(ci) do %>
+  <i class='fa fa-arrow-down text-danger'></i>
+<%end%>
+</td>
+<td>
+<% if ci.item_type == 'video' %>
+  <%= video_tag ci.video, controls: true, style: 'height: 150px; width:150px;  object-fit: contain',  oncontextmenu:"return false;"%>
+<% else %>
+  <%= image_tag ci.file_url(:small).to_s, class: 'img-fluid', style: 'height: 150px; width:150px;  object-fit: contain',  oncontextmenu:"return false;"%>
+<%end%>
+</td>
+<td>
+<%= ci.item_type %>
+</td>
+<td>
+ <% if ci.is_header == true %>
+    <%= link_to "Is Header", collection_item_make_header_path(ci), class: 'btn btn-success disabled'%>
+  <% else %>
+    <%= link_to "Make Header", collection_item_make_header_path(ci), class: 'btn btn-primary'%>
+  <% end %>
+</td>
+<td>
+ <%= link_to collection_collection_item_path(@collection, ci)  do %>
+    <i class='fa fa-eye'></i>
+  <% end %>
+  <span style='padding-right: 12px;'></span>
+  <%= link_to collection_collection_item_path(@collection, ci), method: :delete  do %>
+    <i class='fa fa-trash'></i>
+  <% end %>
+</td>
+</tr>

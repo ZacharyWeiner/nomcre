@@ -105,6 +105,14 @@ class Shoot < ApplicationRecord
   def creatives_in_location
   end
 
+  def can_assign_creative
+    can_assign = false
+    if !self.project.nil? && self.project.deposit_is_paid
+      can_assign = true
+    end
+    return can_assign
+  end
+
   def has_request_for_user user_id
     request = self.creative_requests.where(creative_id: user_id).first != nil
   end

@@ -1,7 +1,7 @@
 class InvoicesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_invoice, only: [:show, :edit, :update, :destroy]
-  before_action :authorize
+  before_action :authorize, except: [:index]
   layout 'black_dashboard'
   # GET /invoices
   # GET /invoices.json
@@ -121,16 +121,16 @@ class InvoicesController < ApplicationController
       params.require(:invoice).permit(:project_id, :company_id, :payment_id, :amount, :due_date, :invoice_type)
     end
 
-    def authenticate
+    def authorize
       if current_user.is_admin
         return
       end
-      if @invoice.nil?
-        redirect_to root_path
+      if @invoice.nil? && @invoices.nil? && @project.nil?
+        return redirect_to root_path
       end
       if (!@invoice.nil? && !@invoice.company.nil?) && @invoice.company == current_user.company
         return
       end
-      redirect_to root_path
+      return redirect_to root_path
     end
 end
