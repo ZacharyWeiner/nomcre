@@ -1,0 +1,18 @@
+<%= form_with(model: shoot, local: true) do |form| %>
+  <% if shoot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(shoot.errors.count, "error") %> prohibited this shoot from being saved:</h2>
+
+      <ul>
+      <% shoot.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-group">
+    <%= form.label :brief %>
+    <%= form.text_area :brief, id: :shoot_brief, style: 'max-height: 500px;width:100%', :rows => 10, class: 'form-control'  %>
+  </div>
+  <%= form.submit "Save", class: 'btn btn-primary pull-right' %>
+<% end %>

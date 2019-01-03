@@ -102,7 +102,7 @@
             <% end %>
           </div>
           <div class="tab-pane <%= available_style %>" id="available">
-            <%= render :partial => 'shoots/partials/black_dashboard/show/creatives/available', :locals => {:shoot => shoot} %>
+            <%= render :partial => 'shoots/partials/black_dashboard/show/tabs/creatives_for_request', :locals => {shoot: shoot} %>
           </div>
           <div class="tab-pane <%= disclosure_style %>" id="disclosures">
             <button id='documentButton' class='btn btn-primary'> New Disclosure </button>

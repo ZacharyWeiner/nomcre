@@ -1,0 +1,7 @@
+<% if accepted.count == 0 %>
+<% else %>
+  <% accepted.each do |creative| %>
+    <% cr = CreativeSearchResult.new(user_id: creative.id, schedule_item_id: nil)  %>
+    <%= render :partial => 'shared/black_dashboard/user/creative', :locals => {shoot: shoot, sr: cr } %>
+  <% end %>
+<% end %>

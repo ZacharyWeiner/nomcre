@@ -1,3 +1,4 @@
+
 <%= form_tag invoice_pay_with_stripe_path(invoice) do %>
     <article>
       <% if flash[:error].present? %>
@@ -6,13 +7,13 @@
       </div>
       <% end %>
     </article>
-    <% @stripe_price = (invoice.amount * 100)%>
+    <% @stripe_price = (invoice.amount * 100).to_i%>
     <form action="/charge" method="POST">
       <%= hidden_field_tag 'invoice_id', invoice.id %>
       <script src="https://checkout.stripe.com/checkout.js" class="stripe-button pull-right"
       Stripe.setPublishableKey('PUBLISHABLE_KEY');
       data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-      data-description=<%= "#{invoice.invoice_type.capitalize!}" %>
+      data-description="Payment For Project"
       data-amount="<%= @stripe_price %>"
       data-locale="auto"></script>
     </form>

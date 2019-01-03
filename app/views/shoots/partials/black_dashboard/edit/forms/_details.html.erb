@@ -1,0 +1,87 @@
+<style type="text/css">
+  .col-sm-4{padding:24px;}
+</style>
+<%= form_with(model: shoot, local: true) do |f| %>
+  <% if shoot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(shoot.errors.count, "error") %> prohibited this shoot from being saved:</h2>
+
+      <ul>
+      <% shoot.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Focus Points (3 max)</h4>
+  </div>
+  <div class="card-body">
+    <div class='row'>
+
+      <!-- Top -->
+      <div class='col-sm-4 border text-center'>
+        <%= f.check_box :focus_points, {:multiple => true}, "Top Left"%>
+        <%= f.label :top_left %>
+      </div>
+      <div class='col-sm-4 border text-center'>
+        <%= f.check_box :focus_points, {:multiple => true, class: 'icheck-me', :data => {:skin => 'square', :color => 'green'}}, "Top Center"%>
+
+        <%= f.label :top_center %>
+      </div>
+      <div class='col-sm-4 border text-center'>
+        <%= f.check_box :focus_points, {:multiple => true, class: 'icheck-me', :data => {:skin => 'square', :color => 'green'}}, "Top Right"%>
+        <%= f.label :top_right %>
+      </div>
+      <!-- Middle -->
+      <div class='col-sm-4 border text-center'>
+        <%= f.check_box :focus_points, {:multiple => true, class: 'icheck-me', :data => {:skin => 'square', :color => 'green'}}, "Middle Left"%>
+        <%= f.label :middle_left %>
+      </div>
+      <div class='col-sm-4 border text-center'>
+        <%= f.check_box :focus_points, {:multiple => true, class: 'icheck-me', :data => {:skin => 'square', :color => 'green'}}, "Middle Center"%>
+
+        <%= f.label :middle_center %>
+      </div>
+      <div class='col-sm-4 border text-center'>
+        <%= f.check_box :focus_points, {:multiple => true, class: 'icheck-me', :data => {:skin => 'square', :color => 'green'}}, "Middle Right"%>
+        <%= f.label :middle_right %>
+      </div>
+      <!-- Botom -->
+      <div class='col-sm-4 border text-center'>
+        <%= f.check_box :focus_points, {:multiple => true, class: 'icheck-me', :data => {:skin => 'square', :color => 'green'}}, "Bottom Left"%>
+        <%= f.label :bottom_left %>
+      </div>
+      <div class='col-sm-4 border text-center'>
+        <%= f.check_box :focus_points, {:multiple => true, class: 'icheck-me', :data => {:skin => 'square', :color => 'green'}}, "Bottom Middle"%>
+        <%= f.label :bottom_center %>
+      </div>
+      <div class='col-sm-4 border text-center'>
+        <%= f.check_box :focus_points, {:multiple => true, class: 'icheck-me', :data => {:skin => 'square', :color => 'green'}}, "Bottom Right"%>
+        <%= f.label :bottom_right %>
+      </div>
+      <div class='col-sm-4  text-center'></div>
+      <div class='col-sm-4  text-center'>
+        <%= f.check_box :focus_points, {:multiple => true, class: 'icheck-me', :data => {:skin => 'square', :color => 'green'}}, "Dealers Choice"%>
+        <%= f.label :dealers_choice %>
+      </div>
+      <div class='col-sm-4  text-center'></div>
+    </div>
+  </div>
+</div>
+
+  <%= f.submit "Save", class: 'btn btn-primary pull-right' %>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+

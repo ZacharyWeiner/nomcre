@@ -1,0 +1,60 @@
+<div class='' style="margin:36px;">
+<%= form_with(model: shoot, local: true) do |form| %>
+  <% if shoot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(shoot.errors.count, "error") %> prohibited this shoot from being saved:</h2>
+
+      <ul>
+      <% shoot.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class='row'>
+  <div class='col-xs-12 col-sm-6 col-md-3 col-lg-3' style='margin-top:20px'>
+    <div class="form-check form-check-radio">
+      <label class="form-check-label center">
+        <%= form.radio_button :shoot_style, 'Product', class: 'form-check-input center', :checked => true%>
+        <span class="form-check-sign"></span>
+       <i class='fas fa-gift text-primary' style="font-size: 36px; margin-top: -24px;"> </i><br>
+        Product
+      </label>
+    </div>
+    </div>
+    <div class='col-xs-12 col-sm-6 col-md-3 col-lg-3' style='margin-top:20px'>
+    <div class="form-check form-check-radio radio-icons">
+      <label class="form-check-label center">
+        <%= form.radio_button :shoot_style, 'Lifestyle', class: 'form-check-input center'%>
+        <span class="form-check-sign"></span>
+        <i class='fas fa-glass-martini text-primary' style="font-size: 36px; margin-top: -24px;"> </i><br>
+        Lifestyle
+      </label>
+    </div>
+    </div>
+    <div class='col-xs-12 col-sm-6 col-md-3 col-lg-3' style='margin-top:20px'>
+    <div class="form-check form-check-radio radio-icons">
+      <label class="form-check-label center">
+        <%= form.radio_button :shoot_style, 'Action', class: 'form-check-input center'%>
+        <span class="form-check-sign"></span>
+        <i class='fas fa-motorcycle text-primary' style="font-size: 36px; margin-top: -24px;"> </i><br>
+        Action
+      </label>
+    </div>
+    </div>
+    <div class='col-xs-12 col-sm-6 col-md-3 col-lg-3' style='margin-top:20px'>
+    <div class="form-check form-check-radio radio-icons">
+      <label class="form-check-label center">
+        <%= form.radio_button :shoot_style, 'Mixed', class: 'form-check-input center'%>
+        <span class="form-check-sign"></span>
+        <i class='fab fa-mix text-primary' style="font-size: 36px; margin-top: -24px;"> </i><br>
+        Mixed
+      </label>
+    </div>
+    </div>
+  </div>
+  <br>
+  <%= form.submit "Save", class: 'btn btn-primary pull-right', style:'margin:12px;' %>
+<% end %>
+</div>
+

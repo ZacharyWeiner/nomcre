@@ -15,7 +15,7 @@
       <tr>
         <td><%= invoice.project.title %></td>
         <td><%= invoice.company.name %></td>
-        <td>$<%= invoice.amount %></td>
+        <td><%= number_to_currency(invoice.amount) %></td>
         <td>
           <%if invoice.invoice_type == InvoiceType.deposit %>
             <%= invoice.project.created_at.strftime("%d %b '%y") %>

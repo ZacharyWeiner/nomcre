@@ -1,0 +1,29 @@
+<% if !shoot.project.deposit_is_paid %>
+  <label class='text-danger'>
+    Deposit Must Be Paid Before You Can Assign a Creative To The Shoot.
+  </label>
+<% end %>
+<ul class="nav nav-pills nav-pills-primary">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#all">
+     All
+    </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#accepted">
+       Accepted
+    </a>
+  </li>
+</ul>
+
+<div class="tab-content tab-space">
+  <div class="tab-pane active" id="all">
+    <%= render :partial => 'shoots/partials/black_dashboard/show/creatives/available', :locals => {:shoot => shoot} %>
+  </div>
+  <div class="tab-pane" id="accepted">
+    <% accepted = shoot.creative_requests.where(accepted: true).map{|cr| cr.creative} %>
+    <%= render :partial => 'shoots/partials/black_dashboard/show/creatives/accepted', :locals => {:shoot => shoot, accepted: accepted} %>
+  </div>
+</div>
+
+

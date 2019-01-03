@@ -50,6 +50,24 @@ class ShootsController < ApplicationController
   def update
     attributes = shoot_params.clone
     attributes[:user_saved] = true
+    unless shoot_params[:focus_points].nil? || shoot_params[:focus_points].count == 0
+      byebug
+      if !@shoot.focus_points.nil?
+        @shoot.focus_points.clear
+      else
+        @shoot.focus_points = ['']
+      end
+      points = []
+      attributes[:focus_points].each do |fp|
+        if fp == "0"
+        else
+          if points.length < 3
+            points << fp
+          end
+        end
+      end
+      attributes[:focus_points] = points
+    end
     respond_to do |format|
       if @shoot.update(attributes)
         format.html { redirect_to @shoot, notice: 'Shoot was successfully updated.' }
@@ -119,7 +137,23 @@ class ShootsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def shoot_params
-      params.require(:shoot).permit(:creative_id, :project_id, :company_id, :location_id, :content_type, :brief, :time_of_day, :bts, :focus_points, :price, :background, :background_note, :shoot_style, :shoot_raw, :user_added_shot_count, :user_added_shot_count_max, :user_saved)
+      params.require(:shoot).permit(:creative_id,
+                                    :project_id,
+                                    :company_id,
+                                    :location_id,
+                                    :content_type,
+                                    :brief,
+                                    :time_of_day,
+                                    :bts,
+                                    :price,
+                                    :background,
+                                    :background_note,
+                                    :shoot_style,
+                                    :shoot_raw,
+                                    :user_added_shot_count,
+                                    :user_added_shot_count_max,
+                                    :user_saved,
+                                    focus_points: [])
     end
 
     def authorize

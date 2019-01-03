@@ -2,11 +2,11 @@ class PaymentType
   include ActiveModel::AttributeMethods
 
   def self.balance
-    return 'credit'
+    return 'balance'
   end
 
   def self.deposit
-  return 'debit'
+  return 'deposit'
   end
 end
 

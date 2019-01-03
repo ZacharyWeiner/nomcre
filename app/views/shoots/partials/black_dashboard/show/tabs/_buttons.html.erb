@@ -16,14 +16,12 @@
       </a>
     </li>
   <% end %>
-  <% if current_user.user_type == 'company' || current_user == shoot.creative %>
+  <% if (current_user.user_type == UserType.company && shoot.creative != nil)  || current_user == shoot.creative %>
   <li class="nav-item">
     <a class="nav-link nav-link-sub <%= tasks_style %>" data-toggle="tab" href="#tasks">
       Tasks
     </a>
   </li>
-  <% end %>
-  <% if current_user.user_type == UserType.company || current_user == shoot.creative %>
   <li class="nav-item">
     <a class="nav-link nav-link-sub <%= disclosure_style %>" data-toggle="tab" href="#disclosures">
       Disclosures

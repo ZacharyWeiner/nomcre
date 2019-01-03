@@ -1,0 +1,15 @@
+
+<div class="tab-content">
+  <div class="tab-pane active" id="basic">
+    <%= render :partial => 'shoots/partials/black_dashboard/edit/forms/basic', :locals => {shoot: shoot} %>
+  </div>
+  <div class="tab-pane" id="details">
+    <%= render :partial => 'shoots/partials/black_dashboard/edit/forms/details', :locals => {shoot: shoot} %>
+  </div>
+  <div class="tab-pane" id="style">
+    <%= render :partial => 'shoots/partials/black_dashboard/edit/forms/style', :locals => {shoot: shoot} %>
+  </div>
+  <div class="tab-pane" id="background">
+    <%= render :partial => 'shoots/partials/black_dashboard/edit/forms/background', :locals => {shoot: shoot} %>
+  </div>
+</div>

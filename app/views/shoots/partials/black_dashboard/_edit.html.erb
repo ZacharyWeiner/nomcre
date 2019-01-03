@@ -1,0 +1,25 @@
+
+
+<div class='card'>
+  <div class='card-header text-primary'>
+    <div class='card-category'></div>
+    <div class='card-title'><h1>Editing Shoot</h1></div>
+  </div>
+  <div class='card'>
+    <div class='row'>
+      <div class='col-md-3'>
+        <%= render :partial => 'shoots/partials/black_dashboard/edit/tabs' %>
+      </div>
+      <div class='col-md-9'>
+        <% render 'form', shoot: @shoot %>
+        <%= render :partial => 'shoots/partials/black_dashboard/edit/tabs_body', :locals => {shoot: @shoot} %>
+      </div>
+    </div>
+  </div>
+  <div class='card'></div>
+</div>
+
+
+<%= link_to 'Show', @shoot %> |
+<%= link_to 'Back', shoots_path %>
+

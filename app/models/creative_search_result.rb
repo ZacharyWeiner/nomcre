@@ -7,7 +7,11 @@ class CreativeSearchResult
     end
 
     def schedule_item
-      ScheduleItem.find(self.schedule_item_id)
+      if !self.schedule_item_id.nil?
+        return ScheduleItem.find(self.schedule_item_id)
+      else
+        return nil
+      end
     end
 end
 

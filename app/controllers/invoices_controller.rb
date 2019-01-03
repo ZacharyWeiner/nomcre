@@ -1,6 +1,6 @@
 class InvoicesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_invoice, only: [:show, :edit, :update, :destroy]
+  before_action :set_invoice, only: [:show, :edit, :update, :destroy, :pay_with_stripe]
   before_action :authorize, except: [:index]
   layout 'black_dashboard'
   # GET /invoices
@@ -68,7 +68,6 @@ class InvoicesController < ApplicationController
   end
 
   def pay_with_stripe
-    @invoice = Invoice.find(params[:invoice_id])
 
     customer = Stripe::Customer.create(
       :email => params[:stripeEmail],
@@ -91,8 +90,11 @@ class InvoicesController < ApplicationController
                                  external_id: charge['id'],
                                  amount: charge['amount'] / 100,
                                  paid_on: Date.today)
-      if !@payment.nil?
-        @project.try_complete
+      if @payment
+        @invoice.payment = @payment
+      end
+      if !@payment.nil? && @invoice.invoice_type == InvoiceType.balance
+        @invoice.project.try_complete
       end
       respond_to do |format|
         #TODO: Create method for ProjectMailer or PaymentMailer
@@ -113,7 +115,11 @@ class InvoicesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_invoice
-      @invoice = Invoice.find(params[:id])
+      if params[:invoice_id]
+        @invoice = Invoice.find(params[:invoice_id])
+      else
+        @invoice = Invoice.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

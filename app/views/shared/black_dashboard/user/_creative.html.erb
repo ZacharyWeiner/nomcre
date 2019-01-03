@@ -8,8 +8,8 @@
 <div class="card" style="background: #f5f6fa">
   <div class="card-header">
     <h5 class="card-category">
-      <%= si.location.name %>
-      <span class='pull-right'>Available Until:  <%= si.end_date %></span>
+      <%= si.location.name unless si.nil?  %>
+      <span class='pull-right'>Available Until:  <%= si.end_date unless (si.nil? || si.end_date.nil?) %></span>
     </h5>
     <hr>
     <h3 class="card-title">
