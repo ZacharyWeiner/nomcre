@@ -1,8 +1,14 @@
 <li class="header"><span style="margin-left:20px"><%= "Admin" %><span></li>
 <li>
-  <%= link_to admin_proposals_path do %>
+  <%= link_to admin_projects_path do %>
     <i class="tim-icons "><ion-icon name="briefcase"></ion-icon></i>
     <p>Projects</p>
+  <% end %>
+</li>
+<li>
+  <%= link_to admin_shoots_path do %>
+    <i class="tim-icons "><ion-icon name="camera"></ion-icon></i>
+    <p>Shoots</p>
   <% end %>
 </li>
 <li>

@@ -1,0 +1,92 @@
+<div class="card">
+  <div class='card-header'>
+    <div class='card-title'>
+      <h5> Projects </h5>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="toolbar">
+      <!--        Here you can write extra buttons/actions for the toolbar              -->
+    </div>
+    <table id="uploaded" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th>Company</th>
+          <th>Deadline</th>
+          <th>Shoot Count</th>
+          <th class="sorting_desc_disabled sorting_asc_disabled text-right">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% projects.each do |proj| %>
+        <tr>
+          <td><%= proj.title %></td>
+          <td><%= proj.company.name %></td>
+          <td><%= proj.deadline %></td>
+          <td><%= proj.shoots.count %></td>
+          <td>
+            <%= link_to admin_edit_project_path(proj) do %>
+              <i class="fa fa-edit"></i>
+            <% end %>
+             <%= link_to admin_edit_project_price_path(proj) do %>
+              <i class="fas fa-dollar-sign"></i>
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>Title</th>
+          <th>Company</th>
+          <th>Deadline</th>
+          <th>Shoot Count</th>
+          <th class="sorting_desc_disabled sorting_asc_disabled text-right">Actions</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <!-- end content-->
+</div>
+<% content_for :added_scripts do %>
+  <script>
+    $(document).ready(function() {
+      $('#uploaded').DataTable({
+        "pagingType": "full_numbers",
+        "lengthMenu": [
+          [10, 25, 50, -1],
+          [10, 25, 50, "All"]
+        ],
+        responsive: true,
+        language: {
+          search: "_INPUT_",
+          searchPlaceholder: "Search records",
+        }
+
+      });
+
+      var table = $('#uploaded').DataTable();
+
+      // Edit record
+      table.on('click', '.edit', function() {
+        $tr = $(this).closest('tr');
+
+        var data = table.row($tr).data();
+        alert('You press on Row: ' + data[0] + ' ' + data[1] + ' ' + data[2] + '\'s row.');
+      });
+
+      // Delete a record
+      table.on('click', '.remove', function(e) {
+        $tr = $(this).closest('tr');
+        table.row($tr).remove().draw();
+        e.preventDefault();
+      });
+
+      //Like record
+      table.on('click', '.like', function() {
+        alert('You clicked on Like button');
+      });
+    });
+  </script>
+  <% end %>

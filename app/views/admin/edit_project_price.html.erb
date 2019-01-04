@@ -1,0 +1,14 @@
+<div class='card'>
+  <div class='card-header'>
+    <div class='card-title'>Change Price for <%= @project.title %></div>
+  </div>
+  <div class='card-body'>
+    <%= form_for @project, :url => { :action => :update_price, :controller=> :projects } do |f| %>
+    <%= f.number_field :price, class: 'form-control' %>
+  <br><br>
+  <%= f.submit class: 'btn btn-warning' %>
+<% end %>
+  </div>
+</div>
+
+

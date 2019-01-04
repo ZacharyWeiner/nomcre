@@ -86,6 +86,32 @@ class ProjectsController < ApplicationController
   def wizard
   end
 
+  def update_price
+    @price = params[:project][:price]
+    @project = Project.find(params[:project_id])
+    @deposit_invoice = @project.invoices.where(invoice_type: InvoiceType.deposit).first
+    @balance_invoice = @project.invoices.where(invoice_type: InvoiceType.deposit).first
+    @project.price = @price
+    byebug
+    if !@deposit_invoice.is_paid || !@balance_invoice.is_paid
+      if @project.save!
+        #both are unpaid
+        if !@deposit_invoice.is_paid && !@balance_invoice.is_paid
+          @deposit_invoice.amount = @project.price / 2
+          if @deposit_invoice.save!
+            @balance_invoice.amount = @project.price / 2
+            @balance_invoice.save!
+          end
+        #deposit is paid but balance is not
+        elsif @deposit_invoice.is_paid && !@balance_invoice.is_paid
+          @balance_invoice.amount = @project.price - @deposit_invoice.amount
+          @balance_invoice.save!
+        end
+      end
+    end
+    redirect_to admin_edit_project_price_path(@project)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
@@ -102,7 +128,7 @@ class ProjectsController < ApplicationController
     end
 
     def authorize
-      if current_user.role == 0
+      if current_user.is_admin
         return
       end
       if @project.company == current_user.company

@@ -1,4 +1,5 @@
 class Project < ApplicationRecord
+  paginates_per 10
   #belongs_to
   belongs_to :package_type
   belongs_to :company

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :projects do
     get 'payment', to: 'projects#payment', as: 'payment'
     get 'wizard', to: 'projects#wizard', as: 'wizard'
+    patch 'update_price', to:'projects#update_price', as: 'update_price'
     resources :invoices
   end
 
@@ -148,6 +149,11 @@ Rails.application.routes.draw do
   get 'pricing', to: 'khaki#pricing', as:'pricing'
 
   get 'admin/users', to: 'admin#users', as: 'admin_users'
+  get 'admin/projects', to: 'admin#projects', as: 'admin_projects'
+  get 'admin/project/:project_id/edit', to: 'admin#edit_project', as: 'admin_edit_project'
+  get 'admin/project/:project_id/edit_price', to: 'admin#edit_project_price', as: 'admin_edit_project_price'
+  get 'admin/shoots', to: 'admin#shoots', as: 'admin_shoots'
+  get 'admin/shoot/:shoot_id/edit', to: 'admin#edit_shoot', as: 'admin_edit_shoot'
   get 'admin/proposals', to: 'admin#proposals', as: 'admin_proposals'
   get 'admin/schedule_items', to: 'admin#schedule_items', as: 'admin_schedule_items'
   get 'admin/collections', to: 'admin#collections', as: 'admin_collections'

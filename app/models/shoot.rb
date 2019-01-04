@@ -21,10 +21,6 @@ class Shoot < ApplicationRecord
 
 
   #instance_methods
-  def deadline
-    self.project.deadline
-  end
-
   def is_editable
     (!self.project.deposit_is_paid || self.creative.nil?) ? true : false
   end
@@ -86,7 +82,7 @@ class Shoot < ApplicationRecord
       }
     end
     p family_tree
-
+     byebug
     creatives = User.joins(:schedule_items).where(schedule_items: { location_id: family_tree, start_date: (Date.today - 2.years)..self.deadline, end_date: (Date.today)..self.deadline + 1.year  }).uniq
     creatives_ranked = []
     creatives.each do |c|

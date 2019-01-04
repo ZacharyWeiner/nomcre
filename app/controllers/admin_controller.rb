@@ -9,6 +9,26 @@ class AdminController < ApplicationController
     @proposals = Proposal.all.page params[:page]
   end
 
+  def projects
+    @projects = Project.where.not({is_template: true, is_default_template: true}).page params[:page]
+  end
+
+  def edit_project
+    @project = Project.find(params[:project_id])
+  end
+
+  def edit_project_price
+    @project = Project.find(params[:project_id])
+  end
+
+  def shoots
+    @shoots = Shoot.all.page params[:page]
+  end
+
+  def edit_shoot
+    @shoot = Shoot.find(params[:shoot_id])
+  end
+
   def schedule_items
     @schedule_items = ScheduleItem.all.page params[:page]
   end

@@ -27,7 +27,6 @@ class ShootsController < ApplicationController
 
   # GET /shoots/1/edit
   def edit
-    byebug
     if !@shoot.is_editable
       respond_to do |format|
          format.html { redirect_to @shoot, notice: 'Shoot can not be edited after a creative is asssigned' }
