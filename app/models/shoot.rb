@@ -6,7 +6,7 @@ class Shoot < ApplicationRecord
   belongs_to :creative, foreign_key: 'creative_id', class_name: 'User', optional: true
 
   #has_one
-  has_one :chatroom
+  has_one :chatroom, :dependent => :destroy
 
   #has_many
   has_many :documents
@@ -14,6 +14,10 @@ class Shoot < ApplicationRecord
   has_many :tasks, :dependent => :destroy
   has_many :shot_list_items, :dependent => :destroy
   has_many :creative_requests, :dependent => :destroy
+
+
+  #callbacks
+  before_destroy :orphan_relations
 
 
   #instance_methods
@@ -137,6 +141,10 @@ class Shoot < ApplicationRecord
     chatroom = Chatroom.create!(topic: self.project.title + "-" + self.content_type, shoot: self)
     message = chatroom.messages.create!(content: "#{chatroom.shoot.company.name} Joined The Chat", user: chatroom.shoot.company.users.first)
     message = chatroom.messages.create!(content: "#{creative.user_profile.display_name} Joined The Chat", user: creative)
+    justin = User.where(email: 'justin@nomcre.com').first
+    if !justin.nil?
+      message = chatroom.messages.create!(content: "Justin Joined The Chat", user: justin)
+    end
   end
 
   def creatives_in_location
@@ -150,12 +158,16 @@ class Shoot < ApplicationRecord
     return can_assign
   end
 
-  def has_request_for_user user_id
+  def has_request_for_creative user_id
     request = self.creative_requests.where(creative_id: user_id).first != nil
   end
 
-  def request_for_user user_id
+  def request_for_creative user_id
     self.creative_requests.where(creative_id: user_id).first
+  end
+
+  def creative_accepted_request creative_id
+    !self.creative_requests.where({creative_id: creative_id, accepted: true}).first.nil?
   end
 
   #rules
@@ -164,9 +176,26 @@ class Shoot < ApplicationRecord
     self.shot_list_items.where(added_by: company_ids).count
   end
 
+  def nomcre_added_shot_list_count
+    self.shot_list_items.where(added_by: nil).count
+  end
+
   def owner_added_shot_list
     company_ids = self.project.owners.map{|u| u.id}
     self.shot_list_items.where(added_by: company_ids)
+  end
+
+
+  #callbacks
+  def orphan_relations
+    self.assistants.each do |assistant|
+      assistant.shoot = nil
+      assistant.save
+    end
+    self.documents.each do |doc|
+      doc.shoot_id = nil
+      doc.save!
+    end
   end
 
   #class methods

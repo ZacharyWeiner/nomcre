@@ -1,10 +1,10 @@
 class Task < ApplicationRecord
   #belongs to
-  belongs_to :user
-  belongs_to :company
+  belongs_to :user, optional: true
+  belongs_to :company, optional: true
   belongs_to :proposal, optional: true
   belongs_to :shoot, optional: true
-  belongs_to :project, optional: true
+  belongs_to :project, optional: true, :dependent => :destroy
 
 
   #has_one
@@ -13,8 +13,8 @@ class Task < ApplicationRecord
   #has_many
 
   #hooks
-  before_save :update_project
-  after_save  :try_complete
+  #before_save :update_project
+  #after_save  :try_complete
 
   #scopes
   def project

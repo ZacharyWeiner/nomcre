@@ -1,27 +1,53 @@
 class ShotListItem < ApplicationRecord
+  #validation
+  validates :description, presence: true
+
   #belongs_to
   belongs_to :proposal, optional: true
   belongs_to :task, optional: true
   belongs_to :shoot, optional: true
   belongs_to :added_by, class_name: 'User', foreign_key: 'added_by_id', optional: true
-  belongs_to :task, optional: true
+
 
   #has_one
   has_one :project, through: :shoot
+  belongs_to :task, optional: true, :dependent => :destroy
 
   #has_many
+
 
 
   #mount
   mount_uploader :upload, ShotListUploader
   mount_uploader :reference_image, ShotListUploader
 
-
-  after_save :create_task
+  before_destroy :orphan_relations
 
   #instance_methods
   def copy_from_template
     sli = ShotListItem.create()
+  end
+
+  def create_related_task description
+    task = Task.create!(shoot_id: self.shoot.id,
+                         description: description,
+                         project_id: self.shoot.project_id,
+                         user_id: self.shoot.company.users.first.id,
+                         company: self.shoot.company,
+                         can_accept: UserType.creative,
+                         task_type: TaskType.shot_list,
+                         is_template: false )
+    byebug
+    self.task = task
+    self.save!
+    task
+  end
+
+  def orphan_relations
+    if !self.task.nil?
+      self.task = nil
+      self.save!
+    end
   end
 
   #class_methodsTask
@@ -43,21 +69,19 @@ class ShotListItem < ApplicationRecord
       task_type = ''
       task_can_accept = ''
       task_description = "#{sli.description} - Task "
-      if !sli.task.nil?
-        task_type = sli.task.task_type
-        task_can_accept = sli.task.can_accept
-        task_description = sli.task.description
+      if new_sli.save!
+        if sli.task.nil?
+          new_sli.create_related_task(task_description)
+        else
+          new_sli_task = sli.task.clone
+          new_sli_task.company == new_sli.shoot.company
+          new_sli_task.project = new_sli.shoot.project
+          new_sli_task.deadline = new_sli.shoot.deadline
+          new_sli_task.save!
+          new_sli.task = new_sli_task
+          new_sli.save
+        end
       end
-      p 'Create Task for SLI'
-      new_sli.save!
-      task = Task.create!(description: task_description,
-                              deadline: shoot.deadline,
-                              company: shoot.project.company,
-                              user: shoot.project.company.users.first,
-                              task_type: task_type,
-                              shoot_id: shoot_id
-                              )
-      p 'Created Shot List Item'
     end
   end
 

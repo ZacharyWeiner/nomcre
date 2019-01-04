@@ -1,8 +1,8 @@
-<% if project.tasks.count == 0 %>
+<% if project.project_tasks.count == 0 %>
   <% percent_complete =0 %>
 <% else %>
-  <% task_count = project.tasks.count.to_f %>
-  <% completed_tasks = project.tasks.where(completed: true).count %>
+  <% task_count = project.project_tasks.count.to_f %>
+  <% completed_tasks = project.project_tasks.where(completed: true).count %>
   <% percent_complete = ((completed_tasks / task_count) * 100).to_i%>
 <% end %>
 <div class="progress-container progress-primary">

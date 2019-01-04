@@ -1,39 +1,33 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="card card-user">
+    <div class="card-body">
+      <p class="card-text">
+        <div class="author">
+          <div class="block block-one"></div>
+          <div class="block block-two"></div>
+          <div class="block block-three"></div>
+          <div class="block block-four"></div>
+          <a href="javascript:void(0)">
+            <%= image_tag @payment.company.logo, class: 'avatar' %>
+            <h5 class="title"><%= @payment.project %></h5>
+          </a>
 
-<p>
-  <strong>User:</strong>
-  <%= @payment.user %>
-</p>
+        </div>
+      </p>
+      <div class="card-description text-center">
+        <label> Payment Type </label><br>
+       <%= @payment.payment_type %>
+       <br><br>
+       <label> Payment Method </label><br>
+       <%= @payment.payment_method %>
+        <br><br>
+       <label> Payment Date </label><br>
+       <%= @payment.created_at.strftime('%a %d %b %Y') %>
+     </div>
+   </div>
+  </div>
+</div>
+<%= link_to "<i class='fas fa-arrow-left'></i> Back To Payments List".html_safe, payments_path, class: 'btn btn-simple btn-primary' %>
 
-<p>
-  <strong>Project:</strong>
-  <%= @payment.project %>
-</p>
 
-<p>
-  <strong>Payment type:</strong>
-  <%= @payment.payment_type %>
-</p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @payment.category %>
-</p>
-
-<p>
-  <strong>Payment method:</strong>
-  <%= @payment.payment_method %>
-</p>
-
-<p>
-  <strong>External:</strong>
-  <%= @payment.external_id %>
-</p>
-
-<p>
-  <strong>Paid on:</strong>
-  <%= @payment.paid_on %>
-</p>
-
-<%= link_to 'Edit', edit_payment_path(@payment) %> |
-<%= link_to 'Back', payments_path %>

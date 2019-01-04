@@ -24,13 +24,14 @@ class Project < ApplicationRecord
   #callbacks
   after_create :initalize_project
   after_save :update_shoots
+  before_destroy :orphan_relations
 
 
   def owners
     self.company.users
   end
 
-  def tasks
+  def project_tasks
     shoot_ids = self.shoots.map{|s| s.id}
     Task.where(shoot_id: shoot_ids).or(Task.where(project_id: self.id))
   end
@@ -186,6 +187,22 @@ class Project < ApplicationRecord
         s.deadline = 5.business_days.before(self.deadline)
         s.save
       end
+    end
+  end
+
+  def orphan_relations
+    self.invoices.each do |i|
+      i.project_id = nil
+      i.save!
+    end
+    self.shot_list_items.each do |sli|
+        sli.task = nil
+        sli.save!
+    end
+    self.project_tasks.each do |t|
+      t.project_id = nil
+      t.shoot_id = nil
+      t.save!
     end
   end
 

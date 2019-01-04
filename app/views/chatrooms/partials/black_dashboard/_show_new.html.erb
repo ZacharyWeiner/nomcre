@@ -232,6 +232,7 @@
         <div class="card-title"> <h4> Conversations </h4> </div>
       </div>
       <div class='card-body' style='overflow-y: scroll'>
+        <%= link_to "<i class='fas fa-arrow-left' ></i> Back ".html_safe, root_path, class: 'btn btn-simple btn-primary btn-block' %>
         <div class="table-full-width table-responsive">
           <table class="table">
             <tbody>
@@ -240,16 +241,18 @@
                   <td>
                     <div class="form-check" style='min-width: 40px'>
                       <% if current_user.user_type == UserType.creative %>
-                        <%= image_tag chat.shoot.company.logo, class: 'avatar' unless chat.shoot.nil? %>
+                        <%= image_tag chat.shoot.company.logo, class: 'avatar' unless chat.shoot.nil?%>
                       <% else %>
-                        <%= image_tag chat.shoot.creative.user_profile.safe_profile_image_url, class: 'avatar' %>
+                        <% unless chat.shoot.nil? %>
+                        <%= image_tag chat.shoot.creative.user_profile.safe_profile_image_url, class: 'avatar' unless (chat.shoot.nil? || chat.shoot.creative.nil?) %>
+                        <% end %>
                       <% end %>
                     </div>
                   </td>
                   <td>
                     <%= link_to chatroom_path(chat) do %>
                     <%= chat.shoot.project.title unless chat.shoot.nil?%><br>
-                    <p class="default"><%= chat.messages.last.content %></p>
+                    <p class="default"><%= chat.shoot.chatroom.messages.last.content unless chat.shoot.nil? %></p>
                     <% end %>
                   </td>
                 </tr>
@@ -331,7 +334,7 @@
                     <small class="pull-right" style='padding-right: 10px'><%= m.created_at.strftime("%I:%m %p")%></small><br>
                   </div>
                   <div class="img_cont_msg">
-                  <%= image_tag m.chatroom.proposal.company.logo.url, class: 'rounded-circle user_img_msg',  style: 'min-width: 40px' %>
+                  <%= image_tag m.chatroom.shoot.company.logo.url, class: 'rounded-circle user_img_msg',  style: 'min-width: 40px' unless m.chatroom.shoot.nil? %>
                   </div>
                 </div>
               <% end %>

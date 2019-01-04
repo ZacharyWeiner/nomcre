@@ -1,5 +1,5 @@
 
-<div class='card'>
+<div class='card' style="padding: 16px;">
   <div class='card-header'>
     <div class='pull-right text-right'>
       <% if !@shot_list_item.proposal.nil? && current_user == @shot_list_item.user %>
@@ -21,20 +21,28 @@
       <%= link_to @shot_list_item.proposal.title, proposal_path(@shot_list_item.proposal, :active => 'shotlist') unless  @shot_list_item.proposal.nil? %>
       </h3>
   </div>
+
   <div class='row'>
-    <div class='col-md-1'></div>
-    <div class='col-md-5 card'  style="border-right: 1px solid #d3dded">
+
+    <div class='col-md-6' style="border-right: 1px solid #d3dded">
+      <div class='row'>
+        <div class='col-md-6'>
+          <div class='text-center' style='padding:6px;'>
+            Reference Image <br>
+            <% if @shot_list_item.reference_image.nil? || @shot_list_item.reference_image.file.nil? %>
+              <img height="80%" src='https://vignette.wikia.nocookie.net/the-darkest-minds/images/4/47/Placeholder.png/revision/latest?cb=20160927044640' class='img-responsive' />
+            <% else %>
+              <%= link_to @shot_list_item.reference_image.url do %>
+                <%= image_tag @shot_list_item.reference_image %>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+        <div class='col-md-6'>
           <div class='card-header'>
             <h4 class='text-center' style="padding-left:12px;"> Details </h4>
           </div>
-           <div style='padding:6px;'>
-            Reference Image <br>
-            <% if @shot_list_item.reference_image.nil? || @shot_list_item.reference_image = '' %>
-              <i class='far fa-image fa-3x'></i>
-            <% else %>
-              <%= image_tag @shot_list_item.reference_image %>
-            <% end %>
-          </div>
+
           <div style='padding:6px;'>
             <span><i class='tim-icons text-primary'><ion-icon name='camera'></ion-icon></i> Shoot Type:</span>
             <soan class='pull-right'><%= @shot_list_item.item_type %></soan>
@@ -60,11 +68,10 @@
               <soan class='pull-right'><%= @shot_list_item.focus_point %></soan>
               <hr>
           </div>
-
-
+        </div>
+      </div>
     </div>
-    <div class='col-md-1'></div>
-    <div class='col-md-4 card'>
+    <div class='col-md-4 '>
       <div class='card-header'>
         <h4 class='text-center' style="padding-left:12px;"> Delivered </h4>
       </div>
@@ -82,7 +89,7 @@
         <% end %>
       <% end %>
     </div>
-    <div class='col-md-1'></div>
+    <div class='col-md-2'></div>
 </div>
 
 

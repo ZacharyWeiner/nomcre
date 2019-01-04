@@ -4,12 +4,13 @@
     <% tasks.each do |task| %>
     <tr>
       <td>
+        <p class="title text-info"><%= task.description %></p>
         <% if !task.proposal.nil? %>
-          <p class="title"> <%= task.proposal.title %></p>
+          <p class="card-category"> <%= task.proposal.title %></p>
         <% elsif task.shoot %>
-          <p class="title"> <%= task.shoot.project.title %></p>
+          <p class="card-cetegory"> <%= task.shoot.project.title %></p>
         <% end %>
-        <p class="text-info"><%= task.description %></p>
+
       </td>
       <td>
       <% if !task.deadline.nil? %>
@@ -37,7 +38,7 @@
           <% end %>
         <% end %>
         <% task_icon =  task.completed  ? 'done-all' : 'checkmark' %>
-        <%= link_to task_task_complete_path(task), class: "btn btn-link #{task_able}", title: "Complete", :data => { :original_title => 'Click to indicate the task is complete'}  do  %>
+        <%= link_to task_task_complete_path(task, :active => 'tasks'), class: "btn btn-link #{task_able}", title: "Complete", :data => { :original_title => 'Click to indicate the task is complete'}  do  %>
           <i class="tim-icons btn-link <%= task_able %>"><ion-icon name="<%= task_icon %>" size='large'></ion-icon></i>
         <% end %>
       </td>

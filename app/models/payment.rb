@@ -1,7 +1,7 @@
 class Payment < ApplicationRecord
   #belongs_to ->
   belongs_to :user
-  belongs_to :project
+  belongs_to :project, optional: true
 
   #has_one ->
   has_one :company, through: :user

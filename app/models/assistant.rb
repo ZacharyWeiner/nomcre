@@ -9,6 +9,7 @@ class Assistant < ApplicationRecord
   #has_many
   has_many :documents
 
+
   #helpers
   def self.create_for_shoot shoot_id
     assistant_count = Assistant.all.count

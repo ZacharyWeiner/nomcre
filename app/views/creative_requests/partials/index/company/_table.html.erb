@@ -32,8 +32,9 @@
             <% disabled = cr.shoot.can_assign_creative == true ? '' : 'disabled' %>
             <% color = cr.shoot.can_assign_creative == true ? 'btn-success' : 'btn-danger' %>
             <% icon = cr.shoot.can_assign_creative == true ? 'fas fa-check' : 'fas fa-exclamation-circle' %>
-
+            <% if (cr.shoot.has_request_for_creative(cr.creative) && cr.shoot.creative_accepted_request(cr.creative) && cr.shoot.creative.nil?) %>
             <%= link_to "<i class='#{icon} fa-2x'></i>".html_safe, shoot_assign_from_request_path(cr.shoot, cr), class: "btn #{color} btn-link #{disabled}", title: 'Deposit Must Be Paid Before A Creatie Can Be Assigned' %>
+            <% end %>
           </td>
           <td class="text-right">
            <%= link_to shoot_path(cr.shoot), class: 'btn btn-link btn-primary'  do %>

@@ -83,6 +83,8 @@ class TasksController < ApplicationController
       respond_to do |format|
         if !@task.proposal.nil?
           format.html { redirect_to @task.proposal, notice: 'Task was successfully completed.' }
+        elsif !@task.shoot.nil?
+          format.html { redirect_to shoot_path(@task.shoot, :active => 'tasks'), notice: 'Task was successfully completed.' }
         elsif !@task.project.nil?
           format.html { redirect_to @task.project, notice: 'Task was successfully completed.' }
         else

@@ -1,4 +1,4 @@
-
+<!-- #TODO: Move data collection to the controller -->
 <div class='card'>
   <div class='card-header'>
     <div class='card-title'>
@@ -8,7 +8,8 @@
   <div class='card-body'>
     <!-- TODO: Figure Out A More Useful Solution %> -->
     <% if current_user.user_type == UserType.company %>
-      <% shoots = current_user.company.shoots.reverse.take(10) %>
+      <% project_template_ids = Project.where(is_template: true).or(Project.where(is_default_template: true)).map{|e| e.id} %>
+      <% shoots = current_user.company.shoots.where.not(project_id: project_template_ids).take(10) %>
     <% elsif current_user.user_type == UserType.creative %>
       <% shoots = current_user.shoots.reverse.take(10) %>
     <% else %>

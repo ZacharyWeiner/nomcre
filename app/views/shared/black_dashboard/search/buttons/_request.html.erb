@@ -1,6 +1,6 @@
 <div class='pull-right'>
   <!-- The user already has a request show "already requested" -->
-  <% if shoot.has_request_for_user(user.id)  %>
+  <% if shoot.has_request_for_creative(user.id)  %>
     <%= link_to "<i class='fas fa-check'> </i> Request Sent".html_safe, shoot_path(shoot), class: 'btn btn-success disabled' %>
   <% else %>
   <!-- If the user already does NOT have a request show "request" button -->

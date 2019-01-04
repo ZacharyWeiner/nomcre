@@ -27,6 +27,12 @@ class ShootsController < ApplicationController
 
   # GET /shoots/1/edit
   def edit
+    byebug
+    if !@shoot.is_editable
+      respond_to do |format|
+         format.html { redirect_to @shoot, notice: 'Shoot can not be edited after a creative is asssigned' }
+      end
+    end
   end
 
   # POST /shoots
@@ -51,7 +57,6 @@ class ShootsController < ApplicationController
     attributes = shoot_params.clone
     attributes[:user_saved] = true
     unless shoot_params[:focus_points].nil? || shoot_params[:focus_points].count == 0
-      byebug
       if !@shoot.focus_points.nil?
         @shoot.focus_points.clear
       else
@@ -102,7 +107,6 @@ class ShootsController < ApplicationController
     set_shoot
     creatives_list = @shoot.find_creatives
     creatives_list.each do |sr|
-      byebug
       creative_request = CreativeRequest.create_for_shoot(creative_id: sr.user_id, shoot_id: @shoot.id)
     end
     respond_to do |format|

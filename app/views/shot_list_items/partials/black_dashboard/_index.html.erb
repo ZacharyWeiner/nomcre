@@ -38,7 +38,7 @@
                 </div>
               </td>
               <td class="td-name">
-                <%= link_to si.item_type, proposal_path(si.proposal, :active => 'shotlist') %>
+                <%= link_to si.item_type, shoots_path(si.shoot, :active => 'shotlist') %>
                 <br>
                 <small><%= si.aspect_ratio%></small>
               </td>
@@ -56,8 +56,10 @@
                 <%= link_to si do %>
                   <i class="fa fa-eye"></i>
                 <% end %>
-                <%= link_to edit_proposal_shot_list_item_path(si.proposal, si) do %>
-                  <i class="fa fa-edit"></i>
+                <% unless si.nil? %>
+                  <%= link_to edit_shoot_shot_list_item_path(si.shoot, si) do %>
+                    <i class="fa fa-edit"></i>
+                  <% end %>
                 <% end %>
                 <%= link_to si, method: :delete, data: { confirm: 'Are you sure?' } do %>
                 <i class="fa fa-trash"></i>
@@ -67,8 +69,8 @@
          <% end %>
         </tbody>
       </table>
-      <% if (current_user.user_type == 'company' && current_user.company == proposal.company) || current_user == proposal.user %>
-      <%= link_to "<ion-icon name='add' ></ion-icon> Add New".html_safe, new_proposal_shot_list_item_path(proposal.id), class:'btn btn-success btn-round float-right mr-5'  %>
+      <% if (current_user.user_type == 'company' && current_user.company == shoot.company) || current_user == shoot.user %>
+      <%= link_to "<ion-icon name='add' ></ion-icon> Add New".html_safe, new_shoot_shot_list_item_path(shoot.id), class:'btn btn-success btn-round float-right mr-5'  %>
       <% end %>
     </div>
   </div>

@@ -13,14 +13,14 @@
   <tbody>
     <% invoices.each do |invoice| %>
       <tr>
-        <td><%= invoice.project.title %></td>
+        <td><%= invoice.project.title unless invoice.project_id.nil? %></td>
         <td><%= invoice.company.name %></td>
         <td><%= number_to_currency(invoice.amount) %></td>
         <td>
           <%if invoice.invoice_type == InvoiceType.deposit %>
-            <%= invoice.project.created_at.strftime("%d %b '%y") %>
+            <%= invoice.project.created_at.strftime("%d %b '%y") unless invoice.project_id.nil? %>
           <% elsif invoice.invoice_type == InvoiceType.balance %>
-            <%= invoice.project.deadline.strftime("%d %b '%y") %>
+            <%= invoice.project.deadline.strftime("%d %b '%y") unless invoice.project_id.nil?%>
           <% else %>
 
           <% end %>

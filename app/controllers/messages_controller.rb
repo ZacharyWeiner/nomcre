@@ -27,10 +27,10 @@ class MessagesController < ApplicationController
       params.require(:message).permit(:content, :chatroom_id, :file)
     end
 
-    def authorize
-      if Chatroom.find(message_params[chatroom_id:]).users.include?(current_user)
-        return
-      end
-      redirect_to chatrooms_path
-    end
+    # def authorize
+    #   if Chatroom.find(message_params[chatroom_id:]).users.include?(current_user)
+    #     return
+    #   end
+    #   redirect_to chatrooms_path
+    # end
 end

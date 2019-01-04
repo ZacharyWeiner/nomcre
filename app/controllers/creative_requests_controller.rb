@@ -15,6 +15,7 @@ class CreativeRequestsController < ApplicationController
     else
       @creative_requests = CreativeRequest.all
     end
+    @creative_requests.reverse
   end
 
   # GET /creative_requests/1

@@ -2,11 +2,11 @@
 <% if shoot.creative == user  %>
   <%= render :partial => 'shared/black_dashboard/search/buttons/approved', :locals => {shoot: shoot, user: user }%>
 <% else %>
-  <% if !shoot.has_request_for_user(user.id) %>
+  <% if !shoot.has_request_for_creative(user.id) %>
     <!-- There is no accepted request yet -->
     <%= render :partial =>  'shared/black_dashboard/search/buttons/request', :locals => {shoot: shoot, user: user } %>
   <% else %>
-    <% creative_request = shoot.request_for_user(user.id) %>
+    <% creative_request = shoot.request_for_creative(user.id) %>
       <!-- if there is a request for this user, but it is un-responded to -->
       <% if !creative_request.accepted || !shoot.project.deposit_is_paid %>
         <!-- Show Disabled Assign button -->

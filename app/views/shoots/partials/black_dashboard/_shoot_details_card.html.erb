@@ -32,6 +32,9 @@
   <% show_view_button = false %>
 <% end %>
 
+<% if !defined? show_chat_button%>
+  <% show_chat_button = false %>
+<% end %>
 
 
 <div class="card">
@@ -109,11 +112,21 @@
              <hr>
              <span>
               <i class='tim-icons text-info'><ion-icon name='ios-photos'> </ion-icon></i>
-              Shot Count:
+              Custom Shot Count:
               <span class='pull-right'>
                 <%= shoot.owner_added_shot_list_count.nil? ? 0 : shoot.owner_added_shot_list_count %>
                 of
                 <%= shoot.user_added_shot_count_max %>
+              </span>
+            </span>
+            <hr>
+             <span>
+              <i class='tim-icons text-info'><ion-icon name='ios-photos'> </ion-icon></i>
+              Nomcre Shot Count:
+              <span class='pull-right'>
+                <%= shoot.nomcre_added_shot_list_count %>
+                of
+                <%= shoot.nomcre_added_shot_list_count %>
               </span>
             </span>
             <hr>
@@ -163,6 +176,9 @@
         <% end %>
       <% end %>
     </span>
+  <% end %>
+  <% if show_chat_button && !shoot.creative.nil? %>
+    <%= link_to "<i class='fas fa-comments'></i> Chat".html_safe, shoot.chatroom, class: 'btn btn-simple btn-primary' %>
   <% end %>
 
 </div>

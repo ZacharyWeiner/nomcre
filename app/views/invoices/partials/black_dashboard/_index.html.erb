@@ -42,18 +42,21 @@
         </div>
       </div>
       <div class="tab-pane" id="paid">
-        <% pending = @invoices.where.not(payment_id: nil) %>
-        <% if pending.count == 0 %>
-          <div class="alert alert-info alert-with-icon" style='width:100%'>
-            <span data-notify="icon" class="tim-icons"><ion-icon name="alert"></ion-icon></span>
-            <span data-notify="message">You Don't Have Any Paid Invoices </span>
-          </div>
-        <% else %>
-          <%= render :partial => 'invoices/partials/black_dashboard/shared/table', :locals => {invoices: pending} %>
-        <% end %>
+        <div class='row' style='margin:12px'>
+          <% pending = @invoices.where.not(payment_id: nil) %>
+          <% if pending.count == 0 %>
+            <div class="alert alert-info alert-with-icon" style='width:100%'>
+              <span data-notify="icon" class="tim-icons"><ion-icon name="alert"></ion-icon></span>
+              <span data-notify="message">You Don't Have Any Paid Invoices </span>
+            </div>
+          <% else %>
+            <%= render :partial => 'invoices/partials/black_dashboard/shared/table', :locals => {invoices: pending} %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 </div>
+

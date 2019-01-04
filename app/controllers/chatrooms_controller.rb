@@ -6,7 +6,7 @@ class ChatroomsController < ApplicationController
     if current_user.user_type == UserType.creative
       @menu_rooms = current_user.chatrooms
     elsif current_user.user_type == UserType.company
-      @menu_rooms = current_user.company.shoots.where('deadline > ?', Date.today - 30.days).where.not(creative: nil)
+      @menu_rooms = current_user.company.chatrooms
     end
 
     #Set Up This Chatroom

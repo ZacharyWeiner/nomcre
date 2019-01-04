@@ -16,6 +16,11 @@
     <h4 class="card-title">Shot List </h4>
   </div>
   <div class="card-body">
+    <% if (current_user.user_type == 'company' && current_user.company == shoot.project.company) || current_user == shoot.creative %>
+      <% if shoot.is_editable %>
+        <%= link_to "<ion-icon name='add' ></ion-icon> Add New".html_safe, new_shoot_shot_list_item_path(shoot.id), class: 'btn btn-success btn-round float-right mr-5'  %>
+        <% end %>
+      <% end %>
     <div class="table-responsive">
       <table class="table table-shopping">
         <thead class="">
@@ -25,7 +30,7 @@
             </th>
             <th class="">Type</th>
             <th class="">Background</th>
-            <th class="text-center">Uploaded</th>
+            <th class="text-center">Completed</th>
             <th class="">Actions</th>
           </tr>
         </thead>
@@ -34,24 +39,26 @@
             <tr >
               <td>
                 <div class="img-container">
-                  <% if si.reference_image == nil %>
+                  <% if si.reference_image.file != nil %>
                   <%= image_tag si.reference_image, class: 'img-fluid'  %>
                   <% else %>
                     <i class="far fa-image fa-3x"></i>
                   <% end %>
                 </div>
               </td>
-              <td class="td-name">
-                <%= link_to si.item_type, shot_list_item_path(si) %>
+              <td class="">
+                <%= si.description %>
                 <br>
                 <small><%= si.aspect_ratio%></small>
               </td>
               <td class="">
-                <%= si.background%>
+                <%= !si.background.blank? ? si.background : "Creatives Choice" %>
               </td>
               <td class="text-center">
-                <% if si.upload.file == nil %>
+                <% if !si.task.nil? && !si.task.completed %>
                   <i class='tim-icons text-danger'><ion-icon name='close' size='large'></ion-icon></i>
+                <% elsif si.task.nil? %>
+                  NEEDS TASK
                 <% else %>
                   <i class='tim-icons text-success'><ion-icon name='checkmark' size='large'></ion-icon></i>
                 <% end %>
@@ -71,11 +78,6 @@
          <% end %>
         </tbody>
       </table>
-      <% if (current_user.user_type == 'company' && current_user.company == shoot.project.company) || current_user == shoot.creative %>
-      <% if shoot.is_editable %>
-        <%= link_to "<ion-icon name='add' ></ion-icon> Add New".html_safe, new_shoot_shot_list_item_path(shoot.id), class: 'btn btn-success btn-round float-right mr-5'  %>
-        <% end %>
-      <% end %>
     </div>
   </div>
 </div>
