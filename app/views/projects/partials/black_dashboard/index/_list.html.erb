@@ -50,7 +50,7 @@
               <%= project.deadline.strftime('%a, %b %d %Y') unless project.deadline.nil? %>
             </td>
             <td class='text-center'>
-              <%= project.tasks.where.not(completed: true).count %>
+              <%= project.project_tasks.where.not(completed: true).count %>
             </td>
             <td class='text-center'>
               <% if !project.deposit_is_paid %>

@@ -4,13 +4,15 @@ class ProjectsController < ApplicationController
   before_action :authorize, only: [:edit, :update, :delete]
   layout 'black_dashboard'
 
+
   # GET /projects
   # GET /projects.json
   def index
     if !current_user.company.nil? && params[:active]
       @projects = current_user.company.projects.where(is_complete: true).where(is_template: nil).uniq
     elsif !current_user.company.nil?
-      @projects = current_user.company.projects.where(is_template: false).where(is_complete: nil).uniq
+      project_template_ids = Project.where(is_template: true).or(Project.where(is_default_template: true)).map{|e| e.id}
+      @projects = current_user.company.projects.where.not(id: project_template_ids)
     elsif params[:active]
       @projects = current_user.projects.where(is_complete: true)
     else
@@ -89,26 +91,7 @@ class ProjectsController < ApplicationController
   def update_price
     @price = params[:project][:price]
     @project = Project.find(params[:project_id])
-    @deposit_invoice = @project.invoices.where(invoice_type: InvoiceType.deposit).first
-    @balance_invoice = @project.invoices.where(invoice_type: InvoiceType.deposit).first
-    @project.price = @price
-    byebug
-    if !@deposit_invoice.is_paid || !@balance_invoice.is_paid
-      if @project.save!
-        #both are unpaid
-        if !@deposit_invoice.is_paid && !@balance_invoice.is_paid
-          @deposit_invoice.amount = @project.price / 2
-          if @deposit_invoice.save!
-            @balance_invoice.amount = @project.price / 2
-            @balance_invoice.save!
-          end
-        #deposit is paid but balance is not
-        elsif @deposit_invoice.is_paid && !@balance_invoice.is_paid
-          @balance_invoice.amount = @project.price - @deposit_invoice.amount
-          @balance_invoice.save!
-        end
-      end
-    end
+    @project.update_price(@price)
     redirect_to admin_edit_project_price_path(@project)
   end
 

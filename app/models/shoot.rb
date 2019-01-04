@@ -17,7 +17,7 @@ class Shoot < ApplicationRecord
 
 
   #callbacks
-  before_destroy :orphan_relations
+  before_destroy :deconstruct
 
 
   #instance_methods
@@ -82,7 +82,6 @@ class Shoot < ApplicationRecord
       }
     end
     p family_tree
-     byebug
     creatives = User.joins(:schedule_items).where(schedule_items: { location_id: family_tree, start_date: (Date.today - 2.years)..self.deadline, end_date: (Date.today)..self.deadline + 1.year  }).uniq
     creatives_ranked = []
     creatives.each do |c|
@@ -183,6 +182,13 @@ class Shoot < ApplicationRecord
 
 
   #callbacks
+  def deconstruct
+    orphan_relations
+    byebug
+    self.project.update_price(self.project.price - self.price)
+    byebug
+  end
+
   def orphan_relations
     self.assistants.each do |assistant|
       assistant.shoot = nil

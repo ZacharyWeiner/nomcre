@@ -41,7 +41,6 @@ class Project < ApplicationRecord
     if user.role == 0
       return true
     end
-
     can_edit = false
     if self.company.users.where(id: user.id).count > 0
       if !self.deposit_is_paid
@@ -90,10 +89,26 @@ class Project < ApplicationRecord
   end
 
   ##Finance
-  def udpdate_price
-    #TODO - Update Price
-    p 'TODO: Project Update Price Method'
-    throw err;
+  def update_price new_price
+    @deposit_invoice = self.deposit_invoice
+    @balance_invoice = self.balance_invoice
+    self.price = new_price
+    if !@deposit_invoice.is_paid || !@balance_invoice.is_paid
+      if self.save!
+        #both are unpaid
+        if !@deposit_invoice.is_paid && !@balance_invoice.is_paid
+          @deposit_invoice.amount = self.price / 2
+          if @deposit_invoice.save!
+            @balance_invoice.amount = self.price / 2
+            @balance_invoice.save!
+          end
+        #deposit is paid but balance is not
+        elsif @deposit_invoice.is_paid && !@balance_invoice.is_paid
+          @balance_invoice.amount = self.price - @deposit_invoice.amount
+          @balance_invoice.save!
+        end
+      end
+    end
   end
 
   def is_paid_in_full
@@ -151,6 +166,7 @@ class Project < ApplicationRecord
     project.package_type = package
     project.is_template = false
     project.is_default_template = false
+    project.is_complete = false
     project.company = company
     project.title = "#{package.title} - #{deadline}"
     project.price = 15000

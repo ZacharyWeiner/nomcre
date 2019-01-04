@@ -9,12 +9,15 @@
           <div class="block block-four"></div>
           <a href="javascript:void(0)">
             <%= image_tag @payment.company.logo, class: 'avatar' %>
-            <h5 class="title"><%= @payment.project %></h5>
+            <h5 class="title"><%= @payment.project.title %></h5>
           </a>
 
         </div>
       </p>
       <div class="card-description text-center">
+        <label> Amount </label><br>
+       <%= number_to_currency(@payment.amount) %>
+       <br><br>
         <label> Payment Type </label><br>
        <%= @payment.payment_type %>
        <br><br>

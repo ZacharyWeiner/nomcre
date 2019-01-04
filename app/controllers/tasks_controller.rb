@@ -6,8 +6,8 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.where(user: current_user).where(completed: false).order(:deadline)
-    @completed_tasks = Task.where(user: current_user).where(completed: true).order(:deadline).limit(100);
+    @tasks = Task.where(completed: false).where(user: current_user).order(:deadline)
+    @completed_tasks = current_user.tasks.where(completed: true)
     @notifications = Notification.where(user: current_user).where(notification_type: "Task").where(read: false)
     @notifications.each do |note|
       note.read = true
@@ -79,8 +79,9 @@ class TasksController < ApplicationController
   def complete
     new_path = params[:redirect]
     @task.completed = true
-    if @task.save
-      respond_to do |format|
+
+    respond_to do |format|
+      if @task.save!
         if !@task.proposal.nil?
           format.html { redirect_to @task.proposal, notice: 'Task was successfully completed.' }
         elsif !@task.shoot.nil?
@@ -90,6 +91,8 @@ class TasksController < ApplicationController
         else
           format.html { redirect_to @task, notice: 'Task was successfully completed.' }
         end
+      else
+        format.html { redirect_to @task, notice: 'Task could not be saved' }
       end
     end
   end

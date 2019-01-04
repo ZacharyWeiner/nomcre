@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190103095132) do
+ActiveRecord::Schema.define(version: 20190104120606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -414,7 +414,6 @@ ActiveRecord::Schema.define(version: 20190103095132) do
     t.string "background"
     t.string "upload"
     t.string "item_type"
-    t.bigint "task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "focus_point"
@@ -424,7 +423,6 @@ ActiveRecord::Schema.define(version: 20190103095132) do
     t.bigint "added_by_id"
     t.index ["proposal_id"], name: "index_shot_list_items_on_proposal_id"
     t.index ["shoot_id"], name: "index_shot_list_items_on_shoot_id"
-    t.index ["task_id"], name: "index_shot_list_items_on_task_id"
   end
 
   create_table "showcase_images", force: :cascade do |t|
@@ -481,10 +479,12 @@ ActiveRecord::Schema.define(version: 20190103095132) do
     t.bigint "shoot_id"
     t.bigint "project_id"
     t.boolean "is_template"
+    t.bigint "shot_list_item_id"
     t.index ["company_id"], name: "index_tasks_on_company_id"
     t.index ["project_id"], name: "index_tasks_on_project_id"
     t.index ["proposal_id"], name: "index_tasks_on_proposal_id"
     t.index ["shoot_id"], name: "index_tasks_on_shoot_id"
+    t.index ["shot_list_item_id"], name: "index_tasks_on_shot_list_item_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
@@ -602,7 +602,6 @@ ActiveRecord::Schema.define(version: 20190103095132) do
   add_foreign_key "shoots", "projects"
   add_foreign_key "shot_list_items", "proposals"
   add_foreign_key "shot_list_items", "shoots"
-  add_foreign_key "shot_list_items", "tasks"
   add_foreign_key "tags_users", "tags"
   add_foreign_key "tags_users", "users"
   add_foreign_key "tasks", "companies"

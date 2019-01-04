@@ -12,10 +12,6 @@
     <label> Background </label>
     <%= form.text_field :background, id: :shot_list_item_background, class: 'form-control', :placeholder => 'Tell us About the Background' %>
   </div>
-  <div class='form-group'>
-    <label> Background Note</label>
-    <%= form.text_area :background_note, id: :shot_list_item_background_note, class: 'form-control', :placeholder => 'Tell us More About the Background if the requirement is detailed' %>
-  </div>
   <%= render :partial => 'shot_list_items/partials/black_dashboard/form/reference_image', :locals => {:shot_list_item => shot_list_item, :form => form }%>
   <br>
   <%= render :partial => 'shot_list_items/partials/black_dashboard/form/focus_point', :locals => {:shot_list_item => shot_list_item, :form => form }%>

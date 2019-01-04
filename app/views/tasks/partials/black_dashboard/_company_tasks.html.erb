@@ -33,17 +33,17 @@
             <!-- Tab 1 Content -->
             <table class="table">
               <tbody>
-                <% tasks.where(can_accept: 'company' ).each do |task| %>
+                <% tasks.each do |task| %>
                 <tr>
                   <td>
-                    <p class="title"> <%= task.proposal.title %></p>
+                    <p class="title"> <%= task.project.title unless task.project.nil? %></p>
                     <p class="text-info"><%= task.description %></p>
                   </td>
                   <td>
-                    <% if task.deadline > Date.today %>
-                    <p class="text-success"><i class="fa fa-clock-o"></i>  <%= (task.deadline - Date.today).to_int %> days</p>
+                    <% if !task.deadline.nil? && task.deadline > Date.today %>
+                    <p class="text-success"><i class="fa fa-clock-o"></i>  <%= (task.deadline - Date.today).to_int %> days </p>
                   <% else %>
-                    <p class="text-danger"><i class="fa fa-clock-o"></i>  <%= time_ago_in_words(task.deadline ) %></p>
+                    <p class="text-danger"><i class="fa fa-clock-o"></i>  <%= time_ago_in_words(task.deadline ) unless task.deadline.nil? %></p>
                   <% end %>
                   </td>
                   <td class="td-actions text-right">
@@ -63,13 +63,13 @@
                 <% tasks.where(can_accept: 'creative' ).each do |task| %>
                 <tr>
                   <td>
-                    <p class="title"> <%= task.proposal.title %></p>
+                    <p class="title"> <%= task.project.title unless task.project.nil? %></p>
                     <p class="text-info"><%= task.description %></p>
                   </td>
                   <td>
-                    <% if task.deadline > Date.today %>
+                  <% if !task.deadline.nil? &&  task.deadline > Date.today %>
                     <p class='text-success'> <%= (task.deadline - Date.today).to_int %> days</p>
-                  <% else %>
+                  <% elsif !task.deadline.nil? %>
                     <p class="text-danger"> <%= (task.deadline - Date.today).to_int %> days</p>
                   <% end %>
                   </td>
@@ -87,7 +87,7 @@
             <!-- Tab 1 Content -->
             <table class="table">
               <tbody>
-                <% completed.where(can_accept: 'company' ).each do |task| %>
+                <% @completed_tasks.each do |task| %>
                 <tr>
                   <td>
                     <p class="title">
@@ -97,7 +97,9 @@
                     <p class="text-info"><%= task.description %></p>
                   </td>
                   <td>
+                    <% unless task.deadline.nil? %>
                     <p class="text-success"><i class="fa fa-clock-o"></i>  <%= time_ago_in_words((task.deadline - Date.today)) %></p>
+                    <% end %>
                   </td>
                   <td class="td-actions text-right">
                     <% link_to task_task_complete_path(task), class: "btn btn-link btn-primary", title: "Complete", :data => { :original_title => 'Tooltip on Top'}  do  %>

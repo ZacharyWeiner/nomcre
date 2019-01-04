@@ -1,17 +1,19 @@
 class ShotListItem < ApplicationRecord
+  before_destroy :orphan_relations
   #validation
   validates :description, presence: true
 
   #belongs_to
   belongs_to :proposal, optional: true
-  belongs_to :task, optional: true
+
   belongs_to :shoot, optional: true
   belongs_to :added_by, class_name: 'User', foreign_key: 'added_by_id', optional: true
-
+  belongs_to :task, optional: true
 
   #has_one
   has_one :project, through: :shoot
-  belongs_to :task, optional: true, :dependent => :destroy
+  has_one :task
+
 
   #has_many
 
@@ -21,7 +23,7 @@ class ShotListItem < ApplicationRecord
   mount_uploader :upload, ShotListUploader
   mount_uploader :reference_image, ShotListUploader
 
-  before_destroy :orphan_relations
+
 
   #instance_methods
   def copy_from_template
@@ -30,6 +32,7 @@ class ShotListItem < ApplicationRecord
 
   def create_related_task description
     task = Task.create!(shoot_id: self.shoot.id,
+                        shot_list_item_id: self.id,
                          description: description,
                          project_id: self.shoot.project_id,
                          user_id: self.shoot.company.users.first.id,
@@ -37,9 +40,6 @@ class ShotListItem < ApplicationRecord
                          can_accept: UserType.creative,
                          task_type: TaskType.shot_list,
                          is_template: false )
-    byebug
-    self.task = task
-    self.save!
     task
   end
 
@@ -77,9 +77,8 @@ class ShotListItem < ApplicationRecord
           new_sli_task.company == new_sli.shoot.company
           new_sli_task.project = new_sli.shoot.project
           new_sli_task.deadline = new_sli.shoot.deadline
+          new_sli_task.shot_list_item = self
           new_sli_task.save!
-          new_sli.task = new_sli_task
-          new_sli.save
         end
       end
     end
