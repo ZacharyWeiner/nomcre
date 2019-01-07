@@ -1,8 +1,24 @@
 class Collection < ApplicationRecord
+  #callbacks
+  before_destroy :deconstruct
+
+  #validations
+  validates :title, presence: true, case_sensitive: false
+  validates :description, presence: true, case_sensitive: false
+
+  #belongs_to
   belongs_to :user
+
+  #has_many
   has_many :collection_items, dependent: :destroy
-  before_destroy :destroy_related_entities
+
+  #pagination
   paginates_per 10
+
+  #callbacks
+  def deconstruct
+    destroy_related_entities
+  end
 
   def destroy_related_entities
     activities = UserActivity.where(user: self.user).where(activity_type: UserActivityType.collection_added).where( object_id: self.id)
@@ -11,6 +27,19 @@ class Collection < ApplicationRecord
     end
   end
 
+  #instance methods
+  def get_header_or_first
+    header = self.collection_items.where.not(file: nil).where(is_header: true).first
+    if header.nil?
+      header = self.collection_items.where.not(file: nil).first
+    end
+    if header.nil?
+      header = self.user.user_profile.safe_header_image_url
+    end
+    header
+  end
+
+  #class methods
   def self.get_jumbotron_url collection
     head_url =  "https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/horizontal/nomcre-horizontal-19.jpg"
     #if there are no items in the collection
@@ -39,16 +68,5 @@ class Collection < ApplicationRecord
       end
     end
     head_url
-  end
-
-  def get_header_or_first
-    header = self.collection_items.where.not(file: nil).where(is_header: true).first
-    if header.nil?
-      header = self.collection_items.where.not(file: nil).first
-    end
-    if header.nil?
-      header = self.user.user_profile.safe_header_image_url
-    end
-    header
   end
 end

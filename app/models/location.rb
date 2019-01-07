@@ -1,6 +1,6 @@
 class Location < ApplicationRecord
 
-  belongs_to :parent, class_name: 'Location', foreign_key: 'parent_id'
+  belongs_to :parent, class_name: 'Location', foreign_key: 'parent_id', optional: true
   has_many :children, class_name: 'Location', foreign_key: 'parent_id'
 
   def parent
@@ -56,5 +56,13 @@ class Location < ApplicationRecord
     end
     @string_for_show += "</div>"
     return @string_for_show
+  end
+
+  def self.create_default_for_tests
+    @location = Location.first
+    if @location.nil?
+      @location = Location.create!(name: "Chicago - Test", location_type: "City")
+    end
+    @location
   end
 end

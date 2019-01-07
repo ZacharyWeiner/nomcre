@@ -243,6 +243,7 @@ class Project < ApplicationRecord
     project
   end
 
+
   def create_shoots_for_template
     shoot = Shoot.new
     shoot.project = self
@@ -264,6 +265,24 @@ class Project < ApplicationRecord
     shoot.price = 5000
     shoot.user_added_shot_count_max = 100
     shoot.save!
+  end
+
+  def self.create_default_for_tests package_type_id, company_id
+    @package_type = PackageType.find(package_type_id)
+    @project = Project.where({package_type_id: package_type_id, company_id: company_id}).first
+    if @project.nil?
+      @project = Project.create!(package_type_id: package_type_id,
+                                 company_id: company_id,
+                                 title: 'Testy Tester',
+                                 brief: 'Testy Tester- brief',
+                                 deadline: Date.today + 60.days,
+                                 price: @package_type.base_price,
+                                 is_complete: false,
+                                 max_user_shot_list: 100,
+                                 is_template: false,
+                                 is_default_template: false )
+    end
+    @project
   end
 
 end

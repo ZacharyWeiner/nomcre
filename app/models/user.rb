@@ -7,8 +7,8 @@ class User < ApplicationRecord
 
   #has_many
   has_many :proposals
-  has_many :collections
-  has_many :collection_items
+  has_many :collections, :dependent => :destroy
+  has_many :collection_items, :dependent => :destroy
   has_many :tasks
   has_many :messages
   has_many :chatrooms, through: :messages

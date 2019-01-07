@@ -1,4 +1,31 @@
+class FileOrVideoValidator < ActiveModel::Validator
+  def validate(record)
+    byebug
+    if defined? record.video
+      if record.file.file.nil? && record.video.file.nil?
+        record.errors[:base] << "You Must Upload either a File or Video"
+      end
+    elsif defined? record.media
+      if record.file.file.nil? && record.media.file.nil?
+        record.errors[:base] << "You Must Upload either a File or Video"
+      end
+    end
+  end
+end
+
+class DocumentHasAFieldValidator < ActiveModel::Validator
+  def validate(record)
+   if record.shoot.nil? && record.proposal.nil? && record.user.nil? && record.company.nil? && record.assistant.nil?
+      record.errors[:base] << "A Document Must belong to some other object"
+   end
+  end
+end
+
+
 class Document < ApplicationRecord
+
+  validates_with FileOrVideoValidator
+  validates_with DocumentHasAFieldValidator
   #belongs_to
   belongs_to :shoot, optional: true
   belongs_to :proposal, optional: true

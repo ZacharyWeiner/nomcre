@@ -188,9 +188,7 @@ class Shoot < ApplicationRecord
 
   def deconstruct
     orphan_relations
-    byebug
     self.project.update_price(self.project.price - self.price)
-    byebug
   end
 
   def orphan_relations
@@ -718,5 +716,11 @@ class Shoot < ApplicationRecord
       shoot.save!
       ShotListItem.create_all_from_shoot_template shoot_template.id, shoot.id
     end
+  end
+
+  def self.create_default_for_tests(project_id, company_id, location_id)
+    @project = Project.find(project_id)
+    @shoot = Shoot.create!(project: @project, company_id: company_id, location_id: location_id, content_type: ContentType.photo, brief: @project.brief, price: DefaultPrices.photo_shoot, deadline: @project.deadline - 7.days)
+    @shoot
   end
 end

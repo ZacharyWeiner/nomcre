@@ -1,23 +1,2 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  proposal: one
-  user: one
-  company: one
-  assistant: one
-  title: MyString
-  file: MyString
-  media: MyString
-  document_type: MyString
-  is_template: false
-
-two:
-  proposal: two
-  user: two
-  company: two
-  assistant: two
-  title: MyString
-  file: MyString
-  media: MyString
-  document_type: MyString
-  is_template: false

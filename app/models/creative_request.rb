@@ -1,4 +1,7 @@
 class CreativeRequest < ApplicationRecord
+  validates :accepted, inclusion: { in: [ true, false ] }
+  validates :approved, inclusion: { in: [ true, false ] }
+  validates :declined, inclusion: { in: [ true, false ] }
   #belongs_to
   belongs_to :shoot
   belongs_to :company
