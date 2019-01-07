@@ -1,4 +1,8 @@
 class Shoot < ApplicationRecord
+  #callbacks
+  after_create :intialize_shoot
+  before_destroy :deconstruct
+
   #belongs_to
   belongs_to :project
   belongs_to :company
@@ -14,10 +18,6 @@ class Shoot < ApplicationRecord
   has_many :tasks, :dependent => :destroy
   has_many :shot_list_items, :dependent => :destroy
   has_many :creative_requests, :dependent => :destroy
-
-
-  #callbacks
-  before_destroy :deconstruct
 
 
   #instance_methods
@@ -182,6 +182,10 @@ class Shoot < ApplicationRecord
 
 
   #callbacks
+  def intialize_shoot
+    set_default_shot_list
+  end
+
   def deconstruct
     orphan_relations
     byebug
@@ -198,6 +202,502 @@ class Shoot < ApplicationRecord
       doc.shoot_id = nil
       doc.save!
     end
+  end
+
+  def set_default_shot_list
+    if self.content_type == ContentType.photo
+      create_default_shot_list_for_photo
+    elsif self.content_type == ContentType.video
+      create_default_shot_list_for_video
+    end
+  end
+
+  def create_default_shot_list_for_photo
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Logo shot detail',
+                          aspect_ratio:'portrait',
+                           background:"On Set Or At Location",
+                           )
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Logo shot detail',
+                          aspect_ratio:'landscape',
+                           background:"On Set Or At Location",
+                           )
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Establishing shot wide',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Establishing shot wide (lots of sky)',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Establishing shot medium',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Establishing shot tight - landscape',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Establishing shot tight - portrait',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Atmosphere Wide',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Shot Wide',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Shot Wide',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Middle Right')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Shot Wide',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Middle Left')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Shot Wide',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Top Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Shot Wide',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Bottom Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Artistic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Artistic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Far Right')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Artistic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Far Left')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Artistic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Middle Top')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Artistic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Middle Bottom')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Dead Center',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Low To High',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Low To High',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Right')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Low To High',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Left')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Right')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Left')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: ['Top'])
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: ['Bottom'])
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'BTS- Establishing Shot of Location',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Top')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'BTS- Establishing Shot of Location',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Bottom')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'BTS- Establishing Shot of Location',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Left')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'BTS- Establishing Shot of Location',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Right')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'BTS- Establishing Shot of Location',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'BTS- Crew With Client Or Product',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'BTS- Crew Together Happy',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'BTS- Wide Shot Of Set',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'BTS- Gear Shot On Set',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'BTS- Models Getting Ready',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'BTS- Crew and Gear ',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+  end
+
+  def create_default_shot_list_for_video
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Camera Movement In',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Logo focus Pull In',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Logo Gimbal Fly By',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Shot Wide',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Shot Wide',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Middle Right')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Shot Wide',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Middle Left')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Shot Wide',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Top Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Shot Wide',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Bottom Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Artistic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Artistic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Far Right')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Artistic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Far Left')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Artistic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Middle Top')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Artistic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Middle Bottom')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Dead Center',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Low To High',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Low To High',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Right')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Low To High',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Left')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Right')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Left')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Top')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'Graphic Detail',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Bottom')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'BTS- Walkthrough of Set ',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'BTS- Establishing Shot or Transportation',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'BTS- Smiles of Crew + Talent',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'BTS- Thank You With Audio To Client',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'BTS- Thank You With Audio To Nomadic Creative ',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'BTS- Pan of Set Location',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'BTS- Thumbs Up From Primary Creator',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                          description:'BTS- with audio saying "We Love <city_name>"',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
+
+    sli = ShotListItem.create!(shoot: self,
+                           description:'BTS- with audio saying "Thast a wrap for [Name Of Company] & Nomcre in [City Name]"',
+                          aspect_ratio:'landscape',
+                          background:"On Set Or At Location",
+                          focus_point: 'Center')
+    sli.create_related_task sli.description
   end
 
   #class methods

@@ -6,6 +6,15 @@ class PackageType < ApplicationRecord
   #has_many
   has_many :projects
 
+  #validations
+  validates :title, presence: true, case_sensitive: false
+  validates :subtitle, presence: true, case_sensitive: false
+  validates :description, presence: true, case_sensitive: false
+  validates :max_models,  presence: true
+  validates :minimum_images,  presence: true
+  validates :minimum_videos,  presence: true
+  validates :base_price, numericality: { other_than: 0 }
+
   #scopes
 
 
@@ -38,6 +47,14 @@ class PackageType < ApplicationRecord
     # ensure
     #   p "This is for clean up on create_project"
     # end
+  end
+
+  def self.create_default_for_tests
+    hi  = HeaderImage.first
+    if hi.nil?
+      hi = HeaderImage.create!()
+    end
+    PackageType.create!(header_image: hi, title: 'Default', subtitle: "default", description: 'Default', max_models: 1, minimum_images: 1, minimum_videos:1, base_price: 10000)
   end
 
 end

@@ -81,7 +81,9 @@
              <%= simple_format(shoot.brief) %>
           </div>
           <div class="tab-pane <%= shotlist_style %>" id="shotlist">
-            <%= render :partial => 'shared/black_dashboard/shot_list_items/shoots/list', :locals => {:shoot => shoot, :shot_list_items => shoot.shot_list_items} %>
+            <div class='' style='max-height: 800px; overflow-y: auto'>
+              <%= render :partial => 'shared/black_dashboard/shot_list_items/shoots/list', :locals => {:shoot => shoot, :shot_list_items => shoot.shot_list_items.order(:id)} %>
+            </div>
           </div>
           <div class="tab-pane <%= tasks_style %>" id="tasks">
             <%if shoot.creative != nil %>

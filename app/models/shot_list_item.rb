@@ -66,20 +66,8 @@ class ShotListItem < ApplicationRecord
       new_sli.item_type = sli.item_type
       new_sli.aspect_ratio = sli.aspect_ratio
       new_sli.shoot = shoot
-      task_type = ''
-      task_can_accept = ''
-      task_description = "#{sli.description} - Task "
       if new_sli.save!
-        if sli.task.nil?
-          new_sli.create_related_task(task_description)
-        else
-          new_sli_task = sli.task.clone
-          new_sli_task.company == new_sli.shoot.company
-          new_sli_task.project = new_sli.shoot.project
-          new_sli_task.deadline = new_sli.shoot.deadline
-          new_sli_task.shot_list_item = self
-          new_sli_task.save!
-        end
+
       end
     end
   end
@@ -90,10 +78,10 @@ class ShotListItem < ApplicationRecord
     sli_description = 'Shot List Item #' + sli_count.to_s
     sli_type = shoot.content_type
 
-    task = Task.create!(user: shoot.company.users.first,
-                        description: 'Task for' + sli_description,
-                        company: shoot.company,
-                        shoot: shoot)
+    # task = Task.create!(user: shoot.company.users.first,
+    #                     description: 'Task for' + sli_description,
+    #                     company: shoot.company,
+    #                     shoot: shoot)
 
     sli = ShotListItem.create!(description: sli_description,
                           item_type: sli_type,

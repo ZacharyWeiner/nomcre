@@ -8,7 +8,31 @@
 #PackageType - SinglePhotoShoot
 #PackageType - SingleVideoShoot
 
+excitement = PackageType.create!(title: "Excitement",
+                                 subtitle: "We Create Hype!",
+                                 description: "Creating excitement for a product, person, buidling, service or business",
+                                 description_image: "www.nomcre.com/excitement_description image",
+                                 show_in_menu: true,
+                                 menu_link_text: 'Hype Up Your Audience!',
+                                 minimum_images: 365,
+                                 minimum_videos: 40,
+                                 max_models: 2,
+                                 base_price: 125000,
+                                 order: 1,
+                                 show_on_index: true,
+                                 call_to_action_text: "Create Some Excitement Now!")
+
 #Project - Excitement - Default Template
+excitement_default_project = Project.create!(package_type_id: excitement.id,
+                                     company_id: 1,
+                                     title: "Excitement Package Project - Default Template",
+                                     brief: 'Paste your creative brief here, or call us to help create one.',
+                                     deadline: Date.today + 60.days,
+                                     price: excitement.price,
+                                     is_complete: false,
+                                     max_user_shot_list: 25,
+                                     is_template: true,
+                                     is_default_template: true)
 #Project - PropertyManagement - Default Template
 #Project - ProductLaunch - Default Template
 #Project - Credibility - Default Template
@@ -16,6 +40,23 @@
 #Project - SingleVideoShoot - Default Template
 
 #Shoots - Excitement - Default Template
+excitement_default_photo = Shoot.create(project_id: excitement_default_project,
+                                        company_id: 1,
+                                        location_id: 111,
+                                        content_type: ContentType.photo,
+                                        breif: excitement_default_project.brief,
+                                        price: 3500,
+                                        shoot_style: ShootStyle.mixed )
+excitement_default_video = Shoot.create(project_id: excitement_default_project,
+                                        company_id: 1,
+                                        location_id: 111,
+                                        content_type: ContentType.video,
+                                        breif: excitement_default_project.brief,
+                                        price: 3500,
+                                        shoot_style: ShootStyle.mixed)
+
+
+
 #Shoots - PropertyManagement - Default Template
 #Shoots - ProductLaunch - Default Template
 #Shoots - Credibility - Default Template

@@ -30,4 +30,8 @@ class Company < ApplicationRecord
   def payments
     Payment.where(user: self.users)
   end
+
+  def self.create_default_for_tests
+    Company.create!(name: 'Test', logo: 'www.google.com', phone: '1800-888-9999', website: 'www.google.com', instagram: '@instagram')
+  end
 end

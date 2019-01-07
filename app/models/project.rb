@@ -1,10 +1,21 @@
 class Project < ApplicationRecord
+  #callbacks
+  after_create :initalize_project
+  after_save :update_shoots
+  before_destroy :orphan_relations
+
+  validates :title, presence: true, case_sensitive: false
+  validates :brief, presence: true, case_sensitive: false
+  validates :deadline, presence: true
+  validates :price, presence: true
+  validates :max_user_shot_list, presence: true
+  validates :is_template, inclusion: { in: [ true, false ] }
+
   paginates_per 10
+
   #belongs_to
   belongs_to :package_type
   belongs_to :company
-
-  #has_one
 
   #has_many
   has_many :payments
@@ -21,12 +32,6 @@ class Project < ApplicationRecord
 
   #scopes
   scope :templates, -> {where(is_template:true)}
-
-  #callbacks
-  after_create :initalize_project
-  after_save :update_shoots
-  before_destroy :orphan_relations
-
 
   def owners
     self.company.users
@@ -201,7 +206,9 @@ class Project < ApplicationRecord
     self.shoots.each do |s|
       if !s.user_saved == true
         s.brief = self.brief
-        s.deadline = 5.business_days.before(self.deadline)
+        unless self.deadline.nil?
+          s.deadline = 5.business_days.before(self.deadline)
+        end
         s.save
       end
     end
