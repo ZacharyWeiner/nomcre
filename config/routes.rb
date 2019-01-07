@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+  resources :package_types
   resources :creative_requests
   resources :discount_codes
   resources :shoots do
