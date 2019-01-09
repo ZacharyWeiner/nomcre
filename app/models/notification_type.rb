@@ -20,4 +20,12 @@ class NotificationType
   def self.request_accepted
     return 'Work Request Accepted';
   end
+
+  def self.request_declined
+    return 'Work Request Declined';
+  end
+
+  def self.payment_made
+    return 'You Made A Payment';
+  end
 end

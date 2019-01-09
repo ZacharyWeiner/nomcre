@@ -17,6 +17,7 @@ class Company < ApplicationRecord
   has_many :invoices
   has_many :creative_requests
   has_many :chatrooms, through: :users
+  has_many :payments
 
   #mount
   mount_uploader :logo, LogoUploader

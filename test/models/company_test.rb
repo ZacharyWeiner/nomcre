@@ -105,6 +105,16 @@ class CompanyTest < ActiveSupport::TestCase
     assert @package_type.destroy
   end
 
+  test "Company Can Make Payments" do
+
+    @company = Company.create_default_for_tests
+    @payment = Payment.create_with_notification({user_id: @company.users.first.id, payment_type: PaymentType.deposit, payment_method: PaymentMethod.credit_card, amount: 10000 })
+
+    assert @company.payments.count > 0
+    assert @payment.company
+    assert @company.destroy
+  end
+
   test "Company deconstructs properly" do
      @company = Company.create_default_for_tests
      assert @company.destroy

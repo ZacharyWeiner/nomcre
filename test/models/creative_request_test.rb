@@ -177,4 +177,52 @@ class CreativeRequestTest < ActiveSupport::TestCase
     @package_type.destroy!
     @location.destroy!
   end
+
+
+  test "CreativeRequest.create_for_shoot " do
+    @creative_request = CreativeRequest.create_for_shoot(shoot_id: @shoot.id, creative_id: @creative.id)
+    assert @creative_request
+    assert @creative.notifications.count > 0
+
+    assert @creative_request.destroy
+    assert @shoot.destroy
+    assert @project.destroy
+    assert @location.destroy
+    assert @company.destroy
+    assert @creative.destroy
+    assert @package_type.destroy
+  end
+
+  test "Accept Creative Request" do
+    @creative_request = CreativeRequest.create_for_shoot(shoot_id: @shoot.id, creative_id: @creative.id)
+    @creative_request.accept
+
+    assert @creative_request.accepted
+    assert @creative.notifications.count > 0
+    assert @company.accepted_requests.count > 0
+
+    assert @creative_request.destroy
+    assert @shoot.destroy
+    assert @project.destroy
+    assert @location.destroy
+    assert @company.destroy
+    assert @creative.destroy
+    assert @package_type.destroy
+  end
+
+  test "Decline Creative Request" do
+    @creative_request = CreativeRequest.create_for_shoot(shoot_id: @shoot.id, creative_id: @creative.id)
+    @creative_request.decline
+
+    assert @creative_request.declined
+    assert @creative.notifications.count > 0
+
+    assert @creative_request.destroy
+    assert @shoot.destroy
+    assert @project.destroy
+    assert @location.destroy
+    assert @company.destroy
+    assert @creative.destroy
+    assert @package_type.destroy
+  end
 end

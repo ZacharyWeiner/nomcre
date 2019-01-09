@@ -22,13 +22,17 @@ class CreativeRequest < ApplicationRecord
   end
 
   def decline
+    return_value = false
+
     self.accepted = false
     self.declined = true
+
     if self.save!
-      return true
-    else
-      return false
+      return_value =  true
+      Notification.create!(user_id: self.requested_by_id, notification_type: NotificationType.request_declined, notification_object_id: shoot.id, read: false)
     end
+
+    return_value
   end
 
   #helpers
@@ -54,15 +58,10 @@ class CreativeRequest < ApplicationRecord
   end
 
   def notify_requested_creative
-    #Create Platfrom Notification
-
-
     #TODO - Create Email Notification
     p 'Sending Shoot Request Email Notificaiton'
     #ShootMailer.request_created(self).deliver_later!
-
     #TODO: Send an SMS Message to the Creative with Link to Accept
-
     Notification.create!(user: self.creative, notification_type: NotificationType.new_work_request, notification_object_id: shoot.id, read: false)
   end
 end

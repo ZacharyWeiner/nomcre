@@ -36,5 +36,4 @@ class UserActivityType
   def self.updated_profile
     return "Updated Their Profile"
   end
-
 end
