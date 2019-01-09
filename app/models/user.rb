@@ -48,6 +48,10 @@ class User < ApplicationRecord
     self.creative_requests.where(approved: true)
   end
 
+  def user_activities
+    UserActivity.where(user: self)
+  end
+
   def has_request(proposal_id)
     ProposalRequest.where(requested: self.id, proposal_id: proposal_id).count > 0
   end

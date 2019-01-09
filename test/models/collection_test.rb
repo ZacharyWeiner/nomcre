@@ -67,7 +67,7 @@ class CollectionTest < ActiveSupport::TestCase
     #make sure user Activites are added to the collection
     #delete the collection
     @collection = Collection.create_with_activity(user_id: @user.id, title: 'A Collection To Test', description: 'Description of a collection')
-    @collection_item = CollectionItem.create_with_activity(user_id: @user.id, collection_id: @collection.id, file: "https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/horizontal/nomcre-horizontal-18.jpg", is_header: false, item_type: ContentType.photo)
+    @collection_item = CollectionItem.create_with_activity(user_id: @user.id, collection_id: @collection.id, file: "https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/horizontal/nomcre-horizontal-19.jpg", is_header: false, item_type: ContentType.photo)
 
     assert @collection.collection_items.count > 0, 'the collection does not have an item to deconstruct'
     assert @collection.user_activities.count > 0, 'the collection does not have an activity to deconstruct'
@@ -76,17 +76,37 @@ class CollectionTest < ActiveSupport::TestCase
 
   end
 
-  test "Collection.get_jumbotron_url gets correct url" do
-    #Create a collection
-    #Add 2 Collection Items where one is marked as header
-    #use the method to get the correct item
-    #assert false;
+  test "Create A Collection with User Activity" do
+    #create a collection
+    #make sure user Activites are added to the collection
+    #delete the collection
+    @collection = Collection.create_with_activity(user_id: @user.id, title: 'A Collection To Test', description: 'Description of a collection')
+
+    assert @collection.user_activities.count > 0, 'the collection does not have an activity to deconstruct'
+    assert @user.user_activities.count > 0
+    assert @collection.destroy
+
   end
 
-  test "get_header_or_first gets correct url" do
-    #Create a collection
-    #Add 2 Collection Items where the 2nd is marked as header
-    #use the method to get the correct item (1st)
-    #assert false;
-  end
+  #TODO: Figure out how to work with the file uploader, related files to collection items are nil, becuase there is no server action to upload them.
+
+  # test "Collection.get_jumbotron_url gets correct url" do
+  #   #Create a collection
+  #   @collection = Collection.create_with_activity(user_id: @user.id, title: 'A Collection To Test', description: 'Description of a collection')
+  #   #Add 2 Collection Items where one is marked as header
+  #   @collection_item = CollectionItem.create_with_activity(user_id: @user.id, collection_id: @collection.id, file: "https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/horizontal/nomcre-horizontal-19.jpg", is_header: false, item_type: ContentType.photo)
+  #   @collection_item_as_head = CollectionItem.create_with_activity(user_id: @user.id, collection_id: @collection.id, file: "https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/horizontal/nomcre-horizontal-18.jpg", is_header: true, item_type: ContentType.photo)
+  #   #use the method to get the correct item
+  #   url = Collection.get_jumbotron_url @collection
+  #   byebug
+  #   assert_equal url, @collection_item_as_head.file.url, "The returned url and @collection_item url are not equal " ;
+  #   assert @collection.destroy
+  # end
+
+  # test "get_header_or_first gets correct url" do
+  #   #Create a collection
+  #   #Add 2 Collection Items where the 2nd is marked as header
+  #   #use the method to get the correct item (1st)
+  #   #assert false;
+  # end
 end

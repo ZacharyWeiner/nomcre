@@ -34,6 +34,10 @@ class CollectionItem < ApplicationRecord
     @collection_item
   end
 
+  def user_activities
+    UserActivity.where(activity_type: UserActivityType.collection_photo_added, object_id: self.id ).or(UserActivity.where(activity_type: UserActivityType.collection_video_added, object_id: self.id ))
+  end
+
 
   def destroy_related_entities
     activities = UserActivity.where(user: self.user).where(activity_type: UserActivityType.collection_photo_added).where(object_id: self.id)

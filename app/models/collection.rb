@@ -33,7 +33,7 @@ class Collection < ApplicationRecord
   def self.get_jumbotron_url collection
     head_url =  "https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/horizontal/nomcre-horizontal-19.jpg"
     if collection.nil? || collection.collection_items.where.not(file: nil).first.nil?
-      return header_url
+      return head_url
     end
     has_header = !collection.collection_items.where(is_header: true).first.nil?
 
@@ -55,21 +55,21 @@ class Collection < ApplicationRecord
 
   def self.create_with_activity(options = {})
     @collection = Collection.new
-    @collection.user_id =      options[:user_id]
+    @collection.user_id =     options[:user_id]
 
-    @collection.title =        options[:title]      ?
+    @collection.title =       options[:title]      ?
                                                     options[:title] :
                                                     User.find(options[:user_id].name + "Did Something Awesome")
 
-    @collection.featured =     options[:featured]   ?
+    @collection.featured =    options[:featured]   ?
                                                     options[:featured] :
                                                     nil
 
-    @collection.description =  options[:description]?
+    @collection.description = options[:description]?
                                                     options[:description] :
                                                     nil
 
-    @collection.featured =     options[:featured]   ?
+    @collection.featured =    options[:featured]   ?
                                                     options[:featured] :
                                                     nil
 

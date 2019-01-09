@@ -92,6 +92,10 @@ class CollectionItemTest < ActiveSupport::TestCase
   end
 
   test "CollectionItem.create_with_activity creates a collection item with associated uer activity" do
-    assert false;
+    @collection = Collection.create_with_activity(user_id: @user.id, title: 'A Collection To Test', description: 'Description of a collection')
+    @collection_item = CollectionItem.create_with_activity(user_id: @user.id, collection_id: @collection.id, file: "https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/horizontal/nomcre-horizontal-19.jpg", is_header: false, item_type: ContentType.photo)
+    assert @collection_item.user_activities.count > 0, 'the collection does not have an activity to deconstruct'
+    assert @user.user_activities.count > 0
+    assert @collection.destroy
   end
 end
