@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  logo: MyString
-  phone: MyString
-  website: MyString
+# one:
+#   name: MyString
+#   logo: MyString
+#   phone: MyString
+#   website: MyString
 
-two:
-  name: MyString
-  logo: MyString
-  phone: MyString
-  website: MyString
+# two:
+#   name: MyString
+#   logo: MyString
+#   phone: MyString
+#   website: MyString

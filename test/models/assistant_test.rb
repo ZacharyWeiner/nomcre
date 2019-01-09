@@ -154,4 +154,19 @@ class AssistantTest < ActiveSupport::TestCase
     @company.destroy!
     @location.destroy!
   end
+
+  test "Assistant Class Method::Create For Shoot" do
+    options = {shoot_id: @shoot.id, name: 'Super McCoolster', location_id: @location.id}
+    @assistant = Assistant.create_for_shoot(options)
+
+    assert_not @assistant.nil?, 'The assistant that was created is nil'
+    assert_equal @assistant.shoot, @shoot, '@assistant.shoot != @shoot'
+    assert_equal @assistant.location, @location, '@assistant.location != @location'
+
+    @assistant.destroy!
+    @shoot.destroy!
+    @project.destroy!
+    @company.destroy!
+    @location.destroy!
+  end
 end

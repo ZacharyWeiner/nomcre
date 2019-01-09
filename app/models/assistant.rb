@@ -20,20 +20,34 @@ class Assistant < ApplicationRecord
 
 
   #helpers
-  def self.create_for_shoot shoot_id
-    assistant_count = Assistant.all.count
-    assistant_name = "Assistant " + assistant_count.to_s
-    assistant_email = assistant_name + '@gmail.com'
-    assistant_phone = '800-999-8888 ext.' + assistant_count.to_s
-    assistant_rate = 100
-    assistant_type = 'General'
+  def self.create_for_shoot (options = {})
+
+    assistant_name = options[:name].nil?            ? "Assistant " + Assistant.all.count.to_s
+                                                    : options[:name]
+
+    assistant_email = options[:email].nil?          ? assistant_name + '@gmail.com'
+                                                    : options[:email]
+
+    assistant_phone = options[:phone].nil?          ? '1-800-999-8888 ext.' + Assistant.all.count.to_s
+                                                    : options[:phone]
+
+    assistant_rate = options[:rate].nil?            ? 100
+                                                    : options[:rate]
+
+    assistant_type = options[:type].nil?            ? 'General'
+                                                    : options[:type]
+
+    assistant_location = options[:location_id].nil? ? Location.first
+                                                    : options[:location_id]
 
     assistant = Assistant.create!(name: assistant_name,
                                   paypal_email: assistant_email,
                                   phone: assistant_phone,
                                   assistant_type: assistant_type,
                                   rate: assistant_rate,
-                                  shoot_id: shoot_id)
-
+                                  shoot_id: options[:shoot_id],
+                                  location_id: assistant_location)
+    assistant
   end
 end
+

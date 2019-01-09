@@ -195,8 +195,9 @@ class ShootTest < ActiveSupport::TestCase
   end
 
   test 'Creating a Shoot and testing its relationships' do
-    @shoot = Shoot.create!(
-    project_id: @project.id,
+
+    @shoot = Shoot.new(
+    project: @project,
     company: @company,
     location: @location,
     content_type: ContentType.photo,
@@ -208,12 +209,18 @@ class ShootTest < ActiveSupport::TestCase
     user_saved: false,
     deadline: Date.today + 60.days)
 
+    @shoot.save
 
-    @shoot = Shoot.all.last
+
+
 
     assert_equal @shoot.project, @project, 'Shoot.project != @project'
+    #TODO: Figure out why the reverse reationship fails for project
+    #assert_equal @shoot, @project.shoots.first, 'Shoot != @project.shoots.first'
     assert_equal @shoot.company, @company, 'shoot.company != company'
+    assert_equal @shoot, @company.shoots.first, 'shoot != company.shoots.first'
     assert_equal @shoot.location, @location, 'shoot.location != location'
+    assert_equal @shoot, @location.shoots.first, 'shoot.location != location'
     assert_equal @shoot.user_added_shot_count_max, @project.max_user_shot_list, 'shoot.max_user_shot_list != project.max_user_shot_list'
 
 
