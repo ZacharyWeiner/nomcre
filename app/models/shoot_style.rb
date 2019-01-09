@@ -9,7 +9,7 @@ class ShootStyle
     return 'Lifestyle'
   end
 
-  def self.Action
+  def self.action
     return 'Action'
   end
 

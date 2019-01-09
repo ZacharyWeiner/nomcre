@@ -6,8 +6,8 @@ class ShotListItem < ApplicationRecord
   #belongs_to
   belongs_to :proposal, optional: true
 
-  belongs_to :shoot, optional: true
-  belongs_to :added_by, class_name: 'User', foreign_key: 'added_by_id', optional: true
+  belongs_to :shoot
+  belongs_to :added_by, class_name: 'User', foreign_key: 'added_by_id'
   belongs_to :task, optional: true
 
   #has_one
@@ -66,6 +66,7 @@ class ShotListItem < ApplicationRecord
       new_sli.item_type = sli.item_type
       new_sli.aspect_ratio = sli.aspect_ratio
       new_sli.shoot = shoot
+      new_sli.added_by = @shoot.company.users.first
       if new_sli.save!
 
       end

@@ -61,4 +61,5 @@ class CollectionTest < ActiveSupport::TestCase
     @user.destroy!
   end
 
+  #TODO: Write Tests For Each Method of the Model
 end

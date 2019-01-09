@@ -122,5 +122,8 @@ class ProjectTest < ActiveSupport::TestCase
     @pt.destroy!
   end
 
+  #TODO: Write Tests for Each method of the model
+  #TODO: Write Tests to Make Sure the callbacks work as expected
+
 
 end
