@@ -1,7 +1,5 @@
 require 'test_helper'
 
 class ShotListItemTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  #TODO: Write Tests for Shot List Items
 end

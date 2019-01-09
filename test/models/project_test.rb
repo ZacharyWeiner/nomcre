@@ -115,9 +115,11 @@ class ProjectTest < ActiveSupport::TestCase
   test "Create A Project With all required fields " do
     @project = Project.new(title: "Testy Tester", package_type_id: @pt.id, company_id: @company.id, brief: 'Testy Tester', deadline: Date.today, price: 100, max_user_shot_list: 100, is_template: false )
     assert @project.save, "Saved the project with all required fields"
-    @pt.destroy!
-    @company.destroy!
+
+
     @project.destroy!
+    @company.destroy!
+    @pt.destroy!
   end
 
 

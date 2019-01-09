@@ -1,7 +1,5 @@
 require 'test_helper'
 
 class ShootTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  #TODO: Write Tests for Shoots
 end

@@ -1,7 +1,5 @@
 require 'test_helper'
 
 class UserProfileTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  #TODO: Write Tests for User Profiles
 end
