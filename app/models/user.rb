@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  #callbacks
+  before_destroy :deconstruct
+
   #belongs_to
   belongs_to :company, optional: true
 
@@ -12,7 +15,7 @@ class User < ApplicationRecord
   has_many :tasks
   has_many :messages
   has_many :chatrooms, through: :messages
-  has_many :notifications
+  has_many :notifications, :dependent => :destroy
   has_many :schedule_items
   has_many :shoots, foreign_key: 'creative_id'
   has_many :projects, through: :shoots
@@ -132,7 +135,8 @@ def reset_user_info
     end
   end
 
-
-
+  def deconstruct
+    self.user_activities.destroy_all
+  end
   #class_methods
 end

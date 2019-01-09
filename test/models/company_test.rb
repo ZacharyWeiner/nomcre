@@ -56,15 +56,58 @@ class CompanyTest < ActiveSupport::TestCase
 
   #TODO Create Tests for All Company Model Methods
   test "Company Has Pending Requests" do
-    assert false;
+    @package_type = PackageType.create_default_for_tests
+    @company = Company.create_default_for_tests
+    @project = Project.create_default_for_tests @package_type.id, @company.id
+    @location = Location.create_default_for_tests
+    @shoot = Shoot.create_default_for_tests(@project.id, @company.id, @location.id)
+    @creative = User.create!(name: 'Testy McCreative', email: 'testy@mccreative.com', password: 'password', password_confirmation: 'password')
+
+    @creative_request = CreativeRequest.create_for_shoot(shoot_id: @shoot.id, creative_id: @creative.id)
+    assert @creative_request
+    assert @creative.notifications.count > 0
+    assert @creative.user_activities.count > 0
+
+    assert @company.pending_requests.count > 0
+
+    assert @creative_request.destroy
+    assert @shoot.destroy
+    assert @project.destroy
+    assert @location.destroy
+    assert @company.destroy
+    assert @creative.destroy
+    assert @package_type.destroy
   end
 
   test "Company Has Accepted Requests" do
-    assert false;
+    @package_type = PackageType.create_default_for_tests
+    @company = Company.create_default_for_tests
+    @project = Project.create_default_for_tests @package_type.id, @company.id
+    @location = Location.create_default_for_tests
+    @shoot = Shoot.create_default_for_tests(@project.id, @company.id, @location.id)
+    @creative = User.create!(name: 'Testy McCreative', email: 'testy@mccreative.com', password: 'password', password_confirmation: 'password')
+
+    @creative_request = CreativeRequest.create_for_shoot(shoot_id: @shoot.id, creative_id: @creative.id)
+    @creative_request.accepted = true
+
+    assert @creative_request.save
+    assert @creative.notifications.count > 0
+    assert @creative.user_activities.count > 0
+
+    assert @company.accepted_requests.count > 0
+
+    assert @creative_request.destroy
+    assert @shoot.destroy
+    assert @project.destroy
+    assert @location.destroy
+    assert @company.destroy
+    assert @creative.destroy
+    assert @package_type.destroy
   end
 
   test "Company deconstructs properly" do
-    assert false;
+     @company = Company.create_default_for_tests
+     assert @company.destroy
   end
 
 end

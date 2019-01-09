@@ -23,7 +23,7 @@ class Company < ApplicationRecord
 
   #collections
   def pending_requests
-    CreativeRequest.where(company: self).where(accepted: nil).where(declined: nil)
+    CreativeRequest.where(company: self).where(accepted: false).where(declined: false)
   end
 
   def accepted_requests

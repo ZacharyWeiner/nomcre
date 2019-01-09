@@ -18,7 +18,7 @@ class UserActivityType
   end
 
   def self.shoot_request
-    return 'New Shoot Request'
+    return 'Recieved A New Shoot Request'
   end
 
   def self.proposal_accepted
