@@ -20,7 +20,7 @@ class Project < ApplicationRecord
   #has_many
   has_many :payments
   has_many :invoices
-  has_many :shoots, :dependent => :destroy
+  has_many :shoots, foreign_key: 'project_id', :dependent => :destroy
   has_many :creatives, through: :shoots
   has_many :chatrooms, through: :shoots
   has_many :messages, through: :chatrooms
@@ -95,22 +95,24 @@ class Project < ApplicationRecord
 
   ##Finance
   def update_price new_price
-    @deposit_invoice = self.deposit_invoice
-    @balance_invoice = self.balance_invoice
-    self.price = new_price
-    if !@deposit_invoice.is_paid || !@balance_invoice.is_paid
-      if self.save!
-        #both are unpaid
-        if !@deposit_invoice.is_paid && !@balance_invoice.is_paid
-          @deposit_invoice.amount = self.price / 2
-          if @deposit_invoice.save!
-            @balance_invoice.amount = self.price / 2
+    if self.price > 0 && new_price > 0
+      @deposit_invoice = self.deposit_invoice
+      @balance_invoice = self.balance_invoice
+      self.price = new_price
+      if !@deposit_invoice.is_paid || !@balance_invoice.is_paid
+        if self.save!
+          #both are unpaid
+          if !@deposit_invoice.is_paid && !@balance_invoice.is_paid
+            @deposit_invoice.amount = self.price / 2
+            if @deposit_invoice.save!
+              @balance_invoice.amount = self.price / 2
+              @balance_invoice.save!
+            end
+          #deposit is paid but balance is not
+          elsif @deposit_invoice.is_paid && !@balance_invoice.is_paid
+            @balance_invoice.amount = self.price - @deposit_invoice.amount
             @balance_invoice.save!
           end
-        #deposit is paid but balance is not
-        elsif @deposit_invoice.is_paid && !@balance_invoice.is_paid
-          @balance_invoice.amount = self.price - @deposit_invoice.amount
-          @balance_invoice.save!
         end
       end
     end

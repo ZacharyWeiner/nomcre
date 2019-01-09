@@ -146,4 +146,6 @@ class ShotListItemTest < ActiveSupport::TestCase
     @package_type.destroy!
     @location.destroy!
   end
+
+  #TODO: Write all tests for the Shot List Item Model
 end

@@ -86,7 +86,6 @@ class ShotListItem < ApplicationRecord
 
     sli = ShotListItem.create!(description: sli_description,
                           item_type: sli_type,
-                          task: task,
                           shoot: shoot,
                           added_by: shoot.company.users.first)
 

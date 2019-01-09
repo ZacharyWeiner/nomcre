@@ -3,10 +3,14 @@ class Shoot < ApplicationRecord
   after_create :intialize_shoot
   before_destroy :deconstruct
 
+  validates :price, numericality: { other_than: 0 }
+  validates :user_added_shot_count_max, numericality: { other_than: 0 }
+  validates :deadline, inclusion: { in: (Date.today+7.days..Date.today+5.years) }
+
   #belongs_to
   belongs_to :project
   belongs_to :company
-  belongs_to :location, optional: true
+  belongs_to :location
   belongs_to :creative, foreign_key: 'creative_id', class_name: 'User', optional: true
 
   #has_one
@@ -188,7 +192,9 @@ class Shoot < ApplicationRecord
 
   def deconstruct
     orphan_relations
-    self.project.update_price(self.project.price - self.price)
+    if self.project.price > 0
+      self.project.update_price(self.project.price - self.price)
+    end
   end
 
   def orphan_relations
@@ -791,7 +797,7 @@ class Shoot < ApplicationRecord
 
   def self.create_default_for_tests(project_id, company_id, location_id)
     @project = Project.find(project_id)
-    @shoot = Shoot.create!(project: @project, company_id: company_id, location_id: location_id, content_type: ContentType.photo, brief: @project.brief, price: DefaultPrices.photo_shoot, deadline: @project.deadline - 7.days)
+    @shoot = Shoot.create!(project: @project, company_id: company_id, location_id: location_id, content_type: ContentType.photo, brief: @project.brief, price: DefaultPrices.photo_shoot, deadline: @project.deadline - 7.days, user_added_shot_count_max:25)
     @shoot
   end
 end
