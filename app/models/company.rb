@@ -1,8 +1,10 @@
 class Company < ApplicationRecord
+  #callbacks
   before_destroy :deconstruct
 
-  validates :name, presence: true, case_sensitive: false
-  validates :phone, presence: true, case_sensitive: false
+  #validations
+  validates :name,    presence: true, case_sensitive: false
+  validates :phone,   presence: true, case_sensitive: false
   validates :website, presence: true, case_sensitive: false
 
   #has_many
@@ -23,11 +25,40 @@ class Company < ApplicationRecord
   def pending_requests
     CreativeRequest.where(company: self).where(accepted: nil).where(declined: nil)
   end
+
   def accepted_requests
     CreativeRequest.where(company: self).where(accepted: true)
   end
 
+  def payments
+    Payment.where(user: self.users)
+  end
+
+  #public methods
+  def self.create_default_for_tests
+    @user = nil
+    @user = User.create!(name: 'Testy McTester',
+                        email: 'testy@mctester.com',
+                        password: 'password',
+                        password_confirmation: 'password') if @user.nil?
+
+    @company = Company.create!(name: 'Test',
+                               logo: 'www.google.com',
+                               phone: '1800-888-9999',
+                               website: 'www.google.com',
+                               instagram: '@instagram')
+    @company.users << @user
+    @company.save!
+    @company
+  end
+
+  #deconstructor
   def deconstruct
+    deconstruct_invoices
+    deconstruct_users
+  end
+
+  def deconstruct_invoices
     self.invoices.each do |i|
       if !i.payment.nil?
         #TODO: Figure out what to do .. .maybe set up a dummy company? Maybe create a new dummy company?
@@ -37,26 +68,12 @@ class Company < ApplicationRecord
         i.destroy!
       end
     end
+  end
+
+  def deconstruct_users
     self.users.each do |u|
       u.company = nil?
       u.save!
     end
-  end
-
-
-  #public methods
-  def payments
-    Payment.where(user: self.users)
-  end
-
-  def self.create_default_for_tests
-    @user = User.first
-    if @user.nil?
-      @user = User.create!(name: 'Testy McTester', email: 'testy@mctester.com', password: 'password', password_confirmation: 'password')
-    end
-    @company = Company.create!(name: 'Test', logo: 'www.google.com', phone: '1800-888-9999', website: 'www.google.com', instagram: '@instagram')
-    @company.users << @user
-    @company.save!
-    @company
   end
 end

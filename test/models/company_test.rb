@@ -53,4 +53,18 @@ class CompanyTest < ActiveSupport::TestCase
     @company.destroy!
     @user.destroy!
   end
+
+  #TODO Create Tests for All Company Model Methods
+  test "Company Has Pending Requests" do
+    assert false;
+  end
+
+  test "Company Has Accepted Requests" do
+    assert false;
+  end
+
+  test "Company deconstructs properly" do
+    assert false;
+  end
+
 end

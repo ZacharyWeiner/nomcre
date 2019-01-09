@@ -90,4 +90,8 @@ class CollectionItemTest < ActiveSupport::TestCase
     @collection.destroy!
     @user.destroy!
   end
+
+  test "CollectionItem.create_with_activity creates a collection item with associated uer activity" do
+    assert false;
+  end
 end

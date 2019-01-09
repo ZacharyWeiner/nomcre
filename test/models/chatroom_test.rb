@@ -55,6 +55,7 @@ class ChatroomTest < ActiveSupport::TestCase
     @message = Message.create(chatroom: @chatroom, content: 'Test message', user: @company.users.first)
 
     assert_equal(@chatroom.messages.first, @message,  "Chatroom has the message")
+
     @chatroom.destroy!
     @shoot.destroy!
     @project.destroy!

@@ -1,17 +1,17 @@
 class Assistant < ApplicationRecord
 
-  validates :name, presence: true, case_sensitive: false
-  validates :phone, presence: true, case_sensitive: false
-  validates :paypal_email, presence: true, case_sensitive: false
-  validates :rate, presence: true
-  validates :assistant_type, presence: true, case_sensitive: false
-  validates :location, presence: true
-  validates :shoot_id, presence: true, case_sensitive: false
+  validates :name,            presence: true, case_sensitive: false
+  validates :phone,           presence: true, case_sensitive: false
+  validates :paypal_email,    presence: true, case_sensitive: false
+  validates :rate,            presence: true
+  validates :assistant_type,  presence: true, case_sensitive: false
+  validates :location,        presence: true
+  validates :shoot_id,        presence: true, case_sensitive: false
 
   #belongs_to
   belongs_to :location, optional: true
   belongs_to :proposal, optional: true
-  belongs_to :shoot, optional: true
+  belongs_to :shoot,    optional: true
 
   #has_one
 

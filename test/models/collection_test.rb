@@ -62,4 +62,31 @@ class CollectionTest < ActiveSupport::TestCase
   end
 
   #TODO: Write Tests For Each Method of the Model
+  test "Collection deconstructs properly" do
+    #create a collection
+    #make sure user Activites are added to the collection
+    #delete the collection
+    @collection = Collection.create_with_activity(user_id: @user.id, title: 'A Collection To Test', description: 'Description of a collection')
+    @collection_item = CollectionItem.create_with_activity(user_id: @user.id, collection_id: @collection.id, file: "https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/horizontal/nomcre-horizontal-18.jpg", is_header: false, item_type: ContentType.photo)
+
+    assert @collection.collection_items.count > 0, 'the collection does not have an item to deconstruct'
+    assert @collection.user_activities.count > 0, 'the collection does not have an activity to deconstruct'
+
+    assert @collection.destroy
+
+  end
+
+  test "Collection.get_jumbotron_url gets correct url" do
+    #Create a collection
+    #Add 2 Collection Items where one is marked as header
+    #use the method to get the correct item
+    #assert false;
+  end
+
+  test "get_header_or_first gets correct url" do
+    #Create a collection
+    #Add 2 Collection Items where the 2nd is marked as header
+    #use the method to get the correct item (1st)
+    #assert false;
+  end
 end
