@@ -37,6 +37,7 @@ class ShotListItemsController < ApplicationController
   # POST /shot_list_items
   # POST /shot_list_items.json
   def create
+    #TODO: Fix This!
     @shot_list_item = ShotListItem.new(shot_list_item_params)
     can_add = true
     if shot_list_item_params[:shoot_id]

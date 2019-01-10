@@ -14,6 +14,7 @@ class ChatroomsController < ApplicationController
     @message = Message.new
 
     #clear notifications for room
+    #TODO: Create a helper for clearing relevant notifications
     notifications = Notification.where(user: current_user, notification_type: "New Message", notification_object_id: params[:id], read:false)
     notifications.each do |note|
       note.read = true

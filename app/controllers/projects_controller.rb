@@ -8,6 +8,7 @@ class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
+    #MTODO: Move this to a helper
     if !current_user.company.nil? && params[:active]
       @projects = current_user.company.projects.where(is_complete: true).where(is_template: nil).uniq
     elsif !current_user.company.nil?
@@ -111,6 +112,7 @@ class ProjectsController < ApplicationController
     end
 
     def authorize
+      #TODO: Move this to a helper
       if current_user.is_admin
         return
       end

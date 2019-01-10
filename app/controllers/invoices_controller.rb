@@ -31,7 +31,6 @@ class InvoicesController < ApplicationController
   # POST /invoices.json
   def create
     @invoice = Invoice.new(invoice_params)
-
     respond_to do |format|
       if @invoice.save
         format.html { redirect_to @invoice, notice: 'Invoice was successfully created.' }
@@ -129,6 +128,7 @@ class InvoicesController < ApplicationController
     end
 
     def authorize
+      #TODO: Move this to helper
       if current_user.is_admin
         return
       end

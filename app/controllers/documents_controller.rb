@@ -76,6 +76,7 @@ class DocumentsController < ApplicationController
     end
 
     def authorize
+      #TODO: MOve tihs to a helper
       if @document.nil?
         return redirect_to root_path
       end

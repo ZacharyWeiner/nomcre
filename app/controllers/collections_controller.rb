@@ -7,6 +7,7 @@ class CollectionsController < ApplicationController
   # GET /collections.json
   #layout 'khaki'
   def index
+    #TODO: FIX THIS!
     @collection_ids = []
     #if we are showing a specific user
     if params[:user_id]
@@ -79,6 +80,8 @@ class CollectionsController < ApplicationController
   # POST /collections
   # POST /collections.json
   def create
+    #TODO: Verify this is validated in the model
+    #TODO: Change to create with notificaitons
     @collection = Collection.new(collection_params)
     if @collection.title.nil? || @collection.title == ''
       redirect_to new_collection_path and return

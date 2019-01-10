@@ -53,6 +53,7 @@ class ShootsController < ApplicationController
   # PATCH/PUT /shoots/1
   # PATCH/PUT /shoots/1.json
   def update
+    #TODO: Move FP update to helper
     attributes = shoot_params.clone
     attributes[:user_saved] = true
     unless shoot_params[:focus_points].nil? || shoot_params[:focus_points].count == 0
@@ -161,6 +162,7 @@ class ShootsController < ApplicationController
     end
 
     def authorize
+      #TODO: Move To Helper
       if current_user.is_admin
         return
       end

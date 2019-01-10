@@ -8,6 +8,7 @@ class TasksController < ApplicationController
   def index
     @tasks = Task.where(completed: false).where(user: current_user).order(:deadline)
     @completed_tasks = current_user.tasks.where(completed: true)
+    #TODO: Use helper for notifications
     @notifications = Notification.where(user: current_user).where(notification_type: "Task").where(read: false)
     @notifications.each do |note|
       note.read = true
@@ -33,6 +34,7 @@ class TasksController < ApplicationController
   # POST /tasks.json
   def create
     @task = Task.new(task_params)
+    #TODO: GET RID OF PROPOSAL
     respond_to do |format|
       if @task.save
         if @task.proposal.nil? == false
@@ -77,9 +79,9 @@ class TasksController < ApplicationController
   end
 
   def complete
+    #TODO: Fix This
     new_path = params[:redirect]
     @task.completed = true
-
     respond_to do |format|
       if @task.save!
         if !@task.proposal.nil?

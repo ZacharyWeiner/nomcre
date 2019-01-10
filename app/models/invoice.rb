@@ -15,19 +15,23 @@ class Invoice < ApplicationRecord
 
   #helpers
   def self.create_for_project project_id
+    @invoices = []
     project = Project.find(project_id)
     amount = !project.price.nil? ? project.price : 15000
 
-    Invoice.create!(project: project,
+
+    @invoices << Invoice.create!(project: project,
                     company: project.company,
                     amount: (amount / 2),
                     invoice_type: 'deposit')
 
 
-    Invoice.create!(project: project,
+    @invoices << Invoice.create!(project: project,
                     company: project.company,
                     amount: amount / 2,
                     invoice_type: 'balance')
+
+    @invoices
   end
 
 end

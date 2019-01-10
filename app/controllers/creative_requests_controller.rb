@@ -6,6 +6,7 @@ class CreativeRequestsController < ApplicationController
   # GET /creative_requests
   # GET /creative_requests.json
   def index
+    #TODO: Create a helper for this
     #if the current user is a company, show all the creative requests for the company
     if current_user.user_type == UserType.company
       @creative_requests = CreativeRequest.where(company: current_user.company)
@@ -73,6 +74,7 @@ class CreativeRequestsController < ApplicationController
   end
 
   def accept
+    #TODO: Implement Model Level Method
     @creative_request.accept
     success = @creative_request.accept
     phrase_for_notify = success == true ? 'successfully' : 'could not be'
@@ -83,6 +85,7 @@ class CreativeRequestsController < ApplicationController
   end
 
   def decline
+    #TODO: Implement Model Level Method
     @creative_request.decline
     success = @creative_request.decline
     phrase_for_notify = success == true ? 'successfully' : 'could not be'

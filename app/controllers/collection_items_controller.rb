@@ -38,6 +38,7 @@ class CollectionItemsController < ApplicationController
   # POST /collection_items
   # POST /collection_items.json
   def create
+    #TODO: Update this method to use the create_with_notifications_method
     @collection_item = CollectionItem.new(collection_item_params)
     respond_to do |format|
       if @collection_item.file.file.nil? && @collection_item.video.file.nil?
@@ -89,6 +90,7 @@ class CollectionItemsController < ApplicationController
   end
 
   def move_up
+    #TODO: Create a helper method for changing the order
     if @collection_item.order.nil?
       @collection_item.order = 1
     else
@@ -121,6 +123,7 @@ class CollectionItemsController < ApplicationController
   end
 
   def make_header
+    #TODO: Create a Helper Method for Changing the Header
     remove = CollectionItem.where(is_header: true).where(collection_id: @collection_item.collection.id)
     remove.each do |r|
       r.is_header = false
@@ -167,13 +170,9 @@ class CollectionItemsController < ApplicationController
     end
 
     def authorize
-      if current_user.role == 0
+      if current_user.role == 0 || @collection_item.user == current_user
         return
       end
-      if @collection_item.user == current_user
-        return
-      end
-
       redirect_to collections_path
     end
 end

@@ -33,6 +33,7 @@ class CompaniesController < ApplicationController
     end
 
     respond_to do |format|
+      #TODO: Move Company Assignment and User Profile Test to their own methods
       if @company.save
         if current_user.user_type == 'company'
           current_user.company = @company
@@ -55,6 +56,7 @@ class CompaniesController < ApplicationController
   # PATCH/PUT /companies/1.json
   def update
     respond_to do |format|
+      #TODO: Create helper for InstaFormat
        if company_params['instagram'].include?('@')
 
         new_insta = @company.instagram.gsub!('@', '')
@@ -85,9 +87,7 @@ class CompaniesController < ApplicationController
   end
 
   def send_welcome_email
-
     set_company
-
     CompanyMailer.welcome_email(@company.users.first).deliver_now
     redirect_to @company
   end

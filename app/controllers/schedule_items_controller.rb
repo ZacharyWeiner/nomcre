@@ -26,6 +26,7 @@ class ScheduleItemsController < ApplicationController
   # POST /schedule_items
   # POST /schedule_items.json
   def create
+    #TODO: Move to ScheduleItem.create_with_activity
     @schedule_item = ScheduleItem.new(schedule_item_params)
     @schedule_item.user = current_user
     if schedule_item_params[:start_date]
@@ -88,7 +89,7 @@ class ScheduleItemsController < ApplicationController
     end
 
     def parse_date params_string
-
+      #TODO: Move To Helper
       date_string = params_string
       split_string = date_string.split(' ')
       format_string = "day-month-year"
