@@ -14,7 +14,7 @@ class CreativeRequest < ApplicationRecord
     self.accepted = true
     if self.save!
       #TODO - ShootMailer.request_accepted(self).deliver_later!
-      Notification.create!(user_id: self.requested_by_id, notification_type: NotificationType.request_accepted, notification_object_id: shoot.id, read: false)
+      Notification.create!(user_id: self.requested_by_id, notification_type: NotificationType.request_accepted, notification_object_id: self.shoot.id, read: false)
       return true
     else
       return false
@@ -50,7 +50,7 @@ class CreativeRequest < ApplicationRecord
     @creative_request.accepted = false
     @creative_request.approved = false
     @creative_request.declined = false
-    if @creative_request.save
+    if @creative_request.save!
       UserActivity.create!(user_id: options[:creative_id], activity_type: UserActivityType.shoot_request, object_id: options[:shoot_id])
       @creative_request.notify_requested_creative
     end
@@ -62,6 +62,6 @@ class CreativeRequest < ApplicationRecord
     p 'Sending Shoot Request Email Notificaiton'
     #ShootMailer.request_created(self).deliver_later!
     #TODO: Send an SMS Message to the Creative with Link to Accept
-    Notification.create!(user: self.creative, notification_type: NotificationType.new_work_request, notification_object_id: shoot.id, read: false)
+    Notification.create!(user: self.creative, notification_type: NotificationType.new_work_request, notification_object_id: self.id, read: false)
   end
 end

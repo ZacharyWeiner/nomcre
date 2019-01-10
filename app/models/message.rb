@@ -1,9 +1,20 @@
 class Message < ApplicationRecord
+  #callbacks
+  after_create_commit { MessageBroadcastJob.perform_later self }
+
+  #validations
+  validates :content, presence: true, case_sensitive: false
+
+  #belongs_to
   belongs_to :user
   belongs_to :chatroom
 
-  validates :content, presence: true, case_sensitive: false
-
+  #Uploaders
   mount_uploader :file, LogoUploader
-  after_create_commit { MessageBroadcastJob.perform_later self }
+
+  def self.create_with_notification(options = {})
+    @message = Message.create!(options)
+    @notification = Notification.create!(user: @message.user, notification_type: NotificationType.new_message, notification_object_id: @message.id)
+    [@message, @notification]
+  end
 end

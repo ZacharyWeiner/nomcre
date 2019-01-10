@@ -13,6 +13,7 @@ class Location < ApplicationRecord
     return parent
   end
 
+  #TODO: Turn this into a reach controller by returning a hsh, and responding to the parent selector
   def self.locations_for_select
     regions  = Location.where(location_type: 'Region')
     countries = Location.where(location_type: 'Country').collect{|l| [l.name, l.id]}
@@ -32,6 +33,7 @@ class Location < ApplicationRecord
     return options
   end
 
+  #TODO: Fix This
   def self.location_names_by_region
     regions  = Location.where(location_type: 'Region')
     # countries = Location.where(location_type: 'Country').collect{|l| [l.name, l.id]}

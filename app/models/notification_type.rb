@@ -13,7 +13,7 @@ class NotificationType
     return 'New Work Request';
   end
 
-  def self.assigned
+  def self.request_assigned
     return 'Assigned'
   end
 

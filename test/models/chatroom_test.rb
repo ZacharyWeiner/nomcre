@@ -62,4 +62,28 @@ class ChatroomTest < ActiveSupport::TestCase
     @company.destroy!
     @location.destroy!
   end
+
+  test "method create_for_shoot without a topic" do
+    @chatroom = Chatroom.create_for_shoot({shoot_id: @shoot.id})
+    assert !@chatroom.nil?, 'nil was returned instead of a chatroom'
+
+    @chatroom.destroy!
+    @shoot.destroy!
+    @project.destroy!
+    @company.destroy!
+    @location.destroy!
+  end
+
+  test "method create_for_shoot with a topic" do
+    @chatroom = Chatroom.create_for_shoot({shoot_id: @shoot.id, topic: 'Something cool'})
+
+    assert !@chatroom.nil?, 'nil was returned instead of a chatroom'
+    assert @chatroom.topic == 'Something cool'
+
+    @chatroom.destroy!
+    @shoot.destroy!
+    @project.destroy!
+    @company.destroy!
+    @location.destroy!
+  end
 end

@@ -78,6 +78,7 @@ class Task < ApplicationRecord
                       can_accept: task_accept,
                       shoot: shoot,
                       project: shoot.project)
+    t
   end
 
   def self.create_for_project project_id

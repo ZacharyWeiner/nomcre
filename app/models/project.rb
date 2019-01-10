@@ -4,12 +4,12 @@ class Project < ApplicationRecord
   after_save :update_shoots
   before_destroy :orphan_relations
 
-  validates :title, presence: true, case_sensitive: false
-  validates :brief, presence: true, case_sensitive: false
-  validates :deadline, presence: true
-  validates :price, presence: true
-  validates :max_user_shot_list, presence: true
-  validates :is_template, inclusion: { in: [ true, false ] }
+  validates :title,             presence: true, case_sensitive: false
+  validates :brief,             presence: true, case_sensitive: false
+  validates :deadline,          presence: true
+  validates :price,             numericality: { other_than: 0 }
+  validates :max_user_shot_list,presence: true
+  validates :is_template,       inclusion: { in: [ true, false ] }
 
   paginates_per 10
 

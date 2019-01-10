@@ -3,9 +3,9 @@ class Shoot < ApplicationRecord
   after_create :intialize_shoot
   before_destroy :deconstruct
 
-  validates :price, numericality: { other_than: 0 }
+  validates :price,                     numericality: { other_than: 0 }
   validates :user_added_shot_count_max, numericality: { other_than: 0 }
-  validates :deadline, inclusion: { in: (Date.today+7.days..Date.today+5.years) }
+  validates :deadline,                  inclusion: { in: (Date.today+7.days..Date.today+5.years) }
 
   #belongs_to
   belongs_to :project
@@ -14,7 +14,7 @@ class Shoot < ApplicationRecord
   belongs_to :creative, foreign_key: 'creative_id', class_name: 'User', optional: true
 
   #has_one
-  has_one :chatroom, :dependent => :destroy
+  has_one :chatroom, dependent: :destroy
 
   #has_many
   has_many :documents
@@ -115,6 +115,7 @@ class Shoot < ApplicationRecord
     creatives_ranked.sort_by{ |obj| obj.rank }
   end
 
+  #TODO: Clean Up assign_from_request
   def assign_from_request request_id
     assigned_request = CreativeRequest.find(request_id)
     creative = assigned_request.creative
@@ -128,7 +129,7 @@ class Shoot < ApplicationRecord
           cr.approved = false
           cr.save!
         end
-
+        Notification.create!(user: assigned_request.creative, notification_type: NotificationType.request_assigned, notification_object_id: self.id)
         return true
       else
         return false
@@ -137,7 +138,7 @@ class Shoot < ApplicationRecord
   end
 
   def assign_chatroom creative
-    chatroom = Chatroom.create!(topic: self.project.title + "-" + self.content_type, shoot: self)
+    chatroom = Chatroom.create_for_shoot(topic: self.project.title + "-" + self.content_type, shoot_id: self.id)
     message = chatroom.messages.create!(content: "#{chatroom.shoot.company.name} Joined The Chat", user: chatroom.shoot.company.users.first)
     message = chatroom.messages.create!(content: "#{creative.user_profile.display_name} Joined The Chat", user: creative)
     justin = User.where(email: 'justin@nomcre.com').first
@@ -192,9 +193,16 @@ class Shoot < ApplicationRecord
 
   def deconstruct
     orphan_relations
+    destroy_chatroom
     if self.project.price > 0
       self.project.update_price(self.project.price - self.price)
     end
+  end
+
+  def destroy_chatroom
+    chatroom = self.chatroom
+    chatroom.messages.destroy_all
+    chatroom.destroy!
   end
 
   def orphan_relations
