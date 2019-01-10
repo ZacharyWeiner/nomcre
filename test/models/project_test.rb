@@ -123,6 +123,134 @@ class ProjectTest < ActiveSupport::TestCase
   end
 
   #TODO: Write Tests for Each method of the model
+  test "Project Has a Payment " do
+    assert false;
+  end
+
+  test "Project is created with invoices" do
+    assert false;
+  end
+
+  test "Project Has a shoots " do
+    assert false;
+  end
+
+  test "Project Has Creatives " do
+
+  end
+
+  test "Project Has  Chatrooms " do
+    assert false;
+  end
+
+  test "Project Has  Messages " do
+    assert false;
+  end
+
+  test "Project Has Documents " do
+    assert false;
+  end
+
+  test "Project Has assistants " do
+    assert false;
+  end
+
+  test "Project Has Shot List items " do
+    assert false;
+  end
+
+  test "Project has locations " do
+    assert false;
+  end
+
+  test "Project Has a discount codes " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> Owners " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> Project Tasks " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> is editable " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> user_added_shot_list_items_max " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> user_added_shot_list_items_count " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> all_tasks_complete " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> try_complete " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> complete_project " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> update_price " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> is_paid_in_full " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> desposit_is_paid " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> balance_is_paid " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> deposit_paid_on " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> balance_paid_on " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> deposit_payment " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> deposit_invoice " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> balance_invoice " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> create from template " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> initalize_project " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> update_shoot_location " do
+    assert false;
+  end
+
+  test "Project::InstanceMethod -> create_template_for_type " do
+    assert false;
+  end
+
   #TODO: Write Tests to Make Sure the callbacks work as expected
 
 

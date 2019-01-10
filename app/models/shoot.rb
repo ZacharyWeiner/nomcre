@@ -201,8 +201,10 @@ class Shoot < ApplicationRecord
 
   def destroy_chatroom
     chatroom = self.chatroom
-    chatroom.messages.destroy_all
-    chatroom.destroy!
+    unless chatroom.nil?
+      chatroom.messages.destroy_all
+      chatroom.destroy!
+    end
   end
 
   def orphan_relations

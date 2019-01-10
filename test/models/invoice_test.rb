@@ -88,7 +88,7 @@ class InvoiceTest < ActiveSupport::TestCase
     @location.destroy!
   end
 
-  test "Invoice is_paid is false  with payment " do
+  test "Invoice is_paid is false without payment " do
 
     @invoice = Invoice.new
     @invoice.project = @project

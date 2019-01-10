@@ -65,7 +65,8 @@ class MessageTest < ActiveSupport::TestCase
   end
 
   test "Message create_with_notification" do
-    assert false, "Implement this method on the model"
+    @message = Message.create_with_notification({user_id: @company.users.first.id, content: 'This is a test message', chatroom_id: @chatroom.id})
+    assert @company.users.first.notifications.count > 0, 'the message should have caused a notification to be broadcast'
   end
 
 end

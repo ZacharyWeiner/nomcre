@@ -25,3 +25,4 @@ class Payment < ApplicationRecord
     @payment
   end
 end
+

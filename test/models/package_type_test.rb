@@ -102,6 +102,15 @@ class PackageTypeTest < ActiveSupport::TestCase
     @header_image.destroy!
   end
 
+  test 'Attach a Project as template' do
+    assert false;
+  end
 
+  test 'Attach a Project as a default template' do
+    assert false;
+  end
 
+  test 'Model::Method create_project' do
+    assert false;
+  end
 end

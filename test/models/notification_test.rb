@@ -192,7 +192,7 @@ class NotificationTest < ActiveSupport::TestCase
     assert       @company.users.first.notifications.include?(@notification), 'The users notifications does not have the expected notification'
   end
 
-  test 'Mark all as read for user' do
+  test 'Model::Method - Mark all as read for user' do
     @note1 = Notification.create!(user_id: @company.users.first.id, notification_type: NotificationType.task, notification_object_id: 1)
     @note2 = Notification.create!(user_id: @company.users.first.id, notification_type: NotificationType.task, notification_object_id: 1)
     @note3 = Notification.create!(user_id: @company.users.first.id, notification_type: NotificationType.task, notification_object_id: 1)
@@ -215,4 +215,10 @@ class NotificationTest < ActiveSupport::TestCase
 
   end
 
+  test 'Model::Method check notifications' do
+    @note1 = Notification.create!(user_id: @company.users.first.id, notification_type: NotificationType.task, notification_object_id: 1)
+    Notification.check_notifications @company.users.first.id, NotificationType.task, 1
+    @note1.reload()
+    assert @note1.read
+  end
 end
