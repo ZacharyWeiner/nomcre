@@ -66,6 +66,7 @@ class Location < ApplicationRecord
     @location = Location.first
     if @location.nil?
       @location = Location.create!(name: "Chicago - Test", location_type: "City")
+      @location = Location.create!(name: "Miami - Test", location_type: "City")
     end
     @location
   end

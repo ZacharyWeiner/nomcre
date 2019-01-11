@@ -234,5 +234,68 @@ class ShootTest < ActiveSupport::TestCase
 
 
   #TODO: Write Tests that prove the callbacks work correctly
+  test "Shoot::Instance Method -> is editable - yes" do
+    assert false
+  end
+
+  test "Shoot::Instance Method -> is editable - no" do
+    assert false
+  end
+
+  test "Shoot::Instance Method -> all tasks complete - yes" do
+    assert false
+  end
+
+  test "Shoot::Instance Method -> pending requests" do
+    assert false
+  end
+
+  test "Shoot::Instance Method -> accepted_requests" do
+    assert false
+  end
+
+  test "Shoot::Instance Method -> find_creatives" do
+    assert false
+  end
+
+  test "Shoot::Instance Method -> assign_from_request" do
+    assert false
+  end
+
+  test "Shoot::Instance Method -> assign_chatroom" do
+    assert false
+  end
+
+  test "Shoot::Instance Method -> can_assign_creative" do
+    assert false
+  end
+
+  test "Shoot::Instance Method -> has_request_for_creative" do
+    assert false
+  end
+
+  test "Shoot::Instance Method -> request_for_creative" do
+    assert false
+  end
+
+  test "Shoot::Instance Method -> creative_accepted_request" do
+    assert false
+  end
+
+  test "Shoot::Instance Method -> owner_added_shot_list_count" do
+    assert false
+  end
+
+  test "Shoot::Instance Method -> owner_added_shot_list" do
+    assert false
+  end
+
+  test "Shoot::Instance Method -> set_default_shot_list" do
+    assert false
+  end
+
+  test "Shoot::Instance Method -> create_shoots_from_template" do
+    assert false
+  end
   #TODO: Write Tests For Each Method on the Model
 end

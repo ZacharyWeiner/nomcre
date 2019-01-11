@@ -37,5 +37,32 @@ class TaskTest < ActiveSupport::TestCase
     @package_type.destroy!
     @location.destroy!
   end
-  #TODO: Write All Tests for methods on Tasks Model
+
+  test 'Task::InstanceMethod -> project' do
+    assert false
+  end
+
+  test 'Task::InstanceMethod -> try complete' do
+    assert false
+  end
+
+  test 'Task::InstanceMethod -> approver' do
+    assert false
+  end
+
+  test 'Task::InstanceMethod -> try_complete_shoot' do
+    assert false
+  end
+
+  test 'Task::InstanceMethod -> try_complete_project' do
+    assert false
+  end
+
+  test 'Task::InstanceMethod -> create_for_shoot' do
+    assert false
+  end
+
+  test 'Task::InstanceMethod -> create_for_project' do
+    assert false
+  end
 end

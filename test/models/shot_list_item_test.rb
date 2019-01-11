@@ -147,5 +147,23 @@ class ShotListItemTest < ActiveSupport::TestCase
     @location.destroy!
   end
 
-  #TODO: Write all tests for the Shot List Item Model
+  test "ShotListItem::InstanceMethod ->copy_from_template " do
+    assert false
+  end
+
+  test "ShotListItem::InstanceMethod ->create_related_task " do
+    assert false
+  end
+
+  test "ShotListItem::InstanceMethod -> create_with_task " do
+    assert false
+  end
+
+  test "ShotListItem::InstanceMethod ->create_all_from_shoot_template " do
+    assert false
+  end
+
+  test "ShotListItem::InstanceMethod -> create_for_shoot " do
+    assert false
+  end
 end

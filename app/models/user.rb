@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   #callbacks
   before_destroy :deconstruct
+  after_create :create_profile
 
   #belongs_to
   belongs_to :company, optional: true
@@ -40,7 +41,7 @@ class User < ApplicationRecord
   #instance_methods
 
   def pending_requests
-    self.creative_requests.where(accepted: nil).where(declined: nil)
+    self.creative_requests.where(accepted: false).where(declined: false)
   end
 
   def accepted_requests
@@ -53,14 +54,6 @@ class User < ApplicationRecord
 
   def user_activities
     UserActivity.where(user: self)
-  end
-
-  def has_request(proposal_id)
-    ProposalRequest.where(requested: self.id, proposal_id: proposal_id).count > 0
-  end
-
-  def get_proposal_request(proposal_id)
-    ProposalRequest.where(requested: self.id, proposal_id: proposal_id).first
   end
 
   def update_intro_complete
@@ -104,7 +97,7 @@ def reset_user_info
   end
 
   def check_collection_added
-    collections_complete = (self.collections.count > 0) && (self.collections.first.collection_items.count > 0)
+    (self.collections.count > 0) && (self.collections.first.collection_items.count > 0)
   end
 
   private
@@ -133,6 +126,13 @@ def reset_user_info
       self.intro_complete = true
       self.save
     end
+  end
+
+  def create_profile
+    if self.user_profile.nil?
+      self.user_profile = UserProfile.create(user: self, display_name: self.name)
+    end
+    self.user_profile
   end
 
   def deconstruct

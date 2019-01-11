@@ -14,7 +14,13 @@ class Message < ApplicationRecord
 
   def self.create_with_notification(options = {})
     @message = Message.create!(options)
-    @notification = Notification.create!(user: @message.user, notification_type: NotificationType.new_message, notification_object_id: @message.id)
-    [@message, @notification]
+    @notifications = []
+    @message.chatroom.users.each do |u|
+      byebug
+      unless u == @message.user
+        @notifications << Notification.create!(user: user, notification_type: NotificationType.new_message, notification_object_id: @message.id)
+      end
+     end
+    [@message, @notifications]
   end
 end
