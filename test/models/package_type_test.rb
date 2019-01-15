@@ -103,14 +103,41 @@ class PackageTypeTest < ActiveSupport::TestCase
   end
 
   test 'Attach a Project as template' do
-    assert false;
+    @company  = Company.create_default_for_tests
+     @package_type = PackageType.create_default_for_tests
+     @project = Project.create_default_for_tests @package_type.id, @company.id
+     @project.is_template = true
+     @project.save!
+
+     @default = @package_type.default_template
+     assert_equal false, @default.nil?, 'default template should be returned'
   end
 
   test 'Attach a Project as a default template' do
-    assert false;
+     @company  = Company.create_default_for_tests
+     @package_type = PackageType.create_default_for_tests
+     @project = Project.create_default_for_tests @package_type.id, @company.id
+     @project.is_default_template = true
+     @project.save!
+
+     @project2 = Project.create_default_for_tests @package_type.id, @company.id
+     @project2.is_template  = true
+     @project2.save!
+
+     @default = @package_type.default_template
+     assert_equal @project, @default, 'default template should be returned'
   end
 
   test 'Model::Method create_project' do
-    assert false;
+     @company  = Company.create_default_for_tests
+     @package_type = PackageType.create_default_for_tests
+     @project = Project.create_default_for_tests @package_type.id, @company.id
+     @project.is_default_template = true
+     @project.save!
+
+     @new_project = @package_type.create_project @company.users.first, Date.today + 60.days
+
+     assert_not @new_project.nil?, 'the new project should not be nil'
+     assert_not_equal @project, @new_project, 'this should create a new project not reference the exisitng'
   end
 end

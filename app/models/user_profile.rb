@@ -1,9 +1,15 @@
 class UserProfile < ApplicationRecord
+  #validations
+  validates :display_name, presence: true
+
+  #belongs_to
   belongs_to :user
+
+  #uploaders
   mount_uploader :profile_photo, ProfileImageUploader
   mount_uploader :header_image, HeaderImageUploader
 
-
+  #Instance methods
   def safe_profile_image_url
     unless self.profile_photo.url.nil? || self.profile_photo.file.nil?
       return self.profile_photo
@@ -25,6 +31,7 @@ class UserProfile < ApplicationRecord
   end
 
 
+  #Class Methods
   def self.default_profile_image
     return 'https://s3-us-west-2.amazonaws.com/nomcre/assets/Dummy-profile-picture.png'
   end

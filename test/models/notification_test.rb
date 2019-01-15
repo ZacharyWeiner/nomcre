@@ -79,13 +79,16 @@ class NotificationTest < ActiveSupport::TestCase
   test 'Create a Notification for a Message' do
 
     result = Message.create_with_notification({chatroom_id: @chatroom.id, content: 'A cool message', user_id: @company.users.first.id})
+    @creative = User.create!(name: 'Super Creative', email: 'creative@creative.com', password: 'password', password_confirmation: 'password')
+    result = Message.create_with_notification({chatroom_id: @chatroom.id, content: 'A cool message', user_id: @creative.id})
+
     @message = result[0]
-    @notification = result[1]
+    @notifications = result[1]
+    @notification = @notifications[0]
 
     assert_equal @notification.notification_object_id, @message.id, 'notification.object != message'
     assert_equal @notification.notification_type, NotificationType.new_message, 'notification_type != notification_type'
     assert_equal @notification.user, @company.users.first, 'notification.user != user'
-
     assert_equal "/chatrooms/#{@chatroom.id}", @notification.construct_link, 'the link was not equal for notifiction type message'
 
     @shoot.destroy!
@@ -137,7 +140,7 @@ class NotificationTest < ActiveSupport::TestCase
 
   test 'Create a Notification for New Work Assigned' do
     @creative = User.create!(name: 'Super Creative', email: 'creative@creative.com', password: 'password', password_confirmation: 'password')
-    @creative.user_profile = UserProfile.create(user: @creative)
+    @creative.user_profile = UserProfile.create(user: @creative, display_name: @creative.name)
     @creative_request = CreativeRequest.create_for_shoot(creative_id: @creative.id, shoot_id: @shoot.id)
     @creative_request.accept
     @shoot.assign_from_request @creative_request.id
@@ -152,7 +155,7 @@ class NotificationTest < ActiveSupport::TestCase
 
   test 'Create a Notification for a Work Declined' do
     @creative = User.create!(name: 'Super Creative', email: 'creative@creative.com', password: 'password', password_confirmation: 'password')
-    @creative.user_profile = UserProfile.create(user: @creative)
+    @creative.user_profile = UserProfile.create(user: @creative, display_name: @creative.name)
     @creative_request = CreativeRequest.create_for_shoot(creative_id: @creative.id, shoot_id: @shoot.id)
     @creative_request.decline
 

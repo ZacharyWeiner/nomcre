@@ -77,14 +77,16 @@ class Project < ApplicationRecord
 
   #tasks
   def all_tasks_complete
-    self.tasks.where(completed: nil).count == 0
+    self.project_tasks.where(completed: true).count == self.project_tasks.count
   end
 
   def try_complete
     if self.all_tasks_complete && self.is_paid_in_full
-      self.completed = true
-      self.save
+      self.is_complete = true
+      self.save!
+      return true
     end
+    return false
   end
 
   def complete_project
@@ -132,7 +134,7 @@ class Project < ApplicationRecord
 
   def deposit_paid_on
     date = nil
-    if self.desposit_is_paid
+    if self.deposit_is_paid
       date = self.deposit_payment.paid_on
     end
     date
@@ -179,6 +181,10 @@ class Project < ApplicationRecord
     project.price = 15000
     project.deadline = deadline
     project.brief = template.brief
+    project.max_user_shot_list =
+                                (!template.max_user_shot_list.nil? && template.max_user_shot_list > 0) ?
+                                  template.max_user_shot_list :
+                                  25
     project.save!
     Shoot.create_shoots_from_template template.id, project.id
     project
@@ -250,7 +256,7 @@ class Project < ApplicationRecord
     shoot = Shoot.new
     shoot.project = self
     shoot.company_id = 1
-    shoot.location_id = 111
+    shoot.location_id = Location.all.first.id
     shoot.content_type = 'photo'
     shoot.brief = 'An explanation of what this photo shoot and brief should entail'
     shoot.price = 5000
@@ -269,7 +275,7 @@ class Project < ApplicationRecord
     shoot.save!
   end
 
-  def self.create_default_for_tests package_type_id, company_id
+  def self.create_default_for_tests package_type_id = 0 , company_id = 0
     @package_type = PackageType.find(package_type_id)
     @project = Project.where({package_type_id: package_type_id, company_id: company_id}).first
     if @project.nil?

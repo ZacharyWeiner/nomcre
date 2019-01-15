@@ -733,7 +733,8 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or,
                           added_by: self.company.users.first At Location",
-                          focus_point: 'Center')
+                          focus_point: 'Center',
+                          added_by: self.company.users.first)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -793,7 +794,7 @@ class Shoot < ApplicationRecord
       shoot = Shoot.new
       shoot.project = project
       shoot.company = project.company
-      shoot.location_id = 111
+      shoot.location_id = project.location.id
       shoot.content_type = shoot_template.content_type
       shoot.brief = shoot_template.brief
       shoot.price = shoot_template.price
@@ -805,7 +806,7 @@ class Shoot < ApplicationRecord
     end
   end
 
-  def self.create_default_for_tests(project_id, company_id, location_id)
+  def self.create_default_for_tests(project_id = 0 , company_id = 0 , location_id = 0)
     @project = Project.find(project_id)
     @shoot = Shoot.create!(project: @project, company_id: company_id, location_id: location_id, content_type: ContentType.photo, brief: @project.brief, price: DefaultPrices.photo_shoot, deadline: @project.deadline - 7.days, user_added_shot_count_max:25)
     @shoot

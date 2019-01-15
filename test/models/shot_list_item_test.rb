@@ -147,7 +147,7 @@ class ShotListItemTest < ActiveSupport::TestCase
     @location.destroy!
   end
 
-  test "ShotListItem::InstanceMethod ->copy_from_template " do
+  test "ShotListItem::InstanceMethod -> copy_from_template " do
     assert false
   end
 
