@@ -220,6 +220,10 @@ class Shoot < ApplicationRecord
   end
 
   def set_default_shot_list
+    @admin = User.where(role: 0).first
+    if @admin.nil?
+      @admin = User.create!(name: 'admin', email: 'admin@nomcre.com', password: ENV['DEFAULT_ADMIN_PASS'], password_confirmation: ENV['DEFAULT_ADMIN_PASS'], role: 0)
+    end
     if self.content_type == ContentType.photo
       create_default_shot_list_for_photo
     elsif self.content_type == ContentType.video
@@ -228,12 +232,13 @@ class Shoot < ApplicationRecord
   end
 
   def create_default_shot_list_for_photo
+    @admin = User.where(role: 0).first
     sli = ShotListItem.create!(shoot: self,
                           description:'Logo shot detail',
                           aspect_ratio:'portrait',
                            background:"On Set Or At Location",
                            focus_point: 'Center',
-                          added_by: self.company.users.first
+                          added_by: @admin
                            )
     sli.create_related_task sli.description
 
@@ -242,7 +247,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                            background:"On Set Or At Location",
                            focus_point: 'Center',
-                          added_by: self.company.users.first
+                          added_by: @admin
                            )
     sli.create_related_task sli.description
 
@@ -251,7 +256,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -259,7 +264,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -267,7 +272,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -275,7 +280,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -283,7 +288,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -291,7 +296,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -299,7 +304,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -307,7 +312,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Middle Right',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -315,7 +320,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Middle Left',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -323,7 +328,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Top Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -331,7 +336,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Bottom Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -339,7 +344,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -347,7 +352,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Far Right',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -355,7 +360,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Far Left',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -363,7 +368,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Middle Top',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -371,7 +376,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Middle Bottom',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -379,7 +384,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -387,7 +392,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -395,7 +400,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Right',
-                          added_by: self.company.users.first)
+                          added_by:  @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -403,7 +408,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Left',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -411,7 +416,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -419,7 +424,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Right',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -427,7 +432,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Left',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -435,7 +440,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: ['Top'],
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -443,7 +448,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: ['Bottom'],
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -451,7 +456,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Top',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -459,7 +464,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Bottom',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -467,7 +472,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Left',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -475,7 +480,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Right',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -483,7 +488,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
 
@@ -492,7 +497,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -500,7 +505,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -508,7 +513,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -516,7 +521,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -524,7 +529,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -532,17 +537,18 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
   end
 
   def create_default_shot_list_for_video
+    @admin = User.where(role: 0).first
     sli = ShotListItem.create!(shoot: self,
                           description:'Camera Movement In',
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -550,7 +556,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by:@admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -558,7 +564,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -566,7 +572,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -574,7 +580,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Middle Right',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -582,7 +588,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Middle Left',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -590,7 +596,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Top Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -598,7 +604,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Bottom Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -606,7 +612,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -614,7 +620,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Far Right',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -622,7 +628,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Far Left',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -630,7 +636,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Middle Top',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -638,7 +644,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Middle Bottom',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -646,7 +652,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -654,7 +660,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -662,7 +668,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Right',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -670,7 +676,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Left',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -678,7 +684,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -686,7 +692,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Right',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -694,7 +700,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Left',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -702,7 +708,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Top',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -710,7 +716,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Bottom',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -718,7 +724,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -726,7 +732,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -735,7 +741,7 @@ class Shoot < ApplicationRecord
                           background:"On Set Or,
                           added_by: self.company.users.first At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -743,7 +749,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -751,7 +757,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -759,7 +765,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -767,7 +773,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -775,7 +781,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
 
     sli = ShotListItem.create!(shoot: self,
@@ -783,7 +789,7 @@ class Shoot < ApplicationRecord
                           aspect_ratio:'landscape',
                           background:"On Set Or At Location",
                           focus_point: 'Center',
-                          added_by: self.company.users.first)
+                          added_by: @admin)
     sli.create_related_task sli.description
   end
 

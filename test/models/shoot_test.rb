@@ -213,7 +213,7 @@ class ShootTest < ActiveSupport::TestCase
 
 
 
-
+    @shoot.reload
     assert_equal @shoot.project, @project, 'Shoot.project != @project'
     #TODO: Figure out why the reverse reationship fails for project
     #assert_equal @shoot, @project.shoots.first, 'Shoot != @project.shoots.first'
@@ -514,7 +514,7 @@ class ShootTest < ActiveSupport::TestCase
     user_added_shot_count_max: @project.max_user_shot_list,
     user_saved: false,
     deadline: Date.today + 60.days)
-    @shoot.save
+    @shoot.save!
 
     @creative_request = CreativeRequest.create!(shoot_id: @shoot.id, requested_by_id: @company.users.first.id, creative_id: @creative.id, company_id: @company.id, accepted: true, deadline: Date.today + 30.days, approved: true, declined: false)
 
@@ -578,7 +578,7 @@ class ShootTest < ActiveSupport::TestCase
     @shoot.save
 
     @shot_list_item = ShotListItem.create!(description: 'somethign sweet', shoot_id: @shoot.id, added_by_id: @company.users.first.id )
-
+    @shoot.reload
 
     assert_equal 1, @shoot.owner_added_shot_list_count, 'shoot.owner_added_shot_list_count should be greater than 0 '
 
@@ -648,7 +648,7 @@ class ShootTest < ActiveSupport::TestCase
 
   test "Shoot::Instance Method -> create_shoots_from_template" do
     Shoot.create_shoots_from_template(@package_type.id, @project.id)
-    assert @project.shoots.count ==2, 'create shoots from template should work properly '
+    assert @project.shoots.count == 2, 'create shoots from template should work properly '
   end
   #TODO: Write Tests For Each Method on the Model
 end
