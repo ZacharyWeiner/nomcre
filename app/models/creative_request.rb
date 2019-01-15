@@ -59,7 +59,6 @@ class CreativeRequest < ApplicationRecord
 
   def notify_requested_creative
     #TODO - Create Email Notification
-    p 'Sending Shoot Request Email Notificaiton'
     #ShootMailer.request_created(self).deliver_later!
     #TODO: Send an SMS Message to the Creative with Link to Accept
     Notification.create!(user: self.creative, notification_type: NotificationType.new_work_request, notification_object_id: self.id, read: false)

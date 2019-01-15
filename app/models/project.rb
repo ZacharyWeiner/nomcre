@@ -193,12 +193,10 @@ class Project < ApplicationRecord
 
   #helpers
   def initalize_project
-    #TODO: Init the project after user enters the
-    p "TODO: Init the project after user enters the"
     amount = ( self.price / 2 )
     Invoice.create!(project: self, invoice_type: InvoiceType.deposit, amount: amount , company: self.company, due_date: Date.today)
     Invoice.create!(project: self, invoice_type: InvoiceType.balance, amount: amount, company: self.company, due_date: self.deadline)
-    #create additional tasks
+    #TODO: create additional tasks
   end
 
   def update_shoot_location location_id
