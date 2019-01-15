@@ -37,8 +37,10 @@ class Shoot < ApplicationRecord
   def try_complete
     if self.all_tasks_complete
       self.is_complete = true
-      self.save
+      self.save!
+      return true
     end
+    return false
   end
 
   #collections

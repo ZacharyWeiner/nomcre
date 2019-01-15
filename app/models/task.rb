@@ -8,6 +8,7 @@ class Task < ApplicationRecord
   belongs_to :project, optional: true
 
 
+
   #has_one
 
 
@@ -37,29 +38,38 @@ class Task < ApplicationRecord
   end
 
   def try_complete
-    self.try_complete_shoot
-    self.try_complete_project
+    complete = false
+    if !self.completed
+      self.completed = true
+      self.save!
+      complete = true
+    end
+    complete
   end
 
   #instance methods
   def approver
     if self.can_accept == 'creative'
-      return user
+      return self.user
     else
-      return company.users.first
+      return self.company.users.first
     end
   end
 
   def try_complete_shoot
+    complete = false
     unless self.shoot.nil?
-      self.shoot.try_complete
+      complete = self.shoot.try_complete
     end
+    complete
   end
 
   def try_complete_project
+    completed = false
      unless self.project.nil?
-      self.project.try_complete
+      completed = self.project.try_complete
     end
+    completed
   end
 
   #helper methods

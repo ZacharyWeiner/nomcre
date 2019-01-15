@@ -39,30 +39,124 @@ class TaskTest < ActiveSupport::TestCase
   end
 
   test 'Task::InstanceMethod -> project' do
-    assert false
+    @task = Task.new
+    @task.user = @creative
+    @task.description = 'Some new task'
+    @task.deadline = Date.today + 5.days
+    @task.company = @company
+    @task.shoot = @shoot
+    @task.project = @project
+    @task.shot_list_item = @shot_list_item
+
+    assert_equal @project, @task.project, 'task should have relationship to the correct project'
   end
 
   test 'Task::InstanceMethod -> try complete' do
-    assert false
+    @task = Task.new
+    @task.user = @creative
+    @task.description = 'Some new task'
+    @task.deadline = Date.today + 5.days
+    @task.company = @company
+    @task.shoot = @shoot
+    @task.project = @project
+    @task.completed = false
+    @task.shot_list_item = @shot_list_item
+    @task.save!
+
+    assert @task.try_complete, 'should be able to complete the task'
   end
 
   test 'Task::InstanceMethod -> approver' do
-    assert false
+    @task = Task.new
+    @task.user = @creative
+    @task.description = 'Some new task'
+    @task.deadline = Date.today + 5.days
+    @task.company = @company
+    @task.shoot = @shoot
+    @task.project = @project
+    @task.completed = true
+    @task.shot_list_item = @shot_list_item
+    @task.can_accept = 'creative'
+    @task.save!
+    @task.reload
+    assert @task.approver, 'task should have an approver'
   end
 
   test 'Task::InstanceMethod -> try_complete_shoot' do
-    assert false
+    @shoot.tasks.each do |t|
+      t.try_complete
+    end
+    @task = Task.new
+    @task.user = @creative
+    @task.description = 'Some new task'
+    @task.deadline = Date.today + 5.days
+    @task.company = @company
+    @task.shoot = @shoot
+    @task.project = @project
+    @task.completed = true
+    @task.shot_list_item = @shot_list_item
+    @task.can_accept = 'creative'
+    @task.save!
+
+    assert @task.try_complete_shoot, 'Implement Complete field for shoot'
+
   end
 
   test 'Task::InstanceMethod -> try_complete_project' do
-    assert false
-  end
 
-  test 'Task::InstanceMethod -> create_for_shoot' do
-    assert false
-  end
+    @task = Task.new
+    @task.user = @creative
+    @task.description = 'Some new task'
+    @task.deadline = Date.today + 5.days
+    @task.company = @company
+    @task.shoot = @shoot
+    @task.project = @project
+    @task.completed = true
+    @task.shot_list_item = @shot_list_item
+    @task.can_accept = 'creative'
+    @task.save!
 
-  test 'Task::InstanceMethod -> create_for_project' do
-    assert false
+    @shoot1 = Shoot.create_default_for_tests(@project.id, @company.id, Location.all.first.id)
+    @shoot2 = Shoot.create_default_for_tests(@project.id, @company.id, Location.all.last.id)
+
+    @project.update_price 10000
+    @project.save!
+
+    @project.project_tasks.each do |pt|
+      pt.completed = true
+      pt.save!
+    end
+
+    @payment = Payment.new
+    @payment.user = @company.users.first
+    @payment.project = @project
+    @payment.payment_type = PaymentType.deposit
+    @payment.payment_method = PaymentMethod.credit_card
+    @payment.paid_on = Date.today
+    @payment.amount = 5000
+    @payment.save!
+
+
+    @invoice = @project.invoices.first
+    @invoice.payment = @payment
+    @invoice.save!
+
+    @payment = Payment.new
+    @payment.user = @company.users.first
+    @payment.project = @project
+    @payment.payment_type = PaymentType.balance
+    @payment.payment_method = PaymentMethod.credit_card
+    @payment.paid_on = Date.today
+    @payment.amount = 5000
+    @payment.save!
+
+    @invoice = @project.invoices.last
+    @invoice.payment = @payment
+    @invoice.save!
+
+    @project.reload
+
+
+    assert @task.try_complete_project, 'Should be able to complete the project'
   end
 end
