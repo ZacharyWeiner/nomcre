@@ -1,0 +1,82 @@
+<% project = @project %>
+<%= form_with(model: project, local: true) do |form| %>
+  <% if project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+      <ul>
+      <% project.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :package_type_id %>
+    <%= form.text_field :package_type_id, id: :project_package_type_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :company_id %>
+    <%= form.text_field :company_id, id: :project_company_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :project_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :brief %>
+    <%= form.text_area :brief, id: :project_brief %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deadline %>
+    <%= form.date_select :deadline, id: :project_deadline %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :project_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deposit %>
+    <%= form.text_field :deposit, id: :project_deposit %>
+  </div>
+
+  <div class="field">
+    <%= form.label :balance %>
+    <%= form.text_field :balance, id: :project_balance %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_complete %>
+    <%= form.check_box :is_complete, id: :project_is_complete %>
+  </div>
+
+<!--   <div class="field">
+    <% form.label :completed_on %>
+    <% form.date_select :completed_on, id: :project_completed_on %>
+  </div> -->
+
+  <div class="field">
+    <%= form.label :max_user_shot_list %>
+    <%= form.number_field :max_user_shot_list, id: :project_max_user_shot_list %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_template %>
+    <%= form.check_box :is_template, id: :project_is_template %>
+  </div>
+
+  <div class="field">
+    <%= form.label :is_default_template %>
+    <%= form.check_box :is_default_template, id: :project_is_default_template %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

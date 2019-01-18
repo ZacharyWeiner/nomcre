@@ -43,7 +43,7 @@ class CompaniesController < ApplicationController
           end
         end
         CompanyMailer.welcome_email(current_user).deliver_later
-        format.html { redirect_to company_dashboard_path, notice: 'Company was successfully created.' }
+        format.html { redirect_to new_project_path, notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @company }
       else
         format.html { render :new }

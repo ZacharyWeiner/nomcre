@@ -1,15 +1,16 @@
 <div class='row'>
-<% package_types.each do |pt| %>
-  <div class='col-md-4 text-center'>
-    <%= link_to package_type_new_project_from_template_path(pt), class: 'btn btn-primary btn-block' do %>
-      <!-- TODO: Make this icon assignable -->
-      <i class="fas fa-exclamation-circle fa-3x"></i>
-      <br><br>
-      <%= pt.title %>
-      <br><br>
-      <small><%= pt.subtitle %></small>
+  <% unless package_types.count == 0 %>
+    <% package_types.each do |pt| %>
+      <div class='col-md-4 text-center'>
+        <%= link_to package_type_new_project_from_template_path(pt), class: 'btn btn-primary btn-block' do %>
+          <!-- TODO: Make this icon assignable -->
+          <i class="fas fa-exclamation-circle fa-3x"></i>
+          <br><br>
+          <%= pt.title %>
+          <br><br>
+          <small><%= pt.subtitle %></small>
+        <% end %>
+      </div>
     <% end %>
   </div>
 <% end %>
-</div>
-

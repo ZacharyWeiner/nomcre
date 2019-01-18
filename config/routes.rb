@@ -151,6 +151,7 @@ Rails.application.routes.draw do
 
   get 'admin/users', to: 'admin#users', as: 'admin_users'
   get 'admin/projects', to: 'admin#projects', as: 'admin_projects'
+  get 'admin/projects/new', to: 'admin#new_project', as: 'admin_new_project'
   get 'admin/project/:project_id/edit', to: 'admin#edit_project', as: 'admin_edit_project'
   get 'admin/project/:project_id/edit_price', to: 'admin#edit_project_price', as: 'admin_edit_project_price'
   get 'admin/shoots', to: 'admin#shoots', as: 'admin_shoots'

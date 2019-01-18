@@ -13,6 +13,10 @@ class AdminController < ApplicationController
     @projects = Project.where.not({is_template: true, is_default_template: true}).page params[:page]
   end
 
+  def new_project
+    @project = Project.new
+  end
+
   def edit_project
     @project = Project.find(params[:project_id])
   end
