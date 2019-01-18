@@ -1,11 +1,15 @@
 require 'test_helper'
-
+include AuthHelper
 class CollectionsControllerTest < ActionDispatch::IntegrationTest
+   include Devise::Test::IntegrationHelpers
   setup do
-    @collection = collections(:one)
+
   end
 
   test "should get index" do
+    @user = User.create!(name: 'Bob', email: 'bob@bob.com', password: 'password', password_confirmation:'password')
+    @collection = Collection.create!(title: 'Test 1', user_id: @user.id, description: 'This will describe a collection')
+
     get collections_url
     assert_response :success
   end
