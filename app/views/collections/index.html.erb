@@ -13,7 +13,7 @@
     <% if @collections.count > 0 %>
     <div style="background-image: url('<%= @collections.first.user.user_profile.safe_header_image_url %>');"></div>
     <% else %>
-    <div style="background-image: url('<%= Collection.take(1).first.user.user_profile.safe_header_image_url %>');"></div>
+    <div style="background-image: url('<%= HeaderImage.first.file %>');"></div>
     <% end %>
   </div>
   <div class="nk-header-table">

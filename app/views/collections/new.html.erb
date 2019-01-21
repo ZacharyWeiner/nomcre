@@ -1,6 +1,10 @@
 <div class="nk-header-title nk-header-title-sm nk-header-title-parallax nk-header-title-parallax-opacity">
   <div class="bg-image">
+    <% if Collection.first.nil? %>
+    <div style="background-image: url('<%= HeaderImage.first.file %>');"></div>
+    <% else %>
     <div style="background-image: url('<%= Collection.first.user.user_profile.safe_header_image_url %>');"></div>
+    <% end %>
   </div>
   <div class="nk-header-table">
     <div class="nk-header-table-cell">

@@ -86,6 +86,7 @@ class CollectionsController < ApplicationController
     if @collection.title.nil? || @collection.title == ''
       redirect_to new_collection_path and return
     end
+    byebug
     respond_to do |format|
       if @collection.user_id == nil?
         @collection.user = current_user
@@ -137,7 +138,7 @@ class CollectionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def collection_params
-      params.require(:collection).permit(:user_id, :title)
+      params.require(:collection).permit(:user_id, :title, :description)
     end
 
     def set_layout
