@@ -803,7 +803,7 @@ class Shoot < ApplicationRecord
       shoot = Shoot.new
       shoot.project = project
       shoot.company = project.company
-      shoot.location_id = project.location.id
+      shoot.location_id = Location.first.id
       shoot.content_type = shoot_template.content_type
       shoot.brief = shoot_template.brief
       shoot.price = shoot_template.price
