@@ -12,6 +12,8 @@
     <label> Background </label>
     <%= form.text_field :background, id: :shot_list_item_background, class: 'form-control', :placeholder => 'Tell us About the Background' %>
   </div>
+  <br>
+  <%= render :partial => 'shot_list_items/partials/black_dashboard/form/shoot_location', :locals => {:shot_list_item => shot_list_item, :form => form }%>
   <%= render :partial => 'shot_list_items/partials/black_dashboard/form/reference_image', :locals => {:shot_list_item => shot_list_item, :form => form }%>
   <br>
   <%= render :partial => 'shot_list_items/partials/black_dashboard/form/focus_point', :locals => {:shot_list_item => shot_list_item, :form => form }%>
