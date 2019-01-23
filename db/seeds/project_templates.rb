@@ -17,7 +17,7 @@ excitement = PackageType.create!(title: "Excitement",
                                  minimum_images: 365,
                                  minimum_videos: 40,
                                  max_models: 2,
-                                 base_price: 125000,
+                                 base_price: 12000,
                                  order: 1,
                                  show_on_index: true,
                                  call_to_action_text: "Create Some Excitement Now!")
@@ -46,13 +46,14 @@ excitement_default_photo = Shoot.create(project_id: excitement_default_project,
                                         content_type: ContentType.photo,
                                         breif: excitement_default_project.brief,
                                         price: 3500,
-                                        shoot_style: ShootStyle.mixed )
+                                        shoot_style: ShootStyle.mixed)
+
 excitement_default_video = Shoot.create(project_id: excitement_default_project,
                                         company_id: 1,
                                         location_id: 111,
                                         content_type: ContentType.video,
                                         breif: excitement_default_project.brief,
-                                        price: 3500,
+                                        price: 8500,
                                         shoot_style: ShootStyle.mixed)
 
 
@@ -64,6 +65,57 @@ excitement_default_video = Shoot.create(project_id: excitement_default_project,
 #Shoots - SingleVideoShoot - Default Template
 
 #ShotList - Excitement - Default Template
+
+excitement_photo_1 = ShotLitsItem.create!(shoot: ,
+                                         description: 'Sun (light) shining through person/feture',
+                                         aspect_ratio: 'portrait',
+                                         background: ,
+                                         item_type: 'photo',
+                                         focus_point: ,
+
+                                         added_by: zack_admin)
+
+Excitement - 1     portait     on set  best practices  brief   photo
+Excitement - 1  Flared out staged imagery       on set  best practices  brief   photo
+Excitement - 1  hero shot of person/feature low angle       on set  best practices  brief   photo
+Excitement - 1  hero shot of person/feature high angle      on set  best practices  brief   photo
+Excitement - 1  hero shot of person/feature tight angle     on set  best practices  brief   photo
+Excitement - 1  hero shot of person/feature wide angle      on set  best practices  brief   photo
+Excitement - 1  Smiling interaction         on set  best practices  brief   photo
+Excitement - 1  multiples for motion for overlay/sequence       on set  best practices  brief   photo
+Excitement - 1  Shot with hands up or jumping       on set  best practices  brief   photo
+Excitement - 1  moment of reflection with positive mood     on set  best practices  brief   photo
+Excitement - 1  use of reflection on person/feature     on set  best practices  brief   photo
+Excitement - 1  use of shadow on person/feature         on set  best practices  brief   photo
+Excitement - 1  shot of person/feature taking ownership         on set  best practices  brief   photo
+Excitement - 1  multiple people interacting with person/feature low     on set  best practices  brief   photo
+Excitement - 1  multiple people interacting with person/feature high        on set  best practices  brief   photo
+Excitement - 1  multiple people interacting with person/feature tight       on set  best practices  brief   photo
+Excitement - 1  multiple people interacting with person/feature wide        on set  best practices  brief   photo
+Excitement - 1  celebration solo        on set  best practices  brief   photo
+Excitement - 1  celebration collabrative        on set  best practices  brief   photo
+Excitement - 1  celebration collabrative wide       on set  best practices  brief   photo
+Excitement - 1  eyes on person/feature      on set  best practices  brief   photo
+Excitement - 1  captive audience (people or items)      on set  best practices  brief   photo
+Excitement - 1  Straight shot of person/feature     on set  best practices  brief   photo
+Excitement - 1  Straight shot of person/feature wide        on set  best practices  brief   photo
+Excitement - 1  Straight shot of person/feature mid     on set  best practices  brief   photo
+Excitement - 1  Straight shot of person/feature low     on set  best practices  brief   photo
+Excitement - 1  Straight shot of person/feature tight       on set  best practices  brief   photo
+Excitement - 1  Angle shot of person/feature        on set  best practices  brief   photo
+Excitement - 1  Angle shot of person/feature low        on set  best practices  brief   photo
+Excitement - 1  Angle shot of person/feature wide       on set  best practices  brief   photo
+Excitement - 1  Angle shot of person/feature tight      on set  best practices  brief   photo
+Excitement - 1  Angle shot of person/feature mid        on set  best practices  brief   photo
+Excitement - 1  Angle shot of person/feature high       on set  best practices  brief   photo
+Excitement - 1  Establishing shot of person/feature     on set  best practices  brief   photo
+Excitement - 1  Establishing shot of person/feature low     on set  best practices  brief   photo
+Excitement - 1  Establishing shot of person/feature mid     on set  best practices  brief   photo
+Excitement - 1  Establishing shot of person/feature high        on set  best practices  brief   photo
+Excitement - 1  action shot mid     on set  best practices  brief   photo
+Excitement - 1  action shot tight       on set  best practices  brief   photo
+Excitement - 1  action shot wide        on set  best practices  brief   photo
+
 #ShotList - PropertyManagement - Default Template
 #ShotList - ProductLaunch - Default Template
 #ShotList - Credibility - Default Template

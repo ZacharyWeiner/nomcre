@@ -70,13 +70,6 @@ ActiveRecord::Schema.define(version: 20190115231338) do
     t.index ["user_id"], name: "index_collections_on_user_id"
   end
 
-  create_table "collections_tags", id: false, force: :cascade do |t|
-    t.bigint "tag_id"
-    t.bigint "collection_id"
-    t.index ["collection_id"], name: "index_collections_tags_on_collection_id"
-    t.index ["tag_id"], name: "index_collections_tags_on_tag_id"
-  end
-
   create_table "companies", force: :cascade do |t|
     t.string "name"
     t.string "logo"
@@ -202,13 +195,6 @@ ActiveRecord::Schema.define(version: 20190115231338) do
     t.string "location_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "locations_tags", id: false, force: :cascade do |t|
-    t.bigint "tag_id"
-    t.bigint "location_id"
-    t.index ["location_id"], name: "index_locations_tags_on_location_id"
-    t.index ["tag_id"], name: "index_locations_tags_on_tag_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -450,22 +436,6 @@ ActiveRecord::Schema.define(version: 20190115231338) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "tags", force: :cascade do |t|
-    t.string "name"
-    t.bigint "parent_id"
-    t.text "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "category"
-  end
-
-  create_table "tags_users", id: false, force: :cascade do |t|
-    t.bigint "tag_id"
-    t.bigint "user_id"
-    t.index ["tag_id"], name: "index_tags_users_on_tag_id"
-    t.index ["user_id"], name: "index_tags_users_on_user_id"
-  end
-
   create_table "tasks", force: :cascade do |t|
     t.bigint "user_id"
     t.text "description"
@@ -566,8 +536,6 @@ ActiveRecord::Schema.define(version: 20190115231338) do
   add_foreign_key "collection_items", "collections"
   add_foreign_key "collection_items", "users"
   add_foreign_key "collections", "users"
-  add_foreign_key "collections_tags", "collections"
-  add_foreign_key "collections_tags", "tags"
   add_foreign_key "creative_requests", "companies"
   add_foreign_key "creative_requests", "shoots"
   add_foreign_key "discount_codes_projects", "discount_codes"
@@ -581,8 +549,6 @@ ActiveRecord::Schema.define(version: 20190115231338) do
   add_foreign_key "invoices", "payments"
   add_foreign_key "invoices", "projects"
   add_foreign_key "lead_notes", "leads"
-  add_foreign_key "locations_tags", "locations"
-  add_foreign_key "locations_tags", "tags"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
   add_foreign_key "notifications", "users"
@@ -603,8 +569,6 @@ ActiveRecord::Schema.define(version: 20190115231338) do
   add_foreign_key "shoots", "projects"
   add_foreign_key "shot_list_items", "proposals"
   add_foreign_key "shot_list_items", "shoots"
-  add_foreign_key "tags_users", "tags"
-  add_foreign_key "tags_users", "users"
   add_foreign_key "tasks", "companies"
   add_foreign_key "tasks", "projects"
   add_foreign_key "tasks", "proposals"
