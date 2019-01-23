@@ -3,6 +3,8 @@
 #Excitement Package
 zack_admin = User.where(email: 'zack@nomcre.com').first
 
+p "----------- Package Type Excitement ----------"
+
 excitement = PackageType.create!(title: "Excitement",
                                  subtitle: "We Create Hype!",
                                  description: "Creating excitement for a product, person, buidling, service or business",
@@ -19,6 +21,7 @@ excitement = PackageType.create!(title: "Excitement",
                                  header_image: HeaderImage.first)
 
 
+p "----------- Package Type Excitement - Default Project  ----------"
 excitement_default_project = Project.create!(package_type_id: excitement.id,
                                      company_id: 1,
                                      title: "Excitement Package Project - Default Template",
@@ -30,6 +33,8 @@ excitement_default_project = Project.create!(package_type_id: excitement.id,
                                      is_template: true,
                                      is_default_template: true)
 
+p "----------- Package Type Excitement - Default Photo Shoot  ----------"
+
 excitement_default_photo = Shoot.create(project_id: excitement_default_project,
                                         company_id: 1,
                                         location_id: 111,
@@ -38,6 +43,8 @@ excitement_default_photo = Shoot.create(project_id: excitement_default_project,
                                         price: 3500,
                                         shoot_style: ShootStyle.mixed,
                                         location: Location.first)
+
+p "----------- Package Type Excitement - Default Video Shoot  ----------"
 
 excitement_default_video = Shoot.create(project_id: excitement_default_project,
                                         company_id: 1,
@@ -48,6 +55,9 @@ excitement_default_video = Shoot.create(project_id: excitement_default_project,
                                         shoot_style: ShootStyle.mixed,
                                         location: Location.first)
 
+p "----------- Package Type Excitement - Shoots Completed  ----------"
+
+p "----------- Package Type Excitement - Shot List Items  ----------"
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          description: 'Sun (light) shining through person/feture',
@@ -817,6 +827,9 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
+
+
+p "----------- Package Type Excitement - Shoot List Items Completed  ----------"
 
 
 
