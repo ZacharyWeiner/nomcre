@@ -1,0 +1,68 @@
+ShowcaseImage.all.each do |si|
+ p "si = ShowcaseImage.create!(file: #{si.file}, showcase_type: #{si.showcase_type}, show: #{si.show}, order: #{si.order}, name: #{si.name})"
+end
+
+ShowcaseImage.all.each do |si|
+ p si.name
+ p "height: #{si.height}, width: #{si.width}"
+end
+
+ShowcaseVideo.all.each do |vi|
+ p "vi = ShowcaseVideo.create!(file: #{vi.file}, showcase_type: #{vi.showcase_type}, show: #{vi.show}, order: #{vi.order}, title: #{vi.title})"
+end
+
+Page.all.each do |page|
+  p "-----------Page Start -----------"
+  p "page = Page.create!(title: #{page.title}, content: #{page.content}, header_image: #{page.header_image}, status: #{page.status}, slug: #{page.slug}, description: #{page.description}, keywords: #{page.keywords})"
+
+  p "-----------Page Sections -----------"
+  page.page_sections.each do |ps|
+    p "page_section = PageSection.create!(page_id: page.id, title: #{ps.title}, content: #{ps.content}, order: #{ps.order})"
+  end
+  p "-----------Page Sections Complete -----------"
+  p "-----------Page Complete -----------"
+end
+
+
+
+
+User.all.each do |u|
+  p '----------- User -------------'
+  #p u.email
+  #p u.name
+  #p u.user_type
+  #p u.profile_image.url unless u.profile_image.nil?
+  if u.profile_image.file.nil?
+   p "user = User.create!(name: #{u.name}, email: #{u.email}, password: 'password', user_type: #{u.user_type})"
+  else
+    p "user = User.create!(name: '#{u.name}', email: '#{u.email}', password: 'password', user_type: '#{u.user_type}', profile_image: '#{u.profile_image.file.nil? ? '' : u.profile_image.file}')"
+  end
+  p "----------- #{u.email} Profile -------------"
+  unless u.user_profile.nil?
+    up = u.user_profile
+    #p u.user_profile.description
+    #p u.user_profile.display_name
+    #p u.user_profile.shot_preference
+    #p u.user_profile.content_type
+    p "user_profile = UserProfile.create!(user_id: #{u.id}, description: #{up.description}, display_name: #{up.display_name}, shot_preference: #{up.shot_preference}, content_type: #{up.content_type})"
+  end
+  p "----------- #{u.email} Profile Complete-------------"
+  u.collections.each do |c|
+    #p "----------- #{u.email} Collection -------------"
+    #p c.title
+    #p c.description
+    p "collection = Collection.create!(user_id: #{u.id}, title: #{c.title}, description: #{c.description})"
+    c.collection_items.each do |ci|
+      #p ci.file.url
+      p "collection_item = CollectionItem.create!(user_id: #{u.id}, collection_id: #{c.id}, file: #{ci.file})"
+    end
+    p "----------- #{u.email} Collection Complete-------------"
+  end
+end
+
+
+User.all.each do |u|
+  u.collection_items.where.not(video: nil).each do |ci|
+   p "#{u.email}" + "---" + "#{ci.collection.title}" + "---" + "#{ci.video.file.url}"
+  end
+end

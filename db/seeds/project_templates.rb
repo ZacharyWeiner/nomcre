@@ -35,31 +35,36 @@ excitement_default_project = Project.create!(package_type_id: excitement.id,
 
 p "----------- Package Type Excitement - Default Photo Shoot  ----------"
 
-excitement_default_photo = Shoot.create(project_id: excitement_default_project,
+excitement_default_photo_shoot = Shoot.create!(project_id: excitement_default_project.id,
                                         company_id: 1,
                                         location_id: 111,
                                         content_type: ContentType.photo,
                                         brief: excitement_default_project.brief,
                                         price: 3500,
                                         shoot_style: ShootStyle.mixed,
-                                        location: Location.first)
+                                        location: Location.first,
+                                        deadline: excitement_default_project.deadline,
+                                        user_added_shot_count_max: excitement_default_project.max_user_shot_list)
+
 
 p "----------- Package Type Excitement - Default Video Shoot  ----------"
 
-excitement_default_video = Shoot.create(project_id: excitement_default_project,
+excitement_default_video_shoot = Shoot.create!(project_id: excitement_default_project.id,
                                         company_id: 1,
                                         location_id: 111,
                                         content_type: ContentType.video,
                                         brief: excitement_default_project.brief,
                                         price: 8500,
                                         shoot_style: ShootStyle.mixed,
-                                        location: Location.first)
+                                        location: Location.first,
+                                        deadline: excitement_default_project.deadline,
+                                        user_added_shot_count_max: excitement_default_project.max_user_shot_list)
 
 p "----------- Package Type Excitement - Shoots Completed  ----------"
 
 p "----------- Package Type Excitement - Shot List Items  ----------"
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Sun (light) shining through person/feture',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -68,7 +73,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Flared out staged imagery ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -77,7 +82,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'hero shot of person/feature low angle ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -86,7 +91,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'hero shot of person/feature high angle ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -95,7 +100,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'hero shot of person/feature tight angle ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -104,7 +109,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'hero shot of person/feature wide angle ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -113,7 +118,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Smiling Interaction',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -121,7 +126,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'multiples for motion for overlay/sequence ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -130,7 +135,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'shot with hands up or jumping ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -139,7 +144,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'multiples for motion for overlay/sequence ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -148,7 +153,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'moment of reflection with positive mood',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -157,7 +162,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'use of reflection on person/subject',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -166,7 +171,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'use of shaddow for person/subject',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -175,7 +180,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'shot of person taking ownership ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -184,7 +189,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'multiple people interacting with person/feature low',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -193,7 +198,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'multiple people interacting with person/feature high',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -202,7 +207,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'multiple people interacting with person/feature tight',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -211,7 +216,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'multiple people interacting with person/feature tight',
                                          aspect_ratio: 'landscape',
                                          background: "From brief",
@@ -220,7 +225,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'multiple people interacting with person/feature wide',
                                          aspect_ratio: 'landscape',
                                          background: "From brief",
@@ -229,7 +234,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Celebration Solo',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -238,7 +243,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Celebration collaborative',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -247,7 +252,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Celebration collaborative wide',
                                          aspect_ratio: 'landscape',
                                          background: "From brief",
@@ -257,7 +262,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          added_by_id: zack_admin.id)
 
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'eyes on person/feature',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -266,7 +271,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'captive audience (people or items)',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -275,7 +280,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Straight Shot of person/feature',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -284,7 +289,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Straight Shot of person/feature wide',
                                          aspect_ratio: 'landscape',
                                          background: "From brief",
@@ -293,7 +298,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Straight Shot of person/feature mid',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -302,7 +307,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Straight Shot of person/feature low',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -311,7 +316,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Straight Shot of person/feature tight',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -321,7 +326,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          added_by_id: zack_admin.id)
 
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Angle Shot of Person or Feature',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -330,7 +335,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Angle Shot of Person or Feature low ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -339,7 +344,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Angle Shot of Person or Feature wide',
                                          aspect_ratio: 'landscape',
                                          background: "From brief",
@@ -348,7 +353,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Angle Shot of Person or Feature tight',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -357,7 +362,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Angle Shot of Person or Feature mid',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -366,7 +371,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Angle Shot of Person or Feature high',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -375,7 +380,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Establishing Shot of Person or Feature',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -384,7 +389,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Establishing Shot of Person or Feature low ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -393,7 +398,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Establishing Shot of Person or Feature mid ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -402,7 +407,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Establishing Shot of Person or Feature tight',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -410,7 +415,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Establishing Shot of Person or Feature high ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -419,7 +424,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Establishing Shot of Person or Feature Wide',
                                          aspect_ratio: 'landscape',
                                          background: "From brief",
@@ -428,7 +433,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Action Shot Mid ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -437,7 +442,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Action Shot Tight ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -446,7 +451,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Action Shot Wide',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -457,7 +462,7 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo,
 
 
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: '(Sun) Light shining through Person or Feature',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -466,7 +471,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Flared out Staged Imagery',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -476,7 +481,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          added_by_id: zack_admin.id)
 
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Hero Shot of Person or Feature - Low Angle',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -486,7 +491,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          added_by_id: zack_admin.id)
 
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Hero Shot of Person or Feature - High Angle',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -495,7 +500,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Hero Shot of Person or Feature - Tight Angle',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -504,7 +509,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Hero Shot of Person or Feature - Wide Angle',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -513,7 +518,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Smiling Interaction',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -522,7 +527,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Motion for Overlay 1',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -531,7 +536,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Motion for Overlay 2',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -540,7 +545,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Motion for Overlay 3',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -549,7 +554,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Motion for Overlay 4',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -558,7 +563,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Shot of Model with hands up or jumping',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -567,7 +572,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Moment of reflection with positive mood',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -576,7 +581,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Use of Reflection for person or subject ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -585,7 +590,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Use of Shaddow for person or subject ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -594,7 +599,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Person or subject taking ownership',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -603,7 +608,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Multiple People interacting with Subject - Low',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -612,7 +617,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Multiple People interacting with Subject - High',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -621,7 +626,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Multiple People interacting with Subject - Tight',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -630,7 +635,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Multiple People interacting with Subject - Wide',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -639,7 +644,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Cellebration Solo Panning',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -648,7 +653,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Cellebration Collaboration',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -657,7 +662,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Cellebration Collaboration Wide',
                                          aspect_ratio: 'landscape',
                                          background: "From brief",
@@ -666,7 +671,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Eyes on Person / Feature Pull Away',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -675,7 +680,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Captive Audience (People or Items)',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -684,7 +689,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Straight Shot of Person or Feature - Focus Pull ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -693,7 +698,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Straight Shot of Person or Feature - Wide',
                                          aspect_ratio: 'landscape',
                                          background: "From brief",
@@ -702,7 +707,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Straight Shot of Person or Feature - Mid ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -711,7 +716,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Straight Shot of Person or Feature - Low',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -720,7 +725,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Straight Shot of Person or Feature - Tight - Focus Pull',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -729,7 +734,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Straight Shot of Person or Feature - High - Focus Pull',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -738,7 +743,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Angle Shot of Person or Feature - Focus Pull ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -747,7 +752,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Angle Shot of Person or Feature - Wide',
                                          aspect_ratio: 'landscape',
                                          background: "From brief",
@@ -756,7 +761,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Angle Shot of Person or Feature - Mid ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -765,7 +770,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Angle Shot of Person or Feature - Low',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -774,7 +779,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Angle Shot of Person or Feature - Tight - Focus Pull',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -783,7 +788,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Angle Shot of Person or Feature - High - Focus Pull',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -792,7 +797,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Action Shot of Person or Feature - Tight - Focus Pull',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -801,7 +806,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Action Shot of Person or Feature - Low - Focus Pull',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -810,7 +815,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Action Shot of Person or Feature - Mid - Focus Pull',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
@@ -819,7 +824,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video,
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id)
 
-excitement_video = ShotListItem.create!(shoot: excitement_default_video,
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Action Shot of Person or Feature - High - Focus Pull',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",

@@ -191,7 +191,7 @@ class Shoot < ApplicationRecord
 
   #callbacks
   def intialize_shoot
-    unless self.is_template || self.is_default_template
+    unless self.project.is_template || self.project.is_default_template
       set_default_shot_list
     end
   end
