@@ -146,6 +146,7 @@ class ShootsController < ApplicationController
                                     :company_id,
                                     :location_id,
                                     :deadline,
+                                    :title,
                                     :content_type,
                                     :brief,
                                     :time_of_day,

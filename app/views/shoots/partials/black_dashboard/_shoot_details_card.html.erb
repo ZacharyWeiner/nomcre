@@ -40,19 +40,24 @@
 <div class="card">
   <div class="card-header">
     <h3 class="card-category">
-      <span>
-        <% if shoot.content_type == 'photo' %>
-          <i class="tim-icons text-primary"><ion-icon name='camera' size='large'></ion-icon></i>
-        <% else %>
-          <i class="tim-icons text-primary"><ion-icon name='videocam' size='large'></ion-icon></i>
-        <% end %>
-        <% if show_title %>
-          <%= link_to shoot.project.title.first(30), shoot, style: 'font-size: 18px' %>
-        <% end %>
-      </span>
       <span class='pull-right'>
         <i class='tim-icons'><ion-icon name='calendar'></ion-icon></i> <%= shoot.deadline.strftime('%a %b %d, %Y') unless shoot.deadline == nil %>
       </span>
+      <span>
+        <% if shoot.content_type == 'photo' %>
+
+          <h5>
+            <i class="tim-icons text-primary"><ion-icon name='camera' size='large'></ion-icon></i>
+            <%= shoot.title.nil? ? "#{shoot.project.title} Photo Shoot" : shoot.title  %>
+          </h5>
+        <% else %>
+          <h5>
+            <i class="tim-icons text-primary"><ion-icon name='videocam' size='large'></ion-icon></i>
+            <%= shoot.title.nil? ? "#{shoot.project.title} Photo Shoot" : shoot.title  %>
+          </h5>
+        <% end %>
+      </span>
+
     </h3>
     <hr >
   </div>

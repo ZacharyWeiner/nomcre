@@ -1,5 +1,5 @@
 <div class="tab-pane active" id="pending">
-  <% pending = @creative_requests.where(accepted: nil) %>
+  <% pending = @creative_requests.where(accepted: false) %>
   <% if pending.count == 0 %>
     <div class="alert alert-info alert-with-icon" style='width:100%'>
       <span data-notify="icon" class="tim-icons"><ion-icon name="alert"></ion-icon></span>

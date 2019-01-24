@@ -44,7 +44,6 @@ class ShotListItemsController < ApplicationController
       shoot = Shoot.find(shot_list_item_params[:shoot_id])
       can_add = true
       if shoot.user_added_shot_count_max > 0
-        byebug
         can_add = @shot_list_item.shoot.owner_added_shot_list_count < @shot_list_item.shoot.user_added_shot_count_max
       end
     end

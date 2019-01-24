@@ -133,6 +133,7 @@ class Shoot < ApplicationRecord
           cr.save!
         end
         Notification.create!(user: assigned_request.creative, notification_type: NotificationType.request_assigned, notification_object_id: self.id)
+        self.assign_tasks
         return true
       else
         return false
@@ -147,6 +148,15 @@ class Shoot < ApplicationRecord
     justin = User.where(email: 'justin@nomcre.com').first
     if !justin.nil?
       message = chatroom.messages.create!(content: "Justin Joined The Chat", user: justin)
+    end
+  end
+
+  def assign_tasks
+    self.tasks.each do |t|
+      if t.can_accept = UserType.creative
+        t.user = self.creative
+        t.save!
+      end
     end
   end
 
@@ -180,12 +190,13 @@ class Shoot < ApplicationRecord
   end
 
   def nomcre_added_shot_list_count
-    self.shot_list_items.where(added_by: nil).count
+    admin_ids = Company.where(name: 'Nomadic Creative').first.users.map{|u| u.id}
+    self.shot_list_items.where(added_by_id: admin_ids).count
   end
 
   def owner_added_shot_list
     company_ids = self.project.owners.map{|u| u.id}
-    self.shot_list_items.where(added_by: company_ids)
+    self.shot_list_items.where(added_by_id: company_ids)
   end
 
 
@@ -200,7 +211,9 @@ class Shoot < ApplicationRecord
     orphan_relations
     destroy_chatroom
     if self.project.price > 0
-      self.project.update_price(self.project.price - self.price)
+      if !self.project.deposit_invoice.nil? && !self.project.balance_invoice.nil?
+        self.project.update_price(self.project.price - self.price)
+      end
     end
   end
 
@@ -224,14 +237,12 @@ class Shoot < ApplicationRecord
   end
 
   def set_default_shot_list
-    @admin = User.where(role: 0).first
-    if @admin.nil?
-      @admin = User.create!(name: 'admin', email: 'admin@nomcre.com', password: ENV['DEFAULT_ADMIN_PASS'], password_confirmation: ENV['DEFAULT_ADMIN_PASS'], role: 0)
-    end
-    if self.content_type == ContentType.photo
-      create_default_shot_list_for_photo
-    elsif self.content_type == ContentType.video
-      create_default_shot_list_for_video
+    unless self.project.is_template || self.project.is_default_template
+      if self.content_type == ContentType.photo
+        create_default_shot_list_for_photo
+      elsif self.content_type == ContentType.video
+        create_default_shot_list_for_video
+      end
     end
   end
 

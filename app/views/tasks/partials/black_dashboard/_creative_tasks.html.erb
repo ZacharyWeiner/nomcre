@@ -36,7 +36,6 @@
                 <% tasks.where(can_accept: 'creative' ).each do |task| %>
                 <tr>
                   <td>
-                    <p class="title"> <%= task.proposal.title unless task.project.nil? %></p>
                     <p class="title"> <%= task.project.title unless task.project.nil? %></p>
                     <p class="text-info"><%= task.description %></p>
                   </td>
@@ -92,7 +91,6 @@
                 <% completed.where(can_accept: 'creative' ).each do |task| %>
                 <tr>
                   <td>
-                    <p class="title"> <%= task.proposal.title unless task.project.nil? %></p>
                     <p class="title"> <%= task.project.title unless task.project.nil? %></p>
                     <p class="text-info"><%= task.description %></p>
                   </td>

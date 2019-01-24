@@ -11,6 +11,10 @@
     </div>
   <% end %>
   <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_area :title, id: :shoot_title, class: 'form-control'  %>
+  </div>
+  <div class="form-group">
     <%= form.label :brief %>
     <%= form.text_area :brief, id: :shoot_brief, style: 'max-height: 500px;width:100%', :rows => 10, class: 'form-control'  %>
   </div>

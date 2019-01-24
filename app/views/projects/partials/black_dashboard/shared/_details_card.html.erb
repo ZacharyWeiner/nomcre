@@ -9,6 +9,10 @@
   <% show_edit_button = false %>
 <% end %>
 
+<% if !defined? show_delete_button %>
+  <% show_delete_button = false %>
+<% end %>
+
 <% if !defined? show_content %>
   <% show_content = false %>
 <% end %>
@@ -195,6 +199,13 @@
    <div class='card-footer text-center'>
         <%if current_user.company == project.company && project.is_editable(current_user) %>
           <%= link_to "<i class='far fa-edit'></i> Edit".html_safe, edit_project_path(project), class: 'btn btn-danger btn-simple btn-block' %>
+        <% end %>
+      </div>
+  <% end %>
+  <% if show_delete_button %>
+   <div class='card-footer text-center'>
+        <%if current_user.company == project.company && project.is_editable(current_user) %>
+          <%= link_to "<i class='far fa-trash-alt'></i> Delete".html_safe, project_path(project), method: :delete, class: 'btn btn-danger btn-simple btn-block' %>
         <% end %>
       </div>
   <% end %>

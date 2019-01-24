@@ -21,6 +21,7 @@ page_section = PageSection.create!(page_id: page.id,
                                   content: "The example most people might recognize is from Netflix. Think about when you’re about to watch the next episode in a series. When the opening credits roll, you’re offered a button to skip the intro. If you click the button, the video jumps forward a little bit and continues playing where the intro ended. This is the most basic form of interactive video. \r\n\r\nAnother widespread example is on Hulu.If you have a package that plays commercials, sometimes they give you the option to skip them if you watch an interactive video. Then you have to click somewhere on the screen before your actual video will play. \r\n",
                                   order: 0)
 
+p "-----------Page Complete -----------"
 p "-----------Page Start -----------"
 page = Page.create!(title: "2 Rules For 6 Second Videos",
                     content: "Two simple rules to follow for 6-second video ads. , remote_header_image_url: https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/page/header_image/3/DJI_0455.jpg",
@@ -112,7 +113,9 @@ p "-----------Page Complete -----------"
 p "-----------Page Start -----------"
 page = Page.create!(title: "Entrepreneur Magazine",
                     content: nil,
-                    remote_header_image_url: "https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/page/header_image/7/DJI_0232.JPG, status: published, slug: Entrepreneur-Magazine",
+                    remote_header_image_url: "https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/page/header_image/7/DJI_0232.JPG",
+                    status: "published",
+                    slug: "Entrepreneur-Magazine",
                     description:" Article for Entrepreneur Magazine",
                     keywords: "Entrepreneur Magazine")
 p "-----------Page Complete -----------"

@@ -12,7 +12,7 @@ class CreativeRequestsController < ApplicationController
       @creative_requests = CreativeRequest.where(company: current_user.company)
     elsif
       #if the current user is a  creative show all the requests for the user
-      @creative_requests = CreativeRequest.where(creative: current_user)
+      @creative_requests = CreativeRequest.where(creative_id: current_user.id)
     else
       @creative_requests = CreativeRequest.all
     end

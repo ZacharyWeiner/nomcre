@@ -1,7 +1,7 @@
 class Page < ApplicationRecord
   mount_uploader :header_image, PageImageUploader
   validates :title, presence: true, uniqueness: true
-  has_many :page_sections
+  has_many :page_sections, dependent: :destroy
 
   def build_link(request)
     return request.base_url + '/pages/' + self.slug

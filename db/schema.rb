@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190123173102) do
+ActiveRecord::Schema.define(version: 20190124173151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -390,6 +390,7 @@ ActiveRecord::Schema.define(version: 20190123173102) do
     t.string "focus_points", default: [], array: true
     t.date "deadline"
     t.boolean "is_complete"
+    t.string "title"
     t.index ["company_id"], name: "index_shoots_on_company_id"
     t.index ["location_id"], name: "index_shoots_on_location_id"
     t.index ["project_id"], name: "index_shoots_on_project_id"

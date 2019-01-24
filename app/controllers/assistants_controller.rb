@@ -31,6 +31,8 @@ class AssistantsController < ApplicationController
   # POST /assistants.json
   def create
     @assistant = Assistant.new(assistant_params)
+    shoot = Shoot.find(assistant_params[:shoot_id])
+    @assistant.location = shoot.location
     respond_to do |format|
       if @assistant.save
         if @assistant.proposal != nil

@@ -4,3 +4,7 @@ seed_instructions
 1- Remove file size validator before seed
 2 - HeaderImages, locations, pages, showcase, user_data, project_templates
 3- Add File Size Validator back after seed
+
+
+
+rake db:drop && rake db:create && rake db:migrate && rake db:seed:locations && rake db:seed:pages && rake db:seed:showcase && rake db:seed:user_data && rake db:seed:project_templates
