@@ -1,3 +1,7 @@
+heroku restart --app=nomcre2-staging; heroku pg:reset DATABASE  --app=nomcre2-staging --confirm nomcre2-staging; heroku run rake db:migrate && rake db:seed:locations && rake db:seed:pages && rake db:seed:showcase && rake db:seed:user_data && rake db:seed:project_templates
+
+
+
 ShowcaseImage.all.each do |si|
  p "si = ShowcaseImage.create!(file: #{si.file}, showcase_type: #{si.showcase_type}, show: #{si.show}, order: #{si.order}, name: #{si.name})"
 end
