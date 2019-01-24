@@ -16,6 +16,9 @@ class CreativeRequestsController < ApplicationController
     else
       @creative_requests = CreativeRequest.all
     end
+    @creative_requests.each do |cr|
+      Notification.check_notifications(current_user.id, NotificationType.new_work_request, cr.id)
+    end
     @creative_requests.reverse
   end
 
@@ -103,6 +106,7 @@ class CreativeRequestsController < ApplicationController
       else
         @creative_request = CreativeRequest.find(params[:id])
       end
+      Notification.check_notifications(current_user.id, NotificationType.new_work_request, object_id: @creative_request.id)
     end
 
     def authorize
@@ -119,6 +123,7 @@ class CreativeRequestsController < ApplicationController
       else
       end
     end
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def creative_request_params

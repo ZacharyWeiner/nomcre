@@ -18,6 +18,9 @@ class ShootsController < ApplicationController
   # GET /shoots/1.json
   def show
     Notification.check_notifications(current_user.id, NotificationType.new_work_request, object_id: @shoot.id)
+    Notification.check_notifications(current_user.id, NotificationType.request_assigned, object_id: @shoot.id)
+    Notification.check_notifications(current_user.id, NotificationType.request_accepted, object_id: @shoot.id)
+    Notification.check_notifications(current_user.id, NotificationType.request_declined, object_id: @shoot.id)
   end
 
   # GET /shoots/new

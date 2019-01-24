@@ -44,16 +44,18 @@
         <i class='tim-icons'><ion-icon name='calendar'></ion-icon></i> <%= shoot.deadline.strftime('%a %b %d, %Y') unless shoot.deadline == nil %>
       </span>
       <span>
-        <% if shoot.content_type == 'photo' %>
 
+        <% if shoot.content_type == 'photo' %>
+        <% title = shoot.title.nil? ? "#{shoot.project.title} Photo Shoot" : shoot.title %>
           <h5>
             <i class="tim-icons text-primary"><ion-icon name='camera' size='large'></ion-icon></i>
-            <%= shoot.title.nil? ? "#{shoot.project.title} Photo Shoot" : shoot.title  %>
+            <%= link_to title, shoot_path(shoot) %>
           </h5>
         <% else %>
+        <% title = shoot.title.nil? ? "#{shoot.project.title} Video Shoot" : shoot.title %>
           <h5>
             <i class="tim-icons text-primary"><ion-icon name='videocam' size='large'></ion-icon></i>
-            <%= shoot.title.nil? ? "#{shoot.project.title} Photo Shoot" : shoot.title  %>
+            <%= link_to title, shoot_path(shoot) %>
           </h5>
         <% end %>
       </span>
@@ -182,6 +184,5 @@
   <% if show_chat_button && !shoot.creative.nil? %>
     <%= link_to "<i class='fas fa-comments'></i> Chat".html_safe, shoot.chatroom, class: 'btn btn-simple btn-primary' %>
   <% end %>
-
 </div>
 

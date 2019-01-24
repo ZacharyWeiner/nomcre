@@ -19,9 +19,11 @@ class Notification < ApplicationRecord
   end
 
   def self.check_notifications user_id, notification_type, this_object_id
-    notification = Notification.where(user_id: user_id, notification_type: notification_type, notification_object_id: this_object_id).first
-    unless notification.nil?
-      notification.mark_read
+    notifications = Notification.where(user_id: user_id, notification_type: notification_type, notification_object_id: this_object_id)
+    unless notifications.count == 0
+      notifications.each do |note|
+        note.mark_read
+      end
     end
   end
 
