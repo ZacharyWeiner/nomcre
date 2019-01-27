@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     get 'wizard', to: 'projects#wizard', as: 'wizard'
     patch 'update_price', to:'projects#update_price', as: 'update_price'
     resources :invoices
+    resources :shoots
   end
 
   resources :documents

@@ -11,87 +11,94 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <% if current_user.is_admin %>
+  <div class="form-group">
     <%= form.label :creative_id %>
-    <%= form.text_field :creative_id, id: :shoot_creative_id %>
+    <%= form.select(
+                    :location_id,
+                    options_for_select(User.where(user_type: UserType.creative)
+                                            .map{|u| [u.name, u.id]}), {}, {class: 'form-control'}) %>
   </div>
+  <% end %>
 
-  <div class="field">
+  <!-- <div class="form-group">
     <%= form.label :project_id %>
-    <%= form.text_field :project_id, id: :shoot_project_id %>
-  </div>
+    <%= form.text_field :project_id, id: :shoot_project_id, class: 'form-control' %>
+  </div> -->
 
-  <div class="field">
+  <!-- <div class="form-group">
     <%= form.label :company_id %>
-    <%= form.text_field :company_id, id: :shoot_company_id %>
-  </div>
+    <%= form.text_field :company_id, id: :shoot_company_id, class: 'form-control' %>
+  </div> -->
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :location_id %>
-    <%= form.text_field :location_id, id: :shoot_location_id %>
+    <%= form.select(:location_id, options_for_select(Location.locations_for_select), {}, {class: 'form-control'}) %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :content_type %>
-    <%= form.text_field :content_type, id: :shoot_content_type %>
+    <%= form.select(:content_type, options_for_select([ContentType.photo, ContentType.video]), {}, {class: 'form-control'}) %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :brief %>
-    <%= form.text_area :brief, id: :shoot_brief %>
+    <%= form.text_area :brief, id: :shoot_brief, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :time_of_day %>
-    <%= form.text_field :time_of_day, id: :shoot_time_of_day %>
+    <%= form.text_field :time_of_day, id: :shoot_time_of_day, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :bts %>
-    <%= form.text_field :bts, id: :shoot_bts %>
+    <%= form.text_field :bts, id: :shoot_bts, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :focus_points %>
-    <%= form.text_field :focus_points, id: :shoot_focus_points %>
+    <%= form.text_field :focus_points, id: :shoot_focus_points, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <!-- <div class="form-group">
     <%= form.label :price %>
-    <%= form.text_field :price, id: :shoot_price %>
-  </div>
+    <%= form.text_field :price, id: :shoot_price, class: 'form-control' %>
+  </div> -->
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :background %>
-    <%= form.text_field :background, id: :shoot_background %>
+    <%= form.text_field :background, id: :shoot_background, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :background_note %>
-    <%= form.text_field :background_note, id: :shoot_background_note %>
+    <%= form.text_field :background_note, id: :shoot_background_note, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :shoot_style %>
-    <%= form.text_field :shoot_style, id: :shoot_shoot_style %>
+    <%= form.text_field :shoot_style, id: :shoot_shoot_style, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :shoot_raw %>
-    <%= form.check_box :shoot_raw, id: :shoot_shoot_raw %>
+    <%= form.check_box :shoot_raw, id: :shoot_shoot_raw  %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :user_added_shot_count %>
-    <%= form.number_field :user_added_shot_count, id: :shoot_user_added_shot_count %>
+    <%= form.number_field :user_added_shot_count, id: :shoot_user_added_shot_count, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :user_added_shot_count_max %>
-    <%= form.number_field :user_added_shot_count_max, id: :shoot_user_added_shot_count_max %>
+    <%= form.number_field :user_added_shot_count_max, id: :shoot_user_added_shot_count_max, class: 'form-control' %>
   </div>
-
+  <% unless params[:project_id].nil? %>
+    <%= form.hidden_field :project_id, id: :shoot_project_id, :value => params[:project_id] %>
+  <% end %>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit "Save", class: 'btn btn-success' %>
   </div>
 <% end %>

@@ -34,7 +34,11 @@ class ProjectsController < ApplicationController
   # GET /projects/new
   def new
     @project = Project.new
-    @package_types = PackageType.where(show_in_menu: true)
+    if current_user.is_admin
+      @package_types = PackageType.all
+    else
+      @package_types = PackageType.where(show_in_menu: true)
+    end
   end
 
   # GET /projects/1/edit

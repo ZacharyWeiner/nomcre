@@ -27,6 +27,12 @@
           <td><%= proj.deadline %></td>
           <td><%= proj.shoots.count %></td>
           <td>
+            <%= link_to project_path(proj) do %>
+              <i class="fas fa-eye"></i>
+            <% end %>
+            <%= link_to new_project_shoot_path(proj) do %>
+              <i class="fas fa-plus"></i>
+            <% end %>
             <%= link_to admin_edit_project_path(proj) do %>
               <i class="fa fa-edit"></i>
             <% end %>
