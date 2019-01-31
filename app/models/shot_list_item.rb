@@ -69,7 +69,7 @@ class ShotListItem < ApplicationRecord
       new_sli.shoot = shoot
       new_sli.added_by = admin
       if new_sli.save!
-
+        new_sli.create_related_task new_sli.description
       end
     end
   end
