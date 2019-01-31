@@ -98,10 +98,10 @@ class ShotListItemsController < ApplicationController
   # DELETE /shot_list_items/1
   # DELETE /shot_list_items/1.json
   def destroy
-    @proposal = @shot_list_item.proposal
+    @shoot = @shot_list_item.shoot
     @shot_list_item.destroy
     respond_to do |format|
-      format.html { redirect_to proposal_shot_list_items_path(@proposal), notice: 'Shot list item was successfully destroyed.' }
+      format.html { redirect_to shoot_path(@shoot, :active => 'shotlist'), notice: 'Shot list item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
