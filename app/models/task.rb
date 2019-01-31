@@ -47,6 +47,27 @@ class Task < ApplicationRecord
     complete
   end
 
+  def description_html
+    if self.description.include?('http://')
+      linked = self.description.gsub( %r{http://[^\s<]+} ) do |url|
+        if url[/(?:png|jpe?g|gif|svg)$/]
+          "<img src='#{url}'  target='_blank' />"
+        else
+          "<a href='#{url}'  target='_blank'>#{url}</a>"
+        end
+      end
+    else
+      linked = self.description.gsub( %r{www.[^\s<]+} ) do |url|
+        if url[/(?:png|jpe?g|gif|svg)$/]
+          "<img src='http://#{url}' target='_blank'/>"
+        else
+          "<a href='http://#{url}' target='_blank'>#{url}</a>"
+        end
+      end
+    end
+    linked
+  end
+
   #instance methods
   def approver
     if self.can_accept == 'creative'

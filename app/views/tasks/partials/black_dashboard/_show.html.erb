@@ -9,11 +9,11 @@
         <div class="block block-four"></div>
         <a href="javascript:void(0)">
           <% if @task.can_accept == 'company' %>
-          <%= image_tag @task.company.logo.url, class: 'avatar'%>
+          <%= image_tag @task.company.logo.url, class: 'avatar' unless @task.company.logo.nil? %>
           <% else %>
           <%= image_tag @task.user.user_profile.safe_profile_image_url, class: 'avatar'%>
           <% end %>
-          <h5 class="title">Deadline: <%= @task.deadline %></h5>
+          <h5 class="title">Deadline: <%= @task.deadline  unless @task.deadline.nil? %></h5>
           <% if @task.completed %>
             <span class='text-success'>Complete</span>
           <% else  %>
@@ -22,12 +22,19 @@
         </a>
         <p class="description">
           <br>
-          <%= @task.proposal.title %>
+          <% if @task.shot_list_item %>
+            <%= @task.shot_list_item.title unless @task.shot_list_item.title.nil?%>
+          <% elsif @task.shoot %>
+            <%= @task.shoot.title unless @task.shoot.title.nil?%>
+          <% elsif @task.project %>
+            <%= @task.project.title unless @task.project.title.nil?%>
+          <% end %>
+
         </p>
       </div>
     <p></p>
     <div class="card-description text-center">
-      <%= @task.description %>
+      <%= @task.description_html.html_safe %>
     </div>
   </div>
   <div class="card-footer text-center">

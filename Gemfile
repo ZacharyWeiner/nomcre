@@ -46,9 +46,9 @@ gem 'sitemap_generator'
 gem 'fog-aws'
 gem "react_on_rails", "11.1.8" # Update to the current version
 gem "webpacker", "~> 3" # Newer versions might be supported
-gem  "business_time"
+gem "business_time"
 gem "minitest"
-
+gem "actionpack"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

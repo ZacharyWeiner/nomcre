@@ -4,13 +4,15 @@
     <% tasks.each do |task| %>
     <tr>
       <td>
-        <p class="title text-info"><%= task.description %></p>
+        <p class="title text-info"><%= task.description_html %></p>
         <% if !task.proposal.nil? %>
           <p class="card-category"> <%= task.proposal.title %></p>
         <% elsif task.shoot %>
-          <p class="card-cetegory"> <%= task.shoot.project.title %></p>
+          <p class="card-cetegory"> <%= task.shoot.title %></p>
         <% end %>
-
+        <% unless task.shot_list_item.nil? || task.shot_list_item.reference_image.file.nil? %>
+          <%= image_tag task.shot_list_item.reference_image, class: 'img-fluid', style: 'max-height: 200px;'%>
+        <% end %>
       </td>
       <td>
       <% if !task.deadline.nil? %>

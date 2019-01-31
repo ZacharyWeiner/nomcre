@@ -1,5 +1,6 @@
-<% if current_user.user_type == 'creative' %>
+<% if current_user.user_type == 'creative' || current_user.is_admin %>
   <%= render :partial => 'tasks/partials/black_dashboard/creative_tasks', :locals => {:tasks => @tasks, :completed => @completed_tasks} %>
-<% elsif current_user.user_type == 'company' %>
+<% else %>
   <%= render :partial => 'tasks/partials/black_dashboard/company_tasks', :locals => {:tasks => @tasks, :completed => @completed_tasks} %>
+
 <% end %>

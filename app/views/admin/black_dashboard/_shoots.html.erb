@@ -26,6 +26,9 @@
           <td><%= shoot.creative.name  unless shoot.creative.nil? %></td>
           <td><%= shoot.deadline %></td>
           <td>
+             <%= link_to shoot_path(shoot) do %>
+              <i class="fa fa-eye"></i>
+            <% end %>
             <%= link_to admin_edit_shoot_path(shoot) do %>
               <i class="fa fa-edit"></i>
             <% end %>

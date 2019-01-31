@@ -6,11 +6,14 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    #@tasks = Task.where(completed: nil).where(user: current_user).order(:deadline)
-    task_ids = current_user.shoots.where(is_complete: nil).map{|s| s.tasks.map{|t| t.id}}[0]
-    byebug
-    @tasks = Task.where(id: task_ids)
-    @completed_tasks = current_user.tasks.where(completed: true)
+    if current_user.is_admin
+      @tasks = Task.all.where(completed: nil)
+      @completed_tasks = Task.all.where(completed: true)
+    else
+      task_ids = current_user.shoots.where(is_complete: nil).map{|s| s.tasks.map{|t| t.id}}[0]
+      @tasks = Task.where(id: task_ids)
+      @completed_tasks = current_user.tasks.where(completed: true)
+    end
     #TODO: Use helper for notifications
     @notifications = Notification.where(user: current_user).where(notification_type: "Task").where(read: false)
     @notifications.each do |note|

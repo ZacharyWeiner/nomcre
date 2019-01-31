@@ -34,24 +34,29 @@
             <table class="table">
               <tbody>
                 <% tasks.where(can_accept: 'creative' ).each do |task| %>
-                <tr>
-                  <td>
-                    <p class="title"> <%= task.project.title unless task.project.nil? %></p>
-                    <p class="text-info"><%= task.description %></p>
-                  </td>
-                  <td>
-                  <% if !task.deadline.nil? &&  task.deadline > Date.today %>
-                    <p class="text-success"><i class="fa fa-clock-o"></i>  <%= (task.deadline - Date.today).to_int %> days</p>
-                  <% elsif !task.deadline.nil? %>
-                    <p class="text-danger"><i class="fa fa-clock-o"></i>  <%= time_ago_in_words(task.deadline - Date.today) %> days</p>
-                  <% end %>
-                  </td>
-                  <td class="td-actions text-right">
-                    <%= link_to task_task_complete_path(task), class: "btn btn-link btn-primary", title: "Complete", :data => { :original_title => 'Tooltip on Top'}  do  %>
-                      <i class="tim-icons"><ion-icon name="checkmark" size='large'></ion-icon></i>
+                  <tr>
+                    <td>
+                      <p class="title"> <%= task.project.title unless task.project.nil? %></p>
+                      <p class="text-info"><%= task.description_html.html_safe %></p>
+                    </td>
+                    <td>
+                    <% if !task.deadline.nil? &&  task.deadline > Date.today %>
+                      <p class="text-success"><i class="fa fa-clock-o"></i>  <%= (task.deadline - Date.today).to_int %> days</p>
+                    <% elsif !task.deadline.nil? %>
+                      <p class="text-danger"><i class="fa fa-clock-o"></i>  <%= time_ago_in_words(task.deadline - Date.today) %> days</p>
                     <% end %>
-                  </td>
-                </tr>
+                    </td>
+                    <td class="td-actions text-right">
+                      <%= link_to task_task_complete_path(task), class: "btn btn-link btn-primary", title: "Complete", :data => { :original_title => 'Tooltip on Top'}  do  %>
+                        <i class="tim-icons"><ion-icon name="checkmark" size='large'></ion-icon></i>
+                      <% end %>
+                    </td>
+                  </tr>
+                  <% unless task.shot_list_item.nil? || task.shot_list_item.reference_image.file.nil? %>
+                    <tr><td>
+                      <%= image_tag task.shot_list_item.reference_image, class: 'img-fluid', style: 'max-height: 200px;'%>
+                    </td></tr>
+                  <% end %>
                 <% end %>
               </tbody>
             </table>
