@@ -119,6 +119,14 @@
                 <% end %>
                 <hr>
                 <span>
+                  <i class='tim-icons text-primary'><ion-icon name='ios-pin'> </ion-icon></i>
+                  Mood:
+                  <span class='pull-right'>
+                   <%= project.mood %>
+                  </span>
+                </span>
+                <hr>
+                <span>
                   <% project.shoots.each do |shoot| %>
                     <i class='tim-icons text-danger'><ion-icon name='ios-camera'> </ion-icon></i>
                     Shoot Types:

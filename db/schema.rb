@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190201170208) do
+ActiveRecord::Schema.define(version: 20190201180435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -298,6 +298,7 @@ ActiveRecord::Schema.define(version: 20190201170208) do
     t.datetime "updated_at", null: false
     t.boolean "is_template"
     t.boolean "is_default_template"
+    t.string "mood"
     t.index ["company_id"], name: "index_projects_on_company_id"
     t.index ["package_type_id"], name: "index_projects_on_package_type_id"
   end

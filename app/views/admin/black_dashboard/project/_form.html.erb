@@ -33,6 +33,11 @@
       </div>
 
       <div class="form-group">
+        <%= form.label :mood %>
+        <%= form.text_field :mood, id: :project_mood, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
         <%= form.label :deadline %>
         <%= form.date_select :deadline, id: :project_deadline, class: 'form-control' %>
       </div>

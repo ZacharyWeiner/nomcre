@@ -121,6 +121,16 @@
               </span>
             </span>
              <hr>
+             <% unless shoot.project.mood.nil? %>
+               <span>
+                <i class='tim-icons'><ion-icon name="aperture"></ion-icon></i>
+                Mood:
+                <span class='pull-right'>
+                  <%= shoot.project.mood  %>
+                </span>
+              </span>
+               <hr>
+             <% end %>
              <span>
               <i class='tim-icons text-info'><ion-icon name='ios-photos'> </ion-icon></i>
               Custom Shot Count:
