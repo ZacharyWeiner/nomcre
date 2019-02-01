@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190124173151) do
+ActiveRecord::Schema.define(version: 20190201170208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -410,6 +410,7 @@ ActiveRecord::Schema.define(version: 20190124173151) do
     t.bigint "shoot_id"
     t.bigint "added_by_id"
     t.string "shoot_location"
+    t.string "frame_rate"
     t.index ["proposal_id"], name: "index_shot_list_items_on_proposal_id"
     t.index ["shoot_id"], name: "index_shot_list_items_on_shoot_id"
   end

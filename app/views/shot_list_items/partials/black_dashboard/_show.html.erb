@@ -30,7 +30,7 @@
           <div class='text-center' style='padding:6px;'>
             Reference Image <br>
             <% if @shot_list_item.reference_image.nil? || @shot_list_item.reference_image.file.nil? %>
-              <img height="80%" src='https://vignette.wikia.nocookie.net/the-darkest-minds/images/4/47/Placeholder.png/revision/latest?cb=20160927044640' class='img-responsive' />
+              <img src='https://vignette.wikia.nocookie.net/the-darkest-minds/images/4/47/Placeholder.png/revision/latest?cb=20160927044640' class='img-responsive' />
             <% else %>
               <%= link_to @shot_list_item.reference_image.url do %>
                 <%= image_tag @shot_list_item.reference_image %>
@@ -45,29 +45,36 @@
 
           <div style='padding:6px;'>
             <span><i class='tim-icons text-primary'><ion-icon name='camera'></ion-icon></i> Shoot Type:</span>
-            <soan class='pull-right'><%= @shot_list_item.item_type %></soan>
+            <span class='pull-right'><%= @shot_list_item.item_type %></span>
             <hr>
           </div>
           <div style='padding:6px;'>
             <span><i class='tim-icons text-primary'><ion-icon name='photos'></ion-icon></i> Background:</span>
-            <soan class='pull-right'><%= @shot_list_item.background %></soan>
+            <span class='pull-right'><%= @shot_list_item.background %></span>
             <hr>
           </div>
           <div style='padding:6px;'>
               <span><i class='tim-icons text-primary'><ion-icon name='photos'></ion-icon></i> Description:</span>
-              <soan class='pull-right'><%= @shot_list_item.description %></soan>
+              <span class='pull-right'><%= @shot_list_item.description %></span>
               <hr>
           </div>
           <div style='padding:6px;'>
               <span><i class='tim-icons text-primary '><i class='fas fa-arrows-alt'></i></i> Aspect Ratio:</span>
-              <soan class='pull-right'><%= @shot_list_item.aspect_ratio %></soan>
+              <span class='pull-right'><%= @shot_list_item.aspect_ratio %></span>
               <hr>
           </div>
            <div style='padding:6px;'>
               <span><i class='tim-icons text-primary'><i class='fas fa-crosshairs'></i></i> Focus Point:</span>
-              <soan class='pull-right'><%= @shot_list_item.focus_point %></soan>
+              <span class='pull-right'><%= @shot_list_item.focus_point %></span>
               <hr>
           </div>
+           <% if @shot_list_item.shoot.content_type == ContentType.video %>
+            <div style='padding:6px;'>
+              <span><i class='tim-icons text-primary'><i class='fas fa-crosshairs'></i></i> Frame Rate:</span>
+              <span class='pull-right'><%= @shot_list_item.frame_rate %></span>
+              <hr>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
@@ -79,7 +86,7 @@
         <%= image_tag @shot_list_item.upload %>
       <% else %>
         <div class="text-center">
-        <img height="80%" src='https://vignette.wikia.nocookie.net/the-darkest-minds/images/4/47/Placeholder.png/revision/latest?cb=20160927044640' class='img-responsive' />
+        <img  src='https://vignette.wikia.nocookie.net/the-darkest-minds/images/4/47/Placeholder.png/revision/latest?cb=20160927044640' class='img-responsive' />
         </div>
         <% if current_user.user_type =='creative'%>
           <%= form_with(model: @shot_list_item, local: true) do |form| %>

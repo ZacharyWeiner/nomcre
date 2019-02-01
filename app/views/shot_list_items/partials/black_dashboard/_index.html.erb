@@ -1,3 +1,10 @@
+<% if !defined? shoot %>
+  <%if defined? @shoot %>
+    <% shoot = @shoot %>
+  <% else %>
+    <% shoot = shot_list_items.first.shoot %>
+  <% end %>
+<%end %>
 <div class="card">
   <div class="card-header">
     <!-- <div class="tools float-right">
@@ -16,6 +23,9 @@
     <h4 class="card-title">Shot List </h4>
   </div>
   <div class="card-body">
+     <% if (current_user.user_type == UserType.company && current_user.company == shoot.company) || current_user == shoot.user %>
+      <%= link_to "<ion-icon name='add' ></ion-icon> Add New".html_safe, new_shoot_shot_list_item_path(shoot.id), class:'btn btn-success btn-round float-right mr-5'  %>
+      <% end %>
     <div class="table-responsive">
       <table class="table table-shopping">
         <thead class="">
@@ -24,7 +34,11 @@
               Reference
             </th>
             <th class="">Type</th>
+            <th class="">Description</th>
             <th class="">Background</th>
+            <% if shoot.content_type == ContentType.video %>
+              <th class=''> Frame Rate</th>
+            <% end %>
             <th class="text-center">Uploaded</th>
             <th class="">Actions</th>
           </tr>
@@ -43,8 +57,14 @@
                 <small><%= si.aspect_ratio%></small>
               </td>
               <td class="">
+                <%= si.description%>
+              </td>
+              <td class="">
                 <%= si.background%>
               </td>
+              <% if si.shoot.content_type == ContentType.video %>
+                  <td class='text-center'><span><%= si.frame_rate %></span></td>
+              <% end %>
               <td class="text-center">
                 <% if si.upload.file == nil %>
                   <i class='tim-icons text-danger'><ion-icon name='close' size='large'></ion-icon></i>
@@ -69,9 +89,6 @@
          <% end %>
         </tbody>
       </table>
-      <% if (current_user.user_type == 'company' && current_user.company == shoot.company) || current_user == shoot.user %>
-      <%= link_to "<ion-icon name='add' ></ion-icon> Add New".html_safe, new_shoot_shot_list_item_path(shoot.id), class:'btn btn-success btn-round float-right mr-5'  %>
-      <% end %>
     </div>
   </div>
 </div>

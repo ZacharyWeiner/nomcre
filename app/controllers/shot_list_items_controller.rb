@@ -7,8 +7,8 @@ class ShotListItemsController < ApplicationController
   # GET /shot_list_items
   # GET /shot_list_items.json
   def index
-    if params[:proposal_id]
-      @shot_list_items = ShotListItem.where(proposal_id: params[:proposal_id])
+    if params[:shoot_id]
+      @shot_list_items = ShotListItem.where(shoot_id: params[:shoot_id])
     else
       @shot_list_items = ShotListItem.all
     end
@@ -125,7 +125,8 @@ class ShotListItemsController < ApplicationController
                                              :reference_image,
                                              :shoot_id,
                                              :added_by_id,
-                                             :shoot_location)
+                                             :shoot_location,
+                                             :frame_rate)
     end
 
 end
