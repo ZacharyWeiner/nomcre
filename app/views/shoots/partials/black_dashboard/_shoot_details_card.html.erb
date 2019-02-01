@@ -49,13 +49,13 @@
       </span>
       <span>
 
-        <% if shoot.content_type == 'photo' %>
+        <% if shoot.content_type == ContentType.photo %>
         <% title = shoot.title.nil? ? "#{shoot.project.title} Photo Shoot" : shoot.title %>
           <h5>
             <i class="tim-icons text-primary"><ion-icon name='camera' size='large'></ion-icon></i>
             <%= link_to title, shoot_path(shoot) %>
           </h5>
-        <% else %>
+        <% elsif shoot.content_type == ContentType.video %>
         <% title = shoot.title.nil? ? "#{shoot.project.title} Video Shoot" : shoot.title %>
           <h5>
             <i class="tim-icons text-primary"><ion-icon name='videocam' size='large'></ion-icon></i>

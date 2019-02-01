@@ -2,7 +2,7 @@ class ShotListItemsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_shot_list_item, only: [:show, :edit, :update, :destroy]
   #TODO: Work out authoirzation for this controller
-  #before_action :authorize
+  before_action :authorize
   layout 'black_dashboard'
   # GET /shot_list_items
   # GET /shot_list_items.json
@@ -12,6 +12,7 @@ class ShotListItemsController < ApplicationController
     else
       @shot_list_items = ShotListItem.all
     end
+    authorize
   end
 
   # GET /shot_list_items/1
@@ -127,6 +128,23 @@ class ShotListItemsController < ApplicationController
                                              :added_by_id,
                                              :shoot_location,
                                              :frame_rate)
+    end
+
+    def authorize
+      if current_user.role = 0
+        return
+      end
+      unless @shot_list_item.nil?
+        if @shot_list_item.shoot.company == current_user.company || current_user == @shot_list_item.shoot.creative
+          return
+        end
+      end
+      unless @shot_list_items.nil?
+        if @shot_list_items.first.shoot.company == current_user.company || current_user == @shot_list_items.first.shoot.creative
+          return
+        end
+      end
+      redirect_to root_path
     end
 
 end

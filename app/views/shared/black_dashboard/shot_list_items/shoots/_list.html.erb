@@ -14,9 +14,10 @@
       </div>
     </div> -->
     <h4 class="card-title">Shot List </h4>
+
   </div>
   <div class="card-body">
-    <% if (current_user.user_type == 'company' && current_user.company == shoot.project.company) || current_user == shoot.creative %>
+    <% if (current_user.user_type == UserType.company && current_user.company == shoot.project.company) || current_user == shoot.creative %>
       <% if shoot.is_editable || shoot.creative == current_user %>
         <%= link_to "<ion-icon name='add' ></ion-icon> Add New".html_safe, new_shoot_shot_list_item_path(shoot.id), class: 'btn btn-success btn-round float-right mr-5'  %>
         <% end %>
@@ -30,6 +31,9 @@
             </th>
             <th class="">Type</th>
             <th class="">Background</th>
+            <%if shoot.content_type.to_s.downcase == ContentType.video.to_s.downcase %>
+            <th>FrameRate</th>
+            <% end %>
             <th class="text-center">Completed</th>
             <th class="">Actions</th>
           </tr>
@@ -54,6 +58,9 @@
               <td class="">
                 <%= !si.background.blank? ? si.background : "Creatives Choice" %>
               </td>
+              <%if shoot.content_type.to_s.downcase == ContentType.video.to_s.downcase %>
+                  <td class='text-center'><span><%= si.frame_rate %></span></td>
+              <% end %>
               <td class="text-center">
                 <% if !si.task.nil? && !si.task.completed %>
                   <i class='tim-icons text-danger'><ion-icon name='close' size='large'></ion-icon></i>
