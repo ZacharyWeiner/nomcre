@@ -1,0 +1,75 @@
+<div class='card-body'>
+    <%= form_with(model: project, local: true) do |form| %>
+      <% if @project.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@project.errors.count, "error") %> prohibited this project from being saved:</h2>
+
+          <ul>
+          <% @project.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= form.label :package_type_id %>
+        <%= form.text_field :package_type_id, id: :project_package_type_id, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :company_id %>
+        <%= form.select(:company_id, Company.all.map{|c| [c.name, c.id]}, class: 'form-control') %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :title %>
+        <%= form.text_field :title, id: :project_title, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :brief %>
+        <%= form.text_area :brief, id: :project_brief, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :deadline %>
+        <%= form.date_select :deadline, id: :project_deadline, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :price %>
+        <%= form.text_field :price, id: :project_price, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :deposit %>
+        <%= form.text_field :deposit, id: :project_deposit, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :balance %>
+        <%= form.text_field :balance, id: :project_balance, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :is_complete %>
+        <%= form.check_box :is_complete, id: :project_is_complete, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :completed_on %>
+        <%= form.date_select :completed_on, id: :project_completed_on, class: 'form-control' %>
+      </div>
+
+      <div class="form-group">
+        <%= form.label :max_user_shot_list %>
+        <%= form.number_field :max_user_shot_list, id: :project_max_user_shot_list, class: 'form-control' %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit class: 'btn btn-warning' %>
+      </div>
+    <% end %>
+
+  </div>

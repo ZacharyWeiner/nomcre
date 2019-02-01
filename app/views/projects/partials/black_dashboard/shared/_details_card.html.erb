@@ -32,7 +32,6 @@
 <% if !defined? show_company %>
   <% show_company = false %>
 <% end %>
-
 <div class="card">
   <% if show_header %>
   <div class="card-header" style='padding-top:6px;'>
@@ -78,7 +77,7 @@
                   <% if show_next_step  %>
                     <h5 class="title">
                       <% project.status %>
-                      TODO: Update Project Status
+                      #TODO: Update Project Status
                     </h5>
                   <% end %>
                 </a>
@@ -195,12 +194,14 @@
       <%= render :partial => 'projects/partials/black_dashboard/shared/payment_buttons', :locals => {project: project} %>
     </div>
   <% end %>
-  <% if show_edit_button %>
-   <div class='card-footer text-center'>
-        <%if current_user.company == project.company && project.is_editable(current_user) %>
-          <%= link_to "<i class='far fa-edit'></i> Edit".html_safe, edit_project_path(project), class: 'btn btn-danger btn-simple btn-block' %>
-        <% end %>
-      </div>
+  <% if show_edit_button == true %>
+    <div class='card-footer text-center'>
+      <%if current_user.company == project.company && project.is_editable(current_user) %>
+        <%= link_to "<i class='far fa-edit'></i> Edit".html_safe, edit_project_path(project), class: 'btn btn-danger btn-simple btn-block' %>
+      <% elsif current_user.is_admin %>
+        <%= link_to "<i class='far fa-edit'></i> Edit".html_safe, admin_edit_project_path(project), class: 'btn btn-danger btn-simple btn-block' %>
+      <% end %>
+    </div>
   <% end %>
   <% if show_delete_button %>
    <div class='card-footer text-center'>

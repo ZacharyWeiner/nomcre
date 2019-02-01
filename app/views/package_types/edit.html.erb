@@ -1,6 +1,15 @@
-<h1>Editing package Type</h1>
+<h1>Editing Package Type</h1>
 
-<%= render 'form', package_type: @package_type %>
+<div class='row'>
+  <div class='col-md-6'>
+    <%= render 'form', package_type: @package_type %>
+  </div>
+  <div class='col-md-6'>
+    <%= render :partial => 'admin/black_dashboard/project/accordian', :locals => {projects: @package_type.projects.where(is_template: true)} %>
+  </div>
+</div>
+
+
 
 <%= link_to 'Show', @package_type %> |
 <%= link_to 'Back', package_types_path %>

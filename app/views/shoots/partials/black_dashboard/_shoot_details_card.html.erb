@@ -28,8 +28,12 @@
   <% show_company = false %>
 <% end %>
 
-<% if !defined? show_view_button%>
+<% if !defined? show_view_button %>
   <% show_view_button = false %>
+<% end %>
+
+<% if !defined? show_edit_button %>
+  <% show_edit_button = false %>
 <% end %>
 
 <% if !defined? show_chat_button%>
@@ -180,6 +184,18 @@
         <%= link_to "<i class='fas fa-trash'></i>Delete".html_safe, shoot_path(shoot), :method => :delete, class: 'btn btn-simple btn-danger' %>
       <% end %>
     </span>
+  <% end %>
+  <% if show_edit_button && shoot.is_editable  %>
+    <%= link_to edit_shoot_path(shoot), class: 'btn btn-simple btn-danger ' do %>
+          <i class='fas fa-edit'></i>
+          Edit
+        <% end %>
+  <% end %>
+  <% if show_edit_button && current_user.is_admin %>
+    <%= link_to admin_edit_shoot_path(shoot), class: 'btn btn-simple btn-danger ' do %>
+          <i class='fas fa-edit'></i>
+          Edit
+        <% end %>
   <% end %>
   <% if show_chat_button && !shoot.creative.nil? %>
     <%= link_to "<i class='fas fa-comments'></i> Chat".html_safe, shoot.chatroom, class: 'btn btn-simple btn-primary' %>

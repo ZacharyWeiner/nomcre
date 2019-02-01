@@ -34,7 +34,6 @@ class PackageTypesController < ApplicationController
   # POST /package_types.json
   def create
     @package_type = PackageType.new(package_type_params)
-
     respond_to do |format|
       if @package_type.save
         format.html { redirect_to @package_type, notice: 'package type was successfully created.' }
