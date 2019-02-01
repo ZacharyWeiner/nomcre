@@ -68,6 +68,11 @@
               <span class='pull-right'><%= @shot_list_item.focus_point %></span>
               <hr>
           </div>
+          <div style='padding:6px;'>
+              <span><i class='tim-icons text-primary'><i class='fas fa-crosshairs'></i></i> Mood:</span>
+              <span class='pull-right'><%= @shot_list_item.shoot.project.mood %></span>
+              <hr>
+          </div>
            <% if @shot_list_item.shoot.content_type == ContentType.video %>
             <div style='padding:6px;'>
               <span><i class='tim-icons text-primary'><i class='fas fa-crosshairs'></i></i> Frame Rate:</span>

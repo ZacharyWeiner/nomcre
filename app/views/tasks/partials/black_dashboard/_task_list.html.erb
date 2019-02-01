@@ -1,4 +1,4 @@
-
+<%= link_to "Pop out", shoot_tasks_path(tasks.first.shoot), class: 'btn btn-success' %>
 <table class="table">
   <tbody>
     <% tasks.each do |task| %>
@@ -8,7 +8,7 @@
         <% if !task.proposal.nil? %>
           <p class="card-category"> <%= task.proposal.title %></p>
         <% elsif task.shoot %>
-          <p class="card-cetegory"> <%= task.shoot.title %></p>
+          <p class="card-category"> <%= task.shoot.title %></p>
         <% end %>
         <% unless task.shot_list_item.nil? || task.shot_list_item.reference_image.file.nil? %>
           <%= image_tag task.shot_list_item.reference_image, class: 'img-fluid', style: 'max-height: 200px;'%>
@@ -27,6 +27,18 @@
         No Deadline Saved
       <% end %>
       </td>
+      <% unless task.shot_list_item.nil? %>
+        <td>
+          <% if task.shot_list_item.shoot.content_type == ContentType.video %>
+            <%= task.shot_list_item.frame_rate %>
+            <br>
+          <% end %>
+          <% if task.shot_list_item.shoot.project.mood.nil? %>
+            <%= task.shot_list_item.shoot.project.mood %>
+            <br>
+          <% end %>
+        </td>
+      <% end %>
       <td class="td-actions text-right">
 
         <% if task.completed %>

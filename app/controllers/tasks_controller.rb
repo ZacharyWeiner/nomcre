@@ -6,7 +6,12 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    if current_user.is_admin
+
+    if params[:shoot_id]
+      @shoot = Shoot.find(params[:shoot_id])
+      @tasks = @shoot.tasks.where(completed: nil)
+      @completed_tasks = @shoot.tasks.where(completed: true)
+    elsif current_user.is_admin
       @tasks = Task.all.where(completed: nil)
       @completed_tasks = Task.all.where(completed: true)
     else

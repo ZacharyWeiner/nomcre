@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :shot_list_items
     resources :creative_requests
     resources :disclosures
+    resources :tasks
     get '/new_request/:user_id', to: 'shoots#create_creative_request', as: 'create_creative_request'
     get 'request_all', to:'shoots#request_all_available_creatives', as: 'request_all'
     get 'assign_creative/:creative_id', to: 'shoots#assign_creative', as: 'assign_creative'
