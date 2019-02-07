@@ -41,13 +41,18 @@ class ShootsController < ApplicationController
   # POST /shoots.json
   def create
     @shoot = Shoot.new(shoot_params)
+    @project = Project.find(shoot_params[:project_id])
     @shoot.user_saved = true
+    @shoot.company = current_user.company
+    @shoot.price = @shoot.content_type == ContentType.photo ? DefaultPrices.photo_shoot : DefaultPrices.video_shoot
+    @shoot.deadline = @project.deadline
     respond_to do |format|
       if @shoot.save
+        @project.update_price(@project.price + @shoot.price)
         format.html { redirect_to @shoot, notice: 'Shoot was successfully created.' }
         format.json { render :show, status: :created, location: @shoot }
       else
-        format.html { render :new }
+        format.html { redirect_to new_project_shoot_path(shoot_params[:project_id])  }
         format.json { render json: @shoot.errors, status: :unprocessable_entity }
       end
     end
@@ -157,6 +162,7 @@ class ShootsController < ApplicationController
                                     :price,
                                     :background,
                                     :background_note,
+                                    :deadline,
                                     :shoot_style,
                                     :shoot_raw,
                                     :user_added_shot_count,

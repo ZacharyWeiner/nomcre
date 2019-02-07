@@ -32,6 +32,10 @@
   <% show_view_button = false %>
 <% end %>
 
+<% if !defined? show_view_project_button %>
+  <% show_view_project_button = false %>
+<% end %>
+
 <% if !defined? show_edit_button %>
   <% show_edit_button = false %>
 <% end %>
@@ -200,6 +204,12 @@
           <i class='fas fa-edit'></i>
           Edit
         <% end %>
+  <% end %>
+  <% if show_view_project_button %>
+    <%= link_to project_path(shoot.project), class: 'btn btn-simple btn-primary ' do %>
+      <i class='fas fa-eye'></i>
+      View Project
+    <% end %>
   <% end %>
   <% if show_edit_button && current_user.is_admin %>
     <%= link_to admin_edit_shoot_path(shoot), class: 'btn btn-simple btn-danger ' do %>

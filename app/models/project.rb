@@ -178,7 +178,7 @@ class Project < ApplicationRecord
     project.is_complete = false
     project.company = company
     project.title = "#{package.title} - #{deadline}"
-    project.price = 15000
+    project.price = package.base_price
     project.deadline = deadline
     project.brief = template.brief
     project.max_user_shot_list =

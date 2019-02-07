@@ -5,6 +5,10 @@
   </div>
   <div class='col-sm-12 col-md-8 col-lg-8 col-xl-8'>
     <div class='row'>
+      <%= link_to "Add Shoot", new_project_shoot_path(project), class: 'btn btn-success' %>
+      <br><br>
+    </div>
+    <div class='row'>
       <% project.shoots.each do |shoot| %>
         <div class='col-sm-12 col-md-6 col-lg-6 col-xl-6'>
           <%= render :partial => 'shoots/partials/black_dashboard/shoot_details_card', :locals => {shoot: shoot, show_view_button: true} %>

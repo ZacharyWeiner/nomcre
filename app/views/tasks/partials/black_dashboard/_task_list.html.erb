@@ -1,4 +1,7 @@
+<% unless tasks.first.nil? || tasks.first.shoot.nil? %>
 <%= link_to "Pop out", shoot_tasks_path(tasks.first.shoot), class: 'btn btn-success' %>
+<% end %>
+
 <table class="table">
   <tbody>
     <% tasks.each do |task| %>
