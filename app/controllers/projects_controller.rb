@@ -37,7 +37,7 @@ class ProjectsController < ApplicationController
     if current_user.is_admin
       @package_types = PackageType.all
     else
-      @package_types = PackageType.where(show_in_menu: true)
+      @package_types = PackageType.where(show_on_index: true)
     end
   end
 
