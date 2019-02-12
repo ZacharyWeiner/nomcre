@@ -11,7 +11,7 @@
     <% end %>
   <% else %>
     <%= link_to "Request All", shoot_request_all_path(@shoot), class: 'btn btn-success pull-right' %>
-    <% @shoot.find_creatives.each do |sr| %>
+    <% @creatives.each do |sr| %>
       <%= render :partial => 'shared/black_dashboard/user/creative', :locals => {shoot: shoot, :sr => sr  } %>
     <% end %>
   <% end %>

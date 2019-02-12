@@ -14,7 +14,7 @@
         <% if notification.notification_type == NotificationType.new_work_request %>
           <%= link_to "New Work Request #{notification.notification_object_id}", creative_requests_path, class: 'nav-item dropdown-item' %>
         <% elsif notification.notification_type == NotificationType.request_accepted %>
-          <%= link_to "Your Request Has Been Accepted", shoot_path(notification.notification_object_id), class: 'nav-item dropdown-item' %>
+          <%= link_to "Your Request Has Been Accepted", shoot_path(notification.notification_object_id, :active => 'available'), class: 'nav-item dropdown-item' %>
         <% elsif notification.notification_type == NotificationType.request_assigned %>
           <%= link_to "You have a new job", shoot_path(notification.notification_object_id), class: 'nav-item dropdown-item' %>
         <% end %>

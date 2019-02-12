@@ -4,7 +4,12 @@
 <% else %>
   <% if !shoot.has_request_for_creative(user.id) %>
     <!-- There is no accepted request yet -->
-    <%= render :partial =>  'shared/black_dashboard/search/buttons/request', :locals => {shoot: shoot, user: user } %>
+     <% if  !shoot.project.deposit_is_paid %>
+        <!-- Show Disabled Assign button -->
+        <%= link_to "<i class='fa fa-dollar'> </i> Pay Deposit To Select".html_safe, project_invoices_path(shoot.project), class: 'btn btn-success  pull-right' %>
+      <% else %>
+        <%= render :partial =>  'shared/black_dashboard/search/buttons/request', :locals => {shoot: shoot, user: user } %>
+      <% end %>
   <% else %>
     <% creative_request = shoot.request_for_creative(user.id) %>
       <!-- if there is a request for this user, but it is un-responded to -->

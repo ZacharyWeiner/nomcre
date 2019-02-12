@@ -11,11 +11,15 @@ class CreativeRequest < ApplicationRecord
 
   #instance methods
   def accept
-    self.accepted = true
-    if self.save!
-      #TODO - ShootMailer.request_accepted(self).deliver_later!
-      Notification.create!(user_id: self.requested_by_id, notification_type: NotificationType.request_accepted, notification_object_id: self.shoot.id, read: false)
-      return true
+    if self.shoot.creative.nil?
+      self.accepted = true
+      if self.save!
+        #TODO - ShootMailer.request_accepted(self).deliver_later!
+        Notification.create!(user_id: self.requested_by_id, notification_type: NotificationType.request_accepted, notification_object_id: self.shoot.id, read: false)
+        return true
+      else
+        return false
+      end
     else
       return false
     end

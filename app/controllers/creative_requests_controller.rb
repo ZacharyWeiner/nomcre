@@ -78,7 +78,6 @@ class CreativeRequestsController < ApplicationController
 
   def accept
     #TODO: Implement Model Level Method
-    @creative_request.accept
     success = @creative_request.accept
     phrase_for_notify = success == true ? 'successfully' : 'could not be'
     respond_to do |format|

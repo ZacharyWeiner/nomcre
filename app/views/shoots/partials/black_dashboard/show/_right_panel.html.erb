@@ -19,10 +19,11 @@
   </div>
   <div class="card-body">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-12">
         <%= render :partial =>'shoots/partials/black_dashboard/show/tabs/buttons', :locals => {:shoot => shoot, :basic_style => basic_style, :shotlist_style => shotlist_style, :available_style => available_style, :tasks_style => tasks_style, :disclosure_style => disclosure_style, :assistants_style => assistants_style, :invoices_style => invoices_style} %>
+        <br>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-12">
         <div class="tab-content">
           <div class="tab-pane <%= basic_style %>" id="basic">
             <div class='row'>

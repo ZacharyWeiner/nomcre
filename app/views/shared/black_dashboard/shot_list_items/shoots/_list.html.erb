@@ -26,6 +26,7 @@
       <table class="table table-shopping">
         <thead class="">
           <tr>
+            <th class="">Actions</th>
             <th class="">
               Reference
             </th>
@@ -35,12 +36,23 @@
             <th>FrameRate</th>
             <% end %>
             <th class="text-center">Completed</th>
-            <th class="">Actions</th>
+
           </tr>
         </thead>
         <tbody>
           <% shot_list_items.each do |si| %>
             <tr >
+              <td class="td-actions">
+                <%= link_to si do %>
+                  <i class="fa fa-eye"></i>
+                <% end %>
+                <%= link_to edit_shoot_shot_list_item_path(si.shoot, si) do %>
+                  <i class="fa fa-edit"></i>
+                <% end %>
+                <%= link_to si, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                <i class="fa fa-trash"></i>
+                <% end %>
+              </td>
               <td>
                 <div class="img-container">
                   <% if si.reference_image.file != nil %>
@@ -70,17 +82,7 @@
                   <i class='tim-icons text-success'><ion-icon name='checkmark' size='large'></ion-icon></i>
                 <% end %>
               </td>
-              <td class="td-actions">
-                <%= link_to si do %>
-                  <i class="fa fa-eye"></i>
-                <% end %>
-                <%= link_to edit_shoot_shot_list_item_path(si.shoot, si) do %>
-                  <i class="fa fa-edit"></i>
-                <% end %>
-                <%= link_to si, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                <i class="fa fa-trash"></i>
-                <% end %>
-              </td>
+
             </tr>
          <% end %>
         </tbody>

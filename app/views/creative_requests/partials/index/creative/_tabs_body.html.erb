@@ -6,11 +6,13 @@
       <span data-notify="message">You Don't Have Any Pending Requests</span>
     </div>
   <% else %>
-    <% pending.each do |cr| %>
-      <div class='col-md-6'>
-        <%= render :partial => 'shoots/partials/black_dashboard/shoot_details_card', :locals => {shoot: cr.shoot, show_title: true, show_accept_buttons: true, show_content: true} %>
-      </div>
-    <% end %>
+    <div class='row'>
+      <% pending.each do |cr| %>
+        <div class='col-md-6'>
+          <%= render :partial => 'shoots/partials/black_dashboard/shoot_details_card', :locals => {shoot: cr.shoot, show_title: true, show_accept_buttons: true, show_content: true} %>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 </div>
 <div class="tab-pane" id="accepted">

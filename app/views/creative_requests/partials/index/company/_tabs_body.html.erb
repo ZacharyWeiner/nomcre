@@ -12,7 +12,7 @@
   </div>
 </div>
 <div class="tab-pane" id="pending">
-  <% pending = @creative_requests.where({accepted: nil, approved:nil}) %>
+  <% pending = @creative_requests.where({accepted: false, approved:false}) %>
   <% if pending.count == 0 %>
     <div class="alert alert-info alert-with-icon" style='width:100%'>
       <span data-notify="icon" class="tim-icons"><ion-icon name="alert"></ion-icon></span>

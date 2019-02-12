@@ -2,6 +2,7 @@ class ShootsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_shoot, only: [:show, :edit, :update, :destroy, :create_creative_request, :assign_from_request]
   before_action :authorize, only: [:edit, :update, :destroy, :assign_from_request]
+  before_action :authorize_show, only: [:show]
   layout 'black_dashboard'
 
   # GET /shoots
@@ -17,10 +18,10 @@ class ShootsController < ApplicationController
   # GET /shoots/1
   # GET /shoots/1.json
   def show
-    Notification.check_notifications(current_user.id, NotificationType.new_work_request, object_id: @shoot.id)
-    Notification.check_notifications(current_user.id, NotificationType.request_assigned, object_id: @shoot.id)
-    Notification.check_notifications(current_user.id, NotificationType.request_accepted, object_id: @shoot.id)
-    Notification.check_notifications(current_user.id, NotificationType.request_declined, object_id: @shoot.id)
+    Notification.check_notifications(current_user.id, NotificationType.new_work_request, @shoot.id)
+    Notification.check_notifications(current_user.id, NotificationType.request_assigned, @shoot.id)
+    Notification.check_notifications(current_user.id, NotificationType.request_accepted, @shoot.id)
+    Notification.check_notifications(current_user.id, NotificationType.request_declined, @shoot.id)
   end
 
   # GET /shoots/new
@@ -177,6 +178,23 @@ class ShootsController < ApplicationController
         return
       end
       if (current_user.company.nil? || current_user.company != @shoot.company)
+        redirect_to shoots_path
+      end
+    end
+
+    def authorize_show
+      if current_user.is_admin || current_user.company == @shoot.company
+        return
+      end
+      if @shoot.creative.nil? || @shoot.creative == current_user
+        return
+      else
+        Notification.check_notifications(current_user.id, NotificationType.new_work_request, @shoot.id)
+        Notification.check_notifications(current_user.id, NotificationType.request_assigned, @shoot.id)
+        Notification.check_notifications(current_user.id, NotificationType.request_accepted, @shoot.id)
+        Notification.check_notifications(current_user.id, NotificationType.request_declined, @shoot.id)
+
+        flash[:warning] = 'We must apologize, someone else has been assigned to the shoot.'
         redirect_to shoots_path
       end
     end

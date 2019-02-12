@@ -29,7 +29,7 @@
                     <%= link_to "View", creative_requests_path, class: 'btn btn-primary'%>
                   <% elsif note.notification_type == NotificationType.request_accepted %>
                     <%= link_to "View", shoot_path(note.notification_object_id), class: 'btn btn-primary'%>
-                  <% elsif note.notification_type == NotificationType.assigned %>
+                  <% elsif note.notification_type == NotificationType.request_assigned %>
                     <%= link_to "View", project_path(note.notification_object_id), class: 'btn btn-primary'%>
                   <% elsif note.notification_type == NotificationType.new_message %>
                     <%= link_to "View", chatroom_path(Chatroom.find(note.notification_object_id)), class: 'btn btn-primary'%>
