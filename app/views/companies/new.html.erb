@@ -2,33 +2,27 @@
 
 <%= render 'companies/partials/black_dashboard/form', company: @company %>
 
-
- <% content_for :added_scripts do %>
-   <script>
-    $(document).ready(function() {
-      // Initialise the wizard
+<% content_for :added_scripts do %>
+ <script>
+  $(document).ready(function() {
+    // Initialise the wizard
 
 
     // Code for the Validator
     var $validator = $('.card-wizard form').validate({
       rules: {
-        // firstname: {
-        //   required: true,
-        //   minlength: 3
-        // },
-        // lastname: {
-        //   required: true,
-        //   minlength: 3
-        // },
-        // email: {
-        //   required: true,
-        //   minlength: 3,
-        // },
-        // number: {
-        //   required: true,
-        //   minlength: 3,
-        // }
-
+         company_name: {
+           required: true,
+           minlength: 3
+         },
+        phone: {
+          required: true,
+          minlength: 3
+        },
+        website: {
+          required: true,
+          minlength: 3,
+        }
       },
       highlight: function(element) {
         $(element).closest('.input-group').removeClass('has-success').addClass('has-danger');
@@ -146,20 +140,20 @@
     });
 
     $(function () {
-            $('.datetimepicker').datetimepicker({
-                icons: {
-                    time: "far fa-alarm-clock",
-                    date: "fa fa-calendar",
-                    up: "fas fa-arrow-up",
-                    down: "fas fa-arrow-down",
-                    previous: 'fas fa-arrow-left',
-                    next: 'fas fa-arrow-right',
-                    today: 'far fa-clock',
-                    clear: 'far fa-trash-alt',
-                    close: 'far fa-calendar-times'
-                }
-            });
-        });
+    $('.datetimepicker').datetimepicker({
+        icons: {
+            time: "far fa-alarm-clock",
+            date: "fa fa-calendar",
+            up: "fas fa-arrow-up",
+            down: "fas fa-arrow-down",
+            previous: 'fas fa-arrow-left',
+            next: 'fas fa-arrow-right',
+            today: 'far fa-clock',
+            clear: 'far fa-trash-alt',
+            close: 'far fa-calendar-times'
+        }
+    });
+  });
 
   </script>
-  <% end %>
+<% end %>

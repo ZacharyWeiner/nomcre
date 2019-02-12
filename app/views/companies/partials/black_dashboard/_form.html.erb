@@ -1,6 +1,21 @@
+
+<% if company.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
+    <% company.errors.full_messages.each do |message| %>
+      <div class="alert alert-danger">
+        <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+          <i class="tim-icons icon-simple-remove"></i>
+        </button>
+        <span><%= message %></span>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 <div class="wizard-container">
   <div class="card card-wizard" data-color="primary" id="wizardProfile">
     <%= form_for(company) do |f| %>
+
       <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
       <div class="card-header text-center">
         <h3 class="card-title">
@@ -46,7 +61,8 @@
                     </div>
                   </div>
                   <!-- <input type="text" name="firstname" class="form-control" placeholder="First Name..."> -->
-                  <%= f.text_field :name, class: 'form-control', placeholder: "Whats Is Your Company's Name?" %>
+                  <!-- <% f.text_field :name, class: 'form-control', placeholder: "Whats Is Your Company's Name?" %> -->
+                  <input class="form-control" placeholder="Whats Is Your Company's Name?" type="text" value="" name="company[name]" id="company_name">
                 </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -55,7 +71,8 @@
                     </div>
                   </div>
                   <!-- <input type="email" required name="email" class="form-control" placeholder="Email..."> -->
-                  <%= f.text_field :phone, class: 'form-control', placeholder: "What' the best number to reach you?" %>
+                  <!-- <% f.text_field :phone, class: 'form-control', placeholder: "What' the best number to reach you?" %> -->
+                  <input class="form-control" placeholder="What's the best number to reach you?" type="text" value="" name="company[phone]" id="company_phone">
                 </div>
               </div>
             </div>
@@ -70,7 +87,8 @@
                       <i class="tim-icons"><ion-icon name="globe"></ion-icon></i>
                     </div>
                   </div>
-                  <%= f.text_field :website, class: 'form-control', placeholder: 'Website - www.example.com' %>
+                  <!-- <% f.text_field :website, class: 'form-control', placeholder: 'Website - www.example.com' %> -->
+                  <input class="form-control" placeholder="Website - www.example.com" type="text" value="" name="company[website]" id="company_website">
                 </div>
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -78,7 +96,7 @@
                       <i class="tim-icons"><ion-icon name="logo-instagram"></ion-icon></i>
                     </div>
                   </div>
-                  <%= f.text_field :instagram, class: 'form-control', placeholder: '@YourInstagramAccount' %>
+                  <input class="form-control" placeholder="@YourInstagramAccount" type="text" value="" name="company[instagram]" id="company_instagram">
                 </div>
               </div>
             </div>

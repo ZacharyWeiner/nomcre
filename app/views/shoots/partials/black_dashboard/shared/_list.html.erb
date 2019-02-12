@@ -52,7 +52,9 @@
             </td>
             <td class="">
               <%= link_to "<i class='far fa-edit'> </i>".html_safe, edit_shoot_path(shoot), class: 'text-warning', style: 'padding-left:6px;'%>
-              <%= link_to "<i class='far fa-trash-alt'> </i>".html_safe, shoot_path(shoot), method: :destroy, class: 'text-danger', style: 'padding-left:6px;' %>
+              <% unless shoot.project.deposit_is_paid %>
+                <%= link_to "<i class='far fa-trash-alt'> </i>".html_safe, shoot_path(shoot), method: :delete, class: 'text-danger', style: 'padding-left:6px;' %>
+              <% end %>
             </td>
           </tr>
           <% end %>

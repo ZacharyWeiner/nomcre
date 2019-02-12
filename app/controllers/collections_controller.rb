@@ -86,7 +86,6 @@ class CollectionsController < ApplicationController
     if @collection.title.nil? || @collection.title == ''
       redirect_to new_collection_path and return
     end
-    byebug
     respond_to do |format|
       if @collection.user_id == nil?
         @collection.user = current_user

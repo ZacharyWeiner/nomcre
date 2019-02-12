@@ -1,10 +1,4 @@
 <%= render :partial => 'shoots/partials/black_dashboard/show', :locals => {shoot: @shoot} %>
-
-
-<% link_to 'Edit', edit_shoot_path(@shoot) %> |
-<% link_to 'Back', shoots_path %>
-
-
 <% content_for :added_scripts do %>
 <script type="text/javascript">
   $('#documentButton').click(function(){

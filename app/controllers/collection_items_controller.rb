@@ -44,6 +44,9 @@ class CollectionItemsController < ApplicationController
       if @collection_item.file.file.nil? && @collection_item.video.file.nil?
         format.html { render :new }
       else
+        if @collection_item.is_header.nil?
+          @collection_item.is_header = false
+        end
         @collection_item.order = @collection_item.collection.collection_items.count
         if @collection_item.save
 
