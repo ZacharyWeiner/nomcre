@@ -79,7 +79,7 @@
             <br>
             <h4> Creative Brief </h4>
             <hr>
-             <%= simple_format(shoot.brief) %>
+             <%= auto_html(shoot.brief){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
           </div>
           <div class="tab-pane <%= shotlist_style %>" id="shotlist">
             <div class='' style='max-height: 800px; overflow-y: auto'>

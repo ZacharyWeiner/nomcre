@@ -55,7 +55,7 @@
           </div>
           <div style='padding:6px;'>
               <span><i class='tim-icons text-primary'><ion-icon name='photos'></ion-icon></i> Description:</span>
-              <span class='pull-right'><%= @shot_list_item.description %></span>
+              <span class='pull-right'> <%= auto_html(@shot_list_item.description){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %></span>
               <hr>
           </div>
           <div style='padding:6px;'>

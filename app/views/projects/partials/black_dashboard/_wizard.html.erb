@@ -21,18 +21,19 @@
                 <%= form.text_field :title, id: :project_title_id, class: 'form-control', :text => project.title %>
               </div>
             </div>
+             <div class="row justify-content-center">
+              <div class="col-lg-12 text-center">
+                <br>
+                <label> Describe the mood of your project in a few words </label>
+                <%= form.text_field :mood, id: :project_mood, class: 'form-control' %>
+              </div>
+            </div>
           </div>
           <div class="tab-pane" id="brief">
             <h4 class="info-text"> Add Your Creative Brief</h4>
             <div class="row justify-content-center">
               <div class="col-lg-10 text-center">
-                <%= form.text_area :brief, id: :proposal_brief_id, style:'min-height: 400px; rows: 10', class: 'form-control rounded' %>
-              </div>
-            </div>
-             <div class="row justify-content-center">
-              <div class="col-lg-10 text-center">
-                <%= form.label :mood %>
-                <%= form.text_field :mood, id: :project_mood, class: 'form-control' %>
+                <%= form.text_area :brief, id: :proposal_brief_id, style:'min-height: 400px; rows: 10; background-color: light-gray; border:light-gray', class: 'form-control rounded' %>
               </div>
             </div>
           </div>

@@ -166,7 +166,7 @@
         </div>
         <% if show_content %>
           <div style="margin: 6px;">
-            <span><%= simple_format(shoot.brief.first(150)) unless shoot.brief.nil? %>...</span>
+            <span> <%= auto_html(shoot.brief.first(150)){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } unless shoot.brief.nil? %></span>
           </div>
           <% end %>
       </div>

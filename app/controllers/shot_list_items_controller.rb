@@ -131,7 +131,7 @@ class ShotListItemsController < ApplicationController
     end
 
     def authorize
-      if current_user.role = 0
+      if current_user.role == 0
         return
       end
       unless @shot_list_item.nil?

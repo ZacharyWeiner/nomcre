@@ -148,7 +148,10 @@
             </div>
             <% if show_content %>
               <div style="margin: 6px;">
-                <p><%= simple_format(project.brief.first(150)) unless project.brief.nil? %>...</p>
+                <% unless project.brief.nil? %>
+                <%= auto_html(project.brief.first(150)){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
+                <% end %>
+                <!-- <p><%= simple_format(project.brief.first(150)) unless project.brief.nil? %>...</p> -->
               </div>
             <% end %>
           </div>
