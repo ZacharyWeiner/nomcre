@@ -49,7 +49,6 @@ class ShotListItemsController < ApplicationController
         can_add = @shot_list_item.shoot.owner_added_shot_list_count < @shot_list_item.shoot.user_added_shot_count_max
       end
     end
-    byebug
     if @shot_list_item.reference_image.file != nil && !@shot_list_item.description.blank?
       @shot_list_item.description = "Match This Reference Image";
     end
@@ -57,7 +56,6 @@ class ShotListItemsController < ApplicationController
       if !can_add
         format.html { redirect_to shoot_path(@shot_list_item.shoot, :active => 'shotlist'), notice: 'Youve already added as many shots as you can.'}
       elsif@shot_list_item.save
-        byebug
         @shot_list_item.create_related_task @shot_list_item.description
         if !@shot_list_item.proposal.nil?
           format.html { redirect_to proposal_path(@shot_list_item.proposal, :active => 'shotlist'), notice: 'Shot list item was successfully created.' }

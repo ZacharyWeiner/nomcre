@@ -35,7 +35,6 @@ class ShotListItem < ApplicationRecord
 
 
   def description_or_reference
-    byebug
     if description.blank? && reference_image.file.nil?
       errors.add(:description, "Shot List Items require a description or a reference image")
     end
