@@ -1,7 +1,17 @@
+# class ShotListItemValidator < ActiveModel::Validator
+#   def validate(record)
+#     byebug
+#     if record.description.nil? && record.reference_image.nil?
+#       record.errors[:description_reference] << 'Shot List Items Must Include a Description or Reference Image'
+#     end
+#   end
+# end
+
 class ShotListItem < ApplicationRecord
+  validate :description_or_reference
   before_destroy :orphan_relations
   #validation
-  validates :description, presence: true
+  # validates :description, presence: true
 
   #belongs_to
   belongs_to :proposal, optional: true
@@ -24,7 +34,12 @@ class ShotListItem < ApplicationRecord
   mount_uploader :reference_image, ShotListUploader
 
 
-
+  def description_or_reference
+    byebug
+    if description.blank? && reference_image.file.nil?
+      errors.add(:description, "Shot List Items require a description or a reference image")
+    end
+  end
   #instance_methods
   def copy_from_template
     sli = ShotListItem.create()

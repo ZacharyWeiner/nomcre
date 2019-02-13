@@ -43,7 +43,7 @@ function validateImage(inputFile) {
 function validateVideo(inputFile) {
   var maxExceededMessage = "This file exceeds the maximum allowed file size (50 MB) <br>";
   var extErrorMessage = "To upload a video please use the video uploader. Only .mp4, .m4v, .avi or .mov are allowed in the video section";
-  var allowedExtension = ["mp4", "m4v", "avi", "mov"];
+  var allowedExtension = ["mp4", "m4v", "avi", "mov", "MP4", "M4V", "AVI", "MOV"];
 
   var extName;
   var maxFileSize = $(inputFile).data('max-file-size');
