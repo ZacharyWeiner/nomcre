@@ -123,7 +123,15 @@ class ProjectsController < ApplicationController
                                       :is_complete,
                                       :completed_on,
                                       :max_user_shot_list,
-                                      :mood)
+                                      :mood,
+                                      :image_board_1,
+                                      :image_board_2,
+                                      :image_board_3,
+                                      :image_board_4,
+                                      :insta_inspiration_1,
+                                      :insta_inspiration_2,
+                                      :insta_inspiration_3,
+                                      :insta_inspiration_4)
     end
 
     def authorize

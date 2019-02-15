@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   resources :package_types
   resources :creative_requests
   resources :discount_codes
@@ -8,6 +7,7 @@ Rails.application.routes.draw do
     resources :shot_list_items
     resources :creative_requests
     resources :disclosures
+    get '/tasks_popped', to: 'tasks#popped_out', as: 'tasks_poppedout'
     resources :tasks
     get '/new_request/:user_id', to: 'shoots#create_creative_request', as: 'create_creative_request'
     get 'request_all', to:'shoots#request_all_available_creatives', as: 'request_all'
@@ -125,6 +125,7 @@ Rails.application.routes.draw do
   get '/notifications', to: 'notifications#index', as: 'notifications'
 
   #tasks
+
   resources :tasks do
     get '/complete', to: 'tasks#complete', as: 'task_complete'
   end

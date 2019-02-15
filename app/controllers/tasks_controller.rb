@@ -98,7 +98,11 @@ class TasksController < ApplicationController
         if !@task.proposal.nil?
           format.html { redirect_to @task.proposal, notice: 'Task was successfully completed.' }
         elsif !@task.shoot.nil?
-          format.html { redirect_to shoot_path(@task.shoot, :active => 'tasks'), notice: 'Task was successfully completed.' }
+          if params[:popped]
+            format.html { redirect_to shoot_tasks_poppedout_path(@task.shoot) }
+          else
+            format.html { redirect_to shoot_path(@task.shoot, :active => 'tasks'), notice: 'Task was successfully completed.' }
+          end
         elsif !@task.project.nil?
           format.html { redirect_to @task.project, notice: 'Task was successfully completed.' }
         else
@@ -108,6 +112,14 @@ class TasksController < ApplicationController
         format.html { redirect_to @task, notice: 'Task could not be saved' }
       end
     end
+  end
+
+  def popped_out
+    @shoot = Shoot.find(params[:shoot_id])
+    @tasks = @shoot.tasks.where(completed: nil)
+    @completed_tasks = @shoot.tasks.where(completed: true)
+    render :layout => 'poppedout'
+
   end
 
   private

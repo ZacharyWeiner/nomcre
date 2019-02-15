@@ -22,6 +22,7 @@
     </div>
   <% else %>
     <% if params[:q] == 'list'%>
+      <br><br>
       <%= render :partial => 'shoots/partials/black_dashboard/shared/list', :locals => {:shoots => shoots}%>
     <% else %>
       <%= render :partial => 'shoots/partials/black_dashboard/shared/cards', :locals => {:shoots => shoots}%>

@@ -74,16 +74,18 @@ class ShotListItem < ApplicationRecord
     p "Items Count: #{shoot_template.shot_list_items.count}"
     admin = User.where(role:0).first
     shoot_template.shot_list_items.each do |sli|
-      new_sli = ShotListItem.new
-      new_sli.focus_point = sli.focus_point
-      new_sli.description = sli.description
-      new_sli.background = sli.background
-      new_sli.item_type = sli.item_type
-      new_sli.aspect_ratio = sli.aspect_ratio
-      new_sli.shoot = shoot
-      new_sli.added_by = admin
-      if new_sli.save!
-        new_sli.create_related_task new_sli.description
+      unless sli.description.nil?
+        new_sli = ShotListItem.new
+        new_sli.focus_point = sli.focus_point
+        new_sli.description = sli.description
+        new_sli.background = sli.background
+        new_sli.item_type = sli.item_type
+        new_sli.aspect_ratio = sli.aspect_ratio
+        new_sli.shoot = shoot
+        new_sli.added_by = admin
+        if new_sli.save!
+          new_sli.create_related_task new_sli.description
+        end
       end
     end
   end

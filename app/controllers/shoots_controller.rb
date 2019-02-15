@@ -27,6 +27,9 @@ class ShootsController < ApplicationController
   # GET /shoots/new
   def new
     @shoot = Shoot.new
+    if params[:project_id]
+      @project = Project.find(params[:project_id])
+    end
   end
 
   # GET /shoots/1/edit
@@ -169,6 +172,17 @@ class ShootsController < ApplicationController
                                     :user_added_shot_count,
                                     :user_added_shot_count_max,
                                     :user_saved,
+                                    :shoot_date,
+                                    :call_time,
+                                    :set_location_rental,
+                                    :rental_price,
+                                    :transportation_required,
+                                    :address_or_landmark,
+                                    :set_contact_name,
+                                    :set_contact_phone,
+                                    :parking_details,
+                                    :rental_details,
+                                    :other_details,
                                     focus_points: [])
     end
 

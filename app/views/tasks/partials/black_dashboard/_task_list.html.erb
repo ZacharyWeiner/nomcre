@@ -1,5 +1,5 @@
-<% unless tasks.first.nil? || tasks.first.shoot.nil? %>
-<%= link_to "Pop out", shoot_tasks_path(tasks.first.shoot), class: 'btn btn-success' %>
+<% unless (tasks.first.nil? || tasks.first.shoot.nil?) || request.path_info.include?('popped') %>
+<%= link_to "Pop out", shoot_tasks_poppedout_path(tasks.first.shoot), class: 'btn btn-success' %>
 <% end %>
 
 <table class="table">
@@ -14,9 +14,29 @@
           <p class="card-category"> <%= task.shoot.title %></p>
         <% end %>
         <% unless task.shot_list_item.nil? || task.shot_list_item.reference_image.file.nil? %>
-          <%= image_tag task.shot_list_item.reference_image, class: 'img-fluid', style: 'max-height: 200px;'%>
+          <%= image_tag task.shot_list_item.reference_image, class: 'img-fluid', style: 'max-height: 150px;'%>
         <% end %>
       </td>
+       <% unless task.shot_list_item.nil? %>
+        <td>
+          <% if task.shot_list_item.shoot.content_type == ContentType.video %>
+            <% frame_rate_style = 'black' %>
+            <% if task.shot_list_item.frame_rate == '60 fps - Slow' %>
+              <% frame_rate_style = 'orange' %>
+            <% elsif task.shot_list_item.frame_rate == '120 fps - Super Slow'%>
+              <% frame_rate_style = 'red'  %>
+            <% end %>
+            <div style='color: <%= frame_rate_style%>; padding-top: 35%'>
+              <%= task.shot_list_item.frame_rate %>
+            </div>
+            <br>
+          <% end %>
+          <% if task.shot_list_item.shoot.project.mood.nil? %>
+            <%= task.shot_list_item.shoot.project.mood %>
+            <br>
+          <% end %>
+        </td>
+      <% end %>
       <td>
       <% if !task.deadline.nil? %>
         <%if task.deadline > Date.today %>
@@ -30,18 +50,7 @@
         No Deadline Saved
       <% end %>
       </td>
-      <% unless task.shot_list_item.nil? %>
-        <td>
-          <% if task.shot_list_item.shoot.content_type == ContentType.video %>
-            <%= task.shot_list_item.frame_rate %>
-            <br>
-          <% end %>
-          <% if task.shot_list_item.shoot.project.mood.nil? %>
-            <%= task.shot_list_item.shoot.project.mood %>
-            <br>
-          <% end %>
-        </td>
-      <% end %>
+
       <td class="td-actions text-right">
 
         <% if task.completed %>
@@ -55,8 +64,14 @@
           <% end %>
         <% end %>
         <% task_icon =  task.completed  ? 'done-all' : 'checkmark' %>
-        <%= link_to task_task_complete_path(task, :active => 'tasks'), class: "btn btn-link #{task_able}", title: "Complete", :data => { :original_title => 'Click to indicate the task is complete'}  do  %>
-          <i class="tim-icons btn-link <%= task_able %>"><ion-icon name="<%= task_icon %>" size='large'></ion-icon></i>
+        <% if !request.path_info.include?('popped') %>
+          <%= link_to task_task_complete_path(task, :active => 'tasks'), class: "btn btn-link #{task_able}", title: "Complete", :data => { :original_title => 'Click to indicate the task is complete'}  do  %>
+            <i class="tim-icons btn-link <%= task_able %>"><ion-icon name="<%= task_icon %>" size='large'></ion-icon></i>
+          <% end %>
+        <% else %>
+          <%= link_to task_task_complete_path(task, :popped => 'true'), class: "btn btn-link #{task_able}", title: "Complete", :data => { :original_title => 'Click to indicate the task is complete'}  do  %>
+            <i class="tim-icons btn-link <%= task_able %>"><ion-icon name="<%= task_icon %>" size='large'></ion-icon></i>
+            <% end %>
         <% end %>
       </td>
     </tr>

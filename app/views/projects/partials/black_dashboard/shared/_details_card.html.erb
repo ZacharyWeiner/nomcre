@@ -28,7 +28,9 @@
 <% if !defined? show_payment_buttons %>
   <% show_payment_buttons = false %>
 <% end %>
-
+<% if !defined? show_add_shoot_button %>
+  <% show_add_shoot_button = false %>
+<% end %>
 <% if !defined? show_company %>
   <% show_company = false %>
 <% end %>
@@ -190,6 +192,17 @@
           <% end %>
         </div>
       </div>
+    </div>
+  <% end %>
+  <% show_add_shoot_button %>
+  <% if show_add_shoot_button %>
+   <div class='row'>
+      <div class='col-md-12'>
+      <%= link_to new_project_shoot_path(project), class: 'btn btn-primary btn-simple btn-block' do %>
+        <i class="fas fa-plus"></i> Add Shoot
+      <% end %>
+      </div>
+      <br><br>
     </div>
   <% end %>
   <% if show_accept_buttons == true %>

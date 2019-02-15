@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190201180435) do
+ActiveRecord::Schema.define(version: 20190215211353) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -299,6 +299,14 @@ ActiveRecord::Schema.define(version: 20190201180435) do
     t.boolean "is_template"
     t.boolean "is_default_template"
     t.string "mood"
+    t.string "image_board_1"
+    t.string "image_board_2"
+    t.string "image_board_3"
+    t.string "image_board_4"
+    t.string "insta_inspiration_1"
+    t.string "insta_inspiration_2"
+    t.string "insta_inspiration_3"
+    t.string "insta_inspiration_4"
     t.index ["company_id"], name: "index_projects_on_company_id"
     t.index ["package_type_id"], name: "index_projects_on_package_type_id"
   end
@@ -392,6 +400,17 @@ ActiveRecord::Schema.define(version: 20190201180435) do
     t.date "deadline"
     t.boolean "is_complete"
     t.string "title"
+    t.date "shoot_date"
+    t.time "call_time"
+    t.boolean "set_location_rental"
+    t.decimal "rental_price"
+    t.boolean "tranportation_required"
+    t.string "address_or_landmark"
+    t.string "set_contact_name"
+    t.string "set_contact_phone"
+    t.string "parking_details"
+    t.text "rental_details"
+    t.text "other_details"
     t.index ["company_id"], name: "index_shoots_on_company_id"
     t.index ["location_id"], name: "index_shoots_on_location_id"
     t.index ["project_id"], name: "index_shoots_on_project_id"

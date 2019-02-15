@@ -1,3 +1,4 @@
+<style> .card-wizard .wizard-navigation {margin-top:0px;} </style>
 <% if shoot.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(shoot.errors.count, "error") %> prohibited this shoot from being saved:</h2>
@@ -19,50 +20,35 @@
     <%= form.hidden_field :project_id, :value => params[:project_id] %>
       <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
       <div class="card-header text-center">
-        <h3 class="card-title">
-          Lets Get Crackin!
-        </h3>
-        <h5 class="description">Tell us What You're Looking For </h5>
         <%= render 'shoots/partials/black_dashboard/wizard/tabs' %>
       </div>
       <div class="card-body">
         <div class="tab-content">
           <div class="tab-pane show active" id="basic">
-            <h4 class="info-text"> Let's start with the basics </h4>
-            <div class="row justify-content-center mt-5">
-              <div class="col-lg-12 center">
-                <h5 class="info-text"> Give the shoot a unique name ... </h5>
-                <%= form.text_field :title, id: :project_title_id, class: 'form-control', :text => project.title %>
-                <input class="form-control" placeholder="Whats Is Your Company's Name?" type="text" value="" name="shoot[name]" id="shoot_name">
-              </div>
-            </div>
+            <%= render :partial => 'shoots/partials/black_dashboard/wizard/basic_info', :locals => {form: form, shoot: shoot, project: project} %>
           </div>
-          <div class="tab-pane" id="brief">
-            <h4 class="info-text"> Add Your Creative Brief</h4>
-            <div class="row justify-content-center">
+          <div class="tab-pane" id="additional_details">
+            <h4 class="info-text"> Additional Details </h4>
+            <div class="row justify-content-center" style="margin-top:-36px;">
               <div class="col-lg-10 text-center">
-                <%= form.text_area :brief, id: :proposal_brief_id, style:'min-height: 400px; rows: 10', class: 'form-control rounded' %>
+                <%= render :partial => 'shoots/partials/black_dashboard/wizard/additional_details', :locals => {form: form, shoot: shoot, project: project} %>
               </div>
             </div>
-
           </div>
 
-         <!--  <div class="tab-pane" id="style">
+         <!-- <div class="tab-pane" id="style">
             <h4 class="info-text">Tell Use About The Style Our Creative Should Use</h5>
             <div class="row justify-content-center">
 
             </div>
-          </div>
+          </div> -->
           <div class="tab-pane" id="background">
             <h4 class="info-text" style="padding-top:48px;">Tell Use About The Style Our Creative Should Use</h5>
             <div class="row justify-content-center text-center">
-
-
-            </div>
-            <div class='form-group' style="margin:12px; padding-bottom: 12px;">
-
+               <%= render :partial => 'shoots/partials/black_dashboard/wizard/background', :locals => {form: form, shoot: shoot, project: project} %>
             </div>
           </div>
+          <!--
           <div class="tab-pane" id="inspiration">
             <h4 class="info-text"> What Accounts or Sites Do You Want To Look Like?</h4>
             <div class="row justify-content-center">

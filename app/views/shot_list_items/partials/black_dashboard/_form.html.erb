@@ -12,7 +12,8 @@
   <% if shoot.content_type == ContentType.video %>
     <div class='form-group'>
       <label> Frame Rate </label>
-      <%= form.select "frame_rate", "<option>24.4 fps</option><option>120 fps</option>".html_safe %>
+      <%= form.select "frame_rate", "<option>24.4 fps - Regular</option> <option style='color: orange;'>60 fps - Slow</option>
+      <option style='color: red;'>120 fps - Super Slow</option>".html_safe %>
     </div>
   <% end %>
   <br>
