@@ -7,9 +7,9 @@ class InvoicesController < ApplicationController
   # GET /invoices.json
   def index
     if params[:project_id]
-      @invoices = Invoice.where(project: params[:project_id]).order(created_at: :desc)
+      @invoices = Invoice.where(project: params[:project_id]).order(created_at: :asc)
     else
-      @invoices = Invoice.where(company: current_user.company).order(created_at: :desc)
+      @invoices = Invoice.where(company: current_user.company).order(created_at: :asc)
     end
   end
 

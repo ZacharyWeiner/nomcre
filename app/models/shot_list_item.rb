@@ -18,7 +18,7 @@ class ShotListItem < ApplicationRecord
 
   belongs_to :shoot
   belongs_to :added_by, class_name: 'User', foreign_key: 'added_by_id'
-  belongs_to :task, optional: true
+  has_one :task
 
   #has_one
   has_one :project, through: :shoot

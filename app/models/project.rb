@@ -208,6 +208,13 @@ class Project < ApplicationRecord
     end
   end
 
+  def update_project_shoot_locations location_id
+    self.shoots.each do |s|
+      s.location_id = location_id
+      s.save
+    end
+  end
+
   def update_shoots
     self.shoots.each do |s|
       if !s.user_saved == true
@@ -218,6 +225,24 @@ class Project < ApplicationRecord
         s.save
       end
     end
+  end
+
+  def require_update_shoot_locations
+    all_same = self.all_shoots_in_same_loacation
+    return !all_same
+  end
+
+  def all_shoots_in_same_loacation
+    all_same = true
+    @shoots = self.shoots
+    @shoots.each do |s|
+      self.shoots.each do |s2|
+        if s.location != s2.location
+          all_same = false
+        end
+      end
+    end
+    return all_same
   end
 
   def orphan_relations

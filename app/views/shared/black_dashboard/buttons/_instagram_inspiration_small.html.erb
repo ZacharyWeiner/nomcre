@@ -5,30 +5,30 @@
 </style>
 <p> Instagram Inspiration </p>
 <div class='row'>
-  <% unless defined? shoot.instagram_1 && (shoot.instagram_1.nil? || shoot.instagram_1 != '')%>
+  <% if !project.insta_inspiration_1.blank? %>
     <div class='col-md-3'>
-      <%= link_to "http://www.instagram.com/#{@proposal.instagram_1}", target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
+      <%= link_to "http://www.instagram.com/" + project.insta_inspiration_1.gsub!('@', ''), target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
         <i class='fab fa-instagram'></i>
       <% end %>
     </div>
   <% end %>
-  <% unless defined? shoot.instagram_2 && (shoot.instagram_2.nil? || shoot.instagram_2 != '')%>
+  <% if !project.insta_inspiration_2.blank? %>
     <div class='col-md-3'>
-      <%= link_to "http://www.instagram.com/#{@proposal.instagram_2}", target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
+      <%= link_to "http://www.instagram.com/" + project.insta_inspiration_2.gsub!('@', ''), target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
         <i class='fab fa-instagram'></i>
       <% end %>
     </div>
   <% end %>
-  <% unless defined? shoot.instagram_3 && (shoot.instagram_3.nil? || shoot.instagram_3 != '')%>
+  <% if !project.insta_inspiration_3.blank? %>
     <div class='col-md-3'>
-      <%= link_to "http://www.instagram.com/#{@proposal.instagram_3}", target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
+      <%= link_to "http://www.instagram.com/" + project.insta_inspiration_3.gsub!('@', ''), target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
         <i class='fab fa-instagram'></i>
       <% end %>
     </div>
   <% end %>
-  <% unless defined? shoot.instagram_4 && (shoot.instagram_4.nil? || shoot.instagram_4 != '') %>
+  <% if !project.insta_inspiration_4.blank? %>
     <div class='col-md-3'>
-      <%= link_to "http://www.instagram.com/#{@proposal.instagram_4}", target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
+      <%= link_to "http://www.instagram.com/" + project.insta_inspiration_4.gsub!('@', ''), target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
         <i class='fab fa-instagram'></i>
       <% end %>
     </div>

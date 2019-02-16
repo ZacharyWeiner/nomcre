@@ -43,14 +43,16 @@
           <% shot_list_items.each do |si| %>
             <tr >
               <td class="td-actions">
-                <%= link_to si do %>
-                  <i class="fa fa-eye"></i>
-                <% end %>
-                <%= link_to edit_shoot_shot_list_item_path(si.shoot, si) do %>
-                  <i class="fa fa-edit"></i>
-                <% end %>
-                <%= link_to si, method: :delete, data: { confirm: 'Are you sure?' } do %>
-                <i class="fa fa-trash"></i>
+                <% if shoot.is_editable && (current_user.company == shoot.company || current_user == shoot.creative) %>
+                  <%= link_to si do %>
+                    <i class="fa fa-eye"></i>
+                  <% end %>
+                  <%= link_to edit_shoot_shot_list_item_path(si.shoot, si) do %>
+                    <i class="fa fa-edit"></i>
+                  <% end %>
+                  <%= link_to si, method: :delete, data: { confirm: 'Are you sure?' } do %>
+                    <i class="fa fa-trash"></i>
+                  <% end %>
                 <% end %>
               </td>
               <td>

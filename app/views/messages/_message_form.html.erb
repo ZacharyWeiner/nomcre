@@ -22,17 +22,18 @@
     <%= f.text_area :content, class: "form-control", placeholder: 'Type your message'%>
   </div>
   <div class='row'>
-    <div class='col-md-6'>
+    <div class='col-sm-12 col-md-4'>
       <div class="form-group">
         <% f.file_field :file, id: :message_file %>
-        <div class="fileUpload btn btn-primary text-left">
+        <div class="fileUpload btn btn-primary text-center btn-block">
             <span><i class="fas fa-paperclip"></i> Attach</span>
             <input id="uploadBtn" type="file" class="upload" name="message[file]"/>
         </div>
       </div>
     </div>
-    <div class='col-md-6 text-right'>
-      <%= button_tag( data: {send: "message"}, :class => "btn btn-primary") do %>
+    <div class='col-sm-0 col-md-4'></div>
+    <div class='col-sm-12 col-md-4 text-right'>
+      <%= button_tag( data: {send: "message"}, :class => "btn btn-primary btn-block") do %>
         Send <i class="far fa-paper-plane"></i>
       <% end %>
     </div>

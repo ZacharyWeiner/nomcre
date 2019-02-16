@@ -103,15 +103,23 @@
 
             <span>
               <i class='tim-icons text-primary'><ion-icon name='ios-pin'> </ion-icon></i>
-              Location:
+              <b> City / Region: </b>
               <span class='pull-right'>
                 <%= shoot.location != nil ? shoot.location.name : "Not Assigned" %>
               </span>
             </span>
             <hr>
             <span>
+              <i class='tim-icons text-warning'><ion-icon name='ios-photos'> </ion-icon></i>
+              <b> Address: </b>
+              <span class='pull-right'>
+                <%= shoot.address_or_landmark != nil ? shoot.address_or_landmark : "Not Assigned" %>
+              </span>
+            </span>
+            <hr>
+            <span>
               <i class='tim-icons text-danger'><ion-icon name='ios-camera'> </ion-icon></i>
-              Shoot Type:
+              <b> Shoot Type: </b>
               <span class='pull-right'>
                 <%= shoot.content_type != nil ? shoot.content_type.capitalize! : "Not Assigned" %>
               </span>
@@ -119,7 +127,7 @@
              <hr>
              <span>
               <i class='tim-icons'><ion-icon name="aperture"></ion-icon></i>
-              Shoot Style:
+              <b> Shoot Style: </b>
               <span class='pull-right'>
                 <%= shoot.shoot_style  %>
               </span>
@@ -128,8 +136,8 @@
              <% unless shoot.project.mood.nil? %>
                <span>
                 <i class='tim-icons'><ion-icon name="aperture"></ion-icon></i>
-                Mood:
-                <span class='pull-right'>
+                <b> Mood: </b>
+                <span class='text-right'>
                   <%= shoot.project.mood  %>
                 </span>
               </span>
@@ -137,7 +145,7 @@
              <% end %>
              <span>
               <i class='tim-icons text-info'><ion-icon name='ios-photos'> </ion-icon></i>
-              Custom Shot Count:
+              <b> Custom Shot Count: </b>
               <span class='pull-right'>
                 <%= shoot.owner_added_shot_list_count.nil? ? 0 : shoot.owner_added_shot_list_count %>
                 of
@@ -147,7 +155,7 @@
             <hr>
              <span>
               <i class='tim-icons text-info'><ion-icon name='ios-photos'> </ion-icon></i>
-              Nomcre Shot Count:
+              <b> Nomcre Shot Count: </b>
               <span class='pull-right'>
                 <%= shoot.nomcre_added_shot_list_count %>
                 of
@@ -157,7 +165,7 @@
             <hr>
             <span>
               <i class='tim-icons text-warning'><ion-icon name='ios-photos'> </ion-icon></i>
-              Background:
+              <b> Background: </b>
               <span class='pull-right'>
                 <%= shoot.background != nil ? shoot.background : "Not Assigned" %>
               </span>
@@ -186,10 +194,15 @@
   <% end %>
   <% if show_view_button %>
     <span class='text-center' style='padding: 6px;'>
-      <%= link_to shoot, class: 'btn btn-simple btn-primary' do %>
+      <%= link_to shoot, class: 'btn btn-simple btn-primary btn-block' do %>
         <i class='fas fa-eye'></i>
-          View
+          <% if shoot.is_editable %>
+            Build Your Shoot
+          <% else %>
+            View
+          <% end %>
       <% end %>
+      <br>
       <% if shoot.company.users.where(company_id: current_user.company_id).count > 0  && shoot.is_editable%>
         <%= link_to edit_shoot_path(shoot), class: 'btn btn-simple btn-danger ' do %>
           <i class='fas fa-edit'></i>
@@ -199,7 +212,7 @@
       <% end %>
     </span>
   <% end %>
-  <% if show_edit_button && shoot.is_editable  %>
+  <% if (show_edit_button && shoot.is_editable && !show_view_button) || current_user.is_admin %>
     <%= link_to edit_shoot_path(shoot), class: 'btn btn-simple btn-danger ' do %>
           <i class='fas fa-edit'></i>
           Edit
@@ -210,12 +223,6 @@
       <i class='fas fa-eye'></i>
       View Project
     <% end %>
-  <% end %>
-  <% if show_edit_button && current_user.is_admin %>
-    <%= link_to admin_edit_shoot_path(shoot), class: 'btn btn-simple btn-danger ' do %>
-          <i class='fas fa-edit'></i>
-          Edit
-        <% end %>
   <% end %>
   <% if show_chat_button && !shoot.creative.nil? %>
     <%= link_to "<i class='fas fa-comments'></i> Chat".html_safe, shoot.chatroom, class: 'btn btn-simple btn-primary' %>

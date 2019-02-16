@@ -48,6 +48,7 @@ class ShootsController < ApplicationController
          format.html { redirect_to @shoot, notice: 'Shoot can not be edited after a creative is asssigned' }
       end
     end
+    @project = @shoot.project
   end
 
   # POST /shoots
@@ -61,6 +62,9 @@ class ShootsController < ApplicationController
     @shoot.deadline = @project.deadline
     respond_to do |format|
       if @shoot.save
+        if @shoot.project.require_update_locations
+          @shoot.project.update_project_shoot_locations @shoot.location.id
+        end
         @project.update_price(@project.price + @shoot.price)
         format.html { redirect_to @shoot, notice: 'Shoot was successfully created.' }
         format.json { render :show, status: :created, location: @shoot }
@@ -96,6 +100,9 @@ class ShootsController < ApplicationController
     end
     respond_to do |format|
       if @shoot.update(attributes)
+        if @shoot.project.require_update_shoot_locations
+          @shoot.project.update_project_shoot_locations @shoot.location.id
+        end
         format.html { redirect_to @shoot, notice: 'Shoot was successfully updated.' }
         format.json { render :show, status: :ok, location: @shoot }
       else

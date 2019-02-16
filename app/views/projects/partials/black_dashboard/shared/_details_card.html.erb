@@ -95,7 +95,7 @@
                   <br> <br>
                     <h5>
                     <i class='tim-icons text-primary'><ion-icon name='fastforward'> </ion-icon></i>
-                    Next Step: <br>
+                    <b> Next Step:</b> <br>
                     <span class=''>
                       <% proposal.next_step(proposal.status) %>
                       <!-- #TODO: Create Next Step For Project -->
@@ -108,22 +108,31 @@
               <div class="card-description">
               <br>
                 <%= render :partial => 'projects/partials/black_dashboard/shared/progress', :locals => {:project => project} %>
-
-                 <% project.locations.each do |location| %>
+                 <% if project.all_shoots_in_same_loacation %>
                   <span>
                     <i class='tim-icons text-primary'><ion-icon name='ios-pin'> </ion-icon></i>
-                    Location:
+                    <b>City / Region:</b>
                     <span class='pull-right'>
-                     <%= location.name %>
+                     <%= project.shoots.first.location.name %>
                     </span>
                   </span>
-                  <br>
+                 <% else %>
+                   <% project.locations.each do |location| %>
+                    <span>
+                      <i class='tim-icons text-primary'><ion-icon name='ios-pin'> </ion-icon></i>
+                      <b>City / Region:</b>
+                      <span class='pull-right'>
+                       <%= location.name %>
+                      </span>
+                    </span>
+                    <br>
+                  <% end %>
                 <% end %>
                 <hr>
                 <span>
                   <i class='tim-icons text-primary'><ion-icon name='ios-pin'> </ion-icon></i>
-                  Mood:
-                  <span class='pull-right'>
+                  <b>Mood:</b>
+                  <span class='text-right'>
                    <%= project.mood %>
                   </span>
                 </span>
@@ -131,7 +140,7 @@
                 <span>
                   <% project.shoots.each do |shoot| %>
                     <i class='tim-icons text-danger'><ion-icon name='ios-camera'> </ion-icon></i>
-                    Shoot Types:
+                    <b>Shoot Types:</b>
                     <span class='pull-right'>
                       <%= shoot.shoot_style != nil ? shoot.shoot_style : "Not Assigned" %>
                     </span>
@@ -141,7 +150,7 @@
                  <hr>
                  <span>
                   <i class='tim-icons text-info'><ion-icon name='ios-photos'> </ion-icon></i>
-                  Shot Count:
+                  <b>Shot Count:</b>
                   <span class='pull-right'>
                     <%= "#{project.user_added_shot_list_items_count} of #{project.user_added_shot_list_items_max}" %>
                   </span>

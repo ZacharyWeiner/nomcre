@@ -17,7 +17,11 @@
   <div class="card card-wizard" data-color="primary" id="wizardShoot">
     <%= form_for shoot, class: 'form-horizontal' do |form| %>
     <%= form.hidden_field :company_id, :value => current_user.company.id %>
-    <%= form.hidden_field :project_id, :value => params[:project_id] %>
+    <% if params[:project_id] %>
+      <%= form.hidden_field :project_id, :value => params[:project_id] %>
+    <% elsif !@project.nil? %>
+      <%= form.hidden_field :project_id, :value => @project.id %>
+    <% end %>
       <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
       <div class="card-header text-center">
         <%= render 'shoots/partials/black_dashboard/wizard/tabs' %>
@@ -36,12 +40,12 @@
             </div>
           </div>
 
-         <!-- <div class="tab-pane" id="style">
+         <div class="tab-pane" id="style">
             <h4 class="info-text">Tell Use About The Style Our Creative Should Use</h5>
             <div class="row justify-content-center">
-
+               <%= render :partial => 'shoots/partials/black_dashboard/wizard/style', :locals => {form: form, shoot: shoot, project: project} %>
             </div>
-          </div> -->
+          </div>
           <div class="tab-pane" id="background">
             <h4 class="info-text" style="padding-top:48px;">Tell Use About The Style Our Creative Should Use</h5>
             <div class="row justify-content-center text-center">

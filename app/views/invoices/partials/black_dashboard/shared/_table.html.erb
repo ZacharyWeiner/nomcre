@@ -7,7 +7,7 @@
       <th>Due date</th>
       <th>Invoice Type</th>
       <th>Status</th>
-      <th class='text-center'>View</th>
+      <th class='text-center'>View & Pay</th>
     </tr>
   </thead>
   <tbody>
@@ -25,7 +25,7 @@
 
           <% end %>
         </td>
-        <td><%= invoice.invoice_type %></td>
+        <td><b><%= invoice.invoice_type.upcase! %></b></td>
         <td>
           <%if invoice.payment.nil? %>
             Unpaid
@@ -34,7 +34,11 @@
           <% end %>
         </td>
         <td class='text-center'>
-          <%= link_to "<i class='far fa-eye'></i>".html_safe, invoice, class: 'btn btn-simple btn-sm btn-primary' %>
+          <% disable = '' %>
+          <% if invoice.invoice_type.downcase == InvoiceType.balance && (!invoice.project.nil? && !invoice.project.deposit_is_paid) %>
+            <% disable = 'disabled' %>
+          <% end %>
+          <%= link_to "<i class='far fa-eye'></i>".html_safe, invoice, class: "btn btn-simple btn-sm btn-primary #{disable}" %>
         </td>
       </tr>
     <% end %>

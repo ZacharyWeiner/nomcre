@@ -153,11 +153,10 @@ class Shoot < ApplicationRecord
   end
 
   def assign_tasks
-    self.tasks.each do |t|
-      if t.can_accept = UserType.creative
-        t.user = self.creative
-        t.save!
-      end
+    self.shot_list_items.each do |sli|
+      task = sli.task
+      task.user = self.creative
+      task.save!
     end
   end
 

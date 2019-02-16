@@ -1,7 +1,10 @@
  <div class="row justify-content-center mt-5">
   <div class="col-md-12 center">
     <h5 class="info-text"> Give the shoot a unique name: </h5>
-    <%= form.text_field :title, id: :shoot_title_id, class: 'form-control', :value => project.title %>
+    <% if project.nil? && !shoot.title.blank? %>
+      <% title = shoot.title %>
+    <% end %>
+    <%= form.text_field :title, id: :shoot_title_id, class: 'form-control', :value => title %>
   </div>
   <div class='col-md-6'>
     <br>
@@ -13,6 +16,12 @@
      <br>
     <h5 class="info-text"> <i class='fa fa-clock text-primary'></i>  Call Time </h5>
     <%= form.time_field :call_time, id: :shoot_call_time_id, class: 'form-control', :value => '09:00:00' %>
+  </div>
+  <div class="col-lg-12 center">
+    <br>
+    <h5 class="info-text"> What City Or Region Will We be Shooting In?</h5>
+    <label> Updating this will change all shoots for this project </label>
+    <%= form.select(:location_id, options_for_select(Location.locations_for_select, shoot.location.id), {}, {class: 'form-control'}) %>
   </div>
   <div class="col-md-12 center">
     <br>

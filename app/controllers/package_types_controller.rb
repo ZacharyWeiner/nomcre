@@ -96,7 +96,7 @@ class PackageTypesController < ApplicationController
     end
 
     def set_layout
-      if action_name == "show" || (action_name == 'index' &&  current_user.role == nil)
+      if action_name == "show" || (action_name == 'index' &&  ( current_user.nil? || current_user.role == nil))
         return 'khaki'
       else
         return 'black_dashboard'
