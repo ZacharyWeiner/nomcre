@@ -21,6 +21,11 @@ class Payment < ApplicationRecord
 
     if @payment.save
       Notification.create!(user_id: options[:user_id], notification_type: NotificationType.payment_made, notification_object_id: @payment.id, read: false)
+      if @payment.payment_type == PaymentType.deposit
+        ProjectMailer.deposit_received(@payment.project).deliver_now
+      elsif @payment.payment_type == PaymentType.balance
+        ProjectMailer.balance_received(@payment.project).deliver_now
+      end
     end
     @payment
   end

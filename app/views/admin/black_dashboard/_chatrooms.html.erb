@@ -25,8 +25,8 @@
             <% @chatrooms.each do |c| %>
             <tr>
               <td><%= c.topic %></td>
-              <td><%= c.proposal.company.name %></td>
-              <td><%= c.proposal.title  %></td>
+              <td><%= c.shoot.company.name %></td>
+              <td><%= c.shoot.title.nil? ? c.shoot.project.title + ' ' + c.shoot.shoot_style : c.shoot.title %></td>
               <td>
                 <%= link_to "View", chatroom_path(c) %>
               </td>

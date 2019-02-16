@@ -3,12 +3,12 @@
     <h5 class="info-text">Do You Need To Rent A Set? </h5>
     <div class="form-check form-check-radio radio-icons">
       <label class="form-check-label " style="margin-right: 16px;">
-        <%= form.radio_button :background, 'true', class: 'form-check-input center' %>
+        <%= form.radio_button :set_location_rental, true, class: 'form-check-input center' %>
         <span class="form-check-sign"></span>
        <i class='fas fa-check text-success' style="font-size: 36px; margin-top: -12px;"> </i>
       </label>
       <label class="form-check-label ">
-        <%= form.radio_button :background, 'false', class: 'form-check-input center', :checked => true%>
+        <%= form.radio_button :set_location_rental, false,  class: 'form-check-input center' %>
         <span class="form-check-sign"></span>
        <i class='fas fa-times text-primary' style="font-size: 36px; margin-top: -12px;"> </i>
       </label>

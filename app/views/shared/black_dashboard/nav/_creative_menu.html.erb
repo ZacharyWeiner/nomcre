@@ -15,23 +15,44 @@
   <div class="collapse" id="pagesExamples">
     <ul class="nav">
       <li>
-        <%= link_to creative_requests_path do %>
-          <span class="sidebar-mini-icon">?</span>
-          <span class="sidebar-normal"> <i class="tim-icons "><ion-icon name="help-circle-outline"></ion-icon></i>  <b>New Requests</b> </span>
-        <% end %>
-      </li>
-      <li>
         <%= link_to shoots_path do %>
           <span class="sidebar-mini-icon">O</span>
           <span class="sidebar-normal"> <i class="tim-icons "><ion-icon name="git-compare"></ion-icon></i>  <b>Work In Progress</b></span>
         <% end %>
       </li>
-      <!-- <li>
+      <li>
         <%= link_to shoots_path(:active => 'complete') do %>
           <span class="sidebar-mini-icon">√</span>
           <span class="sidebar-normal"> <i class="tim-icons "><ion-icon name="checkmark-circle-outline"></ion-icon></i>  <b>Complete</b></span>
         <% end %>
-      </li> -->
+      </li>
+    </ul>
+  </div>
+</li>
+<li>
+  <a data-toggle="collapse" href="#workRequests">
+     <i class="tim-icons "><ion-icon name="briefcase"></ion-icon></i>
+    <p>
+      Work Requests
+      <b class="caret"></b>
+    </p>
+  </a>
+  <div class="collapse" id="workRequests">
+    <ul class="nav">
+      <li>
+        <%= link_to creative_requests_path do %>
+          <span class="sidebar-mini-icon">?</span>
+          <span class="sidebar-normal"> <i class="tim-icons "><ion-icon name="help-circle-outline"></ion-icon></i>  <b>Requested Me</b> </span>
+        <% end %>
+      </li>
+    </ul>
+     <ul class="nav">
+      <li>
+        <%= link_to creative_requests_path(:active => "accepted") do %>
+          <span class="sidebar-mini-icon">?</span>
+          <span class="sidebar-normal"> <i class="tim-icons "><ion-icon name="checkmark-circle-outline"></ion-icon></i>  <b>Accepted By Me</b> </span>
+        <% end %>
+      </li>
     </ul>
   </div>
 </li>

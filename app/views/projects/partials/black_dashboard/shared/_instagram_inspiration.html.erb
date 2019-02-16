@@ -1,0 +1,31 @@
+<% if !project.insta_inspiration_1.blank?  %>
+  <div class='col-md-2'>
+    <%= link_to 'https://www.instagram.com/' + project.insta_inspiration_1.gsub!('@', ''), target: '_blank' do %>
+      <i class='fab fa-instagram fa-2x' ></i>
+    <% end %>
+  </div>
+<% end %>
+
+<% if !project.insta_inspiration_2.blank?  %>
+  <div class='col-md-2'>
+    <%= link_to 'https://www.instagram.com/' + project.insta_inspiration_2.gsub!('@', ''), target: '_blank' do %>
+      <i class='fab fa-instagram fa-2x' ></i>
+    <% end %>
+  </div>
+<% end %>
+
+<% if !project.insta_inspiration_3.blank?  %>
+  <div class='col-md-2'>
+    <%= link_to 'https://www.instagram.com/' + project.insta_inspiration_3.gsub!('@', ''), target: '_blank' do %>
+      <i class='fab fa-instagram fa-2x' ></i>
+    <% end %>
+  </div>
+<% end %>
+
+<% if !project.insta_inspiration_4.blank?  %>
+ <div class='col-md-2'>
+    <%= link_to 'https://www.instagram.com/' + project.insta_inspiration_4.gsub!('@', ''), target: '_blank' do %>
+      <i class='fab fa-instagram fa-2x' ></i>
+    <% end %>
+  </div>
+<% end %>

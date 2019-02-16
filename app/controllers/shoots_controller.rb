@@ -9,9 +9,17 @@ class ShootsController < ApplicationController
   # GET /shoots.json
   def index
     if current_user.user_type == UserType.company
-      @shoots = Shoot.where(company: current_user.company)
+      if params[:active] == 'complete'
+        @shoots = Shoot.where({company: current_user.company, is_complete: true})
+      else
+        @shoots = Shoot.where(company: current_user.company)
+      end
     elsif current_user.user_type == UserType.creative
-      @shoots = Shoot.where(creative: current_user)
+      if params[:active] == 'complete'
+        @shoots = Shoot.where({creative: current_user, is_complete: true})
+      else
+        @shoots = Shoot.where(creative: current_user)
+      end
     end
   end
 
@@ -27,6 +35,7 @@ class ShootsController < ApplicationController
   # GET /shoots/new
   def new
     @shoot = Shoot.new
+    @shoot.set_location_rental = false
     if params[:project_id]
       @project = Project.find(params[:project_id])
     end

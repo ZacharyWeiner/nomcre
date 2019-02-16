@@ -42,7 +42,7 @@ class CompaniesController < ApplicationController
             current_user.create_user_profile!(display_name: current_user.name)
           end
         end
-        CompanyMailer.welcome_email(current_user).deliver_later
+        CompanyMailer.welcome_email(current_user).deliver_now
         format.html { redirect_to new_project_path, notice: 'Company was successfully created.' }
         format.json { render :show, status: :created, location: @company }
       else

@@ -7,6 +7,8 @@ class ChatroomsController < ApplicationController
       @menu_rooms = current_user.chatrooms
     elsif current_user.user_type == UserType.company
       @menu_rooms = current_user.company.chatrooms
+    elsif current_user.is_admin
+      @menu_rooms = Chatroom.all.reverse
     end
 
     #Set Up This Chatroom

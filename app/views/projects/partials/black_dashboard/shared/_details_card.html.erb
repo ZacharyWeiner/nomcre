@@ -148,6 +148,10 @@
                 </span>
               </div>
             </div>
+            <div class='row text-center'>
+              <%= render :partial => 'projects/partials/black_dashboard/shared/instagram_inspiration', :locals => {project: project} %>
+              <%= render :partial => 'projects/partials/black_dashboard/shared/image_boards', :locals => {project: project} %>
+            </div>
             <% if show_content %>
               <div style="margin: 6px;">
                 <% unless project.brief.nil? %>

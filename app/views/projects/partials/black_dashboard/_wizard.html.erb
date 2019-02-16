@@ -21,11 +21,16 @@
                 <%= form.text_field :title, id: :project_title_id, class: 'form-control', :text => project.title %>
               </div>
             </div>
-             <div class="row justify-content-center">
-              <div class="col-lg-12 text-center">
+            <div class="row justify-content-center">
+              <div class="col-sm-12 col-lg-6 text-center">
                 <br>
                 <label> Describe the mood of your project in a few words </label>
                 <%= form.text_field :mood, id: :project_mood, class: 'form-control' %>
+              </div>
+              <div class="col-sm-12 col-lg-6 text-center">
+                <br>
+                <label> What is the deadline for the project? </label>
+                <%= form.date_field :deadline, id: :project_deadline, class: 'form-control' %>
               </div>
             </div>
           </div>
@@ -39,7 +44,7 @@
           </div>
 
           <div class="tab-pane" id="inspiration">
-            <h4 class="info-text">Tell Use About The Style Our Creative Should Use</h5>
+            <h4 class="info-text">Tell us about the inspirations you would like our creative to model</h5>
             <div class="row justify-content-center">
               <%= render :partial => 'projects/partials/black_dashboard/wizard/inspiration', :locals => {form: form} %>
           </div>

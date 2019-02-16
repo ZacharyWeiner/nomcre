@@ -55,14 +55,16 @@
         </div>
         <div class="card-body">
           <%= form_for(resource, as: resource_name, url: registration_path(resource_name), :html => {:class => "form"}) do |f| %>
-            <%= devise_error_messages! %>
+            <% resource.errors.full_messages.each do |msg| %>
+                <%= msg %> <br>
+            <% end %>
             <div class="input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <i class="tim-icons"><ion-icon name='contact'></ion-icon></i>
+                  <i class="tim-icons"><ion-icon name="contact" role="img" class="hydrated" aria-label="contact"></ion-icon></i>
                 </div>
               </div>
-              <%= f.text_field :name, autofocus: true, class: 'form-control', placeholder: 'Your Name' %>
+              <input autofocus="autofocus" class="form-control" placeholder="Your Name" type="text" name="user[name]" id="user_name">
             </div>
             <div class="input-group">
               <div class="input-group-prepend">
@@ -85,24 +87,23 @@
             <div class="input-group">
               <div class="input-group-prepend">
                 <div class="input-group-text">
-                  <i class="tim-icons"><ion-icon name='lock'></ion-icon></i>
+                  <i class="tim-icons"><ion-icon name="lock" role="img" class="hydrated" aria-label="lock"></ion-icon></i>
                 </div>
               </div>
-               <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', placeholder: 'Password Confirmation' %>
+               <input autocomplete="off" class="form-control" placeholder="Password Confirmation" type="password" name="user[password_confirmation]" id="user_password_confirmation">
               <!-- <input type="text" class="form-control" placeholder="Password"> -->
             </div>
             <% session[:user_type] %>
             <%if request.query_parameters[:user_type]%>
-              XXXXX
-              <%= f.hidden_field :user_type, :value => equest.query_parameters[:user_type] %>
+              <%= f.hidden_field :user_type, :value => request.query_parameters[:user_type] %>
               <% session[:user_type] = request.query_parameters[:user_type] %>
             <% end %>
             <div class="form-check text-left">
               <label class="form-check-label">
                 <input class="form-check-input" type="checkbox">
-                <span class="form-check-sign"></span>
-                I agree to the
-                <a href="javascript:void(0)">terms and conditions</a>.
+                <!-- <span class="form-check-sign"></span> -->
+                By creating an account you agree to the
+                <%= link_to "terms and conditions", tos_path %>
               </label>
             </div>
             <%= f.submit "Sign up", class: 'btn btn-primary btn-round btn-lg' %>

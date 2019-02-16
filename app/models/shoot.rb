@@ -134,6 +134,7 @@ class Shoot < ApplicationRecord
         end
         Notification.create!(user: assigned_request.creative, notification_type: NotificationType.request_assigned, notification_object_id: self.id)
         self.assign_tasks
+        ShootMailer.creative_assigned(assigned_request).deliver_now!
         return true
       else
         return false

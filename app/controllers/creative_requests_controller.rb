@@ -43,6 +43,7 @@ class CreativeRequestsController < ApplicationController
 
     respond_to do |format|
       if @creative_request.save
+        CreativeMailer.request_created(@creative_request).deliver_now!
         format.html { redirect_to @creative_request, notice: 'Creative request was successfully created.' }
         format.json { render :show, status: :created, location: @creative_request }
       else
@@ -80,6 +81,9 @@ class CreativeRequestsController < ApplicationController
     #TODO: Implement Model Level Method
     success = @creative_request.accept
     phrase_for_notify = success == true ? 'successfully' : 'could not be'
+    if success
+      CreativeMailer.request_accepted(@creative_request).deliver_now!
+    end
     respond_to do |format|
       format.html { redirect_to creative_requests_path, notice: "Creative request was #{phrase_for_notify} Accepted." }
       format.json { head :no_content }

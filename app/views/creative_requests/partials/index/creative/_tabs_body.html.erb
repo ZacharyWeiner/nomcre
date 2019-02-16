@@ -1,4 +1,8 @@
-<div class="tab-pane active" id="pending">
+
+<% accepted_active =  params[:active] == 'accepted' ? 'active' : ''  %>
+<% pending_active =  params[:active] != 'accepted' ? 'active' : ''  %>
+
+<div class="tab-pane <%= pending_active %>" id="pending">
   <% pending = @creative_requests.where(accepted: false) %>
   <% if pending.count == 0 %>
     <div class="alert alert-info alert-with-icon" style='width:100%'>
@@ -15,7 +19,7 @@
     </div>
   <% end %>
 </div>
-<div class="tab-pane" id="accepted">
+<div class="tab-pane <%= accepted_active %>" id="accepted">
   <div class='row'>
     <% accepted = @creative_requests.where(accepted: true) %>
     <% if accepted.count == 0 %>

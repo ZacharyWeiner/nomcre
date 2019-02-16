@@ -5,20 +5,35 @@
 </div>
 <br>
 
-  <% if shoots.count == 0 %>
-  <div class="col-md-12">
-    <div class="card">
-      <br><br>
-      <div class="alert alert-warning text-center">
-        <span>
-          <b> Uh Oh! </b> Create a Project to get started!</span>
-      </div>
-      <br><br>
+  <% if shoots.count == 0 && current_user.user_type == UserType.company%>
+    <div class="col-md-12">
+      <div class="card">
+        <br><br>
+        <div class="alert alert-warning text-center">
+          <span>
+            <b> Uh Oh! </b> Create a Project to get started!</span>
+        </div>
+        <br><br>
 
+      </div>
+      <div class="text-center">
+        <%=link_to "Take Me There <i class='fas fa-arrow-right'></i>".html_safe, new_project_path, class: 'btn btn-success btn-lg' %>
+      </div>
     </div>
-    <div class="text-center">
-      <%=link_to "Take Me There <i class='fas fa-arrow-right'></i>".html_safe, new_project_path, class: 'btn btn-success btn-lg' %>
-    </div>
+  <% elsif shoots.count == 0 && current_user.user_type == UserType.creative%>
+    <div class="col-md-12">
+      <div class="card">
+        <br><br>
+        <div class="alert alert-warning text-center">
+          <span>
+            <b> Uh Oh! </b> You haven't completed any Shoots yet :(</span>
+        </div>
+        <br><br>
+
+      </div>
+      <div class="text-center">
+        <%=link_to "Back to the Dashboard <i class='fas fa-arrow-right'></i>".html_safe, creative_dashboard_path, class: 'btn btn-success btn-lg' %>
+      </div>
     </div>
   <% else %>
     <% if params[:q] == 'list'%>
