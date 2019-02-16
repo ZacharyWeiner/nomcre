@@ -334,7 +334,7 @@
                     <small class="pull-right" style='padding-right: 10px'><%= m.created_at.strftime("%I:%m %p")%></small><br>
                   </div>
                   <div class="img_cont_msg">
-                  <%= image_tag m.chatroom.shoot.company.logo.url, class: 'rounded-circle user_img_msg',  style: 'min-width: 40px' unless (m.chatroom.shoot.nil? || m.chatroom.shoot.company.logo.file.nil? %>
+                  <%= image_tag m.chatroom.shoot.company.logo.url, class: 'rounded-circle user_img_msg',  style: 'min-width: 40px' unless (m.chatroom.shoot.nil? || m.chatroom.shoot.company.logo.file.nil?) %>
                   </div>
                 </div>
               <% end %>
