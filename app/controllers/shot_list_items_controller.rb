@@ -127,7 +127,8 @@ class ShotListItemsController < ApplicationController
                                              :shoot_id,
                                              :added_by_id,
                                              :shoot_location,
-                                             :frame_rate)
+                                             :frame_rate,
+                                             :task_group_id)
     end
 
     def authorize

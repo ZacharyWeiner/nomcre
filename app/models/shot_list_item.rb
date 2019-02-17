@@ -45,6 +45,7 @@ class ShotListItem < ApplicationRecord
                          company: self.shoot.company,
                          can_accept: UserType.creative,
                          task_type: TaskType.shot_list,
+                         task_group: self.task_group,
                          is_template: false )
     task
   end
@@ -66,6 +67,14 @@ class ShotListItem < ApplicationRecord
     p "Items Count: #{shoot_template.shot_list_items.count}"
     admin = User.where(role:0).first
     shoot_template.shot_list_items.each do |sli|
+      if !sli.task_group.nil?
+        if shoot.task_groups.where(title: sli.task_group.title).count == 0
+          order = shoot.task_groups.count
+          task_group = TaskGroup.create(title: sli.task_group.title, shoot: shoot, order: order)
+        else
+          task_group = shoot.task_groups.where(title: sli.task_group.title).first
+        end
+      end
       unless sli.description.nil?
         new_sli = ShotListItem.new
         new_sli.focus_point = sli.focus_point
@@ -75,6 +84,7 @@ class ShotListItem < ApplicationRecord
         new_sli.aspect_ratio = sli.aspect_ratio
         new_sli.shoot = shoot
         new_sli.added_by = admin
+        new_sli.task_group = task_group
         if new_sli.save!
           new_sli.create_related_task new_sli.description
         end

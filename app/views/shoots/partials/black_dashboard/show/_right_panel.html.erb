@@ -39,7 +39,7 @@
                       <div class="col-9">
                         <div class="numbers">
                           <p class="card-category">Time Of Day </p>
-                          <h4 class="card-title"><%= shoot.time_of_day %></h4>
+                          <h4 class="card-title"><%= shoot.call_time %></h4>
                         </div>
                       </div>
                     </div>
@@ -92,7 +92,7 @@
                 <button id='taskButton' class='btn btn-primary'> New Task </button>
                 <%= render :partial => 'tasks/partials/black_dashboard/shared/form_modal', :locals => {:shoot => shoot} %>
               <% end %>
-              <%= render :partial => 'tasks/partials/black_dashboard/task_list', :locals => {:tasks => shoot.tasks} %>
+                <%= render :partial => 'shoots/partials/black_dashboard/show/task_list', :locals => {task_groups: shoot.task_groups} %>
             <% else %>
             <br>
               <div class="alert alert-info">
