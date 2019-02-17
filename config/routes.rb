@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :task_groups
   resources :package_types
   resources :creative_requests
   resources :discount_codes

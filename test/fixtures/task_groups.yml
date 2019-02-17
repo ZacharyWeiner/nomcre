@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  shoot: one
+  complete: false
+  approver_id: 
+
+two:
+  title: MyString
+  shoot: two
+  complete: false
+  approver_id: 

@@ -1,9 +1,13 @@
 <% if params[:shoot_id] %>
   <% shoot = Shoot.find(params[:shoot_id]) %>
 <% end %>
+
+
 <%= form_with(model: shot_list_item, local: true) do |form| %>
   <%= render :partial => 'shot_list_items/partials/black_dashboard/form/errors', :locals => {:shot_list_item => shot_list_item}%>
-
+  <div class='form-group'>
+  <%= render :partial => 'shot_list_items/partials/black_dashboard/form/task_groups', :locals => {shoot: shoot, shot_list_item: shot_list_item, form: form, redirect: 'shoot'} %>
+  </div>
   <%= render :partial => 'shot_list_items/partials/black_dashboard/form/description', :locals => {:shot_list_item => shot_list_item, :form => form }%>
    <div class='form-group'>
     <label> Background </label>
@@ -103,5 +107,34 @@
 
 
 
+<div class="modal fade" id="taskGroupFormModal" tabindex="-1" role="dialog" aria-labelledby="Document Form" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add A New Task Group </h5>
+      </div>
+      <div class="modal-body text-center">
+        <%= render :partial => 'shared/black_dashboard/shot_list_items/task_group_form',
+                   :locals => {:task_group => TaskGroup.new,
+                               :shoot => shoot,
+                               :redirect => 'shot_list_item'
+                             } %>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<%= content_for :added_scripts do %>
+  <script>
+    $('#newGroupBtn').click(function (event) {
+       $('#taskGroupFormModal').modal('toggle');
+      event.preventDefault(); // Prevent link from following its href
+    });
+  </script>
+<% end %>
 
 

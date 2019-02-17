@@ -1,0 +1,16 @@
+<%= form_with(model: task_group, local: true) do |task_group_form| %>
+
+
+  <div class="form-group">
+    <%= task_group_form.label :title %>
+    <%= task_group_form.text_field :title, id: :task_group_title, class: 'form-control' %>
+  </div>
+
+  <%= task_group_form.hidden_field :shoot_id, id: :task_group_shoot_id, :value => shoot.id %>
+  <% if defined? redirect %>
+    <%= task_group_form.hidden_field :redirect, :value => redirect %>
+  <% end %>
+  <div class="actions">
+    <%= task_group_form.submit 'Add Group', class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @task_group.title %>
+</p>
+
+<p>
+  <strong>Shoot:</strong>
+  <%= @task_group.shoot %>
+</p>
+
+<p>
+  <strong>Complete:</strong>
+  <%= @task_group.complete %>
+</p>
+
+<p>
+  <strong>Approver:</strong>
+  <%= @task_group.approver_id %>
+</p>
+
+<%= link_to 'Edit', edit_task_group_path(@task_group) %> |
+<%= link_to 'Back', task_groups_path %>

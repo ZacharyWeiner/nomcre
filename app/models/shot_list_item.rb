@@ -1,12 +1,3 @@
-# class ShotListItemValidator < ActiveModel::Validator
-#   def validate(record)
-#     byebug
-#     if record.description.nil? && record.reference_image.nil?
-#       record.errors[:description_reference] << 'Shot List Items Must Include a Description or Reference Image'
-#     end
-#   end
-# end
-
 class ShotListItem < ApplicationRecord
   validate :description_or_reference
   before_destroy :orphan_relations
@@ -15,6 +6,7 @@ class ShotListItem < ApplicationRecord
 
   #belongs_to
   belongs_to :proposal, optional: true
+  belongs_to :task_group, optional: true
 
   belongs_to :shoot
   belongs_to :added_by, class_name: 'User', foreign_key: 'added_by_id'

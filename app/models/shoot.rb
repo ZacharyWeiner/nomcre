@@ -20,6 +20,7 @@ class Shoot < ApplicationRecord
   has_many :documents
   has_many :assistants
   has_many :tasks, :dependent => :destroy
+  has_many :task_groups
   has_many :shot_list_items, :dependent => :destroy
   has_many :creative_requests, :dependent => :destroy
 

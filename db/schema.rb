@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190215211353) do
+ActiveRecord::Schema.define(version: 20190217163254) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -431,8 +431,10 @@ ActiveRecord::Schema.define(version: 20190215211353) do
     t.bigint "added_by_id"
     t.string "shoot_location"
     t.string "frame_rate"
+    t.bigint "task_group_id"
     t.index ["proposal_id"], name: "index_shot_list_items_on_proposal_id"
     t.index ["shoot_id"], name: "index_shot_list_items_on_shoot_id"
+    t.index ["task_group_id"], name: "index_shot_list_items_on_task_group_id"
   end
 
   create_table "showcase_images", force: :cascade do |t|
@@ -459,6 +461,16 @@ ActiveRecord::Schema.define(version: 20190215211353) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "task_groups", force: :cascade do |t|
+    t.string "title"
+    t.bigint "shoot_id"
+    t.boolean "complete"
+    t.bigint "approver_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["shoot_id"], name: "index_task_groups_on_shoot_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.bigint "user_id"
     t.text "description"
@@ -474,11 +486,13 @@ ActiveRecord::Schema.define(version: 20190215211353) do
     t.bigint "project_id"
     t.boolean "is_template"
     t.bigint "shot_list_item_id"
+    t.bigint "task_group_id"
     t.index ["company_id"], name: "index_tasks_on_company_id"
     t.index ["project_id"], name: "index_tasks_on_project_id"
     t.index ["proposal_id"], name: "index_tasks_on_proposal_id"
     t.index ["shoot_id"], name: "index_tasks_on_shoot_id"
     t.index ["shot_list_item_id"], name: "index_tasks_on_shot_list_item_id"
+    t.index ["task_group_id"], name: "index_tasks_on_task_group_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
@@ -592,10 +606,13 @@ ActiveRecord::Schema.define(version: 20190215211353) do
   add_foreign_key "shoots", "projects"
   add_foreign_key "shot_list_items", "proposals"
   add_foreign_key "shot_list_items", "shoots"
+  add_foreign_key "shot_list_items", "task_groups"
+  add_foreign_key "task_groups", "shoots"
   add_foreign_key "tasks", "companies"
   add_foreign_key "tasks", "projects"
   add_foreign_key "tasks", "proposals"
   add_foreign_key "tasks", "shoots"
+  add_foreign_key "tasks", "task_groups"
   add_foreign_key "tasks", "users"
   add_foreign_key "user_activities", "users"
   add_foreign_key "user_profiles", "users"
