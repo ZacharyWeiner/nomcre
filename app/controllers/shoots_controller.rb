@@ -59,7 +59,11 @@ class ShootsController < ApplicationController
     @shoot.user_saved = true
     @shoot.company = current_user.company
     @shoot.price = @shoot.content_type == ContentType.photo ? DefaultPrices.photo_shoot : DefaultPrices.video_shoot
-    @shoot.deadline = @project.deadline
+    if shoot_params[:deadline]
+      @shoot.deadline = DateHelper.parse_date shoot_params[:deadline]
+    else
+      @shoot.deadline = @project.deadline
+    end
     respond_to do |format|
       if @shoot.save
         if @shoot.project.require_update_locations
@@ -97,6 +101,9 @@ class ShootsController < ApplicationController
         end
       end
       attributes[:focus_points] = points
+    end
+    if shoot_params[:deadline]
+     attributes[:deadline] = DateHelper.parse_date shoot_params[:deadline]
     end
     respond_to do |format|
       if @shoot.update(attributes)

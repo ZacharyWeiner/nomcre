@@ -30,7 +30,9 @@
               <div class="col-sm-12 col-lg-6 text-center">
                 <br>
                 <label> What is the deadline for the project? </label>
-                <%= form.date_field :deadline, id: :project_deadline, class: 'form-control' %>
+                <% deadline =  project.deadline %>
+                <% deadline_formatted = "#{deadline.month}" +"/"+ "#{deadline.day}" + "/" + "#{deadline.year}" %>
+                <%= form.text_field :deadline, id: :project_deadline, class: 'form-control datepicker', :value => deadline_formatted %>
               </div>
             </div>
           </div>
@@ -225,22 +227,6 @@
         $('.card.card-wizard').addClass('active');
       }, 600);
     });
-
-    $(function () {
-            $('.datetimepicker').datetimepicker({
-                icons: {
-                    time: "far fa-alarm-clock",
-                    date: "fa fa-calendar",
-                    up: "fas fa-arrow-up",
-                    down: "fas fa-arrow-down",
-                    previous: 'fas fa-arrow-left',
-                    next: 'fas fa-arrow-right',
-                    today: 'far fa-clock',
-                    clear: 'far fa-trash-alt',
-                    close: 'far fa-calendar-times'
-                }
-            });
-        });
 
   </script>
    <% end %>

@@ -4,7 +4,7 @@
     <% if insta_1.include?('@') %>
       <% insta_1 = project.insta_inspiration_1.gsub('@', '') %>
     <% end %>
-    <%= link_to "https://www.instagram.com/#{insta_1}" , target: '_blank' do %>
+    <%= link_to "https://www.instagram.com/#{insta_1}" , target: '_blank', class: 'btn btn-link btn-primary' do %>
       <i class='fab fa-instagram fa-2x' ></i>
     <% end %>
   </div>
@@ -16,7 +16,7 @@
     <% if insta_2.include?('@') %>
       <% insta_2 = project.insta_inspiration_2.gsub('@', '') %>
     <% end %>
-    <%= link_to "https://www.instagram.com/#{insta_2}", target: '_blank' do %>
+    <%= link_to "https://www.instagram.com/#{insta_2}", target: '_blank', class: 'btn btn-link btn-primary' do %>
       <i class='fab fa-instagram fa-2x' ></i>
     <% end %>
   </div>
@@ -28,7 +28,7 @@
     <% if insta_3.include?('@') %>
       <% insta_3 = project.insta_inspiration_3.gsub('@', '') %>
     <% end %>
-    <%= link_to "https://www.instagram.com/#{insta_3}", target: '_blank' do %>
+    <%= link_to "https://www.instagram.com/#{insta_3}", target: '_blank', class: 'btn btn-link btn-primary' do %>
       <i class='fab fa-instagram fa-2x' ></i>
     <% end %>
   </div>
@@ -40,7 +40,7 @@
     <% if insta_4.include?('@') %>
       <% insta_4 = project.insta_inspiration_4.gsub('@', '') %>
     <% end %>
-    <%= link_to "https://www.instagram.com/#{insta_4}", target: '_blank' do %>
+    <%= link_to "https://www.instagram.com/#{insta_4}", target: '_blank', class: 'btn btn-link btn-primary' do %>
       <i class='fab fa-instagram fa-2x' ></i>
     <% end %>
   </div>

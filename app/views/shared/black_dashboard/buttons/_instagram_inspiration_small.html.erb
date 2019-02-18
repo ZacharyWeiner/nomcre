@@ -1,37 +1,47 @@
-<style type="text/css">
-  .fa-instagram{
-    padding-top: 12px;
-  }
-</style>
-<p> Instagram Inspiration </p>
-<div class='row'>
-  <% if !project.insta_inspiration_1.blank? %>
-    <div class='col-md-3'>
-      <%= link_to "http://www.instagram.com/" + project.insta_inspiration_1.gsub!('@', ''), target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
-        <i class='fab fa-instagram'></i>
-      <% end %>
-    </div>
-  <% end %>
-  <% if !project.insta_inspiration_2.blank? %>
-    <div class='col-md-3'>
-      <%= link_to "http://www.instagram.com/" + project.insta_inspiration_2.gsub!('@', ''), target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
-        <i class='fab fa-instagram'></i>
-      <% end %>
-    </div>
-  <% end %>
-  <% if !project.insta_inspiration_3.blank? %>
-    <div class='col-md-3'>
-      <%= link_to "http://www.instagram.com/" + project.insta_inspiration_3.gsub!('@', ''), target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
-        <i class='fab fa-instagram'></i>
-      <% end %>
-    </div>
-  <% end %>
-  <% if !project.insta_inspiration_4.blank? %>
-    <div class='col-md-3'>
-      <%= link_to "http://www.instagram.com/" + project.insta_inspiration_4.gsub!('@', ''), target:"_blank", class: 'btn btn-icon  btn-primary'  do %>
-        <i class='fab fa-instagram'></i>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+<% if !project.insta_inspiration_1.blank?  %>
+  <div class='col-md-2'>
+    <% insta_1 = project.insta_inspiration_1 %>
+    <% if insta_1.include?('@') %>
+      <% insta_1 = project.insta_inspiration_1.gsub('@', '') %>
+    <% end %>
+    <%= link_to "https://www.instagram.com/#{insta_1}" , target: '_blank', class: 'btn btn-icon btn-link btn-primary' do %>
+      <i class='fab fa-instagram fa-2x' ></i>
+    <% end %>
+  </div>
+<% end %>
 
+<% if !project.insta_inspiration_2.blank?  %>
+  <div class='col-md-2'>
+    <% insta_2 = project.insta_inspiration_2 %>
+    <% if insta_2.include?('@') %>
+      <% insta_2 = project.insta_inspiration_2.gsub('@', '') %>
+    <% end %>
+    <%= link_to "https://www.instagram.com/#{insta_2}", target: '_blank', class: 'btn btn-icon btn-link btn-primary' do %>
+      <i class='fab fa-instagram fa-2x' ></i>
+    <% end %>
+  </div>
+<% end %>
+
+<% if !project.insta_inspiration_3.blank?  %>
+  <div class='col-md-2'>
+    <% insta_3 = project.insta_inspiration_3 %>
+    <% if insta_3.include?('@') %>
+      <% insta_3 = project.insta_inspiration_3.gsub('@', '') %>
+    <% end %>
+    <%= link_to "https://www.instagram.com/#{insta_3}", target: '_blank', class: 'btn btn-icon btn-link btn-primary' do %>
+      <i class='fab fa-instagram fa-2x' ></i>
+    <% end %>
+  </div>
+<% end %>
+
+<% if !project.insta_inspiration_4.blank?  %>
+ <div class='col-md-2'>
+    <% insta_4 = project.insta_inspiration_4 %>
+    <% if insta_4.include?('@') %>
+      <% insta_4 = project.insta_inspiration_4.gsub('@', '') %>
+    <% end %>
+    <%= link_to "https://www.instagram.com/#{insta_4}", target: '_blank', class: 'btn btn-icon btn-link btn-primary' do %>
+      <i class='fab fa-instagram fa-2x' ></i>
+    <% end %>
+  </div>
+<% end %>

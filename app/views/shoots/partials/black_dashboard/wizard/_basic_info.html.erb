@@ -10,7 +10,8 @@
     <br>
     <h5 class="info-text"><i class='fa fa-calendar text-primary'></i> Deadline </h5>
     <% deadline = shoot.deadline.nil? ? project.deadline : shoot.deadline %>
-    <%= form.date_field :deadline, id: :shoot_deadline_id, class: 'form-control', :value => deadline %>
+    <% deadline_formatted = "#{deadline.month}" +"/"+ "#{deadline.day}" + "/" + "#{deadline.year}" %>
+    <%= form.text_field :deadline, id: :shoot_deadline_id, class: 'form-control datepicker', :value=> deadline_formatted %>
   </div>
   <div class='col-md-6'>
      <br>

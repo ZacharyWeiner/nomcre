@@ -42,7 +42,7 @@
 
   <div class="form-group">
     <%= form.label :document_type %>
-    <%= form.select :document_type, options_for_select([['Model Release', 'Model Release'], ['Location Permit', 'Location Permit'], ['Child Release','Child Release']]), {}, {class: 'form-control '}  %>
+    <%= form.select :document_type, options_for_select([['Model Release', 'Model Release'], ['Location Permit', 'Location Permit'], ['Child Release','Minor Release']]), {}, {class: 'form-control '}  %>
   </div>
   <% if defined? proposal && defined? @proposal %>
   <% else %>

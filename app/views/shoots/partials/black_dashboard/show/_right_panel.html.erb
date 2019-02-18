@@ -39,7 +39,7 @@
                       <div class="col-9">
                         <div class="numbers">
                           <p class="card-category">Time Of Day </p>
-                          <h4 class="card-title"><%= shoot.call_time %></h4>
+                          <h4 class="card-title"><%= shoot.call_time.strftime('%l:%M %p') unless shoot.call_time.nil? %></h4>
                         </div>
                       </div>
                     </div>
@@ -68,10 +68,16 @@
               <div class='col-sm-12 col-md-12 col-lg-12'>
                 <div class='row'>
                   <div class='col-md-6'>
-                    <%= render :partial => 'shared/black_dashboard/buttons/instagram_inspiration_small', :locals => {:shoot => shoot, :project => shoot.project} %>
+                    <p> Instagram Inspiration </p>
+                    <div class='row'>
+                      <%= render :partial => 'shared/black_dashboard/buttons/instagram_inspiration_small', :locals => {:shoot => shoot, :project => shoot.project} %>
+                    </div>
                   </div>
                   <div class='col-md-6'>
-                    <%= render :partial => 'shared/black_dashboard/buttons/image_boards_small', :locals => {:shoot => shoot, :project => shoot.project} %>
+                    <p> Image Boards </p>
+                    <div class='row'>
+                     <%= render :partial => 'shared/black_dashboard/buttons/image_boards_small', :locals => {:shoot => shoot, :project => shoot.project} %>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -92,7 +98,11 @@
                 <button id='taskButton' class='btn btn-primary'> New Task </button>
                 <%= render :partial => 'tasks/partials/black_dashboard/shared/form_modal', :locals => {:shoot => shoot} %>
               <% end %>
+              <% if shoot.task_groups.count > 0 %>
                 <%= render :partial => 'shoots/partials/black_dashboard/show/task_list', :locals => {task_groups: shoot.task_groups} %>
+              <% else %>
+                <%= render :partial => 'tasks/partials/black_dashboard/task_list', :locals => {tasks: shoot.tasks} %>
+              <% end %>
             <% else %>
             <br>
               <div class="alert alert-info">

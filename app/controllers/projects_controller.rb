@@ -49,8 +49,11 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
+    if project_params[:deadline]
+      @project.deadline = DateHelper.parse_date_month_first project_params[:deadline]
+    end
     respond_to do |format|
-      if @project.save
+      if @project.save!
         format.html { redirect_to @project, notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else
@@ -63,8 +66,12 @@ class ProjectsController < ApplicationController
   # PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
+    attributes = project_params.clone
     respond_to do |format|
-      if @project.update(project_params)
+      if project_params[:deadline]
+        attributes[:deadline] = DateHelper.parse_date_month_first project_params[:deadline]
+      end
+      if @project.update(attributes)
         if params[:location_id]
           @project.update_shoot_location params[:location_id]
         end
