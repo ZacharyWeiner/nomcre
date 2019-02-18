@@ -26,7 +26,6 @@ class TaskGroupsController < ApplicationController
   def create
     @task_group = TaskGroup.new(task_group_params)
     respond_to do |format|
-      byebug
       if @task_group.save!
         if params[:task_group][:redirect]
           format.html { redirect_to new_shoot_shot_list_item_path(@task_group.shoot), notice: 'Task group was successfully created.' }
