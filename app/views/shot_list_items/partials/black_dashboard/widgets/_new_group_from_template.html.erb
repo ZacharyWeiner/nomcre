@@ -1,0 +1,46 @@
+
+<div class="modal fade" id="shotListGroupModal" tabindex="-1" role="dialog" aria-labelledby="Add Shot List Item Group" aria-hidden="true">
+  <div class="modal-dialog" role="shot_list_group">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add A Shot List Group </h5>
+      </div>
+      <div class="modal-body text-center">
+        <div class="card">
+          <div class='card-header'>
+            <div class="card-title"> Click A Group To Expand It </div>
+          </div>
+          <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
+            <% TaskGroup.where(is_template: true).each do |tg| %>
+              <div class="card card-plain">
+                <div class="card-header" id="heading<%= tg.id%>" style='background: #d3d7e9'>
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= tg.id%>" aria-controls="collapse<%= tg.id%>">
+                    <i class="tim-icons"><i class="fas fa-caret-down"></i></i>
+                    <h5><%= tg.title %></h5>
+                  </a>
+                </div>
+                <div id="collapse<%= tg.id%>" class="collapse" role="tabpanel" aria-labelledby="heading<%= tg.id%>">
+                  <div class="card-body">
+                    <% shoot = Shoot.find(params[:id]) %>
+                    <%= link_to 'Add Group To Shoot', task_group_copy_to_shoot_path(tg, shoot), class: 'btn btn-primary btn-simple' %>
+                    <% tg.shot_list_item_templates.each do |slit|%>
+                      <div class='row' style='margin:16px;'>
+                        <div class='col-md-12'>
+                        <%= slit.description %>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+              <br>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+
+      </div>
+    </div>
+  </div>
+</div>

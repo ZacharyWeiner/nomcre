@@ -1,6 +1,10 @@
 class AdminController < ApplicationController
   before_action :is_admin
   layout 'black_dashboard'
+  def task_groups
+    @task_groups = TaskGroup.where(is_template: true)
+  end
+
   def users
     @users = User.all.page params[:page]
   end

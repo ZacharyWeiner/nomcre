@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @shot_list_item_template.description %>
+</p>
+
+<p>
+  <strong>Background:</strong>
+  <%= @shot_list_item_template.background %>
+</p>
+
+<p>
+  <strong>Item type:</strong>
+  <%= @shot_list_item_template.item_type %>
+</p>
+
+<p>
+  <strong>Focus point:</strong>
+  <%= @shot_list_item_template.focus_point %>
+</p>
+
+<p>
+  <strong>Reference image:</strong>
+  <%= @shot_list_item_template.reference_image %>
+</p>
+
+<p>
+  <strong>Aspect ratio:</strong>
+  <%= @shot_list_item_template.aspect_ratio %>
+</p>
+
+<p>
+  <strong>Frame rate:</strong>
+  <%= @shot_list_item_template.frame_rate %>
+</p>
+
+<p>
+  <strong>Task group:</strong>
+  <%= @shot_list_item_template.task_group %>
+</p>
+
+<%= link_to 'Edit', edit_shot_list_item_template_path(@shot_list_item_template) %> |
+<%= link_to 'Back', shot_list_item_templates_path %>

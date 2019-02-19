@@ -1,25 +1,12 @@
 <div class="card">
   <div class="card-header">
-    <!-- <div class="tools float-right">
-      <div class="dropdown">
-        <button type="button" class="btn btn-default dropdown-toggle btn-link btn-icon" data-toggle="dropdown">
-          <i class="tim-icons icon-settings-gear-63"></i>
-        </button>
-        <div class="dropdown-menu dropdown-menu-right">
-          <a class="dropdown-item" href="javascript:void(0)">Action</a>
-          <a class="dropdown-item" href="javascript:void(0)">Another action</a>
-          <a class="dropdown-item" href="javascript:void(0)">Something else here</a>
-          <a class="dropdown-item text-danger" href="javascript:void(0)">Remove Data</a>
-        </div>
-      </div>
-    </div> -->
     <h4 class="card-title">Shot List </h4>
-
   </div>
   <div class="card-body">
     <% if (current_user.user_type == UserType.company && current_user.company == shoot.project.company) || current_user == shoot.creative %>
       <% if shoot.is_editable || shoot.creative == current_user %>
-        <%= link_to "<ion-icon name='add' ></ion-icon> Add New".html_safe, new_shoot_shot_list_item_path(shoot.id), class: 'btn btn-success btn-round float-right mr-5'  %>
+        <%= link_to "<ion-icon name='add' ></ion-icon> Add Group".html_safe, "#", id: 'shotListGroupBtn', class: 'btn btn-success btn-round float-right mr-5'  %>
+        <%= link_to "<ion-icon name='add' ></ion-icon> Add Item".html_safe, new_shoot_shot_list_item_path(shoot.id), class: 'btn btn-success btn-round float-right mr-5'  %>
         <% end %>
       <% end %>
     <div class="table-responsive rounded" style='background-color:#F5F6FA;'>

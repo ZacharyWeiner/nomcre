@@ -30,6 +30,8 @@ class TaskGroupsController < ApplicationController
         if params[:task_group][:redirect]
           format.html { redirect_to new_shoot_shot_list_item_path(@task_group.shoot), notice: 'Task group was successfully created.' }
           format.json { render :show, status: :created, location: @task_group }
+        elsif params[:task_group][:admin]
+          format.html { redirect_to admin_task_groups_path, notice: 'Task group was successfully created.' }
         else
           format.html { redirect_to @task_group, notice: 'Task group was successfully created.' }
           format.json { render :show, status: :created, location: @task_group }
@@ -65,6 +67,30 @@ class TaskGroupsController < ApplicationController
     end
   end
 
+  def copy_group_to_shoot
+    byebug
+    task_group = TaskGroup.find(params[:task_group_id])
+    shoot = Shoot.find(params[:shoot_id])
+
+    new_task_group = TaskGroup.create(shoot_id: shoot.id, title: task_group.title)
+    task_group.shot_list_item_templates.each do |temp|
+      shot_list_item = ShotListItem.create!(description: temp.description,
+                                            background: temp.background,
+                                            item_type: temp.item_type,
+                                            focus_point: temp.focus_point,
+                                            reference_image: temp.reference_image,
+                                            aspect_ratio: temp.aspect_ratio,
+                                            shoot_id: shoot.id,
+                                            added_by_id: current_user.id,
+                                            frame_rate: temp.frame_rate,
+                                            task_group_id: new_task_group.id)
+      shot_list_item.create_related_task shot_list_item.description
+      respond_to do |format|
+        format.html { redirect_to shoot_path(shoot, :active => 'shotlist'), notice: "The Group (#{new_task_group.title}) was Added to The Shoot." }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_task_group
@@ -73,6 +99,6 @@ class TaskGroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_group_params
-      params.require(:task_group).permit(:title, :shoot_id, :complete, :approver_id)
+      params.require(:task_group).permit(:title, :shoot_id, :complete, :approver_id, :is_template, :shoot_type)
     end
 end

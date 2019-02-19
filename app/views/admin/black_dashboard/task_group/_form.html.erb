@@ -1,0 +1,33 @@
+<% task_group = TaskGroup.new %>
+<%= form_with(model: task_group, local: true) do |form| %>
+  <% if task_group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(task_group.errors.count, "error") %> prohibited this task_group from being saved:</h2>
+
+      <ul>
+      <% task_group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :task_group_title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :content_type %>
+    <%= form.select(:shoot_type, options_for_select([ContentType.photo, ContentType.video]), {}, {class: 'form-control'}) %>
+  </div>
+
+
+  <%= form.hidden_field :is_template, id: :is_template, :value => true %>
+  <%= form.hidden_field :admin, id: :is_template, :value => true %>
+
+  <div class="actions">
+    <%= form.submit 'Add Group Template', class: 'btn btn-primary' %>
+  </div>
+<% end %>
+

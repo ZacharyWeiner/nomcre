@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190217191610) do
+ActiveRecord::Schema.define(version: 20190218212309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -416,6 +416,20 @@ ActiveRecord::Schema.define(version: 20190217191610) do
     t.index ["project_id"], name: "index_shoots_on_project_id"
   end
 
+  create_table "shot_list_item_templates", force: :cascade do |t|
+    t.string "description"
+    t.string "background"
+    t.string "item_type"
+    t.string "focus_point"
+    t.string "reference_image"
+    t.string "aspect_ratio"
+    t.string "frame_rate"
+    t.bigint "task_group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["task_group_id"], name: "index_shot_list_item_templates_on_task_group_id"
+  end
+
   create_table "shot_list_items", force: :cascade do |t|
     t.bigint "proposal_id"
     t.string "description"
@@ -469,6 +483,8 @@ ActiveRecord::Schema.define(version: 20190217191610) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "order"
+    t.boolean "is_template"
+    t.string "shoot_type"
     t.index ["shoot_id"], name: "index_task_groups_on_shoot_id"
   end
 
@@ -605,6 +621,7 @@ ActiveRecord::Schema.define(version: 20190217191610) do
   add_foreign_key "shoots", "companies"
   add_foreign_key "shoots", "locations"
   add_foreign_key "shoots", "projects"
+  add_foreign_key "shot_list_item_templates", "task_groups"
   add_foreign_key "shot_list_items", "proposals"
   add_foreign_key "shot_list_items", "shoots"
   add_foreign_key "shot_list_items", "task_groups"

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  description: MyString
+  background: MyString
+  item_type: MyString
+  focus_point: MyString
+  reference_image: MyString
+  aspect_ratio: MyString
+  frame_rate: MyString
+  task_group: one
+
+two:
+  description: MyString
+  background: MyString
+  item_type: MyString
+  focus_point: MyString
+  reference_image: MyString
+  aspect_ratio: MyString
+  frame_rate: MyString
+  task_group: two

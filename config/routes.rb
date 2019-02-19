@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :task_groups
+  resources :shot_list_item_templates
+  resources :task_groups do
+    get 'add_to_shoot/:shoot_id', to: 'task_groups#copy_group_to_shoot', as:'copy_to_shoot'
+    resources :shot_list_item_templates
+  end
   resources :package_types
   resources :creative_requests
   resources :discount_codes
@@ -169,6 +173,7 @@ Rails.application.routes.draw do
   get 'admin/deposit_paid/:proposal_id', to: 'admin#proposal_mark_deposit_paid', as: 'admin_proposal_mark_deposit_paid'
   get 'admin/balance_paid/:proposal_id', to: 'admin#proposal_mark_balance_paid', as: 'admin_proposal_mark_balance_paid'
   get 'admin/leads', to: 'admin#leads', as: 'admin_leads'
+  get 'admin/task_groups', to: 'admin#task_groups', as: 'admin_task_groups'
   get '/sales_materials', to: 'khaki#sales_materials', as: 'sales_materials'
   get '/faq', to: 'khaki#faq', as: 'faq'
   get '/landing_marketing', to: 'landing_pages#marketing', as: 'landing_marketing'

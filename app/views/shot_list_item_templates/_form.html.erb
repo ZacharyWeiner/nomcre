@@ -1,0 +1,49 @@
+
+<%= form_with(model: shot_list_item_template, url: task_group_shot_list_item_templates_path, method: :post, local: true) do |form| %>
+  <% if shot_list_item_template.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(shot_list_item_template.errors.count, "error") %> prohibited this shot_list_item_template from being saved:</h2>
+
+      <ul>
+      <% shot_list_item_template.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_field :description, id: :shot_list_item_template_description, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :shoot_type %>
+    <% form.text_field :focus_point, id: :shot_list_item_template_focus_point, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :focus_point %>
+    <%= form.text_field :focus_point, id: :shot_list_item_template_focus_point, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :reference_image %>
+    <%= form.text_field :reference_image, id: :shot_list_item_template_reference_image, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :aspect_ratio %>
+    <%= form.text_field :aspect_ratio, id: :shot_list_item_template_aspect_ratio, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :frame_rate %>
+    <%= form.text_field :frame_rate, id: :shot_list_item_template_frame_rate, class: 'form-control' %>
+  </div>
+  <%= form.hidden_field :task_group_id, id: :shot_list_item_template_task_group_id, :value => params[:task_group_id] %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
