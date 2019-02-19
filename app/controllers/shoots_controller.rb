@@ -206,6 +206,7 @@ class ShootsController < ApplicationController
                                     :parking_details,
                                     :rental_details,
                                     :other_details,
+                                    :script,
                                     focus_points: [])
     end
 

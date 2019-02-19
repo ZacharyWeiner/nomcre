@@ -15,6 +15,14 @@
         <p>Additional Details</p>
       </a>
     </li>
+    <% if shoot.content_type == ContentType.video %>
+       <li class="nav-item">
+        <a class="nav-link" href="#script" data-toggle="tab">
+          <i class="tim-icons"><ion-icon name="microphone"></ion-icon></i>
+          <p>Script</p>
+        </a>
+      </li>
+    <% end %>
     <li class="nav-item">
       <a class="nav-link" href="#background" data-toggle="tab">
         <i class="tim-icons"><ion-icon name="aperture"></ion-icon></i>

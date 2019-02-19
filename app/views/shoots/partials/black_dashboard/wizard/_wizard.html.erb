@@ -24,7 +24,7 @@
     <% end %>
       <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
       <div class="card-header text-center">
-        <%= render 'shoots/partials/black_dashboard/wizard/tabs' %>
+        <%= render :partial => 'shoots/partials/black_dashboard/wizard/tabs',  :locals => {shoot: shoot} %>
       </div>
       <div class="card-body">
         <div class="tab-content">
@@ -39,7 +39,16 @@
               </div>
             </div>
           </div>
-
+          <% if shoot.content_type == ContentType.video %>
+            <div class="tab-pane" id="script">
+              <h4 class="info-text"> Script </h4>
+              <div class="row justify-content-center" style="margin-top:-36px;">
+                <div class="col-lg-10 text-center">
+                  <%= form.text_area :script, id: :shoot_script_id, class: 'form-control', style:'min-height: 400px; rows: 10', class: 'form-control rounded' %>
+                </div>
+              </div>
+            </div>
+          <% end %>
          <div class="tab-pane" id="style">
             <h4 class="info-text">Tell Use About The Style Our Creative Should Use</h5>
             <div class="row justify-content-center">
