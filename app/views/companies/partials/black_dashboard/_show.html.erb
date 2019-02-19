@@ -31,17 +31,23 @@
    <div class="card-footer text-center">
     <ul class="nav nav-pills nav-pills-primary nav-pills-icons justify-content-center">
       <li class="nav-item">
-        <a class="nav-link active" href="tel:<%= @company.phone %>">
+        <% phone_link = @company.phone.nil? ? "#" : @company.phone %>
+        <% phone_state = @company.instagram.nil? ? 'disabled' : '' %>
+        <a class="nav-link active <%= phone_state %>" href="tel:<%= phone_link %>">
           <i class="tim-icons"><ion-icon name='call'></ion-icon></i> Call
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" target="_blank" href="http://<%= @company.website.gsub('http://', '') %>">
+        <% company_link = @company.website.nil? ? "#" : "http://" + @company.website.gsub('http://', '').gsub('https://', '') %>
+        <% company_state = @company.website.nil? ? 'disabled' : '' %>
+        <a class="nav-link active <%= company_state %>" target="_blank" href="<%= company_link %>">
           <i class="tim-icons"><ion-icon name='globe'></ion-icon></i> Website
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link active" target="_blank" href="https://instagram.com/<%= @company.instagram.gsub('@', "") %>">
+        <% insta_link = @company.instagram.nil? ? '#' : "https://instagram.com/<%= @company.instagram.gsub('@', "")" %>
+        <% insta_state = @company.instagram.nil? ? 'disabled' : '' %>
+        <a class="nav-link active <%= insta_state %>" target="_blank" href="<% insta_link%>">
           <i class="tim-icons"><ion-icon name='logo-instagram'></ion-icon></i> Instagram
         </a>
       </li>
