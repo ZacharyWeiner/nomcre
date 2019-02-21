@@ -70,7 +70,7 @@ class PackageTypesController < ApplicationController
   end
 
   def new_from_template
-    @project = @package_type.create_project current_user, Date.today + 60.days
+    @project = @package_type.create_project current_user, Date.today + 30.days
     redirect_to edit_project_path(@project)
   end
 

@@ -1,15 +1,21 @@
-
 <ul class="nav nav-pills nav-pills-primary nav-pills-icons justify-content-center">
   <li class="nav-item">
     <a class="nav-link nav-link-sub <%= basic_style %>" data-toggle="tab" href="#basic">
       Basic
     </a>
   </li>
-    <li class="nav-item">
-      <a class="nav-link nav-link-sub <%= shotlist_style %>" data-toggle="tab" href="#shotlist">
-        Shot List
-      </a>
-    </li>
+  <% if shoot.content_type.downcase == ContentType.video %>
+   <li class="nav-item">
+    <a class="nav-link nav-link-sub" data-toggle="tab" href="#script">
+      Script
+    </a>
+  </li>
+  <% end %>
+  <li class="nav-item">
+    <a class="nav-link nav-link-sub <%= shotlist_style %>" data-toggle="tab" href="#shotlist">
+      Shot List
+    </a>
+  </li>
   <% if current_user.user_type == 'company' && shoot.creative == nil %>
     <li class="nav-item">
       <a class="nav-link nav-link-sub <%= available_style %>" data-toggle="tab" href="#available">

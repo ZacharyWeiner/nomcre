@@ -15,12 +15,19 @@
     <%= form.label :title %>
     <%= form.text_field :title, id: :task_group_title, class: 'form-control' %>
   </div>
-
-  <%= form.hidden_field :shoot_id, id: :task_group_shoot_id, :value => shoot.id %>
+  <% if current_user.is_admin %>
+    <div class="form-group">
+    <%= form.label :content_type %>
+    <%= form.select(:shoot_type, options_for_select([ContentType.photo, ContentType.video], :selected => task_group.shoot_type),  {}, {class: 'form-control'}) %>
+  </div>
+  <% end %>
+  <% if defined? shoot %>
+    <%= form.hidden_field :shoot_id, id: :task_group_shoot_id, :value => shoot.id %>
+  <% end %>
   <% if defined? redirect %>
     <%= form.hidden_field :redirect, :value => redirect %>
   <% end %>
   <div class="actions">
-    <%= form.submit 'Add Group', class: 'btn btn-primary' %>
+    <%= form.submit 'Save Group', class: 'btn btn-primary' %>
   </div>
 <% end %>

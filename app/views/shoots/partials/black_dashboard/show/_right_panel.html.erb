@@ -87,6 +87,13 @@
             <hr>
              <%= auto_html(shoot.brief){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
           </div>
+          <% if shoot.content_type.downcase == ContentType.video %>
+          <div class="tab-pane" id="script">
+            <div class='' style='max-height: 800px; overflow-y: auto'>
+              <%= auto_html(shoot.script){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
+            </div>
+          </div>
+          <% end %>
           <div class="tab-pane <%= shotlist_style %>" id="shotlist">
             <div class='' style='max-height: 800px; overflow-y: auto'>
               <%= render :partial => 'shared/black_dashboard/shot_list_items/shoots/list', :locals => {:shoot => shoot, :shot_list_items => shoot.shot_list_items.order(:id)} %>

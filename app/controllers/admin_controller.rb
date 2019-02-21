@@ -5,6 +5,10 @@ class AdminController < ApplicationController
     @task_groups = TaskGroup.where(is_template: true)
   end
 
+  def edit_task_group
+    @task_group = TaskGroup.find(params[:id])
+  end
+
   def users
     @users = User.all.page params[:page]
   end

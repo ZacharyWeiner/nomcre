@@ -13,7 +13,9 @@
         </div>
         <div id="collapse<%= tg.id%>" class="collapse" role="tabpanel" aria-labelledby="heading<%= tg.id%>">
           <div class="card-body">
-            <%= link_to 'Add Item', new_task_group_shot_list_item_template_path(tg), style: 'pull-right' %>
+            <%= link_to "<i class='far fa-edit'></i> ".html_safe, edit_task_group_path(tg.id), style: 'pull-right' %>
+            <%= link_to "<i class='fas fa-plus'></i> ".html_safe, new_task_group_shot_list_item_template_path(tg), style: 'pull-right' %>
+            <%= link_to "<i class='far fa-trash-alt'></i> ".html_safe, task_group_path(tg), :method => :delete,  style: 'pull-right' %>
             <% tg.shot_list_item_templates.each do |slit|%>
               <div class='row' style='margin:16px;'>
                 <div class='col-md-3'>
