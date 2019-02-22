@@ -11,7 +11,7 @@
             <div class="card-title"> Click A Group To Expand It </div>
           </div>
           <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
-            <% TaskGroup.where(is_template: true).each do |tg| %>
+            <% TaskGroup.where({is_template: true, shoot_type: shoot.content_type.downcase}).each do |tg| %>
               <div class="card card-plain">
                 <div class="card-header" id="heading<%= tg.id%>" style='background: #d3d7e9'>
                   <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= tg.id%>" aria-controls="collapse<%= tg.id%>">
