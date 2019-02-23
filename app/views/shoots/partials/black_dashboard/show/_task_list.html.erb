@@ -1,3 +1,4 @@
+<% if task_groups.count > 0 %>
 <div class="card">
   <div class='card-header'>
     <div class="card-title"> Click A Group To Expand It </div>
@@ -21,3 +22,7 @@
     <% end %>
   </div>
 </div>
+<% end %>
+<% if tasks.count > 0 %>
+  <%= render :partial => 'tasks/partials/black_dashboard/task_list', :locals => {:tasks => tasks} %>
+<% end %>

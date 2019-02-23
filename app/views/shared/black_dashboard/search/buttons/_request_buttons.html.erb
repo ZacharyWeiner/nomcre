@@ -18,7 +18,7 @@
         <%= link_to "<i class='fa fa-check'> </i> Assign".html_safe, '#', class: 'btn btn-success disabled pull-right' %>
       <% else %>
       <!-- if there is a request for this user, and it has ben accepted -->
-        <%= link_to "<i class='fa fa-check'> </i> Assign".html_safe, shoot_assign_from_request_path(shoot, creative_request.id), class: 'btn btn-success pull-right' %>
+        <%= link_to "<i class='fa fa-check'> </i> Assign".html_safe, shoot_assign_from_request_path(shoot, creative_request.id), class: 'btn btn-success pull-right selectCreative' %>
       <% end %>
   <% end %>
 <% end %>

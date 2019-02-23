@@ -60,7 +60,15 @@
                 <%= !si.background.blank? ? si.background : "Creatives Choice" %>
               </td>
               <%if shoot.content_type.to_s.downcase == ContentType.video.to_s.downcase %>
-                  <td class='text-center'><span><%= si.frame_rate %></span></td>
+                  <% frame_style = 'text-primary' %>
+                  <% unless si.frame_rate.nil? %>
+                    <% if si.frame_rate.include?('60') %>
+                      <%frame_style = 'text-warning' %>
+                    <%elsif si.frame_rate.include?('120') %>
+                      <%frame_style = 'text-danger' %>
+                    <% end %>
+                  <% end %>
+                  <td class="text-center"><span class="<%= frame_style %>"><%= si.frame_rate %></span></td>
               <% end %>
               <td class="text-center">
                 <% if !si.task.nil? && !si.task.completed %>

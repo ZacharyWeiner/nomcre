@@ -1,3 +1,3 @@
 <%= link_to "<i class='fa fa-arrow-left'></i> Back To Shoot".html_safe, shoot_path(@shoot, :active => 'tasks'), class: 'btn btn-simple btn-primary' %>
-<%= render :partial => 'shoots/partials/black_dashboard/show/task_list', :locals => {task_groups: @shoot.task_groups} %>
+<%= render :partial => 'shoots/partials/black_dashboard/show/task_list', :locals => {task_groups: @shoot.task_groups, tasks: @shoot.tasks.where(task_group_id: nil)} %>
 <% render :partial => 'tasks/partials/black_dashboard/task_list', :locals => {:tasks => @tasks} %>

@@ -1,4 +1,4 @@
-
+<% task_group = TaskGroup.find(params[:task_group_id]) %>
 <%= form_with(model: shot_list_item_template, url: task_group_shot_list_item_templates_path, method: :post, local: true) do |form| %>
   <% if shot_list_item_template.errors.any? %>
     <div id="error_explanation">
@@ -16,34 +16,103 @@
     <%= form.label :description %>
     <%= form.text_field :description, id: :shot_list_item_template_description, class: 'form-control' %>
   </div>
-
-  <div class="form-group">
-    <%= form.label :shoot_type %>
-    <% form.text_field :focus_point, id: :shot_list_item_template_focus_point, class: 'form-control' %>
+  <h4>Focus Point </h4>
+  <div class='row text-center' style="margin:12px;">
+    <div class='col-md-4 col-sm-4 col-xs-4'>
+      <div class="form-check form-check-radio radio-icons">
+        <label class="form-check-label ">
+          <%= form.radio_button :focus_point, 'Left', class: 'form-check-input center'%>
+          <span class="form-check-sign"></span>
+          <i class='fas fa-arrow-left text-primary' style="font-size: 36px; margin-top: -24px;"> </i><br>
+          Left
+        </label>
+      </div>
+      <br>
+    </div>
+    <div class='col-md-4 col-sm-4 col-xs-4 '>
+      <div class="form-check form-check-radio radio-icons">
+        <label class="form-check-label ">
+          <%= form.radio_button :focus_point, 'Center', class: 'form-check-input center'%>
+          <span class="form-check-sign"></span>
+          <i class='fas fa-arrows-alt-v text-primary' style="font-size: 36px; margin-top: -24px;"> </i><br>
+          Center
+        </label>
+      </div>
+      <br>
+    </div>
+    <div class='col-md-4 col-sm-4 col-xs-4 '>
+      <div class="form-check form-check-radio radio-icons">
+        <label class="form-check-label ">
+          <%= form.radio_button :focus_point, 'Right', class: 'form-check-input center'%>
+          <span class="form-check-sign"></span>
+          <i class='fas fa-arrow-right text-primary' style="font-size: 36px; margin-top: -24px;"> </i><br>
+          Right
+        </label>
+      </div>
+      <br>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= form.label :focus_point %>
-    <%= form.text_field :focus_point, id: :shot_list_item_template_focus_point, class: 'form-control' %>
+  <h4>Aspect Ratio </h4>
+  <div class='row text-center' style="margin:12px;">
+    <div class='col-md-4 col-sm-4 col-xs-4'>
+      <div class="form-check form-check-radio radio-icons">
+        <label class="form-check-label ">
+          <%= form.radio_button :aspect_ratio, 'Portrait', class: 'form-check-input center'%>
+          <span class="form-check-sign"></span>
+          <i class='far fa-user text-primary' style="font-size: 36px; margin-top: -24px;"> </i><br>
+          Portrait
+        </label>
+      </div>
+      <br>
+    </div>
+    <div class='col-md-4 col-sm-4 col-xs-4 '>
+      <div class="form-check form-check-radio radio-icons">
+        <label class="form-check-label ">
+          <%= form.radio_button :aspect_ratio, 'Landscape', class: 'form-check-input center'%>
+          <span class="form-check-sign"></span>
+          <i class='far fa-image text-primary' style="font-size: 36px; margin-top: -24px;"> </i><br>
+          Landscape
+        </label>
+      </div>
+      <br>
+    </div>
+    <div class='col-md-4 col-sm-4 col-xs-4 '>
+      <div class="form-check form-check-radio radio-icons">
+        <label class="form-check-label ">
+          <%= form.radio_button :aspect_ratio, 'Square', class: 'form-check-input center'%>
+          <span class="form-check-sign"></span>
+          <i class='far fa-square text-primary' style="font-size: 36px; margin-top: -24px;"> </i><br>
+          Square
+        </label>
+      </div>
+      <br>
+    </div>
   </div>
 
-  <div class="form-group">
-    <%= form.label :reference_image %>
-    <%= form.text_field :reference_image, id: :shot_list_item_template_reference_image, class: 'form-control' %>
-  </div>
 
-  <div class="form-group">
-    <%= form.label :aspect_ratio %>
-    <%= form.text_field :aspect_ratio, id: :shot_list_item_template_aspect_ratio, class: 'form-control' %>
-  </div>
+ <div class="">
+  <%= form.label :reference_image %><br>
+  <%= form.file_field :reference_image, id: :shot_list_item_reference_image, class: 'form-control', onchange: "validateImage(this);", data: { max_file_size: 15.megabytes, disable_with: "<i class='fa fa-spinner fa-spin'></i> Uploading Image..." } %>
+</div>
 
-  <div class="form-group">
-    <%= form.label :frame_rate %>
-    <%= form.text_field :frame_rate, id: :shot_list_item_template_frame_rate, class: 'form-control' %>
-  </div>
+
+
+  <% if task_group.shoot_type == ContentType.video %>
+    <div class="form-group">
+      <div class='form-group'>
+        <br>
+      <label> Frame Rate </label>
+      <br>
+      <%= form.select "frame_rate", "<option>24.4 fps - Regular</option> <option style='color: orange;'>60 fps - Slow</option>
+      <option style='color: red;'>120 fps - Super Slow</option>".html_safe %>
+    </div>
+    </div>
+  <% end %>
   <%= form.hidden_field :task_group_id, id: :shot_list_item_template_task_group_id, :value => params[:task_group_id] %>
 
+  <br><br>
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: 'btn btn-primary'%>
   </div>
 <% end %>

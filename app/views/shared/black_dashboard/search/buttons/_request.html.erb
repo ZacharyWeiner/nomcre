@@ -4,7 +4,7 @@
     <%= link_to "<i class='fas fa-check'> </i> Request Sent".html_safe, shoot_path(shoot), class: 'btn btn-success disabled' %>
   <% else %>
   <!-- If the user already does NOT have a request show "request" button -->
-  <%= link_to "<i class='fa fa-plus'> </i> Send Request".html_safe, shoot_create_creative_request_path(shoot, user), class: 'btn btn-primary' %>
+  <%= link_to "<i class='fa fa-plus'> </i> Send Request".html_safe, shoot_create_creative_request_path(shoot, user), class: 'btn btn-primary selectCreative' %>
   <% end %>
 </div>
 <br>

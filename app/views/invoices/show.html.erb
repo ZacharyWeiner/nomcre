@@ -63,7 +63,7 @@
     </div>
     <div class="row">
       <div class="col-lg-8 col-sm-5">
-        <div class="col-md-6" >
+        <div class="col-md-12" >
           <p class="lead">Payment Methods:</p>
           <i class='fab fa-cc-visa fa-3x'></i>
           <i class='fab fa-cc-mastercard fa-3x'></i>
@@ -71,8 +71,10 @@
 
 
           <p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-            Nomcre uses Stripe to process online payments.
-            <br>To make an ACH Payment please contact finance@nomcre.com
+            <b>Nomcre uses Stripe to process online payments.
+            <br>To make an ACH Payment please contact finance@nomcre.com</b>
+            <br><br>
+            For questions about payment call Justin @ 312-493-5523
           </p>
         </div>
       </div>
@@ -92,12 +94,12 @@
               </td>
               <td class="right">$1,699,40</td>
             </tr> -->
-            <tr>
+            <!-- <tr>
               <td class="left">
                <strong>VAT (6%)</strong>
              </td>
              <td class="right"><%= number_to_currency(@invoice.amount * 0.06) %></td>
-           </tr>
+           </tr> -->
            <tr>
             <td class="left">
               <strong>Total</strong>

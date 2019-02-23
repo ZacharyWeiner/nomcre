@@ -19,7 +19,10 @@
             <% tg.shot_list_item_templates.each do |slit|%>
               <div class='row' style='margin:16px;'>
                 <div class='col-md-3'>
-                <%= slit.description %>
+                <%= image_tag slit.reference_image unless slit.reference_image.url.nil? %>
+                </div>
+                <div class='col-md-3'>
+                <%= auto_html(slit.description){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
                 </div>
                  <div class='col-md-3'>
                   <%= link_to 'edit', edit_task_group_shot_list_item_template_path(tg, slit)  %>

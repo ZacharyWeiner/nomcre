@@ -156,8 +156,10 @@ class Shoot < ApplicationRecord
   def assign_tasks
     self.shot_list_items.each do |sli|
       task = sli.task
-      task.user = self.creative
-      task.save!
+      unless task.nil?
+        task.user = self.creative
+        task.save!
+      end
     end
   end
 
