@@ -1,4 +1,4 @@
-<% unless (tasks.first.nil? || tasks.first.shoot.nil?) || request.path_info.include?('popped') %>
+<% unless (tasks.first.nil? || tasks.first.shoot.nil?) || request.path_info.include?('popped') || request.path_info.include?('dashboard') %>
 <%= link_to "Pop out", shoot_tasks_poppedout_path(tasks.first.shoot), class: 'btn btn-success' %>
 <% end %>
 

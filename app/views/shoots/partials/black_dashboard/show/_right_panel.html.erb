@@ -39,7 +39,7 @@
                       <div class="col-9">
                         <div class="numbers">
                           <p class="card-category">Time Of Day </p>
-                          <h4 class="card-title"><%= shoot.call_time.strftime('%l:%M %p') unless shoot.call_time.nil? %></h4>
+                          <h4 class="card-title"><%= shoot.call_time.utc.strftime('%l:%M %p') unless shoot.call_time.nil? %></h4>
                         </div>
                       </div>
                     </div>

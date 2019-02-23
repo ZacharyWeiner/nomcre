@@ -824,6 +824,7 @@ class Shoot < ApplicationRecord
       shoot.shoot_style = shoot_template.shoot_style
       shoot.user_added_shot_count_max = shoot_template.user_added_shot_count_max
       shoot.deadline = project.deadline - 5.days
+      shoot.call_time = t = Time.new(2019, 02, 24, 12, 0, 0, "+00:00")
       shoot.save!
       ShotListItem.create_all_from_shoot_template shoot_template.id, shoot.id
     end

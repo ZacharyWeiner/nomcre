@@ -2,7 +2,7 @@
   <% unless package_types.count == 0 %>
     <% package_types.each do |pt| %>
       <div class='col-md-4 text-center'>
-        <%= link_to package_type_new_project_from_template_path(pt), id: 'newProjectBtn', class: 'btn btn-primary btn-block' do %>
+        <%= link_to package_type_new_project_from_template_path(pt), class: 'btn btn-primary btn-block newProjectBtn' do %>
           <!-- TODO: Make this icon assignable -->
           <i class="fas fa-exclamation-circle fa-3x"></i>
           <br><br>

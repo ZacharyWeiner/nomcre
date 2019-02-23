@@ -23,6 +23,8 @@ class DashboardsController < ApplicationController
     if !current_user.check_schedule_added
       return redirect_to new_schedule_item_path
     end
+    task_ids = current_user.shoots.where(is_complete: nil).take(13).map{|s| s.tasks.take(10).map{|t| t.id}}[0]
+      @tasks = Task.where(id: task_ids)
   end
 
   def accounting_dashboard

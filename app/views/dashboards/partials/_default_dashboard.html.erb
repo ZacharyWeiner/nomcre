@@ -1,6 +1,6 @@
-  <div class="card card-chart">
+ <!--  <div class="card card-chart">
     <div class="card-header">
-      <h5 class="card-category">Some Relevant Chart</h5>
+      <h5 class="card-category"></h5>
       <h3 class="card-title text-primary"><i class="fas fa-check"></i> </h3>
     </div>
     <div class="card-body">
@@ -8,7 +8,7 @@
         <canvas id="chartWithNumbersAndGrid"></canvas>
       </div>
     </div>
-  </div>
+  </div> -->
   <%= render 'dashboards/partials/black_dashboard/widget_row' %>
   <div class='row'>
   <div class='col-md-6'>
@@ -16,7 +16,16 @@
   </div>
   <div class='col-md-6'>
     <%= render :partial => 'dashboards/partials/black_dashboard/tasks', :locals => {tasks: tasks} %>
+    <% if current_user.user_type.downcase == UserType.company %>
+      <% crs = CreativeRequest.where({company: current_user.company, accepted: true, approved: false}) %>
+      <%= render :partial => 'creative_requests/partials/index/company/table', :locals => {creative_requests: crs} %>
+    <% elsif current_user.user_type.downcase == UserType.creative %>
+      <% crs = CreativeRequest.where({creative: current_user, accepted: false}) %>
+      <%= render :partial => 'creative_requests/partials/index/creative/dashboard_widget', :locals => {creative_requests: crs} %>
+    <% end %>
+
   </div>
+
 </div>
 <!-- < end > -->
 <%= render 'dashboards/partials/black_dashboard/charts/company_charts_script' %>

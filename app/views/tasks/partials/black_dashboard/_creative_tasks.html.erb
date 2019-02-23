@@ -42,7 +42,7 @@
                     <tr>
                       <td>
                         <p class="title"> <%= task.project.title unless task.project.nil? %></p>
-                        <p class="text-info"><%= task.description_html.html_safe %></p>
+                        <p class="text-info"><%= auto_html(task.description){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %></p>
                       </td>
                       <td>
                       <% if !task.deadline.nil? &&  task.deadline > Date.today %>
@@ -81,7 +81,7 @@
                     <td>
                       <p class="title"> <%= task.proposal.title unless task.project.nil? %></p>
                       <p class="title"> <%= task.project.title unless task.project.nil? %></p>
-                      <p class="text-info"><%= task.description %></p>
+                      <p class="text-info"><%= auto_html(task.description){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %></p>
                     </td>
                     <td>
                       <% if !task.deadline.nil? &&  task.deadline > Date.today %>
@@ -114,7 +114,7 @@
                   <tr>
                     <td>
                       <p class="title"> <%= task.project.title unless task.project.nil? %></p>
-                      <p class="text-info"><%= task.description %></p>
+                      <p class="text-info"><%= auto_html(task.description){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %></p>
                     </td>
                     <td>
                       <p class="text-success"><i class="fa fa-clock-o"></i>  <%= time_ago_in_words((task.deadline - Date.today)) unless task.deadline.nil? %></p>

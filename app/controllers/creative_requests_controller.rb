@@ -80,12 +80,12 @@ class CreativeRequestsController < ApplicationController
   def accept
     #TODO: Implement Model Level Method
     success = @creative_request.accept
-    phrase_for_notify = success == true ? 'successfully' : 'could not be'
+    phrase_for_notify = success == true ? 'was successfully' : 'could not be'
     if success
       CreativeMailer.request_accepted(@creative_request).deliver_now!
     end
     respond_to do |format|
-      format.html { redirect_to creative_requests_path, notice: "Creative request was #{phrase_for_notify} Accepted." }
+      format.html { redirect_to creative_requests_path, notice: "Creative request #{phrase_for_notify} Accepted." }
       format.json { head :no_content }
     end
   end
