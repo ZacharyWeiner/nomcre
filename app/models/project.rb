@@ -246,19 +246,19 @@ class Project < ApplicationRecord
   end
 
   def orphan_relations
-    self.invoices.each do |i|
-      i.project_id = nil
-      i.save!
-    end
-    self.shot_list_items.each do |sli|
-        sli.task = nil
-        sli.save!
-    end
-    self.project_tasks.each do |t|
-      t.project_id = nil
-      t.shoot_id = nil
-      t.save!
-    end
+    # self.invoices.each do |i|
+    #   i.project_id = nil
+    #   i.save!
+    # end
+    # self.shot_list_items.each do |sli|
+    #     sli.task = nil
+    #     sli.save!
+    # end
+    # self.project_tasks.each do |t|
+    #   t.project_id = nil
+    #   t.shoot_id = nil
+    #   t.save!
+    # end
   end
 
   def self.create_template_for_type package_type_id
