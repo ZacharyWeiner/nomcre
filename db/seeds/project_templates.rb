@@ -63,25 +63,10 @@ excitement_default_video_shoot = Shoot.create!(project_id: excitement_default_pr
 p "----------- Package Type Excitement - Shoots Completed  ----------"
 
 p "----------- Package Type Excitement - Shot List Items  ----------"
+#logo_group = TaskGroup.create!(title: "Logo Group", shoot: excitement_default_photo_shoot, order: 1)
+#TODO: Create Logo Items
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
-                                         description: 'Sun (light) shining through person/feture',
-                                         aspect_ratio: 'portrait',
-                                         background: "From brief",
-                                         item_type: 'photo',
-                                         focus_point: 'Best Practices',
-                                         shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
-
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
-                                         description: 'Flared out staged imagery ',
-                                         aspect_ratio: 'portrait',
-                                         background: "From brief",
-                                         item_type: 'photo',
-                                         focus_point: 'Best Practices',
-                                         shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
-
+hero_group = TaskGroup.create!(title: "Hero Shots", shoot: excitement_default_photo_shoot, order: 2, shoot_type: ContentType.photo)
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'hero shot of person/feature low angle ',
                                          aspect_ratio: 'portrait',
@@ -89,7 +74,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: hero_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'hero shot of person/feature high angle ',
@@ -98,7 +84,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: hero_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'hero shot of person/feature tight angle ',
@@ -107,7 +94,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: hero_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'hero shot of person/feature wide angle ',
@@ -116,79 +104,83 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: hero_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
-                                         description: 'Smiling Interaction',
+                                         description: 'Sun (light) shining through person/feture',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: hero_group)
+
+
+establishing_group = TaskGroup.create!(title: "Excitement - Establishing", shoot: excitement_default_photo_shoot, order: 3, shoot_type: ContentType.photo)
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
-                                         description: 'multiples for motion for overlay/sequence ',
+                                         description: 'Establishing Shot of Person or Feature',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: establishing_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
-                                         description: 'shot with hands up or jumping ',
+                                         description: 'Establishing Shot of Person or Feature low ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: establishing_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
-                                         description: 'multiples for motion for overlay/sequence ',
+                                         description: 'Establishing Shot of Person or Feature mid ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: establishing_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
-                                         description: 'moment of reflection with positive mood',
+                                         description: 'Establishing Shot of Person or Feature tight',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
+                                         task_group: establishing_group)
                                          added_by_id: zack_admin.id)
-
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
-                                         description: 'use of reflection on person/subject',
+                                         description: 'Establishing Shot of Person or Feature high ',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: establishing_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
-                                         description: 'use of shaddow for person/subject',
-                                         aspect_ratio: 'portrait',
+                                         description: 'Establishing Shot of Person or Feature Wide',
+                                         aspect_ratio: 'landscape',
                                          background: "From brief",
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: establishing_group)
 
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
-                                         description: 'shot of person taking ownership ',
-                                         aspect_ratio: 'portrait',
-                                         background: "From brief",
-                                         item_type: 'photo',
-                                         focus_point: 'Best Practices',
-                                         shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
 
+
+interactions_people_group = TaskGroup.create!(title: "Excitement - Interactions with people", shoot: excitement_default_photo_shoot, order: 4, shoot_type: ContentType.photo)
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'multiple people interacting with person/feature low',
                                          aspect_ratio: 'portrait',
@@ -196,7 +188,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: interactions_people_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'multiple people interacting with person/feature high',
@@ -205,7 +198,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: interactions_people_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'multiple people interacting with person/feature tight',
@@ -214,7 +208,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: interactions_people_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'multiple people interacting with person/feature tight',
@@ -223,7 +218,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: interactions_people_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'multiple people interacting with person/feature wide',
@@ -232,7 +228,53 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: interactions_people_group)
+
+
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
+                                         description: 'Smiling Interaction',
+                                         aspect_ratio: 'portrait',
+                                         background: "From brief",
+                                         item_type: 'photo',
+                                         focus_point: 'Best Practices',
+                                         shoot_location: "On Set",
+                                         added_by_id: zack_admin.id,
+                                         task_group: interactions_people_group)
+
+
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
+                                         description: 'shot with hands up or jumping ',
+                                         aspect_ratio: 'portrait',
+                                         background: "From brief",
+                                         item_type: 'photo',
+                                         focus_point: 'Best Practices',
+                                         shoot_location: "On Set",
+                                         added_by_id: zack_admin.id,
+                                         task_group: interactions_people_group)
+
+
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
+                                         description: 'moment of reflection with positive mood',
+                                         aspect_ratio: 'portrait',
+                                         background: "From brief",
+                                         item_type: 'photo',
+                                         focus_point: 'Best Practices',
+                                         shoot_location: "On Set",
+                                         added_by_id: zack_admin.id,
+                                         task_group: interactions_people_group)
+
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
+                                         description: 'shot of person taking ownership ',
+                                         aspect_ratio: 'portrait',
+                                         background: "From brief",
+                                         item_type: 'photo',
+                                         focus_point: 'Best Practices',
+                                         shoot_location: "On Set",
+                                         added_by_id: zack_admin.id,
+                                         task_group: interactions_people_group)
+
+
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Celebration Solo',
@@ -241,7 +283,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: interactions_people_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Celebration collaborative',
@@ -250,7 +293,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: interactions_people_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Celebration collaborative wide',
@@ -259,9 +303,14 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: interactions_people_group)
 
 
+
+
+
+item_interaction_group = TaskGroup.create!(title: "Interaction With Item", shoot: excitement_default_photo_shoot, order: 3, shoot_type: ContentType.photo)
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'eyes on person/feature',
                                          aspect_ratio: 'portrait',
@@ -269,7 +318,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: item_interaction_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'captive audience (people or items)',
@@ -278,7 +328,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: item_interaction_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Straight Shot of person/feature',
@@ -287,7 +338,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: item_interaction_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Straight Shot of person/feature wide',
@@ -296,7 +348,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: item_interaction_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Straight Shot of person/feature mid',
@@ -305,7 +358,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: item_interaction_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Straight Shot of person/feature low',
@@ -314,7 +368,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: item_interaction_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Straight Shot of person/feature tight',
@@ -323,7 +378,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: item_interaction_group)
 
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
@@ -333,7 +389,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: item_interaction_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Angle Shot of Person or Feature low ',
@@ -342,7 +399,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: item_interaction_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Angle Shot of Person or Feature wide',
@@ -351,7 +409,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: item_interaction_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Angle Shot of Person or Feature tight',
@@ -360,7 +419,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: item_interaction_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Angle Shot of Person or Feature mid',
@@ -369,7 +429,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: item_interaction_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Angle Shot of Person or Feature high',
@@ -378,61 +439,64 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: item_interaction_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
-                                         description: 'Establishing Shot of Person or Feature',
+                                         description: 'Flared out staged imagery',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: item_interaction_group)
+
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
-                                         description: 'Establishing Shot of Person or Feature low ',
+                                         description: 'multiples for motion for overlay/sequence 1 (rapid fire)',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: item_interaction_group)
+
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
-                                         description: 'Establishing Shot of Person or Feature mid ',
-                                         aspect_ratio: 'portrait',
-                                         background: "From brief",
-                                         item_type: 'photo',
-                                         focus_point: 'Best Practices',
-                                         shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
-
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
-                                         description: 'Establishing Shot of Person or Feature tight',
-                                         aspect_ratio: 'portrait',
-                                         background: "From brief",
-                                         item_type: 'photo',
-                                         focus_point: 'Best Practices',
-                                         shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
-                                         description: 'Establishing Shot of Person or Feature high ',
-                                         aspect_ratio: 'portrait',
-                                         background: "From brief",
-                                         item_type: 'photo',
-                                         focus_point: 'Best Practices',
-                                         shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
-
-excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
-                                         description: 'Establishing Shot of Person or Feature Wide',
+                                         description: 'multiples for motion for overlay/sequence 2 (rapid fire)',
                                          aspect_ratio: 'landscape',
                                          background: "From brief",
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: item_interaction_group)
 
+
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
+                                         description: 'use of reflection on person/subject',
+                                         aspect_ratio: 'portrait',
+                                         background: "From brief",
+                                         item_type: 'photo',
+                                         focus_point: 'Best Practices',
+                                         shoot_location: "On Set",
+                                         added_by_id: zack_admin.id,
+                                         task_group: item_interaction_group)
+
+excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
+                                         description: 'use of shaddow for person/subject',
+                                         aspect_ratio: 'portrait',
+                                         background: "From brief",
+                                         item_type: 'photo',
+                                         focus_point: 'Best Practices',
+                                         shoot_location: "On Set",
+                                         added_by_id: zack_admin.id,
+                                         task_group: item_interaction_group)
+
+
+action_group = TaskGroup.create!(title: "Action", shoot: excitement_default_photo_shoot, order: 5)
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Action Shot Mid ',
                                          aspect_ratio: 'portrait',
@@ -440,7 +504,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: action_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Action Shot Tight ',
@@ -449,7 +514,8 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: action_group)
 
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Action Shot Wide',
@@ -458,29 +524,12 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: action_group)
 
+###########################################################################################################
 
-
-excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
-                                         description: '(Sun) Light shining through Person or Feature',
-                                         aspect_ratio: 'portrait',
-                                         background: "From brief",
-                                         item_type: 'video',
-                                         focus_point: 'Best Practices',
-                                         shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
-
-excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
-                                         description: 'Flared out Staged Imagery',
-                                         aspect_ratio: 'portrait',
-                                         background: "From brief",
-                                         item_type: 'video',
-                                         focus_point: 'Best Practices',
-                                         shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
-
-
+hero_group = TaskGroup.create!(title: "Hero Shots - Video", shoot: excitement_default_photo_shoot, order: 1, shoot_type: ContentType.video)
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Hero Shot of Person or Feature - Low Angle',
                                          aspect_ratio: 'portrait',
@@ -488,7 +537,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: hero_group)
 
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
@@ -498,7 +548,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: hero_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Hero Shot of Person or Feature - Tight Angle',
@@ -507,7 +558,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: hero_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Hero Shot of Person or Feature - Wide Angle',
@@ -516,16 +568,29 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: hero_group)
 
+creative_flair_group = TaskGroup.create!(title: "Excitement - Creative Flair", shoot: excitement_default_photo_shoot, order: 3, shoot_type: ContentType.video)
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
-                                         description: 'Smiling Interaction',
+                                         description: '(Sun) Light shining through Person or Feature',
                                          aspect_ratio: 'portrait',
                                          background: "From brief",
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: creative_flair_group)
+
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
+                                         description: 'Flared out Staged Imagery',
+                                         aspect_ratio: 'portrait',
+                                         background: "From brief",
+                                         item_type: 'video',
+                                         focus_point: 'Best Practices',
+                                         shoot_location: "On Set",
+                                         added_by_id: zack_admin.id,
+                                         task_group: creative_flair_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Motion for Overlay 1',
@@ -534,7 +599,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group:
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Motion for Overlay 2',
@@ -543,7 +609,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: creative_flair_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Motion for Overlay 3',
@@ -552,7 +619,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: creative_flair_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Motion for Overlay 4',
@@ -561,7 +629,20 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: creative_flair_group)
+
+
+people_interaction_group = TaskGroup.create!(title: "Angles of People", shoot: excitement_default_photo_shoot, order: 5, shoot_type: ContentType.video)
+excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
+                                         description: 'Smiling Interaction',
+                                         aspect_ratio: 'portrait',
+                                         background: "From brief",
+                                         item_type: 'video',
+                                         focus_point: 'Best Practices',
+                                         shoot_location: "On Set",
+                                         added_by_id: zack_admin.id,
+                                         task_group: people_interaction_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Shot of Model with hands up or jumping',
@@ -570,7 +651,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: people_interaction_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Moment of reflection with positive mood',
@@ -579,7 +661,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: people_interaction_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Use of Reflection for person or subject ',
@@ -588,7 +671,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: people_interaction_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Use of Shaddow for person or subject ',
@@ -597,7 +681,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: people_interaction_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Person or subject taking ownership',
@@ -606,7 +691,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: people_interaction_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Multiple People interacting with Subject - Low',
@@ -615,7 +701,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: people_interaction_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Multiple People interacting with Subject - High',
@@ -624,7 +711,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: people_interaction_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Multiple People interacting with Subject - Tight',
@@ -633,7 +721,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: people_interaction_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Multiple People interacting with Subject - Wide',
@@ -642,7 +731,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: people_interaction_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Cellebration Solo Panning',
@@ -651,7 +741,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: people_interaction_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Cellebration Collaboration',
@@ -660,7 +751,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: people_interaction_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Cellebration Collaboration Wide',
@@ -669,7 +761,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: people_interaction_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Eyes on Person / Feature Pull Away',
@@ -678,7 +771,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: people_interaction_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Captive Audience (People or Items)',
@@ -687,8 +781,11 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: people_interaction_group)
 
+
+straight_people_group = TaskGroup.create!(title: "Straight on of People", shoot: excitement_default_photo_shoot, order: 5, shoot_type: ContentType.video)
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Straight Shot of Person or Feature - Focus Pull ',
                                          aspect_ratio: 'portrait',
@@ -696,7 +793,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: straight_people_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Straight Shot of Person or Feature - Wide',
@@ -705,7 +803,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: straight_people_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Straight Shot of Person or Feature - Mid ',
@@ -714,7 +813,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: straight_people_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Straight Shot of Person or Feature - Low',
@@ -723,7 +823,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: straight_people_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Straight Shot of Person or Feature - Tight - Focus Pull',
@@ -732,7 +833,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: straight_people_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Straight Shot of Person or Feature - High - Focus Pull',
@@ -741,8 +843,10 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: straight_people_group)
 
+angle_people_group = TaskGroup.create!(title: "Angles of People", shoot: excitement_default_photo_shoot, order: 5)
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Angle Shot of Person or Feature - Focus Pull ',
                                          aspect_ratio: 'portrait',
@@ -750,7 +854,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: angle_people_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Angle Shot of Person or Feature - Wide',
@@ -759,7 +864,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: angle_people_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Angle Shot of Person or Feature - Mid ',
@@ -768,7 +874,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: angle_people_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Angle Shot of Person or Feature - Low',
@@ -777,7 +884,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: angle_people_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Angle Shot of Person or Feature - Tight - Focus Pull',
@@ -786,7 +894,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: angle_people_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Angle Shot of Person or Feature - High - Focus Pull',
@@ -795,8 +904,11 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: angle_people_group)
 
+
+action_group = TaskGroup.create!(title: "Action Shots", shoot: excitement_default_photo_shoot, order: 5, shoot_type: ContentType.video)
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Action Shot of Person or Feature - Tight - Focus Pull',
                                          aspect_ratio: 'portrait',
@@ -804,7 +916,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: action_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Action Shot of Person or Feature - Low - Focus Pull',
@@ -813,7 +926,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: action_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Action Shot of Person or Feature - Mid - Focus Pull',
@@ -822,7 +936,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: action_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Action Shot of Person or Feature - High - Focus Pull',
@@ -831,7 +946,8 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          item_type: 'video',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         added_by_id: zack_admin.id)
+                                         added_by_id: zack_admin.id,
+                                         task_group: action_group)
 
 
 p "----------- Package Type Excitement - Shoot List Items Completed  ----------"

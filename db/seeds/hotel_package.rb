@@ -58,8 +58,6 @@ p "----------- Package Type Hotels - Video Shot List Items  ----------"
 @zack_admin = User.where(email: 'zack@nomcre.com').first
 
 hotel_video_group_exterior = TaskGroup.create!(title: 'Hotels - Exterior', shoot: hotels_default_video_shoot, order: 1)
-
-
 hotels_video = ShotListItem.create!(shoot: hotels_default_video_shoot,
                                     task_group: hotel_video_group_exterior,
                                     description: 'Establishing Shot - Neighborhood',
@@ -231,7 +229,6 @@ hotels_video = ShotListItem.create!(shoot: hotels_default_video_shoot,
                                     frame_rate:     "24.4 - Regular Speed")
 
 hotel_video_group_neighborhood = TaskGroup.create!(title: 'Hotels - Neighborhood', shoot: hotels_default_video_shoot, order: 2)
-
 ShotListItem.create!(shoot: hotels_default_video_shoot,
                                     task_group: hotel_video_group_neighborhood,
                                     description: 'Neighborhood B-Roll Shot 1' ,
@@ -283,7 +280,6 @@ ShotListItem.create!(shoot: hotels_default_video_shoot,
                                     added_by_id: @zack_admin.id)
 
 hotel_video_group_lobby = TaskGroup.create!(title: 'Hotels - Lobby', shoot: hotels_default_video_shoot, order: 3)
-
 ShotListItem.create!(shoot: hotels_default_video_shoot,
                                     task_group: hotel_video_group_lobby,
                                     description: 'Lobby - Straight shot panning or zooming in.',
@@ -293,6 +289,7 @@ ShotListItem.create!(shoot: hotels_default_video_shoot,
                                     item_type: "video",
                                     frame_rate:"24.4 - Regular Speed",
                                     added_by_id: @zack_admin.id)
+
 ShotListItem.create!(shoot: hotels_default_video_shoot,
                                     task_group: hotel_video_group_neighborhood,
                                     description: 'Lobby - Tight shot of the welcome area or concierge (exclude any papers or computers)',
@@ -302,6 +299,7 @@ ShotListItem.create!(shoot: hotels_default_video_shoot,
                                     item_type: "video",
                                     frame_rate:"24.4 - Regular Speed",
                                     added_by_id: @zack_admin.id)
+
 ShotListItem.create!(shoot: hotels_default_video_shoot,
                                     task_group: hotel_video_group_lobby,
                                     description: 'Lobby - From Reception looking toward guest entry',
@@ -311,6 +309,7 @@ ShotListItem.create!(shoot: hotels_default_video_shoot,
                                     item_type: "video",
                                     frame_rate:"24.4 - Regular Speed",
                                     added_by_id: @zack_admin.id)
+
 ShotListItem.create!(shoot: hotels_default_video_shoot,
                                     task_group: hotel_video_group_neighborhood,
                                     description: 'Lobby - Walk through from front door to front desk',
@@ -1158,7 +1157,6 @@ ShotListItem.create!(shoot: hotels_default_video_shoot,
 
 
 hotel_video_group_trans_local_product = TaskGroup.create!(title: 'Translocal 1', shoot: hotels_default_video_shoot, order: 13)
-
 ShotListItem.create!(shoot: hotels_default_video_shoot,
                                     task_group: hotel_video_group_trans_local_product,
                                     description: 'Local Product 1 - zoom in - inside the hotel',
