@@ -7,10 +7,14 @@ class PackageTypesController < ApplicationController
   # GET /package_types
   # GET /package_types.json
   def index
-    if current_user && current_user.role == 0
-      @package_types = PackageType.all
+    if current_user
+      if current_user.role == 0
+        @package_types = PackageType.all
+      else
+         @package_types = where(show_on_index: true)
+      end
     else
-      @package_types = PackageType.where(show_on_index: true)
+      @package_types = PackageType.where(show_in_menu: true)
     end
   end
 
