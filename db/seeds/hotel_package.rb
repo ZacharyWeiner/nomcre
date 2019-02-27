@@ -1,6 +1,6 @@
 hotel_package = PackageType.create!(title: "Hotels",
                                  subtitle: "Beautiful Imagery for Better Bookings",
-                                 description: "The Nomcre way ensures that you have the assets to be agile in your marketing campaigns. We build a visual library of stories to bring to life the aspects of your property that make it unique. Nomadic capture your guest experiences, through showcasing the amenities, decor, vibe, and staff, and the surrounding neighborhood. When shooting for hotels, we create a series of visual micro-stories to drive revenue from your social channels as well as crafting beautifully constructed images to benefit all of your marketing efforts.",
+                                 description: "The Nomcre way ensures that you have the assets to be agile in your marketing campaigns. We build a visual library of stories to bring to life the aspects of your property that make it unique. Nomadic capture your guest experiences, through showcasing the ammenities, decor, vibe, and staff, and the surrounding neighborhood. When shooting for hotels, we create a series of visual micro-stories to drive revenue from your social channels as well as crafting beautifully constructed images to benefit all of your marketing efforts.",
                                  description_image: "www.nomcre.com/excitement_description image",
                                  show_in_menu: true,
                                  menu_link_text: 'Increase Your Bookings with Beautiful Imagery',
