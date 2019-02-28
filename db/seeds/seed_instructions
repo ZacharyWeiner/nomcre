@@ -7,4 +7,4 @@ seed_instructions
 
 
 
-rake db:drop && rake db:create && rake db:migrate && rake db:seed:locations && rake db:seed:pages && rake db:seed:showcase && rake db:seed:user_data && rake db:seed:project_templates
+rake db:drop && rake db:create && rake db:migrate && rake db:seed:locations && rake db:seed:pages && rake db:seed:showcase && rake db:seed:user_data && rake db:seed:project_templates && rake db:seed:custom_package_type && rake db:seed:
