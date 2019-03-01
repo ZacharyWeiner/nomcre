@@ -57,4 +57,48 @@ class PackageType < ApplicationRecord
     PackageType.create!(header_image: hi, title: 'Default', subtitle: "default", description: 'Default', max_models: 1, minimum_images: 1, minimum_videos:1, base_price: 10000)
   end
 
+
+
+  def self_destruct
+    projects = self.projects
+    projects.each do |proj|
+      invoices = proj.invoices
+      invoices.each do |i|
+        i.destroy
+      end
+      payments = proj.payments
+      payments.each do |pay|
+        pay.destroy!
+      end
+
+      shoots = proj.shoots
+      shoots.each do |shoot|
+        tgs = shoot.task_groups
+        tgs.each do |tg|
+          tg.destroy
+        end
+        slis = shoot.shot_list_items
+        slis.each do |sli|
+          sli.destroy
+        end
+        tasks = shoot.tasks
+        tasks.each do |task|
+          task.destroy
+        end
+        if shoot.chatroom
+          if shoot.chatroom.messages.count > 0
+            messages = shoot.chatroom.messages
+            messages.each do |mess|
+              mess.destroy
+            end
+          end
+          shoot.chatroom.destroy
+        end
+        shoot.destroy
+      end
+      proj.destroy
+    end
+    self.destroy
+  end
+
 end

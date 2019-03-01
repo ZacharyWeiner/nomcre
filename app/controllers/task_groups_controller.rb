@@ -99,6 +99,6 @@ class TaskGroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_group_params
-      params.require(:task_group).permit(:title, :shoot_id, :complete, :approver_id, :is_template, :shoot_type)
+      params.require(:task_group).permit(:title, :shoot_id, :complete, :approver_id, :is_template, :shoot_type, :parent_id)
     end
 end

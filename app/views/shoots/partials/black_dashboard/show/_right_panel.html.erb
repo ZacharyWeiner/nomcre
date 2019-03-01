@@ -26,73 +26,10 @@
       <div class="col-md-12">
         <div class="tab-content">
           <div class="tab-pane <%= basic_style %>" id="basic">
-            <div class='row'>
-              <div class='col-sm-6 col-md-6 col-lg-6'>
-                <div class="card card-stats">
-                  <div class="card-body  white-content rounded">
-                    <div class="row">
-                      <div class="col-3">
-                        <div class="info-icon text-center icon-primary">
-                          <i class="tim-icons"><ion-icon name='time'></ion-icon></i>
-                        </div>
-                      </div>
-                      <div class="col-9">
-                        <div class="numbers">
-                          <p class="card-category">Time Of Day </p>
-                          <h4 class="card-title"><%= shoot.call_time.utc.strftime('%l:%M %p') unless shoot.call_time.nil? %></h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class='col-sm-6 col-md-6 col-lg-6'>
-                <div class="card card-stats">
-                  <div class="card-body white-content rounded">
-                    <div class="row">
-                      <div class="col-3">
-                        <div class="info-icon text-center icon-primary">
-                          <i class="tim-icons"><ion-icon name='bonfire'></ion-icon></i>
-                        </div>
-                      </div>
-                      <div class="col-9">
-                        <div class="numbers">
-                          <p class="card-category">Background </p>
-                          <h4 class="card-title"><%= shoot.background %></h4>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class='col-sm-12 col-md-12 col-lg-12'>
-                <div class='row'>
-                  <div class='col-md-6'>
-                    <p> Instagram Inspiration </p>
-                    <div class='row'>
-                      <%= render :partial => 'shared/black_dashboard/buttons/instagram_inspiration_small', :locals => {:shoot => shoot, :project => shoot.project} %>
-                    </div>
-                  </div>
-                  <div class='col-md-6'>
-                    <p> Image Boards </p>
-                    <div class='row'>
-                     <%= render :partial => 'shared/black_dashboard/buttons/image_boards_small', :locals => {:shoot => shoot, :project => shoot.project} %>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <br>
-            <h4> Creative Brief </h4>
-            <hr>
-             <%= auto_html(shoot.brief){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
+            <%= render :partial => 'shoots/partials/black_dashboard/show/panels/basic_info', :locals => {shoot: shoot} %>
           </div>
           <% if shoot.content_type.downcase == ContentType.video %>
-          <div class="tab-pane" id="script">
-            <div class='' style='max-height: 800px; overflow-y: auto'>
-              <%= auto_html(shoot.script){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
-            </div>
-          </div>
+            <%= render :partial => 'shoots/partials/black_dashboard/show/panels/script', :locals => {shoot: shoot} %>
           <% end %>
           <div class="tab-pane <%= shotlist_style %>" id="shotlist">
             <div class='' style='max-height: 800px; overflow-y: auto'>
@@ -100,26 +37,7 @@
             </div>
           </div>
           <div class="tab-pane <%= tasks_style %>" id="tasks">
-            <%if shoot.creative != nil %>
-              <% if shoot.is_editable %>
-                <button id='taskButton' class='btn btn-primary'> New Task </button>
-                <%= render :partial => 'tasks/partials/black_dashboard/shared/form_modal', :locals => {:shoot => shoot} %>
-              <% end %>
-              <% if shoot.task_groups.count > 0 %>
-                <%= render :partial => 'shoots/partials/black_dashboard/show/task_list', :locals => {task_groups: shoot.task_groups} %>
-              <% else %>
-                <%= render :partial => 'tasks/partials/black_dashboard/task_list', :locals => {tasks: shoot.tasks} %>
-              <% end %>
-            <% else %>
-            <br>
-              <div class="alert alert-info">
-                <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
-                  <i class="tim-icons "></i>
-                </button>
-                <span>
-                  <b> Uh Oh! </b> <br> The tasks for this project will be created as soon as you pick a creative.</span>
-              </div>
-            <% end %>
+           <%= render :partial => 'shoots/partials/black_dashboard/show/panels/tasks', :locals => {shoot: shoot} %>
           </div>
           <div class="tab-pane <%= available_style %>" id="available">
             <%= render :partial => 'shoots/partials/black_dashboard/show/tabs/creatives_for_request', :locals => {shoot: shoot} %>

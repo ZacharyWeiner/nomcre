@@ -1,0 +1,25 @@
+<div class="card">
+  <div class='card-header'>
+    <div class="card-title"> Click A Group To Expand It </div>
+  </div>
+  <div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
+    <% task_groups.order(order: :desc).each do |group| %>
+      <% if group.children.count > 0 %>
+        <% group.children.order(order: :desc).each do |child| %>
+          <div id="accordion2" role="tablist" aria-multiselectable="true" class="card-collapse">
+          <%= render :partial => 'task_groups/partials/black_dashboard/task_group', :locals => {task_group: child, accordion: 'accordion2'} %>
+            XXX
+          </div>
+        <% end %>
+      <% end %>
+      <%= render :partial => 'task_groups/partials/black_dashboard/task_group', :locals => {task_group: group, accordion: 'accordion'} %>
+    <% end %>
+  </div>
+</div>
+
+
+
+
+
+
+

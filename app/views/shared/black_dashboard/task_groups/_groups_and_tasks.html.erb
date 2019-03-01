@@ -1,0 +1,48 @@
+<div class="card"> <!-- Card For groups and Tasks -->
+  <div class="card-header">
+    <h3 class="card-title"> Task Groups </h3>
+  </div>
+  <div id="accordion_<%= shoot.id %>" role="tablist" aria-multiselectable="true" class="card-collapse"> <!-- Accordion for groups -->
+    <% shoot.task_groups.where(parent_id: nil).each do |group| %>
+      <div class="card card-plain">
+        <div class="card-header" id="heading_<%= group.id %>"> <!-- group collapseable element -->
+          <a data-toggle="collapse" data-parent="#accordion_<%= shoot.id %>" href="#collapse_<%= group.id %>" aria-expanded="false" aria-controls="collapse_<%= group.id %>">
+            <%= group.title %>
+            <i class="fa fa-caret-down"></i>
+          </a>
+        </div>
+        <div id="collapse_<%= group.id %>" class="collapse" role="tabpanel" aria-labelledby="heading_<%= group.id %>">
+          <div class="card-body">
+           <!-- Child Task Groups -->
+                <div id="accordion_<%= group.id %>" role="tablist" aria-multiselectable="true" class="card-collapse"> <!-- Accordion for groups -->
+                  <% group.children.each do |child| %>
+                    <div class="card card-plain">
+                      <div class="card-header" id="heading_<%= child.id %>"> <!-- group collapseable element -->
+                        <a data-toggle="collapse" data-parent="#accordion_<%= group.id %>" href="#collapse_<%= child.id %>" aria-expanded="false" aria-controls="collapse_<%= child.id %>">
+                          <%= child.title %>
+                          <i class="fa fa-caret-down"></i>
+                        </a>
+                      </div>
+                      <div id="collapse_<%= child.id %>" class="collapse" role="tabpanel" aria-labelledby="heading_<%= child.id %>">
+                        <div class="card-body">
+                         <!-- Child Task Groups -->
+                            <%= render :partial => 'tasks/partials/black_dashboard/task_list', :locals => {tasks: child.tasks} %>
+                         <!-- Tasks In the Group -->
+                        </div>
+                      </div>
+                    </div>
+                  <% end %>
+                </div>
+                <%= render :partial => 'tasks/partials/black_dashboard/task_list', :locals => {tasks: group.tasks} %>
+           <!-- Tasks In the Group -->
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= render :partial => 'tasks/partials/black_dashboard/task_list', :locals => {tasks: shoot.tasks.where(task_group: nil)} %>
+  </div>
+</div>
+
+
+
+

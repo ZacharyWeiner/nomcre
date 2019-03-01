@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190219173116) do
+ActiveRecord::Schema.define(version: 20190228183355) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -486,6 +486,7 @@ ActiveRecord::Schema.define(version: 20190219173116) do
     t.integer "order"
     t.boolean "is_template"
     t.string "shoot_type"
+    t.bigint "parent_id"
     t.index ["shoot_id"], name: "index_task_groups_on_shoot_id"
   end
 

@@ -1,0 +1,6 @@
+<%= render :partial => 'shoots/partials/black_dashboard/shared/new_task', :locals => {shoot: shoot} %>
+<%if shoot.creative != nil %>
+  <%= render :partial => 'shared/black_dashboard/task_groups/groups_and_tasks', :locals => {shoot: shoot} %>
+<% else %>
+  <%= render :partial => 'tasks/partials/black_dashboard/shared/no_tasks' %>
+<% end %>

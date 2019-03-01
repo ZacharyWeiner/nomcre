@@ -64,6 +64,14 @@ class ShotListItem < ApplicationRecord
     p 'Creating Shot List Items'
     shoot_template = Shoot.find(shoot_template_id)
     shoot = Shoot.find(shoot_id)
+    shoot_template.task_groups.where(parent_id: nil).each do |tg|
+      shoot.task_groups << TaskGroup.create!(title: tg.title, shoot: shoot, order: tg.order)
+    end
+    shoot_template.task_groups.where.not(parent_id: nil).each do |tg|
+      parent = shoot.task_groups.where(title:tg.parent.title).first
+      new_tg = TaskGroup.create!(title: tg.title, order: tg.order, shoot: shoot, parent: parent)
+    end
+    byebug
     p "Items Count: #{shoot_template.shot_list_items.count}"
     admin = User.where(role:0).first
     shoot_template.shot_list_items.each do |sli|
