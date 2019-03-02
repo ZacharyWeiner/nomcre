@@ -1,20 +1,22 @@
 
 zack_admin = User.where(email: 'zack@nomcre.com').first
-
 p "----------- Package Type Modeling Agency 1  ----------"
-modeling_agency_2 = PackageType.create!(title: "Modeling Agency 2",
+modeling_agency_2 = PackageType.create!(title: "Modeling Agency Video Compilations",
                  subtitle: "Video Comp Cards for Agency Talent",
-                 description: "Shoot Up To 8 Models for Video Comp Cards in a Single Date.today",
+                 description: "Nomcre has perfected the process to transform your entire talent portfolio into booking success with cinematic highlight reels shot to showcase every individual you represent.  These short cinema quality films increase your models visibility while ensuring your status as an industry leader. ",
                  description_image: "",
                  show_in_menu: false,
-                 menu_link_text: 'Get Those Video Comp Cards',
+                 menu_link_text: 'Video Compilations to Showcase Your Talent',
+                 example_image_description: "Using the Nomadic Creative process, we execute with short time on set for maximum visibility. In a single day of shooting we can produce compilation of highlights for between 10 and 20 of you models, helping the booking agents to choose your talent over your competition.  Building your video library is a critical next step in moving your agency forward. ",
+                 example_video_description: "The Nomcre Way plus our custom and tested process ensures your models get hired on the energy, talent and poise that you have trained them for.next level, here you come. Branded, on budget, and in your own style, give your booking team the assets they needs. ",
                  minimum_images: 25,
                  minimum_videos: 8,
                  max_models: 8,
                  base_price: 5000,
-                 order: 1,
+                 order: 4,
                  show_on_index: true,
-                 call_to_action_text: "Bring Video Comp Cards To Your Agency Today!",
+                 show_in_menu: true,
+                 call_to_action_text: "Transform How Casting views your Talent Today!",
                  header_image: HeaderImage.first)
 
 
