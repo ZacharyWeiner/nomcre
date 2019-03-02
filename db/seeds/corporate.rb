@@ -3,8 +3,8 @@
 
 
 p "----------- Package Type maverick - Default Package  ----------"
-maverick_package = PackageType.create!(title: "Corporate - Maverick",
-                                 subtitle: "Create A Corporate Package!",
+maverick_package = PackageType.create!(title: "Corporate Package",
+                                 subtitle: "Create A Video and Asset Library to Showcase Your Corporate Ethos!",
                                  description: "Showcase you business and company culture through a series of engaging videos and photos optimized for digital consumption.",
                                  description_image: "www.nomcre.com/excitement_description image",
                                  show_in_menu: false,
@@ -23,7 +23,7 @@ p "----------- Package Type maverick - Default Project  ----------"
 
 custom_maverick_project = Project.create!(package_type_id: maverick_package.id,
                                      company_id: 1,
-                                     title: "Maverick Package - Default Template",
+                                     title: "Corporate Package - Default Template",
                                      brief: 'Paste your creative brief here, or call us to help create one.',
                                      deadline: Date.today + 60.days,
                                      price: maverick_package.base_price,
