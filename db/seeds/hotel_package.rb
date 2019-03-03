@@ -10,6 +10,7 @@ hotel_package = PackageType.create!(title: "Hotels",
                                  base_price: 15000,
                                  order: 2,
                                  show_on_index: true,
+                                 add_default_shot_list: true,
                                  call_to_action_text: "Get More Bookings Today!",
                                  header_image: HeaderImage.first)
 
@@ -18,13 +19,41 @@ p "----------- Package Type Hotels - Default Project  ----------"
 hotels_default_project = Project.create!(package_type_id: hotel_package.id,
                                      company_id: 1,
                                      title: "Hotel Package Project - Default Template",
-                                     brief: 'Paste your creative brief here, or call us to help create one.',
                                      deadline: Date.today + 60.days,
                                      price: hotel_package.base_price,
                                      is_complete: false,
                                      max_user_shot_list: 25,
                                      is_template: true,
-                                     is_default_template: true)
+                                     is_default_template: true,
+                                      brief: "Describe the vibe of the hotel and guest experience, feel free to provide some links or visual expamples
+                                            What make the property unique?
+                                            Who are your top two types of guest profiles?
+                                            What memories do you want your guests to take home with them?
+                                            What is the best way this location creates repeat business?
+                                            What type of guest group are you looking to increase bookings?
+                                            Do you have a special holiday or event that the propperty really gets excited about?
+
+
+
+
+
+
+                                            Is there a special drink at the bar that is a 'must have'?
+                                            Are there any major obstructions in viewing the main exterior?
+                                            Are there any major shaddows cast on the entrance exterior during the day?
+
+                                            What exterior features should we absolutely capture?
+                                            At what time is ammenitiy 1 available with low traffic and noise
+                                            At what time is ammenitiy 2 available with low traffic and noise
+                                            At what time is ammenitiy 3 available with low traffic and noise
+
+                                            At what time of day is the lobby most photogenic?
+                                            What decor features should we absolutely capture?
+                                            What time of day is Guest Room 1 most photogenic?
+                                            What time of day is Guest Room 2 most photogenic?
+                                            What time of day is Guest Room 3 most photogenic?
+                                            What are the names of the staff members (bar, restauraunt, valet, bellhops) are planned to be in the shoot?
+                                            Is there any anticipated construction in the near future?")
 
 p "----------- Package Type Hotels - Default Photo Shoot  ----------"
 

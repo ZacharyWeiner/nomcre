@@ -70,6 +70,11 @@
   </div>
 
   <div class="form-group">
+    <%= form.label :add_default_shot_list%>
+    <%= form.check_box :add_default_shot_list, id: :add_default_shot_list %>
+  </div>
+
+  <div class="form-group">
     <%= form.label :menu_link_text %>
     <%= form.text_area :menu_link_text, id: :package_type_menu_link_text, class: 'form-control' %>
   </div>

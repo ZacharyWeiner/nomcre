@@ -15,8 +15,8 @@ modeling_agency_2 = PackageType.create!(title: "Modeling Agency Video Compilatio
                  base_price: 5000,
                  order: 4,
                  show_on_index: true,
-                 show_in_menu: true,
                  call_to_action_text: "Transform How Casting views your Talent Today!",
+                 add_default_shot_list: false,
                  header_image: HeaderImage.first)
 
 

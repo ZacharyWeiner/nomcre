@@ -90,7 +90,26 @@ class PackageTypesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def package_type_params
-      params.require(:package_type).permit(:title, :subtitle, :description, :description_image, :example_image, :example_video, :header_image_id, :show_in_menu, :menu_link_text, :minimum_images, :minimum_videos, :max_models, :base_price, :order, :example_video_description, :example_image_description, :example_video_thumbnail, :show_on_index, :call_to_action_text)
+      params.require(:package_type).permit(:title,
+                                          :subtitle,
+                                          :description,
+                                          :description_image,
+                                          :example_image,
+                                          :example_video,
+                                          :header_image_id,
+                                          :show_in_menu,
+                                          :menu_link_text,
+                                          :minimum_images,
+                                          :minimum_videos,
+                                          :max_models,
+                                          :base_price,
+                                          :order,
+                                          :example_video_description,
+                                          :example_image_description,
+                                          :example_video_thumbnail,
+                                          :show_on_index,
+                                          :call_to_action_text,
+                                          :add_default_shot_list)
     end
 
     def authorize

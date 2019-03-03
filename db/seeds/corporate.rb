@@ -14,6 +14,7 @@ maverick_package = PackageType.create!(title: "Corporate Package",
                                  max_models: 0,
                                  base_price: 12500,
                                  order: 9,
+                                 add_default_shot_list: true,
                                  show_on_index: true,
                                  call_to_action_text: "Create Your Corporate Package Now!",
                                  header_image: HeaderImage.first)
@@ -65,10 +66,9 @@ maverick_default_video_shoot = Shoot.create!(project_id: custom_maverick_project
 
 
 p "----------- Package Type maverick - Default Video Shot List  ----------"
-
 @zack_admin = User.where(email: 'zack@nomcre.com').first
 
-jabil_scripted = TaskGroup.create!(title: 'Client Executive Scripted', shoot: maverick_default_video_shoot, order: 1, shoot_style: ContentType.video)
+jabil_scripted = TaskGroup.create!(title: 'Client Executive Scripted', shoot: maverick_default_video_shoot, order: 1, shoot_type: ContentType.video)
 maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
                                     task_group: jabil_scripted,
                                     description: 'Client Executive Script 1',
@@ -81,7 +81,7 @@ maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
 
 
 maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
-                                    task_group: jabil_group,
+                                    task_group: jabil_scripted,
                                     description: 'Client Executive Office B-Roll 1 ',
                                     aspect_ratio: 'landscape',
                                     background: 'on site',
@@ -91,7 +91,7 @@ maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
                                     added_by_id: @zack_admin.id)
 
 maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
-                                    task_group: jabil_group,
+                                    task_group: jabil_scripted,
                                     description: 'Client Executive Office B-Roll 2',
                                     aspect_ratio: 'landscape',
                                     background: 'on site',
@@ -101,7 +101,7 @@ maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
                                     added_by_id: @zack_admin.id)
 
 maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
-                                    task_group: jabil_group,
+                                    task_group: jabil_scripted,
                                     description: 'Client Executive Office B-Roll 3 (Slow Motion)',
                                     aspect_ratio: 'landscape',
                                     background: 'on site',
@@ -111,7 +111,7 @@ maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
                                     added_by_id: @zack_admin.id)
 
 maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
-                                    task_group: jabil_group,
+                                    task_group: jabil_scripted,
                                     description: 'Client Executive Office B-Roll 4 (Slow Motion)',
                                     aspect_ratio: 'landscape',
                                     background: 'on site',
@@ -214,7 +214,7 @@ maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
                                     frame_rate: "24.4 - Regular Speed",
                                     added_by_id: @zack_admin.id)
 
-jabil_script_b_roll = TaskGroup.create!(title: 'Client Executive Scripted - B Roll', shoot: maverick_default_video_shoot, order: 2, shoot_style: ContentType.video)
+jabil_script_b_roll = TaskGroup.create!(title: 'Client Executive Scripted - B Roll', shoot: maverick_default_video_shoot, order: 2, shoot_type: ContentType.video)
 maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
                                     task_group: jabil_script_b_roll,
                                     description: 'B-Roll for Consulting as a Serice',
@@ -227,7 +227,7 @@ maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
 
 
 maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
-                                    task_group: jabil_group,
+                                    task_group: jabil_script_b_roll,
                                     description: 'Client Executive B Roll For Off The Cuff',
                                     aspect_ratio: 'landscape',
                                     background: 'on site',
@@ -280,7 +280,7 @@ maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
                                     added_by_id: @zack_admin.id)
 
 
-jabil_unscripted = TaskGroup.create!(title: 'Client Executive Un-scripted', shoot: maverick_default_video_shoot, order: 3, shoot_style: ContentType.video)
+jabil_unscripted = TaskGroup.create!(title: 'Client Executive Un-scripted', shoot: maverick_default_video_shoot, order: 3, shoot_type: ContentType.video)
 maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
                                     task_group: jabil_unscripted,
                                     description: 'Client Executive Off the cuff 1 ',
@@ -377,7 +377,7 @@ maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
                                     frame_rate: "24.4 - Regular Speed",
                                     added_by_id: @zack_admin.id)
 
-jabil_unscript_b_roll = TaskGroup.create!(title: 'Jabil Unscripted - B Roll', shoot: maverick_default_video_shoot, order: 2, shoot_style: ContentType.video)
+jabil_unscript_b_roll = TaskGroup.create!(title: 'Jabil Unscripted - B Roll', shoot: maverick_default_video_shoot, order: 2, shoot_type: ContentType.video)
 maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
                                     task_group: jabil_unscript_b_roll,
                                     description: 'Client Executive Office B-Roll 6',
@@ -449,7 +449,7 @@ maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
                                     added_by_id: @zack_admin.id)
 
 
-jabil_unscript_b_roll = TaskGroup.create!(title: 'Client SE - Scripted & B Roll', shoot: maverick_default_video_shoot, order: 6, shoot_style: ContentType.video)
+jabil_unscript_b_roll = TaskGroup.create!(title: 'Client SE - Scripted & B Roll', shoot: maverick_default_video_shoot, order: 6, shoot_type: ContentType.video)
 maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
                                     task_group: jabil_unscript_b_roll,
                                     description: 'Client SE Script 1  ',
@@ -493,7 +493,7 @@ maverick_video_clip = ShotListItem.create!(shoot: maverick_default_video_shoot,
 
 
 
-jabil_office_photos = TaskGroup.create!(title: 'Client Executive Office Photos', shoot: maverick_default_photo_shoot, order: 1, shoot_style: ContentType.photo)
+jabil_office_photos = TaskGroup.create!(title: 'Client Executive Office Photos', shoot: maverick_default_photo_shoot, order: 1, shoot_type: ContentType.photo)
 maverick_jabil_photo = ShotListItem.create!(shoot: maverick_default_photo_shoot,
                                     task_group: jabil_office_photos,
                                     description: 'Exterior',
@@ -573,7 +573,7 @@ maverick_jabil_photo = ShotListItem.create!(shoot: maverick_default_photo_shoot,
                                      added_by_id: @zack_admin.id)
 
 
-jabil_executive_photos = TaskGroup.create!(title: 'Jabil Office Photos', shoot: maverick_default_photo_shoot, order: 1, shoot_style: ContentType.photo)
+jabil_executive_photos = TaskGroup.create!(title: 'Jabil Office Photos', shoot: maverick_default_photo_shoot, order: 1, shoot_type: ContentType.photo)
 maverick_jabil_photo = ShotListItem.create!(shoot: maverick_default_photo_shoot,
                                     task_group: jabil_executive_photos,
                                     description: 'Executive 1 - Photo 1 ',

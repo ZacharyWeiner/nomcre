@@ -17,6 +17,7 @@ excitement = PackageType.create!(title: "Excitement",
                                  base_price: 12000,
                                  order: 1,
                                  show_on_index: true,
+                                 add_default_shot_list: true,
                                  call_to_action_text: "Create Some Excitement Now!",
                                  header_image: HeaderImage.first)
 
@@ -156,8 +157,9 @@ excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          item_type: 'photo',
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
-                                         task_group: establishing_group)
+                                         task_group: establishing_group,
                                          added_by_id: zack_admin.id)
+
 excitement_photo = ShotListItem.create!(shoot: excitement_default_photo_shoot,
                                          description: 'Establishing Shot of Person or Feature high ',
                                          aspect_ratio: 'portrait',
@@ -600,7 +602,7 @@ excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          focus_point: 'Best Practices',
                                          shoot_location: "On Set",
                                          added_by_id: zack_admin.id,
-                                         task_group:
+                                         task_group:creative_flair_group)
 
 excitement_video = ShotListItem.create!(shoot: excitement_default_video_shoot,
                                          description: 'Motion for Overlay 2',

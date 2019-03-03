@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190228183355) do
+ActiveRecord::Schema.define(version: 20190303201221) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -240,6 +240,7 @@ ActiveRecord::Schema.define(version: 20190228183355) do
     t.string "example_video_thumbnail"
     t.boolean "show_on_index"
     t.text "call_to_action_text"
+    t.boolean "add_default_shot_list"
     t.index ["header_image_id"], name: "index_package_types_on_header_image_id"
   end
 

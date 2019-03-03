@@ -10,6 +10,7 @@ custom_package = PackageType.create!(title: "Custom",
                                  base_price: 1,
                                  order: 9,
                                  show_on_index: true,
+                                 add_default_shot_list: true,
                                  call_to_action_text: "Create your Custom Package Now!",
                                  header_image: HeaderImage.first)
 
