@@ -85,88 +85,88 @@ collection_item = CollectionItem.create!(user_id: mariah.id,
                                           item_type: 'photo')
 
   collection = Collection.create!(user_id: mariah.id, title: 'Fashion', description: 'Collection of photos with fashion subjects')
-  # collection_item = CollectionItem.create!(user_id: mariah.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/56/lauren_sarihenna1sepia_web.jpg',
-  #                                          is_header: true,
-  #                                         item_type: 'photo')
-  # collection_item = CollectionItem.create!(user_id: mariah.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/58/apryl_8_web.jpg',
-  #                                          is_header: false,
-  #                                         item_type: 'photo')
-  # collection_item = CollectionItem.create!(user_id: mariah.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/59/Robdechi_Sept086.jpg',
-  #                                          is_header: false,
-  #                                         item_type: 'photo')
-  # collection_item = CollectionItem.create!(user_id: mariah.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/63/cody1.jpg',
-  #                                          is_header: false,
-  #                                         item_type: 'photo')
-  # collection_item = CollectionItem.create!(user_id: mariah.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/64/chc23.jpg',
-  #                                          is_header: false,
-  #                                         item_type: 'photo')
-  # collection_item = CollectionItem.create!(user_id: mariah.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/61/ba7.jpg',
-  #                                          is_header: false,
-  #                                         item_type: 'photo')
-  # collection_item = CollectionItem.create!(user_id: mariah.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/60/chc15.jpg',
-  #                                          is_header: false,
-  #                                         item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: mariah.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/56/lauren_sarihenna1sepia_web.jpg',
+                                           is_header: true,
+                                          item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: mariah.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/58/apryl_8_web.jpg',
+                                           is_header: false,
+                                          item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: mariah.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/59/Robdechi_Sept086.jpg',
+                                           is_header: false,
+                                          item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: mariah.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/63/cody1.jpg',
+                                           is_header: false,
+                                          item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: mariah.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/64/chc23.jpg',
+                                           is_header: false,
+                                          item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: mariah.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/61/ba7.jpg',
+                                           is_header: false,
+                                          item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: mariah.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/60/chc15.jpg',
+                                           is_header: false,
+                                          item_type: 'photo')
 
   collection = Collection.create!(user_id: mariah.id, title: 'Portraiture', description: 'Collection of photos with people as subjects')
-  # collection_item = CollectionItem.create!(user_id: mariah.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/72/linden_adamfriedman.jpg',
-  #                                          is_header: true,
-  #                                         item_type: 'photo')
-  # collection_item = CollectionItem.create!(user_id: mariah.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/73/ba2.jpg',
-  #                                          is_header: false,
-  #                                         item_type: 'photo')
-  # collection_item = CollectionItem.create!(user_id: mariah.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/74/boban1.jpg',
-  #                                          is_header: false,
-  #                                         item_type: 'photo')
-  # collection_item = CollectionItem.create!(user_id: mariah.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/75/stokes1.jpg',
-  #                                          is_header: false,
-  #                                         item_type: 'photo')
-  # collection_item = CollectionItem.create!(user_id: mariah.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/76/sam3.jpg',
-  #                                          is_header: false,
-  #                                         item_type: 'photo')
-  # collection_item = CollectionItem.create!(user_id: mariah.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/77/ln.jpg',
-  #                                          is_header: false,
-  #                                         item_type: 'photo')
-  # collection_item = CollectionItem.create!(user_id: mariah.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/78/NAE04250e2sgallery.jpg',
-  #                                          is_header: false,
-  #                                         item_type: 'photo')
-  # collection_item = CollectionItem.create!(user_id: mariah.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/79/dani_2up_web.jpg',
-  #                                          is_header: false,
-  #                                         item_type: 'photo')
-  # collection_item = CollectionItem.create!(user_id: mariah.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/81/derek2.jpg',
-  #                                          is_header: false,
-  #                                         item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: mariah.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/72/linden_adamfriedman.jpg',
+                                           is_header: true,
+                                          item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: mariah.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/73/ba2.jpg',
+                                           is_header: false,
+                                          item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: mariah.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/74/boban1.jpg',
+                                           is_header: false,
+                                          item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: mariah.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/75/stokes1.jpg',
+                                           is_header: false,
+                                          item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: mariah.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/76/sam3.jpg',
+                                           is_header: false,
+                                          item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: mariah.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/77/ln.jpg',
+                                           is_header: false,
+                                          item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: mariah.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/78/NAE04250e2sgallery.jpg',
+                                           is_header: false,
+                                          item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: mariah.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/79/dani_2up_web.jpg',
+                                           is_header: false,
+                                          item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: mariah.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/81/derek2.jpg',
+                                           is_header: false,
+                                          item_type: 'photo')
 
 
   p"----------- archer -------------"
@@ -188,32 +188,32 @@ collection_item = CollectionItem.create!(user_id: mariah.id,
                                        end_date: Date.today + 1.year)
 
   collection = Collection.create!(user_id: archer.id, title: "Hawai'i", description: "Collection of photos  from Hawai'i")
-  # collection_item = CollectionItem.create!(user_id: archer.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/89/Wailua_Falls.jpg',
-  #                                          is_header: true,
-  #                                         item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: archer.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/89/Wailua_Falls.jpg',
+                                           is_header: true,
+                                          item_type: 'photo')
 
-  # collection_item = CollectionItem.create!(user_id: archer.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/138/Black_Sand.jpg',
-  #                                          is_header: false,
-  #                                         item_type: 'photo')
-  # collection_item = CollectionItem.create!(user_id: archer.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/139/Hamoa_Beach.jpg',
-  #                                          is_header: false,
-  #                                         item_type: 'photo')
-  # collection_item = CollectionItem.create!(user_id: archer.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/140/Makawao_Shooting_Star.jpg',
-  #                                          is_header: false,
-  #                                         item_type: 'photo')
-  # collection_item = CollectionItem.create!(user_id: archer.id,
-  #                                         collection_id: collection.id,
-  #                                         remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/141/Veuve_Cabana.jpg',
-  #                                          is_header: false,
-  #                                         item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: archer.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/138/Black_Sand.jpg',
+                                           is_header: false,
+                                          item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: archer.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/139/Hamoa_Beach.jpg',
+                                           is_header: false,
+                                          item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: archer.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/140/Makawao_Shooting_Star.jpg',
+                                           is_header: false,
+                                          item_type: 'photo')
+  collection_item = CollectionItem.create!(user_id: archer.id,
+                                          collection_id: collection.id,
+                                          remote_file_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/file/141/Veuve_Cabana.jpg',
+                                           is_header: false,
+                                          item_type: 'photo')
 
 
   p"----------- nick -------------"
@@ -297,13 +297,13 @@ collection = Collection.create!(user_id: abe.id, title: 'Commercials / Promos', 
 #                                         collection_id: collection.id,
 #                                         remote_video_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/video/85/DADDY_BEARDS_2017.mp4',
 #                                         is_header: false,
-#                                         item_type: 'photo')
+#                                         item_type: 'video')
 
 # collection_item = CollectionItem.create!(user_id: abe.id,
 #                                         collection_id: collection.id,
 #                                         remote_video_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/video/85/DADDY_BEARDS_2017.mp4',
 #                                         is_header: false,
-#                                         item_type: 'photo')
+#                                         item_type: 'video')
 
 
 
