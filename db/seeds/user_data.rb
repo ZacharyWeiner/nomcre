@@ -458,11 +458,11 @@ collection_item = CollectionItem.create!(user_id: abe.id,
                                           is_header: false,
                                           item_type: 'photo')
 
-  collection_item = CollectionItem.create!(user_id: alex.id,
-                                          collection_id: collection.id,
-                                          remote_video_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/video/171/ANDY_MULTI_LOCATION_AD2_COLOUR.mp4' ,
-                                          is_header: false,
-                                          item_type: 'photo')
+  # collection_item = CollectionItem.create!(user_id: alex.id,
+  #                                         collection_id: collection.id,
+  #                                         remote_video_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/video/171/ANDY_MULTI_LOCATION_AD2_COLOUR.mp4' ,
+  #                                         is_header: false,
+  #                                         item_type: 'video')
 
   collection_item = CollectionItem.create!(user_id: alex.id,
                                           collection_id: collection.id,
