@@ -68,7 +68,6 @@ class TaskGroupsController < ApplicationController
   end
 
   def copy_group_to_shoot
-    byebug
     task_group = TaskGroup.find(params[:task_group_id])
     shoot = Shoot.find(params[:shoot_id])
 

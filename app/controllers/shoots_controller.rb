@@ -66,7 +66,6 @@ class ShootsController < ApplicationController
     end
     respond_to do |format|
       saved = @shoot.save!
-      byebug
       if saved
         if @shoot.project.require_update_locations
           @shoot.project.update_project_shoot_locations @shoot.location.id
