@@ -71,7 +71,6 @@ class ShotListItem < ApplicationRecord
       parent = shoot.task_groups.where(title:tg.parent.title).first
       new_tg = TaskGroup.create!(title: tg.title, order: tg.order, shoot: shoot, parent: parent)
     end
-    byebug
     p "Items Count: #{shoot_template.shot_list_items.count}"
     admin = User.where(role:0).first
     shoot_template.shot_list_items.each do |sli|
