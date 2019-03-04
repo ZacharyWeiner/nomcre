@@ -213,10 +213,17 @@ class Shoot < ApplicationRecord
   def deconstruct
     orphan_relations
     destroy_chatroom
+    destroy_groups
     if self.project.price > 0
       if !self.project.deposit_invoice.nil? && !self.project.balance_invoice.nil?
         self.project.update_price(self.project.price - self.price)
       end
+    end
+  end
+
+  def destroy_groups
+    self.task_groups.each do |tg|
+      tg.destroy
     end
   end
 
