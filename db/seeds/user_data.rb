@@ -512,23 +512,23 @@ collection_item = CollectionItem.create!(user_id: abe.id,
                                           is_header: false,
                                           item_type: 'photo')
 
-  collection_item = CollectionItem.create!(user_id: alex.id,
-                                          collection_id: collection.id,
-                                          remote_video_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/video/173/DEST_BARCELONA_V5_FBShort.mp4"',
-                                          is_header: false,
-                                          item_type: 'photo')
+  # collection_item = CollectionItem.create!(user_id: alex.id,
+  #                                         collection_id: collection.id,
+  #                                         remote_video_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/video/173/DEST_BARCELONA_V5_FBShort.mp4"',
+  #                                         is_header: false,
+  #                                         item_type: 'video')
 
   collection_item = CollectionItem.create!(user_id: alex.id,
                                           collection_id: collection.id,
                                           remote_video_url: 'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/video/212/WYCO_FBAD1_V2.mp4',
                                           is_header: false,
-                                          item_type: 'photo')
+                                          item_type: 'video')
 
   collection_item = CollectionItem.create!(user_id: alex.id,
                                           collection_id: collection.id,
                                           remote_video_url:  'https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/collection_item/video/213/WYCO_FBAD1_V2.mp4',
                                           is_header: false,
-                                          item_type: 'photo')
+                                          item_type: 'video')
 
 
 

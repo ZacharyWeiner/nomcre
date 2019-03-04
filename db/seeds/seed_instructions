@@ -26,13 +26,13 @@ heroku run rake db:seed:hotel_package --remote=staging
 heroku run rake db:seed:modeling_agency --remote=staging
 
 
-heroku pg:reset DATABASE --app=nomcre2 --confirm=nomcre2-staging
+heroku pg:reset DATABASE --app=nomcre2 --confirm=nomcre2
 heroku run rake db:migrate --app=nomcre2
 
 heroku run rake db:seed:locations --app=nomcre2
+heroku run rake db:seed:user_data --app=nomcre2
 heroku run rake db:seed:header_images --app=nomcre2
 heroku run rake db:seed:showcase --app=nomcre2
-heroku run rake db:seed:user_data --app=nomcre2
 heroku run rake db:seed:project_templates --app=nomcre2
 heroku run rake db:seed:custom_package_type --app=nomcre2
 heroku run rake db:seed:corporate --app=nomcre2
