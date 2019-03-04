@@ -131,6 +131,8 @@ class ProjectsController < ApplicationController
                                       :completed_on,
                                       :max_user_shot_list,
                                       :mood,
+                                      :is_template,
+                                      :is_default_template,
                                       :image_board_1,
                                       :image_board_2,
                                       :image_board_3,
