@@ -1,7 +1,7 @@
 <style> .card-wizard .wizard-navigation {margin-top:0px;} </style>
 <% url = request.url %>
 <% uri = URI.parse(url) %>
-<% query_params = CGI.parse(uri.query) unless uri.query == nil %>
+<% query_params = uri.query.nil? ? {} : CGI.parse(uri.query) %>
 <% if shoot.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(shoot.errors.count, "error") %> prohibited this shoot from being saved:</h2>
