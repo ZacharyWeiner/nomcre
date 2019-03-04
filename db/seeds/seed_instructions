@@ -12,7 +12,7 @@ seed_instructions
 rake db:drop && rake db:create && rake db:migrate && rake db:seed:locations && rake db:seed:pages && rake db:seed:showcase && rake db:seed:user_data && rake db:seed:project_templates && rake db:seed:custom_package_type && rake db:seed:corporate && rake db:seed:hotel_package && rake db:seed:modeling_agency
 
 
-heroku pg:reset DATABASE --remote=staging
+heroku pg:reset DATABASE --remote=staging --confirm=nomcre2-staging
 heroku run rake db:migrate --remote=staging
 
 heroku run rake db:seed:locations --remote=staging
