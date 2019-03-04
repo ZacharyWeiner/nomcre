@@ -64,10 +64,12 @@ class ShootsController < ApplicationController
     else
       @shoot.deadline = @project.deadline
     end
+    if @shoot.user_added_shot_count_max.nil?
+      @shoot.user_added_shot_count_max = @project.max_user_shot_list
+    end
     respond_to do |format|
-      saved = @shoot.save!
-      if saved
-        if @shoot.project.require_update_locations
+      if @shoot.save
+        if @shoot.project.require_update_shoot_locations
           @shoot.project.update_project_shoot_locations @shoot.location.id
         end
         @project.update_price(@project.price + @shoot.price)

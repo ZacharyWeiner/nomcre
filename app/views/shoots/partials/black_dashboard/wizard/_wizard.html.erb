@@ -1,4 +1,7 @@
 <style> .card-wizard .wizard-navigation {margin-top:0px;} </style>
+<% url = request.url %>
+<% uri = URI.parse(url) %>
+<% query_params = CGI.parse(uri.query) unless uri.query == nil %>
 <% if shoot.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(shoot.errors.count, "error") %> prohibited this shoot from being saved:</h2>
@@ -21,6 +24,9 @@
       <%= form.hidden_field :project_id, :value => params[:project_id] %>
     <% elsif !@project.nil? %>
       <%= form.hidden_field :project_id, :value => @project.id %>
+    <% end %>
+    <% if query_params["content"] %>
+      <%= form.hidden_field :content_type, :value => query_params["content"] %>
     <% end %>
       <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->
       <div class="card-header text-center">
