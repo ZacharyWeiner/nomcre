@@ -65,7 +65,9 @@ class ShootsController < ApplicationController
       @shoot.deadline = @project.deadline
     end
     respond_to do |format|
-      if @shoot.save
+      saved = @shoot.save!
+      byebug
+      if saved
         if @shoot.project.require_update_locations
           @shoot.project.update_project_shoot_locations @shoot.location.id
         end

@@ -113,7 +113,7 @@
                     <i class='tim-icons text-primary'><ion-icon name='ios-pin'> </ion-icon></i>
                     <b>City / Region:</b>
                     <span class='pull-right'>
-                     <%= project.shoots.first.location.name %>
+                     <%= project.shoots.first.location.name unless project.shoots.first.nil? %>
                     </span>
                   </span>
                  <% else %>

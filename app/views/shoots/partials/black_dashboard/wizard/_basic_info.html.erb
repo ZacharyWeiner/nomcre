@@ -22,7 +22,8 @@
     <br>
     <h5 class="info-text"> What City Or Region Will We be Shooting In?</h5>
     <label> Updating this will change all shoots for this project </label>
-    <%= form.select(:location_id, options_for_select(Location.locations_for_select, shoot.location.id), {}, {class: 'form-control'}) %>
+    <% selected = shoot.location.nil? ?  0 : shoot.location.id %>
+    <%= form.select(:location_id, options_for_select(Location.locations_for_select, selected), {}, {class: 'form-control'}) %>
   </div>
   <div class="col-md-12 center">
     <br>

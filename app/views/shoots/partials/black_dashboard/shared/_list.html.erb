@@ -25,6 +25,7 @@
           </tr>
         </thead>
         <tbody>
+          <% unless shoots.nil? %>
           <% shoots.each do |shoot| %>
           <tr>
             <td class="text-center">
@@ -57,6 +58,7 @@
               <% end %>
             </td>
           </tr>
+          <% end %>
           <% end %>
         </tbody>
       </table>

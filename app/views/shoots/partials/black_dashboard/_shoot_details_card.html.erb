@@ -44,7 +44,7 @@
   <% show_chat_button = false %>
 <% end %>
 
-
+<% unless shoot.nil? %>
 <div class="card">
   <div class="card-header">
     <h3 class="card-category">
@@ -228,4 +228,4 @@
     <%= link_to "<i class='fas fa-comments'></i> Chat".html_safe, shoot.chatroom, class: 'btn btn-simple btn-primary' %>
   <% end %>
 </div>
-
+<% end %>
