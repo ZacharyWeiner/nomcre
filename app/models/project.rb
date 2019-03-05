@@ -246,10 +246,9 @@ class Project < ApplicationRecord
   end
 
   def orphan_relations
-    # self.invoices.each do |i|
-    #   i.project_id = nil
-    #   i.save!
-    # end
+    self.invoices.each do |i|
+       i.destroy!
+    end
     # self.shot_list_items.each do |sli|
     #     sli.task = nil
     #     sli.save!
