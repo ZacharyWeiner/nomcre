@@ -32,6 +32,7 @@
             <%= render :partial => 'shoots/partials/black_dashboard/show/panels/script', :locals => {shoot: shoot} %>
           <% end %>
           <div class="tab-pane <%= shotlist_style %>" id="shotlist">
+
             <div class='' style='max-height: 800px; overflow-x: hidden; overflow-y: scroll; -webkit-overflow-scrolling: touch;'>
               <%= render :partial => 'shared/black_dashboard/shot_list_items/shoots/list', :locals => {:shoot => shoot, :shot_list_items => shoot.shot_list_items.order(:id)} %>
             </div>
