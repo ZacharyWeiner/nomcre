@@ -1,6 +1,19 @@
 <div class="wizard-container">
   <% project = @project %>
   <div class="card card-wizard" data-color="primary" id="wizardProfile">
+    <% if @project.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@project.errors.count, "error") %> prohibited this company from being saved:</h2>
+        <% @project.errors.full_messages.each do |message| %>
+          <div class="alert alert-danger">
+            <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+              <i class="tim-icons"> <i class='fas fa-times' ></i></i>
+            </button>
+            <span><%= message %></span>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
     <%= form_for project, class: 'form-horizontal' do |form| %>
     <%= form.hidden_field :company_id, :value => current_user.company.id %>
       <!--        You can switch " data-color="primary" "  with one of the next bright colors: "green", "orange", "red", "blue"       -->

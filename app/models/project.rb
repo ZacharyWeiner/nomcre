@@ -6,7 +6,7 @@ class Project < ApplicationRecord
 
   validates :title,             presence: true, case_sensitive: false
   validates :brief,             presence: true, case_sensitive: false
-  validates :deadline,          presence: true
+  validates :deadline,          inclusion: { in: (Date.today+10.days..Date.today+5.years) }
   validates :price,             numericality: { other_than: 0 }
   validates :max_user_shot_list,presence: true
   validates :is_template,       inclusion: { in: [ true, false ] }
