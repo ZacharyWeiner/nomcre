@@ -10,8 +10,8 @@
 
                     <div class="col-md-6 ">
                         <%= image_tag "https://s3-us-west-2.amazonaws.com/nomcre/logos/UpperLeftHPlogo+2.png", style: 'max-height:25px; max-width:25px; border-radius:100%' %>
-                        <h2 class="h2 nk-title"><%= "#{@package_type.title} Example Photo"%></h2>
-                        <h3 class="nk-sub-title"><%= "#{@package_type.subtitle}"%></h3>
+                        <h2 class="h2 nk-title"><%= "#{@package_type.example_image_title}"%></h2>
+                        <h3 class="nk-sub-title"><%= "#{@package_type.example_image_subtitle}"%></h3>
                         <div class="nk-gap"></div>
                         <p><%= simple_format("#{@package_type.example_image_description} ")%></p>
                     </div>

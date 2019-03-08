@@ -23,6 +23,20 @@
   </div>
 
   <div class="form-group">
+    <%= form.label :page_header %>
+    <%= form.text_field :page_header, id: :package_type_page_header, class: 'form-control' %>
+  </div>
+
+   <div class="form-group">
+    <%= form.label :description_text_title %>
+    <%= form.text_field :description_text_title, id: :package_type_description_text_title, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :description_text_subtitle %>
+    <%= form.text_field :description_text_subtitle, id: :package_type_description_text_subtitle, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
     <%= form.label :description %>
     <%= form.text_area :description, id: :package_type_description, class: 'form-control' %>
   </div>
@@ -33,12 +47,32 @@
   </div>
 
   <div class="form-group">
+    <%= form.label :example_image_title %>
+    <%= form.text_field :example_image_title, id: :package_type_example_image_title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :example_image_subtitle %>
+    <%= form.text_field :example_image_subtitle, id: :package_type_example_image_subtitle, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
     <%= form.label :example_image %>
     <%= form.file_field :example_image, id: :package_type_example_image, class: 'form-control' %>
   </div>
   <div class="form-group">
     <%= form.label :example_image_description %>
     <%= form.text_area :example_image_description, id: :package_type_example_image_description, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :example_video_title %>
+    <%= form.text_field :example_video_title, id: :package_type_example_video_title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :example_video_subtitle %>
+    <%= form.text_field :example_video_subtitle, id: :package_type_example_video_subtitle, class: 'form-control' %>
   </div>
 
   <div class="form-group">
