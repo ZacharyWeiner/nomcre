@@ -1,11 +1,15 @@
-
+<% invoice_type = @invoice.invoice_type.capitalize! %>
 <div class="card">
   <div class="card-header">
     <div class='card-category pull-right'>
       <strong>Status:</strong> <%= @invoice.payment.nil? ? 'Pending' : 'Paid'  %>
+      <br><br>
+      <h5> Due On: </h5>
+      <%= (@invoice.project.deadline - 14.days).strftime('%a %b %m, %Y ') %>
     </div>
     <div class='card-title'>
       <img src="https://s3-us-west-2.amazonaws.com/nomcre/logos/UpperLeftHPlogo+2.png" class='avatar'>
+      <h5> <%= invoice_type %>  For: </h5>
       <%= @invoice.project.title unless @invoice.project.nil?  %>
     </div>
 
@@ -34,20 +38,22 @@
       </div>
     </div>
     <div class="row" style="padding:12px">
-      <table class='table table-striped'>
+      <table class='table table-striped text-center'>
         <thead>
           <tr>
             <th>Project</th>
+            <th>Shoot</th>
             <th>Invoice Type</th>
             <th>Deadline</th>
             <th>Due Date</th>
-            <th>Amount</th>
+            <th class='text-right'>Amount</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td><%= link_to @invoice.project.title, @invoice.project %></td>
-            <td><%= @invoice.invoice_type.capitalize! %></td>
+            <td></td>
+            <td><%= invoice_type %></td>
             <td><%= @invoice.project.deadline.strftime('%a %b %m, %Y ') %></td>
             <td>
               <% if @invoice.invoice_type == InvoiceType.deposit %>
@@ -56,8 +62,20 @@
                 <%= @invoice.project.deadline.strftime('%a %b %m, %Y ') %>
               <% end %>
             </td>
-            <td><b><%= number_to_currency(@invoice.amount) %></b></td>
+            <td class='text-right'><b><%= number_to_currency(@invoice.amount) %></b></td>
           </tr>
+          <% @invoice.project.shoots.each do |shoot| %>
+            <tr>
+              <td></td>
+              <td><%= shoot.title.blank? ? "#{shoot.content_type.capitalize!} Shoot" : shoot.title %></td>
+              <td><%= invoice_type %></td>
+              <td><%= shoot.deadline.strftime('%a %b %m, %Y ') unless shoot.deadline.nil? %></td>
+              <td>
+
+              </td>
+              <td class='text-right'><b></b></td>
+            </tr>
+          <% end %>
         </tbody>
       </table>
     </div>
@@ -82,7 +100,7 @@
       <div class="col-lg-4 col-sm-5 ml-auto">
         <table class="table table-clear">
           <tbody>
-            <tr>
+            <tr class='text-right'>
               <td class="left">
                 <strong>Subtotal</strong>
               </td>
@@ -98,14 +116,14 @@
               <td class="left">
                <strong>VAT (6%)</strong>
              </td>
-             <td class="right"><%= number_to_currency(@invoice.amount * 0.06) %></td>
+             <td class="right"><% number_to_currency(@invoice.amount * 0.06) %></td>
            </tr> -->
-           <tr>
+           <tr class='text-right'>
             <td class="left">
               <strong>Total</strong>
             </td>
             <td class="right">
-              <strong><%= number_to_currency(@invoice.amount * 1.06) %></strong>
+              <strong><%= number_to_currency(@invoice.amount) %></strong>
             </td>
           </tr>
         </tbody>
