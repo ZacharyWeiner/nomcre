@@ -36,14 +36,17 @@ class ShotListItem < ApplicationRecord
     sli = ShotListItem.create()
   end
 
-  def create_related_task description
+  def create_related_task params={}
+    description = params[:description].nil? ? self.description : params[:description]
+    user_id = params[:user_id].nil? ? self.shoot.company.users.first.id : params[:user_id]
+    can_accept = params[:can_accept].nil? ? UserType.creative : params[:can_accept]
     task = Task.create!(shoot_id: self.shoot.id,
                         shot_list_item_id: self.id,
                          description: description,
                          project_id: self.shoot.project_id,
-                         user_id: self.shoot.company.users.first.id,
+                         user_id: user_id, #self.shoot.company.users.first.id,
                          company: self.shoot.company,
-                         can_accept: UserType.creative,
+                         can_accept: can_accept,
                          task_type: TaskType.shot_list,
                          task_group: self.task_group,
                          is_template: false )
@@ -93,7 +96,7 @@ class ShotListItem < ApplicationRecord
         new_sli.added_by = admin
         new_sli.task_group = task_group
         if new_sli.save!
-          new_sli.create_related_task new_sli.description
+          #new_sli.create_related_task new_sli.description
         end
       end
     end

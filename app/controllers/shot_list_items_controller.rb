@@ -56,7 +56,8 @@ class ShotListItemsController < ApplicationController
       if !can_add
         format.html { redirect_to shoot_path(@shot_list_item.shoot, :active => 'shotlist'), notice: 'Youve already added as many shots as you can.'}
       elsif@shot_list_item.save
-        @shot_list_item.create_related_task @shot_list_item.description
+        #task_params = {'description': @shot_list_item.description}
+        @shot_list_item.create_related_task #task_params
         if !@shot_list_item.proposal.nil?
           format.html { redirect_to proposal_path(@shot_list_item.proposal, :active => 'shotlist'), notice: 'Shot list item was successfully created.' }
           format.json { render :show, status: :created, location: @shot_list_item }

@@ -208,16 +208,16 @@
     </div>
   <% end %>
   <% if show_add_shoot_button %>
-   <div class='row'>
-      <div class='col-md-12'>
-      <%= link_to new_project_shoot_path(project, :content => 'photo'), class: 'btn btn-primary btn-simple btn-block' do %>
-        <i class="fas fa-camera"></i>  Add Photo Shoot
-      <% end %>
+   <div class='row' style='margin:4px;'>
+      <div class='col-md-12 text-center card'><b>Add A Shoot:</b></div>
+      <div class='col-md-6 col-sm-6 col-xs-6 text-right'>
+        <%= link_to new_project_shoot_path(project, :content => 'photo'), class: 'btn btn-primary btn-simple btn-block' do %>
+          + <i class="fas fa-camera"></i>
+        <% end %>
       </div>
-      <br>
-      <div class='col-md-12'>
+      <div class='col-md-6 col-sm-6 col-xs-6'>
       <%= link_to new_project_shoot_path(project, :content => 'video'), class: 'btn btn-primary btn-simple btn-block' do %>
-        <i class="fas fa-video"></i>  Add Video Shoot
+        + <i class="fas fa-video"></i>
       <% end %>
       </div>
     </div>

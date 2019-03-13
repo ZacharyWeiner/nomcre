@@ -156,7 +156,9 @@ class Shoot < ApplicationRecord
   def assign_tasks
     self.shot_list_items.each do |sli|
       task = sli.task
-      unless task.nil?
+      if task.nil?
+        task = sli.create_related_task
+      else task.nil?
         task.user = self.creative
         task.save!
       end
@@ -266,7 +268,7 @@ class Shoot < ApplicationRecord
                              focus_point: 'Center',
                             added_by: @admin
                              )
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Logo shot detail',
@@ -275,7 +277,7 @@ class Shoot < ApplicationRecord
                              focus_point: 'Center',
                             added_by: @admin
                              )
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Establishing shot wide',
@@ -283,7 +285,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Establishing shot wide (lots of sky)',
@@ -291,7 +293,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Establishing shot medium',
@@ -299,7 +301,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Establishing shot tight - landscape',
@@ -307,7 +309,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Establishing shot tight - portrait',
@@ -315,7 +317,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Atmosphere Wide',
@@ -323,7 +325,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Shot Wide',
@@ -331,7 +333,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Shot Wide',
@@ -339,7 +341,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Middle Right',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Shot Wide',
@@ -347,7 +349,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Middle Left',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Shot Wide',
@@ -355,7 +357,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Top Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Shot Wide',
@@ -363,7 +365,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Bottom Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Artistic Detail',
@@ -371,7 +373,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Artistic Detail',
@@ -379,7 +381,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Far Right',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Artistic Detail',
@@ -387,7 +389,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Far Left',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Artistic Detail',
@@ -395,7 +397,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Middle Top',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Artistic Detail',
@@ -403,7 +405,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Middle Bottom',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Dead Center',
@@ -411,7 +413,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Low To High',
@@ -419,7 +421,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Low To High',
@@ -427,7 +429,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Right',
                             added_by:  @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Low To High',
@@ -435,7 +437,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Left',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Detail',
@@ -443,7 +445,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Detail',
@@ -451,7 +453,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Right',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Detail',
@@ -459,7 +461,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Left',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Detail',
@@ -467,7 +469,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: ['Top'],
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Detail',
@@ -475,7 +477,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: ['Bottom'],
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'BTS- Establishing Shot of Location',
@@ -483,7 +485,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Top',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
     end
 
     sli = ShotListItem.create!(shoot: self,
@@ -492,7 +494,7 @@ class Shoot < ApplicationRecord
                           background:"On Set Or At Location",
                           focus_point: 'Bottom',
                           added_by: @admin)
-    sli.create_related_task sli.description
+    #sli.create_related_task
 
     sli = ShotListItem.create!(shoot: self,
                           description:'BTS- Establishing Shot of Location',
@@ -500,7 +502,7 @@ class Shoot < ApplicationRecord
                           background:"On Set Or At Location",
                           focus_point: 'Left',
                           added_by: @admin)
-    sli.create_related_task sli.description
+    #sli.create_related_task
 
     sli = ShotListItem.create!(shoot: self,
                           description:'BTS- Establishing Shot of Location',
@@ -508,7 +510,7 @@ class Shoot < ApplicationRecord
                           background:"On Set Or At Location",
                           focus_point: 'Right',
                           added_by: @admin)
-    sli.create_related_task sli.description
+    #sli.create_related_task
 
     sli = ShotListItem.create!(shoot: self,
                           description:'BTS- Establishing Shot of Location',
@@ -516,7 +518,7 @@ class Shoot < ApplicationRecord
                           background:"On Set Or At Location",
                           focus_point: 'Center',
                           added_by: @admin)
-    sli.create_related_task sli.description
+    #sli.create_related_task
 
 
     sli = ShotListItem.create!(shoot: self,
@@ -525,7 +527,7 @@ class Shoot < ApplicationRecord
                           background:"On Set Or At Location",
                           focus_point: 'Center',
                           added_by: @admin)
-    sli.create_related_task sli.description
+    #sli.create_related_task
 
     sli = ShotListItem.create!(shoot: self,
                           description:'BTS- Crew Together Happy',
@@ -533,7 +535,7 @@ class Shoot < ApplicationRecord
                           background:"On Set Or At Location",
                           focus_point: 'Center',
                           added_by: @admin)
-    sli.create_related_task sli.description
+    #sli.create_related_task
 
     sli = ShotListItem.create!(shoot: self,
                           description:'BTS- Wide Shot Of Set',
@@ -541,7 +543,7 @@ class Shoot < ApplicationRecord
                           background:"On Set Or At Location",
                           focus_point: 'Center',
                           added_by: @admin)
-    sli.create_related_task sli.description
+    #sli.create_related_task
 
     sli = ShotListItem.create!(shoot: self,
                           description:'BTS- Gear Shot On Set',
@@ -549,7 +551,7 @@ class Shoot < ApplicationRecord
                           background:"On Set Or At Location",
                           focus_point: 'Center',
                           added_by: @admin)
-    sli.create_related_task sli.description
+    #sli.create_related_task
 
     sli = ShotListItem.create!(shoot: self,
                           description:'BTS- Models Getting Ready',
@@ -557,7 +559,7 @@ class Shoot < ApplicationRecord
                           background:"On Set Or At Location",
                           focus_point: 'Center',
                           added_by: @admin)
-    sli.create_related_task sli.description
+    #sli.create_related_task
 
     sli = ShotListItem.create!(shoot: self,
                           description:'BTS- Crew and Gear ',
@@ -565,7 +567,7 @@ class Shoot < ApplicationRecord
                           background:"On Set Or At Location",
                           focus_point: 'Center',
                           added_by: @admin)
-    sli.create_related_task sli.description
+    #sli.create_related_task
   end
 
   def create_default_shot_list_for_video
@@ -577,7 +579,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Logo focus Pull In',
@@ -585,7 +587,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Center',
                             added_by:@admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Logo Gimbal Fly By',
@@ -593,7 +595,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Shot Wide',
@@ -601,7 +603,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Shot Wide',
@@ -609,7 +611,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Middle Right',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Shot Wide',
@@ -617,7 +619,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Middle Left',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Shot Wide',
@@ -625,7 +627,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Top Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Shot Wide',
@@ -633,7 +635,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Bottom Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Artistic Detail',
@@ -641,7 +643,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Artistic Detail',
@@ -649,7 +651,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Far Right',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Artistic Detail',
@@ -657,7 +659,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Far Left',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Artistic Detail',
@@ -665,7 +667,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Middle Top',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Artistic Detail',
@@ -673,7 +675,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Middle Bottom',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Dead Center',
@@ -681,7 +683,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Low To High',
@@ -689,7 +691,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Low To High',
@@ -697,7 +699,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Right',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Low To High',
@@ -705,7 +707,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Left',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Detail',
@@ -713,7 +715,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Center',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Detail',
@@ -721,7 +723,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Right',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Detail',
@@ -729,7 +731,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Left',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Detail',
@@ -737,7 +739,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Top',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
 
       sli = ShotListItem.create!(shoot: self,
                             description:'Graphic Detail',
@@ -745,7 +747,7 @@ class Shoot < ApplicationRecord
                             background:"On Set Or At Location",
                             focus_point: 'Bottom',
                             added_by: @admin)
-      sli.create_related_task sli.description
+      #sli.create_related_task
     end
 
     sli = ShotListItem.create!(shoot: self,
@@ -754,7 +756,7 @@ class Shoot < ApplicationRecord
                           background:"On Set Or At Location",
                           focus_point: 'Center',
                           added_by: @admin)
-    sli.create_related_task sli.description
+    #sli.create_related_task
 
     sli = ShotListItem.create!(shoot: self,
                           description:'BTS- Establishing Shot or Transportation',
@@ -762,7 +764,7 @@ class Shoot < ApplicationRecord
                           background:"On Set Or At Location",
                           focus_point: 'Center',
                           added_by: @admin)
-    sli.create_related_task sli.description
+    #sli.create_related_task
 
     sli = ShotListItem.create!(shoot: self,
                           description:'BTS- Smiles of Crew + Talent',
@@ -771,7 +773,7 @@ class Shoot < ApplicationRecord
                           added_by: self.company.users.first At Location",
                           focus_point: 'Center',
                           added_by: @admin)
-    sli.create_related_task sli.description
+    #sli.create_related_task
 
     sli = ShotListItem.create!(shoot: self,
                           description:'BTS- Thank You With Audio To Client',
@@ -779,7 +781,7 @@ class Shoot < ApplicationRecord
                           background:"On Set Or At Location",
                           focus_point: 'Center',
                           added_by: @admin)
-    sli.create_related_task sli.description
+    #sli.create_related_task
 
     sli = ShotListItem.create!(shoot: self,
                           description:'BTS- Thank You With Audio To Nomadic Creative ',
@@ -787,7 +789,7 @@ class Shoot < ApplicationRecord
                           background:"On Set Or At Location",
                           focus_point: 'Center',
                           added_by: @admin)
-    sli.create_related_task sli.description
+    #sli.create_related_task
 
     sli = ShotListItem.create!(shoot: self,
                           description:'BTS- Pan of Set Location',
@@ -795,7 +797,7 @@ class Shoot < ApplicationRecord
                           background:"On Set Or At Location",
                           focus_point: 'Center',
                           added_by: @admin)
-    sli.create_related_task sli.description
+    #sli.create_related_task
 
     sli = ShotListItem.create!(shoot: self,
                           description:'BTS- Thumbs Up From Primary Creator',
@@ -803,7 +805,7 @@ class Shoot < ApplicationRecord
                           background:"On Set Or At Location",
                           focus_point: 'Center',
                           added_by: @admin)
-    sli.create_related_task sli.description
+    #sli.create_related_task
 
     sli = ShotListItem.create!(shoot: self,
                           description:'BTS- with audio saying "We Love <city_name>"',
@@ -811,7 +813,7 @@ class Shoot < ApplicationRecord
                           background:"On Set Or At Location",
                           focus_point: 'Center',
                           added_by: @admin)
-    sli.create_related_task sli.description
+    #sli.create_related_task
 
     sli = ShotListItem.create!(shoot: self,
                            description:'BTS- with audio saying "Thast a wrap for [Name Of Company] & Nomcre in [City Name]"',
@@ -819,7 +821,7 @@ class Shoot < ApplicationRecord
                           background:"On Set Or At Location",
                           focus_point: 'Center',
                           added_by: @admin)
-    sli.create_related_task sli.description
+    #sli.create_related_task
   end
 
   #class methods

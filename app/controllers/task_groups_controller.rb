@@ -83,7 +83,7 @@ class TaskGroupsController < ApplicationController
                                             added_by_id: current_user.id,
                                             frame_rate: temp.frame_rate,
                                             task_group_id: new_task_group.id)
-      shot_list_item.create_related_task shot_list_item.description
+      shot_list_item.create_related_task
       respond_to do |format|
         format.html { redirect_to shoot_path(shoot, :active => 'shotlist'), notice: "The Group (#{new_task_group.title}) was Added to The Shoot." }
       end

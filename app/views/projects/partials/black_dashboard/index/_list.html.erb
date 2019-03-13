@@ -56,20 +56,20 @@
               <% if !project.deposit_is_paid %>
                 <!-- TODO: Hook this link up -->
                 <% deposit_invoice = project.invoices.where(invoice_type: InvoiceType.deposit).first %>
-                <%= link_to deposit_invoice, class: 'btn btn-simple btn-success' do %>
+                <%= link_to deposit_invoice, class: 'btn btn-simple btn-info' do %>
                   <i class="fas fa-dollar-sign"></i> Pay Deposit
                 <% end %>
               <% else %>
-                Paid
+                <span class='text-success'> Paid* </span>
               <% end %>
             </td>
             <td class='text-center'>
               <% if !project.deposit_is_paid %>
-                Deposit Required
+                <span class='text-danger'> Deposit Required* </span>
               <% elsif !project.balance_is_paid %>
                 <!-- TODO: Hook this link up -->
                 <% balance_invoice = project.invoices.where(invoice_type: InvoiceType.balance).first %>
-                <%= link_to balance_invoice, class: 'btn btn-link text-primary' do %>
+                <%= link_to balance_invoice, class: 'btn btn-simple btn-primary' do %>
                   <i class="fas fa-dollar-sign"></i> Pay Balance
                 <% end %>
               <% else %>
