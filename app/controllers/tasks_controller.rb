@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:popped_out]
   before_action :set_task, only: [:show, :edit, :update, :destroy, :complete]
   #TODO: Authorize Tasks
   layout 'black_dashboard'
@@ -119,7 +119,6 @@ class TasksController < ApplicationController
     @tasks = @shoot.tasks.where(completed: nil)
     @completed_tasks = @shoot.tasks.where(completed: true)
     render :layout => 'poppedout'
-
   end
 
   private

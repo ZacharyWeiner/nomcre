@@ -3,6 +3,7 @@
     Deposit Must Be Paid Before You Can Request a Creative For The Shoot.
   </label>
 <% end %>
+<% if shoot.creative.nil? %>
 <ul class="nav nav-pills nav-pills-primary">
   <li class="nav-item">
     <a class="nav-link active" data-toggle="tab" href="#all">
@@ -25,6 +26,7 @@
     <%= render :partial => 'shoots/partials/black_dashboard/show/creatives/accepted', :locals => {:shoot => shoot, accepted: accepted} %>
   </div>
 </div>
+<% end %>
 
 
 <div class="modal fade" id="selectCreativeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

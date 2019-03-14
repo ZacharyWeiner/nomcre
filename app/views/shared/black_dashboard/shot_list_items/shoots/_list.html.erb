@@ -1,3 +1,4 @@
+<% project = shoot.project %>
 <div class="card">
   <div class="card-header">
     <h4 class="card-title">Shot List </h4>
@@ -27,14 +28,16 @@
           </tr>
         </thead>
         <tbody>
+          <% editable = shoot.is_editable %>
+          <% company_or_creative = (current_user.company == shoot.company || current_user == shoot.creative)%>
           <% shot_list_items.each do |si| %>
             <tr >
               <td class="td-actions">
-                <% if shoot.is_editable && (current_user.company == shoot.company || current_user == shoot.creative) %>
+                <% if editable && company_or_creative %>
                   <%= link_to si do %>
                     <i class="fa fa-eye"></i>
                   <% end %>
-                  <%= link_to edit_shoot_shot_list_item_path(si.shoot, si) do %>
+                  <%= link_to edit_shoot_shot_list_item_path(shoot, si) do %>
                     <i class="fa fa-edit"></i>
                   <% end %>
                   <%= link_to si, method: :delete, data: { confirm: 'Are you sure?' } do %>
@@ -54,7 +57,7 @@
               <td class="">
                 <%= si.description %>
                 <br>
-                <small><%= si.aspect_ratio%> - <%= si.shoot.project.mood %> </small>
+                <small><%= si.aspect_ratio%> - <%= project.mood %> </small>
               </td>
               <td class="">
                 <%= !si.background.blank? ? si.background : "Creatives Choice" %>

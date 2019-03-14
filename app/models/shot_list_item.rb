@@ -14,7 +14,6 @@ class ShotListItem < ApplicationRecord
 
   #has_one
   has_one :project, through: :shoot
-  has_one :task
 
 
   #has_many

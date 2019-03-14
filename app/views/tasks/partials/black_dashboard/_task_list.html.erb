@@ -1,38 +1,39 @@
-<% unless (tasks.first.nil? || tasks.first.shoot.nil?) || request.path_info.include?('popped') || request.path_info.include?('dashboard') %>
-<%= link_to "Pop out", shoot_tasks_poppedout_path(tasks.first.shoot), class: 'btn btn-success' %>
+<% unless (tasks.first.nil? || tasks.first.shoot.nil?) %>
+  <% project  =  tasks.first.shoot.project %>
+  <% shoot = tasks.first.shoot %>
+  <% unless request.path_info.include?('popped') || request.path_info.include?('dashboard') %>
+  <%= link_to "Pop out", shoot_tasks_poppedout_path(tasks.first.shoot), class: 'btn btn-success' %>
+  <% end %>
 <% end %>
-
 <table class="table">
   <tbody>
     <% tasks.each do |task| %>
+    <% completed = task.completed %>
     <tr>
       <td>
         <p class="title text-info"><%= auto_html(task.description){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %></p>
-        <% if !task.proposal.nil? %>
-          <p class="card-category"> <%= task.proposal.title %></p>
-        <% elsif task.shoot %>
-          <p class="card-category"> <%= task.shoot.title %></p>
-        <% end %>
+          <p class="card-category"> <%= shoot.title unless shoot.nil? %></p>
         <% unless task.shot_list_item.nil? || task.shot_list_item.reference_image.file.nil? %>
           <%= image_tag task.shot_list_item.reference_image, class: 'img-fluid', style: 'max-height: 150px;'%>
         <% end %>
       </td>
        <% unless task.shot_list_item.nil? %>
+       <% shot_list_item = task.shot_list_item %>
         <td>
-          <% if task.shot_list_item.shoot.content_type == ContentType.video %>
+          <% if shot_list_item.shoot.content_type == ContentType.video %>
             <% frame_rate_style = 'black' %>
-            <% if task.shot_list_item.frame_rate == '60 fps - Slow' %>
+            <% if shot_list_item.frame_rate == '60 fps - Slow' %>
               <% frame_rate_style = 'orange' %>
-            <% elsif task.shot_list_item.frame_rate == '120 fps - Super Slow'%>
+            <% elsif shot_list_item.frame_rate == '120 fps - Super Slow'%>
               <% frame_rate_style = 'red'  %>
             <% end %>
             <div style='color: <%= frame_rate_style%>; padding-top: 35%'>
-              <%= task.shot_list_item.frame_rate %>
+              <%= shot_list_item.frame_rate %>
             </div>
             <br>
           <% end %>
-          <% if task.shot_list_item.shoot.project.mood.nil? %>
-            <%= task.shot_list_item.shoot.project.mood %>
+          <% if project.mood.nil? %>
+            <%= project.mood %>
             <br>
           <% end %>
         </td>

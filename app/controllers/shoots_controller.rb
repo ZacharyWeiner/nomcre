@@ -30,6 +30,8 @@ class ShootsController < ApplicationController
     Notification.check_notifications(current_user.id, NotificationType.request_assigned, @shoot.id)
     Notification.check_notifications(current_user.id, NotificationType.request_accepted, @shoot.id)
     Notification.check_notifications(current_user.id, NotificationType.request_declined, @shoot.id)
+    @shot_list_items = @shoot.shot_list_items
+
   end
 
   # GET /shoots/new
