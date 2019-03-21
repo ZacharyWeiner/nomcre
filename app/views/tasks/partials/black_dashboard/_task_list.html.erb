@@ -60,9 +60,9 @@
         <% else %>
           <% task_icon =  'checkmark' %>
           <% task_able =  'btn-primary' %>
-          <% if current_user != task.approver %>
+          <!-- <% if current_user != task.approver %>
             <% task_able +=  ' disabled' %>
-          <% end %>
+          <% end %> -->
         <% end %>
         <% task_icon =  task.completed  ? 'done-all' : 'checkmark' %>
         <% if !request.path_info.include?('popped') %>
