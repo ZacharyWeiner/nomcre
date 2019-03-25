@@ -102,7 +102,6 @@ class TasksController < ApplicationController
             redirect_params = {}
             if params[:task_group_id]
               redirect_params[:task_group_id] = params[:task_group_id]
-              byebug
             end
             format.html { redirect_to shoot_tasks_poppedout_path(@task.shoot, redirect_params) }
           else
