@@ -60,9 +60,6 @@
         <% else %>
           <% task_icon =  'checkmark' %>
           <% task_able =  'btn-primary' %>
-          <!-- <% if current_user != task.approver %>
-            <% task_able +=  ' disabled' %>
-          <% end %> -->
         <% end %>
         <% task_icon =  task.completed  ? 'done-all' : 'checkmark' %>
         <% if !request.path_info.include?('popped') %>
@@ -70,7 +67,12 @@
             <i class="tim-icons btn-link <%= task_able %>"><ion-icon name="<%= task_icon %>" size='large'></ion-icon></i>
           <% end %>
         <% else %>
-          <%= link_to task_task_complete_path(task, :popped => 'true'), class: "btn btn-link #{task_able}", title: "Complete", :data => { :original_title => 'Click to indicate the task is complete'}  do  %>
+        <% post_params = {}%>
+        <% post_params[:popped] =  true %>
+        <% unless task.task_group.nil? %>
+          <% post_params[:task_group_id] = task.task_group.id %>
+        <% end %>
+          <%= link_to task_task_complete_path(task, post_params), class: "btn btn-link #{task_able}", title: "Complete", :data => { :original_title => 'Click to indicate the task is complete'}  do  %>
             <i class="tim-icons btn-link <%= task_able %>"><ion-icon name="<%= task_icon %>" size='large'></ion-icon></i>
             <% end %>
         <% end %>

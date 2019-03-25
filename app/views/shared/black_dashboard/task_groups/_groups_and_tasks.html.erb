@@ -1,12 +1,18 @@
+<% url = request.url %>
+<% uri = URI.parse(url) %>
+<% query_params = CGI.parse(uri.query) unless uri.query == nil %>
+<% query_params = {} if query_params.nil? %>
+<% task_group_id = query_params['task_group_id'].nil? ? '0' : query_params['task_group_id'][0].to_i %>
 <div class="card"> <!-- Card For groups and Tasks -->
   <div class="card-header">
     <h3 class="card-title"> Task Groups </h3>
   </div>
   <div id="accordion_<%= shoot.id %>" role="tablist" aria-multiselectable="true" class="card-collapse"> <!-- Accordion for groups -->
-    <% shoot.task_groups.where(parent_id: nil).each do |group| %>
+    <% tgs = shoot.task_groups.where(parent_id: nil) %>
+    <% tgs.each do |group| %>
       <div class="card card-plain">
         <div class="card-header" id="heading_<%= group.id %>"> <!-- group collapseable element -->
-          <a data-toggle="collapse" data-parent="#accordion_<%= shoot.id %>" href="#collapse_<%= group.id %>" aria-expanded="false" aria-controls="collapse_<%= group.id %>">
+          <a data-toggle="collapse" data-parent="#accordion_<%= shoot.id %>" href="#collapse_<%= group.id %>" aria-expanded="false" aria-controls="collapse_<%= group.id %>" id="link_<%= group.id%>">
             <%= group.title %>
             <i class="fa fa-caret-down"></i>
           </a>
@@ -43,6 +49,34 @@
   </div>
 </div>
 
+<% content_for :added_scripts do %>
+  <script type="text/javascript">
 
+    $( document ).ready(function() {
+      var getUrlParameter = function getUrlParameter(sParam) {
+          var sPageURL = window.location.search.substring(1),
+              sURLVariables = sPageURL.split('&'),
+              sParameterName,
+              i;
 
+          for (i = 0; i < sURLVariables.length; i++) {
+              sParameterName = sURLVariables[i].split('=');
+
+              if (sParameterName[0] === sParam) {
+                  return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+              }
+          }
+      };
+      var tg = getUrlParameter('task_group_id');
+
+      var link_by_id = "#link_" + tg;
+      $(link_by_id).click();
+      if(tg > 0 ){
+         $('html, body').animate({
+              scrollTop: $(link_by_id).offset().top
+          }, 'slow');
+      }
+    });
+  </script>
+<% end %>
 

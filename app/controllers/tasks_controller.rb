@@ -1,5 +1,5 @@
 class TasksController < ApplicationController
-  before_action :authenticate_user!, except: [:popped_out]
+  before_action :authenticate_user!, except: [:popped_out, :complete]
   before_action :set_task, only: [:show, :edit, :update, :destroy, :complete]
   #TODO: Authorize Tasks
   layout 'black_dashboard'
@@ -99,7 +99,12 @@ class TasksController < ApplicationController
           format.html { redirect_to @task.proposal, notice: 'Task was successfully completed.' }
         elsif !@task.shoot.nil?
           if params[:popped]
-            format.html { redirect_to shoot_tasks_poppedout_path(@task.shoot) }
+            redirect_params = {}
+            if params[:task_group_id]
+              redirect_params[:task_group_id] = params[:task_group_id]
+              byebug
+            end
+            format.html { redirect_to shoot_tasks_poppedout_path(@task.shoot, redirect_params) }
           else
             format.html { redirect_to shoot_path(@task.shoot, :active => 'tasks'), notice: 'Task was successfully completed.' }
           end
