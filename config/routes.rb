@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resources :shot_list_item_templates
   resources :task_groups do
     get 'add_to_shoot/:shoot_id', to: 'task_groups#copy_group_to_shoot', as:'copy_to_shoot'
-    resources :shot_list_item_templates
+    resources :shot_list_item_templates do
+      get 'copy', to: 'shot_list_item_templates#copy', as: 'copy'
+    end
   end
   resources :package_types
   resources :creative_requests

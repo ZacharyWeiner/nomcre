@@ -18,13 +18,19 @@
             <%= link_to "<i class='far fa-trash-alt'></i> ".html_safe, task_group_path(tg), :method => :delete,  style: 'pull-right' %>
             <% tg.shot_list_item_templates.each do |slit|%>
               <div class='row' style='margin:16px;'>
-                <div class='col-md-3'>
-                <%= image_tag slit.reference_image unless slit.reference_image.url.nil? %>
+                <div class='col-md-2'>
+                  <% if slit.reference_image.url.nil? %>
+                    <i class='fa fa-image fa-3x'></i>
+                  <% else %>
+                  <%= image_tag slit.reference_image %>
+                  <% end %>
                 </div>
-                <div class='col-md-3'>
+                <div class='col-md-6'>
                 <%= auto_html(slit.description){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
                 </div>
-                 <div class='col-md-3'>
+                 <div class='col-md-4 text-right'>
+                  <%= link_to 'copy', task_group_shot_list_item_template_copy_path(tg, slit)  %>
+                  <span style="padding:8px"></span>
                   <%= link_to 'edit', edit_task_group_shot_list_item_template_path(tg, slit)  %>
                   <span style="padding:8px"></span>
                   <%= link_to 'delete', task_group_shot_list_item_template_path(tg, slit), method: :delete %>

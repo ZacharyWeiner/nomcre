@@ -1,5 +1,5 @@
 class ShotListItemTemplatesController < ApplicationController
-  before_action :set_shot_list_item_template, only: [:show, :edit, :update, :destroy]
+  before_action :set_shot_list_item_template, only: [:show, :edit, :update, :destroy, :copy]
   layout 'black_dashboard'
   # GET /shot_list_item_templates
   # GET /shot_list_item_templates.json
@@ -38,6 +38,21 @@ class ShotListItemTemplatesController < ApplicationController
     end
   end
 
+  def copy
+    @new_item_template = ShotListItemTemplate.new
+    @new_item_template.task_group = @shot_list_item_template.task_group
+    @new_item_template.description = @shot_list_item_template.description
+    @new_item_template.background = @shot_list_item_template.background
+    @new_item_template.item_type = @shot_list_item_template.item_type
+    @new_item_template.item_type = @shot_list_item_template.item_type
+    @new_item_template.focus_point = @shot_list_item_template.focus_point
+    @new_item_template.reference_image = @shot_list_item_template.reference_image
+    @new_item_template.aspect_ratio = @shot_list_item_template.aspect_ratio
+    @new_item_template.frame_rate = @shot_list_item_template.frame_rate
+    @new_item_template.save!
+    redirect_to edit_task_group_shot_list_item_template_path(@new_item_template.task_group, @new_item_template)
+  end
+
   # PATCH/PUT /shot_list_item_templates/1
   # PATCH/PUT /shot_list_item_templates/1.json
   def update
@@ -66,7 +81,11 @@ class ShotListItemTemplatesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_shot_list_item_template
-      @shot_list_item_template = ShotListItemTemplate.find(params[:id])
+      if params[:shot_list_item_template_id]
+        @shot_list_item_template = ShotListItemTemplate.find(params[:shot_list_item_template_id])
+      else
+        @shot_list_item_template = ShotListItemTemplate.find(params[:id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

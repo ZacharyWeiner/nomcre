@@ -1,5 +1,8 @@
 <% task_group = TaskGroup.find(params[:task_group_id]) %>
-<%= form_with(model: shot_list_item_template, url: task_group_shot_list_item_templates_path, method: :post, local: true) do |form| %>
+<% method_to_call = shot_list_item_template.nil? ? :post : :patch %>
+
+
+<%= form_with(model: shot_list_item_template, local: true) do |form| %>
   <% if shot_list_item_template.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(shot_list_item_template.errors.count, "error") %> prohibited this shot_list_item_template from being saved:</h2>
