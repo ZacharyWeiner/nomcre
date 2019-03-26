@@ -14,11 +14,27 @@
 
  -->
 
-<div class="nk-box">
+<!-- <div class="nk-box">
     <div class="container text-center">
         <div class="nk-gap-5"></div>
         <div class="nk-gap-5"></div>
-        <h1 class="nk-title"><%= @package_type.page_header %></h1>
+        <h1 class="nk-title"><% @package_type.page_header %></h1>
         <div class="nk-gap-4"></div>
     </div>
+</div>
+ -->
+
+<div class="nk-box">
+    <div class="container text-center">
+      <div class="nk-gap-5"></div>
+
+ <blockquote class="nk-testimonial-2 ">
+    <div class="nk-testimonial-photo" style="background-image: url('https://s3-us-west-2.amazonaws.com/nomcre-rails/public-page-images/logos/FullLogo.png');"></div>
+    <div class="nk-testimonial-body">
+        <em>"<%= @package_type.subtitle%>"</em>
+    </div>
+    <div class="nk-testimonial-name h2"><%= @package_type.page_header %></div>
+    <div class="nk-testimonial-source">Nomadic Creative</div>
+</blockquote>
+</div>
 </div>
