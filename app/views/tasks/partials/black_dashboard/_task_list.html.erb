@@ -1,3 +1,4 @@
+<% is_popped = request.path_info.include?('popped') %>
 <% unless (tasks.first.nil? || tasks.first.shoot.nil?) %>
   <% project  =  tasks.first.shoot.project %>
   <% shoot = tasks.first.shoot %>
@@ -5,9 +6,12 @@
   <%= link_to "Pop out", shoot_tasks_poppedout_path(tasks.first.shoot), class: 'btn btn-success' %>
   <% end %>
 <% end %>
-<table class="table">
+<table class="">
   <tbody>
+    <% row_count = 0 %>
+    <% task_count = tasks.count %>
     <% tasks.each do |task| %>
+    <% row_count = row_count + 1 %>
     <% completed = task.completed %>
     <tr>
       <td>
@@ -38,8 +42,9 @@
           <% end %>
         </td>
       <% end %>
+      <% unless is_popped %>
       <td>
-      <% if !task.deadline.nil? %>
+      <% if !task.deadline.nil?%>
         <%if task.deadline > Date.today %>
           <p class="text-info"><i class="fa fa-clock-o"></i>  <%= (task.deadline - Date.today).to_int %> days</p>
         <% else %>
@@ -51,7 +56,7 @@
         No Deadline Saved
       <% end %>
       </td>
-
+      <% end %>
       <td class="td-actions text-right">
 
         <% if task.completed %>
@@ -78,6 +83,9 @@
         <% end %>
       </td>
     </tr>
+    <%unless row_count == tasks.count %>
+      <tr><td><hr></td><td><hr></td><td><hr></td></tr>
+    <% end %>
     <% end %>
   </tbody>
 </table>

@@ -4,29 +4,30 @@
 <% query_params = {} if query_params.nil? %>
 <% task_group_id = query_params['task_group_id'].nil? ? '0' : query_params['task_group_id'][0].to_i %>
 <div class="card"> <!-- Card For groups and Tasks -->
-  <div class="card-header">
-    <h3 class="card-title"> Task Groups </h3>
+  <div class="card-header row">
+    <div class='col-md-2'></div>
+    <div class='col-md-8 text-center'><h3 class="card-title text-center">Task Groups </h3></div>
+    <div class='col-md-2'><%= link_to "<i class='fa fa-arrow-left'></i> Back To Shoot".html_safe, shoot_path(shoot, :active => 'tasks'), class: 'btn btn-link btn-primary text-right' %></div>
   </div>
   <div id="accordion_<%= shoot.id %>" role="tablist" aria-multiselectable="true" class="card-collapse"> <!-- Accordion for groups -->
     <% tgs = shoot.task_groups.where(parent_id: nil) %>
+    <br><br>
     <% tgs.each do |group| %>
-      <div class="card card-plain">
+      <div class="card" style='padding:8px;'>
         <div class="card-header" id="heading_<%= group.id %>"> <!-- group collapseable element -->
-          <a data-toggle="collapse" data-parent="#accordion_<%= shoot.id %>" href="#collapse_<%= group.id %>" aria-expanded="false" aria-controls="collapse_<%= group.id %>" id="link_<%= group.id%>">
-            <%= group.title %>
-            <i class="fa fa-caret-down"></i>
+          <a data-toggle="collapse" data-parent="#accordion_<%= shoot.id %>" href="#collapse_<%= group.id %>" aria-expanded="false" aria-controls="collapse_<%= group.id %>" id="link_<%= group.id%>" class=''>
+            <h6 class='text-left text-primary'><%= group.title %> <i class="fa fa-caret-down" ></i></h6>
           </a>
         </div>
         <div id="collapse_<%= group.id %>" class="collapse" role="tabpanel" aria-labelledby="heading_<%= group.id %>">
-          <div class="card-body">
+          <div class="card-body card" style='background-color:#F2F3F7'>
            <!-- Child Task Groups -->
                 <div id="accordion_<%= group.id %>" role="tablist" aria-multiselectable="true" class="card-collapse"> <!-- Accordion for groups -->
                   <% group.children.each do |child| %>
                     <div class="card card-plain">
                       <div class="card-header" id="heading_<%= child.id %>"> <!-- group collapseable element -->
                         <a data-toggle="collapse" data-parent="#accordion_<%= group.id %>" href="#collapse_<%= child.id %>" aria-expanded="false" aria-controls="collapse_<%= child.id %>">
-                          <%= child.title %>
-                          <i class="fa fa-caret-down"></i>
+                         <h6 class='text-left text-primary'><%= child.title %> <i class="fa fa-caret-down" ></i></h6>>
                         </a>
                       </div>
                       <div id="collapse_<%= child.id %>" class="collapse" role="tabpanel" aria-labelledby="heading_<%= child.id %>">
@@ -37,15 +38,30 @@
                         </div>
                       </div>
                     </div>
+                    <hr>
                   <% end %>
                 </div>
-                <%= render :partial => 'tasks/partials/black_dashboard/task_list', :locals => {tasks: group.tasks} %>
+                <%= render :partial => 'tasks/partials/black_dashboard/task_list', :locals => {tasks: group.tasks.order(:updated_at)} %>
            <!-- Tasks In the Group -->
           </div>
         </div>
       </div>
+      <hr>
     <% end %>
-    <%= render :partial => 'tasks/partials/black_dashboard/task_list', :locals => {tasks: shoot.tasks.where(task_group: nil)} %>
+
+    <div class="card" style='padding:8px;'>
+        <div class="card-header" id="heading_none"> <!-- group collapseable element -->
+          <a data-toggle="collapse" data-parent="#accordion_none" href="#collapse_none" aria-expanded="false" aria-controls="collapse_none" id="link_none" class=''>
+            <h6 class='text-left text-primary'>No Group <i class="fa fa-caret-down" ></i></h6>
+          </a>
+        </div>
+        <div id="collapse_none" class="collapse" role="tabpanel" aria-labelledby="heading_none">
+          <div class="card-body card" style='background-color:#F2F3F7'>
+                <%= render :partial => 'tasks/partials/black_dashboard/task_list', :locals => {tasks: shoot.tasks.where(task_group: nil)} %>
+           <!-- Tasks In the Group -->
+          </div>
+        </div>
+      </div>
   </div>
 </div>
 
