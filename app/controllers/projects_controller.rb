@@ -101,7 +101,7 @@ class ProjectsController < ApplicationController
   end
 
   def update_price
-    @price = params[:project][:price]
+    @price = params[:project][:price].to_i
     @project = Project.find(params[:project_id])
     @project.update_price(@price)
     redirect_to admin_edit_project_price_path(@project)
