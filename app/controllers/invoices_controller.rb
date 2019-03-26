@@ -46,12 +46,23 @@ class InvoicesController < ApplicationController
   # PATCH/PUT /invoices/1.json
   def update
     respond_to do |format|
-      if @invoice.update(invoice_params)
-        format.html { redirect_to @invoice, notice: 'Invoice was successfully updated.' }
-        format.json { render :show, status: :ok, location: @invoice }
+      if @invoice.invoice_type == InvoiceType.deposit
+        if @invoice.update(invoice_params)
+          @balance_invoice = @invoice.project.balance_invoice
+          @balance_invoice.amount = @invoice.project.price - @invoice.amount
+          @balance_invoice.save!
+          format.html { redirect_to @invoice, notice: 'Invoice was successfully updated.' }
+          format.json { render :show, status: :ok, location: @invoice }
+        else
+          format.html { render :edit }
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @invoice.errors, status: :unprocessable_entity }
+        if @invoice.amount != invoice_params[:amount]
+          format.html { redirect_to @invoice, error: 'Balance Price Can Not Be Updated On Its Own' }
+        end
+        if @invoice.update(invoice_params)
+          format.html { redirect_to @invoice, notice: 'Invoice was successfully updated.' }
+        end
       end
     end
   end

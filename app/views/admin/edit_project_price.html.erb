@@ -4,11 +4,32 @@
   </div>
   <div class='card-body'>
     <%= form_for @project, :url => { :action => :update_price, :controller=> :projects } do |f| %>
-    <%= f.number_field :price, class: 'form-control' %>
-  <br><br>
-  <%= f.submit class: 'btn btn-warning' %>
-<% end %>
+      <%= f.number_field :price, class: 'form-control' %>
+      <br><br>
+      <%= f.submit class: 'btn btn-warning' %>
+    <% end %>
   </div>
 </div>
 
-
+<div class='row'>
+  <div class='col-md-6'>
+    <div class='card'>
+      <div class='card-header'>
+        <div class='card-title'>Change Deposit Amount For for <%= @project.title %></div>
+      </div>
+      <div class='card-body'>
+       <%= render :partial => 'admin/black_dashboard/invoices/update_amount_form', :locals => {invoice:  @project.deposit_invoice, button_text: "Update Deposit"} %>
+      </div>
+    </div>
+  </div>
+  <div class='col-md-6'>
+    <div class='card'>
+      <div class='card-header'>
+        <div class='card-title'>Change Balance Amount For for <%= @project.title %></div>
+      </div>
+      <div class='card-body'>
+       <%= render :partial => 'admin/black_dashboard/invoices/update_amount_form', :locals => {invoice:  @project.balance_invoice,  button_text: "Update Balance"} %>
+      </div>
+    </div>
+  </div>
+</div>
