@@ -1,4 +1,4 @@
 <% if shoot.is_editable || current_user == shoot.creative%>
-  <button id='taskButton' class='btn btn-primary'> New Task </button>
+  <button id='taskButton' class='btn btn-primary btn-simple btn-block'> <i class='fas fa-plus'> </i> New Task </button>
   <%= render :partial => 'tasks/partials/black_dashboard/shared/form_modal', :locals => {:shoot => shoot} %>
 <% end %>

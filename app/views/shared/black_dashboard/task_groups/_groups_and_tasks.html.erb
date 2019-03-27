@@ -7,7 +7,11 @@
   <div class="card-header row">
     <div class='col-md-2'></div>
     <div class='col-md-8 text-center'><h3 class="card-title text-center">Task Groups </h3></div>
-    <div class='col-md-2'><%= link_to "<i class='fa fa-arrow-left'></i> Back To Shoot".html_safe, shoot_path(shoot, :active => 'tasks'), class: 'btn btn-link btn-primary text-right' %></div>
+    <div class='col-md-2'>
+      <% if request.path.include?('tasks_popped') %>
+      <%= link_to "<i class='fa fa-arrow-left'></i> Back To Shoot".html_safe, shoot_path(shoot, :active => 'tasks'), class: 'btn btn-link btn-primary text-right' %>
+      <% end %>
+      </div>
   </div>
   <div id="accordion_<%= shoot.id %>" role="tablist" aria-multiselectable="true" class="card-collapse"> <!-- Accordion for groups -->
     <% tgs = shoot.task_groups.where(parent_id: nil) %>
