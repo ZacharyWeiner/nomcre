@@ -2,11 +2,12 @@
   <div class='card-header'>
     <div class='card-title'>Change Price for <%= @project.title %></div>
   </div>
+  <% can_update_class = @project.is_paid_in_full ? 'disabled' : '' %>
   <div class='card-body'>
     <%= form_for @project, :url => { :action => :update_price, :controller=> :projects } do |f| %>
       <%= f.number_field :price, class: 'form-control' %>
       <br><br>
-      <%= f.submit class: 'btn btn-warning' %>
+      <%= f.submit class: "btn btn-warning #{can_update_class}" %>
     <% end %>
   </div>
 </div>
@@ -29,6 +30,31 @@
       </div>
       <div class='card-body'>
        <%= render :partial => 'admin/black_dashboard/invoices/update_amount_form', :locals => {invoice:  @project.balance_invoice,  button_text: "Update Balance"} %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col-md-6'>
+    <div class='card'>
+      <div class='card-header'>
+        <div class='card-title'>Deposit Paymet For for <%= @project.title %></div>
+      </div>
+      <div class='card-body'>
+        <% deposit_payment = @project.deposit_payment.nil? ? Payment.new : @project.deposit_payment %>
+        <%= render :partial => 'admin/black_dashboard/payments/payment_form', :locals => {payment:  deposit_payment, payment_type: PaymentType.deposit, button_text: "Add/Update Deposit"} %>
+      </div>
+    </div>
+  </div>
+  <div class='col-md-6'>
+    <div class='card'>
+      <div class='card-header'>
+        <div class='card-title'>Change Balance Amount For for <%= @project.title %></div>
+      </div>
+      <div class='card-body'>
+       <% balance_payment = @project.balance_payment.nil? ? Payment.new : @project.balance_payment %>
+        <%= render :partial => 'admin/black_dashboard/payments/payment_form', :locals => {payment:  balance_payment,  payment_type: PaymentType.balance,  button_text: "Add/Update Balance"} %>
       </div>
     </div>
   </div>
