@@ -101,7 +101,6 @@ class Project < ApplicationRecord
       @deposit_invoice = self.deposit_invoice
       @balance_invoice = self.balance_invoice
       self.price = new_price
-      byebug
       #if either are unpaid we can adjust the price
       if !@deposit_invoice.is_paid || !@balance_invoice.is_paid
         if self.save!
