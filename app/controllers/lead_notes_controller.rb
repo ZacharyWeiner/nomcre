@@ -31,7 +31,7 @@ class LeadNotesController < ApplicationController
     @lead_note.lead = Lead.find(lead_note_params[:lead_id])
     respond_to do |format|
       if @lead_note.save
-        format.html { redirect_to @lead_note, notice: 'Lead note was successfully created.' }
+        format.html { redirect_to @lead_note.lead, notice: 'Lead note was successfully created.' }
         format.json { render :show, status: :created, location: @lead_note }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class LeadNotesController < ApplicationController
   def update
     respond_to do |format|
       if @lead_note.update(lead_note_params)
-        format.html { redirect_to @lead_note, notice: 'Lead note was successfully updated.' }
+        format.html { redirect_to @lead_note.lead, notice: 'Lead note was successfully updated.' }
         format.json { render :show, status: :ok, location: @lead_note }
       else
         format.html { render :edit }

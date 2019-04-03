@@ -38,12 +38,22 @@
 </div>
 <div class='nk-main'>
     <div class='nk-gap'></div>
-    <div class='container'>
+    <div class='container' style="font: raleway; font-weight: 300;">
         <% @page_sections.each do |ps| %>
             <div class='nk-gap'></div>
           <h3><%= ps.title %></h3>
-          <p class='text-left'><%= ps.content.html_safe %></p>
+          <div class=' auto-html text-left'><%= auto_html(ps.content.html_safe){ image(); youtube(width: "560", height: "315", :autoplay => false);  link(:target => 'blank'); simple_format(); } unless ps.content.nil? %></div>
         <% end %>
     </div>
     <div class='nk-gap'></div>
 </div>
+
+
+
+<script>
+  $(document).ready(function () {
+    $(".auto-html").children('p').addClass(" text-left");
+    $(".youtube").addClass(" text-center nk-plain-video");
+});
+</script>
+

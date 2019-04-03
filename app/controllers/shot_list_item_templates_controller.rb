@@ -1,5 +1,6 @@
 class ShotListItemTemplatesController < ApplicationController
   before_action :set_shot_list_item_template, only: [:show, :edit, :update, :destroy, :copy]
+  before_action :set_task_group
   layout 'black_dashboard'
   # GET /shot_list_item_templates
   # GET /shot_list_item_templates.json
@@ -15,7 +16,7 @@ class ShotListItemTemplatesController < ApplicationController
   # GET /shot_list_item_templates/new
   def new
     @shot_list_item_template = ShotListItemTemplate.new
-    @task_group = TaskGroup.find(params[:task_group_id])
+
   end
 
   # GET /shot_list_item_templates/1/edit
@@ -26,7 +27,6 @@ class ShotListItemTemplatesController < ApplicationController
   # POST /shot_list_item_templates.json
   def create
     @shot_list_item_template = ShotListItemTemplate.new(shot_list_item_template_params)
-    @task_group = TaskGroup.find(shot_list_item_template_params[:task_group_id])
     respond_to do |format|
       if @shot_list_item_template.save
         format.html { redirect_to admin_task_groups_path(@task_group), notice: 'Shot list item template was successfully created.' }
@@ -58,7 +58,7 @@ class ShotListItemTemplatesController < ApplicationController
   def update
     respond_to do |format|
       if @shot_list_item_template.update(shot_list_item_template_params)
-        format.html { redirect_to @shot_list_item_template, notice: 'Shot list item template was successfully updated.' }
+        format.html { redirect_to admin_task_groups_path(@task_group), notice: 'Shot list item template was successfully updated.' }
         format.json { render :show, status: :ok, location: @shot_list_item_template }
       else
         format.html { render :edit }
@@ -70,7 +70,6 @@ class ShotListItemTemplatesController < ApplicationController
   # DELETE /shot_list_item_templates/1
   # DELETE /shot_list_item_templates/1.json
   def destroy
-    @task_group = TaskGroup.find(params[:task_group_id])
     @shot_list_item_template.destroy
     respond_to do |format|
       format.html { redirect_to admin_task_groups_path(@task_group), notice: 'Shot list item template was successfully destroyed.' }
@@ -79,6 +78,11 @@ class ShotListItemTemplatesController < ApplicationController
   end
 
   private
+    def set_task_group
+      if params[:task_group_id]
+        @task_group = TaskGroup.find(params[:task_group_id])
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_shot_list_item_template
       if params[:shot_list_item_template_id]
