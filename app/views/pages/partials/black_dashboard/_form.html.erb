@@ -30,16 +30,31 @@
     <%= form.label :keywords %>
     <%= form.text_field :keywords, id: :page_keywords, class: 'form-control' %>
   </div>
+  <br>
 
-  <div class="field-group">
-    <%= form.label :views %>:
-    <%= @page.views == nil ? 0 : @page.views  %>
+  <div class='row'>
+    <div class='col-md-4'>
+      <div class="field-group">
+        <%= form.label :views %>:
+        <%= @page.views == nil ? 0 : @page.views  %>
+      </div>
+    </div>
+    <div class='col-md-4'>
+      <div class="field-group">
+        <%= form.label :is_blog %>
+        <%= form.check_box :is_blog, id: :is_blog, checked:  @page.is_blog %>
+      </div>
+    </div>
+    <div class='col-md-4'>
+      <div class="field-group">
+        <%= form.label :is_faq %>
+        <%= form.check_box :is_faq, id: :is_faq, checked:  @page.is_faq %>
+      </div>
+    </div>
   </div>
 
-  <div class="field-group">
-    <%= form.label :is_blog %>
-    <%= form.check_box :is_blog, id: :is_blog, checked:  @page.is_blog %>
-  </div>
+
+
 
   <div class="actions">
     <%= form.submit "Save", class: 'btn btn-primary' %>
