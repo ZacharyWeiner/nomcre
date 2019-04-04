@@ -1,0 +1,14 @@
+<% content_for :head do %>
+<meta property="og:url" content="<%= request.original_url %>" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="NomCre - Video Showcase" />
+<meta property="og:description" content="Nomcre - The Best Nomadic Creative Videos" />
+<meta property="og:image" content="https://s3-us-west-2.amazonaws.com/nomcre/assets/homepage/images/horizontal/nomcre-horizontal-19.jpg" />
+<meta property="title" content="Nomcre - The Best Nomadic Creative Videos" />
+<meta property="keywords" content="On Demand, On-Demand, Visual, Custom, Creative, Content, Photography, Videography, Videos, product photos, pictures" />
+<% end %>
+<div class='nk-main'>
+<%= render 'khaki/nomcre/showcase/video/header_title' %>
+<%=render 'khaki/nomcre/showcase/video/video_gallery'%>
+</div>
+

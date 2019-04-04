@@ -147,6 +147,7 @@ Rails.application.routes.draw do
   get 'creative', to:'khaki#creative_landing', as: 'creative_landing'
   get 'showcase', to:'khaki#creative_showcase', as: 'creative_showcase'
   get 'video_showcase', to:'khaki#video_showcase', as: 'video_showcase'
+  get 'model_showcase', to:'khaki#model_showcase', as: 'model_showcase'
   get 'contact', to:'khaki#contact', as: 'nomcre_contact'
   get 'about', to:'khaki#about', as: 'nomcre_about'
   get 'featured', to:'khaki#featured_creatives', as: 'featured_creatives'
