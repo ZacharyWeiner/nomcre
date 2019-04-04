@@ -28,6 +28,7 @@ gem 'twilio-ruby', '~> 5.5.0'
 gem 'sendgrid-ruby'
 gem 'bootstrap-toggle-rails'
 gem 'geocoder'
+gem 'sidekiq'
 
 # gem 'bcrypt', '~> 3.1.7'
 
