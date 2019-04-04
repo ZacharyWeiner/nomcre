@@ -76,7 +76,8 @@ class PackageTypesController < ApplicationController
   def new_from_template
     CreateProjectFromTemplateWorker.perform_async(@package_type.id, current_user.id)
     flash[:notice] = "We're Building Your Project :) "
-    redirect_to projects_path
+    head :no_content
+    #redirect_to projects_path
   end
 
   private
