@@ -72,7 +72,7 @@ class ShotListItemTemplatesController < ApplicationController
   def destroy
     @shot_list_item_template.destroy
     respond_to do |format|
-      format.html { redirect_to admin_task_groups_path(@task_group), notice: 'Shot list item template was successfully destroyed.' }
+      format.html { redirect_to admin_task_groups_path(:active => @task_group.id), notice: 'Shot list item template was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

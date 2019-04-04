@@ -8,25 +8,44 @@
   <div class='form-group'>
   <%= render :partial => 'shot_list_items/partials/black_dashboard/form/task_groups', :locals => {shoot: shoot, shot_list_item: shot_list_item, form: form, redirect: 'shoot'} %>
   </div>
-  <%= render :partial => 'shot_list_items/partials/black_dashboard/form/description', :locals => {:shot_list_item => shot_list_item, :form => form }%>
-   <div class='form-group'>
-    <label> Background </label>
-    <%= form.text_field :background, id: :shot_list_item_background, class: 'form-control', :placeholder => 'Tell us About the Background' %>
-  </div>
-  <% if shoot.content_type == ContentType.video %>
-    <div class='form-group'>
-      <label> Frame Rate </label>
-      <%= form.select "frame_rate", "<option>24.4 fps - Regular</option> <option style='color: orange;'>60 fps - Slow</option>
-      <option style='color: red;'>120 fps - Super Slow</option>".html_safe %>
+  <div class="row">
+    <div class="col-md-8">
+      <%= render :partial => 'shot_list_items/partials/black_dashboard/form/description', :locals => {:shot_list_item => shot_list_item, :form => form }%>
     </div>
-  <% end %>
-  <br>
-  <%= render :partial => 'shot_list_items/partials/black_dashboard/form/shoot_location', :locals => {:shot_list_item => shot_list_item, :form => form }%>
-  <%= render :partial => 'shot_list_items/partials/black_dashboard/form/reference_image', :locals => {:shot_list_item => shot_list_item, :form => form }%>
-  <br>
-  <%= render :partial => 'shot_list_items/partials/black_dashboard/form/focus_point', :locals => {:shot_list_item => shot_list_item, :form => form }%>
-  <br>
-  <%= render :partial => 'shot_list_items/partials/black_dashboard/form/aspect_ratio', :locals => {:shot_list_item => shot_list_item, :form => form }%>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class='form-group'>
+        <label> Background </label>
+        <%= form.text_field :background, id: :shot_list_item_background, class: 'form-control', :placeholder => 'Tell us About the Background' %>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <% if shoot.content_type == ContentType.video %>
+        <div class='form-group'>
+          <label> Frame Rate </label><br>
+          <%= form.select "frame_rate", "<option class='text-center'>24.4 fps - Regular</option> <option style='color: orange;'>60 fps - Slow</option>
+          <option style='color: red;'>120 fps - Super Slow</option>".html_safe, {}, {:class => 'form-contol', style: 'height:40px; width: 100%; text-center'} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-md-6"><%= render :partial => 'shot_list_items/partials/black_dashboard/form/shoot_location', :locals => {:shot_list_item => shot_list_item, :form => form }%></div>
+    <div class="col-md-6"><%= render :partial => 'shot_list_items/partials/black_dashboard/form/reference_image', :locals => {:shot_list_item => shot_list_item, :form => form }%></div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6"><%= render :partial => 'shot_list_items/partials/black_dashboard/form/focus_point', :locals => {:shot_list_item => shot_list_item, :form => form }%></div>
+    <div class="col-md-6"><%= render :partial => 'shot_list_items/partials/black_dashboard/form/aspect_ratio', :locals => {:shot_list_item => shot_list_item, :form => form }%></div>
+  </div>
+
+
+
   <% if !shoot.nil? %>
     <%= form.hidden_field :item_type, :value => "#{shoot.shoot_style} - #{shoot.content_type}" %>
     <%= form.hidden_field :shoot_id, :value => shoot.id %>
