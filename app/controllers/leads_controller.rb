@@ -36,8 +36,12 @@ class LeadsController < ApplicationController
         if lead_params[:source] == 'landing'
           send_notification(@lead)
         end
-        format.html { redirect_to landing_thank_you_path, notice: 'Lead was successfully created.' }
-        format.json { render :show, status: :created, location: @lead }
+        if current_user.is_admin
+           format.html { redirect_to admin_leads_path, notice: 'Lead was successfully created.' }
+        else
+          format.html { redirect_to landing_thank_you_path, notice: 'Lead was successfully created.' }
+          format.json { render :show, status: :created, location: @lead }
+        end
       else
         format.html { redirect_to landing_marketing_path }
         format.json { render json: @lead.errors, status: :unprocessable_entity }
@@ -50,8 +54,12 @@ class LeadsController < ApplicationController
   def update
     respond_to do |format|
       if @lead.update(lead_params)
-        format.html { redirect_to @lead, notice: 'Lead was successfully updated.' }
-        format.json { render :show, status: :ok, location: @lead }
+        if current_user.is_admin
+           format.html { redirect_to admin_leads_path, notice: 'Lead was successfully created.' }
+        else
+          format.html { redirect_to @lead, notice: 'Lead was successfully updated.' }
+          format.json { render :show, status: :ok, location: @lead }
+        end
       else
         format.html { render :edit }
         format.json { render json: @lead.errors, status: :unprocessable_entity }

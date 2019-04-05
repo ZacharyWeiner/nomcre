@@ -1,6 +1,7 @@
 class UserProfile < ApplicationRecord
   #validations
   validates :display_name, presence: true
+  validates :profile_photo,  file_size: { less_than_or_equal_to: 15.megabytes }
 
   #belongs_to
   belongs_to :user
@@ -20,7 +21,7 @@ class UserProfile < ApplicationRecord
 
   def safe_header_image_url
     unless self.header_image.url.nil?
-      return self.header_image
+      return self.header_image.url
     else
       return UserProfile.default_header_image
     end

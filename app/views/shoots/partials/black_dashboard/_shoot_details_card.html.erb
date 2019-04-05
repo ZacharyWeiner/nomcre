@@ -82,7 +82,7 @@
             <div class="block block-two"></div>
             <div class="block block-three"></div>
             <div class="block block-four"></div>
-            <a href="javascript:void(0)">
+            <a href="<%= user_profile_path(shoot.creative.user_profile) unless shoot.creative.nil? %>">
               <% if shoot.creative  %>
                 <%= image_tag shoot.creative.user_profile.safe_profile_image_url, class: 'avatar'%>
               <% else %>
@@ -92,7 +92,8 @@
             </a>
             <p class="description">
               <% if current_user.company.nil? %>
-              <%= shoot.company.name %>
+              <%= shoot.company.name %> <br> & <br>
+              <%= shoot.creative == nil ? "Unassigned" :  shoot.creative.name %>
               <% else %>
                 <%= shoot.creative == nil ? "Unassigned" :  shoot.creative.name %>
               <% end %>

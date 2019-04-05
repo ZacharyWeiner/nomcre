@@ -68,7 +68,7 @@
                   <i class="tim-icons"><ion-icon name="paper"></ion-icon></i>
                 <% end %>
                 <!-- <button type="button" rel="tooltip" class="btn btn-danger btn-link btn-sm " data-original-title="Tooltip on top" title="Delete"> -->
-                  <%= link_to schedule_item_path(schedule_item), method: :destroy, class: 'btn btn-danger btn-link btn-sm', title: "Delete", :data => { :original_title => 'Tooltip on Top'} do %>
+                  <%= link_to schedule_item_path(schedule_item), method: :delete, class: 'btn btn-danger btn-link btn-sm', title: "Delete", :data => { :original_title => 'Tooltip on Top'} do %>
                   <i class="tim-icons"><ion-icon name="trash"></ion-icon></i>
                   <% end %>
 

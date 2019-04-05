@@ -1,0 +1,71 @@
+<div class="card">
+  <div class='card-header'>
+    <div class='card-category'> <%= @shoot.company.name %> </div>
+    <div class="card-title"> <%= "#{@shoot.project.title} - #{@shoot.title}" %></div>
+
+    </div>
+  <div class='card-body'>
+    <%= form_with(model: @shoot, local: true) do |form| %>
+      <% if @shoot.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@shoot.errors.count, "error") %> prohibited this shoot from being saved:</h2>
+
+          <ul>
+          <% shoot.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+    <div class='row'>
+      <div class="col-md-6">
+        <div class='form-group'>
+          <%= form.label :creative_id %>
+          <% selected_creative = @shoot.creative.nil? ?  0 : @shoot.creative.id %>
+          <% users_for_select = User.where(user_type: UserType.creative).map{|u| [u.name, u.id]} %>
+          <%= form.select(:creative_id, options_for_select(users_for_select, selected_creative), {}, {class: 'form-control'}) %>
+
+        </div>
+
+        <div class='form-group'>
+          <%= form.label :location_id %>
+          <% selected = @shoot.location.nil? ?  0 : @shoot.location.id %>
+          <%= form.select(:location_id, options_for_select(Location.locations_for_select, selected), {}, {class: 'form-control'}) %>
+        </div>
+
+        <div class='form-group'>
+          <%= form.label :content_type %>
+          <%= form.select(:content_type, options_for_select([ContentType.photo, ContentType.video], @shoot.content_type), {}, {class: 'form-control'}) %>
+        </div>
+        <div class='form-group'>
+          <%= form.label :deadline %>
+          <%= form.date_select :deadline, id: :shoot_deadline %>
+        </div>
+        <div class='form-group'>
+          <%= form.label :price %>
+          <%= form.text_field :price, id: :shoot_price, class: 'form-control' %>
+        </div>
+      <div class='form-group'>
+        <%= form.label :maximum_user_added_shot_count %>
+        <%= form.number_field :user_added_shot_count_max, id: :shoot_user_added_shot_count_max, class: 'form-control' %>
+      </div>
+      </div>
+      <div class="col-md-6">
+        <%= form.label :background %>
+        <%= render :partial => 'shoots/partials/black_dashboard/wizard/background', :locals => {shoot: @shoot, form: form} %>
+        <%= form.label :style %>
+        <div class='row'>
+        <%= render :partial => 'shoots/partials/black_dashboard/wizard/style', :locals => {shoot: @shoot, form: form} %>
+        </div>
+      </div>
+    </div>
+    <div class='form-group'>
+          <%= form.label :brief %>
+          <%= form.text_area :brief, id: :shoot_brief, class: 'form-control', style: 'min-height: 400px' %>
+    </div>
+    <div class="actions">
+        <%= form.submit class: 'btn btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

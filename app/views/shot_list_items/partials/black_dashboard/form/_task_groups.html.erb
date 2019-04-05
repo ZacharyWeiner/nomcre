@@ -2,14 +2,12 @@
   <div class='col-sm-7 col-md-8'>
     <label>Choose An Existing Group </label>
     <% select_options = shoot.task_groups.reverse.map{|tg| [tg.title, tg.id]} %>
-    <%= form.select(:task_group_id, select_options, {}, {class: 'form-control'}) %>
-  </div>
-  <div class='col-sm-1 col-md-1'>
+    <%= form.select(:task_group_id, select_options, {}, {class: 'form-control', style: 'height:40px'}) %>
 
-    <label  style='margin-top:24px'>OR</label>
   </div>
-  <div class='col-sm-4 col-md-3'>
-    <%= link_to "Add Group", "#", id: 'newGroupBtn', class: 'btn btn-primary btn-simple', style: 'margin-top:16px' %>
+  <div class='col-sm-5 col-md-4'>
+    <%= link_to "<i class='fa fa-plus' ></i> Add Group".html_safe, "#", id: 'newGroupBtn', class: 'btn btn-primary btn-simple btn-block' %>
+    <%= link_to "<i class='fa fa-edit' ></i> Edit Group Names".html_safe, shoot_edit_names_path(shoot.id), id: 'edit_names', class: 'btn btn-primary btn-simple btn-block' %>
   </div>
 </div>
 

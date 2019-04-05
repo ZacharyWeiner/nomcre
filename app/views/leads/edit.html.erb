@@ -1,6 +1,11 @@
 <h1>Editing Lead</h1>
 
-<%= render 'form', lead: @lead %>
+<div class='card'>
+  <div class='card-body'>
+    <%= render 'form', lead: @lead %>
 
-<%= link_to 'Show', @lead %> |
-<%= link_to 'Back', leads_path %>
+    <%= link_to 'Show', @lead %> |
+    <%= link_to 'Back', leads_path %>
+
+  </div>
+</div>

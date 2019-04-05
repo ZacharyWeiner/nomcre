@@ -47,8 +47,8 @@
       <div class="nk-portfolio-item <%= cycle("", "inverted") -%>">
           <div class="nk-image-box-1 nk-portfolio-image-box">
               <%= link_to "", collection_path(collection), class: "nk-image-box-link" %>
-              <div class="nk-portfolio-image hidden-md-down" style="background-image: url(&quot;<%= collection.get_header_or_first.file.url %>&quot;); transform: matrix(1, 0, 0, 1, 0, 0);"></div>
-              <%= image_tag  collection.get_header_or_first.file.url,  class: "nk-portfolio-image hidden-lg-up", oncontextmenu:"return false", style: "transform: matrix(1, 0, 0, 1, 0, 0);" %>
+              <div class="nk-portfolio-image hidden-md-down" style="background-image: url(&quot;<%= collection.get_header_or_first %>&quot;); transform: matrix(1, 0, 0, 1, 0, 0);"></div>
+              <%= image_tag  "#{collection.get_header_or_first}",  class: "nk-portfolio-image hidden-lg-up", oncontextmenu:"return false", style: "transform: matrix(1, 0, 0, 1, 0, 0);" %>
           </div>
           <div class="nk-portfolio-text-box">
               <div>

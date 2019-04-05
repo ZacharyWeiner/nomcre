@@ -47,6 +47,9 @@ class CollectionItemsController < ApplicationController
         if @collection_item.is_header.nil?
           @collection_item.is_header = false
         end
+        if @collection.collection_items.count == 0
+          @collection_item.is_header = true
+        end
         @collection_item.order = @collection_item.collection.collection_items.count
         if @collection_item.save
 

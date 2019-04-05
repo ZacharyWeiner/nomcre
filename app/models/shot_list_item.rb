@@ -1,5 +1,6 @@
 class ShotListItem < ApplicationRecord
   validate :description_or_reference
+  validates :reference_image, file_size: { less_than_or_equal_to: 15.megabytes }
   before_destroy :orphan_relations
   #validation
   # validates :description, presence: true

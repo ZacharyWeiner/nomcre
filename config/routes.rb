@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     resources :creative_requests
     resources :disclosures
     get '/tasks_popped', to: 'tasks#popped_out', as: 'tasks_poppedout'
+    get 'task_groups/edit_names', to: 'task_groups#edit_names', as: 'edit_names'
+    post 'task_groups/update_names', to: 'task_groups#update_names', as: 'update_names'
     resources :tasks
     get '/new_request/:user_id', to: 'shoots#create_creative_request', as: 'create_creative_request'
     get 'request_all', to:'shoots#request_all_available_creatives', as: 'request_all'
@@ -147,6 +149,7 @@ Rails.application.routes.draw do
   get 'creative', to:'khaki#creative_landing', as: 'creative_landing'
   get 'showcase', to:'khaki#creative_showcase', as: 'creative_showcase'
   get 'video_showcase', to:'khaki#video_showcase', as: 'video_showcase'
+  get 'model_showcase', to:'khaki#model_showcase', as: 'model_showcase'
   get 'contact', to:'khaki#contact', as: 'nomcre_contact'
   get 'about', to:'khaki#about', as: 'nomcre_about'
   get 'featured', to:'khaki#featured_creatives', as: 'featured_creatives'

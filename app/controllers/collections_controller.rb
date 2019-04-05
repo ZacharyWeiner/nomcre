@@ -141,7 +141,7 @@ class CollectionsController < ApplicationController
     end
 
     def set_layout
-      if action_name == "show" || action_name == 'index'
+      if action_name == "show" || action_name == 'index' || action_name == 'new'
         return 'khaki'
       else
         return 'black_dashboard'

@@ -61,8 +61,9 @@
                 <div class="block block-two"></div>
                 <div class="block block-three"></div>
                 <div class="block block-four"></div>
-                <a href="javascript:void(0)">
+                <a href="<%= company_path(project.company.id)%>">
                   <% if !project.company.nil? %>
+
                     <%= image_tag project.company.logo , class: 'avatar'%>
                   <% else %>
                     <%= image_tag 'https://s3-us-west-2.amazonaws.com/nomcre/assets/Dummy-profile-picture.png', class: 'avatar'%>

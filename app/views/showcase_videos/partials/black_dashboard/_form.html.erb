@@ -38,17 +38,13 @@
             <% if showcase_video.file.url != nil %>
               <%= video_tag showcase_video.file, controls: 'controls', class: 'img-fluid' %>
             <% end %>
-           <ion-icon name='videocam'  size='large' class= 'btn btn-rose btn-round btn-file'> </ion-icon>
+           <ion-icon name='videocam'  size='large' class= 'btn btn-primary btn-round btn-file'> </ion-icon>
             <%= form.label :select_a_video %>
             <%= form.file_field :file, id: :showcase_image_file %>
           </div>
           <div class="form-group">
             <%= form.label :showcase_type %>
-            <select name="showcase_image[showcase_type]" id="showcase_image_shwcase_type">
-              <option value="main">main</option>
-        <!--       <option value="joke">joke</option>
-              <option value="poem">poem</option> -->
-            </select>
+            <%= form.select(:showcase_type,options_for_select(["Main", "Model"], showcase_video.showcase_type), {}, {class: 'form-control'}) %>
           </div>
           <div class="">
             <%= form.label :show %>
@@ -62,7 +58,7 @@
             <% if showcase_video.file != nil %>
               <%= image_tag showcase_video.thumbnail, class: 'img-fluid' %>
             <% end %>
-            <ion-icon name='camera'  size='large' class= 'btn btn-rose btn-round btn-file'> </ion-icon>
+            <ion-icon name='camera'  size='large' class= 'btn btn-primary btn-round btn-file'> </ion-icon>
             <%= form.label :select_a_thumbnail %>
             <%= form.file_field :thumbnail, id: :showcase_video_thumbnail, class: 'form-control' %>
           </div>

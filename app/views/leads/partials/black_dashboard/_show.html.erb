@@ -1,0 +1,63 @@
+<div class="row">
+  <div class='col-md-4'>
+    <div class='card'>
+      <div class='card-header'>
+         <%= link_to "<i class='fa fa-edit'></i> Edit".html_safe, edit_lead_path(@lead), class: 'btn btn-link btn-primary pull-right' %>
+        <div class='card-title'> <h3><%= @lead.name %></h3> <h5><% @lead.company_name %> </h5></div>
+
+      </div>
+      <div class='card-body'>
+        <div class='row'>
+          <div class='col-md-12'>
+            <h5> Phone </h5>
+           <span style='padding-left:12px;'>
+            <i class='fas fa-phone'></i>  <%= link_to @lead.cell_phone, "tel:#{@lead.cell_phone}" unless @lead.cell_phone.blank? %>
+            </span>
+            <br>
+            <br>
+            <span style='padding-left:12px;'>
+            <i class='fas fa-building'></i>  <%= link_to @lead.office_phone, "tel:#{@lead.office_phone}" unless @lead.office_phone.blank? %>
+           </span>
+          </div>
+          <div class='col-md-12'>
+            <br>
+            <h5> Email </h5>
+            <span style='padding-left:12px;'>
+            <i class='fas fa-email'></i>  <%= link_to @lead.email, "mailto:#{@lead.office_phone}" unless @lead.email.blank? %>
+           </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='card'>
+      <div class='card-header'>
+        <%= link_to "<i class='fa fa-edit'></i> Edit".html_safe, edit_lead_path(@lead), class: 'btn btn-link btn-primary pull-right' %>
+        <div class='card-title'> Follow Up Info </div>
+
+      </div>
+      <div class='card-body'>
+        Last Contacted:  <%= @lead.last_contacted.strftime('%d / %m / %y') unless @lead.last_contacted.nil? %>
+        <br><br>
+        Next Contact:  <%= @lead.next_contact.strftime('%d / %m / %y') unless @lead.next_contact.nil? %>
+        <br><br>
+        Next Contact Time:  <%= @lead.next_contact.strftime('%H:%M %P') unless @lead.next_contact.nil? %>
+      </div>
+    </div>
+    <%= link_to "Add Note", new_lead_lead_note_path(@lead), class: 'btn btn-primary btn-block' %>
+  </div>
+  <div class='col-md-8'>
+
+    <% @lead.lead_notes.each do |note| %>
+      <div class='card'>
+        <div class='card-header'>
+          <%= link_to "<i class='fa fa-edit'></i> Edit".html_safe, edit_lead_lead_note_path(@lead, note), class: 'btn btn-primary btn-link pull-right' %>
+          <div class="card-category"><%= note.created_at.strftime('%a %b %e %Y') %></div>
+        </div>
+        <div class="card-body">
+          <%= auto_html(note.note){ image(); youtube(width: "560", height: "315", :autoplay => false);  link(:target => 'blank'); simple_format(); } unless note.note.nil? %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+

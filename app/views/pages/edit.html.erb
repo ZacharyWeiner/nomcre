@@ -1,16 +1,17 @@
 
 <h1>Editing Page - <%= @page.status %></h1>
-
+<% if @page.status == 'published' %>
+<%= link_to "Un-Publish", page_publish_path(@page), class: 'btn btn-danger pull-right' %>
+<% else %>
+<%= link_to "<i class='fa fa-check' ></i> Publish".html_safe, page_publish_path(@page), class: 'btn btn-success pull-right' %>
+<% end %>
+<br>
 <%= render 'pages/partials/black_dashboard/form', page: @page %>
 <%= link_to 'Show', @page %> |
 <%= link_to 'Back', pages_path %>
 
 
-<% if @page.status == 'published' %>
-<%= link_to "Publish", page_publish_path(@page), class: 'btn btn-success float-right' %>
-<% else %>
-<%= link_to "Un-Publish", page_publish_path(@page), class: 'btn btn-danger float-right' %>
-<% end %>
+
 <hr/>
 
 <h2>Page Sections  - <%= @page.status %></h2>

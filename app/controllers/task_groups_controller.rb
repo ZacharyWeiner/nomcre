@@ -1,5 +1,6 @@
 class TaskGroupsController < ApplicationController
   before_action :set_task_group, only: [:show, :edit, :update, :destroy]
+  before_action :set_shoot
   layout 'black_dashboard'
   # GET /task_groups
   # GET /task_groups.json
@@ -19,6 +20,21 @@ class TaskGroupsController < ApplicationController
 
   # GET /task_groups/1/edit
   def edit
+  end
+
+  def edit_names
+    @task_groups = @shoot.task_groups
+  end
+
+  def update_names
+    groups = params[:groups].to_enum.to_h
+    groups.each do |group|
+      task_group = TaskGroup.find(group[0])
+      task_group.title = group[1]
+      task_group.save
+    end
+
+    redirect_to shoot_path(@shoot, :active => 'shotlist')
   end
 
   # POST /task_groups
@@ -94,6 +110,12 @@ class TaskGroupsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_task_group
       @task_group = TaskGroup.find(params[:id])
+    end
+
+    def set_shoot
+      if params[:shoot_id]
+        @shoot = Shoot.find(params[:shoot_id])
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -66,7 +66,7 @@ class ScheduleItemsController < ApplicationController
   def destroy
     @schedule_item.destroy
     respond_to do |format|
-      format.html { redirect_to schedule_items_url, notice: 'Schedule item was successfully destroyed.' }
+      format.html { redirect_to admin_schedule_items_path, notice: 'Schedule item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -83,7 +83,9 @@ class ScheduleItemsController < ApplicationController
     end
 
     def authorize
-      if !current_user.is_admin || @schedule_item.user != current_user
+      if current_user.is_admin
+        return
+      elsif  (@schedule_item.user != current_user)
         redirect_to root_path
       end
     end

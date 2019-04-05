@@ -26,7 +26,7 @@
 
   <link href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css', rel='stylesheet'>
 
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700|Raleway:100,200i,400,800|Ubuntu:300,400,700" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700|Raleway:100,200i,300,400,800|Ubuntu:300,400,700" rel="stylesheet">
   <%= csrf_meta_tags %>
   <meta name="robots" content="noodp,noydir" />.
   <!-- Facebook Pixel Code -->
@@ -95,17 +95,22 @@ drift.load('2kydddnkkp4a');
 
 <!-- End of Async Drift Code -->
 <%= favicon_link_tag "https://s3-us-west-2.amazonaws.com/nomcre-rails/public-page-images/nomcrefavicon.png", :rel => 'icon', :type =>  'type="image/png' %>
+<%= javascript_include_tag 'khaki_theme' %>
 </head>
 <body>
 <%= render 'khaki/nomcre/top_contact_menu'%>
 
-<%= render 'khaki/nomcre/right_nav_bar'%>
+<% render 'khaki/nomcre/right_nav_bar'%>
 <%= render 'khaki/nomcre/mobile_menu'%>
   <%= yield %>
   <%= render 'khaki/nomcre/footer'%>
 </body>
-<%= javascript_include_tag 'khaki_theme' %>
+
+
 <% content_for?(:js) do %>
-<%= yield(:js) %>
+  <%= yield(:js) %>
+<% end %>
+<% content_for?(:added_scripts) do %>
+  <%= yield(:added_scripts) %>
 <% end %>
 </html>

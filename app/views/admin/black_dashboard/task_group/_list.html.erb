@@ -1,3 +1,8 @@
+<% url = request.url %>
+<% uri = URI.parse(url) %>
+<% query_params = CGI.parse(uri.query) unless uri.query == nil %>
+<% query_params = {} if query_params.nil? %>
+<% task_group_id = query_params['active'].nil? ? '0' : query_params['active'][0].to_i %>
 <div class="card">
   <div class='card-header'>
     <div class="card-title"> Click A Group To Expand It </div>
@@ -7,7 +12,7 @@
       <div class="card card-plain">
         <div class="card-header" id="heading<%= tg.id%>" style='background: #d3d7e9'>
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse<%= tg.id%>" aria-controls="collapse<%= tg.id%>">
-            <i class="tim-icons"><i class="fas fa-caret-down"></i></i>
+            <i class="tim-icons"><i class="fas fa-caret-down" id="link_<%= tg.id%>"></i></i>
             <h5><%= tg.title %></h5>
           </a>
         </div>
@@ -44,3 +49,34 @@
     <% end %>
   </div>
 </div>
+
+<% content_for :added_scripts do %>
+  <script type="text/javascript">
+
+    $( document ).ready(function() {
+      var getUrlParameter = function getUrlParameter(sParam) {
+          var sPageURL = window.location.search.substring(1),
+              sURLVariables = sPageURL.split('&'),
+              sParameterName,
+              i;
+
+          for (i = 0; i < sURLVariables.length; i++) {
+              sParameterName = sURLVariables[i].split('=');
+
+              if (sParameterName[0] === sParam) {
+                  return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+              }
+          }
+      };
+      var tg = getUrlParameter('active');
+
+      var link_by_id = "#link_" + tg;
+      $(link_by_id).click();
+      if(tg > 0 ){
+         $('html, body').animate({
+              scrollTop: $(link_by_id).offset().top
+          }, 'slow');
+      }
+    });
+  </script>
+<% end %>
