@@ -45,192 +45,197 @@
 <% end %>
 
 <% unless shoot.nil? %>
-<div class="card user">
-  <div class="card-header">
-    <h3 class="card-category">
-      <span>
-        <% if shoot.content_type == ContentType.photo %>
-        <% title = shoot.title.nil? ? "#{shoot.project.title} Photo Shoot" : shoot.title %>
-          <h5>
-            <i class="tim-icons text-primary pull-left"><ion-icon name='camera' size='large'></ion-icon></i>
-            <%= link_to title, shoot_path(shoot) %>
-          </h5>
-        <% elsif shoot.content_type == ContentType.video %>
-        <% title = shoot.title.nil? ? "#{shoot.project.title} Video Shoot" : shoot.title %>
-          <h5>
-            <i class="tim-icons text-primary pull-left"><ion-icon name='videocam' size='large'></ion-icon></i>
-            <%= link_to title, shoot_path(shoot) %>
-          </h5>
-        <% end %>
-      </span>
-       <span class='pull-right'>
-        <i class='tim-icons'><ion-icon name='calendar'></ion-icon></i> <%= shoot.deadline.strftime('%a %b %d, %Y') unless shoot.deadline == nil %>
-      </span>
-    </h3>
-  </div>
-  <div class="card-body">
-    <div class='row'>
-      <div class="card card-user" style="margin: 4px;">
-        <div class="card-body">
-          <p class="card-text">
-          </p>
-          <div class="author">
-            <div class="block block-one"></div>
-            <div class="block block-two"></div>
-            <div class="block block-three"></div>
-            <div class="block block-four"></div>
-            <a href="<%= user_profile_path(shoot.creative.user_profile) unless shoot.creative.nil? %>">
-              <% if shoot.creative  %>
-                <%= image_tag shoot.creative.user_profile.safe_profile_image_url, class: 'avatar'%>
-              <% else %>
-                <%= image_tag 'https://s3-us-west-2.amazonaws.com/nomcre/assets/Dummy-profile-picture.png', class: 'avatar'%>
-              <% end %>
-              <!-- <h5 class="title">Mike Andrew</h5> -->
-            </a>
-            <p class="description">
-              <% if current_user.company.nil? %>
-              <%= shoot.company.name %> <br> & <br>
-              <%= shoot.creative == nil ? "Unassigned" :  shoot.creative.name %>
-              <% else %>
-                <%= shoot.creative == nil ? "Unassigned" :  shoot.creative.name %>
-              <% end %>
-            </p>
-          </div>
-          <p></p>
-          <div class="card-description">
+  <div class="card user">
+    <div class="card-header">
+      <h3 class="card-category">
+        <span class='pull-right'>
+          <i class='tim-icons'><ion-icon name='calendar'></ion-icon></i> <%= shoot.deadline.strftime('%a %b %d, %Y') unless shoot.deadline == nil %>
+        </span>
+        <span>
+          <% if shoot.content_type == ContentType.photo %>
+          <% title = shoot.title.nil? ? "#{shoot.project.title} Photo Shoot" : shoot.title %>
+            <h5>
+              <!-- <i class="tim-icons text-primary"><ion-icon name='camera' size='large'></ion-icon></i> -->
+              <%= link_to title, shoot_path(shoot) %>
+            </h5>
+          <% elsif shoot.content_type == ContentType.video %>
+          <% title = shoot.title.nil? ? "#{shoot.project.title} Video Shoot" : shoot.title %>
+            <h5>
+              <!-- <i class="tim-icons text-primary"><ion-icon name='videocam' size='large'></ion-icon></i> -->
+              <%= link_to title, shoot_path(shoot) %>
+            </h5>
+          <% end %>
+        </span>
 
-            <span>
-              <i class='tim-icons text-primary'><ion-icon name='ios-pin'> </ion-icon></i>
-              <b> City / Region: </b>
-              <span class='pull-right'>
-                <%= shoot.location != nil ? shoot.location.name : "Not Assigned" %>
+      </h3>
+    </div>
+    <div class="card-body">
+      <div class='row'>
+        <div class="card card-user" style="margin: 4px;">
+          <div class="card-body">
+            <p class="card-text">
+            </p>
+            <div class="author">
+              <div class="block block-one"></div>
+              <div class="block block-two"></div>
+              <div class="block block-three"></div>
+              <div class="block block-four"></div>
+              <a href="<%= user_profile_path(shoot.creative.user_profile) unless shoot.creative.nil? %>">
+                <% if shoot.creative  %>
+                  <%= image_tag shoot.creative.user_profile.safe_profile_image_url, class: 'avatar'%>
+                <% else %>
+                  <%= image_tag 'https://s3-us-west-2.amazonaws.com/nomcre/assets/Dummy-profile-picture.png', class: 'avatar'%>
+                <% end %>
+                <!-- <h5 class="title">Mike Andrew</h5> -->
+              </a>
+              <p class="description">
+                <% if current_user.company.nil? %>
+                <%= shoot.company.name %> <br> & <br>
+                <%= shoot.creative == nil ? "Unassigned" :  shoot.creative.name %>
+                <% else %>
+                  <%= shoot.creative == nil ? "Unassigned" :  shoot.creative.name %>
+                <% end %>
+              </p>
+            </div>
+            <p></p>
+            <div class="card-description">
+
+              <span>
+                <i class='tim-icons text-primary'><ion-icon name='ios-pin'> </ion-icon></i>
+                <b> City / Region: </b>
+                <span class='pull-right'>
+                  <%= shoot.location != nil ? shoot.location.name : "Not Assigned" %>
+                </span>
               </span>
-            </span>
-            <hr>
-            <span>
-              <i class='tim-icons text-warning'><ion-icon name='ios-photos'> </ion-icon></i>
-              <b> Address: </b>
-              <span class='pull-right'>
-                <%= shoot.address_or_landmark != nil ? shoot.address_or_landmark : "Not Assigned" %>
+              <hr>
+              <span>
+                <i class='tim-icons text-warning'><ion-icon name='ios-photos'> </ion-icon></i>
+                <b> Address: </b>
+                <span class='pull-right'>
+                  <%= shoot.address_or_landmark != nil ? shoot.address_or_landmark : "Not Assigned" %>
+                </span>
               </span>
-            </span>
-            <hr>
-            <span>
-              <i class='tim-icons text-danger'><ion-icon name='ios-camera'> </ion-icon></i>
-              <b> Shoot Type: </b>
-              <span class='pull-right'>
-                <%= shoot.content_type != nil ? shoot.content_type.capitalize! : "Not Assigned" %>
-              </span>
-            </span>
-             <hr>
-             <span>
-              <i class='tim-icons'><ion-icon name="aperture"></ion-icon></i>
-              <b> Shoot Style: </b>
-              <span class='pull-right'>
-                <%= shoot.shoot_style  %>
-              </span>
-            </span>
-             <hr>
-             <% unless shoot.project.mood.nil? %>
-               <span>
-                <i class='tim-icons'><ion-icon name="aperture"></ion-icon></i>
-                <b> Mood: </b>
-                <span class='text-right'>
-                  <%= shoot.project.mood  %>
+              <hr>
+              <span>
+                <i class='tim-icons text-danger'><ion-icon name='ios-camera'> </ion-icon></i>
+                <b> Shoot Type: </b>
+                <span class='pull-right'>
+                  <%= shoot.content_type != nil ? shoot.content_type.capitalize! : "Not Assigned" %>
                 </span>
               </span>
                <hr>
-             <% end %>
-             <span>
-              <i class='tim-icons text-info'><ion-icon name='ios-photos'> </ion-icon></i>
-              <b> Custom Shot Count: </b>
-              <span class='pull-right'>
-                <%= shoot.owner_added_shot_list_count.nil? ? 0 : shoot.owner_added_shot_list_count %>
-                of
-                <%= shoot.user_added_shot_count_max %>
+               <span>
+                <i class='tim-icons'><ion-icon name="aperture"></ion-icon></i>
+                <b> Shoot Style: </b>
+                <span class='pull-right'>
+                  <%= shoot.shoot_style  %>
+                </span>
               </span>
-            </span>
-            <hr>
-             <span>
-              <i class='tim-icons text-info'><ion-icon name='ios-photos'> </ion-icon></i>
-              <b> Nomcre Shot Count: </b>
-              <span class='pull-right'>
-                <%= shoot.nomcre_added_shot_list_count %>
-                of
-                <%= shoot.nomcre_added_shot_list_count %>
+               <hr>
+               <% unless shoot.project.mood.nil? %>
+                 <span>
+                  <i class='tim-icons'><ion-icon name="aperture"></ion-icon></i>
+                  <b> Mood: </b>
+                  <span class='text-right'>
+                    <%= shoot.project.mood  %>
+                  </span>
+                </span>
+                 <hr>
+               <% end %>
+               <span>
+                <i class='tim-icons text-info'><ion-icon name='ios-photos'> </ion-icon></i>
+                <b> Custom Shot Count: </b>
+                <span class='pull-right'>
+                  <%= shoot.owner_added_shot_list_count.nil? ? 0 : shoot.owner_added_shot_list_count %>
+                  of
+                  <%= shoot.user_added_shot_count_max %>
+                </span>
               </span>
-            </span>
-            <hr>
-            <span>
-              <i class='tim-icons text-warning'><ion-icon name='ios-photos'> </ion-icon></i>
-              <b> Background: </b>
-              <span class='pull-right'>
-                <%= shoot.background != nil ? shoot.background : "Not Assigned" %>
+              <hr>
+               <span>
+                <i class='tim-icons text-info'><ion-icon name='ios-photos'> </ion-icon></i>
+                <b> Nomcre Shot Count: </b>
+                <span class='pull-right'>
+                  <%= shoot.nomcre_added_shot_list_count %>
+                  of
+                  <%= shoot.nomcre_added_shot_list_count %>
+                </span>
               </span>
-            </span>
+              <hr>
+              <span>
+                <i class='tim-icons text-warning'><ion-icon name='ios-photos'> </ion-icon></i>
+                <b> Background: </b>
+                <span class='pull-right'>
+                  <%= shoot.background != nil ? shoot.background : "Not Assigned" %>
+                </span>
+              </span>
+            </div>
           </div>
-        </div>
-        <% if show_content %>
-          <div style="margin: 6px;">
-            <span> <%= auto_html(shoot.brief.first(150)){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } unless shoot.brief.nil? %></span>
-          </div>
-          <% end %>
-      </div>
-    </div>
-  </div>
-  <% if show_accept_buttons == true %>
-    <div class="card-footer text-center">
-      <hr>
-      <% if show_accept_buttons  %>
-      <%= render :partial => 'projects/partials/black_dashboard/shared/accept_buttons', :locals => {:shoot => shoot, :creative_request => shoot.creative_requests.where(creative_id: current_user.id).first} %>
-      <% end %>
-      <% if show_payment_buttons %>
-      <%= render :partial => 'projects/partials/black_dashboard/shared/payment_buttons', :locals => {:shoot => shoot} %>
-      <% end %>
-
-    </div>
-  <% end %>
-  <% if show_view_button %>
-    <div class="row">
-      <div class="col-md-12">
-      <span class='text-center' style='padding: 6px;'>
-        <%= link_to shoot, class: 'btn btn-simple btn-primary btn-block' do %>
-          <i class='fas fa-eye'></i>
-            <% if shoot.is_editable %>
-              Build Your Shoot
-            <% else %>
-              View
+          <% if show_content %>
+            <div style="margin: 6px;">
+              <span> <%= auto_html(shoot.brief.first(150)){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } unless shoot.brief.nil? %></span>
+            </div>
             <% end %>
-        <% end %>
-        </span>
-      </div>
-      <% if shoot.company.users.where(company_id: current_user.company_id).count > 0  && shoot.is_editable%>
-        <div class="col-md-6">
-          <%= link_to edit_shoot_path(shoot), class: 'btn btn-simple btn-danger btn-block' do %>
-            <i class='fas fa-edit '></i>
-            Edit
-          <% end %>
-        </div>
-        <div class="col-md-6">
-          <%= link_to "<i class='fas fa-trash'></i>Delete".html_safe, shoot_path(shoot), :method => :delete, class: 'btn btn-simple btn-danger btn-block' %>
-          <% end %>
         </div>
       </div>
-  <% end %>
-  <% if (show_edit_button && shoot.is_editable && !show_view_button) || current_user.is_admin %>
-    <%= link_to edit_shoot_path(shoot), class: 'btn btn-simple btn-danger ' do %>
-          <i class='fas fa-edit'></i>
-          Edit
+    </div>
+    <% if show_accept_buttons == true %>
+      <div class="card-footer white-content text-center">
+        <hr>
+        <% if show_accept_buttons  %>
+        <%= render :partial => 'projects/partials/black_dashboard/shared/accept_buttons', :locals => {:shoot => shoot, :creative_request => shoot.creative_requests.where(creative_id: current_user.id).first} %>
         <% end %>
-  <% end %>
-  <% if show_view_project_button %>
-    <%= link_to project_path(shoot.project), class: 'btn btn-simple btn-primary ' do %>
-      <i class='fas fa-eye'></i>
-      View Project
+        <% if show_payment_buttons %>
+        <%= render :partial => 'projects/partials/black_dashboard/shared/payment_buttons', :locals => {:shoot => shoot} %>
+        <% end %>
+
+      </div>
     <% end %>
-  <% end %>
-  <% if show_chat_button && !shoot.creative.nil? %>
-    <%= link_to "<i class='fas fa-comments'></i> Chat".html_safe, shoot.chatroom, class: 'btn btn-simple btn-primary' %>
-  <% end %>
-</div>
+    <% if show_view_button %>
+      <div class="card-footer">
+        <div class="row">
+          <div class="col-md-12">
+            <span class='text-center' style='padding: 6px;'>
+              <%= link_to shoot, class: 'btn btn-simple btn-primary btn-block' do %>
+                <i class='fas fa-eye'></i>
+                <% if shoot.is_editable %>
+                  Build Your Shoot
+                <% else %>
+                  View
+                <% end %>
+              <% end %>
+            </span>
+          </div>
+          <% if shoot.company.users.where(company_id: current_user.company_id).count > 0  && shoot.is_editable%>
+            <div class="col-md-6">
+              <%= link_to edit_shoot_path(shoot), class: 'btn btn-simple btn-danger btn-block' do %>
+                <i class='fas fa-edit '></i>
+               Edit
+              <% end %>
+            </div>
+            <div class="col-md-6">
+              <%= link_to "<i class='fas fa-trash'></i>Delete".html_safe, shoot_path(shoot), :method => :delete, class: 'btn btn-simple btn-danger btn-block' %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+    <% if (show_edit_button && shoot.is_editable && !show_view_button) || current_user.is_admin %>
+      <%= link_to edit_shoot_path(shoot), class: 'btn btn-simple btn-danger ' do %>
+        <i class='fas fa-edit'></i>
+          Edit
+      <% end %>
+    <% end %>
+    <% if show_view_project_button %>
+      <%= link_to project_path(shoot.project), class: 'btn btn-simple btn-primary ' do %>
+        <i class='fas fa-eye'></i>
+        View Project
+      <% end %>
+    <% end %>
+    <% if show_chat_button && !shoot.creative.nil? %>
+      <div class="card-footer white-content">
+        <%= link_to "<i class='fas fa-comments'></i> Chat".html_safe, shoot.chatroom, class: 'btn btn-simple btn-primary btn-block' %>
+      </div>
+    <% end %>
+  </div>
 <% end %>
