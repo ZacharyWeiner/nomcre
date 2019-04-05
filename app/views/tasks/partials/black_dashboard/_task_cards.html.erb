@@ -1,0 +1,78 @@
+<% is_popped = request.path_info.include?('popped') %>
+<% unless (tasks.first.nil? || tasks.first.shoot.nil?) %>
+  <% project  =  tasks.first.shoot.project %>
+  <% shoot = tasks.first.shoot %>
+  <% unless request.path_info.include?('popped') || request.path_info.include?('dashboard') %>
+  <%= link_to "<i class='fas fa-external-link-alt'></i> Pop out".html_safe, shoot_tasks_poppedout_path(tasks.first.shoot), class: 'btn btn-info btn-link' %>
+  <br>
+  <% end %>
+<% end %>
+
+<% tasks.each do |task| %>
+  <div class="row">
+    <div class="card" style="box-shadow: 1px 2px 1px 0px #d3d7e9">
+      <div class='card-body'>
+        <div class='row'>
+          <div class="col-md-2">
+            <% if task.shot_list_item.nil? || task.shot_list_item.reference_image.file.nil? %>
+              <i class="far fa-image fa-3x" style="padding-top:10%; width: 100%"></i>
+            <% else %>
+              <%= image_tag task.shot_list_item.reference_image, class: 'img-fluid', style: 'max-height: 150px;'%>
+            <% end %>
+          </div>
+          <div class="col-md-8">
+            <div class="vertical-center">
+              <%= auto_html(task.description){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
+              <% unless task.shot_list_item.nil? %>
+                <% shot_list_item = task.shot_list_item %>
+                <% if shot_list_item.shoot.content_type == ContentType.video %>
+                  <% frame_rate_style = 'black' %>
+                  <% if shot_list_item.frame_rate == '60 fps - Slow' %>
+                    <% frame_rate_style = 'orange' %>
+                  <% elsif shot_list_item.frame_rate == '120 fps - Super Slow'%>
+                    <% frame_rate_style = 'red'  %>
+                  <% end %>
+                  <div style='color: <%= frame_rate_style%>; padding-top: 35%'>
+                    <%= shot_list_item.frame_rate %>
+                  </div>
+                  <br>
+                <% end %>
+                <% if !project.mood.nil? %>
+                  <%= project.mood %>
+                  <br>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+          <div class="col-md-2 pull-right">
+            <div class='vertical-center'>
+            <% if task.completed %>
+              <% task_icon =  'checkmark-circle-icon' %>
+              <% task_able =  'disabled btn-success' %>
+            <% else %>
+              <% task_icon =  'checkmark' %>
+              <% task_able =  'btn-primary' %>
+            <% end %>
+            <% task_icon =  task.completed  ? 'done-all' : 'checkmark' %>
+            <% if !request.path_info.include?('popped') %>
+              <%= link_to task_task_complete_path(task, :active => 'tasks'), class: "btn btn-link #{task_able}", title: "Complete", :data => { :original_title => 'Click to indicate the task is complete'}  do  %>
+                <i class="tim-icons btn-link <%= task_able %>"><ion-icon name="<%= task_icon %>" size='large'></ion-icon></i>
+              <% end %>
+            <% else %>
+            <% post_params = {}%>
+            <% post_params[:popped] =  true %>
+            <% unless task.task_group.nil? %>
+              <% post_params[:task_group_id] = task.task_group.id %>
+            <% end %>
+              <%= link_to task_task_complete_path(task, post_params), class: "btn btn-link #{task_able}", title: "Complete", :data => { :original_title => 'Click to indicate the task is complete'}  do  %>
+                <i class="tim-icons btn-link <%= task_able %>"><ion-icon name="<%= task_icon %>" size='large'></ion-icon></i>
+                <% end %>
+            <% end %>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+<% end %>
