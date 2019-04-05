@@ -68,11 +68,11 @@
 
 <div class="col-md-12">
   <div class='card card-stats'>
-<div class="card-header white-content  rounded text-center">
+<div class="card-header white-content rounded text-center">
   <h4> Creative Brief </h4>
 </div>
 
-  <div class="card-body rounded">
+  <div class="card-body white-content rounded" style="margin:4px;">
   <%= auto_html(shoot.brief){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
   </div>
 </div>

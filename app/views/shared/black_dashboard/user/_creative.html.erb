@@ -5,19 +5,23 @@
 <% creative = User.find(sr.user.id) %>
 <% si = sr.schedule_item %>
 <% end %>
-<div class="card">
+<div class="card" style="box-shadow: 1px 2px 1px 0px #d3d7e9">
   <div class="card-header">
     <h3 class="card-title">
       <%= image_tag creative.user_profile.safe_profile_image_url, class: 'avatar' %>
       <%= creative.name %>
       <span class=''>
         <%= render :partial =>  'shared/black_dashboard/search/buttons/request_buttons', :locals => {shoot: shoot, :user => creative} %>
+       <!--  <% link_to "<ion-icon name='eye'></ion-icon> View Profile".html_safe, creative.user_profile, class: 'btn btn-link text-primary text-right' %> -->
       </span>
+
     </h3>
     <div class="card-category">
       <h5 >
         <%= si.location.name unless si.nil?  %>
-        <span class='pull-right'>Available Until:  <%= si.end_date unless (si.nil? || si.end_date.nil?) %></span>
+        <span class=''>
+           Until:  <%= si.end_date.strftime('%b %d %Y') unless (si.nil? || si.end_date.nil?) %><br>
+        </span>
       </h5>
     </div>
     <div>
@@ -51,8 +55,6 @@
       </div>
     <% end %>
   </div>
-<hr>
-  <%= link_to "<ion-icon name='eye'></ion-icon> View Profile".html_safe, creative.user_profile, class: 'btn btn-link text-primary text-right' %>
 </div>
 
 
