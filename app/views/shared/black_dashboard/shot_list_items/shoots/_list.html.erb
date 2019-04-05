@@ -11,23 +11,24 @@
 </style>
 <% project = shoot.project %>
 <div class="card ">
-  <div class="card-body white-content">
-      <% if (current_user.user_type == UserType.company && current_user.company == shoot.project.company) || current_user == shoot.creative %>
-      <% if shoot.is_editable || shoot.creative == current_user %>
-        <div class='row'>
-          <div class='col-md-6'>
-            <%= link_to "<ion-icon name='add' ></ion-icon> Add Preset Group".html_safe, "#", id: 'shotListGroupBtn', class: 'btn btn-primary btn-simple btn-block float-right'  %>
-           </div>
-           <div class='col-md-6'>
-            <%= link_to "<ion-icon name='add' ></ion-icon> Add Custom Item".html_safe, new_shoot_shot_list_item_path(shoot.id), class: 'btn btn-primary btn-simple btn-block float-right'  %>
-           </div>
-          </div>
+  <div class="card-header ">
+    <div class="card-title ">
+       <h4 class="text-center">Add To Your ShotList</h4>
+        <% if (current_user.user_type == UserType.company && current_user.company == shoot.project.company) || current_user == shoot.creative %>
+        <% if shoot.is_editable || shoot.creative == current_user %>
+          <div class='row'>
+            <div class='col-md-6'>
+              <%= link_to "<ion-icon name='add' ></ion-icon> Add Preset Group".html_safe, "#", id: 'shotListGroupBtn', class: 'btn btn-primary btn-simple btn-block float-right'  %>
+             </div>
+             <div class='col-md-6'>
+              <%= link_to "<ion-icon name='add' ></ion-icon> Add Custom Item".html_safe, new_shoot_shot_list_item_path(shoot.id), class: 'btn btn-primary btn-simple btn-block float-right'  %>
+             </div>
+            </div>
+          <% end %>
         <% end %>
-      <% end %>
+    </div>
   </div>
-</div>
-<div class="card">
-  <div class='card-body white-content'>
+  <div class='card-body white-content ' style="margin:2px;">
     <% render :partial => 'shared/black_dashboard/shot_list_items/shoots/list_table', :locals => {shoot: shoot, shot_list_items: shot_list_items, project: project} %>
 
     <%= render :partial => 'shared/black_dashboard/shot_list_items/shoots/list_cards', :locals => {shoot: shoot, shot_list_items: shot_list_items, project: project} %>

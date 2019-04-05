@@ -1,12 +1,17 @@
  <div class="tab-pane" id="script" style='margin:8px;'>
-  <div class='' style='max-height: 800px; overflow-y: auto;'>
-    <h4 class='text-center'> Script </h4>
+
+  <div class='card' style='max-height: 800px; overflow-y: auto;'>
+    <div class="card-header">
+      <div class='card-title'> <h4 class='text-center'> Script </h4></div>
+    </div>
     <% if shoot.script.blank? && shoot.is_editable && current_user.company == shoot.company %>
       <%= link_to edit_shoot_path(shoot), class: 'btn btn-primary btn-simple', style: 'margin-left:40%'  do %>
         <ion-icon name="add"></ion-icon> Add Your Script
       <%end %>
-    <% else %>
-    <%= auto_html(shoot.script){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } %>
     <% end %>
+
+    <div class="card-body">
+      <%= auto_html(shoot.script){ image(); youtube(:width => '100%', :height => 250, :autoplay => false); simple_format; link(:target => 'blank') } unless shoot.script.nil? %>
+    </div>
   </div>
 </div>

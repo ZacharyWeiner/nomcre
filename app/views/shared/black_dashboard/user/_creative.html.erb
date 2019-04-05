@@ -5,13 +5,8 @@
 <% creative = User.find(sr.user.id) %>
 <% si = sr.schedule_item %>
 <% end %>
-<div class="card" style="background: #f5f6fa">
+<div class="card">
   <div class="card-header">
-    <h5 class="card-category">
-      <%= si.location.name unless si.nil?  %>
-      <span class='pull-right'>Available Until:  <%= si.end_date unless (si.nil? || si.end_date.nil?) %></span>
-    </h5>
-    <hr>
     <h3 class="card-title">
       <%= image_tag creative.user_profile.safe_profile_image_url, class: 'avatar' %>
       <%= creative.name %>
@@ -19,7 +14,12 @@
         <%= render :partial =>  'shared/black_dashboard/search/buttons/request_buttons', :locals => {shoot: shoot, :user => creative} %>
       </span>
     </h3>
-    <br>
+    <div class="card-category">
+      <h5 >
+        <%= si.location.name unless si.nil?  %>
+        <span class='pull-right'>Available Until:  <%= si.end_date unless (si.nil? || si.end_date.nil?) %></span>
+      </h5>
+    </div>
     <div>
       <%= render :partial => 'user_profiles/partials/black_dashboard/shared/skills', :locals => {:user_profile => creative.user_profile} %>
       <%= render :partial => 'user_profiles/partials/black_dashboard/shared/equiptment', :locals => {:user_profile => creative.user_profile} %>
