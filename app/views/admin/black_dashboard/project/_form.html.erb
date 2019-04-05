@@ -13,9 +13,10 @@
       <% end %>
 
       <div class="form-group">
-        <%= form.label :package_type_id %>
-        <%= form.text_field :package_type_id, id: :project_package_type_id, class: 'form-control' %>
+        <%= form.label :package_type %> <br>
+        <%= project.package_type.title %>
       </div>
+      <br>
 
       <div class="form-group">
         <%= form.label :company_id %>

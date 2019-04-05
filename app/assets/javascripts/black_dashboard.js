@@ -7,7 +7,7 @@ function validateImage(inputFile) {
 
   var maxExceededMessage = "This file exceeds the maximum allowed file size (15 MB) <br>";
   var extErrorMessage = "To upload a video please use the video uploader. Only .jpg, .jpeg, .gif or .png are allowed in the photo section";
-  var allowedExtension = ["jpg", "jpeg", "gif", "png"];
+  var allowedExtension = ["jpg", "jpeg", "gif", "png", 'JPG', 'JPEG', "GIF", "PNG"];
 
   var extName;
   var maxFileSize = $(inputFile).data('max-file-size');
@@ -35,7 +35,7 @@ function validateImage(inputFile) {
     $(inputFile).val('');
   };
   if(extError || sizeExceeded){
-    $('.modal-body').html( message);
+    $('.modal-body-image').html( message);
     $('#photoModal').modal('toggle');
   };
 };
@@ -71,7 +71,7 @@ function validateVideo(inputFile) {
   };
 
   if(extError || sizeExceeded){
-    $('.modal-body').html( message);
+    $('.modal-body-video').html( message);
     $('#videoModal').modal('toggle');
   };
 };
