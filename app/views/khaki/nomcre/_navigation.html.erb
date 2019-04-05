@@ -9,7 +9,9 @@
         .nk-navbar-light
     -->
 
-
+    <style type="text/css">
+        .menu-link{font-weight:300;}
+    </style>
 
     <nav class="nk-navbar nk-navbar-top nk-navbar-sticky nk-navbar-autohide">
         <div class="container">
@@ -32,10 +34,10 @@
                     <% else %>
                         <li class=" nk-drop-item">
                     <% end %>
-                        <%= link_to root_path, class: 'link-effect-3' do %>
+                        <%= link_to root_path, class: 'link-effect-3 menu-link' do %>
 
                             <span>
-                                <span class="link-effect-shade">
+                                <span class="link-effect-shade ">
                                     Nomcre
                                 </span>
                                 Nomcre
@@ -44,7 +46,7 @@
 
                         <ul class="dropdown" >
                             <li>
-                                 <%= link_to nomcre_about_path, class: 'link-effect-3' do %>
+                                 <%= link_to nomcre_about_path, class: 'link-effect-3 menu-link' do %>
                                     <span>
                                         <span class="link-effect-shade">
                                             Concept
@@ -56,7 +58,7 @@
                                 <% end %>
                             </li>
                             <li>
-                                <%= link_to nomcre_process_path, class: 'link-effect-3' do %>
+                                <%= link_to nomcre_process_path, class: 'link-effect-3 menu-link' do %>
 
                                     <span>
                                         <span class="link-effect-shade">
@@ -76,7 +78,7 @@
                     <% else %>
                         <li class=" nk-drop-item">
                     <% end %>
-                        <%= link_to package_types_path, class: 'link-effect-3' do %>
+                        <%= link_to package_types_path, class: 'link-effect-3 menu-link' do %>
 
                             <span>
                                 <span class="link-effect-shade">
@@ -89,7 +91,7 @@
                         <ul class="dropdown" >
                             <% PackageType.where(show_in_menu: true).each do |p|%>
                             <li>
-                                <%= link_to p, class: 'link-effect-3' do %>
+                                <%= link_to p, class: 'link-effect-3 menu-link' do %>
 
                                     <span>
                                         <span class="link-effect-shade">
@@ -107,7 +109,7 @@
 
                     </li>
                     <li class='nk-drop-item'>
-                        <%= link_to creative_showcase_path, class: 'link-effect-3' do %>
+                        <%= link_to creative_showcase_path, class: 'link-effect-3 menu-link' do %>
 
                             <span>
                                 <span class="link-effect-shade">
@@ -119,7 +121,7 @@
 
                         <ul class="dropdown" >
                             <li>
-                                <%= link_to creative_showcase_path, class: 'link-effect-3' do %>
+                                <%= link_to creative_showcase_path, class: 'link-effect-3 menu-link' do %>
 
                                     <span>
                                         <span class="link-effect-shade">
@@ -132,7 +134,7 @@
                                 <% end %>
                             </li>
                              <!-- <li>
-                                 <% link_to video_showcase_path, class: 'link-effect-3' do %>
+                                 <% link_to video_showcase_path, class: 'link-effect-3 menu-link' do %>
 
                                     <span>
                                         <span class="link-effect-shade">
@@ -167,7 +169,7 @@
                     </li> -->
                     <li class="single-icon nk-drop-item">
                         <%if current_user.nil? %>
-                        <a href="#" class="no-link-effect">
+                        <a href="#" class="no-link-effect menu-link">
                             Login <span class="fa fa-sign-in"></span>
                         </a>
 

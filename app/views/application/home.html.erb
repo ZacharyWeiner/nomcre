@@ -37,6 +37,10 @@
 }
 </script>
 <% end %>
+<style type="text/css">
+  p{font-family: raleway; font-weight: 300;}
+  h3 > .nk-sub-title{font-family: raleway; font-weight: 300;}
+</style>
 <div class="nk-main">
 <% render 'khaki/nomcre/home/header_title'%>
 <%= render 'khaki/nomcre/home/video_header'%>
@@ -45,18 +49,35 @@
 <% render 'khaki/nomcre/home/top_call_to_action'%>
 <% render 'khaki/shared/original/counters'%>
 <% render 'khaki/nomcre/home/why_choose_us_tabs'%>
-<%= render 'khaki/nomcre/home/why_choose_nomcre_stacked'%>
-<hr>
+<% render 'khaki/nomcre/home/why_choose_nomcre_stacked'%>
+<%= render 'khaki/nomcre/home/solutions_for_revenue'%>
+<% render 'landing_pages/quotes/p_and_g_quote_1'%>
+
 <% render 'shared/symbol'%>
 <% render 'shared/khaki_theme/why_choose_nomcre_bottom_2'%>
-<%= render 'khaki/nomcre/home/what_is_nomcre'%>
+<% render 'khaki/nomcre/home/what_is_nomcre'%>
 <% render 'shared/khaki_theme/create_a_brief_cta'%>
-<% render 'khaki/nomcre/home/side_video'%>
-<% render 'shared/khaki_theme/how_it_works_carousel'%>
-<% render 'khaki/nomcre/home/typed_js_home'%>
-<%= render 'khaki/nomcre/home/benefits'%>
-<% render 'khaki/nomcre/comparison'%>
 <%= render 'khaki/nomcre/home/places_carousel_home'%>
+
+<%= render 'khaki/nomcre/home/side_video'%>
+<%= render 'landing_pages/creative/section_1' %>
+
+<blockquote class="nk-testimonial-2 bg-dark-1 text-white">
+    <div class="nk-testimonial-photo" style="background-image: url('http://gaia.adage.com/images/bin/image/rightrail/BradJakemanC20171017.jpg?1508341696');"></div>
+    <div class="nk-testimonial-body">
+       <p>"For a brand like Pepsi, it was once sufficient for us to produce four pieces of content a year -- mainly TV -- and we could spend about six to eight months developing that one piece of content and spend $1 million on each piece of film. Now, that four pieces has turned into 4,000; eight months has changed to eight days and eight hours; and budgets have not gone up. Maybe [we have to publish] so quickly and efficiently that it needs to be more of a content-publishing group that sits inside the company and augments the work done through [agencies]."</p>
+    </div>
+    <div class="nk-testimonial-name h2">PepsiCo - President</div>
+    <div class="nk-testimonial-source" style="font-size: 16px;"> Brad Jakemanm </div>
+</blockquote>
+
+<%= render 'khaki/nomcre/home/benefits'%>
+
+<%= render 'shared/khaki_theme/how_it_works_carousel'%>
+<% render 'khaki/nomcre/home/typed_js_home'%>
+
+<% render 'khaki/nomcre/comparison'%>
+
 <% render 'khaki/nomcre/home/pricing_table_home'%>
 
 <%= render 'khaki/nomcre/home/call_to_action_bottom_home'%>
