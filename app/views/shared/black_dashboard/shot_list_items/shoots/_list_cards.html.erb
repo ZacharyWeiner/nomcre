@@ -1,0 +1,55 @@
+<% editable = shoot.is_editable %>
+<% company_or_creative = (current_user.company == shoot.company || current_user == shoot.creative)%>
+<% shot_list_items.each do |si| %>
+<div class="card">
+<div class='row '>
+  <div class='col-md-3 text-center'>
+    <div class="img-container">
+      <% if si.reference_image.file != nil %>
+      <%= image_tag si.reference_image, class: 'img-fluid'  %>
+      <% else %>
+        <p><i class="far fa-image fa-3x" style="padding-top:10%"></i></p>
+      <% end %>
+    </div>
+  </div>
+  <div class='col-md-3'>
+    <p>
+      <%= si.description %>
+      <br>
+      <small><%= si.aspect_ratio%> - <%= project.mood %> </small>
+    </p>
+     <%if shoot.content_type.to_s.downcase == ContentType.video.to_s.downcase %>
+      <% frame_style = 'text-primary' %>
+      <% unless si.frame_rate.nil? %>
+        <% if si.frame_rate.include?('60') %>
+          <%frame_style = 'text-warning' %>
+        <%elsif si.frame_rate.include?('120') %>
+          <%frame_style = 'text-danger' %>
+        <% end %>
+      <% end %>
+      <span class="<%= frame_style %>"><%= si.frame_rate %></span>
+  <% end %>
+  </div>
+  <div class='col-md-3'>
+    <% if si.task.nil? || !si.task.completed %>
+      <i class='tim-icons text-danger'><ion-icon name='close' size='large'></ion-icon></i>
+      <% else %>
+        <i class='tim-icons text-success'><ion-icon name='checkmark' size='large'></ion-icon></i>
+      <% end %>
+    </div>
+  <div class='col-md-3'>
+    <% if editable && company_or_creative %>
+      <%= link_to si do %>
+        <i class="fa fa-eye "></i>
+      <% end %>
+      <%= link_to edit_shoot_shot_list_item_path(shoot, si) do %>
+        <i class="fa fa-edit"></i>
+      <% end %>
+      <%= link_to si, method: :delete, data: { confirm: 'Are you sure?' } do %>
+        <i class="fa fa-trash"></i>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+</div>
+<% end %>

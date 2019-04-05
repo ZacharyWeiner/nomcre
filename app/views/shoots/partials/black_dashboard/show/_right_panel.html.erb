@@ -8,23 +8,23 @@
 <% disclosure_style = query_params != nil && query_params["active"] == ["disclosures"] ? 'active' : ''  %>
 <% assistants_style = query_params != nil && query_params["active"] == ["assistants"] ? 'active' : ''  %>
 <% invoices_style = query_params != nil && query_params["active"] == ["invoices"] ? 'active' : ''  %>
-<div class="card">
+<div class="">
   <div class="card-header">
     <div class='card-category pull-right'>
       <% if current_user && current_user.company == shoot.project.company && shoot.is_editable %>
         <%= link_to "<ion-icon name='create'></ion-icon> Edit".html_safe, edit_shoot_path(shoot), class: 'btn btn-simple btn-danger' %>
       <% end %>
     </div>
-    <h3 class="card-title">Details</h3>
+    <h3 class="">Details</h3>
   </div>
-  <div class="card-body">
+  <div class="">
     <div class="row">
       <div class="col-md-12">
         <%= render :partial =>'shoots/partials/black_dashboard/show/tabs/buttons', :locals => {:shoot => shoot, :basic_style => basic_style, :shotlist_style => shotlist_style, :available_style => available_style, :tasks_style => tasks_style, :disclosure_style => disclosure_style, :assistants_style => assistants_style, :invoices_style => invoices_style} %>
         <br>
       </div>
       <div class="col-md-12">
-        <div class="tab-content">
+        <div class="tab-content ">
           <div class="tab-pane <%= basic_style %>" id="basic">
             <%= render :partial => 'shoots/partials/black_dashboard/show/panels/basic_info', :locals => {shoot: shoot} %>
           </div>
