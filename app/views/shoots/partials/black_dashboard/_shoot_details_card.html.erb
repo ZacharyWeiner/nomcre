@@ -45,20 +45,20 @@
 <% end %>
 
 <% unless shoot.nil? %>
-<div class="">
+<div class="card user">
   <div class="card-header">
     <h3 class="card-category">
       <span>
         <% if shoot.content_type == ContentType.photo %>
         <% title = shoot.title.nil? ? "#{shoot.project.title} Photo Shoot" : shoot.title %>
           <h5>
-            <i class="tim-icons text-primary"><ion-icon name='camera' size='large'></ion-icon></i>
+            <i class="tim-icons text-primary pull-left"><ion-icon name='camera' size='large'></ion-icon></i>
             <%= link_to title, shoot_path(shoot) %>
           </h5>
         <% elsif shoot.content_type == ContentType.video %>
         <% title = shoot.title.nil? ? "#{shoot.project.title} Video Shoot" : shoot.title %>
           <h5>
-            <i class="tim-icons text-primary pull-left"><ion-icon name='videocam'></ion-icon></i>
+            <i class="tim-icons text-primary pull-left"><ion-icon name='videocam' size='large'></ion-icon></i>
             <%= link_to title, shoot_path(shoot) %>
           </h5>
         <% end %>
@@ -70,7 +70,7 @@
   </div>
   <div class="card-body">
     <div class='row'>
-      <div class="card card-user">
+      <div class="card card-user" style="margin: 4px;">
         <div class="card-body">
           <p class="card-text">
           </p>
@@ -191,24 +191,31 @@
     </div>
   <% end %>
   <% if show_view_button %>
-    <span class='text-center' style='padding: 6px;'>
-      <%= link_to shoot, class: 'btn btn-simple btn-primary btn-block' do %>
-        <i class='fas fa-eye'></i>
-          <% if shoot.is_editable %>
-            Build Your Shoot
-          <% else %>
-            View
-          <% end %>
-      <% end %>
-      <br>
-      <% if shoot.company.users.where(company_id: current_user.company_id).count > 0  && shoot.is_editable%>
-        <%= link_to edit_shoot_path(shoot), class: 'btn btn-simple btn-danger ' do %>
-          <i class='fas fa-edit'></i>
-          Edit
+    <div class="row">
+      <div class="col-md-12">
+      <span class='text-center' style='padding: 6px;'>
+        <%= link_to shoot, class: 'btn btn-simple btn-primary btn-block' do %>
+          <i class='fas fa-eye'></i>
+            <% if shoot.is_editable %>
+              Build Your Shoot
+            <% else %>
+              View
+            <% end %>
         <% end %>
-        <%= link_to "<i class='fas fa-trash'></i>Delete".html_safe, shoot_path(shoot), :method => :delete, class: 'btn btn-simple btn-danger' %>
-      <% end %>
-    </span>
+        </span>
+      </div>
+      <% if shoot.company.users.where(company_id: current_user.company_id).count > 0  && shoot.is_editable%>
+        <div class="col-md-6">
+          <%= link_to edit_shoot_path(shoot), class: 'btn btn-simple btn-danger btn-block' do %>
+            <i class='fas fa-edit '></i>
+            Edit
+          <% end %>
+        </div>
+        <div class="col-md-6">
+          <%= link_to "<i class='fas fa-trash'></i>Delete".html_safe, shoot_path(shoot), :method => :delete, class: 'btn btn-simple btn-danger btn-block' %>
+          <% end %>
+        </div>
+      </div>
   <% end %>
   <% if (show_edit_button && shoot.is_editable && !show_view_button) || current_user.is_admin %>
     <%= link_to edit_shoot_path(shoot), class: 'btn btn-simple btn-danger ' do %>
