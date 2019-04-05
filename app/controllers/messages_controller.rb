@@ -9,7 +9,6 @@ class MessagesController < ApplicationController
     if message.content.blank?  && !message.file.url.nil?
       message.content = "Attachment"
     end
-    byebug
     respond_to do |format|
       if message.save
         message.chatroom.users.uniq.each do |user|
