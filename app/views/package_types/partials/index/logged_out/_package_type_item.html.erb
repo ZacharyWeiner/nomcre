@@ -1,36 +1,32 @@
-<div class='nk-gap-2'></div>
-<div class="nk-blog-post">
-
-                    <div class="row vertical-gap">
-                        <div class="col-lg-5">
-
-                            <a href="blog-single-image.html">
-                                <img src="<%= package.description_image %>" alt="" class="nk-img-stretch">
-                            </a>
-
-                        </div>
-                        <div class="col-lg-7">
-                            <div class="nk-post-meta nk-post-meta-top pb-0">
-                                <!-- <div class="nk-post-date nk-post-meta-right">
-                                    September 18, 2017
-                                    <span class="nk-post-by">by <a href="#">nK</a></span>
-                                </div> -->
-                            </div>
-                            <div class="nk-title">
-                                 <%= link_to "#{package.title} Package", p %>
-                            </div>
-                            <h2 class="nk-post-title h3"><a href="blog-single-image.html"></a></h2>
-
-                            <div class="nk-post-text">
-                                <p><%= package.description %></p>
-                            </div>
-
-                            <div class="nk-post-continue text-right" style='margin-right: 12px;'>
-                                <%= link_to package do %>
-                                Read More <span class="ion-ios-arrow-thin-right"></span>
-                                <% end %>
-                            </div>
-                        </div>
-                    </div>
+<style type="text/css">
+    p {font-family: raleway; font-weight: 300}
+</style>
+<div class="nk-portfolio-list-2">
+    <div class="nk-portfolio-item <%= cycle("", "inverted") -%>">
+        <div class="nk-image-box-1 nk-portfolio-image-box">
+            <!-- <a href="portfolio-single-1.html" class="nk-image-box-link"></a> -->
+            <%= link_to "", package_type_path(package), class:"nk-image-box-link" %>
+            <div class="nk-portfolio-image hidden-md-down" style="background-image: url('<%= package.description_image %>');"></div>
+            <img src="<%= package.description_image %>" alt="Foggy Forest" class="nk-portfolio-image hidden-lg-up">
+        </div>
+        <div class="nk-portfolio-text-box">
+            <div>
+                <h2 class="h3">
+                    <%= link_to "#{package.title} Package", p, class:"nk-portfolio-title" %>
+                </h2>
+                <div class="nk-portfolio-links">
 
                 </div>
+                <div class="nk-gap"></div>
+                <p><%= package.description %></p>
+                <div class="nk-gap"></div>
+
+                <%= link_to  package_type_path(package), class:"nk-btn nk-btn-sm nk-btn-effect-2-right nk-btn-circle nk-btn-outline nk-btn-color-dark-4"  do %>
+                <span>More Info</span>
+                <span class="icon"><i class="ion-ios-arrow-right"></i></span>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,6 +1,6 @@
 <%= render 'package_types/partials/index/logged_out/header'%>
 <div class='nk-main'>
-<div class='nk-blog-list'>
+<div class="nk-portfolio-list-2">
   <% @package_types.each do |pt| %>
     <%= render :partial => 'package_types/partials/index/logged_out/package_type_item', locals: {:package => pt} %>
   <% end %>
