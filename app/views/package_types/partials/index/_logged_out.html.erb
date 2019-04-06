@@ -3,6 +3,7 @@
 <div class="nk-portfolio-list-2">
   <% @package_types.each do |pt| %>
     <%= render :partial => 'package_types/partials/index/logged_out/package_type_item', locals: {:package => pt} %>
+    <div class="nk-gap-4"></div>
   <% end %>
 </div>
 </div>
