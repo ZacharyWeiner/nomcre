@@ -1,10 +1,11 @@
  <style type="text/css">
-
+    .h4{font-weight: 300}
+    .nk-counter .nk-count {font-weight: 300}
  </style>
  <div class="nk-header-title nk-header-title-xl nk-header-title-parallax nk-header-title-parallax-opacity">
     <div class="bg-image op-7">
-        <!-- <div style="background-image: url('https://nomcre-rails.s3.us-west-2.amazonaws.com/uploads/showcase_image/file/12/Black_Sand.jpg');"></div> -->
-        <div class="bg-video" data-video="https://vimeo.com/271028634"></div>
+       <div style="background-image: url('<%= @header_image.file.url %>');"></div>
+        <!-- <div class="bg-video" data-video="https://vimeo.com/271028634"></div> -->
     </div>
     <div class="nk-header-table">
         <div class="nk-header-table-cell">
@@ -15,9 +16,9 @@
                 <div class="nk-gap-3"></div>
 
                 <div class="nk-header-text">
-                  <!-- <h1  style="font: raleway; font-weight: 500;">
+                  <h1  style="font: raleway; font-weight: 300; font-size: 52px">
                       Premium. Custom. Content.
-                  </h1> -->
+                  </h1>
 
                   <div class="nk-gap-2"></div>
                   <!-- <a href="https://vimeo.com/271028634" class="nk-btn nk-btn-lg nk-btn-effect-5-left nk-btn-color-white text-dark-1 nk-video-fullscreen-toggle">
