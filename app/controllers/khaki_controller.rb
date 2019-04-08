@@ -20,11 +20,11 @@ class KhakiController < ApplicationController
   end
   def video_showcase
     set_showcase_header_image
-    @showcase_videos = ShowcaseVideo.where(showcase_type: 'main').order(:order)
+    @showcase_videos = ShowcaseVideo.where(showcase_type: 'Main').order(:order)
   end
   def model_showcase
     set_showcase_header_image
-    @showcase_videos = ShowcaseVideo.where(showcase_type: 'model').order(:order)
+    @showcase_videos = ShowcaseVideo.where(showcase_type: 'Model').order(:order)
   end
 
   def contact
