@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190404154915) do
+ActiveRecord::Schema.define(version: 20190408232042) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -483,6 +483,7 @@ ActiveRecord::Schema.define(version: 20190404154915) do
     t.string "thumbnail"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "vimeo_link"
   end
 
   create_table "task_groups", force: :cascade do |t|

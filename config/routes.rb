@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'showcase', to:'khaki#creative_showcase', as: 'creative_showcase'
+  get 'video_showcase', to:'khaki#video_showcase', as: 'video_showcase'
+  get 'model_showcase', to:'khaki#model_showcase', as: 'model_showcase'
+
   resources :shot_list_item_templates
   resources :task_groups do
     get 'add_to_shoot/:shoot_id', to: 'task_groups#copy_group_to_shoot', as:'copy_to_shoot'
@@ -147,9 +151,7 @@ Rails.application.routes.draw do
   get 'home', to:'khaki#nomcre_home', as:'nomcre_home'
   get 'process', to:'khaki#nomcre_process', as: 'nomcre_process'
   get 'creative', to:'khaki#creative_landing', as: 'creative_landing'
-  get 'showcase', to:'khaki#creative_showcase', as: 'creative_showcase'
-  get 'video_showcase', to:'khaki#video_showcase', as: 'video_showcase'
-  get 'model_showcase', to:'khaki#model_showcase', as: 'model_showcase'
+
   get 'contact', to:'khaki#contact', as: 'nomcre_contact'
   get 'about', to:'khaki#about', as: 'nomcre_about'
   get 'featured', to:'khaki#featured_creatives', as: 'featured_creatives'

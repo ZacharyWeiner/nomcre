@@ -42,6 +42,11 @@
             <%= form.label :select_a_video %>
             <%= form.file_field :file, id: :showcase_image_file %>
           </div>
+          <div class='form-group'>
+            OR <br>
+            <%= form.label :vimeo_link %>
+             <%= form.text_field :vimeo_link, id: :showcase_video_vimeo_link, class: 'form-control' %>
+          </div>
           <div class="form-group">
             <%= form.label :showcase_type %>
             <%= form.select(:showcase_type,options_for_select(["Main", "Model"], showcase_video.showcase_type), {}, {class: 'form-control'}) %>

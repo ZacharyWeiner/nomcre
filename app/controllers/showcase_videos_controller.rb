@@ -1,6 +1,6 @@
 class ShowcaseVideosController < ApplicationController
   before_action :set_showcase_video, only: [:show, :play, :edit, :update, :destroy]
-  before_action :authorize, except: [:play]
+  before_action :authorize, except: [:play, :index]
 
   layout :set_layout
   # GET /showcase_videos
@@ -70,7 +70,7 @@ class ShowcaseVideosController < ApplicationController
   private
     def set_layout
       theme = 'black_dashboard'
-       if action_name == "play"
+       if action_name == "play" || (action_name == "index" &&  (current_user.nil? || !current_user.is_admin))
           theme = 'khaki'
        end
        theme
@@ -91,7 +91,7 @@ class ShowcaseVideosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def showcase_video_params
-      params.require(:showcase_video).permit(:file, :showcase_type, :show, :order, :title, :description, :thumbnail)
+      params.require(:showcase_video).permit(:file, :showcase_type, :show, :order, :title, :description, :thumbnail, :vimeo_link)
     end
 
     def set_showcase_header_image
