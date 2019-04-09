@@ -1,4 +1,4 @@
-<!-- <div class="container">
+<div class="container">
   <div class="nk-portfolio-list-2">
     <div class="nk-gap-2"></div>
     <% @showcase_videos.each do |video | %>
@@ -22,7 +22,7 @@
           <p>
             <%= video.description.html_safe %>
           </p>
-          <%= link_to "Play Video", showcase_video_play_path(video), class: "nk-btn nk-btn-sm nk-btn-effect-2-right nk-btn-circle nk-btn-outline nk-btn-color-dark-4" %>
+          <%= link_to "Play Video", showcase_video_play_path(video), class: "nk-btn nk-btn-sm nk-btn-effect-2-right nk-btn-circle nk-btn-outline  nk-btn-color-dark-4" %>
 
 
         </div>
@@ -34,30 +34,10 @@
   </div>
 
 
- -->
 
 
 
 
 
-        <div class="nk-isotope bg-dark-1">
-          <% @showcase_videos.each do |sv| %>
-            <div class="nk-portfolio-item nk-isotope-item">
-                <div class="nk-image-box">
-                    <img src="<%= sv.thumbnail %>" alt="">
-                    <div class="nk-image-box-overlay nk-image-box-center">
-                        <div class='text-center'>
-                           <!--  <h2 class="nk-image-box-title h3"><%= sv.title %></h2>
-                            <div class="nk-image-box-sub-title">See below for big content place</div> -->
-                            <div class="nk-gap"></div>
 
-                            <a href="<%= sv.vimeo_link%>" class="nk-btn nk-btn-sm nk-btn-effect-2-right nk-btn nk-btn-circle nk-btn-color-white nk-video-fullscreen-toggle white nk-image-box-center " style='font-weight: 300'>
-                                <span>Play The Video</span>
-                                <span class="icon"><i class="ion-paper-airplane"></i></span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-          <% end %>
-        </div>
+
