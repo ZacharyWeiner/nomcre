@@ -1,3 +1,4 @@
+
 <div class="nk-portfolio-list-2">
     <div class="nk-gap-2"></div>
     <% @showcase_videos.each do |video | %>
@@ -39,7 +40,7 @@
         </div>
       </div>
       <div class="nk-gap-2"></div>
-        <div class="modal fade" id="videoPlayerModal_<%= video.id%>" tabindex="-1" role="dialog" aria-labelledby="Video Player" aria-hidden="true">
+      <div class="modal fade" id="videoPlayerModal_<%= video.id%>" tabindex="-1" role="dialog" aria-labelledby="Video Player" aria-hidden="true">
           <div class="modal-dialog" role="shot_list_group" style="width:100%">
             <div class="">
               <div >
@@ -59,3 +60,4 @@
           </script>
       <% end %>
     </div>
+

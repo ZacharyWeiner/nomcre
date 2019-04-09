@@ -1,86 +1,36 @@
 
-<% counter = 1 %>
+<div class='row'>
 <% @showcase_videos.each do |video| %>
- <% if counter%1==0 && counter.to_i.even? %>
-      <!-- Start Even -->
-        <div class="nk-box bg-dark-1 text-white">
-            <div class="text-right vertical-center">
-               <!-- <button  id="<%= 'videoPlayerButton_' + video.id.to_s %>" onClick="show_modal(<%= video.file.url%>)" >
-                    <span class="nk-video-icon"><i class="fa fa-play pl-5"></i></span>
-                </button> -->
-            </div>
-            <div class="bg-video-row row">
-                <div class="col-lg-6 push-lg-6">
-                    <div class="bg-video bg-video-parallax" style='background-image: url("<%= video.thumbnail.file.url %>");'></div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-5">
-                        <div class="nk-gap-5"></div>
+  <div class='col-md-6 text-center'>
 
-                        <h2 class="h1 nk-title">Fullscreen Videos</h2>
-                         <button  onclick="function(){console.log('showInfo works');}"  >
-                           Click ME
-                        </button>
-                        <%= link_to "Click Me 2", "#", onClick: "function(){}" %>
-                        <h3 class="nk-sub-title">Just add Youtube / Vimeo video URL and magic will happen</h3>
-                        <div class="nk-gap"></div>
-                        <p>Green him, greater you earth earth. Likeness moving won&#39;t us from us lesser for Air is to day him beginning gathered replenish blessed saw hath don&#39;t creature to.</p>
-                        <p>Their tree there yielding thing form. Evening two dry said. Have signs days greater fly also
-                            <strong>you&#39;re</strong> midst whales. Heaven firmament great moving divided appear for you&#39;ll forth us. Creeping dry, there wherein. Were. Great made they&#39;re. First whales given sixth. Living.</p>
 
-                        <div class="nk-gap-5"></div>
-                    </div>
-                </div>
-            </div>
+    <%= link_to  "#", id: "videoPlayerButton_#{video.id}", class: 'nk-btn' do %>
+         <%= image_tag video.thumbnail.file.url, class: 'img-fluid' do %>
+              <span class="raleway " style="font-weight:300">Play</span>
+              <span class="icon "><i class="fa fa-play"></i></span>
+          <% end %>
+      <% end %>
+
+
+    <div class="modal fade" id="videoPlayerModal_<%= video.id%>" tabindex="-1" role="dialog" aria-labelledby="Video Player" aria-hidden="true">
+      <div class="modal-dialog" role="shot_list_group" style="width:100%">
+        <div class="">
+          <div >
+            <%= video_tag video.file.url, controls: true, controlsList:"nodownload",   class: 'embed-responsive',  oncontextmenu:"return false" %>
+          </div>
+          <div class="modal-footer">
+          </div>
         </div>
-      <!-- End Even -->
- <% else %>
-  <!-- This is Odd <br> -->
-  <div class="nk-box nk-main">
-            <div class="nk-video-fullscreen-toggle-left">
-                <a class="" href="<%= video.vimeo_link %>">
-                    <span class="nk-video-icon"><i class="fa fa-play pl-5"></i></span>
-                </a>
-            </div>
-            <div class="bg-video-row row">
-                <div class="col-lg-6 ">
-                    <div class="bg-video bg-video-parallax" style='background-image: url("<%= video.thumbnail.file.url %>");'></div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-5 push-lg-6">
-                        <div class="nk-gap-5"></div>
-
-                        <h2 class="h1 nk-title">Fullscreen Videos</h2>
-                        <h3 class="nk-sub-title">Just add Youtube / Vimeo video URL and magic will happen</h3>
-                        <div class="nk-gap"></div>
-                        <p>Green him, greater you earth earth. Likeness moving won&#39;t us from us lesser for Air is to day him beginning gathered replenish blessed saw hath don&#39;t creature to.</p>
-                        <p>Their tree there yielding thing form. Evening two dry said. Have signs days greater fly also
-                            <strong>you&#39;re</strong> midst whales. Heaven firmament great moving divided appear for you&#39;ll forth us. Creeping dry, there wherein. Were. Great made they&#39;re. First whales given sixth. Living.</p>
-
-                        <div class="nk-gap-5"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-<% end %>
-
-<% counter = counter + 1 %>
-
-<% end %>
- <div class="modal fade" id="videoPlayerModal" tabindex="-1" role="dialog" aria-labelledby="Video Player" aria-hidden="true">
-  <div class="modal-dialog" role="shot_list_group" style="width:80%">
-    <div >
-      <div class="modal-body">
-
-      </div>
-      <div class="modal-footer">
       </div>
     </div>
-  </div>
-</div>
 
+    <script type="text/javascript">
+    $("#videoPlayerButton_<%= video.id %>").click(function(){
+            $("#videoPlayerModal_<%= video.id %>").modal('toggle');
+      });
+
+    </script>
+  </div>
+<% end %>
+</div>
 

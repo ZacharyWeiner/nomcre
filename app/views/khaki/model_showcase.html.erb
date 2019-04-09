@@ -7,7 +7,11 @@
 <meta property="title" content="Nomcre - The Best Nomadic Creative Videos" />
 <meta property="keywords" content="On Demand, On-Demand, Visual, Custom, Creative, Content, Photography, Videography, Videos, product photos, pictures" />
 <% end %>
-<div class='nk-main'>
+<% this_class = 'nk-main'%>
+<% if mobile_device == 'mobile' %>
+  <% this_class = '' %>
+<% end %>
+<div class="<%= this_class%>" >
 <%= render 'khaki/nomcre/showcase/video/header_title' %>
 <%= render 'khaki/nomcre/showcase/video/video_gallery'%>
 </div>
