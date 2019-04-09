@@ -1,6 +1,6 @@
 class ShowcaseVideosController < ApplicationController
-  before_action :set_showcase_video, only: [:show, :play, :edit, :update, :destroy]
-  before_action :authorize, except: [:play, :index]
+  before_action :set_showcase_video, only: [:show, :play, :play_vertical, :edit, :update, :destroy]
+  before_action :authorize, except: [:play, :index, :play_vertical]
 
   layout :set_layout
   # GET /showcase_videos
@@ -10,6 +10,10 @@ class ShowcaseVideosController < ApplicationController
   end
 
   def play
+    set_showcase_header_image
+  end
+
+  def play_vertical
     set_showcase_header_image
   end
 
@@ -70,10 +74,20 @@ class ShowcaseVideosController < ApplicationController
   private
     def set_layout
       theme = 'black_dashboard'
-       if action_name == "play" || (action_name == "index" &&  (current_user.nil? || !current_user.is_admin))
-          theme = 'khaki'
-       end
-       theme
+      if (action_name == "play" || action_name == "play_vertical")
+        return 'khaki'
+      elsif action_name == "index"
+        if current_user.is_admin
+          return 'black_dashboard'
+        else
+          return 'khaki'
+        end
+      elsif action_name == "new"
+        if current_user.is_admin
+          return 'black_dashboard'
+        end
+      end
+      return 'khaki'
     end
     def authorize
       if current_user.nil? || current_user.role != 0

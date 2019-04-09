@@ -1,0 +1,25 @@
+-->
+<div style="padding-top:125px;">
+
+<!-- END: Header Title -->
+
+<div class='row nk-main'>
+  <div class='col-md-6'>
+    <% if !@showcase_video.file.nil? %>
+      <div style='padding: 12px;'>
+        <%= video_tag @showcase_video.file, controls: true, controlsList:"nodownload",   class: 'embed-responsive',  oncontextmenu:"return false" %>
+      </div>
+    <% else %>
+
+        <iframe src="https://player.vimeo.com/video/329234306" width="98%" max-height="800" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+      </div>
+    <% end %>
+  </div>
+  <div class='col-md-6'>
+    Some Other Text
+  </div>
+</div>
+
+<div style="padding: 12px;">
+<%= link_to "<i class='fa fa-arrow-left'></i> Back".html_safe, video_showcase_path %>
+</div>

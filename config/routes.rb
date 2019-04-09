@@ -53,6 +53,7 @@ Rails.application.routes.draw do
   end
   resources :showcase_videos do
     get '/play', to: 'showcase_videos#play', as: 'play'
+    get '/play-vertical', to: 'showcase_videos#play_vertical', as: 'play_vertical'
   end
   resources :showcase_images
   resources :user_activities

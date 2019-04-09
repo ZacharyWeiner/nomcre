@@ -1,0 +1,61 @@
+<div class="nk-portfolio-list-2">
+    <div class="nk-gap-2"></div>
+    <% @showcase_videos.each do |video | %>
+      <div class="nk-portfolio-item <%= cycle("", "inverted") -%>">
+        <div class="nk-image-box-1 nk-portfolio-image-box">
+          <%= link_to "", showcase_video_play_path(video), class: "nk-image-box-link" %>
+          <div class="nk-portfolio-image nk-img-fit-md-down" style="background-image: url(&quot;<%= video.thumbnail.file.url %>&quot;);">
+          </div>
+            <%= video_tag  video.file,  class: "nk-portfolio-image hidden-lg-up", oncontextmenu:"return false" %>
+          </div>
+
+        <div class="nk-portfolio-text-box">
+          <h2 class="h3">
+            <a href="#" class="nk-portfolio-title" style='padding: 12px;'><%= video.title %></a>
+          </h2>
+          <div class="nk-portfolio-links">
+            <%= image_tag "https://s3-us-west-2.amazonaws.com/nomcre/logos/UpperLeftHPlogo+2.png", style: 'max-height:25px; max-width:25px; border-radius:100%' %>
+            <%= link_to "Nomadic Creative", "#" %>
+
+          <div class="nk-gap"></div>
+          <p>
+            <%= video.description.html_safe %>
+          </p>
+          <% if video.vimeo_link.blank? %>
+          <% end %>
+          <div class='text-center'>
+            <% if video.showcase_type == "Model"%>
+              <%= link_to  "#", id: "videoPlayerButton_#{video.id}", class: 'nk-btn nk-btn-x2 nk-btn-effect-1-right nk-btn-circle nk-btn-outline nk-btn-color-main-1' do %>
+
+
+                      <span class="raleway" style="font-weight:300">Play</span>
+                      <span class="icon"><i class="fa fa-play"></i></span>
+              <% end %>
+            <% else %>
+            <%= link_to "Play Video", showcase_video_play_path(video), id: "#{video.id}", class: "nk-btn nk-btn-lg nk-btn-circle nk-btn-3d nk-btn-color-main-1" %>
+            <% end %>
+          </div>
+        </div>
+        </div>
+      </div>
+      <div class="nk-gap-2"></div>
+        <div class="modal fade" id="videoPlayerModal_<%= video.id%>" tabindex="-1" role="dialog" aria-labelledby="Video Player" aria-hidden="true">
+          <div class="modal-dialog" role="shot_list_group" style="width:100%">
+            <div class="">
+              <div >
+                <%= video_tag video.file.url, controls: true, controlsList:"nodownload",   class: 'embed-responsive',  oncontextmenu:"return false" %>
+              </div>
+              <div class="modal-footer">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script type="text/javascript">
+          $("#videoPlayerButton_<%= video.id %>").click(function(){
+                  $("#videoPlayerModal_<%= video.id %>").modal('toggle');
+            });
+
+          </script>
+      <% end %>
+    </div>
