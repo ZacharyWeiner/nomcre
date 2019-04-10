@@ -1,0 +1,73 @@
+
+<div class="nk-isotope nk-isotope-3-cols bg-dark-1 gallery-body">
+<% @showcase_videos.where.not(file: nil).each do |video| %>
+  <div class=' text-center nk-isotope-item'>
+    <div class='nk-image-box-1'>
+    <%= link_to  "#",  id:"playButton_" + video.id.to_s, class: 'nk-gallery-item' do %>
+      <%= image_tag  video.thumbnail.file.url, id: "myImage_#{video.id}", class: '' %>
+    <% end %>
+    </div>
+    <%= video_tag  video.file.url, id: "myVideo_#{video.id}", class: 'hidden-xs-up video-item' %>
+    <% content_for :js do %>
+    <script type="text/javascript">
+        var myVideo = document.getElementById("myVideo_<%= video.id %>");
+        var playButton = document.getElementById("playButton_<%= video.id %>");
+
+        playButton.addEventListener('click', function () {
+
+          if (document.getElementById("myVideo_<%= video.id %>").paused) {
+              if (document.getElementById("myVideo_<%= video.id %>").requestFullscreen) {
+                  document.getElementById("myVideo_<%= video.id %>").requestFullscreen();
+              }
+              else if (document.getElementById("myVideo_<%= video.id %>").msRequestFullscreen) {
+                  document.getElementById("myVideo_<%= video.id %>").msRequestFullscreen();
+              }
+              else if (document.getElementById("myVideo_<%= video.id %>").mozRequestFullScreen) {
+                  document.getElementById("myVideo_<%= video.id %>").mozRequestFullScreen();
+              }
+              else if (document.getElementById("myVideo_<%= video.id %>").webkitRequestFullScreen) {
+                  document.getElementById("myVideo_<%= video.id %>").webkitRequestFullScreen();
+              }
+              var playPromise = myVideo.play();
+
+              if (playPromise !== undefined) {
+                document.getElementById("myVideo_<%= video.id %>").classList.remove("hidden-xs-up");
+                playPromise.then(_ => {
+                  // Automatic playback started!
+                  // Show playing UI.
+
+                })
+                .catch(error => {
+                  // Auto-play was prevented
+                  // Show paused UI.
+                });
+              }
+              document.addEventListener('fullscreenchange', exitHandler);
+              document.addEventListener('webkitfullscreenchange', exitHandler);
+              document.addEventListener('mozfullscreenchange', exitHandler);
+              document.addEventListener('MSFullscreenChange', exitHandler);
+
+              function exitHandler() {
+                  if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+                      document.getElementById("myVideo_<%= video.id %>").classList.add("hidden-xs-up");
+                  }
+}
+
+          }
+          else {
+              document.getElementById("myVideo_<%= video.id %>").pause();
+
+          }
+        }, false);
+    </script>
+    <% end %>
+  </div>
+<% end %>
+
+<% content_for :js do %>
+<script type="text/javascript">
+
+</script>
+<% end %>
+</div>
+

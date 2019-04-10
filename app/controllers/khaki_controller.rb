@@ -73,6 +73,9 @@ class KhakiController < ApplicationController
   def faq
   end
 
+  def playground
+  end
+
   def set_showcase_header_image
     @header_images = HeaderImage.all.where(showcase: true)
     count = @header_images.count

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get 'showcase', to:'khaki#creative_showcase', as: 'creative_showcase'
   get 'video_showcase', to:'khaki#video_showcase', as: 'video_showcase'
   get 'model_showcase', to:'khaki#model_showcase', as: 'model_showcase'
+  get 'playground', to: 'khaki#playground', as: 'playground'
 
   resources :shot_list_item_templates
   resources :task_groups do

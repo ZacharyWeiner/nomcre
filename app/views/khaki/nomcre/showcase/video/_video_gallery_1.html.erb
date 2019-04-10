@@ -1,18 +1,19 @@
-
+<div class='container'>
 <div class="nk-portfolio-list-2">
     <div class="nk-gap-2"></div>
     <% @showcase_videos.each do |video | %>
       <div class="nk-portfolio-item <%= cycle("", "inverted") -%>">
-        <div class="nk-image-box-1 nk-portfolio-image-box">
-          <%= link_to "", showcase_video_play_path(video), class: "nk-image-box-link" %>
-          <div class="nk-portfolio-image nk-img-fit-md-down" style="background-image: url(&quot;<%= video.thumbnail.file.url %>&quot;);">
+        <div class="nk-image-box-1 nk-portfolio-image-box ">
+          <% link_to "", showcase_video_play_path(video), class: "nk-image-box-link" %>
+          <div class="nk-portfolio-image nk-img-fit-xl-down" style="background-image: url(&quot;<% video.thumbnail.file.url %>&quot;);">
+            <img src="<%= video.thumbnail.file.url %>" class="nk-portfolio-image nk-img-fit-xl-down">
           </div>
-            <%= video_tag  video.file,  class: "nk-portfolio-image hidden-lg-up", oncontextmenu:"return false" %>
+            <%= video_tag  video.file, id:"myVideo_#{video.id}",  class: "nk-portfolio-image hidden-xs-up", oncontextmenu:"return false" %>
           </div>
 
         <div class="nk-portfolio-text-box">
           <h2 class="h3">
-            <a href="#" class="nk-portfolio-title" style='padding: 12px;'><%= video.title %></a>
+            <div class="nk-portfolio-title" style='padding: 12px;'><%= video.title %></div>
           </h2>
           <div class="nk-portfolio-links">
             <%= image_tag "https://s3-us-west-2.amazonaws.com/nomcre/logos/UpperLeftHPlogo+2.png", style: 'max-height:25px; max-width:25px; border-radius:100%' %>
@@ -33,18 +34,75 @@
                       <span class="icon"><i class="fa fa-play"></i></span>
               <% end %>
             <% else %>
-            <%= link_to "Play Video", showcase_video_play_path(video), id: "#{video.id}", class: "nk-btn nk-btn-lg nk-btn-circle nk-btn-3d nk-btn-color-main-1" %>
+
+            <%= link_to "#", id: "playButton_#{video.id}", class: "nk-btn nk-btn-x2 nk-btn-effect-1-right nk-btn-circle nk-btn-outline nk-btn-color-main-1" do %>
+              <span>Play</span>
+              <span class="icon"><i class="fa fa-play"></i></span>
+              <% end%>
             <% end %>
           </div>
         </div>
         </div>
       </div>
+       <% content_for :js do %>
+    <script type="text/javascript">
+        var myVideo = document.getElementById("myVideo_<%= video.id %>");
+        var playButton = document.getElementById("playButton_<%= video.id %>");
+
+        playButton.addEventListener('click', function () {
+
+          if (document.getElementById("myVideo_<%= video.id %>").paused) {
+              if (document.getElementById("myVideo_<%= video.id %>").requestFullscreen) {
+                  document.getElementById("myVideo_<%= video.id %>").requestFullscreen();
+              }
+              else if (document.getElementById("myVideo_<%= video.id %>").msRequestFullscreen) {
+                  document.getElementById("myVideo_<%= video.id %>").msRequestFullscreen();
+              }
+              else if (document.getElementById("myVideo_<%= video.id %>").mozRequestFullScreen) {
+                  document.getElementById("myVideo_<%= video.id %>").mozRequestFullScreen();
+              }
+              else if (document.getElementById("myVideo_<%= video.id %>").webkitRequestFullScreen) {
+                  document.getElementById("myVideo_<%= video.id %>").webkitRequestFullScreen();
+              }
+              var playPromise = myVideo.play();
+
+              if (playPromise !== undefined) {
+                document.getElementById("myVideo_<%= video.id %>").classList.remove("hidden-xs-up");
+                playPromise.then(_ => {
+                  // Automatic playback started!
+                  // Show playing UI.
+
+                })
+                .catch(error => {
+                  // Auto-play was prevented
+                  // Show paused UI.
+                });
+              }
+              document.addEventListener('fullscreenchange', exitHandler);
+              document.addEventListener('webkitfullscreenchange', exitHandler);
+              document.addEventListener('mozfullscreenchange', exitHandler);
+              document.addEventListener('MSFullscreenChange', exitHandler);
+
+              function exitHandler() {
+                  if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+                      document.getElementById("myVideo_<%= video.id %>").classList.add("hidden-xs-up");
+                  }
+}
+
+          }
+          else {
+              document.getElementById("myVideo_<%= video.id %>").pause();
+
+          }
+        }, false);
+    </script>
+    <% end %>
       <div class="nk-gap-2"></div>
       <div class="modal fade" id="videoPlayerModal_<%= video.id%>" tabindex="-1" role="dialog" aria-labelledby="Video Player" aria-hidden="true">
           <div class="modal-dialog" role="shot_list_group" style="width:100%">
-            <div class="">
-              <div >
-                <%= video_tag video.file.url, controls: true, controlsList:"nodownload",   class: 'embed-responsive',  oncontextmenu:"return false" %>
+            <div class="modal-body">
+              <div class='card'>
+                <%= video_tag video.file.url, controls: true, controlsList:"nodownload",   class: 'embed-responsive',  oncontextmenu:"return false" unless video.file.url.nil? %>
               </div>
               <div class="modal-footer">
               </div>
@@ -60,4 +118,4 @@
           </script>
       <% end %>
     </div>
-
+</div>

@@ -100,19 +100,21 @@ drift.load('2kydddnkkp4a');
 <%= javascript_include_tag 'khaki_theme' %>
 </head>
 <body>
-<%= render 'khaki/nomcre/top_contact_menu'%>
+  <%= render 'khaki/nomcre/top_contact_menu'%>
 
-<% render 'khaki/nomcre/right_nav_bar'%>
-<%= render 'khaki/nomcre/mobile_menu'%>
+  <% render 'khaki/nomcre/right_nav_bar'%>
+  <%= render 'khaki/nomcre/mobile_menu'%>
   <%= yield %>
   <%= render 'khaki/nomcre/footer'%>
+
+  <%= yield(:js) %>
+
+
+  <% content_for?(:added_scripts) do %>
+    <%= yield(:added_scripts) %>
+  <% end %>
 </body>
 
 
-<% content_for?(:js) do %>
-  <%= yield(:js) %>
-<% end %>
-<% content_for?(:added_scripts) do %>
-  <%= yield(:added_scripts) %>
-<% end %>
+
 </html>

@@ -14,9 +14,9 @@
 
     <div class="modal fade" id="videoPlayerModal_<%= video.id%>" tabindex="-1" role="dialog" aria-labelledby="Video Player" aria-hidden="true">
       <div class="modal-dialog" role="shot_list_group" style="width:100%">
-        <div class="">
-          <div >
-            <%= video_tag video.file.url, controls: true, controlsList:"nodownload",   class: 'embed-responsive',  oncontextmenu:"return false" %>
+        <div class="modal-body">
+          <div class='card'>
+            <%= video_tag video.file.url, controls: true, controlsList:"nodownload",   class: 'embed-responsive',  oncontextmenu:"return false" unless video.file.url.nil? %>
           </div>
           <div class="modal-footer">
           </div>
