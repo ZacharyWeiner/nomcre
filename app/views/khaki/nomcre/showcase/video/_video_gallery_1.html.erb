@@ -86,6 +86,7 @@
               function exitHandler() {
                   if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
                       document.getElementById("myVideo_<%= video.id %>").classList.add("hidden-xs-up");
+                      document.getElementById("myVideo_<%= video.id %>").pause();
                   }
 }
 
