@@ -1,4 +1,7 @@
 
+<style type="text/css">
+  .video-item{max-width: 100%;}
+</style>
 <div class="nk-isotope nk-isotope-3-cols bg-dark-1 gallery-body">
 <% @showcase_videos.where.not(file: nil).each do |video| %>
   <div class=' text-center nk-isotope-item'>
@@ -49,27 +52,19 @@
 
               document.onfullscreenchange = function exitHandler(event) {
                   if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
-                      document.getElementById("myVideo_<%= video.id %>").classList.add("hidden-xs-up");
+                      document.getElementById("myVideo_<%= video.id %>").classList.toggle("hidden-xs-up");
                       document.getElementById("myVideo_<%= video.id %>").pause();
-                      document.onfullscreenchange = null;
                   };
               }
 
           }
           else {
               document.getElementById("myVideo_<%= video.id %>").pause();
-
           }
         }, false);
     </script>
     <% end %>
   </div>
-<% end %>
-
-<% content_for :js do %>
-<script type="text/javascript">
-
-</script>
 <% end %>
 </div>
 
