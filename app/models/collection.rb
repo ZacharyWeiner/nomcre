@@ -20,7 +20,7 @@ class Collection < ApplicationRecord
   #instance methods
   def get_header_or_first
     header = self.collection_items.where.not(file: nil).where(is_header: true).first.file.url if !self.collection_items.where.not(file: nil).where(is_header: true).first.nil?
-    header = self.collection_items.where.not(file: nil).first if header.nil?
+    header = self.collection_items.where.not(file: nil).first.url if header.nil? && !self.collection_items.where.not(file: nil).first.nil?
     header = self.user.user_profile.safe_header_image_url if header.nil?
     header
   end

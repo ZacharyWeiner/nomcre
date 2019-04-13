@@ -1,6 +1,6 @@
 <h1>Editing User Profile</h1>
 
-<%= render 'form', user_profile: @user_profile %>
-
+<% render 'form', user_profile: @user_profile %>
+<%= render :partial => 'user_profiles/partials/black_dashboard/wizard',  :locals => {user_profile: @user_profile} %>
 <%= link_to 'Show', @user_profile %>
 
