@@ -44,14 +44,20 @@ SitemapGenerator::Sitemap.create do
   add nomcre_about_path
   add nomcre_contact_path
   add video_showcase_path
+  add model_showcase_path
   add creative_showcase_path
   add creative_landing_path
   add nomcre_process_path
+  add package_types_path
   Page.where(status: 'published').each do |page|
     add page_path(page)
   end
 
   Collection.find_each do |collection|
     add collection_path(collection)
+  end
+
+  PackageType.find_each do |package_type|
+    add package_type_path(package_type)
   end
 end
