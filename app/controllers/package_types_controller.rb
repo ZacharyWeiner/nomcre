@@ -73,6 +73,13 @@ class PackageTypesController < ApplicationController
     end
   end
 
+  def models
+    @package_type = PackageType.where(title: 'Modeling Agency Video Compilations').first
+    respond_to do |format|
+      format.html { redirect_to package_type_path(@package_type), notice: 'package type was successfully created.' }
+    end
+  end
+
   def new_from_template
     CreateProjectFromTemplateWorker.perform_async(@package_type.id, current_user.id)
     flash[:notice] = "We're Building Your Project :) "

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       get 'copy', to: 'shot_list_item_templates#copy', as: 'copy'
     end
   end
+  get '/package/models', to:'package_types#models', as: 'package_types_models'
   resources :package_types
   resources :creative_requests
   resources :discount_codes
