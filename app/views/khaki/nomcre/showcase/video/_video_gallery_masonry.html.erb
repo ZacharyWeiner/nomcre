@@ -21,30 +21,34 @@
           if (document.getElementById("myVideo_<%= video.id %>").paused) {
               if (document.getElementById("myVideo_<%= video.id %>").requestFullscreen) {
                   document.getElementById("myVideo_<%= video.id %>").requestFullscreen();
+                  document.getElementById("myVideo_<%= video.id %>").classList.remove("hidden-xs-up");
               }
               else if (document.getElementById("myVideo_<%= video.id %>").msRequestFullscreen) {
                   document.getElementById("myVideo_<%= video.id %>").msRequestFullscreen();
+                  document.getElementById("myVideo_<%= video.id %>").classList.remove("hidden-xs-up");
               }
               else if (document.getElementById("myVideo_<%= video.id %>").mozRequestFullScreen) {
                   document.getElementById("myVideo_<%= video.id %>").mozRequestFullScreen();
+                  document.getElementById("myVideo_<%= video.id %>").classList.remove("hidden-xs-up");
               }
               else if (document.getElementById("myVideo_<%= video.id %>").webkitRequestFullScreen) {
                   document.getElementById("myVideo_<%= video.id %>").webkitRequestFullScreen();
+                  document.getElementById("myVideo_<%= video.id %>").classList.remove("hidden-xs-up");
               }
-              var playPromise = myVideo.play();
+              //var playPromise = myVideo.play();
 
-              if (playPromise !== undefined) {
-                document.getElementById("myVideo_<%= video.id %>").classList.remove("hidden-xs-up");
-                playPromise.then(_ => {
-                  // Automatic playback started!
-                  // Show playing UI.
+              // if (playPromise !== undefined) {
+              //   document.getElementById("myVideo_<%= video.id %>").classList.remove("hidden-xs-up");
+              //   playPromise.then(_ => {
+              //     // Automatic playback started!
+              //     // Show playing UI.
 
-                })
-                .catch(error => {
-                  // Auto-play was prevented
-                  // Show paused UI.
-                });
-              }
+              //   })
+              //   .catch(error => {
+              //     // Auto-play was prevented
+              //     // Show paused UI.
+              //   });
+              // }
               // document.addEventListener('fullscreenchange', exitHandler);
               // document.addEventListener('webkitfullscreenchange', exitHandler);
               // document.addEventListener('mozfullscreenchange', exitHandler);
