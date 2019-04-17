@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
   end
   get '/package/models', to:'package_types#models', as: 'package_types_models'
-  resources :package_types
+  get 'packages/:slug', to: 'package_types#show', as:'package_types_slug'
   resources :creative_requests
   resources :discount_codes
   resources :shoots do

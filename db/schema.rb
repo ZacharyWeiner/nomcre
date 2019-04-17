@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190408232042) do
+ActiveRecord::Schema.define(version: 20190417194313) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -248,6 +248,7 @@ ActiveRecord::Schema.define(version: 20190408232042) do
     t.string "example_image_subtitle"
     t.string "example_video_title"
     t.string "example_video_subtitle"
+    t.string "slug"
     t.index ["header_image_id"], name: "index_package_types_on_header_image_id"
   end
 
