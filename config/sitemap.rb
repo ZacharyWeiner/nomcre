@@ -58,6 +58,6 @@ SitemapGenerator::Sitemap.create do
   end
 
   PackageType.find_each do |package_type|
-    add package_type_path(package_type)
+    add package_type_slug_path(package_type.slug)
   end
 end
