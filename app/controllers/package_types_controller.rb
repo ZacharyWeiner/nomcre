@@ -38,6 +38,8 @@ class PackageTypesController < ApplicationController
   # POST /package_types.json
   def create
     @package_type = PackageType.new(package_type_params)
+    @package_type.slug = PackageType.set_slug @package_type.title
+
     respond_to do |format|
       if @package_type.save
         format.html { redirect_to @package_type, notice: 'package type was successfully created.' }
@@ -90,7 +92,9 @@ class PackageTypesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_package_type
-      if params[:package_type_id]
+      if [:slug]
+        @package_type = PackageType.where(slug: params[:slug].downcase).first
+      elsif params[:package_type_id]
         @package_type = PackageType.find(params[:package_type_id])
       else
         @package_type = PackageType.find(params[:id])
@@ -125,7 +129,8 @@ class PackageTypesController < ApplicationController
                                           :example_video_thumbnail,
                                           :show_on_index,
                                           :call_to_action_text,
-                                          :add_default_shot_list)
+                                          :add_default_shot_list,
+                                          :slug)
     end
 
     def authorize

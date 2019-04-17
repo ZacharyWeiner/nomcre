@@ -92,7 +92,7 @@
                         <ul class="dropdown" >
                             <% PackageType.where(show_in_menu: true).each do |p|%>
                             <li>
-                                <%= link_to p, class: 'link-effect-3 menu-link' do %>
+                                <%= link_to package_types_slug_path(p.slug), class: 'link-effect-3 menu-link' do %>
 
                                     <span>
                                         <span class="link-effect-shade">

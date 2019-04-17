@@ -1,4 +1,5 @@
 class PackageType < ApplicationRecord
+
   #belongs_to
   belongs_to :header_image
 
@@ -58,6 +59,10 @@ class PackageType < ApplicationRecord
   end
 
 
+  def self.create_slug title
+    return title.gsub(' ', '-').downcase
+  end
+
 
   def self_destruct
     projects = self.projects
@@ -100,5 +105,4 @@ class PackageType < ApplicationRecord
     end
     self.destroy
   end
-
 end
