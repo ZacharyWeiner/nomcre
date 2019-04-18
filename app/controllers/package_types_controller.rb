@@ -92,7 +92,7 @@ class PackageTypesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_package_type
-      if [:slug]
+      if params[:slug]
         @package_type = PackageType.where(slug: params[:slug].downcase).first
       elsif params[:package_type_id]
         @package_type = PackageType.find(params[:package_type_id])
