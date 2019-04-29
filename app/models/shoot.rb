@@ -125,8 +125,14 @@ class Shoot < ApplicationRecord
     creative = assigned_request.creative
     unless creative.nil?
       self.creative = creative
+      if !self.deadline > Date.today
+        self.deadline = Date.today + 14.days
+      end
       if self.save!
         assigned_request.approved = true
+        if !assigned_request.deadline > Date.today
+          assigned_request.deadline = Date.today
+        end
         assigned_request.save!
         self.assign_chatroom creative
         self.creative_requests.where.not(creative_id: creative.id).each do |cr|

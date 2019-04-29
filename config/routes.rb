@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   get '/pages/Entrepreneur-Magazine', to: 'landing_pages#marketing', as: 'entrepreneur_marketing'
   resources :header_images
   resources :lead_notes
+
   resources :leads do
     resources :lead_notes
   end
@@ -183,6 +184,7 @@ Rails.application.routes.draw do
   get 'admin/deposit_paid/:proposal_id', to: 'admin#proposal_mark_deposit_paid', as: 'admin_proposal_mark_deposit_paid'
   get 'admin/balance_paid/:proposal_id', to: 'admin#proposal_mark_balance_paid', as: 'admin_proposal_mark_balance_paid'
   get 'admin/leads', to: 'admin#leads', as: 'admin_leads'
+  post 'admin/leads/import', to: 'leads#import', as: 'import_leads'
   get 'admin/task_groups', to: 'admin#task_groups', as: 'admin_task_groups'
   get 'admin/task_group/:id/edit', to: 'admin#edit_task_group', as: 'admin_edit_task_group'
   get '/sales_materials', to: 'khaki#sales_materials', as: 'sales_materials'

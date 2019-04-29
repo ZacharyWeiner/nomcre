@@ -77,6 +77,11 @@ class LeadsController < ApplicationController
     end
   end
 
+  def import
+    Lead.import_file(params[:file])
+    redirect_to admin_leads_path, notice: 'successfully Imported'
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lead

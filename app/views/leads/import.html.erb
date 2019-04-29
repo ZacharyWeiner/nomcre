@@ -1,0 +1,8 @@
+<%= flash[:notice] %>
+<div>
+  <h4> Import Data </h4>
+  <%= form_tag import_leads_path, multipart: true do |f| %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import File" %>
+  <% end %>
+</div>

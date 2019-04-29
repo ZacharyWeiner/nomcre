@@ -60,7 +60,7 @@ class AdminController < ApplicationController
   end
 
   def leads
-    @leads = Lead.all.page params[:page]
+    @leads = Lead.all
   end
 
   def proposal_price

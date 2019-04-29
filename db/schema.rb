@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190417194313) do
+ActiveRecord::Schema.define(version: 20190427162001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -187,6 +187,35 @@ ActiveRecord::Schema.define(version: 20190417194313) do
     t.bigint "rep_id"
     t.time "next_contact_time"
     t.string "source"
+    t.string "loaction"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "company"
+    t.string "title"
+    t.string "city"
+    t.string "state"
+    t.string "zip"
+    t.string "address"
+    t.string "phone"
+    t.string "linked_in_id"
+    t.string "profile_picture"
+    t.string "summary"
+    t.string "company_profile"
+    t.string "company_website"
+    t.string "twitter"
+    t.string "instagram"
+    t.string "industry"
+    t.string "my_tags"
+    t.string "my_notes"
+    t.string "visit_time"
+    t.string "linkedin_profile"
+    t.string "picture"
+    t.string "degree"
+    t.string "middle_name"
+    t.string "from"
+    t.string "personal_website"
+    t.string "im"
+    t.string "location"
   end
 
   create_table "locations", force: :cascade do |t|

@@ -17,13 +17,13 @@
                <th>Name</th>
               <th>Email</th>
               <th>Company name</th>
-              <th>Office phone</th>
-              <th>Cell phone</th>
+              <th>Title</th>
+              <th>Industry</th>
+              <th>Phone</th>
+              <th>Location</th>
               <th>Last contacted</th>
               <th>Next contact</th>
-              <th>View</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -32,26 +32,34 @@
               <td><%= lead.name %></td>
               <td><%= lead.email %></td>
               <td><%= lead.company_name %></td>
-              <td><%= lead.office_phone %></td>
-              <td><%= lead.cell_phone %></td>
+              <td><%= lead.title %></td>
+              <td><%= lead.industry %></td>
+              <td><%= lead.phone %></td>
+              <td><%= lead.location %></td>
               <td><%= lead.last_contacted %></td>
               <td><%= lead.next_contact %></td>
-              <td><%= link_to 'Show', lead %></td>
-              <td><%= link_to 'Edit', edit_lead_path(lead) %></td>
-              <td><%= link_to 'Destroy', lead, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td>
+                <%= link_to "<i class='fa fa-eye'></i>".html_safe, lead %> |
+                <%= link_to "<i class='fab fa-linkedin-in'></i>".html_safe, lead.linkedin_profile, target: '_blank' %> |
+                <%= link_to "<i class='fa fa-edit'></i>".html_safe, edit_lead_path(lead) %> |
+                <%= link_to "<i class='fa fa-trash'></i>".html_safe, lead, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+              </td>
             </tr>
           <% end %>
           </tbody>
           <tfoot>
             <tr>
-               <th>Name</th>
+                <th>Name</th>
               <th>Email</th>
               <th>Company name</th>
-              <th>Office phone</th>
-              <th>Cell phone</th>
+              <th>Title</th>
+              <th>Industry</th>
+              <th>Phone</th>
+              <th>Location</th>
               <th>Last contacted</th>
               <th>Next contact</th>
-              <th class="sorting_desc_disabled sorting_asc_disabled text-right">Actions</th>
+              <th>Actions</th>
             </tr>
           </tfoot>
         </table>
