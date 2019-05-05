@@ -6,6 +6,6 @@ class MarketingMailer < ApplicationMailer
     else
       @user = User.first
     end
-    mail(to: @user.email, subject: 'Your Only 5 Clicks From A Year Of Content')
+    mail(to: 'test-llptk@mail-tester.com', subject: 'Your Only 5 Clicks From A Year Of Content')
   end
 end
