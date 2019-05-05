@@ -194,6 +194,11 @@ Rails.application.routes.draw do
   get '/sitemap', to: 'pages#sitemap'
 
 
+  get '/emails/test/property_management', to: 'email_test#property_management', as: 'property_management_email'
+  get '/emails/test/modeling_agency', to: 'email_test#modeling_agency', as: 'modeling_agency_email'
+  get '/emails/test/newsletter', to: 'email_test#newsletter', as: 'newsletter_email'
+
+
   get 'black_dashboard/dashboard', to: 'black_dashboard#dashboard', as: 'black_dashboard_dashboard'
   get 'black_dashboard/pricing', to: 'black_dashboard#pricing', as: 'black_dashboard_pricing'
   get 'black_dashboard/timeline', to: 'black_dashboard#timeline', as: 'black_dashboard_timeline'
