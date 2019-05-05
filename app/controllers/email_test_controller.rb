@@ -6,7 +6,7 @@ class EmailTestController < ApplicationController
   end
 
   def newsletter
-    MarketingMailer.with(user: User.first).newsletter.deliver_now!
+    MarketingMailer.with(user: User.first).newsletter.deliver_now
     redirect_to root_path
   end
 end

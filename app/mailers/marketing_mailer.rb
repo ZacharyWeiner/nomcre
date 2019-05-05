@@ -1,6 +1,5 @@
 class MarketingMailer < ApplicationMailer
-  default from: 'zack@nomcre.com'
-
+  layout 'marketing_mailer'
   def newsletter
     if params[:user]
       @user = params[:user]
