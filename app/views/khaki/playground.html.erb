@@ -1,8 +1,51 @@
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.5.1/pixi.min.js"></script>
+<script type="text/javascript">
+  let app = new PIXI.Application({width: window.innerWidth, height: innerHeight})
+
+  document.body.appendChild(app.view);
+
+
+  let img = PIXI.Sprite.from("https://nomcre-local.s3-us-west-2.amazonaws.com/3d/fireside/fireside-whisky.png");
+  img.width = window.innerWidth;
+  img.height = window.innerHeight;
+  app.stage.addChild(img);
+
+  let depthMap = new PIXI.Sprite.from("https://nomcre-local.s3-us-west-2.amazonaws.com/3d/fireside/fireside-whisky_depth.png");
+  app.stage.addChild(depthMap);
+
+  displacementFilter = new PIXI.filters.DisplacementFilter(depthMap);
+  app.filters = [displacementFilter];
+  window.onmousemove = function(e){
+    displacementFilter.scale.x = (window.innerWidth / 2 - e.clientX) / 20;
+    displacementFilter.scale.Y = (window.innerHeight / 2 - e.clientY) / 20;
+  };
+
+</script>
+
+
+<!-- <img src='https://nomcre-local.s3-us-west-2.amazonaws.com/3d/fireside/fireside-whisky.png'> -->
+<!-- <div class='nk-gap-5'></div>
+
 <div style="padding-top: 125px;">
 
 </div>
-
 <div class='nk-main'>
+<div class='row'>
+  <div class='col-md-6'></div>
+  <div class='col-md-6' >
+  <iframe src="https://nomcre.drift.click/brief-inftro" style="width:100%;min-height:500px;"></iframe>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
     On AN XL Screen
     <br>
     Hidden:
@@ -75,3 +118,4 @@
       Hidden XL UP
     </div>
 </div>
+ -->
