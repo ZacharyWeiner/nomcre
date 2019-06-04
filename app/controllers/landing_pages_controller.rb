@@ -7,4 +7,8 @@ class LandingPagesController < ApplicationController
 
   def thank_you
   end
+
+  def linkedin
+    render layout: 'khaki'
+  end
 end
