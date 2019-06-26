@@ -11,4 +11,8 @@ class LandingPagesController < ApplicationController
   def linkedin
     render layout: 'khaki'
   end
+
+  def headshots
+    render layout: 'khaki'
+  end
 end
