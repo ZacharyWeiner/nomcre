@@ -62,10 +62,10 @@
                                  <%= link_to nomcre_about_path, class: 'link-effect-3 menu-link' do %>
                                     <span>
                                         <span class="link-effect-shade">
-                                            Concept
+                                            Company
                                             <span class="nk-item-descr">What Is Nomcre?</span>
                                         </span>
-                                        Concept
+                                        Company
                                         <span class="nk-item-descr">What Is Nomcre?</span>
                                     </span>
                                 <% end %>
@@ -73,7 +73,7 @@
 
                         </ul>
                     </li>
-
+                    <!--
                    <% if current_page?(controller: 'package_types', action: 'index') ||  current_page?(controller: 'package_types')%>
                         <li class="active nk-drop-item">
                     <% else %>
@@ -109,6 +109,7 @@
                     </li>
 
                     </li>
+                -->
                     <% if current_page?(controller: 'khaki', action: 'creative_showcase') ||  current_page?(controller: 'khaki', action: 'video_showcase')%>
                         <li class="active nk-drop-item">
                     <% else %>
@@ -167,6 +168,17 @@
 
                         </ul>
                     </li>
+                    <li>
+                         <%= link_to '#menu-conversation', class: 'link-effect-3 menu-link', style:'color:coral' do %>
+
+                            <span>
+                                <span class="link-effect-shade ">
+                                    Chat Now!
+                                </span>
+                                Chat Now!
+                            </span>
+                        <% end %>
+                    </li>
                 </ul>
                 <ul class="nk-nav nk-nav-right nk-nav-icons">
 
@@ -179,11 +191,7 @@
                             </span>
                         </a>
                     </li>
-                   <!--  <li class="single-icon">
-                        <a href="#" class="nk-share-toggle no-link-effect">
-                            <span class="fa fa-share-alt"></span>
-                        </a>
-                    </li> -->
+
                     <li class="single-icon nk-drop-item">
                         <%if current_user.nil? %>
                         <a href="#" class="no-link-effect menu-link">
