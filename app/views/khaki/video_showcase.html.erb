@@ -8,7 +8,8 @@
 <meta property="keywords" content="On Demand, On-Demand, Visual, Custom, Creative, Content, Photography, Videography, Videos, product photos, pictures" />
 <% end %>
 <div class='nk-main'>
-<%= render 'khaki/nomcre/showcase/video/header_title' %>
-<%= render 'khaki/nomcre/showcase/video/video_gallery_1'%>
+  <div class='nk-gap-4 bg-dark-4'></div>
+<% render 'khaki/nomcre/showcase/video/header_title' %>
+<%= render 'khaki/nomcre/showcase/video/video_gallery'%>
 <%= paginate @showcase_videos %>
 </div>
