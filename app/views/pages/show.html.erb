@@ -39,10 +39,20 @@
 <div class='nk-main'>
     <div class='nk-gap'></div>
     <div class='container' style="font: raleway; font-weight: 300;">
+        <% half = @page_sections.count / 2 %>
+        <% counter = 0 %>
         <% @page_sections.each do |ps| %>
             <div class='nk-gap'></div>
           <h3><%= ps.title %></h3>
-          <div class=' auto-html text-left'><%= auto_html(ps.content.html_safe){ image(); youtube(width: "560", height: "315", :autoplay => false);  link(:target => 'blank'); simple_format(); } unless ps.content.nil? %></div>
+          <div class=' auto-html text-left'>
+            <%= auto_html(ps.content.html_safe){ image(); youtube(width: "560", height: "315", :autoplay => false);  link(:target => 'blank'); simple_format(); } unless ps.content.nil? %>
+
+          </div>
+          <%if counter == half %>
+          <iframe src='https://nomcre.drift.click/homepage-conversation-1'style="position: relative; height: 100%;min-height:500px; width: 100%;">
+          </iframe>
+          <% end %>
+          <% counter = counter + 1 %>
         <% end %>
     </div>
     <div class='nk-gap'></div>

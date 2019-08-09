@@ -41,6 +41,10 @@
           <%= form.label :name %>
           <%= form.text_field :name, id: :showcase_image_name, class: 'form-control' %>
         </div>
+         <div class="form-group">
+          <%= form.label :name %>
+          <%= form.text_field :vimeo_link, id: :showcase_image_vimeo_link, class: 'form-control' %>
+        </div>
         <div class="form-group">
           <%= form.label :show %>
           <%= form.check_box :show, id: :showcase_image_show, checked: true %>
@@ -66,7 +70,7 @@
     <div class="card-footer">
       <div class="actions text-center">
         <%= button_tag( :class => "btn btn-success") do %>
-        <ion-icon name='checkmark'></ion-icon> Add
+        <ion-icon name='checkmark'></ion-icon> Save
         <% end %>
       </div>
     </div>

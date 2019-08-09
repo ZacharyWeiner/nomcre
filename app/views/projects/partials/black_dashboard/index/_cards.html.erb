@@ -6,7 +6,7 @@
 <% end %>
 
 <div class='row'>
-  <% projects.each do |project| %>
+  <% projects.order(:created_at).reverse.each do |project| %>
    <%= render :partial => 'projects/partials/black_dashboard/shared/card', :locals => {:project => project, show_view_link: show_view_link, show_payment_buttons: show_payment_buttons} %>
   <% end %>
 </div>

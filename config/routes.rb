@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   end
   get '/pages/Entrepreneur-Magazine', to: 'landing_pages#marketing', as: 'entrepreneur_marketing'
   get '/pages/linkedin-questionnaire', to: 'landing_pages#linkedin', as: 'linkedin'
+  get '/headshots', to: 'landing_pages#headshots', as: 'headshots'
   resources :header_images
   resources :lead_notes
 
