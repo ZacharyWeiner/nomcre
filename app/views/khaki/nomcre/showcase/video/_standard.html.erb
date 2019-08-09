@@ -1,0 +1,14 @@
+
+<style type="text/css">
+  .fa-play{margin-top:-5px;}
+</style>
+<% counter = 1 %>
+<% @showcase_videos.each do |video| %>
+  <% if counter%2 == 0 %>
+    <%= render :partial => 'khaki/nomcre/showcase/video/standard_left', :locals => {:video => video} %>
+  <% else %>
+    <%= render :partial => 'khaki/nomcre/showcase/video/standard_right', :locals => {:video => video} %>
+  <% end %>
+  <% counter =  counter + 1 %>
+<% end %>
+

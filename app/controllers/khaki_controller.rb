@@ -19,9 +19,6 @@ class KhakiController < ApplicationController
     @showcase_images = ShowcaseImage.where(show: true).where(showcase_type: 'main').order(:order)
   end
   def video_showcase
-    unless current_user && current_user.is_admin
-      redirect_to root_path
-    end
     set_showcase_header_image
     @showcase_videos = ShowcaseVideo.where(showcase_type: 'Main').order(:order).page params[:page]
   end

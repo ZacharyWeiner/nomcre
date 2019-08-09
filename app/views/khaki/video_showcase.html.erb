@@ -8,8 +8,33 @@
 <meta property="keywords" content="On Demand, On-Demand, Visual, Custom, Creative, Content, Photography, Videography, Videos, product photos, pictures" />
 <% end %>
 <div class='nk-main'>
-  <div class='nk-gap-4 bg-dark-4'></div>
+  <div class='nk-gap-5'></div>
 <% render 'khaki/nomcre/showcase/video/header_title' %>
-<%= render 'khaki/nomcre/showcase/video/video_gallery'%>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-1'></div>
+    <div class='col-md-10'>
+
+       <div class="nk-blog-post nk-blog-post-single">
+          <!-- START: Post Text -->
+          <div class="nk-post-text mt-0">
+            <%= link_to "https://vimeo.com/271028634", class: "nk-video-fullscreen-toggle" do %>
+            <div style="max-height:550px; overflow-y:hidden">
+            <%= image_tag 'https://s3-us-west-2.amazonaws.com/nomcre-rails/public-page-images/nomcre_explainer_thumb.png', class: 'img-fluid' %>
+
+                <% end %>
+              </div>
+              <div class="nk-gap"></div>
+              <div style="font-family: 'raleway'; font-size: 32px; font-weight: 100; text-align: center">
+               Click this ☝️ Video First
+              </div>
+          </div>
+          <!-- END: Post Text -->
+
+      </div>
+    </div>
+  </div>
+</div>
+<%= render :partial => 'khaki/nomcre/showcase/video/standard' %>
 <%= paginate @showcase_videos %>
 </div>
