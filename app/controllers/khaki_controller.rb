@@ -20,7 +20,7 @@ class KhakiController < ApplicationController
   end
   def video_showcase
     set_showcase_header_image
-    @showcase_videos = ShowcaseVideo.where(showcase_type: 'Main').order(:order).page params[:page]
+    @showcase_videos = ShowcaseVideo.where({showcase_type: 'Main', show: 'true'}).order(:order).page params[:page]
   end
   def model_showcase
     set_showcase_header_image
