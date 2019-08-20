@@ -76,6 +76,12 @@ class KhakiController < ApplicationController
   def playground
   end
 
+  def continual_content
+    @lead = Lead.new
+    render :layout => 'landing_page'
+
+  end
+
   def set_showcase_header_image
     @header_images = HeaderImage.all.where(showcase: true)
     count = @header_images.count

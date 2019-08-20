@@ -125,7 +125,7 @@ a {
 
 a:focus,
 a:hover {
-    color: #ae8952;
+    color: #e16b5f;
 }
 
 ::-moz-selection {
@@ -5856,17 +5856,17 @@ img.rounded {
 
 .nk-btn-color-main-1 {
     background-color: #ff6f61;
-    border-color: #a7844f;
+    border-color: #e16b5f;
     border-style: solid;
 }
 
 .nk-btn-color-main-1:hover, .nk-btn-color-main-1.hover {
-    background-color: #b49360;
-    border-color: #927445;
+    background-color: #e16b5f;
+    border-color: #e16b5f;
 }
 
 .nk-btn-color-main-1:active, .nk-btn-color-main-1.active {
-    background-color: #ae8952;
+    background-color: #e16b5f;
     border-color: #84693e;
 }
 
@@ -5875,7 +5875,7 @@ img.rounded {
 }
 
 .nk-btn-color-main-1.nk-btn-outline:hover, .nk-btn-color-main-1.nk-btn-outline.hover {
-    color: #ae8952;
+    color: #e16b5f;
 }
 
 .nk-btn-color-main-1.nk-btn-outline:active, .nk-btn-color-main-1.nk-btn-outline.active {
@@ -6420,12 +6420,12 @@ img.rounded {
 
 .nk-btn-color-hover-main-1:hover, .nk-btn-color-hover-main-1.hover {
     background-color: #ff6f61;
-    border-color: #a7844f;
+    border-color: #e16b5f;
     border-style: solid;
 }
 
 .nk-btn-color-hover-main-1:active, .nk-btn-color-hover-main-1.active {
-    background-color: #ae8952;
+    background-color: #e16b5f;
     border-color: #84693e;
 }
 
