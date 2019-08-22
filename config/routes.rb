@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :feed_items
   get 'showcase', to:'khaki#creative_showcase', as: 'creative_showcase'
   get 'video_showcase', to:'khaki#video_showcase', as: 'video_showcase'
   get 'video-showcase', to:'khaki#video_showcase', as: 'video_showcase_hyphen'
@@ -7,7 +8,9 @@ Rails.application.routes.draw do
   get 'model_showcase', to:'khaki#model_showcase', as: 'model_showcase'
   get 'playground', to: 'khaki#playground', as: 'playground'
   get 'continual_content', to: 'khaki#continual_content', as: 'continual_content'
+  get 'continual_content', to: 'khaki#continual_content', as: 'continual_content'
   get 'stealth-mode', to: 'khaki#continual_content', as: 'stealth_continual_content'
+  get 'continual-content', to: 'khaki#continual_content', as: 'h_continual_content'
 
   resources :shot_list_item_templates
   resources :task_groups do

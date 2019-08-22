@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190427162001) do
+ActiveRecord::Schema.define(version: 20190822185230) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,14 @@ ActiveRecord::Schema.define(version: 20190427162001) do
     t.index ["proposal_id"], name: "index_documents_on_proposal_id"
     t.index ["shoot_id"], name: "index_documents_on_shoot_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
+  end
+
+  create_table "feed_items", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "header_images", force: :cascade do |t|
