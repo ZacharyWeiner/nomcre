@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   get 'model_showcase', to:'khaki#model_showcase', as: 'model_showcase'
   get 'playground', to: 'khaki#playground', as: 'playground'
   get 'continual_content', to: 'khaki#continual_content', as: 'continual_content'
-  get 'continual_content', to: 'khaki#continual_content', as: 'continual_content'
   get 'stealth-mode', to: 'khaki#continual_content', as: 'stealth_continual_content'
   get 'continual-content', to: 'khaki#continual_content', as: 'h_continual_content'
 
