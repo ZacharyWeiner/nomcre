@@ -8,10 +8,11 @@ xml.instruct! :xml, version: '1.0'
 
       @feed_items.each do |item|
         xml.item do
-          xml.title item.description
+          xml.title item.title
           xml.link "https://www.nomcre.com#{feed_item_path(item)}"
-          xml.author item.title
+          xml.category item.description
           xml.description item.body
+          xml.guid item.id.to_s + item.created_at.to_s
         end
       end
     end
