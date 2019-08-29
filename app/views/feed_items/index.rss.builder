@@ -12,7 +12,7 @@ xml.instruct! :xml, version: '1.0'
           xml.link "https://www.nomcre.com#{feed_item_path(item)}"
           xml.category item.description
           xml.description item.body
-          xml.guid item.id.to_s + item.created_at.strftime('%a%b%c').gsub!(" ", "")
+          xml.guid "https://www.nomcre.com#{feed_item_path(item)}"
         end
       end
     end
