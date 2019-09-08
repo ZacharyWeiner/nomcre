@@ -38,7 +38,7 @@ class PackageTypesController < ApplicationController
   # POST /package_types.json
   def create
     @package_type = PackageType.new(package_type_params)
-    @package_type.slug = PackageType.set_slug @package_type.title
+    @package_type.slug = PackageType.create_slug @package_type.title
 
     respond_to do |format|
       if @package_type.save
