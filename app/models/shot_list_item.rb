@@ -96,7 +96,7 @@ class ShotListItem < ApplicationRecord
         new_sli.added_by = admin
         new_sli.task_group = task_group
         if new_sli.save!
-          #new_sli.create_related_task new_sli.description
+          new_sli.create_related_task
         end
       end
     end
@@ -117,7 +117,7 @@ class ShotListItem < ApplicationRecord
                           item_type: sli_type,
                           shoot: shoot,
                           added_by: shoot.company.users.first)
-
+    sli.create_related_task
     sli
   end
 end
