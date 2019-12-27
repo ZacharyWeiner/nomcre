@@ -1,0 +1,74 @@
+<div class='nk-main'>
+  <div style='height:150px'> </div>
+  <h1 class='text-center'>Get Some Content Ideas</h1>
+
+  <div class='container'>
+
+
+    <form class='form '>
+      <div class='row form-group'>
+        <div class='col-md-6 col-sm-6'>
+
+           What Would Your Audience Love to Achieve?<br>
+            <input type="text" id='great_result_input' name="great_result" value="<%=params[:great_result] %>" placeholder="2x Your Sales" class='form-control'><br>
+
+            What Is Something EVERYONE In Your Audience Is Doing?<br>
+            <input type="text" id='everyone_action' name="everyone_action" value="<%=params[:everyone_action] %>" placeholder="sending cold eamils..." class='form-control'><br>
+
+            How Soon Can They See The Results?<br>
+            <input type="text" name="time_frame" placeholder="30 days" class='form-control', value="<%=params[:time_frame] %>"><br>
+
+            How Many Tips/Tricks/List Things Do You Want To Share?:
+            <input type="text" name="number" placeholder="5" class='form-control', value="<%=params[:number] %>"><br>
+
+            What Percentage of Your Audience Are You Talking To?:
+            <input type="text" name="percentage" placeholder="50" class='form-control', value="<%=params[:percentage] %>"><br>
+
+            What Is The Absolute Worst Possible Result?:
+            <input type="text" name="terrible_result" placeholder="0% ROI or Fail" class='form-control', value="<%=params[:terrible_result] %>"><br>
+
+            What Group Of People Are You Talking To?:
+            <input type="text" name="group_of_people" placeholder="Marketers, Youtubers, etc...." class='form-control', value="<%=params[:group_of_people] %>"><br>
+        </div>
+        <div class='col-md-6 col-sm-6'>
+           What Topic Is Your Audience Searching For?:<br>
+          <input type="text" name="audience_search_topic" placeholder="Facebook Algorithm Changes" class='form-control' value="<%=params[:audience_search_topic] %>"><br>
+
+           What Does Your Audience Absolutely Hate To Do?:<br>
+          <input type="text" name="thing_you_hate" placeholder="Cold Calling" class='form-control' value="<%=params[:thing_you_hate] %>"><br>
+
+          What Demographic Are You Talking To?:<br>
+          <input type="text" name="demographic" value="<%=params[:demographic] %>" placeholder="25 year olds, women in Atlanta" class='form-control'><br>
+
+          Can You Address a Business or Life Phase?:<br>
+          <input type="text" name="bl_phase" value="<%=params[:bl_phase] %>" placeholder="College, New Job" class='form-control'><br>
+
+          What Unconventional Actions Do You LOVE?:<br>
+          <input type="text" name="unconventional_action" value="<%=params[:unconventional_action] %>" placeholder="Sending Snail Mail" class='form-control'><br>
+
+          What is the Most Common Objection You Get?:<br>
+          <input type="text" name="common_objection" value="<%=params[:common_objection] %>" placeholder="Ive Been Burned in the past" class='form-control'><br>
+
+          What Personality Type Are You Talking To?:<br>
+          <input type="text" name="personality_type" value="<%=params[:personality_type] %>" placeholder="Winners, Do-ers, Alpha Women" class='form-control'><br>
+        </div>
+      </div>
+
+
+      <% if params[:everyone_action].nil? %>
+      <input type="submit" value="Get Your Headlines" class='form-control'>
+      <% else %>
+      <input type="submit" value="Try Again" class='form-control'>
+      <% end %>
+    </form>
+
+<%= link_to 'Back', headline_adlibs_path %>
+
+  <% unless params[:great_result].nil? %>
+    <% @adlibs.each do |adlib| %>
+      <h2><%= adlib.replace_tokens params %></h2>
+      <br>
+    <% end %>
+  <% end %>
+</div>
+</div>

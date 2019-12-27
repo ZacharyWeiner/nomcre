@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190822185230) do
+ActiveRecord::Schema.define(version: 20191227144447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -156,6 +156,13 @@ ActiveRecord::Schema.define(version: 20190822185230) do
     t.boolean "homepage"
     t.boolean "showcase"
     t.boolean "creators"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "headline_adlibs", force: :cascade do |t|
+    t.string "title"
+    t.integer "stage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

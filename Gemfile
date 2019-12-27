@@ -51,6 +51,7 @@ gem "business_time"
 gem "minitest"
 gem "actionpack"
 gem "activerecord-import"
+gem "rack-cors"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

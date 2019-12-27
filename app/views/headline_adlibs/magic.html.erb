@@ -1,0 +1,94 @@
+<link rel="stylesheet" href="https://nomcre-rails.s3-us-west-2.amazonaws.com/assets/colorlib-wizard-3/fonts/linearicons/style.css">
+
+<!-- MATERIAL DESIGN ICONIC FONT -->
+<link rel="stylesheet" href="https://nomcre-rails.s3-us-west-2.amazonaws.com/assets/colorlib-wizard-3/fonts/material-design-iconic-font/css/material-design-iconic-font.css">
+
+<!-- STYLE CSS -->
+<link rel="stylesheet" href="https://nomcre-rails.s3-us-west-2.amazonaws.com/assets/colorlib-wizard-3/css/style.css">
+
+<style type="text/css">
+  .form-wrapper{width:100%;}
+</style>
+
+<div class="wrapper">
+  <div class="image-holder">
+    <img src="https://nomcre-rails.s3-us-west-2.amazonaws.com/assets/colorlib-wizard-3/images/form-wizard.jpg" alt="">
+  </div>
+
+  <div class="form-content">
+    <div class='container'>
+    <h3> Your Headlines </h3>
+    <ol style='list-style-type: circle;'>
+    <% @adlibs.each do |adlib| %>
+        <li class='raleway-thin h2'><%= adlib.replace_tokens params %></li>
+    <% end %>
+    </ol>
+</div>
+    <!-- SOCIAL -->
+    <div class="social">
+      <a href="#">
+        <i class="fa fa-facebook"></i>
+      </a>
+      <a href="#">
+        <i class="fa fa-vimeo"></i>
+      </a>
+      <a href="#">
+        <i class="fa fa-instagram"></i>
+      </a>
+      <a href="#">
+        <i class="fa fa-linkedin"></i>
+      </a>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<%= javascript_include_tag "https://nomcre-rails.s3-us-west-2.amazonaws.com/assets/colorlib-wizard-3/js/jquery-3.3.1.min.js" %>
+<%= javascript_include_tag "https://nomcre-rails.s3-us-west-2.amazonaws.com/assets/colorlib-wizard-3/js/jquery.steps.js" %>
+<script>
+
+  $(function(){
+    $("#wizard").steps({
+      headerTag: "h4",
+      bodyTag: "section",
+      transitionEffect: "fade",
+      enableAllSteps: true,
+      titleTemplate :'<span class="number">#index#</span>',
+      labels: {
+        current: "",
+        finish: "Start Over",
+        next: "Next",
+        previous: "Previous"
+      },
+      onStepChanging: function (event, currentIndex, newIndex) {
+        if ( newIndex >= 1 ) {
+          $('.steps ul li:first-child a .step-arrow').remove();
+        } else {
+          $('.steps ul li:first-child a').append('<img src="https://nomcre-rails.s3-us-west-2.amazonaws.com/assets/colorlib-wizard-3/images/step-arrow.png" alt="" class="step-arrow">');
+        }
+
+        if ( newIndex === 1 ) {
+          $('.steps ul li:nth-child(2) a').append('<img src="https://nomcre-rails.s3-us-west-2.amazonaws.com/assets/colorlib-wizard-3/images/step-arrow.png" alt="" class="step-arrow">');;
+        } else {
+          $('.steps ul li:nth-child(2) a .step-arrow').remove();
+        }
+
+        if ( newIndex === 2 ) {
+          $('.steps ul li:nth-child(3) a').append('<img src="https://nomcre-rails.s3-us-west-2.amazonaws.com/assets/colorlib-wizard-3/images/step-arrow.png" alt="" class="step-arrow">');;
+        } else {
+          $('.steps ul li:nth-child(3) a .step-arrow').remove();
+        }
+        return true;
+      }
+    });
+    // Create Steps Image
+    $('.steps ul li:first-child a').append('<img src="https://nomcre-rails.s3-us-west-2.amazonaws.com/assets/colorlib-wizard-3/images/step-1.png" alt="">').append('<img src="https://nomcre-rails.s3-us-west-2.amazonaws.com/assets/colorlib-wizard-3/images/step-arrow.png" alt="" class="step-arrow">');
+    $('.steps ul li:nth-child(2) a').append('<img src="https://nomcre-rails.s3-us-west-2.amazonaws.com/assets/colorlib-wizard-3/images/step-2.png" alt="">');
+    $('.steps ul li:last-child a').append('<img src="https://nomcre-rails.s3-us-west-2.amazonaws.com/assets/colorlib-wizard-3/images/step-3.png" alt="">');
+  })
+
+
+</script>
+
+

@@ -1,0 +1,27 @@
+<%= form_with(model: headline_adlib, local: true) do |form| %>
+  <% if headline_adlib.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(headline_adlib.errors.count, "error") %> prohibited this headline_adlib from being saved:</h2>
+
+      <ul>
+      <% headline_adlib.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :headline_adlib_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :stage %>
+    <%= form.number_field :stage, id: :headline_adlib_stage %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

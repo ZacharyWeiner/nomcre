@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  get 'magic', to: 'headline_adlibs#magic', as: 'headline_adlibs_magic'
+  resources :headline_adlibs do
+    get 'personalization', to: 'headline_adlibs#personalization', as: 'headline_adlibs_personalization'
+
+  end
   resources :feed_items
   get 'showcase', to:'khaki#creative_showcase', as: 'creative_showcase'
   get 'video_showcase', to:'khaki#video_showcase', as: 'video_showcase'

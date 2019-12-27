@@ -1,0 +1,64 @@
+<style type="text/css">
+  h1{font-size: 62px; font-style: bold}
+</style>
+<div class="nk-header-title nk-header-title-xl nk-header-title-parallax nk-header-title-parallax-opacity">
+    <div class="bg-image op-3">
+        <div style="background-image: url('https://s3-us-west-2.amazonaws.com/nomcre-rails/public-page-images/headers/NewExplainerHeader.jpg');"></div>
+    </div>
+    <div class="nk-header-table">
+        <div class="nk-header-table-cell">
+            <div class="container">
+                <div class="nk-header-text">
+                    <h1 style="font: raleway; font-weight: 500;">
+                      Headline
+                      <span class='raleway-thinnest' style="padding-right: 6px; padding-left: 6px">Adlibs</span>
+
+                    </h1>
+                    <div class="nk-gap"></div>
+                    <!-- <h2 class="nk-title nk-font-inherit fw-500">The Most Advanced Website Layouts</h2>
+
+                    <div class="nk-gap-2"></div> -->
+                    <!-- <a class="nk-video-fullscreen-toggle" href="https://vimeo.com/108018156">
+                        <span class="nk-video-icon-2-light"><i class="fa fa-play pl-5"></i></span>
+                    </a> -->
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- END: Header Title -->
+
+
+<p id="notice"><%= notice %></p>
+
+<h1>Headline Adlibs</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Stage</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @headline_adlibs.each do |headline_adlib| %>
+      <tr>
+        <td><%= headline_adlib.title %></td>
+        <td><%= headline_adlib.stage %></td>
+        <td><%= link_to 'Show', headline_adlib %></td>
+        <td><%= link_to 'Edit', edit_headline_adlib_path(headline_adlib) %></td>
+        <td><%= link_to 'Destroy', headline_adlib, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Headline Adlib', new_headline_adlib_path %>
