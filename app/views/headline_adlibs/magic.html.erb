@@ -23,6 +23,19 @@
         <li class='raleway-thin h2'><%= adlib.replace_tokens params %></li>
     <% end %>
     </ol>
+    <br><br>
+    <a onClick="window.location.reload();" style="width:100%" class="nk-btn btn-sm nk-btn-x2 nk-btn-effect-5-left nk-btn-rounded nk-btn-color-info">
+        <span class="fa fa-refresh"></span>
+        Refresh Page
+    </a>
+    <br><br>
+    <%= link_to new_headline_adlib_path, style:"width:100%" , class: "nk-btn btn-sm nk-btn-x2 nk-btn-effect-5-left nk-btn-rounded nk-btn-color-main-5" do %>
+        <span class="fa fa-share"></span>
+        Try Again
+    <% end %>
+
+
+
 </div>
     <!-- SOCIAL -->
     <div class="social">

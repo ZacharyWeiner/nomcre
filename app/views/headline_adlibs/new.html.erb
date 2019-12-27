@@ -111,7 +111,10 @@
           <div class="form-wrapper">
             <input type="text" name="bl_phase" value="<%=params[:bl_phase] %>" placeholder="College, New Job" class='form-control'>
           </div>
-          <button type='submit'>Submit</button>
+          <button type='submit' style='width:100%; padding-bottom:12px;' class="nk-btn nk-btn-x2 nk-btn-effect-5-left nk-btn-rounded nk-btn-color-dark-2">
+          <span class="icon fa fa-paper-plane"></span>
+          Get My Headlines</button>
+          <br><br>
         </section>
       </div>
     </form>
@@ -140,6 +143,7 @@
 <script>
 
   $(function(){
+
     $("#wizard").steps({
       headerTag: "h4",
       bodyTag: "section",
@@ -169,7 +173,9 @@
           $('.steps ul li:nth-child(3) a').append('<img src="https://nomcre-rails.s3-us-west-2.amazonaws.com/assets/colorlib-wizard-3/images/step-arrow.png" alt="" class="step-arrow">');;
         } else {
           $('.steps ul li:nth-child(3) a .step-arrow').remove();
+          $('a[href="#finish"]').hide()
         }
+
         return true;
       }
     });
