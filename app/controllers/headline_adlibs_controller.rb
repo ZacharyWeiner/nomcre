@@ -17,6 +17,7 @@ class HeadlineAdlibsController < ApplicationController
     @headline_adlib = HeadlineAdlib.new
     #offset = rand(HeadlineAdlib.count)
     @adlibs = HeadlineAdlib.all.take(5)
+
   end
 
   # GET /headline_adlibs/1/edit
@@ -47,6 +48,14 @@ class HeadlineAdlibsController < ApplicationController
 
 
   def magic
+    if params[:contact]
+      @ad_answers = AdlibAnswer.where(contact: params[:contact]).first
+      if @ad_answers.nil?
+        @ad_answers = AdlibAnswer.create(contact: params[:contact], answers: params)
+      else
+        @ad_answers = AdlibAnswer.update(contact: params[:contact], answers: params)
+      end
+    end
     @adlibs = []
     @adlib_ids = []
     counter = 0

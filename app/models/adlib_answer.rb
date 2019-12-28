@@ -1,0 +1,2 @@
+class AdlibAnswer < ApplicationRecord
+end

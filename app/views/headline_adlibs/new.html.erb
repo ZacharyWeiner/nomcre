@@ -23,27 +23,43 @@
         <section>
           <h3>Tell Us About Your Audience...</h3>
           <div class="info">
-             What Group Of People Are You Talking To?
-            <div class="form-wrapper">
-              <input type="text" name="group_of_people" placeholder="Marketers, Youtubers, etc...." class='form-control', value="<%=params[:group_of_people] %>">
-            </div>
-
-             Name A Specific Demographic:
-            <div class="form-wrapper">
-              <input type="text" name="demographic" value="<%=params[:demographic] %>" placeholder="25 year olds, women in Atlanta" class='form-control'>
-            </div>
-
-            What Is Their Most Common Objection?
-            <div class="form-wrapper">
-              <input type="text" name="common_objection" value="<%=params[:common_objection] %>" placeholder="Ive Been Burned in the past" class='form-control'>
-            </div>
 
 
-            What Personality Type Do They Want To Be?
-            <div class="form-wrapper">
-              <input type="text" name="personality_type" value="<%=params[:personality_type] %>" placeholder="Winners, Do-ers, Alpha Women" class='form-control'>
-            </div>
 
+
+
+
+             <!-- <h3 style="margin-bottom: 50px;">Request from You</h3> -->
+             <div class="request">
+               <div class="special-request">
+                 <label for="">My audience are</label>
+                 <input type="text" name="group_of_people" placeholder="Marketers, Sales People, Youtubers, etc...." class='form-control', value="<%=params[:group_of_people] %>">
+               </div>
+               <div class="special-request">
+                <label for="">& their demographic is </label>
+                 <input type="text" name="demographic" value="<%=params[:demographic] %>" placeholder="25 year olds, Women in Atlanta" class='form-control'>
+               </div>
+               <div class="special-request">
+                <label for="">Their usual Objection is </label>
+                <input type="text" name="common_objection" value="<%=params[:common_objection] %>" placeholder="Ive Been Burned in the past" class='form-control'>
+               </div>
+               <div class="special-request">
+                <label for="">But They Want To Be </label>
+                <input type="text" name="personality_type" value="<%=params[:personality_type] %>" placeholder="Winners, Do-ers, Alpha Women" class='form-control'>
+               </div>
+               <div class="special-request">
+                <label for="">Their Dream Goal Is To </label>
+                <input type="text" id='great_result_input' name="great_result" value="<%=params[:great_result] %>" placeholder="2x Your Sales" class='form-control'>
+               </div>
+               <div class="special-request">
+                <label for="">In What Timeframe?</label>
+                <input type="text" name="time_frame" placeholder="30 days, 5 hours" class='form-control', value="<%=params[:time_frame] %>">
+               </div>
+               <div class="special-request">
+                <label for="">Their Biggst Fear Is </label>
+                <input type="text" id='terrible_result_input' name="terrible_result" value="<%=params[:terrible_result] %>" placeholder="Blowing The Budget" class='form-control'>
+               </div>
+             </div>
           </div>
         </section>
 
@@ -51,30 +67,37 @@
         <h4></h4>
         <section>
           <h3>Let's Create A Story...</h3>
-          What Would Your Audience Love To Achieve?
-          <div class="form-wrapper">
-            <input type="text" id='great_result_input' name="great_result" value="<%=params[:great_result] %>" placeholder="2x Your Sales" class='form-control'>
-          </div>
 
-          What Is The Opposite Of That, Or The Worst Possible Result:
-          <div class="form-wrapper">
-            <input type="text" name="terrible_result" placeholder="0% ROI or Fail" class='form-control', value="<%=params[:terrible_result] %>">
-          </div>
 
-          What Timeframe Would Be Incredibly Fast?
-          <div class="form-wrapper">
-            <input type="text" name="time_frame" placeholder="30 days, 5 hours" class='form-control', value="<%=params[:time_frame] %>">
-          </div>
+        <div class="request">
+         <div class="special-request">
+           <label for="">They Would Google</label>
+           <input type="text" name="audience_search_topic" placeholder="Facebook Algorithm Changes" class='form-control' value="<%=params[:audience_search_topic] %>">
+         </div>
+          <div class="special-request">
+           <label for="">And A Major Percent</label>
+           <input type="text" name="percentage" placeholder="70" class='form-control', value="<%=params[:percentage] %>">
+         </div>
+         <div class="special-request">
+           <label for="">All Do This Thing</label>
+           <input type="text" id='everyone_action' name="everyone_action" value="<%=params[:everyone_action] %>" placeholder="cold call, send cold emails, etc..." class='form-control'>
+         </div>
+         <div class="special-request">
+           <label for="">They Usually Hate</label>
+           <input type="text" name="thing_you_hate" placeholder="Cold Calling, Prospecting, etc..." class='form-control' value="<%=params[:thing_you_hate] %>">
+         </div>
+         <br>
+         <div class="">
+           <label for="">But My Favorite Strategy is</label>
+           <input type="text" name="strategy_name" placeholder="Content Marketing" class='form-control', value="<%=params[:strategy_name] %>">
+         </div>
+         <br>
+        <div class="">
+           <label for="">And I Do This Unconventional Thing</label>
+           <input type="text" name="unconventional_action" value="<%=params[:unconventional_action] %>" placeholder="Sending Snail Mail" class='form-control'>
+        </div>
 
-          Name A Topic Your Audience Is Searching For:
-          <div class='form-wrapper'>
-            <input type="text" name="audience_search_topic" placeholder="Facebook Algorithm Changes" class='form-control' value="<%=params[:audience_search_topic] %>">
-          </div>
-
-          What Percentage of Your Audience Are You Talking To?
-          <div class="form-wrapper">
-            <input type="text" name="percentage" placeholder="50" class='form-control', value="<%=params[:percentage] %>">
-          </div>
+        </div>
 
         </section>
 
@@ -82,35 +105,18 @@
         <h4></h4>
         <section>
           <h3 style="margin-bottom: 50px;">Let's Make It Pop</h3>
-          Name A Strategy You Use:
-          <div class="form-wrapper">
-            <input type="text" name="strategy_name" placeholder="Content Marketing" class='form-control', value="<%=params[:strategy_name] %>">
-          </div>
+          <input type='hidden' name="number" value="<%= "#{rand(2..7)}" %>" />
 
-          How Many Tips/Tricks/List Things Do You Want To Share?
-          <div class="form-wrapper">
-            <input type="text" name="number" placeholder="5" class='form-control', value="<%=params[:number] %>">
+          <div class="">
+           <label for="">Personalization Event:</label>
+           <input type="text" name="bl_phase" value="<%=params[:bl_phase] %>" placeholder="Graduation, A Promotion, Failing" class='form-control'>
           </div>
-
-          What Is Something EVERYONE In Your Audience Is Doing?
-          <div class="form-wrapper">
-            <input type="text" id='everyone_action' name="everyone_action" value="<%=params[:everyone_action] %>" placeholder="sending cold eamils..." class='form-control'>
+          <br>
+          <div class="">
+           <label for="">They Contact Me At:</label>
+           <input type="text" name="contact" value="<%=params[:contact] %>" placeholder="(555)-111-1234, sales@marketing.com, etc..." class='form-control'>
           </div>
-
-          What Does Your Audience Absolutely Hate To Do?
-          <div class="form-wrapper">
-            <input type="text" name="thing_you_hate" placeholder="Cold Calling" class='form-control' value="<%=params[:thing_you_hate] %>">
-          </div>
-
-          What Unconventional Action Do You LOVE?
-          <div class="form-wrapper">
-            <input type="text" name="unconventional_action" value="<%=params[:unconventional_action] %>" placeholder="Sending Snail Mail" class='form-control'>
-          </div>
-
-          Can You Address a Business or Life Phase?
-          <div class="form-wrapper">
-            <input type="text" name="bl_phase" value="<%=params[:bl_phase] %>" placeholder="College, New Job" class='form-control'>
-          </div>
+          <br><br>
           <button type='submit' style='width:100%; padding-bottom:12px;' class="nk-btn nk-btn-x2 nk-btn-effect-5-left nk-btn-rounded nk-btn-color-dark-2">
           <span class="icon fa fa-paper-plane"></span>
           Get My Headlines</button>
@@ -154,7 +160,7 @@
         current: "",
         finish: "Start Over",
         next: "Next",
-        previous: "Previous"
+        previous: "Back"
       },
       onStepChanging: function (event, currentIndex, newIndex) {
         if ( newIndex >= 1 ) {
