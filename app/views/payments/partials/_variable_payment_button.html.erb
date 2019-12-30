@@ -1,0 +1,71 @@
+
+
+<%= form_tag charge_deposit_path, style: 'width:100%' do %>
+  <div id="error_explanation">
+    <% if flash[:error].present? %>
+      <p><%= flash[:error] %></p>
+    <% end %>
+  </div>
+  <article>
+    <div class="row form-group">
+      <div class="col-md-6"><%= label_tag(:amount, 'Name Your Deposit:', class: 'nk-ibox-title', style: 'vertical-align:baseline') %></div>
+      <div class="col-md-6">
+         <%= text_field_tag(:amount, "", class: 'form-control', placehoder: '999')  %>
+         <%= hidden_field_tag(:stripeToken) %>
+      </div>
+    </div>
+
+
+  </article>
+  <article>
+    <br>
+     <button id='donateButton' class='nk-btn-block nk-btn nk-btn-x2 nk-btn-circle nk-btn-3d nk-btn-color-success'><i class='fa fa-dollar' ></i> Save My Budget!</button>
+  </article>
+
+<% end %>
+
+
+<script src="https://checkout.stripe.com/checkout.js"></script>
+
+<script>
+  $(window).on('popstate', function() {
+  handler.close();
+});
+
+var handler = StripeCheckout.configure({
+  key: '<%= Rails.configuration.stripe[:publishable_key] %>',
+  locale: 'auto',
+  name: 'Nomadic Creative',
+  description: 'One-time deposit',
+  token: function(token) {
+    $('input#stripeToken').val(token.id);
+    $('form').submit();
+  }
+});
+
+$('#donateButton').on('click', function(e) {
+  e.preventDefault();
+
+  $('#error_explanation').html('');
+
+  var amount = $('input#amount').val();
+  amount = amount.replace(/\$/g, '').replace(/\,/g, '')
+
+  amount = parseFloat(amount);
+
+  if (isNaN(amount)) {
+    $('#error_explanation').html('<p>Please enter a valid amount in USD ($).</p>');
+  }
+  else if (amount < 5.00) {
+    $('#error_explanation').html('<p>Donation amount must be at least $5.</p>');
+  }
+  else {
+    amount = amount * 100; // Needs to be an integer!
+    handler.open({
+      amount: Math.round(amount)
+    })
+  }
+});
+
+
+</script>

@@ -15,4 +15,8 @@ class LandingPagesController < ApplicationController
   def headshots
     render layout: 'khaki'
   end
+
+  def use_it_or_lose_it
+    render layout: 'khaki'
+  end
 end

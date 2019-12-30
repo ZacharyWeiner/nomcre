@@ -127,6 +127,7 @@ Rails.application.routes.draw do
 
   post 'charges/deposit/:proposal_id', to: 'charges#proposal_deposit', as: 'proposal_deposit'
   post 'charges/balance/:proposal_id', to: 'charges#proposal_balance', as: 'proposal_balance'
+  post 'charges/use-it-deposit', to:'charges#create', as: 'charge_deposit'
 
 
   resources :companies do
@@ -203,6 +204,7 @@ Rails.application.routes.draw do
   get '/sales_materials', to: 'khaki#sales_materials', as: 'sales_materials'
   get '/faq', to: 'khaki#faq', as: 'faq'
   get '/landing_marketing', to: 'landing_pages#marketing', as: 'landing_marketing'
+  get '/name-your-deposit', to: 'landing_pages#use_it_or_lose_it', as: 'use_it_or_lose_it'
   get '/thank_you', to: 'landing_pages#thank_you', as: 'landing_thank_you'
   get '/sitemap', to: 'pages#sitemap'
 
