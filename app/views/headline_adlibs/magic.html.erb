@@ -18,9 +18,11 @@
   <div class="form-content">
     <div class='container'>
     <h3> Your Headlines </h3>
-    <ol style='list-style-type: circle;'>
+    <ol style='list-style-type: number; border-bottom: 2px;'>
     <% @adlibs.each do |adlib| %>
-        <li class='raleway-thin h2'><%= adlib.replace_tokens params %></li>
+        <li class='raleway-thin h5' style=' border-color: white'>
+           &nbsp;&nbsp;<%= adlib.replace_tokens params %>
+        </li>
     <% end %>
     </ol>
     <br><br>
