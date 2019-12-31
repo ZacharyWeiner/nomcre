@@ -206,6 +206,12 @@ Rails.application.routes.draw do
   get '/landing_marketing', to: 'landing_pages#marketing', as: 'landing_marketing'
   get '/name-your-deposit', to: 'landing_pages#use_it_or_lose_it', as: 'use_it_or_lose_it'
   get '/thank_you', to: 'landing_pages#thank_you', as: 'landing_thank_you'
+  get '/for/sales', to: 'pages#sales', as:'for_sales'
+  get '/for/marketing', to: 'pages#marketing', as:'for_marketing'
+  get '/for/non_profits', to: 'pages#non_profits', as:'for_non_profits'
+  get '/for/start_ups', to: 'pages#start_ups', as:'for_start_ups'
+  get '/for/consultants', to: 'pages#consultants', as:'for_consultants'
+  get '/for/franchises', to: 'pages#franchises', as:'for_franchises'
   get '/sitemap', to: 'pages#sitemap'
 
 

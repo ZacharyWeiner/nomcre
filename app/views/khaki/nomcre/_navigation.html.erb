@@ -38,9 +38,9 @@
 
                             <span>
                                 <span class="link-effect-shade ">
-                                    Nomcre
+                                    Home
                                 </span>
-                                Nomcre
+                                Home
                             </span>
                         <% end %>
 
@@ -73,43 +73,133 @@
 
                         </ul>
                     </li>
-
+                    <!--
                    <% if current_page?(controller: 'package_types', action: 'index') ||  current_page?(controller: 'package_types')%>
                         <li class="active nk-drop-item">
                     <% else %>
                         <li class=" nk-drop-item">
                     <% end %>
-                        <%= link_to package_types_path, class: 'link-effect-3 menu-link' do %>
-
-                            <span>
-                                <span class="link-effect-shade">
-                                    Packages
-                                </span>
+                    <%= link_to package_types_path, class: 'link-effect-3 menu-link' do %>
+                        <span>
+                            <span class="link-effect-shade">
                                 Packages
                             </span>
-                        <% end %>
+                            Packages
+                        </span>
+                    <% end %>
+                            <ul class="dropdown" >
+                                <% PackageType.where(show_in_menu: true).each do |p|%>
+                                    <li>
+                                        <%= link_to package_types_slug_path(p.slug), class: 'link-effect-3 menu-link' do %>
 
-                        <ul class="dropdown" >
-                            <% PackageType.where(show_in_menu: true).each do |p|%>
-                            <li>
-                                <%= link_to package_types_slug_path(p.slug), class: 'link-effect-3 menu-link' do %>
-
-                                    <span>
-                                        <span class="link-effect-shade">
-                                            <%= p.title %>
-                                            <span class="nk-item-descr"><%= p.menu_link_text %></span>
-                                        </span>
-                                        <%= p.title %>
-                                        <span class="nk-item-descr"><%= p.menu_link_text %></span>
-                                    </span>
+                                            <span>
+                                                <span class="link-effect-shade">
+                                                    <%= p.title %>
+                                                    <span class="nk-item-descr"><%= p.menu_link_text %></span>
+                                                </span>
+                                                <%= p.title %>
+                                                <span class="nk-item-descr"><%= p.menu_link_text %></span>
+                                            </span>
+                                        <% end %>
+                                    </li>
                                 <% end %>
-                            </li>
-                            <% end %>
-                        </ul>
-                    </li>
+                            </ul>
+                        </li>
+                    -->
 
-                    </li>
-
+                    <% if current_page?(controller: 'pages', action: "sales") ||
+                            current_page?(controller: 'pages', action: "marketing")||
+                            current_page?(controller: 'pages', action: "non_profits")||
+                            current_page?(controller: 'pages', action: "start_ups") ||
+                            current_page?(controller: 'pages', action: "consultants") ||
+                            current_page?(controller: 'pages', action: "franchises")%>
+                        <li class="active nk-drop-item">
+                    <% else %>
+                        <li class=" nk-drop-item">
+                    <% end %>
+                    <%= link_to "#", class: 'link-effect-3 menu-link' do %>
+                        <span>
+                            <span class="link-effect-shade">
+                                Who's It For?
+                            </span>
+                            Who's It For?
+                        </span>
+                    <% end %>
+                            <ul class="dropdown" >
+                                <li>
+                                    <%= link_to for_sales_path, class: 'link-effect-3 menu-link' do %>
+                                        <span>
+                                            <span class="link-effect-shade">
+                                                Sales
+                                                <span class="nk-item-descr">Nomcre For Sales</span>
+                                            </span>
+                                            Sales
+                                            <span class="nk-item-descr">Nomcre For Sales</span>
+                                        </span>
+                                    <% end %>
+                                </li>
+                                <li>
+                                    <%= link_to for_marketing_path, class: 'link-effect-3 menu-link' do %>
+                                        <span>
+                                            <span class="link-effect-shade">
+                                                Marketing
+                                                <span class="nk-item-descr">Nomcre For Marketing</span>
+                                            </span>
+                                            Marketing
+                                            <span class="nk-item-descr">Nomcre For Marketing</span>
+                                        </span>
+                                    <% end %>
+                                </li>
+                                <li>
+                                    <%= link_to for_non_profits_path, class: 'link-effect-3 menu-link' do %>
+                                        <span>
+                                            <span class="link-effect-shade">
+                                                Non-Profits
+                                                <span class="nk-item-descr">Nomcre For Non-Profits</span>
+                                            </span>
+                                            Non-Profits
+                                            <span class="nk-item-descr">Nomcre For Non-Profits</span>
+                                        </span>
+                                    <% end %>
+                                </li>
+                                <li>
+                                    <%= link_to for_start_ups_path, class: 'link-effect-3 menu-link' do %>
+                                        <span>
+                                            <span class="link-effect-shade">
+                                                Start Ups
+                                                <span class="nk-item-descr">Nomcre For Start Ups</span>
+                                            </span>
+                                            Start Ups
+                                            <span class="nk-item-descr">Nomcre For Start Ups</span>
+                                        </span>
+                                    <% end %>
+                                </li>
+                                <li>
+                                    <%= link_to for_consultants_path, class: 'link-effect-3 menu-link' do %>
+                                        <span>
+                                            <span class="link-effect-shade">
+                                                Consultants
+                                                <span class="nk-item-descr">Nomcre For Consultants</span>
+                                            </span>
+                                            Consultants
+                                            <span class="nk-item-descr">Nomcre For Consultants</span>
+                                        </span>
+                                    <% end %>
+                                </li>
+                                <li>
+                                    <%= link_to for_franchises_path, class: 'link-effect-3 menu-link' do %>
+                                        <span>
+                                            <span class="link-effect-shade">
+                                                Franchises
+                                                <span class="nk-item-descr">Nomcre For Franchises</span>
+                                            </span>
+                                            Franchises
+                                            <span class="nk-item-descr">Nomcre For Franchises</span>
+                                        </span>
+                                    <% end %>
+                                </li>
+                            </ul>
+                        </li>
                     <% if current_page?(controller: 'khaki', action: 'creative_showcase') ||  current_page?(controller: 'khaki', action: 'video_showcase')%>
                         <li class="active nk-drop-item">
                     <% else %>

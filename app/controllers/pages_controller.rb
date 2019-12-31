@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :authenticate_user!, except: [:index, :show, :sales, :marketing, :non_profits, :start_ups, :consultants, :franchises]
   before_action :set_page, only: [:edit, :update, :destroy, :publish]
-  before_action :authorize, except: [:show]
+  before_action :authorize, except: [:show, :sales, :marketing, :non_profits, :start_ups, :consultants, :franchises]
   layout :set_layout
   # GET /pages
   # GET /pages.json
@@ -109,6 +109,25 @@ class PagesController < ApplicationController
     redirect_to 'https://s3-us-west-2.amazonaws.com/nomcre-rails/sitemaps/sitemap.xml.gz'
   end
 
+  def sales
+
+  end
+
+  def marketing
+  end
+
+  def non_profits
+  end
+
+  def start_ups
+  end
+
+  def consultants
+  end
+
+  def franchises
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_page
@@ -138,8 +157,14 @@ class PagesController < ApplicationController
     end
 
     def set_layout
-      if action_name == "show"
-        return 'khaki'
+      if action_name == "show"||
+        action_name == "sales" ||
+        action_name == "marketing" ||
+        action_name == "non_profits" ||
+        action_name == "start_ups" ||
+        action_name == "consultants" ||
+        action_name == "franchises"
+          return 'khaki'
       else
         return 'black_dashboard'
       end
