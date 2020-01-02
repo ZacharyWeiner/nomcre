@@ -1,5 +1,7 @@
 class HeadlineAdlibsController < ApplicationController
+  before_action :send_to_new, only:[:index, :show, :edit, :create, :update, :destroy]
   before_action :set_headline_adlib, only: [:show, :edit, :update, :destroy]
+
 
   # GET /headline_adlibs
   # GET /headline_adlibs.json
@@ -105,5 +107,11 @@ class HeadlineAdlibsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def headline_adlib_params
       params.require(:headline_adlib).permit(:title, :stage)
+    end
+
+    def send_to_new
+      if current_user.nil?
+        redirect_to new_headline_adlib_path
+      end
     end
 end
