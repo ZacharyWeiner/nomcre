@@ -1,0 +1,2 @@
+module SceneTypesHelper
+end

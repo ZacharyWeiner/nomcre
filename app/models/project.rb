@@ -28,6 +28,8 @@ class Project < ApplicationRecord
   has_many :assistants, through: :shoots
   has_many :shot_list_items, through: :shoots
   has_many :locations, through: :shoots
+  has_many :project_deliverables
+  has_many :deliverables, through: :project_deliverables
   has_and_belongs_to_many :discount_codes
 
   #scopes

@@ -23,6 +23,8 @@ class Shoot < ApplicationRecord
   has_many :task_groups
   has_many :shot_list_items, :dependent => :destroy
   has_many :creative_requests, :dependent => :destroy
+  has_many :shoot_deliverables
+  has_many :deliverables, through: :shoot_deliverables
 
 
   #instance_methods

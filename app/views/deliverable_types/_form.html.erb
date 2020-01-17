@@ -1,0 +1,27 @@
+<%= form_with(model: deliverable_type, local: true) do |form| %>
+  <% if deliverable_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(deliverable_type.errors.count, "error") %> prohibited this deliverable_type from being saved:</h2>
+
+      <ul>
+      <% deliverable_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :deliverable_type_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :specification %>
+    <%= form.text_area :specification, id: :deliverable_type_specification %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

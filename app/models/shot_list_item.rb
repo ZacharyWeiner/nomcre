@@ -18,6 +18,8 @@ class ShotListItem < ApplicationRecord
 
 
   #has_many
+  has_many :shot_list_item_deliverables
+  has_many :deliverables, through: :shot_list_item_deliverables
 
 
 

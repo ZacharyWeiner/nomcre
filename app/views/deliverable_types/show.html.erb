@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @deliverable_type.name %>
+</p>
+
+<p>
+  <strong>Specification:</strong>
+  <%= @deliverable_type.specification %>
+</p>
+
+<%= link_to 'Edit', edit_deliverable_type_path(@deliverable_type) %> |
+<%= link_to 'Back', deliverable_types_path %>

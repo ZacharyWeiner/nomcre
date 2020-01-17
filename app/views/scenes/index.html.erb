@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Scenes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Transition</th>
+      <th>Script</th>
+      <th>Duration</th>
+      <th>Location</th>
+      <th>Action</th>
+      <th>Scene type</th>
+      <th>Music</th>
+      <th>Position</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @scenes.each do |scene| %>
+      <tr>
+        <td><%= scene.title %></td>
+        <td><%= scene.transition %></td>
+        <td><%= scene.script %></td>
+        <td><%= scene.duration %></td>
+        <td><%= scene.location %></td>
+        <td><%= scene.action %></td>
+        <td><%= scene.scene_type %></td>
+        <td><%= scene.music %></td>
+        <td><%= scene.position %></td>
+        <td><%= link_to 'Show', scene %></td>
+        <td><%= link_to 'Edit', edit_scene_path(scene) %></td>
+        <td><%= link_to 'Destroy', scene, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Scene', new_scene_path %>

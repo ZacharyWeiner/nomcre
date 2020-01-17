@@ -1,0 +1,62 @@
+<%= form_with(model: scene, local: true) do |form| %>
+  <% if scene.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(scene.errors.count, "error") %> prohibited this scene from being saved:</h2>
+
+      <ul>
+      <% scene.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :scene_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :transition %>
+    <%= form.text_field :transition, id: :scene_transition %>
+  </div>
+
+  <div class="field">
+    <%= form.label :script %>
+    <%= form.text_area :script, id: :scene_script %>
+  </div>
+
+  <div class="field">
+    <%= form.label :duration %>
+    <%= form.number_field :duration, id: :scene_duration %>
+  </div>
+
+  <div class="field">
+    <%= form.label :location %>
+    <%= form.text_field :location, id: :scene_location %>
+  </div>
+
+  <div class="field">
+    <%= form.label :action %>
+    <%= form.text_field :action, id: :scene_action %>
+  </div>
+
+  <div class="field">
+    <%= form.label :scene_type %>
+    <%= form.text_field :scene_type, id: :scene_scene_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :music %>
+    <%= form.text_field :music, id: :scene_music %>
+  </div>
+
+  <div class="field">
+    <%= form.label :position %>
+    <%= form.number_field :position, id: :scene_position %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

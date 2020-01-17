@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :deliverables
+  resources :deliverable_types
+  resources :scene_types
+  resources :scenes
+  resources :videos
+  resources :external_links
+  resources :stories
   get 'magic', to: 'headline_adlibs#magic', as: 'headline_adlibs_magic'
   resources :headline_adlibs do
     get 'personalization', to: 'headline_adlibs#personalization', as: 'headline_adlibs_personalization'

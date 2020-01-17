@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  deliverable_type: one
+  asset: MyString
+  project: one
+  approved: false
+  slug: MyString
+  review_link: MyString
+  status: MyString
+
+two:
+  deliverable_type: two
+  asset: MyString
+  project: two
+  approved: false
+  slug: MyString
+  review_link: MyString
+  status: MyString

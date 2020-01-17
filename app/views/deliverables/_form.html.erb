@@ -1,0 +1,52 @@
+<%= form_with(model: deliverable, local: true) do |form| %>
+  <% if deliverable.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(deliverable.errors.count, "error") %> prohibited this deliverable from being saved:</h2>
+
+      <ul>
+      <% deliverable.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :deliverable_type_id %>
+    <%= form.text_field :deliverable_type_id, id: :deliverable_deliverable_type_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :asset %>
+    <%= form.text_field :asset, id: :deliverable_asset %>
+  </div>
+
+  <div class="field">
+    <%= form.label :project_id %>
+    <%= form.text_field :project_id, id: :deliverable_project_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :approved %>
+    <%= form.check_box :approved, id: :deliverable_approved %>
+  </div>
+
+  <div class="field">
+    <%= form.label :slug %>
+    <%= form.text_field :slug, id: :deliverable_slug %>
+  </div>
+
+  <div class="field">
+    <%= form.label :review_link %>
+    <%= form.text_field :review_link, id: :deliverable_review_link %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.text_field :status, id: :deliverable_status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

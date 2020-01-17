@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  transition: MyString
+  script: MyText
+  duration: 1
+  location: MyString
+  action: MyString
+  scene_type: MyString
+  music: MyString
+  position: 1
+
+two:
+  title: MyString
+  transition: MyString
+  script: MyText
+  duration: 1
+  location: MyString
+  action: MyString
+  scene_type: MyString
+  music: MyString
+  position: 1

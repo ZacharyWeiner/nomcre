@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Deliverable type:</strong>
+  <%= @deliverable.deliverable_type %>
+</p>
+
+<p>
+  <strong>Asset:</strong>
+  <%= @deliverable.asset %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @deliverable.project %>
+</p>
+
+<p>
+  <strong>Approved:</strong>
+  <%= @deliverable.approved %>
+</p>
+
+<p>
+  <strong>Slug:</strong>
+  <%= @deliverable.slug %>
+</p>
+
+<p>
+  <strong>Review link:</strong>
+  <%= @deliverable.review_link %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @deliverable.status %>
+</p>
+
+<%= link_to 'Edit', edit_deliverable_path(@deliverable) %> |
+<%= link_to 'Back', deliverables_path %>

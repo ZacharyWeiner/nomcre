@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  script: MyText
+  project: one
+  production_requirements: MyText
+
+two:
+  script: MyText
+  project: two
+  production_requirements: MyText

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Script:</strong>
+  <%= @story.script %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @story.project %>
+</p>
+
+<p>
+  <strong>Production requirements:</strong>
+  <%= @story.production_requirements %>
+</p>
+
+<%= link_to 'Edit', edit_story_path(@story) %> |
+<%= link_to 'Back', stories_path %>

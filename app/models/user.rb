@@ -23,6 +23,7 @@ class User < ApplicationRecord
   mount_uploader :profile_image, FileUploader
   has_many :documents
   has_many :creative_requests, foreign_key: 'creative_id'
+  has_many :stories, through: :company
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

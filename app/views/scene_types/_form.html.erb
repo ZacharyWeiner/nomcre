@@ -1,0 +1,22 @@
+<%= form_with(model: scene_type, local: true) do |form| %>
+  <% if scene_type.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(scene_type.errors.count, "error") %> prohibited this scene_type from being saved:</h2>
+
+      <ul>
+      <% scene_type.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :scene_type_name %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
