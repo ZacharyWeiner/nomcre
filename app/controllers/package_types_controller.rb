@@ -83,7 +83,8 @@ class PackageTypesController < ApplicationController
   end
 
   def new_from_template
-    CreateProjectFromTemplateWorker.perform_async(@package_type.id, current_user.id)
+    #CreateProjectFromTemplateWorker.perform_async(@package_type.id, current_user.id)
+    @project = @package_type.create_project current_user, Date.today + 30.days
     flash[:notice] = "We're Building Your Project :) "
     head :no_content
     #redirect_to projects_path
