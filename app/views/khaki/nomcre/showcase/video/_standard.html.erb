@@ -10,5 +10,10 @@
     <%= render :partial => 'khaki/nomcre/showcase/video/standard_right', :locals => {:video => video} %>
   <% end %>
   <% counter =  counter + 1 %>
+  <% if counter == 2 %>
+    <%= render 'khaki/nomcre/showcase/video/parallax_1' %>
+  <% elsif counter == 4 %>
+    <%= render 'khaki/nomcre/showcase/video/parallax_2' %>
+  <% end %>
 <% end %>
 

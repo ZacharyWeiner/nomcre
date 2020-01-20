@@ -7,34 +7,37 @@
 <meta property="title" content="Nomcre - The Best Nomadic Creative Videos" />
 <meta property="keywords" content="On Demand, On-Demand, Visual, Custom, Creative, Content, Photography, Videography, Videos, product photos, pictures" />
 <% end %>
+
+
 <div class='nk-main'>
-  <div class='nk-gap-5'></div>
-<% render 'khaki/nomcre/showcase/video/header_title' %>
-<div class='container'>
-  <div class='row'>
-    <div class='col-md-1'></div>
-    <div class='col-md-10'>
-
-       <div class="nk-blog-post nk-blog-post-single">
-          <!-- START: Post Text -->
-          <div class="nk-post-text mt-0">
-            <%= link_to "https://vimeo.com/271028634", class: "nk-video-fullscreen-toggle" do %>
-            <div style="max-height:550px; overflow-y:hidden">
-            <%= image_tag 'https://s3-us-west-2.amazonaws.com/nomcre-rails/public-page-images/nomcre_explainer_thumb.png', class: 'img-fluid' %>
-
-                <% end %>
-              </div>
-              <div class="nk-gap"></div>
-              <div style="font-family: 'raleway'; font-size: 32px; font-weight: 100; text-align: center">
-               Click this ☝️ Video First
-              </div>
-          </div>
-          <!-- END: Post Text -->
-
-      </div>
+<div class="nk-header-title nk-header-title-md nk-header-title-parallax nk-header-title-parallax-opacity nk-header-title-parallax-blur">
+    <div class="bg-image op-5">
+        <img class="jarallax-img" src="assets/images/image-8.jpg" alt="">
     </div>
-  </div>
+    <div class="nk-header-table">
+        <div class="nk-header-table-cell">
+            <div class="container">
+
+
+                    <h1 class="nk-title">Video Showcase</h1>
+                    <h2 class="nk-sub-title">Click Play</h2>
+
+
+
+                    <div class="nk-gap-2"></div>
+
+                        <a class="nk-video-fullscreen-toggle" href="https://www.youtube.com/watch?v=0wCC3aLXdOw">
+                            <span class="nk-video-icon"><span class="ion-md-play pl-4"></span></span>
+                        </a>
+
+
+
+            </div>
+        </div>
+    </div>
+
 </div>
+
 <%= render :partial => 'khaki/nomcre/showcase/video/standard' %>
 <%= paginate @showcase_videos %>
 </div>

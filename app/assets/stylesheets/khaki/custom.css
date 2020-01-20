@@ -4,19 +4,18 @@
 }
 
 .raleway{
-  font:raleway;
+  font-family: Roboto, sans-serif;
 }
-
 .raleway-bold{
-  font-family: raleway;
+  font-family: Roboto, sans-serif;
   font-weight: 800;
 }
-.raleway-thin{
-  font-family: raleway;
+.raleway-thin {
+  font-family: Roboto, sans-serif;
   font-weight: 200;
 }
 .raleway-thinnest{
-  font-family: raleway;
+  font-family: Roboto, sans-serif;
   font-weight: 100;
 }
 
@@ -49,3 +48,9 @@
 .nk-header-title .nk-header-table {
     padding-top: 137px;
 }
+
+
+.bebas{
+  font-family: 'BebasNeue';
+}
+
