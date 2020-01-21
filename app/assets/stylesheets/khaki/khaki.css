@@ -469,7 +469,7 @@ html {
 }
 
 body {
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif, !important ;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -484,20 +484,20 @@ b, strong {
 }
 
 /* headings */
-.h1 {font-family: "BebasNeue", sans-serif;}
+.h1 {font-family: "BebasNeue", sans-serif, !important;}
 h2, .h2,
 h3, .h3,
 h4, .h4,
 h5, .h5,
 h6, .h6 {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Roboto', sans-serif, !important;
     font-weight: 700;
     margin-bottom: 1rem;
 }
 
 
 .h22{
-    font-family: "BebasNeue", cursive;
+    font-family: "BebasNeue", cursive, !important ;
 }
 
 .display-1,
@@ -505,7 +505,7 @@ h6, .h6 {
 .display-3,
 .display-4,
 .display-5 {
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif, !important ;
     font-weight: bold;
 }
 
@@ -539,7 +539,7 @@ h6, .h6 {
 .nk-sub-title {
     position: relative;
     font-weight: 300;
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif, !important ;
     font-size: 1.1rem;
     color: #ff6f61;
     z-index: 1;
@@ -615,7 +615,7 @@ h6, .h6 {
 
 /* mega menu titles */
 .nk-mega-item > .dropdown > ul li > label {
-    font-family: "BebasNeue", sans-serif;
+    font-family: "BebasNeue", sans-serif, !important ;
 }
 
 /*------------------------------------------------------------------
@@ -3649,7 +3649,7 @@ img.rounded {
 
 .nk-navbar .nk-nav li > a .nk-item-descr {
     display: block;
-    font-family: Roboto;
+    font-family: Roboto, !important ;
     font-size: 0.7em;
     opacity: 0.7;
 }
@@ -5370,7 +5370,7 @@ img.rounded {
 }
 
 .nk-page-nav-3 .nk-page-nav-title {
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif, !important ;
     font-weight: bold;
     font-size: 1.2rem;
 }
@@ -7433,7 +7433,7 @@ img.rounded {
 }
 
 .nk-progress .nk-progress-title {
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif, !important ;
     margin-bottom: 5px;
 }
 
@@ -8212,7 +8212,7 @@ img.rounded {
 .nk-counter .nk-count,
 .nk-counter-2 .nk-count,
 .nk-counter-3 .nk-count {
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif, !important ;
     font-weight: bold;
 }
 
@@ -8241,7 +8241,7 @@ img.rounded {
 }
 
 .nk-counter-3 .nk-counter-title {
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif, !important ;
     font-weight: normal;
     line-height: 1;
 }
@@ -8295,7 +8295,7 @@ img.rounded {
             user-select: none;
     pointer-events: none;
     font-weight: bold;
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif, !important ;
     font-size: 6rem;
     width: 35px;
     height: 40px;
@@ -8486,7 +8486,7 @@ img.rounded {
     font-size: 4.5rem;
     line-height: 1;
     font-weight: bold;
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif, !important ;
     margin-bottom: 1rem;
 }
 
@@ -8606,14 +8606,14 @@ img.rounded {
     font-size: 4.5rem;
     line-height: 1;
     font-weight: bold;
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif, !important ;
     margin-bottom: 0.5rem;
 }
 
 .nk-pricing-2 .nk-pricing-currency,
 .nk-pricing-2 .nk-pricing-period {
     font-size: 1rem;
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif, !important ;
     font-weight: normal;
 }
 
@@ -8669,13 +8669,13 @@ img.rounded {
     font-size: 4rem;
     line-height: 1;
     font-weight: bold;
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif, !important ;
 }
 
 .nk-pricing-3 .nk-pricing-currency,
 .nk-pricing-3 .nk-pricing-period {
     font-size: 1rem;
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif, !important ;
     font-weight: normal;
 }
 
@@ -8887,7 +8887,7 @@ img.rounded {
 .nk-testimonial-2 .nk-testimonial-body:before {
     content: '\201C';
     position: absolute;
-    font-family: "Roboto", serif;
+    font-family: "Roboto", serif, !important ;
     font-weight: bold;
     font-size: 150px;
     line-height: 135px;
@@ -8960,7 +8960,7 @@ img.rounded {
 .nk-blockquote .nk-blockquote-icon {
     position: absolute;
     color: #aaa;
-    font-family: "Roboto", serif;
+    font-family: "Roboto", serif, !important ;
     font-weight: bold;
     font-size: 150px;
     line-height: 135px;
@@ -9162,7 +9162,7 @@ img.rounded {
 
 .nk-carousel .nk-carousel-prev .nk-carousel-arrow-name,
 .nk-carousel .nk-carousel-next .nk-carousel-arrow-name {
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif, !important ;
     font-weight: bold;
     font-size: 1.2rem;
     white-space: nowrap;
@@ -9400,7 +9400,7 @@ img.rounded {
 
 .nk-carousel-3 .nk-carousel-prev .nk-carousel-arrow-name,
 .nk-carousel-3 .nk-carousel-next .nk-carousel-arrow-name {
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif, !important ;
     font-weight: bold;
     font-size: 1.2rem;
     white-space: nowrap;
@@ -11047,7 +11047,7 @@ div.nk-error {
     display: block;
     font-size: 4rem;
     font-weight: bold;
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif, !important ;
 }
 
 @media (max-width: 767px) {
@@ -13378,7 +13378,7 @@ a.active > .nk-icon-search:after {
     font-size: 1.2rem;
     margin-top: 20px;
     margin-bottom: 10px;
-    font-family: "Roboto", sans-serif;
+    font-family: "Roboto", sans-serif, !important ;
     font-weight: bold;
 }
 
