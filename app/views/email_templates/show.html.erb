@@ -1,0 +1,20 @@
+<div style="padding-top:75px;"></div>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @email_template.name %>
+</p>
+
+<p>
+  <strong>Example image:</strong>
+  <%= @email_template.example_image %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @email_template.description %>
+</p>
+
+<%= link_to 'Edit', edit_email_template_path(@email_template) %> |
+<%= link_to 'Back', email_templates_path %>

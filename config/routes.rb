@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+
+
+  resources :email_templates do
+    resources :emails do
+      resources :email_details
+    end
+  end
   get 'magic', to: 'headline_adlibs#magic', as: 'headline_adlibs_magic'
   resources :headline_adlibs do
     get 'personalization', to: 'headline_adlibs#personalization', as: 'headline_adlibs_personalization'

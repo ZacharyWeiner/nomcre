@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @email_detail.email %>
+</p>
+
+<p>
+  <strong>Detail type:</strong>
+  <%= @email_detail.detail_type %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @email_detail.content %>
+</p>
+
+<p>
+  <strong>Order:</strong>
+  <%= @email_detail.order %>
+</p>
+
+<%= link_to 'Edit', edit_email_detail_path(@email_detail) %> |
+<%= link_to 'Back', email_details_path %>
