@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200121193712) do
+ActiveRecord::Schema.define(version: 20200116203424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -166,31 +166,6 @@ ActiveRecord::Schema.define(version: 20200121193712) do
     t.index ["proposal_id"], name: "index_documents_on_proposal_id"
     t.index ["shoot_id"], name: "index_documents_on_shoot_id"
     t.index ["user_id"], name: "index_documents_on_user_id"
-  end
-
-  create_table "email_details", force: :cascade do |t|
-    t.bigint "email_id"
-    t.string "detail_type"
-    t.text "content"
-    t.integer "order"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email_id"], name: "index_email_details_on_email_id"
-  end
-
-  create_table "email_templates", force: :cascade do |t|
-    t.string "name"
-    t.string "example_image"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "emails", force: :cascade do |t|
-    t.bigint "email_template_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email_template_id"], name: "index_emails_on_email_template_id"
   end
 
   create_table "external_links", force: :cascade do |t|
@@ -827,8 +802,6 @@ ActiveRecord::Schema.define(version: 20200121193712) do
   add_foreign_key "documents", "proposals"
   add_foreign_key "documents", "shoots"
   add_foreign_key "documents", "users"
-  add_foreign_key "email_details", "emails"
-  add_foreign_key "emails", "email_templates"
   add_foreign_key "invoices", "companies"
   add_foreign_key "invoices", "payments"
   add_foreign_key "invoices", "projects"
