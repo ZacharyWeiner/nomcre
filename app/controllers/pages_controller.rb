@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show, :sales, :marketing, :non_profits, :start_ups, :consultants, :franchises]
+  before_action :authenticate_user!, except: [:index, :show, :sales, :marketing, :non_profits, :start_ups, :consultants, :franchises, :send_announcement]
   before_action :set_page, only: [:edit, :update, :destroy, :publish]
-  before_action :authorize, except: [:show, :sales, :marketing, :non_profits, :start_ups, :consultants, :franchises]
+  before_action :authorize, except: [:show, :sales, :marketing, :non_profits, :start_ups, :consultants, :franchises, :send_announcement]
   layout :set_layout
   # GET /pages
   # GET /pages.json
@@ -126,6 +126,11 @@ class PagesController < ApplicationController
   end
 
   def franchises
+  end
+
+  def send_announcement
+    CreativeMailer.announcement.deliver_now!
+    redirect_to root_path
   end
 
   private

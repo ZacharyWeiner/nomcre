@@ -22,4 +22,8 @@ class CreativeMailer < ApplicationMailer
     @url  = 'http://nomcre.com/requests'
     mail(to: @creative.email, subject: "#{@company.name} Requested Your Skills")
   end
+
+  def announcement
+    mail(to: 'zaccharyaweiner@gmail.com', subject: "Nomcre Update")
+  end
 end

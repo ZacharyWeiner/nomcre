@@ -98,7 +98,7 @@ Rails.application.routes.draw do
 
   get 'waitlist/joined_waitlist', to: 'waitlists#send_joined_waitlist_email'
   get 'waitlist/creative_accepted', to: 'waitlists#send_user_accepted_email'
-
+  get 'pages/send_announcement', to: 'pages#send_announcement'
 
 
   resources :proposals do
