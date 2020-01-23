@@ -61,6 +61,12 @@ class EmailsController < ApplicationController
     end
   end
 
+  def templates
+  end
+
+  def template_design
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_email

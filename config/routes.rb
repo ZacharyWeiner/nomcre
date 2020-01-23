@@ -1,12 +1,9 @@
 Rails.application.routes.draw do
 
 
-
-  resources :email_templates do
-    resources :emails do
-      resources :email_details
-    end
-  end
+  resources :emails
+  get '/email_design/templates', to: 'emails#templates', as: 'email_templates'
+  get '/email_design/templates/design/:id', to: 'emails#template_design', as: 'email_template_design'
   get 'magic', to: 'headline_adlibs#magic', as: 'headline_adlibs_magic'
   resources :headline_adlibs do
     get 'personalization', to: 'headline_adlibs#personalization', as: 'headline_adlibs_personalization'
