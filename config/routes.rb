@@ -213,11 +213,13 @@ Rails.application.routes.draw do
   get '/for/consultants', to: 'pages#consultants', as:'for_consultants'
   get '/for/franchises', to: 'pages#franchises', as:'for_franchises'
   get '/sitemap', to: 'pages#sitemap'
+  get '/noodles-email', to:'khaki#noodles_email', as: 'noodles_email'
 
 
   get '/emails/test/property_management', to: 'email_test#property_management', as: 'property_management_email'
   get '/emails/test/modeling_agency', to: 'email_test#modeling_agency', as: 'modeling_agency_email'
   get '/emails/test/newsletter', to: 'email_test#newsletter', as: 'newsletter_email'
+
 
 
   get 'black_dashboard/dashboard', to: 'black_dashboard#dashboard', as: 'black_dashboard_dashboard'

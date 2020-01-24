@@ -81,6 +81,10 @@ class KhakiController < ApplicationController
     render :layout => 'landing_page'
 
   end
+  def noodles_email
+    render layout: false
+  end
+
 
   def set_showcase_header_image
     @header_images = HeaderImage.all.where(showcase: true)
