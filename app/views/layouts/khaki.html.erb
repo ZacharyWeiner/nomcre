@@ -20,15 +20,16 @@
    <%= yield :head %>
 <!--   <meta name="title" content="<% content_for?(:title) ? yield(:title) : Rails.application.secrets[:site_title] %>">
   <meta name="description" content="<% content_for?(:description) ? yield(:description) : Rails.application.secrets[:site_title] %>"> -->
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700|Raleway:100,200i,300,400,800|Ubuntu:300,400,700" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Roboto:100,300,400,900&display=swap" rel="stylesheet">
+
 
   <title><%= content_for?(:title) ? yield(:title) : Rails.application.secrets[:site_title] %></title>
+  <link href="https://fonts.googleapis.com/css?family=Bebas+Neue|Roboto:100,300,400,900&display=swap" rel="stylesheet">
   <%= stylesheet_link_tag 'khaki_theme', media: 'all' %>
   <script src="https://use.fontawesome.com/1494e0c4f8.js"></script>
 
 
   <link href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css', rel='stylesheet'>
+
 
 
   <%= csrf_meta_tags %>
@@ -79,6 +80,11 @@ drift.load('2kydddnkkp4a');
 <!-- End of Async Drift Code -->
 
 <%= javascript_include_tag 'khaki_theme' %>
+<style>
+  .bebas{
+    font-family: "BebasNeue";
+  }
+</style>
 </head>
 <body>
   <%= render 'khaki/nomcre/top_contact_menu'%>

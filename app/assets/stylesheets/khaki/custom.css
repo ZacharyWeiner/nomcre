@@ -4,18 +4,18 @@
 }
 
 .raleway{
-  font-family: Roboto, sans-serif;
+  font-family: "Roboto";
 }
 .raleway-bold{
-  font-family: Roboto, sans-serif;
+  font-family: "Roboto";
   font-weight: 800;
 }
 .raleway-thin {
-  font-family: Roboto, sans-serif;
+  font-family: "Roboto";
   font-weight: 200;
 }
 .raleway-thinnest{
-  font-family: Roboto, sans-serif;
+  font-family: "Roboto";
   font-weight: 100;
 }
 
@@ -50,12 +50,7 @@
 }
 
 
-.bebas{
-  font-family: "BebasNeue", sans-serif, !important;
-}
 
-@-webkit-keyframes fontfix {
-    from { opacity: 1; }
-    to   { opacity: 1; }
-}
+
+
 
