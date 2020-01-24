@@ -484,7 +484,7 @@ b, strong {
 }
 
 /* headings */
-.h1 {font-family: "BebasNeue", sans-serif, !important;}
+.h1 {font-family: "BebasNeue";}
 h2, .h2,
 h3, .h3,
 h4, .h4,
@@ -497,7 +497,7 @@ h6, .h6 {
 
 
 .h22{
-    font-family: "BebasNeue", cursive, !important ;
+    font-family: "BebasNeue";
 }
 
 .display-1,
