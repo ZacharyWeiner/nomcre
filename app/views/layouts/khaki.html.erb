@@ -24,17 +24,11 @@
 
   <title><%= content_for?(:title) ? yield(:title) : Rails.application.secrets[:site_title] %></title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,200,300,400,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
-  <style>
-    @import url('https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap&subset=latin-ext');
-  </style>
+  <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap&subset=latin-ext" rel="stylesheet" type="css/text">
+
   <%= stylesheet_link_tag 'khaki_theme', media: 'all' %>
   <script src="https://use.fontawesome.com/1494e0c4f8.js"></script>
-
-
   <link href='https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css', rel='stylesheet'>
-
-
-
   <%= csrf_meta_tags %>
   <meta name="robots" content="noodp,noydir" />.
    <!-- Facebook Pixel Code -->
