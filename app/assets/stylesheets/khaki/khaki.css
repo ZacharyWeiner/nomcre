@@ -470,7 +470,7 @@ html {
 }
 
 body {
-    font-family: "Roboto";
+    font-family: "Bebas Neue", cursive;
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -479,6 +479,7 @@ body {
 
 p {
     margin-bottom: 1.5rem;
+    font-family: "Roboto";
 }
 
 b, strong {
@@ -499,7 +500,7 @@ h6, .h6 {
 
 
 .h22{
-    font-family: "Roboto";
+    font-family: "Bebas Neue", cursive;
 }
 
 .display-1,
@@ -617,7 +618,7 @@ h6, .h6 {
 
 /* mega menu titles */
 .nk-mega-item > .dropdown > ul li > label {
-    font-family: "Roboto", sans-serif, !important ;
+    font-family: "Bebas Neue", cursive;
 }
 
 /*------------------------------------------------------------------
@@ -3651,7 +3652,7 @@ img.rounded {
 
 .nk-navbar .nk-nav li > a .nk-item-descr {
     display: block;
-    font-family: "Roboto", !important ;
+    font-family: "Bebas Neue", cursive;
     font-size: 0.7em;
     opacity: 0.7;
 }
@@ -5372,7 +5373,7 @@ img.rounded {
 }
 
 .nk-page-nav-3 .nk-page-nav-title {
-    font-family: "Roboto";
+    font-family: "Bebas Neue", cursive;
     font-weight: bold;
     font-size: 1.2rem;
 }
