@@ -473,6 +473,7 @@ body {
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-kerning: normal;
 }
 
 p {
@@ -484,7 +485,7 @@ b, strong {
 }
 
 /* headings */
-.h1 {font-family: "BebasNeue";}
+.h1 {font-family: "Roboto";}
 h2, .h2,
 h3, .h3,
 h4, .h4,
@@ -497,7 +498,7 @@ h6, .h6 {
 
 
 .h22{
-    font-family: "BebasNeue";
+    font-family: "Roboto";
 }
 
 .display-1,
@@ -615,7 +616,7 @@ h6, .h6 {
 
 /* mega menu titles */
 .nk-mega-item > .dropdown > ul li > label {
-    font-family: "BebasNeue", sans-serif, !important ;
+    font-family: "Roboto", sans-serif, !important ;
 }
 
 /*------------------------------------------------------------------
