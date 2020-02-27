@@ -84,7 +84,7 @@ class HappyBirthdayVideosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def happy_birthday_video_params
-      params.require(:happy_birthday_video).permit(:name, :file)
+      params.require(:happy_birthday_video).permit(:name, :file, :cover)
     end
 
     def authorize
