@@ -1,3 +1,10 @@
+<% content_for :head do %>
+  <meta property="og:url" content="<%= request.original_url %>" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="Happy Birthday <%= @happy_birthday_video.name %>" />
+  <meta property="og:description" content="A Happy Birtday Video From Nomadic Creative to <%= @happy_birthday_video.name %>" />
+  <meta property="og:video" content="<%= @happy_birthday_video.file.url%>" />
+<% end %>
 <div style="padding-top:90px;"></div>
 
 <div class="nk-main">
