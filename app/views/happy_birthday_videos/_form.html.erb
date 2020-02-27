@@ -16,11 +16,18 @@
     <%= form.text_field :name, id: :happy_birthday_video_name, class: 'form-control' %>
   </div>
 
+  <% unless happy_birthday_video.file.nil? %>
+    <%= video_tag happy_birthday_video.file, id:'hbd_video', controls: true, controlsList:"nodownload", autoplay: :autoplay,  class: 'embed-responsive',  oncontextmenu:"return false" %>
+  <% end %>
+
   <div class="form-group">
     <%= form.label :file %>
     <%= form.file_field :file, id: :happy_birthday_video_file, class: 'form-control' %>
   </div>
 
+  <% unless happy_birthday_video.cover.nil? %>
+    <%= image_tag happy_birthday_video.cover.url %>
+  <% end %>
   <div class="form-group">
     <%= form.label :cover %>
     <%= form.file_field :cover, id: :happy_birthday_video_cover, class: 'form-control' %>
