@@ -94,7 +94,7 @@ class HappyBirthdayVideosController < ApplicationController
     end
 
     def set_layout
-      if action_name == "show"
+      if action_name == "show" || action_name == "by_name"
         return 'khaki'
       else
         return 'black_dashboard'
