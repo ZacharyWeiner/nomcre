@@ -1,0 +1,2 @@
+module HappyBirthdayVideosHelper
+end

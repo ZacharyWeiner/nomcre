@@ -1,0 +1,52 @@
+<div style="padding-top:90px;"></div>
+
+<div class="nk-main">
+
+  <% if current_user && current_user.is_admin %>
+  <p id="notice"><%= notice %></p>
+  <% end %>
+  <div class='container'>
+    <div class="bg-dark-1 nk-box">
+  <div class="nk-gap-1"></div>
+  <div class="container">
+    <div class="row">
+      <div class='col-md-4' style="color:white">
+        <h3 class='raleway-thinnest'> Happy Birthday <span class='text-main-1' ><%= @happy_birthday_video.name.capitalize%>!</span></h3>
+        <p class='raleway-thinnest align-left' style="margin-top: -16px;"> We Made This Just For You</p>
+      </div>
+      <div class='col-md-4'>
+
+      </div>
+      <div class='col-md-4 align-right'>
+        <%= link_to user_type_path do  %>
+          <%= image_tag "https://s3-us-west-2.amazonaws.com/nomcre/assets/TakeFlightCTA.png", class: 'img-fluid', style: 'max-height:100px; max-width:200px;margin-top:-6px' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- <div class='text-center'>
+      <h1>Happy Birthday <span class='text-main-1'><%= @happy_birthday_video.name %>! </span></h1>
+      <h3> From Your Friends At  </h3>
+      <h4>NOM<span class='raleway-thinnest'>ADIC</span> <br> CRE<span class='raleway-thinnest'>ATIVE</span> </h4>
+
+
+    </div> -->
+    <% unless @happy_birthday_video.file.nil? %>
+    <%= video_tag @happy_birthday_video.file, id:'hbd_video', controls: true, controlsList:"nodownload", autoplay: :autoplay,  class: 'embed-responsive',  oncontextmenu:"return false" %>
+    <% end %>
+  </div>
+
+  <% if current_user && current_user.is_admin %>
+    <%= link_to 'Edit', edit_happy_birthday_video_path(@happy_birthday_video) %> |
+    <%= link_to 'Back', happy_birthday_videos_path %>
+  <% end %>
+  <%= render 'khaki/nomcre/home/top_call_to_action'%>
+  <%= render 'khaki/nomcre/home/side_video'%>
+
+  <%= render 'khaki/nomcre/creative/cta_image_background' %>
+  <%= render 'khaki/nomcre/home/solutions_for_revenue'%>
+  <%= render 'khaki/nomcre/home/call_to_action_bottom_home'%>
+</div>
+

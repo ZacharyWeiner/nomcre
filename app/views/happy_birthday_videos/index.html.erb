@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Happy Birthday Videos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>File</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @happy_birthday_videos.each do |happy_birthday_video| %>
+      <tr>
+        <td><%= happy_birthday_video.name %></td>
+        <td><%= happy_birthday_video.file %></td>
+        <td><%= link_to 'Show', happy_birthday_video %></td>
+        <td><%= link_to 'Edit', edit_happy_birthday_video_path(happy_birthday_video) %></td>
+        <td><%= link_to 'Destroy', happy_birthday_video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Happy Birthday Video', new_happy_birthday_video_path %>
