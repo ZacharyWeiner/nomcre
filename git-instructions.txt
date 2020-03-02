@@ -4,3 +4,7 @@ git-instructions.txt
 git push staging development:master
 
 says push to the staging remote, use the development local branch to push to the master remote branch
+
+Start/Stop Postgres Server 
+pg_ctl -D /usr/local/var/postgres start
+pg_ctl -D /usr/local/var/postgres stop

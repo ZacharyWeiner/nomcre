@@ -1,7 +1,7 @@
 class UserProfile < ApplicationRecord
   #validations
   validates :display_name, presence: true
-  validates :profile_photo,  file_size: { less_than_or_equal_to: 15.megabytes }
+  #validates :profile_photo,  file_size: { less_than_or_equal_to: 15.megabytes }
 
   #belongs_to
   belongs_to :user

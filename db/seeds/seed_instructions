@@ -9,7 +9,7 @@ seed_instructions
 
 
 
-rake db:drop && rake db:create && rake db:migrate && rake db:seed:locations && rake db:seed:pages && rake db:seed:showcase && rake db:seed:user_data && rake db:seed:project_templates && rake db:seed:custom_package_type && rake db:seed:corporate && rake db:seed:hotel_package && rake db:seed:modeling_agency
+rake db:drop && rake db:create && rake db:migrate && rake db:seed:locations && rake db:seed:header_images && rake db:seed:pages && rake db:seed:showcase && rake db:seed:user_data && rake db:seed:project_templates && rake db:seed:custom_package_type && rake db:seed:corporate && rake db:seed:hotel_package && rake db:seed:modeling_agency && rake db:seed:headlines && rake:db:task_group_test
 
 
 heroku pg:reset DATABASE --remote=staging --confirm=nomcre2-staging
@@ -24,17 +24,21 @@ heroku run rake db:seed:custom_package_type --remote=staging
 heroku run rake db:seed:corporate --remote=staging
 heroku run rake db:seed:hotel_package --remote=staging
 heroku run rake db:seed:modeling_agency --remote=staging
+heroku run rake db:seed:headlines --remote=staging
+heroku run rake db:seed:task_group_test --remote=staging
 
 
 heroku pg:reset DATABASE --app=nomcre2 --confirm=nomcre2
 heroku run rake db:migrate --app=nomcre2
 
 heroku run rake db:seed:locations --app=nomcre2
-heroku run rake db:seed:user_data --app=nomcre2
 heroku run rake db:seed:header_images --app=nomcre2
+heroku run rake db:seed:user_data --app=nomcre2
 heroku run rake db:seed:showcase --app=nomcre2
 heroku run rake db:seed:project_templates --app=nomcre2
 heroku run rake db:seed:custom_package_type --app=nomcre2
 heroku run rake db:seed:corporate --app=nomcre2
 heroku run rake db:seed:hotel_package --app=nomcre2
 heroku run rake db:seed:modeling_agency --app=nomcre2
+heroku run rake db:seed:headlines --app=nomcre2
+heroku run rake db:seed:task_group_test --app=nomcre2

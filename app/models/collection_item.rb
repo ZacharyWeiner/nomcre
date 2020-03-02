@@ -4,8 +4,8 @@ class CollectionItem < ApplicationRecord
   before_destroy :destroy_related_entities
 
   #validation
-  validates :file, file_size: { less_than_or_equal_to: 15.megabytes }
-  validates :video, file_size: { less_than_or_equal_to: 50.megabytes }
+  #validates :file, file_size: { less_than_or_equal_to: 15.megabytes }
+  #validates :video, file_size: { less_than_or_equal_to: 50.megabytes }
   validates :item_type, presence: true
   validates :is_header, inclusion: { in: [ true, false ] }
 

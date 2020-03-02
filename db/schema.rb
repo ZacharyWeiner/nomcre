@@ -120,25 +120,6 @@ ActiveRecord::Schema.define(version: 20200302173838) do
     t.index ["shoot_id"], name: "index_creative_requests_on_shoot_id"
   end
 
-  create_table "deliverable_types", force: :cascade do |t|
-    t.string "name"
-    t.text "specification"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "deliverables", force: :cascade do |t|
-    t.bigint "deliverable_type_id"
-    t.string "asset"
-    t.boolean "approved"
-    t.string "slug"
-    t.string "review_link"
-    t.string "status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["deliverable_type_id"], name: "index_deliverables_on_deliverable_type_id"
-  end
-
   create_table "discount_codes", force: :cascade do |t|
     t.string "code"
     t.string "discount_type"
@@ -180,13 +161,6 @@ ActiveRecord::Schema.define(version: 20200302173838) do
   create_table "emails", force: :cascade do |t|
     t.string "title"
     t.text "body"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "external_links", force: :cascade do |t|
-    t.string "title"
-    t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -261,7 +235,6 @@ ActiveRecord::Schema.define(version: 20200302173838) do
     t.bigint "rep_id"
     t.time "next_contact_time"
     t.string "source"
-    t.string "loaction"
     t.string "first_name"
     t.string "last_name"
     t.string "company"
@@ -395,15 +368,6 @@ ActiveRecord::Schema.define(version: 20200302173838) do
     t.index ["user_id"], name: "index_payments_on_user_id"
   end
 
-  create_table "project_deliverables", force: :cascade do |t|
-    t.bigint "project_id"
-    t.bigint "deliverable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["deliverable_id"], name: "index_project_deliverables_on_deliverable_id"
-    t.index ["project_id"], name: "index_project_deliverables_on_project_id"
-  end
-
   create_table "projects", force: :cascade do |t|
     t.bigint "package_type_id"
     t.bigint "company_id"
@@ -487,36 +451,6 @@ ActiveRecord::Schema.define(version: 20200302173838) do
     t.index ["user_id"], name: "index_proposals_on_user_id"
   end
 
-  create_table "scene_deliverables", force: :cascade do |t|
-    t.bigint "scene_id"
-    t.bigint "deliverable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["deliverable_id"], name: "index_scene_deliverables_on_deliverable_id"
-    t.index ["scene_id"], name: "index_scene_deliverables_on_scene_id"
-  end
-
-  create_table "scene_types", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "scenes", force: :cascade do |t|
-    t.string "title"
-    t.string "transition"
-    t.text "script"
-    t.integer "duration"
-    t.string "location"
-    t.string "action"
-    t.string "music"
-    t.integer "position"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "is_template"
-    t.bigint "scene_type"
-  end
-
   create_table "schedule_items", force: :cascade do |t|
     t.date "start_date"
     t.date "end_date"
@@ -527,15 +461,6 @@ ActiveRecord::Schema.define(version: 20200302173838) do
     t.datetime "updated_at", null: false
     t.index ["location_id"], name: "index_schedule_items_on_location_id"
     t.index ["user_id"], name: "index_schedule_items_on_user_id"
-  end
-
-  create_table "shoot_deliverables", force: :cascade do |t|
-    t.bigint "shoot_id"
-    t.bigint "deliverable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["deliverable_id"], name: "index_shoot_deliverables_on_deliverable_id"
-    t.index ["shoot_id"], name: "index_shoot_deliverables_on_shoot_id"
   end
 
   create_table "shoots", force: :cascade do |t|
@@ -576,15 +501,6 @@ ActiveRecord::Schema.define(version: 20200302173838) do
     t.index ["company_id"], name: "index_shoots_on_company_id"
     t.index ["location_id"], name: "index_shoots_on_location_id"
     t.index ["project_id"], name: "index_shoots_on_project_id"
-  end
-
-  create_table "shot_list_item_deliverables", force: :cascade do |t|
-    t.bigint "shot_list_item_id"
-    t.bigint "deliverable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["deliverable_id"], name: "index_shot_list_item_deliverables_on_deliverable_id"
-    t.index ["shot_list_item_id"], name: "index_shot_list_item_deliverables_on_shot_list_item_id"
   end
 
   create_table "shot_list_item_templates", force: :cascade do |t|
@@ -645,53 +561,6 @@ ActiveRecord::Schema.define(version: 20200302173838) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "vimeo_link"
-  end
-
-  create_table "stories", force: :cascade do |t|
-    t.text "script"
-    t.bigint "project_id"
-    t.text "production_requirements"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "company_id"
-    t.index ["company_id"], name: "index_stories_on_company_id"
-    t.index ["project_id"], name: "index_stories_on_project_id"
-  end
-
-  create_table "story_deliverables", force: :cascade do |t|
-    t.bigint "story_id"
-    t.bigint "deliverable_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["deliverable_id"], name: "index_story_deliverables_on_deliverable_id"
-    t.index ["story_id"], name: "index_story_deliverables_on_story_id"
-  end
-
-  create_table "story_links", force: :cascade do |t|
-    t.bigint "story_id"
-    t.bigint "external_link_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["external_link_id"], name: "index_story_links_on_external_link_id"
-    t.index ["story_id"], name: "index_story_links_on_story_id"
-  end
-
-  create_table "story_scenes", force: :cascade do |t|
-    t.bigint "story_id"
-    t.bigint "scene_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["scene_id"], name: "index_story_scenes_on_scene_id"
-    t.index ["story_id"], name: "index_story_scenes_on_story_id"
-  end
-
-  create_table "story_videos", force: :cascade do |t|
-    t.bigint "story_id"
-    t.bigint "video_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["story_id"], name: "index_story_videos_on_story_id"
-    t.index ["video_id"], name: "index_story_videos_on_video_id"
   end
 
   create_table "task_groups", force: :cascade do |t|
@@ -783,14 +652,6 @@ ActiveRecord::Schema.define(version: 20200302173838) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "videos", force: :cascade do |t|
-    t.string "type"
-    t.string "title"
-    t.string "file"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "waitlists", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -820,7 +681,6 @@ ActiveRecord::Schema.define(version: 20200302173838) do
   add_foreign_key "collections", "users"
   add_foreign_key "creative_requests", "companies"
   add_foreign_key "creative_requests", "shoots"
-  add_foreign_key "deliverables", "deliverable_types"
   add_foreign_key "discount_codes_projects", "discount_codes"
   add_foreign_key "discount_codes_projects", "projects"
   add_foreign_key "documents", "assistants"
@@ -839,39 +699,21 @@ ActiveRecord::Schema.define(version: 20200302173838) do
   add_foreign_key "page_sections", "pages"
   add_foreign_key "payments", "projects"
   add_foreign_key "payments", "users"
-  add_foreign_key "project_deliverables", "deliverables"
-  add_foreign_key "project_deliverables", "projects"
   add_foreign_key "projects", "companies"
   add_foreign_key "projects", "package_types"
   add_foreign_key "proposal_requests", "proposals"
   add_foreign_key "proposals", "companies"
   add_foreign_key "proposals", "locations"
   add_foreign_key "proposals", "users"
-  add_foreign_key "scene_deliverables", "deliverables"
-  add_foreign_key "scene_deliverables", "scenes"
   add_foreign_key "schedule_items", "locations"
   add_foreign_key "schedule_items", "users"
-  add_foreign_key "shoot_deliverables", "deliverables"
-  add_foreign_key "shoot_deliverables", "shoots"
   add_foreign_key "shoots", "companies"
   add_foreign_key "shoots", "locations"
   add_foreign_key "shoots", "projects"
-  add_foreign_key "shot_list_item_deliverables", "deliverables"
-  add_foreign_key "shot_list_item_deliverables", "shot_list_items"
   add_foreign_key "shot_list_item_templates", "task_groups"
   add_foreign_key "shot_list_items", "proposals"
   add_foreign_key "shot_list_items", "shoots"
   add_foreign_key "shot_list_items", "task_groups"
-  add_foreign_key "stories", "companies"
-  add_foreign_key "stories", "projects"
-  add_foreign_key "story_deliverables", "deliverables"
-  add_foreign_key "story_deliverables", "stories"
-  add_foreign_key "story_links", "external_links"
-  add_foreign_key "story_links", "stories"
-  add_foreign_key "story_scenes", "scenes"
-  add_foreign_key "story_scenes", "stories"
-  add_foreign_key "story_videos", "stories"
-  add_foreign_key "story_videos", "videos"
   add_foreign_key "task_groups", "shoots"
   add_foreign_key "tasks", "companies"
   add_foreign_key "tasks", "projects"
