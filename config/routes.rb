@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :congratulations_videos
   resources :happy_birthday_videos
   get 'magic', to: 'headline_adlibs#magic', as: 'headline_adlibs_magic'
   resources :headline_adlibs do
@@ -28,6 +29,8 @@ Rails.application.routes.draw do
   get 'packages/:slug', to: 'package_types#show', as:'package_types_slug'
   get 'hbd/:slug', to: 'happy_birthday_videos#show', as:'hbd_by_slug'
   get 'hbd/by_name/:name', to: 'happy_birthday_videos#by_name', as:'hbd_by_name'
+  get 'congrats/:slug', to: 'congratulations_videos#show', as:'congrats_by_slug'
+  get 'congrats/by_name/:name', to: 'congratulations_videos#by_name', as:'congrats_by_name'
   resources :creative_requests
   resources :discount_codes
   resources :shoots do

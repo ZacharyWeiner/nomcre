@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Congratulations Videos</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>File</th>
+      <th>Cover</th>
+      <th>Slug</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @congratulations_videos.each do |congratulations_video| %>
+      <tr>
+        <td><%= congratulations_video.name %></td>
+        <td><%= congratulations_video.file %></td>
+        <td><%= congratulations_video.cover %></td>
+        <td><%= congratulations_video.slug %></td>
+        <td><%= link_to 'Show', congratulations_video %></td>
+        <td><%= link_to 'Edit', edit_congratulations_video_path(congratulations_video) %></td>
+        <td><%= link_to 'Destroy', congratulations_video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Congratulations Video', new_congratulations_video_path %>

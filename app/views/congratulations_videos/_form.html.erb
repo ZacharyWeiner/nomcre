@@ -1,0 +1,32 @@
+<%= form_with(model: congratulations_video, local: true) do |form| %>
+  <% if congratulations_video.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(congratulations_video.errors.count, "error") %> prohibited this congratulations_video from being saved:</h2>
+
+      <ul>
+      <% congratulations_video.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :congratulations_video_name, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :file %>
+    <%= form.file_field :file, id: :congratulations_video_file, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :cover %>
+    <%= form.file_field :cover, id: :congratulations_video_cover, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

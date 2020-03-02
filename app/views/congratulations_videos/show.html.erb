@@ -1,0 +1,54 @@
+<% content_for :head do %>
+  <meta property="og:url" content="<%= request.original_url %>" />
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="Congratulations <%= @congratulations_video.name.capitalize %>" />
+  <meta property="og:description" content="A Congratulations Video From Nomadic Creative to <%= @congratulations_video.name.capitalize %>" />
+  <meta property="og:image" content="<%= @congratulations_video.cover.url%>" />
+
+  <meta property="og:video" content="<%= @congratulations_video.file.url%>" />
+<% end %>
+<div style="padding-top:90px;"></div>
+
+<div class="nk-main">
+
+  <% if current_user && current_user.is_admin %>
+  <p id="notice"><%= notice %></p>
+  <% end %>
+  <div class='container'>
+    <div class="bg-dark-1 nk-box">
+  <div class="nk-gap-1"></div>
+  <div class="container">
+    <div class="row">
+      <div class='col-md-4' style="color:white">
+        <h3 class='raleway-thinnest'> Congratulations <span class='text-main-1' ><%= @congratulations_video.name.capitalize%>!</span></h3>
+        <p class='raleway-thinnest align-left' style="margin-top: -16px;"> We Made This Just For You</p>
+      </div>
+      <div class='col-md-4'>
+
+      </div>
+      <div class='col-md-4 align-right'>
+        <%= link_to user_type_path do  %>
+          <%= image_tag "https://s3-us-west-2.amazonaws.com/nomcre/assets/TakeFlightCTA.png", class: 'img-fluid', style: 'max-height:100px; max-width:200px;margin-top:-6px' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <% unless @congratulations_video.file.nil? %>
+    <%= video_tag @congratulations_video.file, id:'hbd_video', controls: true, controlsList:"nodownload", autoplay: :autoplay,  class: 'embed-responsive',  oncontextmenu:"return false" %>
+    <% end %>
+  </div>
+
+  <% if current_user && current_user.is_admin %>
+    <%= link_to 'Edit', edit_congratulations_video_path(@congratulations_video) %> |
+    <%= link_to 'Back', congratulations_videos_path %>
+  <% end %>
+  <%= render 'khaki/nomcre/home/top_call_to_action'%>
+  <%= render 'khaki/nomcre/home/side_video'%>
+
+  <%= render 'khaki/nomcre/creative/cta_image_background' %>
+  <%= render 'khaki/nomcre/home/solutions_for_revenue'%>
+  <%= render 'khaki/nomcre/home/call_to_action_bottom_home'%>
+</div>
+
