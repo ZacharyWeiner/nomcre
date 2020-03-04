@@ -194,7 +194,7 @@ GEM
     parallax-rails (1.0.0)
     pg (0.21.0)
     public_suffix (4.0.2)
-    puma (3.12.2)
+    puma (3.12.4)
     rack (2.0.8)
     rack-cors (1.1.0)
       rack (>= 2.0.0)
@@ -347,7 +347,7 @@ DEPENDENCIES
   newrelic_rpm
   parallax-rails
   pg (~> 0.18)
-  puma (~> 3.7)
+  puma (~> 3.12)
   rack-cors
   rails (~> 5.1.4)
   react_on_rails (= 11.1.8)
