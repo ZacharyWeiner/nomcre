@@ -1,7 +1,8 @@
 class HappyBirthdayVideosController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:create_from_remote]
   before_action :set_happy_birthday_video, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:show, :by_name]
-  before_action :authorize, except: [:show, :by_name]
+  before_action :authenticate_user!, except: [:show, :by_name, :create_from_remote]
+  before_action :authorize, except: [:show, :by_name, :create_from_remote]
   layout :set_layout
   # GET /happy_birthday_videos
   # GET /happy_birthday_videos.json
@@ -38,6 +39,31 @@ class HappyBirthdayVideosController < ApplicationController
         format.json { render json: @happy_birthday_video.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def create_from_remote
+    
+    params_val = params[:happy_birthday_video]
+    hbd_params = JSON.parse params_val[0]
+    name = hbd_params['name']
+    slug = Digest::MD5.hexdigest name
+    remote_file_url = hbd_params['remote_file_url']
+    remote_cover_url = hbd_params['remote_cover_url']
+    byebug
+    @happy_birthday_video = HappyBirthdayVideo.new(name: name,
+                                        slug: slug,
+                                        remote_file_url: remote_file_url,
+                                        remote_cover_url: remote_cover_url)
+
+    byebug
+    @happy_birthday_video.save
+      # if @happy_birthday_video.save
+      #   format.json { head :no_content }
+      # else
+      #   format.html { render :new }
+      #   format.json { render json: @happy_birthday_video.errors, status: :unprocessable_entity }
+      # end
+    
   end
 
   # PATCH/PUT /happy_birthday_videos/1

@@ -41,6 +41,10 @@ class CongratulationsVideosController < ApplicationController
     end
   end
 
+  def create_from_remote
+
+  end
+
   # PATCH/PUT /congratulations_videos/1
   # PATCH/PUT /congratulations_videos/1.json
   def update
