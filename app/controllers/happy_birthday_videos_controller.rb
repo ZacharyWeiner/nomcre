@@ -49,21 +49,17 @@ class HappyBirthdayVideosController < ApplicationController
     slug = Digest::MD5.hexdigest name
     remote_file_url = hbd_params['remote_file_url']
     remote_cover_url = hbd_params['remote_cover_url']
-    byebug
+    
     @happy_birthday_video = HappyBirthdayVideo.new(name: name,
                                         slug: slug,
                                         remote_file_url: remote_file_url,
                                         remote_cover_url: remote_cover_url)
-
-    byebug
-    @happy_birthday_video.save
-      # if @happy_birthday_video.save
-      #   format.json { head :no_content }
-      # else
-      #   format.html { render :new }
-      #   format.json { render json: @happy_birthday_video.errors, status: :unprocessable_entity }
-      # end
     
+    if @happy_birthday_video.save
+      format.json { head :no_content, status: :ok, location: @congratulations_video }
+    else 
+       format.json { render json: @congratulations_video.errors, status: :unprocessable_entity }
+    end
   end
 
   # PATCH/PUT /happy_birthday_videos/1
