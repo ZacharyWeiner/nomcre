@@ -1,7 +1,8 @@
 class CongratulationsVideosController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:create_from_remote]
   before_action :set_congratulations_video, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:show, :by_name]
-  before_action :authorize, except: [:show, :by_name]
+  before_action :authenticate_user!, except: [:show, :by_name, :create_from_remote]
+  before_action :authorize, except: [:show, :by_name, :create_from_remote]
   layout :set_layout
   # GET /congratulations_videos
   # GET /congratulations_videos.json
@@ -42,7 +43,18 @@ class CongratulationsVideosController < ApplicationController
   end
 
   def create_from_remote
+    params_val = params[:congratulations_video]
+    congrats_params = JSON.parse params_val[0]
+    name = congrats_params['name']
+    slug = Digest::MD5.hexdigest name
+    remote_file_url = hbd_params['remote_file_url']
+    remote_cover_url = hbd_params['remote_cover_url']
+    @congratulations_video = CongratulationsVideo.new(name: name,
+                                        slug: slug,
+                                        remote_file_url: remote_file_url,
+                                        remote_cover_url: remote_cover_url)
 
+    @congratulations_video.save
   end
 
   # PATCH/PUT /congratulations_videos/1
