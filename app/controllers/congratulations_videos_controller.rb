@@ -53,13 +53,13 @@ class CongratulationsVideosController < ApplicationController
                                         slug: slug,
                                         remote_file_url: remote_file_url,
                                         remote_cover_url: remote_cover_url)
-
-    if @congratulations_video.save
-      format.json { render :show, status: :ok, location: @congratulations_video }
-    else 
-       format.json { render json: @congratulations_video.errors, status: :unprocessable_entity }
+    respond_to do |format|
+      if @congratulations_video.save
+        format.json { head :no_content, status: :ok, location: @congratulations_video }
+      else 
+         format.json { render json: @congratulations_video.errors, status: :unprocessable_entity }
+      end
     end
-
   end
 
   # PATCH/PUT /congratulations_videos/1

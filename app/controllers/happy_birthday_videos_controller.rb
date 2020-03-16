@@ -42,7 +42,7 @@ class HappyBirthdayVideosController < ApplicationController
   end
 
   def create_from_remote
-    
+    byebug
     params_val = params[:happy_birthday_video]
     hbd_params = JSON.parse params_val[0]
     name = hbd_params['name']
@@ -55,10 +55,12 @@ class HappyBirthdayVideosController < ApplicationController
                                         remote_file_url: remote_file_url,
                                         remote_cover_url: remote_cover_url)
     
-    if @happy_birthday_video.save
-      format.json { head :no_content, status: :ok, location: @congratulations_video }
-    else 
-       format.json { render json: @congratulations_video.errors, status: :unprocessable_entity }
+    respond_to do |format|
+      if @happy_birthday_video.save
+        format.json { head :no_content, status: :ok, location: @happy_birthday_video }
+      else 
+         format.json { render json: @happy_birthday_video.errors, status: :unprocessable_entity }
+      end
     end
   end
 
