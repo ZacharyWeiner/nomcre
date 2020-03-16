@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   
   post 'hbd/add_remote', to: 'happy_birthday_videos#create_from_remote', as: 'hbd_add_from_remote'
-  post 'congrats/add_remote', to: 'congratulations_videos#add_from_remote', as: 'congrats_add_from_remote'
+  post 'congrats/add_remote', to: 'congratulations_videos#create_from_remote', as: 'congrats_add_from_remote'
   resources :congratulations_videos
   resources :happy_birthday_videos
   get 'magic', to: 'headline_adlibs#magic', as: 'headline_adlibs_magic'
