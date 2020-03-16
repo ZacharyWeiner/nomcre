@@ -47,8 +47,8 @@ class CongratulationsVideosController < ApplicationController
     congrats_params = JSON.parse params_val[0]
     name = congrats_params['name']
     slug = Digest::MD5.hexdigest name
-    remote_file_url = hbd_params['remote_file_url']
-    remote_cover_url = hbd_params['remote_cover_url']
+    remote_file_url = congrats_params['remote_file_url']
+    remote_cover_url = congrats_params['remote_cover_url']
     @congratulations_video = CongratulationsVideo.new(name: name,
                                         slug: slug,
                                         remote_file_url: remote_file_url,
