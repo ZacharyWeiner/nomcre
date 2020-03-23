@@ -44,7 +44,7 @@ class HappyBirthdayVideosController < ApplicationController
   def create_from_remote
     params_val = params[:happy_birthday_video]
     hbd_params = JSON.parse params_val[0]
-    name = hbd_params['name']
+    name = hbd_params['name'].downcase
     slug = Digest::MD5.hexdigest name
     remote_file_url = hbd_params['remote_file_url']
     remote_cover_url = hbd_params['remote_cover_url']

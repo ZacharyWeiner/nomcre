@@ -29,8 +29,8 @@ class CongratulationsVideosController < ApplicationController
   # POST /congratulations_videos.json
   def create
     @congratulations_video = CongratulationsVideo.new(congratulations_video_params)
-    @congratulations_video.slug = Digest::MD5.hexdigest @congratulations_video.name
     @congratulations_video.name = @congratulations_video.name.downcase
+    @congratulations_video.slug = Digest::MD5.hexdigest @congratulations_video.name
     respond_to do |format|
       if @congratulations_video.save
         format.html { redirect_to @congratulations_video, notice: 'Congratulations video was successfully created.' }
@@ -45,7 +45,7 @@ class CongratulationsVideosController < ApplicationController
   def create_from_remote
     params_val = params[:congratulations_video]
     congrats_params = JSON.parse params_val[0]
-    name = congrats_params['name']
+    name = congrats_params['name'].downcase
     slug = Digest::MD5.hexdigest name
     remote_file_url = congrats_params['remote_file_url']
     remote_cover_url = congrats_params['remote_cover_url']
