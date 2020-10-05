@@ -32,7 +32,7 @@ config.webpacker.check_yarn_integrity = true
   # Don't care if the mailer can't send.
 
 
-
+  config.webpacker.check_yarn_integrity = false
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
